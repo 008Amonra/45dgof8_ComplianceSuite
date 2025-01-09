@@ -1,8 +1,9 @@
 # 45dgof8_compliance_gpt
-Streamlit app for compliance guidance.
-45dgof8 Compliance GPT Prototype
-Description
-This is a Streamlit-based prototype for the 45dgof8 Compliance GPT system. It demonstrates how user queries can be routed dynamically between lightweight and high-capacity GPT models based on their intent and complexity. The app is designed for compliance-related tasks, smalltalk, and casual interactions.
+Streamlit app for compliance guidance. 45dgof8 Compliance GPT Prototype Description This is a 
+Streamlit-based prototype for the 45dgof8 Compliance GPT system. It demonstrates how user 
+queries can be routed dynamically between lightweight and high-capacity GPT models based on 
+their intent and complexity. The app is designed for compliance-related tasks, smalltalk, and 
+casual interactions.
 
 Features
 Dynamic Query Routing:
