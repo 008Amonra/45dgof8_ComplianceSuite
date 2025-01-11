@@ -1,4 +1,4 @@
-# 45dgof8_compliance_gpt
+# 45dgof8_ComplianceSuite
 Streamlit app for compliance guidance. 45dgof8 Compliance GPT Prototype Description This is a 
 Streamlit-based prototype for the 45dgof8 Compliance GPT system. It demonstrates how user 
 queries can be routed dynamically between lightweight and high-capacity GPT models based on 
