@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>45dgof8 GPT Hub</title>
+    <style>
+        :root {
+            --background-dark: #1e1e2f;
+            --background-light: #2a2a3e;
+            --text-light: #e0e0e0;
+            --primary-color: #6a5acd;
+            --hover-color: #9a8ef1;
+            --accent-muted: #868686;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-light);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-size: 16px;
+            color: var(--accent-muted);
+        }
+
+        .export-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .export-btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        .split-screen {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100vh;
+        }
+
+        .image-section {
+            flex: 1;
+            background-image: url('AUQ.webp');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+        }
+
+        .content-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--background-light);
+            padding: 20px;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav a {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 20px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background-color: rgba(106, 90, 205, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--hover-color);
+            color: #fff;
+        }
+
+        nav p {
+            font-size: 16px;
+            color: var(--accent-muted);
+            margin: 5px 0 15px;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            background-color: var(--background-light);
+            color: var(--accent-muted);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>45dgof8 GPT Hub</h1>
+        <p>Your gateway to compliance-focused GPT tools.</p>
+        <button id="exportBtn" class="export-btn">Export Links</button>
+    </header>
+
+    <div class="split-screen">
+        <div class="image-section"></div>
+        <div class="content-section">
+            <nav>
+                <!-- Links will be generated dynamically here -->
+            </nav>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
+    </footer>
+
+    <script>
+        const gptLinks = [
+            { land: "Global", law: "Compliance", url: "https://chatgpt.com/g/g-pwRUJBPBY-compliancegpt", description: "A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices." },
+            { land: "CGB", law: "Compliance", url: "https://chatgpt.com/g/g-evCGCyUMs-gdpr-cgb", description: "Get expert insights and guidance to ensure your data and AI systems align with GDPR standards—without the legal jargon." },
+            { land: "Indonesia", law: "Compliance", url: "https://chatgpt.com/g/g-6738a01a6edc81919fe6730214086ff7", description: "A trusted AI assistant for navigating Indonesia’s regulatory landscape with ease." },
+            { land: "Brazil", law: "LGPD", url: "https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55", description: "Provides guidance on compliance with Brazil's General Data Protection Law (LGPD)." },
+            { land: "South Africa", law: "POPIA", url: "https://chatgpt.com/g/g-67500c79dbcc81919efc3b758e89bb30", description: "South Africa's trusted AI for navigating POPIA." },
+            { land: "South Korea", law: "PIPA", url: "https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9", description: "The smart way to stay PIPA-compliant in South Korea." },
+            { land: "India", law: "Compliance", url: "https://chatgpt.com/g/g-6753ee6bd6108191a33f017d5b2de60b", description: "Expert assistance for navigating India's regulatory requirements." },
+            { land: "Japan", law: "APPI", url: "https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f", description: "Comply with Japan's Act on the Protection of Personal Information (APPI)." },
+            { land: "Canada", law: "PIPEDA & Law 25", url: "https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425", description: "Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25." }
+        ];
+
+        const nav = document.querySelector("nav");
+
+        gptLinks.forEach(({ land, law, url, description }) => {
+            const link = document.createElement("a");
+            link.href = url;
+            link.target = "_blank";
+            link.innerText = `${land} - ${law} GPT`;
+            nav.appendChild(link);
+
+            const desc = document.createElement("p");
+            desc.innerText = description;
+            nav.appendChild(desc);
+        });
+
+        document.getElementById("exportBtn").addEventListener("click", () => {
+            let content = "45dgof8 Neocities Export:\n\n";
+            gptLinks.forEach(({ land, law, url, description }) => {
+                content += `Title: ${land} - ${law} GPT\n`;
+                content += `URL: ${url}\n`;
+                content += `Description: ${description}\n\n`;
+            });
+
+            const blob = new Blob([content], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "45dgof8_links.txt";
+            link.click();
+        });
+    </script>
+</body>
+</html>
