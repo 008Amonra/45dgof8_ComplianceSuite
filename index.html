@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>45dgof8 GPT Hub</title>
+    <title>45dgof8 GPT Hub - Compliance & AI Innovation</title>
+    <meta name="description" content="Discover AI-driven compliance solutions with advanced GPT tools designed for secure and efficient workflows.">
     <style>
         :root {
             --background-dark: #1e1e2f;
@@ -97,6 +98,7 @@
             background-color: rgba(106, 90, 205, 0.1);
             text-align: center;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         nav a:hover {
@@ -109,6 +111,42 @@
             color: var(--accent-muted);
             margin: 5px 0 15px;
             text-align: center;
+        }
+
+        #chat-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            height: 550px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            padding: 10px;
+            overflow: auto;
+        }
+
+        #chat-header {
+            font-weight: bold;
+            background: #000;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-close {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 90%;
+            border: none;
         }
 
         footer {
@@ -132,7 +170,7 @@
 </head>
 <body>
     <header>
-        <h1>45dgof8 GPT Hub</h1>
+        <h1>45dgof8 GPT Hub – Compliance & AI Innovation</h1>
         <p>Your gateway to compliance-focused GPT tools.</p>
         <button id="exportBtn" class="export-btn">Export Links</button>
     </header>
@@ -140,10 +178,24 @@
     <div class="split-screen">
         <div class="image-section"></div>
         <div class="content-section">
+            <h2>AI-Powered Compliance Tools for Professionals</h2>
+            <p>
+                At 45dgof8 GPT Hub, we provide **AI-driven compliance solutions** for professionals.  
+                Whether you need **automated compliance checks**, AI-powered risk analysis, or regulatory guidance,  
+                our GPT tools help you stay ahead in a constantly evolving legal and business landscape.
+            </p>
             <nav>
-                <!-- Links will be generated dynamically here -->
+                <!-- GPT Links will be added dynamically here -->
             </nav>
         </div>
+    </div>
+
+    <!-- Embedded GPT Chat Window -->
+    <div id="chat-container">
+        <div id="chat-header">
+            AI Chat <span id="chat-close">❌</span>
+        </div>
+        <iframe id="chat-frame" src=""></iframe>
     </div>
 
     <footer>
@@ -152,24 +204,16 @@
 
     <script>
         const gptLinks = [
-            { land: "Global", law: "Compliance", url: "https://chatgpt.com/g/g-pwRUJBPBY-compliancegpt", description: "A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices." },
-            { land: "CGB", law: "Compliance", url: "https://chatgpt.com/g/g-evCGCyUMs-gdpr-cgb", description: "Get expert insights and guidance to ensure your data and AI systems align with GDPR standards—without the legal jargon." },
-            { land: "Indonesia", law: "Compliance", url: "https://chatgpt.com/g/g-6738a01a6edc81919fe6730214086ff7", description: "A trusted AI assistant for navigating Indonesia’s regulatory landscape with ease." },
-            { land: "Brazil", law: "LGPD", url: "https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55", description: "Provides guidance on compliance with Brazil's General Data Protection Law (LGPD)." },
-            { land: "South Africa", law: "POPIA", url: "https://chatgpt.com/g/g-67500c79dbcc81919efc3b758e89bb30", description: "South Africa's trusted AI for navigating POPIA." },
-            { land: "South Korea", law: "PIPA", url: "https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9", description: "The smart way to stay PIPA-compliant in South Korea." },
-            { land: "India", law: "Compliance", url: "https://chatgpt.com/g/g-6753ee6bd6108191a33f017d5b2de60b", description: "Expert assistance for navigating India's regulatory requirements." },
-            { land: "Japan", law: "APPI", url: "https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f", description: "Comply with Japan's Act on the Protection of Personal Information (APPI)." },
-            { land: "Canada", law: "PIPEDA & Law 25", url: "https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425", description: "Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25." }
+            { land: "Global", law: "Compliance", url: "https://chatgpt.com/g/g-pwRUJBPBY-compliancegpt", description: "A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices." }
         ];
 
         const nav = document.querySelector("nav");
 
         gptLinks.forEach(({ land, law, url, description }) => {
             const link = document.createElement("a");
-            link.href = url;
-            link.target = "_blank";
+            link.href = "#";
             link.innerText = `${land} - ${law} GPT`;
+            link.onclick = () => openChat(url);
             nav.appendChild(link);
 
             const desc = document.createElement("p");
@@ -177,20 +221,14 @@
             nav.appendChild(desc);
         });
 
-        document.getElementById("exportBtn").addEventListener("click", () => {
-            let content = "45dgof8 Neocities Export:\n\n";
-            gptLinks.forEach(({ land, law, url, description }) => {
-                content += `Title: ${land} - ${law} GPT\n`;
-                content += `URL: ${url}\n`;
-                content += `Description: ${description}\n\n`;
-            });
+        function openChat(url) {
+            document.getElementById('chat-frame').src = url;
+            document.getElementById('chat-container').style.display = 'block';
+        }
 
-            const blob = new Blob([content], { type: "text/plain" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "45dgof8_links.txt";
-            link.click();
-        });
+        document.getElementById("chat-close").onclick = function () {
+            document.getElementById("chat-container").style.display = 'none';
+        };
     </script>
 </body>
 </html>
