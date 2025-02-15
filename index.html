@@ -205,15 +205,15 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const gptLinks = [
-            { land: "Global", law: "Compliance", url: "https://chatgpt.com/g/g-pwRUJBPBY-compliancegpt", description: "A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices." },
-            { land: "CGB", law: "Compliance", url: "https://chatgpt.com/g/g-evCGCyUMs-gdpr-cgb", description: "Get expert insights and guidance to ensure your data and AI systems align with GDPR standards—without the legal jargon." },
-            { land: "Indonesia", law: "Compliance", url: "https://chatgpt.com/g/g-6738a01a6edc81919fe6730214086ff7", description: "A trusted AI assistant for navigating Indonesia’s regulatory landscape with ease." },
-            { land: "Brazil", law: "LGPD", url: "https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55", description: "Provides guidance on compliance with Brazil's General Data Protection Law (LGPD)." },
-            { land: "South Africa", law: "POPIA", url: "https://chatgpt.com/g/g-67500c79dbcc81919efc3b758e89bb30", description: "South Africa's trusted AI for navigating POPIA." },
-            { land: "South Korea", law: "PIPA", url: "https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9", description: "The smart way to stay PIPA-compliant in South Korea." },
-            { land: "India", law: "Compliance", url: "https://chatgpt.com/g/g-6753ee6bd6108191a33f017d5b2de60b", description: "Expert assistance for navigating India's regulatory requirements." },
-            { land: "Japan", law: "APPI", url: "https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f", description: "Comply with Japan's Act on the Protection of Personal Information (APPI)." },
-            { land: "Canada", law: "PIPEDA & Law 25", url: "https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425", description: "Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25." }
+            { land: "Global", law: "Compliance", url: "https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt", description: "A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices." },
+            { land: "CGB", law: "Compliance", url: "https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb", description: "Get expert insights and guidance to ensure your data and AI systems align with GDPR standards—without the legal jargon." },
+            { land: "Indonesia", law: "Compliance", url: "https://chat.openai.com/g/g-6738a01a6edc81919fe6730214086ff7", description: "A trusted AI assistant for navigating Indonesia’s regulatory landscape with ease." },
+            { land: "Brazil", law: "LGPD", url: "https://chat.openai.com/g/g-674365946c7081918b642b3e693fac55", description: "Provides guidance on compliance with Brazil's General Data Protection Law (LGPD)." },
+            { land: "South Africa", law: "POPIA", url: "https://chat.openai.com/g/g-67500c79dbcc81919efc3b758e89bb30", description: "South Africa's trusted AI for navigating POPIA." },
+            { land: "South Korea", law: "PIPA", url: "https://chat.openai.com/g/g-6752d26a9574819196ca511c9e3fa3f9", description: "The smart way to stay PIPA-compliant in South Korea." },
+            { land: "India", law: "Compliance", url: "https://chat.openai.com/g/g-6753ee6bd6108191a33f017d5b2de60b", description: "Expert assistance for navigating India's regulatory requirements." },
+            { land: "Japan", law: "APPI", url: "https://chat.openai.com/g/g-676739efea60819198a77b106e854b7f", description: "Comply with Japan's Act on the Protection of Personal Information (APPI)." },
+            { land: "Canada", law: "PIPEDA & Law 25", url: "https://chat.openai.com/g/g-677a2b985e3c8191a73dff182cd1c425", description: "Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25." }
         ];
 
         const nav = document.querySelector("nav");
@@ -231,7 +231,7 @@
             link.classList.add("gpt-button");
             link.onclick = function (event) {
                 event.preventDefault();
-                openChat(url);
+                openGPTPopup(url);
             };
 
             // Create description
@@ -245,31 +245,14 @@
         });
     });
 
-    function openChat(url) {
-        const chatFrame = document.getElementById('chat-frame');
-        const chatContainer = document.getElementById('chat-container');
+    function openGPTPopup(url) {
+        const width = 800;
+        const height = 700;
+        const left = (screen.width - width) / 2;
+        const top = (screen.height - height) / 2;
 
-        if (!chatFrame || !chatContainer) {
-            console.error("Chat container or iframe not found!");
-            return;
-        }
-
-        chatFrame.src = url;
-        chatContainer.style.display = 'block';
+        window.open(url, "GPTChatWindow", `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`);
     }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const chatClose = document.getElementById("chat-close");
-        if (chatClose) {
-            chatClose.onclick = function () {
-                document.getElementById("chat-container").style.display = 'none';
-            };
-        } else {
-            console.error("Chat close button not found!");
-        }
-    });
 </script>
-
-
 </body>
 </html>
