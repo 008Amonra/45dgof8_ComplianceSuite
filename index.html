@@ -98,6 +98,20 @@
         footer a:hover {
             color: var(--hover-color);
         }
+        .etsy-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.etsy-button:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
     </style>
 </head>
 <body>
@@ -145,6 +159,9 @@
             });
         });
     </script>
+    <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank">
+    <img src="https://github.com/008Amonra/45dgof8_ComplianceSuite/blob/main/the_button.png" alt="Etsy Shop" class="etsy-button">
+</a>
 </body>
 </html>
 
