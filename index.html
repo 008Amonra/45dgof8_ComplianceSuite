@@ -18,85 +18,83 @@
     <meta name="twitter:title" content="45dgof8 GPT Hub – Compliance & AI Innovation" />
     <meta name="twitter:description" content="Stay compliant with AI-powered tools designed for GDPR, AI ethics, and legal compliance worldwide." />
 
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "45dgof8 Compliance Hub",
+        "url": "https://www.45dgof8.com",
+        "logo": "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp",
+        "description": "AI-driven compliance tools for global regulations, GDPR, AI ethics, and data protection.",
+        "sameAs": [
+            "https://www.etsy.com/ch/shop/45dgof8"
+        ]
+    }
+    </script>
+
     <style>
-        :root {
-            --background-dark: #1e1e2f;
-            --background-light: #2a2a3e;
-            --text-light: #e0e0e0;
-            --primary-color: #6a5acd;
-            --hover-color: #9a8ef1;
-            --accent-muted: #868686;
-        }
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: var(--background-dark);
-            color: var(--text-light);
+            background-color: #1e1e2f;
+            color: #e0e0e0;
         }
         header {
             text-align: center;
             padding: 20px;
-            background-color: var(--background-light);
+            background-color: #2a2a3e;
         }
         header h1 {
             margin: 0;
             font-size: 36px;
-            color: var(--primary-color);
+            color: #6a5acd;
         }
         header p {
             font-size: 16px;
-            color: var(--accent-muted);
+            color: #868686;
         }
         .split-screen {
             display: flex;
             flex-wrap: wrap;
-            height: 100vh;
+            min-height: 50vh;
         }
         .image-section {
             flex: 1;
+            background-image: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp');
             background-size: cover;
             background-position: center;
             min-height: 50vh;
-            transition: background-image 0.5s ease-in-out;
         }
         .content-section {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: var(--background-light);
+            background-color: #2a2a3e;
             padding: 20px;
         }
         nav a {
             display: block;
             text-decoration: none;
-            color: var(--primary-color);
+            color: #6a5acd;
             font-weight: bold;
             padding: 10px;
             border-radius: 8px;
             background-color: rgba(106, 90, 205, 0.1);
             transition: all 0.3s ease;
-            cursor: pointer;
             margin: 5px 0;
         }
         nav a:hover {
-            background-color: var(--hover-color);
+            background-color: #9a8ef1;
             color: #fff;
         }
         footer {
-            margin-top: 20px;
             padding: 10px;
             text-align: center;
-            background-color: var(--background-light);
-            color: var(--accent-muted);
+            background-color: #2a2a3e;
+            color: #868686;
             font-size: 14px;
-        }
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: var(--hover-color);
         }
     </style>
 </head>
@@ -110,6 +108,8 @@
         <div class="image-section"></div>
         <div class="content-section">
             <h2>AI-Powered Compliance Tools</h2>
+            <p>Explore our AI-driven tools designed to support compliance with regulations like GDPR, LGPD, PIPA, and more. Stay ahead in the evolving landscape of AI ethics and data protection.</p>
+            <p>Whether you're a business navigating global compliance laws or an individual seeking legal insights, our GPT tools offer accurate, up-to-date guidance.</p>
             <nav></nav>
         </div>
     </div>
@@ -118,45 +118,67 @@
         © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
     </footer>
 
-    <!-- Combined Scripts -->
-    <script>
-        // Array of image URLs
-        const images = [
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp'
-        ];
-
-        // Get a random index
-        const randomIndex = Math.floor(Math.random() * images.length);
-
-        // Select the random image
-        const randomImage = images[randomIndex];
-
-        // Apply the image as the background for the .image-section
+    <script async>
         document.addEventListener("DOMContentLoaded", function () {
-            const imageSection = document.querySelector('.image-section');
-            imageSection.style.backgroundImage = `url('${randomImage}')`;
-        });
+            const gptLinks = [  <footer>
+        © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
+    </footer>
 
-        // Dynamic Navigation Links
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const gptLinks = [
-                { land: "Global", law: "Compliance", url: "https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt", description: "Stay compliant globally with AI tools." },
-                { land: "CGB", law: "Compliance", url: "https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb", description: "Expert guidance for GDPR compliance." }
-            ];
-
-            const nav = document.querySelector("nav");
-            gptLinks.forEach(({ land, law, url, description }) => {
-                const link = document.createElement("a");
-                link.href = url;
-                link.innerText = `${land} - ${law} GPT`;
-                link.target = "_blank";
-                nav.appendChild(link);
-            });
-        });
+                { land: "Global", law: "Compliance", url: "https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt", description: "A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices." },
+                { land: "CGB", law: "Compliance", url: "https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb", description: "Get expert insights and guidance to ensure your data and AI systems align with GDPR standards—without the legal jargon." },
+                { land: "Indonesia", law: "Compliance", url: "https://chat.openai.com/g/g-6738a01a6edc81919fe6730214086ff7", description: "A trusted AI assistant for navigating Indonesia’s regulatory landscape with ease." },
+                { land: "Brazil", law: "LGPD", url: "https://chat.openai.com/g/g-674365946c7081918b642b3e693fac55", description: "Provides guidance on compliance with Brazil's General Data Protection Law (LGPD)." },
+                { land: "South Africa", law: "POPIA", url: "https://chat.openai.com/g/g-67500c79dbcc81919efc3b758e89bb30", description: "South Africa's trusted AI for navigating POPIA." },
+                { land: "South Korea", law: "PIPA", url: "https://chat.openai.com/g/g-6752d26a9574819196ca511c9e3fa3f9", description: "The smart way to stay PIPA-compliant in South Korea." },
+                { land: "India", law: "Compliance", url: "https://chat.openai.com/g/g-6753ee6bd6108191a33f017d5b2de60b", description: "Expert assistance for navigating India's regulatory requirements." },
+                { land: "Japan", law: "APPI", url: "https://chat.openai.com/g/g-676739efea60819198a77b106e854b7f", description: "Comply with Japan's Act on the Protection of Personal Information (APPI)." },
+                { land: "Canada", law: "PIPEDA & Law 25", url: "https://chat.openai.com/g/g-677a2b985e3c8191a73dff182cd1c425", description: "Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25." }
+            ];   
     </script>
+    <script>
+    // Array of image URLs
+    const images = [
+        'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp',
+        'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+        'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+        'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp',
+        'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp'
+    ];
+
+    // Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    const dayOfWeek = new Date().getDay();
+
+    // Calculate which image to use
+    const imageOfTheDay = images[dayOfWeek % images.length];
+
+    // Apply the image as the background for the .image-section
+    document.addEventListener("DOMContentLoaded", function () {
+        const imageSection = document.querySelector('.image-section');
+        imageSection.style.backgroundImage = `url('${imageOfTheDay}')`;
+    });
+    <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" 
+    alt="Etsy Shop" 
+    style="width: 50px; height: 50px; position: fixed; bottom: 10px; left: 10px; z-index: 999;">
+</a>
+<a href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" 
+    alt="CatArtCreator" 
+    style="width: 50px; height: 50px; position: fixed; bottom: 110px; left: 10px; z-index: 999;">
+<a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" 
+    alt="Eva_Answers" 
+    style="width: 50px; height: 50px; position: fixed; bottom: 210px; left: 10px; z-index: 999;">
+<a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" 
+    alt="TSG-tech-support-GPT" 
+    style="width: 50px; height: 50px; position: fixed; bottom: 310px; left: 10px; z-index: 999;">
+</a>
+
+</script>
+
 </body>
 </html>
