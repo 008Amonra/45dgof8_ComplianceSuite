@@ -88,17 +88,20 @@ nav a:hover::after {
 }
 .split-screen {
     display: flex;
-    flex-wrap: wrap;
     min-height: 100vh;   /* Ensures the section fills the whole viewport */
+    width: 100vw;        /* Full width of the viewport */
     background-color: #2a2a3e;  /* Matches the color on the right side */
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .image-section {
     flex: 1;
     background-size: cover;
     background-position: center;
-    min-height: 50vh;
+    min-height: 100vh;   /* Forces the image to cover the full height */
+    width: 50vw;         /* Takes up half the viewport width */
 }
 
 .content-section {
