@@ -18,123 +18,8 @@
     <meta name="twitter:title" content="45dgof8 GPT Hub – Compliance & AI Innovation" />
     <meta name="twitter:description" content="Stay compliant with AI-powered tools designed for GDPR, AI ethics, and legal compliance worldwide." />
 
-(style.css)
-.icon-container {
-  display: inline-block;
-  position: relative;
-  margin: 20px;
-}
+<link rel="stylesheet" href="style.css">
 
-.icon img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-
-.tooltip {
-  visibility: hidden;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px;
-  position: absolute;
-  bottom: 120%; 
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 100;
-}
-
-.icon:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-
-    <style>
-        :root {
-            --background-dark: #1e1e2f;
-            --background-light: #2a2a3e;
-            --text-light: #e0e0e0;
-            --primary-color: #6a5acd;
-            --hover-color: #9a8ef1;
-            --accent-muted: #868686;
-        }
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: var(--background-dark);
-            color: var(--text-light);
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--background-light);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-            color: var(--primary-color);
-        }
-        header p {
-            font-size: 16px;
-            color: var(--accent-muted);
-        }
-        .split-screen {
-            display: flex;
-            flex-wrap: wrap;
-            height: 100vh;
-        }
-        .image-section {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            min-height: 50vh;
-            transition: background-image 0.5s ease-in-out;
-        }
-        .content-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: var(--background-light);
-            padding: 20px;
-        }
-        nav a {
-            display: block;
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: rgba(106, 90, 205, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 5px 0;
-        }
-        nav a:hover {
-            background-color: var(--hover-color);
-            color: #fff;
-        }
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-            background-color: var(--background-light);
-            color: var(--accent-muted);
-            font-size: 14px;
-        }
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: var(--hover-color);
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -196,19 +81,37 @@
                 { land: "Canada", law: "PIPEDA & Law 25", url: "https://chat.openai.com/g/g-677a2b985e3c8191a73dff182cd1c425", description: "Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25." }
             ];
 
-            const nav = document.querySelector("nav");
-            if (nav) {
-                gptLinks.forEach(({ land, law, url, description }) => {
-                    const link = document.createElement("a");
-                    link.href = url;
-                    link.innerText = `${land} - ${law} GPT`;
-                    link.target = "_blank";
-                    nav.appendChild(link);
-                });
-            } else {
-                console.error("Navigation section not found!");
-            }
-        });
+           const nav = document.querySelector("nav");
+if (nav) {
+    gptLinks.forEach(({ land, law, url, description }) => {
+        const iconContainer = document.createElement("div");
+        iconContainer.classList.add("icon-container");
+
+        const icon = document.createElement("div");
+        icon.classList.add("icon");
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+
+        const img = document.createElement("img");
+        img.src = `https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/${land.toLowerCase()}.webp`; // Change this to the appropriate image URL
+        img.alt = `${land} - ${law} GPT`;
+
+        const tooltip = document.createElement("span");
+        tooltip.classList.add("tooltip");
+        tooltip.innerText = description;
+
+        link.appendChild(img);
+        icon.appendChild(link);
+        icon.appendChild(tooltip);
+        iconContainer.appendChild(icon);
+        nav.appendChild(iconContainer);
+    });
+} else {
+    console.error("Navigation section not found!");
+}
+
     </script>
     <div class="icon-container">
   <div class="icon">
