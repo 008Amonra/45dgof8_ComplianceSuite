@@ -18,6 +18,41 @@
     <meta name="twitter:title" content="45dgof8 GPT Hub – Compliance & AI Innovation" />
     <meta name="twitter:description" content="Stay compliant with AI-powered tools designed for GDPR, AI ethics, and legal compliance worldwide." />
 
+.icon-container {
+  display: inline-block;
+  position: relative;
+  margin: 20px;
+}
+
+.icon img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  bottom: 120%; 
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+
+.icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
     <style>
         :root {
             --background-dark: #1e1e2f;
@@ -174,6 +209,13 @@
             }
         });
     </script>
+    <div class="icon-container">
+  <div class="icon">
+    <img src="your-icon.png" alt="Icon Description">
+    <span class="tooltip">This is what the icon is about</span>
+  </div>
+</div>
+
 <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank">
     <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" 
     alt="Etsy Shop" 
