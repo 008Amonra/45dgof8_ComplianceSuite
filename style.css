@@ -55,6 +55,30 @@ body {
     max-width: 200px;
     word-wrap: break-word;
 }
+nav a {
+    position: relative;
+}
+
+nav a:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 100;
+}
+
+nav a:hover::after {
+    opacity: 1;
+}
 
 /* Tooltip Visible on Hover */
 .icon:hover .tooltip {
