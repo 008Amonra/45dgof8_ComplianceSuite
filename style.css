@@ -1,40 +1,61 @@
+/* Box-sizing for Consistency */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* General Body Styles */
 body {
     background-color: #f4f4f9;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
+/* Icon Container */
 .icon-container {
     display: inline-block;
     position: relative;
-    margin: 20px;
+    margin: 30px;
+    text-align: center;
 }
 
+/* Icon Image */
 .icon img {
     width: 50px;
     height: 50px;
     cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
 }
 
+.icon:hover img {
+    transform: scale(1.1);
+}
+
+/* Tooltip Styling */
 .tooltip {
     visibility: hidden;
     background-color: #333;
     color: #fff;
     text-align: center;
     border-radius: 5px;
-    padding: 5px;
+    padding: 8px;
     position: absolute;
     bottom: 120%; 
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(10px);
     white-space: nowrap;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
     z-index: 100;
+    max-width: 200px;
+    word-wrap: break-word;
 }
 
+/* Tooltip Visible on Hover */
 .icon:hover .tooltip {
     visibility: visible;
     opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
