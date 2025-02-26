@@ -169,6 +169,30 @@
     </style>
 </head>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const images = [
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp'
+        ];
+
+        // Get a random image from the array
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        
+        // Apply the image as the background for the .image-section
+        const imageSection = document.querySelector('.image-section');
+        if (imageSection) {
+            imageSection.style.backgroundImage = `url('${randomImage}')`;
+            imageSection.style.backgroundSize = 'cover';
+            imageSection.style.backgroundPosition = 'center';
+        } else {
+            console.error("Image section not found!");
+        }
+    });
+</script>
 <body>
     <header>
         <center><h1>45dgof8 GPT Hub – Compliance & AI Innovation</h1></center>
