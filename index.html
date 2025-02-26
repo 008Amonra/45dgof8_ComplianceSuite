@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Combined and Cleaned Inline Styles -->
-    <style>
+       <style>
         /* Reset body and html margins/padding */
         body, html {
             margin: 0;
@@ -42,7 +42,7 @@
             display: flex;
             flex-wrap: wrap;
             height: 100vh;
-            overflow: hidden; /* Prevent flexbox overflow */
+            overflow: hidden;
         }
 
         .image-section {
@@ -61,11 +61,16 @@
             background-color: #2a2a3e;
             padding: 20px;
             color: #e0e0e0;
-            overflow: hidden; /* Prevent content overflow */
+            overflow-y: auto; /* Allow scrolling if necessary */
+        }
+
+        nav {
+            width: 100%;
+            text-align: center;
         }
 
         nav a {
-            display: block;
+            display: inline-block;
             text-decoration: none;
             color: #6a5acd;
             font-weight: bold;
@@ -74,7 +79,7 @@
             background-color: rgba(106, 90, 205, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
-            margin: 5px 0;
+            margin: 5px;
         }
 
         nav a:hover {
@@ -93,7 +98,7 @@
             background-color: #2a2a3e;
             color: #868686;
             font-size: 14px;
-            overflow: hidden; /* Prevent footer overflow */
+            overflow: hidden;
         }
 
         footer a {
@@ -122,16 +127,18 @@
             width: 50px;
             height: 50px;
             position: fixed;
-            z-index: 999;
+            z-index: 9999;
             border-radius: 50%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            background-color: #fff;
         }
 
         .gpt-icon:hover {
             transform: scale(1.1);
         }
     </style>
+
 </head>
 
 <body>
