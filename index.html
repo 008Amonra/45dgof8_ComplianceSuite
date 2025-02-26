@@ -94,6 +94,27 @@
             color: #9a8ef1;
         }
     </style>
+    <style>
+    /* Reset body and html margins/padding */
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Fix overflowing elements */
+    .container, .footer {
+        overflow: hidden;
+    }
+
+    /* Clearfix for floated elements */
+    .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
 </head>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
