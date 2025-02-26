@@ -1,3 +1,118 @@
+/* Box-sizing for Consistency */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* General Body Styles */
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;  /* Prevents horizontal scrolling */
+}
+
+/* Icon Container */
+.icon-container {
+    display: inline-block;
+    position: relative;
+    margin: 30px;
+    text-align: center;
+}
+
+/* Icon Image */
+.icon img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.icon:hover img {
+    transform: scale(1.1);
+}
+
+/* Tooltip Styling */
+.tooltip {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px;
+    position: absolute;
+    bottom: 120%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    white-space: nowrap;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 100;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+nav a {
+    position: relative;
+}
+
+nav a:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 100;
+}
+
+nav a:hover::after {
+    opacity: 1;
+}
+
+/* Tooltip Visible on Hover */
+.icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+.split-screen {
+    display: flex;
+    min-height: 100vh;   /* Ensures the section fills the whole viewport */
+    width: 100vw;        /* Full width of the viewport */
+    background-color: #2a2a3e;  /* Matches the color on the right side */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.image-section {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;   /* Forces the image to cover the full height */
+    width: 50vw;         /* Takes up half the viewport width */
+}
+
+.content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2a2a3e;
+    padding: 20px;
+    color: #e0e0e0;
+}
 /* Fix for Floor / Whitespace Issue */
 body, html {
     margin: 0;
