@@ -1,172 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    /* Reset body and html margins/padding */
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        background-color: #2a2a3e; /* Ensures full-page dark background */
+        color: #e0e0e0;
+        min-height: 100vh; /* Prevents gaps at the bottom */
+        display: flex;
+        flex-direction: column;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>45dgof8 GPT Hub - Compliance & AI Innovation</title>
+    /* General Page Layout */
+    .split-screen {
+        display: flex;
+        flex-wrap: wrap;
+        min-height: 100vh; /* Ensures it fills the screen */
+        width: 100vw;
+        background-color: #2a2a3e;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
 
-    <!-- SEO and Social Sharing Meta Tags -->
-    <meta name="description" content="45dgof8 GPT Hub – Your gateway to compliance-focused GPT tools for global regulations and AI-powered compliance solutions." />
-    <meta name="keywords" content="GPT, AI compliance, GDPR, data protection, AI ethics, legal AI tools, #compliance, #AItools, #LegalTech" />
-    <meta name="author" content="45dgof8 Compliance Hub" />
-    <meta name="robots" content="index, follow" />
+    .image-section {
+        flex: 1;
+        background-image: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
 
-    <!-- Combined and Cleaned Inline Styles -->
-    <style>
-        /* Reset body and html margins/padding */
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            font-family: Arial, sans-serif;
+    .content-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #2a2a3e;
+        padding: 20px;
+        color: #e0e0e0;
+        overflow-y: auto;
+    }
+
+    /* Header */
+    header {
+        text-align: center;
+        background-color: #2a2a3e;
+        padding: 20px 0;
+    }
+
+    header h1 {
+        color: #6a5acd;
+    }
+
+    /* Navigation */
+    nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        text-decoration: none;
+        color: #6a5acd;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: rgba(106, 90, 205, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    nav a:hover {
+        background-color: #9a8ef1;
+        color: #fff;
+    }
+
+    /* Footer */
+    footer {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        background-color: #2a2a3e;
+        color: #868686;
+        font-size: 14px;
+        margin-top: auto; /* Pushes footer down */
+    }
+
+    footer a {
+        color: #6a5acd;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: #9a8ef1;
+    }
+
+    /* Cloud Container */
+    .cloud-container {
+        perspective: 1000px;
+        position: relative;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        pointer-events: none;
+    }
+
+    /* Cloud Wrapper */
+    .cloud {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        animation: rotateCloud 30s infinite linear;
+        transform-style: preserve-3d;
+        pointer-events: all;
+    }
+
+    /* GPT Icons in Cloud */
+    .cloud .gpt-icon {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        border-radius: 50%;
+        transition: transform 0.5s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+    }
+
+    .cloud .gpt-icon:hover {
+        transform: scale(1.2) rotateY(180deg);
+    }
+
+    /* Descriptions for Hover */
+    .cloud .description {
+        position: absolute;
+        top: 70px;
+        width: 150px;
+        text-align: center;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+        border-radius: 8px;
+        display: none;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .cloud .gpt-icon:hover + .description {
+        display: block;
+    }
+
+    /* 3D Rotation Animation */
+    @keyframes rotateCloud {
+        from {
+            transform: rotateY(0deg);
         }
-
-        /* General Page Styles */
-        body {
-            background-color: #f4f4f9;
-            color: #333;
+        to {
+            transform: rotateY(360deg);
         }
+    }
+</style>
 
-        .split-screen {
-            display: flex;
-            flex-wrap: wrap;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .image-section {
-            flex: 1;
-            background-image: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp');
-            background-size: cover;
-            background-position: center;
-            min-height: 50vh;
-        }
-
-        .content-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #2a2a3e;
-            padding: 20px;
-            color: #e0e0e0;
-            overflow-y: auto;
-        }
-
-        nav {
-            width: 100%;
-            text-align: center;
-        }
-
-        nav a {
-            display: inline-block;
-            text-decoration: none;
-            color: #6a5acd;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: rgba(106, 90, 205, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        nav a:hover {
-            background-color: #9a8ef1;
-            color: #fff;
-        }
-
-        header h1 {
-            color: #6a5acd;
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-            background-color: #2a2a3e;
-            color: #868686;
-            font-size: 14px;
-            overflow: hidden;
-        }
-
-        footer a {
-            color: #6a5acd;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #9a8ef1;
-        }
-
-        /* Cloud Container */
-        .cloud-container {
-            perspective: 1000px;
-            position: relative;
-            width: 100%;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: visible;
-            pointer-events: none;
-        }
-
-        /* Cloud Wrapper */
-        .cloud {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            animation: rotateCloud 30s infinite linear;
-            transform-style: preserve-3d;
-            pointer-events: all;
-        }
-
-        /* GPT Icons in Cloud */
-        .cloud .gpt-icon {
-            width: 60px;
-            height: 60px;
-            position: absolute;
-            border-radius: 50%;
-            transition: transform 0.5s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background-color: #fff;
-        }
-
-        .cloud .gpt-icon:hover {
-            transform: scale(1.2) rotateY(180deg);
-        }
-
-        /* Descriptions for Hover */
-        .cloud .description {
-            position: absolute;
-            top: 70px;
-            width: 150px;
-            text-align: center;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 5px;
-            border-radius: 8px;
-            display: none;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .cloud .gpt-icon:hover + .description {
-            display: block;
-        }
-
-        /* 3D Rotation Animation */
-        @keyframes rotateCloud {
-            from {
-                transform: rotateY(0deg);
-            }
-            to {
-                transform: rotateY(360deg);
-            }
-        }
-    </style>
 </head>
 
 <script>
