@@ -1,287 +1,160 @@
-<style>
-    /* Reset body and html margins/padding */
-    body, html {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        font-family: Arial, sans-serif;
-        background-color: #2a2a3e; /* Ensures full-page dark background */
-        color: #e0e0e0;
-        min-height: 100vh; /* Prevents gaps at the bottom */
-        display: flex;
-        flex-direction: column;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>45dgof8 GPT Hub - Compliance & AI Innovation</title>
 
-    /* General Page Layout */
-    .split-screen {
-        display: flex;
-        flex-wrap: wrap;
-        min-height: 100vh; /* Ensures it fills the screen */
-        width: 100vw;
-        background-color: #2a2a3e;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-    }
+    <meta name="description" content="45dgof8 GPT Hub – Your gateway to compliance-focused GPT tools for global regulations and AI-powered compliance solutions." />
+    <meta name="keywords" content="GPT, AI compliance, GDPR, data protection, AI ethics, legal AI tools, #compliance, #AItools, #LegalTech" />
+    <meta name="author" content="45dgof8 Compliance Hub" />
+    <meta name="robots" content="index, follow" />
 
-    .image-section {
-        flex: 1;
-        background-image: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp');
-        background-size: cover;
-        background-position: center;
-        min-height: 50vh;
-    }
-
-    .content-section {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #2a2a3e;
-        padding: 20px;
-        color: #e0e0e0;
-        overflow-y: auto;
-    }
-
-    /* Header */
-    header {
-        text-align: center;
-        background-color: #2a2a3e;
-        padding: 20px 0;
-    }
-
-    header h1 {
-        color: #6a5acd;
-    }
-
-    /* Navigation */
-    nav {
-        width: 100%;
-        text-align: center;
-    }
-
-    nav a {
-        display: inline-block;
-        text-decoration: none;
-        color: #6a5acd;
-        font-weight: bold;
-        padding: 10px;
-        border-radius: 8px;
-        background-color: rgba(106, 90, 205, 0.1);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        margin: 5px;
-    }
-
-    nav a:hover {
-        background-color: #9a8ef1;
-        color: #fff;
-    }
-
-    /* Footer */
-    footer {
-        width: 100%;
-        padding: 10px;
-        text-align: center;
-        background-color: #2a2a3e;
-        color: #868686;
-        font-size: 14px;
-        margin-top: auto; /* Pushes footer down */
-    }
-
-    footer a {
-        color: #6a5acd;
-        text-decoration: none;
-    }
-
-    footer a:hover {
-        color: #9a8ef1;
-    }
-
-    /* Cloud Container */
-    .cloud-container {
-        perspective: 1000px;
-        position: relative;
-        width: 100%;
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: visible;
-        pointer-events: none;
-    }
-
-    /* Cloud Wrapper */
-    .cloud {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        animation: rotateCloud 30s infinite linear;
-        transform-style: preserve-3d;
-        pointer-events: all;
-    }
-
-    /* GPT Icons in Cloud */
-    .cloud .gpt-icon {
-        width: 60px;
-        height: 60px;
-        position: absolute;
-        border-radius: 50%;
-        transition: transform 0.5s;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        background-color: #fff;
-    }
-
-    .cloud .gpt-icon:hover {
-        transform: scale(1.2) rotateY(180deg);
-    }
-
-    /* Descriptions for Hover */
-    .cloud .description {
-        position: absolute;
-        top: 70px;
-        width: 150px;
-        text-align: center;
-        color: #fff;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 5px;
-        border-radius: 8px;
-        display: none;
-        pointer-events: none;
-        z-index: 10;
-    }
-
-    .cloud .gpt-icon:hover + .description {
-        display: block;
-    }
-
-    /* 3D Rotation Animation */
-    @keyframes rotateCloud {
-        from {
-            transform: rotateY(0deg);
+    <style>
+        /* Reset body and html margins/padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #2a2a3e;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        to {
-            transform: rotateY(360deg);
-        }
-    }
-</style>
 
+        /* General Page Layout */
+        .split-screen {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            width: 100vw;
+            background-color: #2a2a3e;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .image-section {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+        }
+
+        .content-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2a2a3e;
+            padding: 20px;
+            color: #e0e0e0;
+            overflow-y: auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            background-color: #2a2a3e;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            color: #6a5acd;
+        }
+
+        /* Navigation */
+        nav {
+            width: 100%;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: #6a5acd;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(106, 90, 205, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        nav a:hover {
+            background-color: #9a8ef1;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #2a2a3e;
+            color: #868686;
+            font-size: 14px;
+            margin-top: auto;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = [
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
+                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/TCXm.webp'
+            ];
+
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            const imageSection = document.querySelector('.image-section');
+
+            if (imageSection) {
+                imageSection.style.backgroundImage = `url('${randomImage}')`;
+                imageSection.style.backgroundSize = 'cover';
+                imageSection.style.backgroundPosition = 'center';
+            } else {
+                console.error("Image section not found!");
+            }
+        });
+    </script>
 </head>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const images = [
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/AUQ.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/TCXm.webp'
-        ];
-
-        // Get a random image from the array
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        
-        // Apply the image as the background for the .image-section
-        const imageSection = document.querySelector('.image-section');
-        if (imageSection) {
-            imageSection.style.backgroundImage = `url('${randomImage}')`;
-            imageSection.style.backgroundSize = 'cover';
-            imageSection.style.backgroundPosition = 'center';
-        } else {
-            console.error("Image section not found!");
-        }
-    });
-</script>
 <body>
     <header>
-        <center><h1>45dgof8 GPT Hub – Compliance & AI Innovation</h1></center>
-        <center><p>Your gateway to compliance-focused GPT tools.</p></center>
-<div class="page-container">
-    <header>
         <h1>45dgof8 GPT Hub – Compliance & AI Innovation</h1>
-        <p class="title">Your gateway to compliance-focused GPT tools.</p>
+        <p>Your gateway to compliance-focused GPT tools.</p>
     </header>
 
     <div class="split-screen">
         <div class="image-section"></div>
         <div class="content-section">
             <h2>AI-Powered Compliance Tools</h2>
+            <nav>
+                <a href="https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt" target="_blank">Global - Compliance GPT</a>
+                <a href="https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb" target="_blank">CGB - Compliance GPT</a>
+                <a href="https://chat.openai.com/g/g-6738a01a6edc81919fe6730214086ff7" target="_blank">Indonesia - Compliance GPT</a>
+                <a href="https://chat.openai.com/g/g-674365946c7081918b642b3e693fac55" target="_blank">Brazil - LGPD GPT</a>
+                <a href="https://chat.openai.com/g/g-67500c79dbcc81919efc3b758e89bb30" target="_blank">South Africa - POPIA GPT</a>
+                <a href="https://chat.openai.com/g/g-6752d26a9574819196ca511c9e3fa3f9" target="_blank">South Korea - PIPA GPT</a>
+                <a href="https://chat.openai.com/g/g-6753ee6bd6108191a33f017d5b2de60b" target="_blank">India - Compliance GPT</a>
+                <a href="https://chat.openai.com/g/g-676739efea60819198a77b106e854b7f" target="_blank">Japan - APPI GPT</a>
+                <a href="https://chat.openai.com/g/g-677a2b985e3c8191a73dff182cd1c425" target="_blank">Canada - PIPEDA & Law 25 GPT</a>
+                <a href="https://chatgpt.com/g/g-67c81a5951388191aa6d5fd48a83f255-45dgof8-mexico-lfpdppp-gpt" target="_blank">Mexico - lfpdppp GPT</a>
+            </nav>
         </div>
     </div>
 
     <footer>
         © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
     </footer>
-</div>
-
-        <div class="image-section"></div>
-        <div class="content-section">
-            <h2>AI-Powered Compliance Tools</h2>
-            <nav>
-                  <a href="https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt" target="_blank" title="A smart and user-friendly tool designed to help individuals and businesses stay compliant with regulations and ethical AI practices.">Global - Compliance GPT</a>
-                  <a href="https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb" target="_blank" title="Get expert insights and guidance to ensure your data and AI systems align with GDPR standards—without the legal jargon.">CGB - Compliance GPT</a>
-                  <a href="https://chat.openai.com/g/g-6738a01a6edc81919fe6730214086ff7" target="_blank" title="A trusted AI assistant for navigating Indonesia’s regulatory landscape with ease.">Indonesia - Compliance GPT</a>
-                  <a href="https://chat.openai.com/g/g-674365946c7081918b642b3e693fac55" target="_blank" title="Provides guidance on compliance with Brazil's General Data Protection Law (LGPD).">Brazil - LGPD GPT</a>
-                  <a href="https://chat.openai.com/g/g-67500c79dbcc81919efc3b758e89bb30" target="_blank" title="South Africa's trusted AI for navigating POPIA.">South Africa - POPIA GPT</a>
-                  <a href="https://chat.openai.com/g/g-6752d26a9574819196ca511c9e3fa3f9" target="_blank" title="The smart way to stay PIPA-compliant in South Korea.">South Korea - PIPA GPT</a>
-                  <a href="https://chat.openai.com/g/g-6753ee6bd6108191a33f017d5b2de60b" target="_blank" title="Expert assistance for navigating India's regulatory requirements.">India - Compliance GPT</a>
-                  <a href="https://chat.openai.com/g/g-676739efea60819198a77b106e854b7f" target="_blank" title="Comply with Japan's Act on the Protection of Personal Information (APPI).">Japan - APPI GPT</a>
-                  <a href="https://chat.openai.com/g/g-677a2b985e3c8191a73dff182cd1c425" target="_blank" title="Helping businesses comply with Canada’s PIPEDA and Quebec’s Law 25.">Canada - PIPEDA & Law 25 GPT</a> 
-                  <a href="https://chatgpt.com/g/g-67c81a5951388191aa6d5fd48a83f255-45dgof8-mexico-lfpdppp-gpt" target="_blank" title="providing guidance on data privacy, security measures, and regulatory requirements.">Mexico - lfpdppp GPT</a> 
-           </nav>
-        </div>
-    </div>
-
-<footer>
-    © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
-</footer>
-
-<div class="cloud-container">
-    <div class="cloud">
-        <a href="#" style="transform: translate3d(100px, 0, 50px);">
-            <img class="gpt-icon" src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Global GPT">
-            <span class="description">Global - Compliance GPT</span>
-        </a>
-
-        <a href="#" style="transform: translate3d(-100px, 50px, 100px);">
-            <img class="gpt-icon" src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CGB GPT">
-            <span class="description">CGB - Compliance GPT</span>
-        </a>
-
-        <a href="#" style="transform: translate3d(0, -100px, 150px);">
-            <img class="gpt-icon" src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Indonesia GPT">
-            <span class="description">Indonesia - Compliance GPT</span>
-        </a>
-    </div>
-</div>
-
-<!-- Fixed Position Buttons -->
-<a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="AI infiltrates!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop" style="width: 50px; height: 50px; position: fixed; bottom: 10px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank" title="The cats are intelligent!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArtCreator" style="width: 50px; height: 50px; position: fixed; bottom: 110px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" title="Eva - i am proud of her! ask her anything!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva_Answers" style="width: 50px; height: 50px; position: fixed; bottom: 210px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank" title="pc-problems...no more!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="TSG-tech-support-GPT" style="width: 50px; height: 50px; position: fixed; bottom: 310px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="for Sellers! - consider options!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dual-role e-commerce guide and AI design" style="width: 50px; height: 50px; position: fixed; bottom: 410px; left: 10px; z-index: 999;">
-</a>
-
 </body>
 </html>
-
-
-
