@@ -167,6 +167,20 @@ header, footer {
     text-align: center;
 }
 html, body {
-    height: 100%;
-    background-color: #2a2a3e; /* Ensure full-page color */
+    min-height: 100vh;
+    background-color: #2a2a3e;
+}
+header, footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #2a2a3e;
+}
+.split-screen {
+    flex: 1;
 }
