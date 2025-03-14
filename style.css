@@ -160,3 +160,13 @@ footer {
     width: fit-content;
     display: block;
 }
+header, footer {
+    background-color: #2a2a3e; /* Same color as the right-side content */
+    color: #e0e0e0; /* Text color to match */
+    padding: 10px 0; /* Optional: Add padding to prevent cramped text */
+    text-align: center;
+}
+html, body {
+    height: 100%;
+    background-color: #2a2a3e; /* Ensure full-page color */
+}
