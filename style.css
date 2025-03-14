@@ -151,3 +151,12 @@ footer {
     left: 0;
     right: 0;
 }
+.title {
+    text-align: left;  /* Aligns the text to the left */
+    font-size: 1.5em;  /* Adjust size as needed */
+    font-weight: bold; /* Makes it stand out */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    display: block;
+}
