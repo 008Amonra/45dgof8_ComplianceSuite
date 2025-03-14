@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
     <meta name="robots" content="index, follow" />
 
     <style>
-        /* Reset body and html margins/padding */
+        /* Allgemeine Reset-Styles */
         body, html {
             margin: 0;
             padding: 0;
@@ -24,7 +24,7 @@
             flex-direction: column;
         }
 
-        /* General Page Layout */
+        /* Layout */
         .split-screen {
             display: flex;
             flex-wrap: wrap;
@@ -32,8 +32,6 @@
             width: 100vw;
             background-color: #2a2a3e;
             overflow: hidden;
-            margin: 0;
-            padding: 0;
         }
 
         .image-section {
@@ -48,10 +46,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             background-color: #2a2a3e;
             padding: 20px;
-            color: #e0e0e0;
-            overflow-y: auto;
         }
 
         /* Header */
@@ -61,16 +58,7 @@
             padding: 20px 0;
         }
 
-        header h1 {
-            color: #6a5acd;
-        }
-
         /* Navigation */
-        nav {
-            width: 100%;
-            text-align: center;
-        }
-
         nav a {
             display: inline-block;
             text-decoration: none;
@@ -89,6 +77,41 @@
             color: #fff;
         }
 
+        /* Stickfigur */
+        .stick-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .stick-figure {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            left: 10%;
+            animation: pushStick 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pushStick {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .push-text {
+            display: inline-block;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-left: 20px;
+            animation: moveText 1.5s infinite ease-in-out;
+        }
+
+        @keyframes moveText {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
         /* Footer */
         footer {
             width: 100%;
@@ -104,26 +127,16 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const images = [
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
-                'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/TCXm.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/comicp.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp'
+'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/TCXm.webp'
             ];
-
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-            const imageSection = document.querySelector('.image-section');
-
-            if (imageSection) {
-                imageSection.style.backgroundImage = `url('${randomImage}')`;
-                imageSection.style.backgroundSize = 'cover';
-                imageSection.style.backgroundPosition = 'center';
-            } else {
-                console.error("Image section not found!");
-            }
+            document.querySelector('.image-section').style.backgroundImage = `url('${images[Math.floor(Math.random() * images.length)]}')`;
         });
     </script>
 </head>
@@ -131,7 +144,10 @@
 <body>
     <header>
         <h1>45dgof8 GPT Hub – Compliance & AI Innovation</h1>
-        <p>Your gateway to compliance-focused GPT tools.</p>
+        <div class="stick-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Stick_figure.svg" class="stick-figure" alt="Stickman">
+            <p class="push-text">Your gateway to compliance-focused GPT tools.</p>
+        </div>
     </header>
 
     <div class="split-screen">
@@ -158,3 +174,4 @@
     </footer>
 </body>
 </html>
+
