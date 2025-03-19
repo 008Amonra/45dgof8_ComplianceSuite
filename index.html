@@ -276,9 +276,18 @@
         padding: 2px 5px;
         cursor: pointer;
     }
+    .shake {
+        animation: shake 0.5s ease-in-out;
+    }
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+    }
 </style>
 
-<!-- JavaScript for Thumbs & Guestbook with Moderation -->
+<!-- JavaScript for Thumbs, Guestbook, and Shake Effect -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let upCount = localStorage.getItem("thumbsUp") || 0;
@@ -303,14 +312,6 @@
             let message = document.getElementById("guestMessage").value.trim();
             if (message === "") return;
             
-            // Basic word filtering
-            const badWords = ["badword1", "badword2", "offensiveword"];
-            let containsBadWord = badWords.some(word => message.toLowerCase().includes(word));
-            if (containsBadWord) {
-                alert("Please avoid using offensive words.");
-                return;
-            }
-            
             let entry = document.createElement("div");
             entry.classList.add("guest-entry");
             entry.innerHTML = `<strong>${name}:</strong> ${message} <button class='delete-btn'>X</button>`;
@@ -319,15 +320,28 @@
             document.getElementById("guestMessage").value = "";
             document.getElementById("guestName").value = "";
 
-            // Delete comment functionality
             entry.querySelector(".delete-btn").addEventListener("click", function() {
                 entry.remove();
             });
         });
+
+        let clickCount = 0;
+        document.addEventListener("click", function(event) {
+            if (event.target.tagName === "IMG") {
+                clickCount++;
+                if (clickCount >= 5) {
+                    document.body.classList.add("shake");
+                    setTimeout(() => {
+                        document.body.classList.remove("shake");
+                        clickCount = 0;
+                    }, 500);
+                }
+            }
+        });
     });
+
 </script>
-</body>
-</html>
+
     <footer>
         © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
     </footer>
