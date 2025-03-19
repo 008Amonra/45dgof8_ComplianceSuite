@@ -202,6 +202,130 @@
 <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="for Sellers! - consider options!">
     <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dual-role e-commerce guide and AI design" style="width: 50px; height: 50px; position: fixed; bottom: 410px; left: 10px; z-index: 999;">
 </a>
+    <!-- Right Side Enhancements: Guestbook & Thumbs-Up System -->
+<div class="right-side-container">
+    
+    <!-- Thumbs Up / Down System -->
+    <div class="thumbs-container">
+        <h3>Was this helpful?</h3>
+        <button id="thumbsUp">👍 <span id="upCount">0</span></button>
+        <button id="thumbsDown">👎 <span id="downCount">0</span></button>
+    </div>
+    
+    <!-- Guestbook Section -->
+    <div class="guestbook">
+        <h3>Guestbook</h3>
+        <input type="text" id="guestName" placeholder="Your name (optional)">
+        <textarea id="guestMessage" placeholder="Leave a message..."></textarea>
+        <button id="submitMessage">Submit</button>
+        <div id="guestbookEntries"></div>
+    </div>
+</div>
+
+<!-- Styles for Right-Side Enhancements -->
+<style>
+    .right-side-container {
+        position: fixed;
+        right: 10px;
+        top: 50px;
+        width: 250px;
+        background-color: #333;
+        padding: 15px;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    }
+    .thumbs-container button {
+        margin: 5px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    #guestMessage, #guestName {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #submitMessage {
+        width: 100%;
+        background-color: #6a5acd;
+        color: white;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+    }
+    #guestbookEntries {
+        margin-top: 10px;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+    .guest-entry {
+        background-color: #444;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 5px;
+        position: relative;
+    }
+    .delete-btn {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background: red;
+        color: white;
+        border: none;
+        padding: 2px 5px;
+        cursor: pointer;
+    }
+</style>
+
+<!-- JavaScript for Thumbs & Guestbook with Moderation -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let upCount = localStorage.getItem("thumbsUp") || 0;
+        let downCount = localStorage.getItem("thumbsDown") || 0;
+        document.getElementById("upCount").innerText = upCount;
+        document.getElementById("downCount").innerText = downCount;
+
+        document.getElementById("thumbsUp").addEventListener("click", function() {
+            upCount++;
+            localStorage.setItem("thumbsUp", upCount);
+            document.getElementById("upCount").innerText = upCount;
+        });
+        
+        document.getElementById("thumbsDown").addEventListener("click", function() {
+            downCount++;
+            localStorage.setItem("thumbsDown", downCount);
+            document.getElementById("downCount").innerText = downCount;
+        });
+
+        document.getElementById("submitMessage").addEventListener("click", function() {
+            let name = document.getElementById("guestName").value || "Anonymous";
+            let message = document.getElementById("guestMessage").value.trim();
+            if (message === "") return;
+            
+            // Basic word filtering
+            const badWords = ["badword1", "badword2", "offensiveword"];
+            let containsBadWord = badWords.some(word => message.toLowerCase().includes(word));
+            if (containsBadWord) {
+                alert("Please avoid using offensive words.");
+                return;
+            }
+            
+            let entry = document.createElement("div");
+            entry.classList.add("guest-entry");
+            entry.innerHTML = `<strong>${name}:</strong> ${message} <button class='delete-btn'>X</button>`;
+            
+            document.getElementById("guestbookEntries").appendChild(entry);
+            document.getElementById("guestMessage").value = "";
+            document.getElementById("guestName").value = "";
+
+            // Delete comment functionality
+            entry.querySelector(".delete-btn").addEventListener("click", function() {
+                entry.remove();
+            });
+        });
+    });
+</script>
 </body>
 </html>
     <footer>
