@@ -199,14 +199,13 @@ a[data-tooltip]::after {
               <!-- Right Side Enhancements: Guestbook & Thumbs-Up System -->
 <div class="right-side-container">
     
-    <!-- Thumbs Up / Down System -->
+<!-- Department 1: Guestbook & Thumbs-Up System -->
+<div class="right-side-container">
     <div class="thumbs-container">
         <h3>Was this helpful?</h3>
         <button id="thumbsUp">👍 <span id="upCount">0</span></button>
         <button id="thumbsDown">👎 <span id="downCount">0</span></button>
     </div>
-    
-    <!-- Guestbook Section -->
     <div class="guestbook">
         <h3>Guestbook</h3>
         <input type="text" id="guestName" placeholder="Your name (optional)">
@@ -216,6 +215,8 @@ a[data-tooltip]::after {
     </div>
 </div>
 
+<!-- Department 2: GPT Navigation Links -->
+<div id="rightBrain">
 <nav>
     <a href="https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt" target="_blank" title="Navigate global data laws like GDPR and CCPA with real-time compliance insights. Unique for its automation, legal intelligence, and Virtual IO support.">Global - Compliance GPT</a>
     <a href="https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb" target="_blank" title="Offers GDPR-specific tools including live self-assessments and upgrade paths. Unique for interactive reports and actionable compliance steps.">GDPR - CGB - Compliance GPT</a>
@@ -229,48 +230,51 @@ a[data-tooltip]::after {
     <a href="https://chatgpt.com/g/g-67c81a5951388191aa6d5fd48a83f255-45dgof8-mexico-lfpdppp-gpt" target="_blank" title="Helps with LFPDPPP rights, consent, security, and cross-border compliance. Stands out with practical advice and Virtual IO for ethical checks.">Mexico - lfpdppp GPT</a>
     <a href="https://chatgpt.com/g/g-67d14f0281a48191acf0d141f600152f-usa-federal-privacy-compliance-gpt" target="_blank" title="Covers HIPAA, GLBA, COPPA, and AI laws with dynamic compliance tools. Known for its cross-regulatory engine and clear guidance.">USA Federal Privacy Compliance GPT</a>
 </nav>
-
-        </div>
-    </div>
-<!-- Fixed Position Buttons -->
-<a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="AI infiltrates!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop" style="width: 50px; height: 50px; position: fixed; bottom: 10px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank" title="The cats are intelligent!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArtCreator" style="width: 50px; height: 50px; position: fixed; bottom: 110px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" title="Eva - i am proud of her! ask her anything!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva_Answers" style="width: 50px; height: 50px; position: fixed; bottom: 210px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank" title="pc-problems...no more!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="TSG-tech-support-GPT" style="width: 50px; height: 50px; position: fixed; bottom: 310px; left: 10px; z-index: 999;">
-</a>
-
-<a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="for Sellers! - consider options!">
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dual-role e-commerce guide and AI design" style="width: 50px; height: 50px; position: fixed; bottom: 410px; left: 10px; z-index: 999;">
-</a>
-  <!-- Right Side Enhancements: Guestbook & Thumbs-Up System -->
-<div class="right-side-container">
-    
-    <!-- Thumbs Up / Down System -->
-    <div class="thumbs-container">
-        <h3> Wdyt? </h3>
-        <button id="thumbsUp">👍 <span id="upCount">0</span></button>
-        <button id="thumbsDown">👎 <span id="downCount">0</span></button>
-    </div>
-    
-    <!-- Guestbook Section -->
-    <div class="your comment">
-        <h3>.....editable.....</h3>
-        <input type="text" id="guestName" placeholder="Your name (optional)">
-        <textarea id="guestMessage" placeholder="need a jurisdiction? Have a comment?"></textarea>
-        <button id="submitMessage">Submit</button>
-        <div id="guestbookEntries"></div>
-    </div>
 </div>
+
+<!-- Department 3: Infinity Switch -->
+<div id="infinitySwitch" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:1000;">
+    <svg id="glassEight" width="80" height="120" viewBox="0 0 80 120">
+        <defs>
+            <radialGradient id="glassGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#6a5acd" stop-opacity="0.2"/>
+            </radialGradient>
+        </defs>
+        <text x="10" y="90" font-size="100" fill="url(#glassGrad)" font-family="Arial" font-weight="bold">8</text>
+    </svg>
+</div>
+
+<!-- Department 4: Creative Side - Left Brain -->
+<div id="leftBrain" style="display:none;text-align:center;padding:20px;">
+    <h2>🌟 Creative Universe 🌟</h2>
+    <p>Coming soon: Dion, TSG, CatArt, the Shop, and the Galactic Adventure Game!</p>
+    <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="AI infiltrates!">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop" style="width: 50px; height: 50px; margin: 10px;">
+    </a>
+    <a href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank" title="The cats are intelligent!">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArtCreator" style="width: 50px; height: 50px; margin: 10px;">
+    </a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" title="Eva - i am proud of her! ask her anything!">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva_Answers" style="width: 50px; height: 50px; margin: 10px;">
+    </a>
+    <a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank" title="pc-problems...no more!">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="TSG-tech-support-GPT" style="width: 50px; height: 50px; margin: 10px;">
+    </a>
+    <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="for Sellers! - consider options!">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="DionW" style="width: 50px; height: 50px; margin: 10px;">
+    </a>
+</div>
+
+<script>
+    let flipped = false;
+    document.getElementById("infinitySwitch").addEventListener("click", () => {
+        flipped = !flipped;
+        document.getElementById("rightBrain").style.display = flipped ? "none" : "block";
+        document.getElementById("leftBrain").style.display = flipped ? "block" : "none";
+        document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+    });
+</script>
 
 <!-- Styles for Right-Side Enhancements -->
 <style>
