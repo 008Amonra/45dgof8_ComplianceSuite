@@ -457,8 +457,8 @@ glassEight::after {
     });
     <h1 id="pageTitle">45dgof8 GPT Hub – Compliance & AI Innovation</h1>
 .foggy {
-    color: rgba(224, 224, 224, 0.2);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    color: rgba(224, 224, 224, 0.1); /* lighter */
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
     transition: all 1s ease-in-out;
 }
 
@@ -469,7 +469,7 @@ if (flipped) {
 } else {
     pageTitle.classList.remove("foggy");
 }
-
+pageTitle.classList.toggle("foggy", flipped);
 document.getElementById("infinitySwitch").addEventListener("click", () => {
     flipped = !flipped;
     right.style.display = flipped ? "none" : "block";
