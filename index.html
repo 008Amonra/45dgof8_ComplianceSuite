@@ -466,7 +466,7 @@ const right = document.getElementById("rightBrain");
 const left = document.getElementById("leftBrain");
 const glassEight = document.getElementById("glassEight");
 const complianceWord = document.getElementById("complianceWord");
-const pageTitle = document.getElementById("pageTitle");
+
 let flipped = false;
 
 document.getElementById("infinitySwitch").addEventListener("click", () => {
@@ -478,15 +478,6 @@ document.getElementById("infinitySwitch").addEventListener("click", () => {
     // Only fog the word "Compliance"
     complianceWord.classList.toggle("foggy", flipped);
 });
-
-if (flipped) {
-    pageTitle.classList.add("foggy");
-} else {
-    pageTitle.classList.remove("foggy");
-}
-pageTitle.classList.toggle("foggy", flipped);
-
-</script>
 
     <footer>
         © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
