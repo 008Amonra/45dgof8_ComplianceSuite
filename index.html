@@ -455,14 +455,29 @@ glassEight::after {
             }
         });
     });
-    <h1 id="pageTitle">45dgof8 GPT Hub – Compliance & AI Innovation</h1>
+<h1 id="pageTitle">45dgof8 GPT Hub – <span id="complianceWord">Compliance</span> & AI Innovation</h1>
+
 .foggy {
     color: rgba(224, 224, 224, 0.1); /* lighter */
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
     transition: all 1s ease-in-out;
 }
-
+const right = document.getElementById("rightBrain");
+const left = document.getElementById("leftBrain");
+const glassEight = document.getElementById("glassEight");
+const complianceWord = document.getElementById("complianceWord");
 const pageTitle = document.getElementById("pageTitle");
+let flipped = false;
+
+document.getElementById("infinitySwitch").addEventListener("click", () => {
+    flipped = !flipped;
+    right.style.display = flipped ? "none" : "block";
+    left.style.display = flipped ? "block" : "none";
+    glassEight.style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+    
+    // Only fog the word "Compliance"
+    complianceWord.classList.toggle("foggy", flipped);
+});
 
 if (flipped) {
     pageTitle.classList.add("foggy");
