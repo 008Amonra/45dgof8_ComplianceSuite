@@ -455,7 +455,26 @@ glassEight::after {
             }
         });
     });
+    .foggy {
+    color: rgba(224, 224, 224, 0.2);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: all 1s ease-in-out;
+}
+    const pageTitle = document.getElementById("pageTitle");
 
+if (flipped) {
+    pageTitle.classList.add("foggy");
+} else {
+    pageTitle.classList.remove("foggy");
+}
+    document.getElementById("infinitySwitch").addEventListener("click", () => {
+    flipped = !flipped;
+    right.style.display = flipped ? "none" : "block";
+    left.style.display = flipped ? "block" : "none";
+    if (title) title.style.display = flipped ? "none" : "block";
+    document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+    pageTitle.classList.toggle("foggy", flipped);
+});
 </script>
 
     <footer>
