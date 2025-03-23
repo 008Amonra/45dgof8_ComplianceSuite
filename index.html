@@ -238,16 +238,43 @@ a[data-tooltip]::after {
 
 <!-- Department 3: Infinity Switch -->
 <div id="infinitySwitch" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:1000;">
-    <svg id="glassEight" width="80" height="120" viewBox="0 0 80 120">
-        <defs>
-            <radialGradient id="glassGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#6a5acd" stop-opacity="0.2"/>
-            </radialGradient>
-        </defs>
-        <text x="10" y="90" font-size="100" fill="url(#glassGrad)" font-family="Arial" font-weight="bold">8</text>
-    </svg>
+    <div style="position: relative; display: inline-block;">
+        <svg id="glassEight" width="80" height="120" viewBox="0 0 80 120">
+            <defs>
+                <radialGradient id="glassGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#6a5acd" stop-opacity="0.2"/>
+                </radialGradient>
+            </defs>
+            <text x="10" y="90" font-size="100" fill="url(#glassGrad)" font-family="Arial" font-weight="bold">8</text>
+        </svg>
+        <div id="arrowHint" style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%) rotate(-45deg); font-size: 24px; color: rgba(255,255,255,0.7); animation: pulseArrow 1.5s infinite;">↓</div>
+    </div>
 </div>
+
+<style>
+@keyframes pulseArrow {
+    0%, 100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
+    50% { transform: translateX(-50%) rotate(-45deg) scale(1.2); }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let flipped = false;
+    const right = document.getElementById("rightBrain");
+    const left = document.getElementById("leftBrain");
+    const title = document.querySelector("h2"); // "AI-Powered Compliance Tools"
+
+    document.getElementById("infinitySwitch").addEventListener("click", () => {
+        flipped = !flipped;
+        right.style.display = flipped ? "none" : "block";
+        left.style.display = flipped ? "block" : "none";
+        if (title) title.style.display = flipped ? "none" : "block";
+        document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+    });
+});
+</script>
 
 <!-- Department 4: Creative Side - Left Brain -->
 <div id="leftBrain" style="display:none;text-align:left;padding:20px;">
