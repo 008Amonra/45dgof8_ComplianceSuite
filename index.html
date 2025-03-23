@@ -485,13 +485,21 @@ if (flipped) {
     pageTitle.classList.remove("foggy");
 }
 pageTitle.classList.toggle("foggy", flipped);
+const right = document.getElementById("rightBrain");
+const left = document.getElementById("leftBrain");
+const glassEight = document.getElementById("glassEight");
+const complianceWord = document.getElementById("complianceWord");
+
+let flipped = false;
+
 document.getElementById("infinitySwitch").addEventListener("click", () => {
     flipped = !flipped;
     right.style.display = flipped ? "none" : "block";
     left.style.display = flipped ? "block" : "none";
-    if (title) title.style.display = flipped ? "none" : "block";
-    document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
-    pageTitle.classList.toggle("foggy", flipped);
+    glassEight.style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+    
+    // Only fog the word "Compliance"
+    complianceWord.classList.toggle("foggy", flipped);
 });
 </script>
 
