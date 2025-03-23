@@ -271,16 +271,25 @@ a[data-tooltip]::after {
     </div>
 </div>
 
+<!-- Department 5: Hint for Infinity Switch -->
+<style>
+#glassEight::after {
+    content: "\2193"; /* Downwards arrow */
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    font-size: 24px;
+    color: rgba(255,255,255,0.7);
+    animation: pulseArrow 1.5s infinite;
+}
 
-<script>
-    let flipped = false;
-    document.getElementById("infinitySwitch").addEventListener("click", () => {
-        flipped = !flipped;
-        document.getElementById("rightBrain").style.display = flipped ? "none" : "block";
-        document.getElementById("leftBrain").style.display = flipped ? "block" : "none";
-        document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
-    });
-</script>
+@keyframes pulseArrow {
+    0%, 100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
+    50% { transform: translateX(-50%) rotate(-45deg) scale(1.2); }
+}
+</style>
+
 
 <style>
 .page-title {
