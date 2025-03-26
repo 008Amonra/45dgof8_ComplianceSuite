@@ -514,17 +514,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-
-document.getElementById("infinitySwitch").addEventListener("click", () => {
-    flipped = !flipped;
-    right.style.display = flipped ? "none" : "block";
-    left.style.display = flipped ? "block" : "none";
-    glassEight.style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
-    
-    // Only fog the word "Compliance"
-    complianceWord.classList.toggle("foggy", flipped);
-});
-
     <footer>
         © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
     </footer>
