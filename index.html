@@ -518,6 +518,31 @@ glassEight::after {
     complianceWord.classList.toggle("foggy", flipped);
   });
 });
+    // 🚨 Basic Self-Check: Ping Test for GitHub Image Hosting
+function runSelfCheck() {
+    const testImg = new Image();
+    testImg.src = "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp?" + new Date().getTime();
+    testImg.onload = () => {
+        console.log("✅ Self-check passed: Image loaded.");
+    };
+    testImg.onerror = () => {
+        const alertBox = document.createElement("div");
+        alertBox.style.position = "fixed";
+        alertBox.style.top = "10px";
+        alertBox.style.left = "50%";
+        alertBox.style.transform = "translateX(-50%)";
+        alertBox.style.background = "#ff4c4c";
+        alertBox.style.color = "white";
+        alertBox.style.padding = "10px 20px";
+        alertBox.style.borderRadius = "8px";
+        alertBox.style.boxShadow = "0 0 10px rgba(0,0,0,0.3)";
+        alertBox.textContent = "⚠️ Warning: Could not load resources from GitHub. Check internet or repo status.";
+        document.body.appendChild(alertBox);
+    };
+}
+
+document.addEventListener("DOMContentLoaded", runSelfCheck);
+
 </script>
 
     <footer>
