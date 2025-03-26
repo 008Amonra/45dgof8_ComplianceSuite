@@ -492,24 +492,28 @@ glassEight::after {
 
 }
 
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
     const right = document.getElementById("rightBrain");
     const left = document.getElementById("leftBrain");
     const glassEight = document.getElementById("glassEight");
     const complianceWord = document.getElementById("complianceWord");
-    const pulse = document.getElementById("pulseBlock"); // NEW
+    const pulse = document.getElementById("pulseBlock"); // payment section
 
     let flipped = false;
 
     document.getElementById("infinitySwitch").addEventListener("click", () => {
         flipped = !flipped;
+
         right.style.display = flipped ? "none" : "block";
         left.style.display = flipped ? "block" : "none";
-        pulse.style.display = flipped ? "none" : "block"; // NEW
+        pulse.style.display = flipped ? "none" : "block";
         glassEight.style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
         complianceWord.classList.toggle("foggy", flipped);
     });
+});
+</script>
+
 });
 </script>
 
