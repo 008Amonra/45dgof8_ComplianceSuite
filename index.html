@@ -431,6 +431,11 @@ glassEight::after {
         50% { transform: translateX(5px); }
         75% { transform: translateX(-5px); }
     }
+    .foggy {
+    color: rgba(224, 224, 224, 0.1);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    transition: all 1s ease-in-out;
+}
 </style>
 
 <!-- JavaScript for Thumbs, Guestbook, and Shake Effect -->
@@ -489,17 +494,28 @@ glassEight::after {
 
 }
 
-.foggy {
-    color: rgba(224, 224, 224, 0.1); /* lighter */
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    transition: all 1s ease-in-out;
-}
-const right = document.getElementById("rightBrain");
-const left = document.getElementById("leftBrain");
-const glassEight = document.getElementById("glassEight");
-const complianceWord = document.getElementById("complianceWord");
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const right = document.getElementById("rightBrain");
+    const left = document.getElementById("leftBrain");
+    const glassEight = document.getElementById("glassEight");
+    const complianceWord = document.getElementById("complianceWord");
+    const pulse = document.getElementById("pulseBlock"); // NEW
 
-let flipped = false;
+    let flipped = false;
+
+    document.getElementById("infinitySwitch").addEventListener("click", () => {
+        flipped = !flipped;
+
+        right.style.display = flipped ? "none" : "block";
+        left.style.display = flipped ? "block" : "none";
+        pulse.style.display = flipped ? "none" : "block"; // NEW
+        glassEight.style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+        complianceWord.classList.toggle("foggy", flipped);
+    });
+});
+</script>
+
 
 document.getElementById("infinitySwitch").addEventListener("click", () => {
     flipped = !flipped;
