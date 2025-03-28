@@ -282,6 +282,40 @@ a[data-tooltip]::after {
     </div>
 </div>
 
+
+<!-- 🔁 INFINITY SWITCH LOGIC BELOW -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
+    const states = [
+        { angle: 0,     show: "rightBrain",  hide: ["leftBrain", "dnsBrain"] },
+        { angle: 45,    show: "leftBrain",   hide: ["rightBrain", "dnsBrain"] },
+        { angle: 90,    show: "dnsBrain",    hide: ["rightBrain", "leftBrain"] }
+    ];
+
+    const switcher = document.getElementById("infinitySwitch");
+    const glass = document.getElementById("glassEight");
+    const title = document.querySelector("h2");
+
+    switcher.addEventListener("click", () => {
+        state = (state + 1) % states.length;
+        const current = states[state];
+
+        glass.style.transform = `rotate(${current.angle}deg)`;
+
+        current.hide.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
+        });
+
+        const showEl = document.getElementById(current.show);
+        if (showEl) showEl.style.display = "block";
+
+        if (title) title.style.display = (state === 0) ? "block" : "none";
+    });
+});
+</script>    
+
 <style>
 @keyframes pulseArrow {
     0%, 100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
@@ -291,20 +325,42 @@ a[data-tooltip]::after {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    let flipped = false;
-    const right = document.getElementById("rightBrain");
-    const left = document.getElementById("leftBrain");
-    const title = document.querySelector("h2"); // "AI-Powered Compliance Tools"
+    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
+    const states = [
+        { angle: 0,     show: "rightBrain",  hide: ["leftBrain", "dnsBrain"] },
+        { angle: 45,    show: "leftBrain",   hide: ["rightBrain", "dnsBrain"] },
+        { angle: 90,    show: "dnsBrain",    hide: ["rightBrain", "leftBrain"] }
+    ];
 
-    document.getElementById("infinitySwitch").addEventListener("click", () => {
-        flipped = !flipped;
-        right.style.display = flipped ? "none" : "block";
-        left.style.display = flipped ? "block" : "none";
-        if (title) title.style.display = flipped ? "none" : "block";
-        document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
+    const switcher = document.getElementById("infinitySwitch");
+    const glass = document.getElementById("glassEight");
+    const title = document.querySelector("h2");
+
+    switcher.addEventListener("click", () => {
+        state = (state + 1) % states.length;
+        const current = states[state];
+
+        // Rotate the 8
+        glass.style.transform = `rotate(${current.angle}deg)`;
+
+        // Show the correct panel, hide others
+        current.hide.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
+        });
+
+        const showEl = document.getElementById(current.show);
+        if (showEl) showEl.style.display = "block";
+
+        // Show/hide main title depending on state 0
+        if (title) title.style.display = (state === 0) ? "block" : "none";
     });
 });
 </script>
+<div id="dnsBrain" style="display:none;">
+  <iframe src="dns-manager-gpt.html" width="100%" height="1000px" style="border:none;"></iframe>
+</div>
+});
 
 <!-- Department 4: Creative Side - Left Brain -->
 <div id="leftBrain" style="display:none;text-align:left;padding:20px;">
