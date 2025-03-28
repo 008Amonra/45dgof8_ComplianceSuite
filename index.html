@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
- <title>45dgof8 GPT Hub - Compliance & AI Innovation</title>
+    <title>45dgof8 GPT Hub - Compliance & AI Innovation</title>
+
     <meta name="description" content="45dgof8 GPT Hub – Your gateway to compliance-focused GPT tools for global regulations and AI-powered compliance solutions." />
     <meta name="keywords" content="GPT, AI compliance, GDPR, data protection, AI ethics, legal AI tools, #compliance, #AItools, #LegalTech" />
     <meta name="author" content="45dgof8 Compliance Hub" />
@@ -288,70 +288,20 @@ a[data-tooltip]::after {
     50% { transform: translateX(-50%) rotate(-45deg) scale(1.2); }
 }
 </style>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
-    const states = [
-        { angle: 0,     show: "rightBrain",  hide: ["leftBrain", "dnsBrain"] },
-        { angle: 45,    show: "leftBrain",   hide: ["rightBrain", "dnsBrain"] },
-        { angle: 90,    show: "dnsBrain",    hide: ["rightBrain", "leftBrain"] }
-    ];
+    let flipped = false;
+    const right = document.getElementById("rightBrain");
+    const left = document.getElementById("leftBrain");
+    const title = document.querySelector("h2"); // "AI-Powered Compliance Tools"
 
-    const switcher = document.getElementById("infinitySwitch");
-    const glass = document.getElementById("glassEight");
-    const title = document.querySelector("h2"); // Adjust if your title is elsewhere
-
-    switcher.addEventListener("click", () => {
-        state = (state + 1) % states.length;
-        const current = states[state];
-
-        // Rotate the 8 glyph
-        glass.style.transform = `rotate(${current.angle}deg)`;
-
-        // Show the correct brain section, hide others
-        current.hide.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = "none";
-        });
-
-        const showEl = document.getElementById(current.show);
-        if (showEl) showEl.style.display = "block";
-
-        // Optionally toggle the main title
-        if (title) title.style.display = (state === 0) ? "block" : "none";
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
-    const states = [
-        { angle: 0,     show: "rightBrain",  hide: ["leftBrain", "dnsBrain"] },
-        { angle: 45,    show: "leftBrain",   hide: ["rightBrain", "dnsBrain"] },
-        { angle: 90,    show: "dnsBrain",    hide: ["rightBrain", "leftBrain"] }
-    ];
-
-    const switcher = document.getElementById("infinitySwitch");
-    const glass = document.getElementById("glassEight");
-    const title = document.querySelector("h2");
-
-    switcher.addEventListener("click", () => {
-        state = (state + 1) % states.length;
-        const current = states[state];
-
-        // Rotate the 8
-        glass.style.transform = `rotate(${current.angle}deg)`;
-
-        // Show the correct panel, hide others
-        current.hide.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = "none";
-        });
-
-        const showEl = document.getElementById(current.show);
-        if (showEl) showEl.style.display = "block";
-
-        // Show/hide main title depending on state 0
-        if (title) title.style.display = (state === 0) ? "block" : "none";
+    document.getElementById("infinitySwitch").addEventListener("click", () => {
+        flipped = !flipped;
+        right.style.display = flipped ? "none" : "block";
+        left.style.display = flipped ? "block" : "none";
+        if (title) title.style.display = flipped ? "none" : "block";
+        document.getElementById("glassEight").style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
     });
 });
 </script>
@@ -498,95 +448,6 @@ glassEight::after {
 </style>
 
 <!-- JavaScript for Thumbs, Guestbook, and Shake Effect -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // 1️⃣ Infinity Switch Logic
-    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
-    const states = [
-        { angle: 0, show: "rightBrain", hide: ["leftBrain", "dnsBrain"] },
-        { angle: 45, show: "leftBrain", hide: ["rightBrain", "dnsBrain"] },
-        { angle: 90, show: "dnsBrain", hide: ["rightBrain", "leftBrain"] }
-    ];
-
-    const switcher = document.getElementById("infinitySwitch");
-    const glass = document.getElementById("glassEight");
-    const title = document.getElementById("pageTitle");
-
-    switcher.addEventListener("click", () => {
-        state = (state + 1) % states.length;
-        const current = states[state];
-
-        glass.style.transform = `rotate(${current.angle}deg)`;
-
-        current.hide.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = "none";
-        });
-
-        const showEl = document.getElementById(current.show);
-        if (showEl) showEl.style.display = "block";
-
-        if (title) title.style.display = (state === 0) ? "block" : "none";
-    });
-
-    // 2️⃣ Random Background Image Logic
-    const images = [ /* ... keep your image URLs here ... */ ];
-    const imageSection = document.querySelector('.image-section');
-    if (imageSection) {
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        imageSection.style.backgroundImage = `url('${randomImage}')`;
-        imageSection.style.backgroundSize = 'cover';
-        imageSection.style.backgroundPosition = 'center';
-    }
-
-    // 3️⃣ Guestbook / Voting Logic
-    let upCount = localStorage.getItem("thumbsUp") || 0;
-    let downCount = localStorage.getItem("thumbsDown") || 0;
-    document.getElementById("upCount").innerText = upCount;
-    document.getElementById("downCount").innerText = downCount;
-
-    document.getElementById("thumbsUp").addEventListener("click", () => {
-        upCount++;
-        localStorage.setItem("thumbsUp", upCount);
-        document.getElementById("upCount").innerText = upCount;
-    });
-
-    document.getElementById("thumbsDown").addEventListener("click", () => {
-        downCount++;
-        localStorage.setItem("thumbsDown", downCount);
-        document.getElementById("downCount").innerText = downCount;
-    });
-
-    document.getElementById("submitMessage").addEventListener("click", () => {
-        const name = document.getElementById("guestName").value || "Anonymous";
-        const message = document.getElementById("guestMessage").value.trim();
-        if (!message) return;
-
-        const entry = document.createElement("div");
-        entry.classList.add("guest-entry");
-        entry.innerHTML = `<strong>${name}:</strong> ${message} <button class='delete-btn'>X</button>`;
-        document.getElementById("guestbookEntries").appendChild(entry);
-        document.getElementById("guestMessage").value = "";
-        document.getElementById("guestName").value = "";
-        entry.querySelector(".delete-btn").addEventListener("click", () => entry.remove());
-    });
-
-    // 4️⃣ Self-check for image hosting
-    const testImg = new Image();
-    testImg.src = "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp?" + new Date().getTime();
-    testImg.onerror = () => {
-        const alertBox = document.createElement("div");
-        alertBox.textContent = "⚠️ Could not load GitHub-hosted images.";
-        Object.assign(alertBox.style, {
-            position: "fixed", top: "10px", left: "50%", transform: "translateX(-50%)",
-            background: "#ff4c4c", color: "#fff", padding: "10px 20px",
-            borderRadius: "8px", boxShadow: "0 0 10px rgba(0,0,0,0.3)"
-        });
-        document.body.appendChild(alertBox);
-    };
-});
-</script>
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let upCount = localStorage.getItem("thumbsUp") || 0;
