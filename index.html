@@ -222,25 +222,11 @@ a[data-tooltip]::after {
 </div>
 
 <!-- ✅ BEGIN COMPLIANCE SECTION TO TOGGLE -->
-<div id="rightBrain" class="gpt-links" style="
-  display: block;
-  position: fixed;
-  top: 10%;
-  left: 80%;
-  transform: translateX(-60%);
-  width: 700px;
-  max-width: 90vw;
-  z-index: 999;
-  overflow: auto;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-  background-color: rgba(10, 10, 30, 0.85);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  <nav style="text-align: left;">
-  </nav>
-</div>
-">
+<div id="complianceSection">
+
+  <!-- GPT Links -->
+  <!-- Department 2.1: GPT Navigation Links -->
+  <div id="rightBrain" class="gpt-links">
    <center> 
        <nav>
       <a href="https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt" target="_blank" title="Navigate global data laws like GDPR and CCPA with real-time compliance insights. Unique for its automation, legal intelligence, and Virtual IO support.">Global - Compliance GPT</a>
@@ -259,7 +245,7 @@ a[data-tooltip]::after {
    </center>
   </div>
 
-  <center>45dgof8 - Compliance & AI Innovation</center>
+  <center><title>45dgof8 - Compliance & AI Innovation</title></center>
     <center><a href="https://chatgpt.com/g/g-67e5ba18a3488191a7f4e2732e4fdcb6-45dgof8-dns-manager-gpt" target="_blank" title="I am a geopolitically aware, compliance-first DNS optimization AI designed to securely route global GPT deployments with minimal latency and maximum legal integrity.">45dgof8-DNS-Manager-GPT</center>
     
  <!-- Pulse Section -->
@@ -294,6 +280,9 @@ a[data-tooltip]::after {
         </svg>
         <div id="arrowHint" style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%) rotate(-45deg); font-size: 24px; color: rgba(255,255,255,0.7); animation: pulseArrow 1.5s infinite;">↓</div>
     </div>
+<div id="dnsBrain" style="display:none; position: fixed; top: 10%; left: 50%; transform: translateX(25%);
+     width: 700px; max-width: 90vw; z-index: 999; box-shadow: 0 0 30px rgba(0,255,255,0.15);
+     border-radius: 12px; overflow: hidden;">
   <iframe src="dns-manager-gpt.html" width="100%" height="1000px" style="border:none;"></iframe>
 </div>
 
@@ -556,27 +545,7 @@ glassEight::after {
     complianceWord.classList.toggle("foggy", flipped);
   });
 });
-  
-   </div> <!-- Closing leftBrain -->
-
-<!-- Department 5: DNS Brain - Comic Panel -->
-<div id="dnsBrain" style="
-  display: none;
-  position: fixed;
-  top: 10%;
-  left: 75%;
-  transform: translateX(-50%);
-  width: 700px;
-  max-width: 90vw;
-  z-index: 999;
-  box-shadow: 0 0 30px rgba(0,255,255,0.15);
-  border-radius: 12px;
-  overflow: hidden;
-">
-  <iframe src="dns-manager-gpt.html" width="100%" height="1000px" style="border:none;"></iframe>
-</div>
- 
- // 🚨 Basic Self-Check: Ping Test for GitHub Image Hosting
+    // 🚨 Basic Self-Check: Ping Test for GitHub Image Hosting
 function runSelfCheck() {
     const testImg = new Image();
     testImg.src = "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp?" + new Date().getTime();
