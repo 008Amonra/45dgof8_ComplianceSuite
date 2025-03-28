@@ -449,6 +449,95 @@ glassEight::after {
 
 <!-- JavaScript for Thumbs, Guestbook, and Shake Effect -->
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    // 1️⃣ Infinity Switch Logic
+    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
+    const states = [
+        { angle: 0, show: "rightBrain", hide: ["leftBrain", "dnsBrain"] },
+        { angle: 45, show: "leftBrain", hide: ["rightBrain", "dnsBrain"] },
+        { angle: 90, show: "dnsBrain", hide: ["rightBrain", "leftBrain"] }
+    ];
+
+    const switcher = document.getElementById("infinitySwitch");
+    const glass = document.getElementById("glassEight");
+    const title = document.getElementById("pageTitle");
+
+    switcher.addEventListener("click", () => {
+        state = (state + 1) % states.length;
+        const current = states[state];
+
+        glass.style.transform = `rotate(${current.angle}deg)`;
+
+        current.hide.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
+        });
+
+        const showEl = document.getElementById(current.show);
+        if (showEl) showEl.style.display = "block";
+
+        if (title) title.style.display = (state === 0) ? "block" : "none";
+    });
+
+    // 2️⃣ Random Background Image Logic
+    const images = [ /* ... keep your image URLs here ... */ ];
+    const imageSection = document.querySelector('.image-section');
+    if (imageSection) {
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        imageSection.style.backgroundImage = `url('${randomImage}')`;
+        imageSection.style.backgroundSize = 'cover';
+        imageSection.style.backgroundPosition = 'center';
+    }
+
+    // 3️⃣ Guestbook / Voting Logic
+    let upCount = localStorage.getItem("thumbsUp") || 0;
+    let downCount = localStorage.getItem("thumbsDown") || 0;
+    document.getElementById("upCount").innerText = upCount;
+    document.getElementById("downCount").innerText = downCount;
+
+    document.getElementById("thumbsUp").addEventListener("click", () => {
+        upCount++;
+        localStorage.setItem("thumbsUp", upCount);
+        document.getElementById("upCount").innerText = upCount;
+    });
+
+    document.getElementById("thumbsDown").addEventListener("click", () => {
+        downCount++;
+        localStorage.setItem("thumbsDown", downCount);
+        document.getElementById("downCount").innerText = downCount;
+    });
+
+    document.getElementById("submitMessage").addEventListener("click", () => {
+        const name = document.getElementById("guestName").value || "Anonymous";
+        const message = document.getElementById("guestMessage").value.trim();
+        if (!message) return;
+
+        const entry = document.createElement("div");
+        entry.classList.add("guest-entry");
+        entry.innerHTML = `<strong>${name}:</strong> ${message} <button class='delete-btn'>X</button>`;
+        document.getElementById("guestbookEntries").appendChild(entry);
+        document.getElementById("guestMessage").value = "";
+        document.getElementById("guestName").value = "";
+        entry.querySelector(".delete-btn").addEventListener("click", () => entry.remove());
+    });
+
+    // 4️⃣ Self-check for image hosting
+    const testImg = new Image();
+    testImg.src = "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp?" + new Date().getTime();
+    testImg.onerror = () => {
+        const alertBox = document.createElement("div");
+        alertBox.textContent = "⚠️ Could not load GitHub-hosted images.";
+        Object.assign(alertBox.style, {
+            position: "fixed", top: "10px", left: "50%", transform: "translateX(-50%)",
+            background: "#ff4c4c", color: "#fff", padding: "10px 20px",
+            borderRadius: "8px", boxShadow: "0 0 10px rgba(0,0,0,0.3)"
+        });
+        document.body.appendChild(alertBox);
+    };
+});
+</script>
+
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         let upCount = localStorage.getItem("thumbsUp") || 0;
         let downCount = localStorage.getItem("thumbsDown") || 0;
