@@ -117,15 +117,32 @@
         }
 
         /* Footer */
-        footer {
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            background-color: #2a2a3e;
-            color: #868686;
-            font-size: 14px;
-            margin-top: auto;
-        }
+footer {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    background-color: #2a2a3e;
+    color: #c0c0c0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: auto;
+
+    /* Added for clarity and readability */
+    white-space: normal;
+    word-break: break-word;
+}
+
+footer a {
+    color: #8ab4f8;
+    text-decoration: underline;
+}
+
+footer a:hover,
+footer a:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 a[data-tooltip] {
     position: relative;
     text-decoration: none;
@@ -573,7 +590,9 @@ document.addEventListener("DOMContentLoaded", runSelfCheck);
 </script>
 
     <footer>
-        © 2025 45dgof8 Compliance Hub | Email: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
-    </footer>
+    © 2025 45dgof8 Compliance Hub | Email:
+    <a href="mailto:45dgof8@gmail.com" aria-label="Email 45dgof8">45dgof8@gmail.com</a>
+</footer>
+
 </body>
 </html>
