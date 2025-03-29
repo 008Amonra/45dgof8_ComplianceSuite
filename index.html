@@ -117,19 +117,21 @@
         }
 
         /* Footer */
+/* Footer */
 footer {
     display: flex;
-    justify-content: space-between;
-    align-items: right;
+    justify-content: flex-end; /* aligns content to the right */
+    align-items: center;
     width: 100%;
     padding: 12px 24px;
     background-color: #2a2a3e;
     color: #c0c0c0;
     font-size: 14px;
     line-height: 1.5;
-    position: relative;
     margin-top: auto;
+    box-sizing: border-box;
 }
+
 
 footer a {
     color: #8ab4f8;
@@ -587,6 +589,33 @@ function runSelfCheck() {
 document.addEventListener("DOMContentLoaded", runSelfCheck);
 
 </script>
+<body>
+  <main>
+    <div class="split-screen">
+      <div class="image-section" style="background-image: url('your-image.jpg');">
+        <!-- image content -->
+      </div>
+      <div class="content-section">
+        <header>
+          <h1>Welcome to 45dgof8.com</h1>
+        </header>
+        <nav>
+          <a href="#">Link A</a>
+          <a href="#">Link B</a>
+        </nav>
+        <div class="stick-container">
+          <img src="stick-figure.png" alt="Stick Figure" class="stick-figure" />
+          <span class="push-text">Protocol active...</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 45dgof8 Compliance Hub | Email:
+    <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
+  </footer>
+</body>
 
    <footer>
   <div class="footer-left"></div>
