@@ -1,252 +1,112 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>45dgof8 GPT Hub - Compliance & AI Innovation</title>
-
-    <meta name="description" content="45dgof8 GPT Hub – Your gateway to compliance-focused GPT tools for global regulations and AI-powered compliance solutions." />
-    <meta name="keywords" content="GPT, AI compliance, GDPR, data protection, AI ethics, legal AI tools, #compliance, #AItools, #LegalTech" />
-    <meta name="author" content="45dgof8 Compliance Hub" />
-    <meta name="robots" content="index, follow" />
-
-    <style>
-        /* Allgemeine Reset-Styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            font-family: Arial, sans-serif;
-            background-color: #2a2a3e;
-            color: #e0e0e0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Layout */
-        .split-screen {
-            display: flex;
-            flex-wrap: wrap;
-            min-height: 100vh;
-            width: 100vw;
-            background-color: #2a2a3e;
-            overflow: hidden;
-        }
-
-        .image-section {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            min-height: 50vh;
-        }
-
-        .content-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #2a2a3e;
-            padding: 20px;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            background-color: #2a2a3e;
-            padding: 20px 0;
-        }
-
-        header h1 {
-            color: #6a5acd;
-        }
-
-        /* Navigation */
-        nav a {
-            display: inline-block;
-            text-decoration: none;
-            color: #6a5acd;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: rgba(106, 90, 205, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        nav a:hover {
-            background-color: #9a8ef1;
-            color: #fff;
-        }
-
-        /* Stickfigur */
-        .stick-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            width: 100%;
-        }
-
-        .stick-figure {
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            left: 10%;
-            animation: pushStick 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pushStick {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-        }
-
-        .push-text {
-            display: inline-block;
-            font-size: 1.5em;
-            font-weight: bold;
-            padding-left: 20px;
-            animation: moveText 1.5s infinite ease-in-out;
-        }
-
-        @keyframes moveText {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-        }
-
-        /* Footer */
-/* Footer */
-footer {
-    display: flex;
-    justify-content: flex-end; /* aligns content to the right */
-    align-items: center;
-    width: 100%;
-    padding: 12px 24px;
-    background-color: #2a2a3e;
-    color: #c0c0c0;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-top: auto;
-    box-sizing: border-box;
-}
-
-
-footer a {
-    color: #8ab4f8;
-    text-decoration: underline;
-}
-
-footer a:hover,
-footer a:focus {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-a[data-tooltip] {
-    position: relative;
-    text-decoration: none;
-}
-
-a[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 50%;
-    bottom: 125%;
-    transform: translateX(-50%);
-    background: #333;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    white-space: nowrap;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease-in-out;
-}
-
-a[data-tooltip]::after {
-    opacity: 0;
-    visibility: hidden;
-}
-    </style>
-
-   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const images = [
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/TCXm.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DkbC.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/d9is.webp',
-        ];
-            const imageSection = document.querySelector('.image-section');
-            if (imageSection) {
-                const randomImage = images[Math.floor(Math.random() * images.length)];
-                imageSection.style.backgroundImage = `url('${randomImage}')`;
-                imageSection.style.backgroundSize = 'cover';
-                imageSection.style.backgroundPosition = 'center';
-            } else {
-                console.error("Image section not found!");
-            }
-        });
-   
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>45dgof8 GPT Hub – Compliance & AI Innovation</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    .split-screen {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      width: 100vw;
+    }
+    @media (max-width: 768px) {
+      .split-screen {
+        flex-direction: column;
+      }
+      .image-section, .content-section {
+        width: 100% !important;
+        height: 50%;
+      }
+    }
+    .image-section {
+      width: 50%;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.8s ease-in-out;
+    }
+    .content-section {
+      width: 50%;
+      background-color: #f9f9f9;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    nav a {
+      display: inline-block;
+      margin: 6px;
+      text-decoration: none;
+      color: #333;
+      background: #eee;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #ddd;
+    }
+    .graphic-eight {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 72px;
+      font-weight: bold;
+      background: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      z-index: 10;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    .graphic-eight:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .footer-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+    .footer-left, .footer-center, .footer-right {
+      flex-grow: 1;
+      text-align: center;
+    }
+    iframe#creativeFrame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: none;
+      z-index: 999;
+    }
+  </style>
 </head>
-
 <body>
-    <header>
-        <h1 id="pageTitle">45dgof8 GPT Hub – <span id="complianceWord">Compliance</span> & AI Innovation</h1>
-
-        <div class="stick-container">
-
-            <p class="push-text">Your gateway to compliance-focused GPT tools.</p>
-        </div>
-    </header>
-
+  <main>
     <div class="split-screen">
-        <div class="image-section"></div>
-        <div class="content-section">
-            <nav>
-              <!-- Right Side Enhancements: Guestbook & Thumbs-Up System -->
-<div class="bottom-container">
-    
-<!-- Department 0: Title -->
-<div class="page-title">
-    <h1>AI-Powered Compliance Tools</h1>
-</div>
-
-<!-- Department 1: Guestbook & Thumbs-Up System -->
-<div class="right-side-container" id="guestbox">
-    <div class="thumbs-container">
-        <h3>What do you think?</h3>
-        <button id="thumbsUp">👍 <span id="upCount">0</span></button>
-        <button id="thumbsDown">👎 <span id="downCount">0</span></button>
-    </div>
-    <div class="guestbook">
-        <h3>Guestbook</h3>
-        <input type="text" id="guestName" placeholder="Your alias (optional)">
-        <textarea id="guestMessage" placeholder="What jurisdiction is missing?."></textarea>
-        <button id="submitMessage">Submit</button>
-        <div id="guestbookEntries"></div>
-    </div>
-</div>
-
-<!-- ✅ BEGIN COMPLIANCE SECTION TO TOGGLE -->
-<div id="complianceSection">
-
-  <!-- GPT Links -->
-  <!-- Department 2.1: GPT Navigation Links -->
-  <div id="rightBrain" class="gpt-links">
-   <center> 
-       <nav>
+      <div class="image-section" id="randomImage"></div>
+      <div class="content-section">
+        <header><h1>Welcome to 45dgof8.com</h1></header>
+        <nav>
       <a href="https://chat.openai.com/g/g-pwRUJBPBY-compliancegpt" target="_blank" title="Navigate global data laws like GDPR and CCPA with real-time compliance insights. Unique for its automation, legal intelligence, and Virtual IO support.">Global - Compliance GPT</a>
       <a href="https://chat.openai.com/g/g-evCGCyUMs-gdpr-cgb" target="_blank" title="Offers GDPR-specific tools including live self-assessments and upgrade paths. Unique for interactive reports and actionable compliance steps.">GDPR - CGB - Compliance GPT</a>
       <a href="https://chat.openai.com/g/g-6738a01a6edc81919fe6730214086ff7" target="_blank" title="Bilingual AI for Indonesia's PDP Law with templates, legal guidance, and local insights. Stands out for its simplicity and regulatory alignment.">Indonesia - Compliance GPT</a>
@@ -260,372 +120,55 @@ a[data-tooltip]::after {
       <a href="https://chatgpt.com/g/g-67d14f0281a48191acf0d141f600152f-usa-federal-privacy-compliance-gpt" target="_blank" title="Covers HIPAA, GLBA, COPPA, and AI laws with dynamic compliance tools. Known for its cross-regulatory engine and clear guidance.">USA Federal Privacy Compliance GPT</a>
       <a href="https://chatgpt.com/g/g-67c8884a41288191ab4211b6d693b19a-gdpr-nibbler" target="_blank"  title="Infos about GDPR Compliance, CDN & Hosting Risks, Legal Rulings, Compliance Migration, Risk Assessment, Privacy Policies, GDPR Best Practices & Trends & News"> GDPR Nibbler</a>
       <a href="https://chatgpt.com/g/g-67e5a7a32c6c8191b72872a7cbdd7f4c-45dgof8-singapore-pdpa-compliance-gpt/c/67e5ae3b-9e30-800c-9ad5-bdd9ffe30b38" target="_blank"  title="understand and apply Singapore’s Personal Data Protection Act (PDPA) & Lawful and ethical data handling in Singapore.">Singapore-pdpa-compliance-gpt</a>
-   </center>
-  </div>
-
-  <center><title>45dgof8 - Compliance & AI Innovation</title></center>
-    <center><a href="https://chatgpt.com/g/g-67e5ba18a3488191a7f4e2732e4fdcb6-45dgof8-dns-manager-gpt" target="_blank" title="I am a geopolitically aware, compliance-first DNS optimization AI designed to securely route global GPT deployments with minimal latency and maximum legal integrity.">45dgof8-DNS-Manager-GPT</center>
-    
- <!-- Pulse Section -->
-  <div id="pulseBlock"  style="display: none;">
-  <h2 style="font-size: 2.5rem; color: white; margin-top: 6rem; margin-bottom: 1.5rem; text-align: center;"> 
-      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" title="45dgof8-pulse – Trusted Payment Infrastructure" style="color: white; text-decoration: none;">
-      45dgof8-pulse – Trusted Payment Infrastructure
-      </a>
-      </h2>
-      <p style="font-size: 1.1rem; color: #ccc; max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.6;">
-      This is your silent processor. While other GPTs speak, <strong>45dgof8-pulse</strong> handles what no one sees – generating secure payment links, splitting revenue fairly, and confirming purchases in real time.
-      <br><br>
-      Designed for creators, AI builders, and digital tools that need effortless, automatic income handling. Just 1% fee. No friction. No noise.
-      <br><br>
-      <em>Use it standalone, or integrate it into any GPT for instant monetization.</em>
-      </p>
- </div>
-
-<!-- ✅ END COMPLIANCE SECTION -->
-   
-<!-- Department 3: Infinity Switch -->
-<div id="infinitySwitch" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:1000;">
-    <div style="position: relative; display: inline-block;">
-        <svg id="glassEight" width="80" height="120" viewBox="0 0 80 120">
-            <defs>
-                <radialGradient id="glassGrad" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
-                    <stop offset="100%" stop-color="#6a5acd" stop-opacity="0.2"/>
-                </radialGradient>
-            </defs>
-            <text x="10" y="90" font-size="100" fill="url(#glassGrad)" font-family="Arial" font-weight="bold">8</text>
-        </svg>
-        <div id="arrowHint" style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%) rotate(-45deg); font-size: 24px; color: rgba(255,255,255,0.7); animation: pulseArrow 1.5s infinite;">↓</div>
-    </div>
-<div id="dnsBrain" style="display:none; position: fixed; top: 10%; left: 50%; transform: translateX(25%);
-     width: 700px; max-width: 90vw; z-index: 999; box-shadow: 0 0 30px rgba(0,255,255,0.15);
-     border-radius: 12px; overflow: hidden;">
-  <iframe src="dns-manager-gpt.html" width="100%" height="1000px" style="border:none;"></iframe>
-</div>
-
-
-<style>
-@keyframes pulseArrow {
-    0%, 100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
-    50% { transform: translateX(-50%) rotate(-45deg) scale(1.2); }
-}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    let state = 0; // 0: GPTs, 1: Personal, 2: DNS Comic
-    const states = [
-        { angle: 0,     show: "rightBrain",  hide: ["leftBrain", "dnsBrain"] },
-        { angle: 45,    show: "leftBrain",   hide: ["rightBrain", "dnsBrain"] },
-        { angle: 90,    show: "dnsBrain",    hide: ["rightBrain", "leftBrain"] }
-    ];
-
-    const switcher = document.getElementById("infinitySwitch");
-    const glass = document.getElementById("glassEight");
-    const title = document.querySelector("h2");
-
-    switcher.addEventListener("click", () => {
-        state = (state + 1) % states.length;
-        const current = states[state];
-
-        // Rotate the 8
-        glass.style.transform = `rotate(${current.angle}deg)`;
-
-        // Show the correct panel, hide others
-        current.hide.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = "none";
-        });
-
-        const showEl = document.getElementById(current.show);
-        if (showEl) showEl.style.display = "block";
-
-        // Show/hide main title depending on state 0
-        if (title) title.style.display = (state === 0) ? "block" : "none";
-    });
-});
-</script>
-
-<!-- Department 4: Creative Side - Left Brain -->
-<div id="leftBrain" style="display:none;text-align:left;padding:20px;">
-    <center><h2>🌟 Creative Universe 🌟</h2></center>
-    <div class="creative-icons">
-        <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="Visit the 45dgof8 Etsy Shop">
-            <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" style="width:55px;opacity:0.5;">
-        </a>
-        <a href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank" title="Explore CatArt Creator – AI-generated feline masterpieces">
-            <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" style="width:55px;opacity:0.5;">
-        </a>
-        <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" title="Ask Eva – Your AI co-pilot for everything">
-            <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" style="width:55px;opacity:0.5;">
-        </a>
-        <a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank" title="Tech Support GPT – Fix your PC like magic">
-            <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" style="width:55px;opacity:0.5;">
-        </a>
-        <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="Meet Dion – Your dual-role AI for E-commerce & Design">
-            <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" style="width:55px;opacity:0.5;">
-        </a>    
-        <a href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices/c/67e457aa-d02c-800c-8bc6-ecee2f84e1f4" title="GalacticChoices-GPT: Your Portal to Sci-Fi Adventure!">
-            <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp" style="width:55px;opacity:0.5;">
-        </a>
-    </div>
-</div>
-
-<!-- Department 5: Hint for Infinity Switch -->
-<style>
-glassEight::after {
-    content: "\2193"; /* Downwards arrow */
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-45deg);
-    font-size: 24px;
-    color: rgba(255,255,255,0.7);
-    animation: pulseArrow 1.5s infinite;
-}
-
-@keyframes pulseArrow {
-    0%, 100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
-    50% { transform: translateX(-50%) rotate(-45deg) scale(1.2); }
-}
-</style>
-
-
-<style>
-.page-title {
-    text-align: center;
-    margin: 20px auto;
-    color: #ffffff;
-    font-size: 1.8em;
-    font-weight: bold;
-}
-
-.creative-icons img {
-    margin: 10px;
-    transition: all 0.3s ease;
-}
-
-.creative-icons img:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.foggy {
-    color: rgba(224, 224, 224, 0.08);
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
-    transition: all 1s ease-in-out;
-    
-</style>
-
-<!-- Styles for Right-Side Enhancements -->
-<style>
-    .right-side-container {
-        position: fixed;
-        right: 10px;
-        top: 50px;
-        width: 250px;
-        background-color: #333;
-        padding: 15px;
-        border-radius: 10px;
-        color: white;
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-    }
-    .thumbs-container button {
-        margin: 5px;
-        padding: 10px;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    #guestMessage, #guestName {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    #submitMessage {
-        width: 100%;
-        background-color: #6a5acd;
-        color: white;
-        border: none;
-        padding: 8px;
-        cursor: pointer;
-    }
-    #guestbookEntries {
-        margin-top: 10px;
-        max-height: 150px;
-        overflow-y: auto;
-    }
-    .guest-entry {
-        background-color: #444;
-        padding: 8px;
-        margin: 5px 0;
-        border-radius: 5px;
-        position: relative;
-    }
-    .delete-btn {
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        background: red;
-        color: white;
-        border: none;
-        padding: 2px 5px;
-        cursor: pointer;
-    }
-    .shake {
-        animation: shake 0.5s ease-in-out;
-    }
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-    }
-    .foggy {
-    color: rgba(224, 224, 224, 0.1);
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    transition: all 1s ease-in-out;
-}
-</style>
-
-<!-- JavaScript for Thumbs, Guestbook, and Shake Effect -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let upCount = localStorage.getItem("thumbsUp") || 0;
-        let downCount = localStorage.getItem("thumbsDown") || 0;
-        document.getElementById("upCount").innerText = upCount;
-        document.getElementById("downCount").innerText = downCount;
-
-        document.getElementById("thumbsUp").addEventListener("click", function() {
-            upCount++;
-            localStorage.setItem("thumbsUp", upCount);
-            document.getElementById("upCount").innerText = upCount;
-        });
-        
-        document.getElementById("thumbsDown").addEventListener("click", function() {
-            downCount++;
-            localStorage.setItem("thumbsDown", downCount);
-            document.getElementById("downCount").innerText = downCount;
-        });
-
-        document.getElementById("submitMessage").addEventListener("click", function() {
-            let name = document.getElementById("guestName").value || "Anonymous";
-            let message = document.getElementById("guestMessage").value.trim();
-            if (message === "") return;
-            
-            let entry = document.createElement("div");
-            entry.classList.add("guest-entry");
-            entry.innerHTML = `<strong>${name}:</strong> ${message} <button class='delete-btn'>X</button>`;
-            
-            document.getElementById("guestbookEntries").appendChild(entry);
-            document.getElementById("guestMessage").value = "";
-            document.getElementById("guestName").value = "";
-
-            entry.querySelector(".delete-btn").addEventListener("click", function() {
-            entry.remove();
-            });
-        });
-
-        let clickCount = 5;
-        document.addEventListener("click", function(event) {
-            if (event.target.tagName === "IMG") {
-                clickCount++;
-                if (clickCount >= 5) {
-                    document.body.classList.add("shake");
-                    setTimeout(() => {
-                        document.body.classList.remove("shake");
-                        clickCount = 0;
-                    }, 500);
-                }
-            }
-        });
-    });
-<h2 id="pageTitle">45dgof8 GPT Hub – <span id="complianceWord">Compliance</span> & AI Innovation</h2>
-
-}
-    const complianceSection = document.getElementById("complianceSection");
-    complianceSection.style.display = flipped ? "none" : "block";
-
-
-   document.addEventListener("DOMContentLoaded", function () {
-   const complianceSection = document.getElementById("complianceSection");
-   const left = document.getElementById("leftBrain");
-   const glassEight = document.getElementById("glassEight");
-   const complianceWord = document.getElementById("complianceWord");
-
-   let flipped = false;
-
-    document.getElementById("infinitySwitch").addEventListener("click", () => {
-    flipped = !flipped;
-    complianceSection.style.display = flipped ? "none" : "block";
-    left.style.display = flipped ? "block" : "none";
-    glassEight.style.transform = flipped ? "rotate(45deg)" : "rotate(0deg)";
-    complianceWord.classList.toggle("foggy", flipped);
-  });
-});
-    // 🚨 Basic Self-Check: Ping Test for GitHub Image Hosting
-function runSelfCheck() {
-    const testImg = new Image();
-    testImg.src = "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp?" + new Date().getTime();
-    testImg.onload = () => {
-        console.log("✅ Self-check passed: Image loaded.");
-    };
-    testImg.onerror = () => {
-        const alertBox = document.createElement("div");
-        alertBox.style.position = "fixed";
-        alertBox.style.top = "10px";
-        alertBox.style.left = "50%";
-        alertBox.style.transform = "translateX(-50%)";
-        alertBox.style.background = "#ff4c4c";
-        alertBox.style.color = "white";
-        alertBox.style.padding = "10px 20px";
-        alertBox.style.borderRadius = "8px";
-        alertBox.style.boxShadow = "0 0 10px rgba(0,0,0,0.3)";
-        alertBox.textContent = "⚠️ Warning: Could not load resources from GitHub. Check internet or repo status.";
-        document.body.appendChild(alertBox);
-    };
-}
-
-document.addEventListener("DOMContentLoaded", runSelfCheck);
-
-</script>
-<body>
-  <main>
-    <div class="split-screen">
-      <div class="image-section" style="background-image: url('your-image.jpg');">
-        <!-- image content -->
-      </div>
-      <div class="content-section">
-        <header>
-          <h1>Welcome to 45dgof8.com</h1>
-        </header>
-        <nav>
-          <a href="#">Link A</a>
-          <a href="#">Link B</a>
         </nav>
-        <div class="stick-container">
-          <img src="stick-figure.png" alt="Stick Figure" class="stick-figure" />
-          <span class="push-text">Protocol active...</span>
-        </div>
+      </div>
+    </div>
+    <div class="graphic-eight" id="infinity8">8</div>
+    <iframe id="creativeFrame" src="creative_part.html"></iframe>
+    <button onclick="document.getElementById('guestModal').style.display='flex'" style="position:fixed;bottom:80px;right:20px;padding:10px 15px;background:#333;color:white;border:none;border-radius:8px;cursor:pointer;z-index:1001;">💬 Guestbook</button>
+    <div id="guestModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; display:flex; justify-content:center; align-items:center;">
+      <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px; text-align:center; position:relative;">
+        <h2>📝 Leave a Message</h2>
+        <form action="https://formspree.io/f/mnqeyeqn" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:8px; margin-top:10px;"><br>
+          <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:8px; margin-top:10px;"><br>
+          <textarea name="message" placeholder="Your message..." required style="width:100%; height:100px; padding:8px; margin-top:10px;"></textarea><br>
+          <button type="submit" style="padding:10px 20px; margin-top:10px;">Send</button>
+        </form>
+        <button onclick="document.getElementById('guestModal').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:20px;">×</button>
       </div>
     </div>
   </main>
-
-  <footer>
-    © 2025 45dgof8 Compliance Hub | Email:
-    <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
+  <footer class="footer-container">
+    <div class="footer-left"></div>
+    <div class="footer-center">© 2025 45dgof8 Compliance Hub</div>
+    <div class="footer-right">Email: <a href="mailto:45dgof8@gmail.com" style="color:white;">45dgof8@gmail.com</a></div>
   </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = [
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
+
+      ];
+      const randomIndex = Math.floor(Math.random() * images.length);
+      document.getElementById("randomImage").style.backgroundImage = `url('${images[randomIndex]}')`;
+      document.getElementById("infinity8").addEventListener("click", function () {
+        const frame = document.getElementById("creativeFrame");
+        frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+    document.addEventListener("keydown", function(e) {
+      if (e.key === 'g') {
+        const modal = document.getElementById("guestModal");
+        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+      }
+    });
+  </script>
 </body>
-
-   <footer>
-  <div class="footer-left"></div>
-  <div class="footer-center"></div>
-  <div class="footer-right">
-    © 2025 45dgof8 Compliance Hub | Email:
-    <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
-  </div>
-</footer>
-
-
-</body>
-</html>
+</html>'''
