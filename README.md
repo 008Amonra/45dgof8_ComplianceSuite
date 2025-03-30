@@ -1,3 +1,22 @@
-# 45dgof8 Compliance Suite
+# 45dgof8_compliance_gpt
+Streamlit app for compliance guidance. 45dgof8 Compliance GPT Prototype Description This is a Streamlit-based prototype for the 45dgof8 Compliance GPT system. It demonstrates how user queries can be routed dynamically between lightweight and 
+high-capacity GPT models based on their intent and complexity. The app is designed for compliance-related tasks, smalltalk, and casual interaction
+Features
+Dynamic Query Routing:
+Lightweight GPT-3.5 model for smalltalk and casual conversations.
+High-capacity GPT-4 model for compliance and domain-specific queries.
+User-Friendly Interface:
+Simple input box for queries.
+Clear and actionable responses tailored to user needs.
+Streamlit Framework:
+Easy to deploy and extend.
+How It Works
+Users type a query into the input box.
+The app evaluates the query’s intent:
+Smalltalk queries (e.g., “Hello!”) are routed to a lightweight GPT.
+Compliance-specific queries (e.g., “What are the principles of GDPR?”) are routed to a high-capacity GPT.
+Unknown or complex queries default to the high-capacity GPT.
+The appropriate GPT model processes the query, and the response is displayed to the user.
 
+# 45dgof8 Compliance Suite
 Your global library of AI-powered privacy compliance GPTs.
