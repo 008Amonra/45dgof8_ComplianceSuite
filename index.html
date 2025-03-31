@@ -125,19 +125,24 @@
         </nav>
       </div>
     </div>
-    <div class="graphic-eight" id="infinity8">8</div>
-    <iframe id="creativeFrame" src="creative_part.html"></iframe>
-    <button onclick="document.getElementById('guestModal').style.display='none'" style="position:fixed;bottom:80px;right:20px;padding:10px 15px;background:#333;color:white;border:none;border-radius:8px;cursor:pointer;z-index:1001;">💬 Guestbook</button>
-    <div id="guestModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; display:flex; justify-content:center; align-items:center;">
-      <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px; text-align:center; position:relative;">
-        <h2>📝 Leave a Message</h2>
-        <form action="https://formspree.io/f/mnqeyeqn" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:8px; margin-top:10px;"><br>
-          <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:8px; margin-top:10px;"><br>
-          <textarea name="message" placeholder="Your message..." required style="width:100%; height:100px; padding:8px; margin-top:10px;"></textarea><br>
-          <button type="submit" style="padding:10px 20px; margin-top:10px;">Send</button>
-        </form>
-        <button onclick="document.getElementById('guestModal').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:20px;">×</button>
+<iframe id="creativeFrame" src="creative_part.html"></iframe>
+
+<!-- Guestbook Trigger Button -->
+<button onclick="document.getElementById('guestModal').style.display='flex'" style="position:fixed;bottom:80px;right:20px;padding:10px 15px;background:#333;color:white;border:none;border-radius:8px;cursor:pointer;z-index:1001;">💬 Guestbook</button>
+
+<!-- Guestbook Modal (Starts Hidden!) -->
+<div id="guestModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px; text-align:center; position:relative;">
+    <h2>📝 Leave a Message</h2>
+    <form action="https://formspree.io/f/mnqeyeqn" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:8px; margin-top:10px;"><br>
+      <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:8px; margin-top:10px;"><br>
+      <textarea name="message" placeholder="Your message..." required style="width:100%; height:100px; padding:8px; margin-top:10px;"></textarea><br>
+      <button type="submit" style="padding:10px 20px; margin-top:10px;">Send</button>
+    </form>
+    <button onclick="document.getElementById('guestModal').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:20px;">×</button>
+  </div>
+</div>
       </div>
     </div>
   </main>
