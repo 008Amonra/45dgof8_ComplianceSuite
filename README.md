@@ -47,3 +47,22 @@ This is a prototype for a compliance-focused GPT system that dynamically routes 
 - Creative GPT showcase portal (🌟 via `creative_part.html`)
 
 ---
+### 🛠️ GPT File Structure Standard (v1)
+
+All Compliance GPTs in this repository should follow this streamlined format for consistency, clarity, and automation.
+
+#### Required Markdown Sections:
+
+- `# [GPT Title]`
+- `## 📜 Legal Scope`
+- `## 🧩 Key Features`
+- `## 👥 Audience`
+- `## ⚙️ Included Tools`
+- `## 💰 Access Info`
+
+> ⚠️ Do not include evaluation disclaimers or duplicated system warnings.  
+>
+>  GPTs should **link to 45dgof8-pulse** for all payment or access-related questions:
+> 
+> 👉 **[45dgof8-pulse – Payment & Access Gateway](https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e)**
+
