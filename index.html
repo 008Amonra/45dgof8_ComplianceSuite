@@ -105,15 +105,51 @@ final_index_html = '''<!DOCTYPE html>
     </div>
   </div>
 
-  <div class="graphic-eight" id="infinity8">8</div>
-  <iframe id="creativeFrame" src="creative_part.html"></iframe>
-
+    <div class="graphic-eight" id="infinity8">8</div>
+    <iframe id="creativeFrame" src="creative_part.html"></iframe>
+    <button onclick="document.getElementById('guestModal').style.display='flex'" style="position:fixed;bottom:80px;right:20px;padding:10px 15px;background:#333;color:white;border:none;border-radius:8px;cursor:pointer;z-index:1001;">💬 Guestbook</button>
+    <div id="guestModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; display:flex; justify-content:center; align-items:center;">
+      <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px; text-align:center; position:relative;">
+        <h2>📝 Leave a Message</h2>
+        <form action="https://formspree.io/f/mnqeyeqn" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:8px; margin-top:10px;"><br>
+          <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:8px; margin-top:10px;"><br>
+          <textarea name="message" placeholder="Your message..." required style="width:100%; height:100px; padding:8px; margin-top:10px;"></textarea><br>
+          <button type="submit" style="padding:10px 20px; margin-top:10px;">Send</button>
+        </form>
+        <button onclick="document.getElementById('guestModal').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:20px;">×</button>
+      </div>
+    </div>
+  </main>
+  <footer class="footer-container">
+    <div class="footer-left"></div>
+    <div class="footer-center">© 2025 45dgof8 Compliance Hub</div>
+    <div class="footer-right">Email: <a href="mailto:45dgof8@gmail.com" style="color:white;">45dgof8@gmail.com</a></div>
+  </footer>
   <script>
-    document.getElementById("infinity8").addEventListener("click", function () {
-      const frame = document.getElementById("creativeFrame");
-      this.classList.toggle("rotate-45");
-      frame.src = "creative_part_fixed.html";
-      frame.style.display = (frame.style.display === 'none' || !frame.style.display) ? 'block' : 'none';
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = [
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
+            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
+
+      ];
+      const randomIndex = Math.floor(Math.random() * images.length);
+      document.getElementById("randomImage").style.backgroundImage = `url('${images[randomIndex]}')`;
+      document.getElementById("infinity8").addEventListener("click", function () {
+        const frame = document.getElementById("creativeFrame");
+        frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+    document.addEventListener("keydown", function(e) {
+      if (e.key === 'g') {
+        const modal = document.getElementById("guestModal");
+        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+      }
     });
   </script>
 </body>
