@@ -127,30 +127,28 @@ final_index_html = '''<!DOCTYPE html>
     <div class="footer-right">Email: <a href="mailto:45dgof8@gmail.com" style="color:white;">45dgof8@gmail.com</a></div>
   </footer>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const images = [
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
-            'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
+document.addEventListener("DOMContentLoaded", function () {
+  const images = [
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
+    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
+  ];
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const imageSection = document.getElementById("randomImage");
+  if (imageSection) {
+    imageSection.style.backgroundImage = `url('${images[randomIndex]}')`;
+  }
 
-      ];
-      const randomIndex = Math.floor(Math.random() * images.length);
-      document.getElementById("randomImage").style.backgroundImage = `url('${images[randomIndex]}')`;
-      document.getElementById("infinity8").addEventListener("click", function () {
-        const frame = document.getElementById("creativeFrame");
-        frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
-      });
-    });
-    document.addEventListener("keydown", function(e) {
-      if (e.key === 'g') {
-        const modal = document.getElementById("guestModal");
-        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-      }
-    });
+  // Infinity toggle remains
+  document.getElementById("infinity8").addEventListener("click", function () {
+    const frame = document.getElementById("creativeFrame");
+    frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+  });
+});
   </script>
 </body>
 </html>
