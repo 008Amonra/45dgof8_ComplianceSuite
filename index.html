@@ -1,7 +1,4 @@
-from pathlib import Path
-
-# Recreate the index.html with dark gradient and 8-toggle for creative page
-final_index_html = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -25,7 +22,8 @@ final_index_html = '''<!DOCTYPE html>
       width: 50%;
       background-size: cover;
       background-position: center;
-   }
+      background-image: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp');
+    }
     .content-section {
       width: 50%;
       padding: 20px;
@@ -73,6 +71,28 @@ final_index_html = '''<!DOCTYPE html>
       display: none;
       z-index: 999;
     }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background: #1c1b29;
+      color: white;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+      .split-screen {
+        flex-direction: column;
+      }
+      .image-section, .content-section {
+        width: 100%;
+        height: 50vh;
+      }
+      .content-section {
+        height: auto;
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -103,51 +123,36 @@ final_index_html = '''<!DOCTYPE html>
       </nav>
     </div>
   </div>
+  <div class="graphic-eight" id="infinity8">8</div>
+  <iframe id="creativeFrame" src="creative_part.html"></iframe>
 
-    <div class="graphic-eight" id="infinity8">8</div>
-    <iframe id="creativeFrame" src="creative_part.html"></iframe>
-    <button onclick="document.getElementById('guestModal').style.display='flex'" style="position:fixed;bottom:80px;right:20px;padding:10px 15px;background:#333;color:white;border:none;border-radius:8px;cursor:pointer;z-index:1001;">💬 Guestbook</button>
-    <div id="guestModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000; display:flex; justify-content:center; align-items:center;">
-      <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px; text-align:center; position:relative;">
-        <h2>📝 Leave a Message</h2>
-        <form action="https://formspree.io/f/mnqeyeqn" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:8px; margin-top:10px;"><br>
-          <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:8px; margin-top:10px;"><br>
-          <textarea name="message" placeholder="Your message..." required style="width:100%; height:100px; padding:8px; margin-top:10px;"></textarea><br>
-          <button type="submit" style="padding:10px 20px; margin-top:10px;">Send</button>
-        </form>
-        <button onclick="document.getElementById('guestModal').style.display='none'" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:20px;">×</button>
-      </div>
-    </div>
-  </main>
   <footer class="footer-container">
     <div class="footer-left"></div>
     <div class="footer-center">© 2025 45dgof8 Compliance Hub</div>
     <div class="footer-right">Email: <a href="mailto:45dgof8@gmail.com" style="color:white;">45dgof8@gmail.com</a></div>
   </footer>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const images = [
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
-    'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp',
-  ];
-  const randomIndex = Math.floor(Math.random() * images.length);
-  const imageSection = document.getElementById("randomImage");
-  if (imageSection) {
-    imageSection.style.backgroundImage = `url('${images[randomIndex]}')`;
-  }
 
-  // Infinity toggle remains
-  document.getElementById("infinity8").addEventListener("click", function () {
-    const frame = document.getElementById("creativeFrame");
-    frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = [
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp',
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva.webp',
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/nn20.webp',
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/HHyzT.webp',
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Lirien.webp',
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/aUJG.webp',
+      'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/ghNB.webp'
+    ];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const imageSection = document.getElementById("randomImage");
+    if (imageSection) {
+      imageSection.style.backgroundImage = `url('${images[randomIndex]}')`;
+    }
+    document.getElementById("infinity8").addEventListener("click", function () {
+      const frame = document.getElementById("creativeFrame");
+      frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+    });
   });
-});
   </script>
 </body>
 </html>
