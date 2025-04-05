@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <center><title>Creative Universe 🌟</title></center>
+  <title>🌟 Creative Universe 🌟</title>
   <style>
     body {
       margin: 0;
@@ -23,6 +23,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
+      margin-bottom: 60px;
     }
     .bubble-link {
       display: inline-block;
@@ -33,6 +34,7 @@
       background: rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
     }
     .bubble-link:hover {
       transform: scale(1.1);
@@ -45,67 +47,83 @@
       opacity: 0.85;
     }
     .label {
-      margin-top: 10px;
-      font-size: 0.95em;
+      position: absolute;
+      bottom: -30px;
+      width: 100%;
+      font-size: 0.85em;
       color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .bubble-link:hover .label {
+      opacity: 1;
+    }
+    .centered-image,
+    .extra-image {
+      margin: 40px auto;
+      max-width: 80%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .go-back {
+      display: inline-block;
+      margin-top: 50px;
+      padding: 12px 24px;
+      background: linear-gradient(to right, #a78bfa, #f472b6, #fb7185);
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 9999px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .go-back:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     }
   </style>
 </head>
-<center><body>
+<body>
   <h2>🌟 Creative Universe 🌟</h2>
+
+  <!-- Icon Grid -->
   <div class="creative-icons">
-<!-- Symbol Grid Section -->
-<div class="flex flex-col items-center justify-center min-h-screen bg-[#dec0d8] p-6">
-  <h1 class="text-3xl font-bold mb-6">🌟 Creative Universe 🌟</h1>
-
-  <!-- Grid of Bubble Icons -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 w-full max-w-4xl mb-20">
-    <!-- Bubble Links -->
-    <a class="bubble-link" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="Visit the 45dgof8 Etsy Shop">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop" class="rounded-full shadow-lg hover:scale-110 transition-transform duration-300" />
-    </a>
-    <div class="creative-icons">
-<!-- Symbol Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-8 w-full max-w-4xl">
-    </div>
-    <a class="bubble-link" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="Visit the 45dgof8 Etsy Shop">
+    <a class="bubble-link" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank">
       <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop" />
+      <div class="label">Etsy Shop</div>
     </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank" title="CatArt Creator">
+    <a class="bubble-link" href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank">
       <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArt Creator" />
-    </a> 
-    <a class="bubble-link" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" title="Eva Answers">
+      <div class="label">CatArt Creator</div>
+    </a>
+    <a class="bubble-link" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
       <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Answers" />
+      <div class="label">Eva Answers</div>
     </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank" title="Tech Support GPT">
+    <a class="bubble-link" href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank">
       <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="Tech Support GPT" />
+      <div class="label">Tech Support GPT</div>
     </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="Dion – E-commerce Guide">
+    <a class="bubble-link" href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank">
       <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dion" />
+      <div class="label">Dion</div>
     </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" target="_blank" title="GalacticChoices GPT">
+    <a class="bubble-link" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" target="_blank">
       <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp" alt="GalacticChoices" />
+      <div class="label">GalacticChoices</div>
     </a>
   </div>
 
-  <!-- Main Image (Placed *after* enough space) -->
-  <div class="flex justify-center mb-12">
-    <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Image" class="w-1/2 max-w-md rounded-xl shadow-xl" />
-  </div>
+  <!-- Centered Image -->
+  <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" class="centered-image" />
 
-  <!-- Optional Additional Image -->
-  <div class="flex justify-center mb-12">
-    <img src="paw.webp" alt="..." class="w-1/3 max-w-sm rounded-xl shadow-xl" />
-  </div>
+  <!-- Optional Second Image -->
+  <img src="paw.webp" alt="Paw Symbol" class="extra-image" />
 
   <!-- Go Back Button -->
-  <div class="mt-12">
-    <a href="https://45dgof8.com" class="inline-block px-6 py-3 bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300">
-      ⬅️ Go Back to 45dgof8.com
-    </a>
-  </div>
-</div>
-  </button>
+  <a href="https://45dgof8.com" class="go-back">⬅️ Go Back to 45dgof8.com</a>
 
-</body></center>
+</body>
 </html>
+
