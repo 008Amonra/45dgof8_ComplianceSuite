@@ -56,20 +56,21 @@
       border-radius: 6px;
     }
 
-    .centered-image {
-      display: block;
-      margin: 20px auto;
-      max-width: 200px;
-      position: relative;
+    .image-section {
+      text-align: center;
+      margin-top: 40px;
       z-index: 0;
     }
 
+    .centered-image {
+      display: inline-block;
+      max-width: 200px;
+    }
+
     .extra-image {
-      display: block;
-      margin: 10px auto;
+      display: inline-block;
       max-width: 100px;
-      position: relative;
-      z-index: 0;
+      margin-left: 20px;
     }
 
     .go-back {
@@ -132,8 +133,10 @@
     });
   </script>
 
-  <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" class="centered-image" />
-  <img src="paw.webp" alt="Paw Symbol" class="extra-image" />
+  <div class="image-section">
+    <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" class="centered-image" />
+    <img src="paw.webp" alt="Paw Symbol" class="extra-image" />
+  </div>
 
   <a href="https://45dgof8.com" class="go-back">⬅️ Go Back to 45dgof8.com</a>
 
