@@ -81,6 +81,19 @@
     <div class="label">Dion</div>
     <div class="description">E-com insights with a wolf's wisdom</div>
   </a>
+<script>
+  document.querySelectorAll('.bubble-link img').forEach(img => {
+    const src = img.src;
+    img.src = `${src}?cb=${new Date().getTime()}`;
+  });
+</script>
+  .label {
+  color: #fff;
+}
+
+.description {
+  color: #ddd;
+}
 
   <a class="bubble-link" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" target="_blank">
     <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp" alt="GalacticChoices" />
