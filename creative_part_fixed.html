@@ -88,32 +88,88 @@
   <h2>🌟 Creative Universe 🌟</h2>
 
   <!-- Icon Grid -->
-  <div class="creative-icons">
-    <a class="bubble-link" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop">
-      <div class="label" title="Mugs & Poster">Etsy Shop</div>
-    </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArt Creator" />
-      <div class="label">CatArt Creator</div>
-    </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Answers" />
-      <div class="label">Eva Answers</div>
-    </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="Tech Support GPT" />
-      <div class="label">Tech Support GPT</div>
-    </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dion" />
-      <div class="label">Dion</div>
-    </a>
-    <a class="bubble-link" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp" alt="GalacticChoices" />
-      <div class="label">GalacticChoices</div>
-    </a>
-  </div>
+  <style>
+  .creative-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .bubble-link {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 130px;
+  }
+
+  .bubble-link img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .bubble-link:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+
+  .label {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #222;
+    font-weight: bold;
+  }
+
+  .description {
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+  }
+</style>
+
+<div class="creative-icons">
+  <a class="bubble-link" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop">
+    <div class="label">Etsy Shop</div>
+    <div class="description">Mugs, posters & cosmic designs</div>
+  </a>
+
+  <a class="bubble-link" href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArt Creator" />
+    <div class="label">CatArt Creator</div>
+    <div class="description">Generates dreamy cat art in seconds</div>
+  </a>
+
+  <a class="bubble-link" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Answers" />
+    <div class="label">Eva Answers</div>
+    <div class="description">Your proactive, empathetic assistant</div>
+  </a>
+
+  <a class="bubble-link" href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="Tech Support GPT" />
+    <div class="label">Tech Support GPT</div>
+    <div class="description">Fixes tech troubles like a champ</div>
+  </a>
+
+  <a class="bubble-link" href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dion" />
+    <div class="label">Dion</div>
+    <div class="description">E-com insights with a wolf's wisdom</div>
+  </a>
+
+  <a class="bubble-link" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" target="_blank">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp" alt="GalacticChoices" />
+    <div class="label">GalacticChoices</div>
+    <div class="description">A sci-fi story of stars and survival</div>
+  </a>
+</div>
+
 
   <!-- Centered Image -->
   <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" class="centered-image" />
