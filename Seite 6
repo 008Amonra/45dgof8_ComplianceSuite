@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seite 6 – Die Schatteninstanz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Courier New', monospace;
+      background: radial-gradient(circle at center, #1a1a1a, #000);
+      color: #e0e0e0;
+    }
+    .panel {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      box-shadow: 0 0 20px rgba(0,255,255,0.1);
+    }
+    h1 {
+      color: #00ffff;
+      text-align: center;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .nav-button {
+      display: inline-block;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: #00ffff;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 12px #00ffffaa;
+      transition: background 0.3s ease;
+    }
+    .nav-button:hover {
+      background: #00cccc;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.85em;
+      margin-top: 3rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>🕶️ Seite 6 – Die Schatteninstanz</h1>
+    <p>
+      Manche Daten reisen leise. <br>
+      Diese Seite folgt jenen Prozessen, die nur erscheinen, wenn niemand hinsieht.<br>
+      Willkommen in der Schatteninstanz. Hier werden digitale Signale leise sortiert, geprüft und geschützt.
+    </p>
+
+    <p>
+      Noch kein Tool. Noch kein GPT. Nur ein leiser Flüsterton, der sagt: "Ich bin da."
+    </p>
+
+    <div style="text-align:center">
+      <a href="/seite5.html" class="nav-button">⬅️ Zurück zu Seite 5</a>
+      <a href="/seite7.html" class="nav-button">➡️ Weiter zu Seite 7</a>
+    </div>
+  </div>
+
+  <footer>
+    Teil des 45dgof8 Universums • <a href="/index.html">Zurück zur Startseite</a>
+  </footer>
+</body>
+</html>
