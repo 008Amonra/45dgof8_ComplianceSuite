@@ -1,44 +1,54 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="45dgof8 – Switzerland FADP Compliance GPT" />
-  <title>Seite 5 – Der Schweizer Knotenpunkt</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seite 5 – SwissGPT FADP Compliance</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f3f3f3, #e2e2e2);
       margin: 0;
       padding: 2rem;
-      background: linear-gradient(to right, #f5f5f5, #dfe6e9);
-      font-family: 'Courier New', monospace;
-      color: #2d3436;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #00695c;
     }
     .panel {
+      max-width: 800px;
+      margin: 2rem auto;
       background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 800px;
-      margin: 2rem auto;
-      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-    h1 {
-      color: #00695c;
+    .panel h2 {
+      color: #004d40;
+      font-size: 1.6rem;
+    }
+    .panel ul {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
     }
     .launch-button {
       display: inline-block;
       margin-top: 2rem;
-      padding: 1rem 2rem;
-      background-color: #009688;
+      background: #009688;
       color: white;
+      padding: 1rem 2rem;
       text-decoration: none;
-      font-weight: bold;
       border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-      transition: background 0.3s ease;
+      font-weight: bold;
+      transition: background 0.3s;
     }
     .launch-button:hover {
-      background-color: #00796b;
+      background: #00796b;
     }
     .comic-example {
       margin-top: 3rem;
@@ -49,31 +59,40 @@
     }
     footer {
       text-align: center;
+      font-size: 0.9rem;
       margin-top: 4rem;
-      font-size: 0.9em;
-      color: #888;
+      color: #666;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🇨🇭 SwissGPT – Seite 5: FADP Compliance</h1>
+    <p>Privacy-focused. Legally aligned. Swiss-built.</p>
+  </header>
+
   <section class="panel">
-    <h1>🇨🇭 Seite 5 – Der Schweizer Knotenpunkt</h1>
-    <p>
-      In der Stille der Berge erklingt das klare Gesetz der Daten. <br>
-      Willkommen beim FADP GPT – entwickelt, um Ihre Compliance mit dem schweizerischen Datenschutzrecht souverän zu begleiten.
-    </p>
-    <a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" class="launch-button">
-      🚀 Starte den FADP Compliance GPT
+    <h2>Über diesen GPT</h2>
+    <p>Dieser GPT unterstützt Fachleute, Organisationen und Bürger:innen bei der Einhaltung des revidierten Schweizer Datenschutzgesetzes (FADP / DSG).</p>
+    <ul>
+      <li>Erklärt Vorschriften in einfachen Worten</li>
+      <li>Berät zum rechtssicheren Umgang mit Daten</li>
+      <li>Hilft beim Erstellen von Datenschutzrichtlinien</li>
+      <li>Gibt Antworten zu internationalen Datenübermittlungen</li>
+    </ul>
+
+    <a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" class="launch-button" target="_blank">
+      🚀 Starte SwissGPT FADP
     </a>
 
     <div class="comic-example">
       <h2>📘 Fallbeispiel – Der Datenweitergeber</h2>
       <p>
-        Ein Startup will Nutzerdaten von Schweizern Kunden an ein Partnerunternehmen in den USA übermitteln. Eva fragt:
+        Ein Startup will Nutzerdaten von Schweizer Kunden an ein Partnerunternehmen in den USA übermitteln. Eva fragt:
         <br><strong>"Liegt eine ausdrückliche Einwilligung vor? Oder ein Angemessenheitsbeschluss?"</strong>
         <br>Ohne klare Rechtsgrundlage – keine Datenreise. FADP setzt Grenzen.
       </p>
-      <div class="image-placeholder" style="margin-top: 1rem; background: #eee; border: 1px dashed #bbb; color: #999; padding: 1rem;">
+      <div class="image-placeholder" style="margin-top: 1rem; background: #eee; border: 1px dashed #bbb; color: #999; padding: 1rem; text-align:center;">
         [Comic-Panel Placeholder: Eva blockiert eine Datenverbindung mit einem Schild "FADP Checkpoint"]
       </div>
     </div>
