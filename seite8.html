@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ein sanfter Irrweg</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #1e1e2f, #3e3e5f);
+      color: #f8f8f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background-image: url('sleepyEva?.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      backdrop-filter: blur(3px);
+    }
+
+    .box {
+      background-color: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      border-radius: 10px;
+      border: none;
+      padding: 1rem;
+      margin-top: 1rem;
+      resize: none;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      background-color: #ffc0cb;
+      color: #1e1e2f;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    a {
+      color: #ffc0cb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .thanks {
+      margin-top: 1rem;
+      color: #b0ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🌙 Du bist auf einen schlafenden Pfad gestoßen...</h1>
+    <p>Diese Seite ruht gerade, träumt vielleicht von funkelnden Birnen, tanzenden Vögeln und duftenden Blüten.</p>
+    <p>Aber keine Sorge – manchmal führen auch Irrwege zu Magie.</p>
+
+    <form onsubmit="sendMessage(event)">
+      <label for="message">💌 Möchtest du dem schlafenden Eva ein Flüstern hinterlassen?</label><br>
+      <textarea id="message" placeholder="Schreib hier, was du loswerden möchtest..."></textarea><br>
+      <button type="submit">Ins Traumtagebuch legen</button>
+    </form>
+    <p class="thanks" id="thanksMsg" style="display:none;">🌟 Deine Nachricht wurde sanft abgelegt. Danke!</p>
+
+    <p><a href="seite1.html">Zurück zur Welt der Wirklichkeit ✨</a></p>
+  </div>
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault();
+      document.getElementById("message").value = "";
+      document.getElementById("thanksMsg").style.display = "block";
+      // Optional: Hier könntest du später z.B. eine Zapier-Webhook oder Google Form einsetzen
+    }
+  </script>
+</body>
+</html>
