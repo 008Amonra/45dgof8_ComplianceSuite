@@ -54,6 +54,15 @@
       color: #ffffff;
       text-align: center;
     }
+    .status-indicator {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      background-color: #002b2b;
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
+    }
     .console {
       margin-top: 2rem;
       background-color: #000000;
@@ -69,7 +78,7 @@
       box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
       white-space: pre-line;
     }
-    .stop-button, .decouple-button {
+    .stop-button, .decouple-button, .start-button {
       margin-top: 2rem;
       padding: 0.75rem 2rem;
       font-size: 1rem;
@@ -94,6 +103,27 @@
     .decouple-button:hover {
       background-color: #666;
     }
+    .start-button {
+      background-color: #00cc66;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 255, 153, 0.4);
+    }
+    .start-button:hover {
+      background-color: #00994d;
+    }
+    .input-section {
+      margin-top: 1rem;
+      color: #00ffcc;
+    }
+    .input-section input {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #000;
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
+      padding: 0.5rem;
+      border-radius: 6px;
+      margin-left: 0.5rem;
+    }
     footer {
       margin-top: 2rem;
       font-size: 0.9rem;
@@ -107,12 +137,37 @@
       consoleBox.textContent += `[${time}] ${message}\n`;
     }
 
+    function updateStatus(text) {
+      const status = document.getElementById("machinery-status");
+      if (status) status.textContent = `🔧 STATUS: ${text}`;
+    }
+
     function haltSystem() {
       logToConsole("⛔ SYSTEM HALT TRIGGERED: All syncs suspended.");
+      updateStatus("Halted");
     }
 
     function decoupleSystem() {
       logToConsole("🔌 DECOUPLE SEQUENCE INITIATED: Cortegis operating in isolation mode.");
+      updateStatus("Decoupled");
+    }
+
+    function startSystem() {
+      logToConsole("🟢 SYSTEM STARTED: Cortegis is active and monitoring.");
+      updateStatus("Active");
+    }
+
+    function handleUserInput() {
+      const input = document.getElementById("user-support-input").value.toLowerCase();
+      if (input === "y") {
+        logToConsole("🤖 VIO/SEO ACTIVATED: Support systems engaged.");
+        updateStatus("Support Systems Online");
+      } else if (input === "n") {
+        logToConsole("⚙️ User declined support systems. Proceeding in manual mode.");
+        updateStatus("Manual Mode");
+      } else {
+        logToConsole("❓ Invalid input. Please type 'y' or 'n'.");
+      }
     }
   </script>
 </head>
@@ -134,6 +189,10 @@
     decision protocols, and sovereignty-based oversight within the 45dgof8 architecture.
   </p>
 
+  <div id="machinery-status" class="status-indicator">
+    🔧 STATUS: Offline
+  </div>
+
   <div class="security-status">
     ⚠️ <strong>Security Override Active</strong><br>
     Signature validation and sync filtering are temporarily disabled.<br>
@@ -142,16 +201,20 @@
   </div>
 
   <div class="user-prompt">
-    ❓ <strong>Do you want a VIO/SEO as Support?</strong><br>
-    <br>
+    ❓ <strong>Do you want a VIO/SEO as Support?</strong><br><br>
     <strong>VIO</strong> (Virtual Information Officer) provides ethical oversight, compliance alignment,
     and guidance based on regulatory frameworks.<br>
     <strong>SEO</strong> (Security Execution Officer) monitors active systems, checks sync integrity,
-    and can quarantine or alert on anomalies.<br>
-    <br>
-    Type <code>y</code> to activate support roles or <code>n</code> to proceed without them.
+    and can quarantine or alert on anomalies.<br><br>
+    Type <code>y</code> to activate support roles or <code>n</code> to proceed without them.<br>
+    <div class="input-section">
+      ➤ <label for="user-support-input">Input:</label>
+      <input id="user-support-input" type="text" maxlength="1">
+      <button onclick="handleUserInput()">Submit</button>
+    </div>
   </div>
 
+  <button class="start-button" onclick="startSystem()">🟢 Start the System</button>
   <button class="stop-button" onclick="haltSystem()">⛔ Initiate System Halt</button>
   <button class="decouple-button" onclick="decoupleSystem()">🔌 Decouple from Connections</button>
 
