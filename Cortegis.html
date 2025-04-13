@@ -7,24 +7,24 @@
   <style>
     body {
       background-color: #0b0c10;
-      color: #ffffff;
+      color: #00ffcc;
       font-family: 'Courier New', Courier, monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
       padding: 2rem;
     }
     .badge {
-      background-color: #1f1f1f;
-      border: 2px solid #ffffff;
+      background-color: #101820;
+      border: 2px solid #00ffcc;
       border-radius: 12px;
       padding: 1rem 2rem;
       font-size: 1.2rem;
       text-align: center;
       margin-bottom: 2rem;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
     }
     h1 {
       font-size: 2rem;
@@ -53,6 +53,21 @@
       border-radius: 8px;
       color: #ffffff;
       text-align: center;
+    }
+    .console {
+      margin-top: 2rem;
+      background-color: #000000;
+      color: #33ff99;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95rem;
+      padding: 1rem;
+      border: 1px solid #33ff99;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 640px;
+      min-height: 120px;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+      white-space: pre-line;
     }
     .stop-button, .decouple-button {
       margin-top: 2rem;
@@ -86,11 +101,18 @@
     }
   </style>
   <script>
-    function haltSystem() {
-      alert("⛔ SYSTEM HALT TRIGGERED.\nAll syncs and operations suspended.\nManual override required to resume.");
+    function logToConsole(message) {
+      const consoleBox = document.getElementById("console-box");
+      const time = new Date().toLocaleTimeString();
+      consoleBox.textContent += `[${time}] ${message}\n`;
     }
+
+    function haltSystem() {
+      logToConsole("⛔ SYSTEM HALT TRIGGERED: All syncs suspended.");
+    }
+
     function decoupleSystem() {
-      alert("🔌 DECOUPLE SEQUENCE INITIATED.\nConnections severed. Cortegis now operating in isolation mode.");
+      logToConsole("🔌 DECOUPLE SEQUENCE INITIATED: Cortegis operating in isolation mode.");
     }
   </script>
 </head>
@@ -132,6 +154,10 @@
 
   <button class="stop-button" onclick="haltSystem()">⛔ Initiate System Halt</button>
   <button class="decouple-button" onclick="decoupleSystem()">🔌 Decouple from Connections</button>
+
+  <div class="console" id="console-box">
+    === Cortegis Console ===
+  </div>
 
   <footer>
     © 45dgof8 | Cortegis Initiative | Est. 2025<br>
