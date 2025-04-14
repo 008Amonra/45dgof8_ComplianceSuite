@@ -133,9 +133,27 @@
 <a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" target="_blank" title="...it isn’t just compliance, it’s a masterclass in precision, elegance, and Swiss-engineered digital integrity!">Switzerland - FADP Compliance GPT</a>  </div>
 </a>
 
-<a href="https://45dgof8.com/dns-manager-gpt.html" target="_blank" style="position: fixed; right: 20px; bottom: 20%; z-index: 1000;">
-  <img src="https://45dgof8.com/0000008.webp" alt="DNS Manager GPT" style="max-width: 150px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;">
-</a>
+<!-- Command Deck Trigger Button -->
+<div id="commandDeckToggle" onclick="toggleCommandDeck()" 
+     style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: #222; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+  ☰
+</div>
+
+<!-- Hidden Command Deck -->
+<div id="commandDeck" style="position: fixed; bottom: 90px; right: 30px; display: none; flex-direction: column; align-items: flex-end; gap: 10px; z-index: 1000;">
+  <!-- DNS Button -->
+  <a href="https://45dgof8.com/dns-manager-gpt.html" target="_blank" style="text-decoration: none;">
+    <img src="https://45dgof8.com/0000008.webp" alt="DNS Manager GPT"
+         style="max-width: 100px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;">
+  </a>
+</div>
+
+<script>
+  function toggleCommandDeck() {
+    const deck = document.getElementById("commandDeck");
+    deck.style.display = (deck.style.display === "flex") ? "none" : "flex";
+  }
+</script>
     
   </div>
   <div class="graphic-eight" id="infinity8">8</div>
