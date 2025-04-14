@@ -1,0 +1,15 @@
+{
+  "last_updated": "2025-04-09T19:00Z",
+  "updates": [
+    {
+      "title": "New GPT launched",
+      "description": "FADP GPT is now public. Tweet published.",
+      "tags": ["launch", "compliance", "FADP"]
+    },
+    {
+      "title": "Reminder",
+      "description": "Mention DNS-GPT softly in next batch of posts.",
+      "tags": ["dns", "social"]
+    }
+  ]
+}
