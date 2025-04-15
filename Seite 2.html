@@ -143,11 +143,21 @@
     </a>
   </div>
 
-  <div class="image-section">
-    <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" />
-    <img src="paw.webp" alt="Paw Symbol" />
-    <img src="CNml.webp" alt="Paw?" />
-  </div>
+ <!-- Include Lightbox CSS and JS in your <head> or just before </body> -->
+<link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
+
+<div class="image-section" style="display: flex; gap: 10px; justify-content: center;">
+  <a href="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" data-lightbox="medal-gallery">
+    <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" style="width: 150px; border-radius: 8px;" />
+  </a>
+  <a href="paw.webp" data-lightbox="medal-gallery">
+    <img src="paw.webp" alt="Paw Symbol" style="width: 150px; border-radius: 8px;" />
+  </a>
+  <a href="CNml.webp" data-lightbox="medal-gallery">
+    <img src="CNml.webp" alt="Paw?" style="width: 150px; border-radius: 8px;" />
+  </a>
+</div>
 
   <div class="navigation">
     <a href="/index.html">1</a>
