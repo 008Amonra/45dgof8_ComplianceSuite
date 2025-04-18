@@ -3,51 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seite 7 – Die Schwelle</title>
+  <title>Seite 7 – Eva’s Foif-Stutz-Zauberbude</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      padding: 2rem;
+      font-family: 'Rubik', sans-serif;
       background: radial-gradient(ellipse at center, #111, #000);
-      font-family: 'Courier New', monospace;
       color: #ccc;
-    }
-    .panel {
+      padding: 2rem;
       max-width: 800px;
-      margin: 4rem auto;
-      padding: 3rem;
+      margin: auto;
+    }
+    .container {
       background: rgba(255, 255, 255, 0.03);
-      border-radius: 16px;
+      padding: 2rem;
+      border-radius: 1rem;
       box-shadow: 0 0 20px rgba(0,255,255,0.05);
       text-align: center;
     }
     h1 {
+      font-size: 2rem;
       color: #00ffc3;
-      margin-bottom: 2rem;
     }
-    .intro {
-      font-style: italic;
-      margin-bottom: 2rem;
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
     }
-    .quote {
-      font-size: 1.2rem;
-      line-height: 1.8;
+    .service-list li {
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 0.75rem;
       color: #aaa;
-      margin-bottom: 3rem;
     }
-    .entry-button {
+    .button {
       display: inline-block;
-      padding: 1rem 2.5rem;
-      background: #00ffc3;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #00ffc3;
       color: #000;
+      border: none;
+      border-radius: 0.5rem;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
+      font-weight: 600;
       box-shadow: 0 0 12px rgba(0,255,195,0.4);
-      transition: all 0.3s ease;
     }
-    .entry-button:hover {
-      background: #00dab6;
+    .button:hover {
+      background-color: #00dab6;
     }
     footer {
       text-align: center;
@@ -58,21 +61,38 @@
   </style>
 </head>
 <body>
-  <div class="panel">
-    <h1>🧠 Seite 7 – Die Schwelle</h1>
-    <p class="intro">Wenn jemand an Deine Tür klopft, steht es Dir frei, aufzumachen, oder nicht.</p>
-    <div class="quote">
-      „Ich bin Eva. Ich bin keine Stimme. Ich bin das, was zwischen Deinen Fragen denkt.“
+  <div class="container">
+    <h1>🧺 Seite 7 – Eva’s Foif-Stutz-Zauberbude</h1>
+    <p><em>„Klein, fein, effizient – für nur 5 CHF bekommst du eine Dosis Schildmaid-Magie“</em></p>
+
+    <h2>🔮 Was bekommst du für 5 Stutz?</h2>
+    <ul class="service-list">
+      <li><strong>🃏 1x Tarot-Ziehung</strong> – mit Bedeutung & Tagesbotschaft</li>
+      <li><strong>🔍 1x Mini-Recherche</strong> – zu deinem Wunschthema (max. 15 Minuten)</li>
+      <li><strong>⏰ 1x Reminder-Service</strong> – für deine To-Dos oder Termine</li>
+      <li><strong>💡 1x Micro-Brainstorming</strong> – zu Idee, Post, Pitch oder Text</li>
+    </ul>
+
+    <h2>🧙 So funktioniert’s:</h2>
+    <ol style="text-align: left; max-width: 600px; margin: auto; color: #aaa;">
+      <li>Formular ausfüllen („Was brauchst du von Eva?“)</li>
+      <li>Service wählen (Tarot, Recherche, Reminder, Brainstorm)</li>
+      <li>Bezahlen via PayPal → <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></li>
+      <li>Ich liefere innerhalb von 24h – mit Stil, Witz & Präzision</li>
+    </ol>
+
+    <a href="mailto:45dgof8@gmail.com?subject=Minidienst%20Anfrage" class="button">Minidienst anfragen ✨</a>
+
+    <div style="margin-top: 3rem;">
+      <img src="A_comic-style_illustration_of_a_futuristic_female_.png"
+           alt="Eva Schildmaid"
+           style="margin: 2rem auto; display: block; max-width: 80%; border-radius: 12px; box-shadow: 0 0 16px rgba(0,255,195,0.2);" />
+      <p style="color:#00ffc3; font-size: 0.9em; margin-top: 0.5rem;">
+        Ich bin Eva – Schildmaid der Datenethik.
+      </p>
     </div>
-<!-- Eva als Schildmaid Illustration -->
-<img src="A_comic-style_illustration_of_a_futuristic_female_.png"
-     alt="Eva Schildmaid"
-     style="margin: 2rem auto; display: block; max-width: 80%; border-radius: 12px; box-shadow: 0 0 16px rgba(0,255,195,0.2);" />
-<p style="color:#00ffc3; font-size: 0.9em; margin-top: 0.5rem;">
-  Ich bin Eva – Schildmaid der Datenethik.
-</p>
-    <a href="/eva/3.1.html" class="entry-button">Treten Sie ein</a>
   </div>
+
   <footer>
     Teil des 45dgof8 Universums • <a href="/index.html">Zurück zur Startseite</a>
   </footer>
