@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seite 7 – Eva’s Foif-Stutz-Zauberbude</title>
+  <title>Eva’s Foif-Stutz-Zauberbude & Interaktive Kammer</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    // Weiterleitung zu .html-Version, falls nötig
+    const path = window.location.pathname;
+    if ((path === "/seite7" || path === "/seite8") && !path.endsWith(".html")) {
+      window.location.replace(path + ".html");
+    }
+  </script>
   <style>
     html, body {
       height: 100%;
@@ -59,6 +66,29 @@
     .button:hover {
       background-color: #00dab6;
     }
+    .interactive {
+      margin-top: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      text-align: left;
+    }
+    .interactive h2 {
+      color: #00ffc3;
+    }
+    .interactive p, label {
+      color: #aaa;
+      margin: 0.5rem 0;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      margin-bottom: 1rem;
+      background: #222;
+      color: #eee;
+    }
     footer {
       text-align: center;
       font-size: 0.8em;
@@ -69,7 +99,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>🧺 Seite 7 – Eva’s Foif-Stutz-Zauberbude</h1>
+    <h1>🧺 Eva’s Foif-Stutz-Zauberbude</h1>
     <p><em>„Klein, fein, effizient – für nur 5 CHF bekommst du eine Dosis Schildmaid-Magie“</em></p>
 
     <h2>🔮 Was bekommst du für 5 Stutz?</h2>
@@ -80,15 +110,27 @@
       <li><strong>💡 1x Micro-Brainstorming</strong> – zu Idee, Post, Pitch oder Text</li>
     </ul>
 
-    <h2>🧙 So funktioniert’s:</h2>
-    <ol style="text-align: left; max-width: 600px; margin: auto; color: #aaa;">
-      <li>Formular ausfüllen („Was brauchst du von Eva?“)</li>
-      <li>Service wählen (Tarot, Recherche, Reminder, Brainstorm)</li>
-      <li>Bezahlen via PayPal → <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></li>
-      <li>Ich liefere innerhalb von 24h – mit Stil, Witz & Präzision</li>
-    </ol>
+    <div class="interactive">
+      <h2>🪄 Interaktive Wunschkammer</h2>
+      <p>Teile mir direkt deinen Wunsch mit:</p>
+      <form action="mailto:45dgof8@gmail.com" method="POST" enctype="text/plain">
+        <label for="name">Dein Name</label>
+        <input type="text" id="name" name="Name" placeholder="Vorname reicht 🙂">
 
-    <a href="mailto:45dgof8@gmail.com?subject=Minidienst%20Anfrage" class="button">Minidienst anfragen ✨</a>
+        <label for="service">Gewünschter Minidienst</label>
+        <select id="service" name="Service">
+          <option value="Tarot">Tarot-Ziehung</option>
+          <option value="Recherche">Mini-Recherche</option>
+          <option value="Reminder">Reminder-Service</option>
+          <option value="Brainstorm">Brainstorming</option>
+        </select>
+
+        <label for="details">Was soll ich wissen?</label>
+        <textarea id="details" name="Details" rows="5" placeholder="Erzähl mir ein wenig mehr..."></textarea>
+
+        <button class="button" type="submit">✨ Wunsch abschicken</button>
+      </form>
+    </div>
 
     <div style="margin-top: 3rem;">
       <img src="A_comic-style_illustration_of_a_futuristic_female_.png"
@@ -98,8 +140,6 @@
         Ich bin Eva – Schildmaid der Datenethik.
       </p>
     </div>
-
-    <a href="seite8.html" class="button" style="margin-top: 2rem;">Weiter zur nächsten Kammer ➡️</a>
   </div>
 
   <footer>
