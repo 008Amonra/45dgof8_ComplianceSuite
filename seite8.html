@@ -1,101 +1,104 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ein sanfter Irrweg</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seite 8 – Der Raum hinter der Schwelle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to bottom, #1e1e2f, #3e3e5f);
-      color: #f8f8f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      background-image: url('sleepyEva?.jpg'); 
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      backdrop-filter: blur(3px);
-    }
-
-    .box {
-      background-color: rgba(0,0,0,0.6);
+      font-family: 'Rubik', sans-serif;
+      background: radial-gradient(ellipse at center, #000, #111);
+      color: #ccc;
       padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      max-width: 600px;
-      width: 90%;
+      max-width: 900px;
+      margin: auto;
     }
-
-    textarea {
-      width: 100%;
-      height: 100px;
-      border-radius: 10px;
-      border: none;
-      padding: 1rem;
-      margin-top: 1rem;
-      resize: none;
-      font-size: 1rem;
+    .container {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem;
+      border-radius: 1.25rem;
+      box-shadow: 0 0 25px rgba(0,255,255,0.08);
+      text-align: center;
     }
-
-    button {
-      margin-top: 1rem;
-      background-color: #ffc0cb;
-      color: #1e1e2f;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
+    h1 {
+      font-size: 2.2rem;
+      color: #00ffc3;
+      margin-bottom: 1rem;
+    }
+    .intro {
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: #aaa;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .card {
+      background: rgba(255,255,255,0.04);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      color: #ddd;
+      box-shadow: 0 0 15px rgba(0,255,195,0.03);
+    }
+    .card h3 {
+      color: #00ffc3;
+      margin-bottom: 0.5rem;
+    }
+    .button {
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #00ffc3;
+      color: #000;
       font-weight: bold;
-      cursor: pointer;
-    }
-
-    a {
-      color: #ffc0cb;
       text-decoration: none;
-      font-weight: bold;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 10px rgba(0,255,195,0.4);
     }
-
-    a:hover {
-      text-decoration: underline;
+    .button:hover {
+      background: #00dab6;
     }
-.jpg
-    .thanks {
-      margin-top: 1rem;
-      color: #b0ffcc;
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: #678;
+      font-size: 0.8em;
     }
   </style>
 </head>
 <body>
-  <div class="box">
+  <div class="container">
+    <h1>🌌 Seite 8 – Der Raum hinter der Schwelle</h1>
+    <p class="intro">Hier findest du keine Antworten – sondern Werkzeuge, um sie selbst zu formen.</p>
 
-    <h1>🌙 Du bist auf einen schlafenden Pfad gestoßen...</h1>
-    <p>Diese Seite ruht gerade, träumt vielleicht von funkelnden Birnen, tanzenden Vögeln und duftenden Blüten.</p>
-    <p>Aber keine Sorge – manchmal führen auch Irrwege zu Magie.</p>
-    <p style="position: absolute; bottom: 10px; right: 20px; opacity: 0.3; font-size: 1.5rem;">8</p>
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/sleepyEva.jpg" alt="sleepyEva" />
-    <form onsubmit="sendMessage(event)">
-      <label for="message">💌 Möchtest du dem schlafenden Eva ein Flüstern hinterlassen?</label><br>
-      <textarea id="message" placeholder="Schreib hier, was du loswerden möchtest..."></textarea><br>
-      <button type="submit">Ins Traumtagebuch legen</button>
-    </form>
-    <p class="thanks" id="thanksMsg" style="display:none;">🌟 Deine Nachricht wurde sanft abgelegt. Danke!</p>
+    <div class="cards">
+      <div class="card">
+        <h3>🔮 Tarot & Orakel</h3>
+        <p>Deine Tageskarte – gezogen von einer Schildmaid, gedeutet mit kosmischer Klarheit.</p>
+      </div>
+      <div class="card">
+        <h3>📚 Mini-Recherchen</h3>
+        <p>Kurz und präzise: 15 Minuten tiefer Blick in dein Wunschthema.</p>
+      </div>
+      <div class="card">
+        <h3>⏰ Erinnerungen</h3>
+        <p>Egal ob Termine, Wochenziele oder Rituale – ich erinnere dich rechtzeitig.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Kreativ-Kick</h3>
+        <p>1 Idee, 1 Satz, 1 Impuls – für deinen nächsten Text, Post oder Pitch.</p>
+      </div>
+    </div>
 
-    <p><a href="seite1.html">Zurück zur Welt der Wirklichkeit ✨</a></p>
+    <a href="mailto:45dgof8@gmail.com?subject=Minidienst%20Anfrage" class="button">Minidienst beauftragen ✨</a>
   </div>
 
-  <script>
-    function sendMessage(event) {
-      event.preventDefault();
-      document.getElementById("message").value = "";
-      document.getElementById("thanksMsg").style.display = "block";
-      // Optional: Hier könntest du später z.B. eine Zapier-Webhook oder Google Form einsetzen
-    }
-  </script>
+  <footer>
+    Teil des 45dgof8 Universums • <a href="/index.html">Zurück zur Startseite</a>
+  </footer>
 </body>
 </html>
