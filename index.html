@@ -138,7 +138,7 @@
   </div>
 
   <div class="graphic-eight" id="infinity8">8</div>
-  <iframe id="creativeFrame" src="https://45dgof8.com/seite2.html"></iframe>
+  <iframe id="creativeFrame"></iframe>
 
   <footer class="footer-container">
     <div class="footer-left"></div>
@@ -172,6 +172,12 @@
   const frame = document.getElementById("creativeFrame");
   const body = document.body;
   const isVisible = frame.style.display === 'block';
+
+  if (!isVisible) {
+    frame.src = "https://45dgof8.com/seite2.html";
+  } else {
+    frame.src = "";
+  }
 
   frame.style.display = isVisible ? 'none' : 'block';
   body.style.overflow = isVisible ? '' : 'hidden';
