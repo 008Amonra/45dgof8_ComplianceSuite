@@ -21,27 +21,32 @@
       width: 100vw;
     }
     .image-section {
-      width: 50%;
+      flex: 1;
       background-size: cover;
       background-position: center;
-      background-image: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/00CH.webp');
     }
     .content-section {
-      width: 50%;
-      padding: 20px;
-      overflow-y: auto;
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     header h1 {
       margin-bottom: 10px;
-      font-size: 2em;
+      font-size: 2.5em;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     nav a {
-      display: block;
-      margin: 6px 0;
+      flex: 1 1 calc(50% - 10px);
       text-decoration: none;
       color: #ffe082;
       background: rgba(255, 255, 255, 0.1);
-      padding: 6px 12px;
+      padding: 10px;
       border-radius: 6px;
       transition: background 0.3s;
     }
@@ -76,6 +81,8 @@
     .footer-container {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
       padding: 10px;
       background: #1c1b29;
       color: white;
@@ -85,13 +92,8 @@
       .split-screen {
         flex-direction: column;
       }
-      .image-section, .content-section {
-        width: 100%;
-        height: 50vh;
-      }
-      .content-section {
-        height: auto;
-        padding: 10px;
+      nav a {
+        flex: 1 1 100%;
       }
     }
   </style>
@@ -105,7 +107,7 @@
         <p>Compliance & AI Innovation</p>
       </header>
       <nav>
-<a href="https://chatgpt.com/g/g-pwRUJBPBY-compliancegpt" target="_blank" title="Navigate global data laws like GDPR and CCPA with real-time compliance insights. Unique for its automation, legal intelligence, and Virtual IO support.">Global - Compliance GPT</a>
+        <a href="https://chatgpt.com/g/g-pwRUJBPBY-compliancegpt" target="_blank" title="Navigate global data laws like GDPR and CCPA with real-time compliance insights. Unique for its automation, legal intelligence, and Virtual IO support.">Global - Compliance GPT</a>
 <a href="https://chatgpt.com/g/g-evCGCyUMs-gdpr-cgb" target="_blank" title="Offers GDPR-specific tools including live self-assessments and upgrade paths. Unique for interactive reports and actionable compliance steps.">GDPR - CGB - Compliance GPT</a>
 <a href="https://chatgpt.com/g/g-6738a01a6edc81919fe6730214086ff7" target="_blank" title="Bilingual AI for Indonesia's PDP Law with templates, legal guidance, and local insights. Stands out for its simplicity and regulatory alignment.">Indonesia - Compliance GPT</a>
 <a href="https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55" target="_blank" title="Expert guidance on LGPD compliance including consent and data transfer tools. Unique for its local business relevance and ethical framework.">Brazil - LGPD GPT</a>
@@ -120,8 +122,10 @@
 <a href="https://chatgpt.com/g/g-67e5a7a32c6c8191b72872a7cbdd7f4c-45dgof8-singapore-pdpa-compliance-gpt" target="_blank" title="Understand and apply Singapore’s Personal Data Protection Act (PDPA) & Lawful and ethical data handling in Singapore.">Singapore - PDPA Compliance GPT</a>
 <a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank" title="A unified assistant built to help users understand, apply, and stay compliant with Australia’s Privacy Act 1988 (Cth), & Australian Privacy Principles (APPs).">Australia Cth & APPs - PDPA Compliance GPT</a>
 <a href="https://chatgpt.com/g/g-67ea5b6720d88191bd94359a1cffc5f3-45dgof8-peru-pdp-law-compliance-gpt" target="_blank" title="Supports compliance with Peru’s Habeas Data law. Includes local legal references, consent tools, and a Virtual IO to assist Peruvian businesses.">Peru - Habeas Data GPT</a>
-<a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" target="_blank" title="...it isn’t just compliance, it’s a masterclass in precision, elegance, and Swiss-engineered digital integrity!">Switzerland - FADP Compliance GPT</a>  </div>
-</a>
+<a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" target="_blank" title="...it isn’t just compliance, it’s a masterclass in precision, elegance, and Swiss-engineered digital integrity!">Switzerland - FADP Compliance GPT</a>
+      </nav>
+    </div>
+  </div>
 
   <section style="padding: 2rem; max-width: 800px; margin: auto; text-align: center;">
     <p style="font-size: 1.2em; line-height: 1.6;">
