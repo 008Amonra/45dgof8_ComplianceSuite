@@ -98,15 +98,7 @@
       }
     }
   </style>
-</head> 
-  <section style="padding: 2rem; max-width: 800px; margin: auto; text-align: center;">
-    <p style="font-size: 1.2em; line-height: 1.6;">
-      Explore our growing collection of intelligent assistants designed to simplify compliance and boost innovation. From global data protection regulations to region-specific privacy laws, 
-      each GPT is tailored to offer insights, tools, and guidance that help you stay ahead in a rapidly evolving digital landscape.
-      <br><br>
-      Click on any topic to start your journey with an AI expert by your side. Click on the 8 to see more. 
-    </p>
-  </section>
+</head>
 <body>
   <div class="split-screen">
     <div class="image-section" id="randomImage"></div>
@@ -126,6 +118,15 @@
     </div>
   </div>
 
+  <section style="padding: 2rem; max-width: 800px; margin: auto; text-align: center;">
+    <p style="font-size: 1.2em; line-height: 1.6;">
+      Explore our growing collection of intelligent assistants designed to simplify compliance and boost innovation. From global data protection regulations to region-specific privacy laws, 
+      each GPT is tailored to offer insights, tools, and guidance that help you stay ahead in a rapidly evolving digital landscape.
+      <br><br>
+      Click on any topic to start your journey with an AI expert by your side. Click on the 8 to see more. 
+    </p>
+  </section>
+
   <div id="commandDeckToggle" onclick="toggleCommandDeck()" style="position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: #222; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
     ☰
   </div>
@@ -137,7 +138,7 @@
   </div>
 
   <div class="graphic-eight" id="infinity8">8</div>
-  <iframe id="creativeFrame" src="https://45dgof8.com/seite2.html"></iframe>
+  <iframe id="creativeFrame"></iframe>
 
   <footer class="footer-container">
     <div class="footer-left"></div>
@@ -169,11 +170,17 @@
 
       document.getElementById("infinity8").addEventListener("click", function () {
   const frame = document.getElementById("creativeFrame");
-  const body = document.body;
   const isVisible = frame.style.display === 'block';
 
-  frame.style.display = isVisible ? 'none' : 'block';
-  body.style.overflow = isVisible ? '' : 'hidden';
+  if (!isVisible) {
+    frame.src = "seite2.html"; // Ensure this matches exact casing of your file
+    frame.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  } else {
+    frame.src = "";
+    frame.style.display = 'none';
+    document.body.style.overflow = '';
+  }
 });
     });
   </script>
