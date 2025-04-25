@@ -67,10 +67,15 @@
     <p><a href="https://chat.openai.com/g/g-67ea5b6720d88191bd94359a1cffc5f3-45dgof8-peru-pdp-law-compliance-gpt" target="_blank">Iniciar el GPT de Cumplimiento PDP Perú</a></p>
     <p>Disponible 24/7. Sin registro. Sin datos innecesarios.</p>
   </div>
+<div class="donate">
+  <h2>¿Te fue útil?</h2>
+  <p>Este GPT es parte de un proyecto independiente y comunitario. Si deseas apoyar su desarrollo:</p>
 
-  <div class="donate">
-    <h2>¿Te fue útil?</h2>
-    <p>Este GPT es parte de un proyecto independiente y comunitario. Si deseas apoyar su desarrollo:</p>
+  <button onclick="toggleDetails()" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #444; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    💰 Ver opciones de donación
+  </button>
+
+  <div id="donationDetails" style="display: none; margin-top: 1rem;">
     <ul>
       <li>PayPal: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></li>
       <li>Transferencia bancaria:</li>
@@ -80,6 +85,16 @@
         <li><strong>Titular:</strong> Günther-45dgof8</li>
       </ul>
     </ul>
+    <p>Cada sol o dólar apoya más herramientas gratuitas para Perú. ¡Gracias!</p>
+  </div>
+</div>
+
+<script>
+  function toggleDetails() {
+    const details = document.getElementById("donationDetails");
+    details.style.display = details.style.display === "none" ? "block" : "none";
+  }
+</script>
     <p>Cada sol o dólar apoya más herramientas gratuitas para Perú. ¡Gracias!</p>
   </div>
 
