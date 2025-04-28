@@ -416,6 +416,31 @@
     });
   });
   </script>
+  <!-- 🌟 World Switch Loading Overlay -->
+<div id="loadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center; flex-direction:column; font-family:Arial, sans-serif;">
+  <h2 style="color: #00ffff; font-size: 2em; text-shadow: 0 0 10px #00ffff;">🚀 Switching Worlds...</h2>
+</div>
+
+<!-- 🌟 Updated Switch Worlds Script -->
+<script>
+function showLoadingAndSwitch(newSrc) {
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.style.display = 'flex';
+  setTimeout(() => {
+    document.getElementById('creativeFrame').src = newSrc;
+    overlay.style.display = 'none';
+  }, 700); // show loading for 0.7 seconds
+}
+
+function switchToCompliance() {
+  showLoadingAndSwitch('seite2.html');
+}
+
+function switchToCreative() {
+  showLoadingAndSwitch('creative_parts.html');
+}
+</script>
+
 </body>
 </html>
 
