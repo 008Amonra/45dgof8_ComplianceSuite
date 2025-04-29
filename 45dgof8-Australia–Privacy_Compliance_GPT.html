@@ -3,20 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>45dgof8 - Australia Privacy Compliance GPT</title>
+  <meta name="description" content="45dgof8 – Australia's smart Privacy Compliance GPT assistant for small & medium businesses.">
+  <title>45dgof8 – Australia Privacy Compliance GPT</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: linear-gradient(to bottom right, #2d2a4e, #5e548e); color: white; }
-    .btn { background: #00ffc3; color: #000; padding: 15px 25px; margin-top: 30px; text-decoration: none; font-size: 18px; border-radius: 8px; display: inline-block; }
-    .btn:hover { background: #00bfa5; }
+    :root {
+      --main-color: #00796b;
+      --accent-color: #14532d;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: url('/mnt/data/b25b5cb0-83ac-4b35-94bf-71509aa73aab.png') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 0 10px #000;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    h2 {
+      color: var(--accent-color);
+    }
+    .pricing {
+      background: #e0f2f1;
+      padding: 1rem;
+      border-left: 6px solid var(--main-color);
+      margin: 1rem 0;
+    }
+    footer {
+      background: #eee;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--main-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #004d40;
+    }
+    select {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .lang-content {
+      display: none;
+    }
+    .lang-content.active {
+      display: block;
+    }
+    #loader {
+      display: none;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    #loader img {
+      height: 80px;
+      animation: hop 1s infinite alternate;
+    }
+    @keyframes hop {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
+    }
+    @media (max-width: 768px) {
+      header {
+        height: 250px;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        padding: 1rem;
+      }
+    }
   </style>
+  <script>
+    function detectLanguage() {
+      const lang = navigator.language || navigator.userLanguage;
+      const confirmed = confirm("Your browser language is: " + lang + "\nWould you like to see the content adapted to this language if available?");
+      if (confirmed) {
+        alert("Thanks! We'll adapt content where possible.");
+      }
+    }
+
+    function changeLanguage() {
+      const selectedLang = document.getElementById('language-select').value;
+      fetchTranslation(selectedLang);
+    }
+
+    function fetchTranslation(lang) {
+      document.getElementById('loader').style.display = 'block';
+      fetch('/images/kangaroo.gif'); // ensure image is preloaded
+      fetch('/languages/' + lang + '.json')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('dynamic-main-text').innerText = data.mainText;
+          let whatItDoesList = document.getElementById('dynamic-what-it-does');
+          whatItDoesList.innerHTML = '';
+          data.whatItDoes.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            whatItDoesList.appendChild(li);
+          });
+        })
+        .catch(error => {
+          console.error('Translation file not found or error loading.', error);
+          alert('Translation file not found for the selected language.');
+        })
+        .finally(() => {
+          document.getElementById('loader').style.display = 'none';
+        });
+    }
+  </script>
 </head>
 <body>
+  <header>
+    <h1>45dgof8 – Australia Privacy Compliance GPT</h1>
+  </header>
+  <main>
+    <h2>Your Virtual Privacy Officer</h2>
+    <div id="loader">
+      <img src="/images/kangaroo.gif" alt="Loading...">
+    </div>
 
-<h1>Welcome to 45dgof8 Australia Privacy Compliance GPT</h1>
-<p>Assist with compliance under Australia’s Privacy Act 1988 and Australian Privacy Principles (APPs).</p>
+    <div id="content-en" class="lang-content active">
+      <p id="dynamic-main-text">
+        45dgof8 is a specialised AI assistant designed to help Australian businesses stay compliant with the Privacy Act 1988 and the 13 Australian Privacy Principles (APPs).
+        It’s ideal for small & medium enterprises (SMEs), privacy officers, legal teams, developers, or anyone who handles personal information.
+      </p>
+    </div>
 
-<a class="btn" href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">Open Australia Privacy Compliance GPT</a>
+    <ul id="dynamic-what-it-does">
+      <li>✅ Privacy compliance audits & gap checks</li>
+      <li>📄 Policy & consent generator</li>
+      <li>🔍 Cross-border data transfer helper (APP 8)</li>
+      <li>🚨 Breach assistant for APP 11 & NDB scheme</li>
+      <li>🧑‍⚖️ Clarifies legal roles (controller/processor)</li>
+      <li>🧠 Explains legal concepts in plain English – and supports all spoken languages in Australia*</li>
+    </ul>
 
+    <h2>Languages Supported*</h2>
+    <p>
+      This assistant can support all major spoken languages in Australia, including English, Chinese (Simplified/Traditional), Arabic, Vietnamese, Italian, Greek, Hindi, Spanish, and more. We also respect and aim to expand future support for Aboriginal and Torres Strait Islander languages.
+    </p>
+    <button class="btn" onclick="detectLanguage()">🌐 Check My Language Preference</button>
+
+    <div style="margin-top: 1rem;">
+      <label for="language-select"><strong>Select your preferred language:</strong></label><br>
+      <select id="language-select" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="zh">Chinese (中文)</option>
+        <option value="es">Spanish (Español)</option>
+        <option value="hi">Hindi (हिन्दी)</option>
+        <option value="ar">Arabic (العربية)</option>
+      </select>
+    </div>
+
+    <h2>Pricing (AUD – digital only)</h2>
+    <div class="pricing">
+      <strong>✔️ Mini Compliance Check – $55</strong><br>
+      Rapid scan of your practices against all 13 APPs. Delivered as PDF within 48 hours.
+    </div>
+    <div class="pricing">
+      <strong>✔️ Privacy Notice – $30</strong><br>
+      Customisable website/app policy (APP 1–5 compliant).
+    </div>
+    <div class="pricing">
+      <strong>✔️ Consent Language Snippets – $25</strong><br>
+      Copy-paste ready phrases to ensure clear user opt-in.
+    </div>
+    <div class="pricing">
+      <strong>✔️ Breach Basics Pack – $18</strong><br>
+      NDB-ready first-response documents + email template.
+    </div>
+    <div class="pricing">
+      <strong>✔️ Monthly Plan – $45/month</strong><br>
+      1x compliance check, 3x Q&A sessions, legal update brief.
+    </div>
+
+    <p><a class="btn" href="mailto:45dgof8@gmail.com">Contact: 45dgof8@gmail.com</a></p>
+  </main>
+  <footer>
+    &copy; 2025 45dgof8 Australia Privacy Compliance GPT.<br>
+    No Zoom calls – just efficient, friendly, lawful help.<br>
+    *Translation/localisation may be automated or partner-assisted.
+  </footer>
 </body>
 </html>
+
 
