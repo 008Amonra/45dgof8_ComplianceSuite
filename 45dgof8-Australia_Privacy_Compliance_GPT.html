@@ -7,8 +7,10 @@
   <title>45dgof8 – Australia Privacy Compliance GPT</title>
   <style>
     :root {
-      --main-color: #00796b;
-      --accent-color: #14532d;
+      --main-color: #004d40;
+      --accent-color: #26a69a;
+      --background-color: #1b1b1b;
+      --text-color: #e0e0e0;
     }
     * {
       box-sizing: border-box;
@@ -18,11 +20,11 @@
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--background-color);
+      color: var(--text-color);
     }
     header {
-      background: url('/mnt/data/b25b5cb0-83ac-4b35-94bf-71509aa73aab.png') center/cover no-repeat;
+      background: url('/5942c2cf-7d9a-410f-8d95-1959c9f93faa.png') center/cover no-repeat;
       height: 400px;
       display: flex;
       align-items: center;
@@ -44,16 +46,18 @@
       color: var(--accent-color);
     }
     .pricing {
-      background: #e0f2f1;
+      background: #263238;
       padding: 1rem;
       border-left: 6px solid var(--main-color);
       margin: 1rem 0;
+      border-radius: 8px;
     }
     footer {
-      background: #eee;
+      background: #263238;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
+      color: var(--text-color);
     }
     .btn {
       display: inline-block;
@@ -66,13 +70,15 @@
       cursor: pointer;
     }
     .btn:hover {
-      background: #004d40;
+      background: #00332e;
     }
     select {
       padding: 0.5rem;
       margin-top: 1rem;
       border-radius: 5px;
-      border: 1px solid #ccc;
+      border: 1px solid #555;
+      background-color: #37474f;
+      color: var(--text-color);
     }
     .lang-content {
       display: none;
@@ -121,7 +127,6 @@
 
     function fetchTranslation(lang) {
       document.getElementById('loader').style.display = 'block';
-      fetch('/images/kangaroo.gif'); // ensure image is preloaded
       fetch('/languages/' + lang + '.json')
         .then(response => response.json())
         .then(data => {
@@ -151,7 +156,7 @@
   <main>
     <h2>Your Virtual Privacy Officer</h2>
     <div id="loader">
-      <img src="/images/kangaroo.gif" alt="Loading...">
+      <img src="/5942c2cf-7d9a-410f-8d95-1959c9f93faa.png" alt="Loading...">
     </div>
 
     <div id="content-en" class="lang-content active">
@@ -218,3 +223,4 @@
   </footer>
 </body>
 </html>
+
