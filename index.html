@@ -136,14 +136,14 @@
 ];
 
 
-    const table = document.getElementById('gptTable');
+   {const table = document.getElementById('gptTable');
     gpts.forEach(gpt => {
       const row = `<tr><td><a href="${gpt.url}" target="_blank" title="${gpt.title}">${gpt.name}</a></td><td style="text-align:right;"><a class="homepage-button" href="${gpt.homepage}" target="_blank">View Homepage</a></td></tr>`;
       table.innerHTML += row;
     });
   });
 
-  function showLoadingAndSwitch(newSrc) {
+   {function showLoadingAndSwitch(newSrc) {
     const overlay = document.getElementById('loadingOverlay');
     overlay.style.display = 'flex';
     setTimeout(() => {
