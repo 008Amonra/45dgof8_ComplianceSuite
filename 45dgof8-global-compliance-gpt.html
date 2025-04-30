@@ -7,44 +7,111 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: linear-gradient(to bottom right, #2d2a4e, #5e548e);
+      margin: 0;
+      padding: 0;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #003366, #0055a5);
       color: white;
+      padding: 2em 1em;
+      text-align: center;
     }
-    .btn {
-      background: #00ffc3;
-      color: #000;
-      padding: 15px 25px;
-      margin-top: 30px;
-      text-decoration: none;
-      font-size: 18px;
+    h1 {
+      margin: 0.2em 0;
+    }
+    .tagline {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+    .section {
+      padding: 2em 1em;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5em;
+      margin-top: 2em;
+    }
+    .feature-card {
+      background: white;
       border-radius: 8px;
-      display: inline-block;
-      transition: background 0.3s;
+      padding: 1.5em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .btn:hover {
-      background: #00bfa5;
+    .cta {
+      text-align: center;
+      margin: 3em 0;
+    }
+    .cta button {
+      background-color: #0055a5;
+      color: white;
+      border: none;
+      padding: 1em 2em;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
     }
     footer {
-      margin-top: 100px;
-      padding: 10px;
+      background: #003366;
+      color: #eee;
+      text-align: center;
+      padding: 1em;
       font-size: 0.9em;
-      color: #cccccc;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🌍 45dgof8 - Global Compliance GPT 🌍</h1>
+    <div class="tagline">Master privacy laws like GDPR & CCPA with AI-driven clarity, speed & confidence.</div>
+  </header>
 
-  <h1>🌍 Welcome to 45dgof8 - Global Compliance GPT 🌍</h1>
-  <p style="max-width: 600px; margin: auto; font-size: 1.2em; line-height: 1.6;">
-    Navigate global data laws like GDPR and CCPA with real-time compliance insights.<br>
-    Unique for its automation, legal intelligence, and Virtual IO support.
-  </p>
+  <section class="section">
+    <h2>Why We Exist</h2>
+    <p>
+      Global data regulations are complex, fast-changing, and high-stakes. We make compliance feel manageable—automated, intelligent, and even proactive. Whether you're a startup or an enterprise, we give you the tools to stay compliant, avoid fines, and earn trust.
+    </p>
 
-  <a class="btn" href="https://chatgpt.com/g/g-pwRUJBPBY-45dgof8-global-compliance-gpt" target="_blank">🚀 Open Global Compliance GPT</a>
+    <div class="features">
+      <div class="feature-card">
+        <h3>📜 Automated Policy Generation</h3>
+        <p>Quickly draft custom privacy policies tailored to your jurisdiction and data flow.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔐 Consent Management</h3>
+        <p>Enable region-specific cookie banners and consent tracking with ease.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧭 Risk & Data Mapping</h3>
+        <p>Visualize how your data moves and where compliance gaps exist.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🕵️‍♂️ DSAR Automation</h3>
+        <p>Handle access and deletion requests at scale, securely and on time.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🌐 Cross-Border Compliance</h3>
+        <p>Stay ahead of EU, US, and APAC data transfer requirements with expert tools.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📢 Legal Updates & Alerts</h3>
+        <p>Get notified of regulatory changes before they impact your business.</p>
+      </div>
+    </div>
+  </section>
 
-  <footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
+  <div class="cta">
+    <h2>Start with a Free Compliance Snapshot</h2>
+    <p>Let us scan your data practices and show where you stand — no strings attached.</p>
+    <button onclick="window.location.href='https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e'">Get Started</button>
+  </div>
 
+  <footer>
+    © 2025 45dgof8 - Global Compliance GPT | Powered by Virtual IO | <a href="mailto:45dgof8@gmail.com" style="color: #ccc;">Contact Us</a>
+  </footer>
 </body>
 </html>
