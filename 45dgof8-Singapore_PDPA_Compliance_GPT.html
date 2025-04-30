@@ -5,100 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>45dgof8 – Singapore PDPA Compliance GPT</title>
   <base href="https://45dgof8.com/">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --main-color: #004d40;
       --accent-color: #26a69a;
-      --background-color: #1b1b1b;
+      --background-color: #121212;
       --text-color: #e0e0e0;
+      --highlight-color: #64ffda;
     }
     * {
       box-sizing: border-box;
     }
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.8;
       margin: 0;
       padding: 0;
       background-color: var(--background-color);
       color: var(--text-color);
     }
     header {
-      background: url('/singaporean_generation.webp') center/cover no-repeat;
+      position: relative;
+      background: url('/f2be58cc-8d21-4497-9e5c-04518dba2a4b.png') center/cover no-repeat;
       height: 400px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
       color: white;
-      text-shadow: 0 0 10px #000;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 0 1rem;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
     }
     header h1 {
-      font-size: 2.5rem;
-      padding: 0 1rem;
-      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
     }
+    header p {
+      font-size: 1.2rem;
+    }
+
     main {
-      padding: 2rem;
+      padding: 2rem 1rem;
       max-width: 960px;
       margin: auto;
     }
     h2 {
-      color: var(--accent-color);
+      color: var(--highlight-color);
+      font-size: 1.8rem;
+      margin-top: 2rem;
     }
-    .pricing {
-      background: #263238;
+    p {
+      font-size: 1.15rem;
+    }
+    .features {
+      margin-top: 1rem;
+    }
+    .feature {
+      background: #1e1e1e;
       padding: 1rem;
-      border-left: 6px solid var(--main-color);
       margin: 1rem 0;
+      border-left: 5px solid var(--accent-color);
       border-radius: 8px;
     }
-    footer {
-      background: #263238;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: var(--text-color);
+    .feature h3 {
+      margin-top: 0;
+      color: var(--highlight-color);
     }
-    .btn {
+
+    a.button, .btn {
       display: inline-block;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.5rem;
+      margin-top: 1.2rem;
       background: var(--main-color);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      margin-top: 1rem;
-      cursor: pointer;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
     }
-    .btn:hover {
+    a.button:hover, .btn:hover {
       background: #00332e;
     }
-    select {
-      padding: 0.5rem;
-      margin-top: 1rem;
-      border-radius: 5px;
-      border: 1px solid #555;
-      background-color: #37474f;
-      color: var(--text-color);
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
     }
-    .lang-content {
-      display: none;
+    a:hover {
+      text-decoration: underline;
     }
-    .lang-content.active {
-      display: block;
-    }
-    #loader {
-      display: none;
+
+    footer {
+      background: #1c1c1c;
       text-align: center;
-      margin: 1rem 0;
+      padding: 1.5rem;
+      font-size: 0.9rem;
     }
-    #loader img {
-      height: 80px;
-      animation: hop 1s infinite alternate;
-    }
-    @keyframes hop {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-15px); }
-    }
+
     @media (max-width: 768px) {
       header {
         height: 250px;
@@ -158,7 +177,7 @@
 </main>
 
 <footer>
-  © 2025 45dgof8 Compliance Hub | Contact: <a href="mailto:45dgof8@gmail.com" style="color: #9fd6ff;">45dgof8@gmail.com</a>
+  © 2025 45dgof8 Compliance Hub | Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
 </footer>
 
 </body>
