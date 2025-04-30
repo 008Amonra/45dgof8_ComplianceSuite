@@ -6,82 +6,108 @@
   <title>45dgof8 – Singapore PDPA Compliance GPT</title>
   <base href="https://45dgof8.com/">
   <style>
+    :root {
+      --main-color: #004d40;
+      --accent-color: #26a69a;
+      --background-color: #1b1b1b;
+      --text-color: #e0e0e0;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(to bottom right, #2d2a4e, #5e548e);
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      background-color: var(--background-color);
+      color: var(--text-color);
     }
-    header, footer {
+    header {
+      background: url('/singapurean_generation.webp') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 0 10px #000;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      padding: 0 1rem;
       text-align: center;
-      padding: 20px;
-      background-color: #1c1b29;
     }
     main {
-      flex: 1;
-      padding: 40px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.2em;
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
     }
     h2 {
-      font-size: 1.6em;
-      margin-top: 2em;
-      margin-bottom: 0.5em;
+      color: var(--accent-color);
     }
-    p {
-      font-size: 1.2em;
-      line-height: 1.8;
-      margin-bottom: 1.5em;
+    .pricing {
+      background: #263238;
+      padding: 1rem;
+      border-left: 6px solid var(--main-color);
+      margin: 1rem 0;
+      border-radius: 8px;
     }
-    .button {
+    footer {
+      background: #263238;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+    .btn {
       display: inline-block;
-      padding: 14px 28px;
-      margin: 12px;
-      background-color: #4CAF50;
+      padding: 0.5rem 1rem;
+      background: var(--main-color);
       color: white;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
     }
-    .button:hover {
-      background-color: #45a049;
+    .btn:hover {
+      background: #00332e;
     }
-    .features {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    select {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 1px solid #555;
+      background-color: #37474f;
+      color: var(--text-color);
     }
-    .feature {
-      max-width: 700px;
-      background-color: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 10px;
-      margin: 10px 0;
-      text-align: left;
+    .lang-content {
+      display: none;
     }
-    .feature h3 {
-      margin-top: 0;
-      color: #9fd6ff;
+    .lang-content.active {
+      display: block;
     }
-    @media (min-width: 768px) {
-      .features {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+    #loader {
+      display: none;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    #loader img {
+      height: 80px;
+      animation: hop 1s infinite alternate;
+    }
+    @keyframes hop {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
+    }
+    @media (max-width: 768px) {
+      header {
+        height: 250px;
       }
-      .feature {
-        flex: 1 1 40%;
-        margin: 10px;
+      header h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        padding: 1rem;
       }
     }
   </style>
