@@ -1,28 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>45dgof8 - South Africa POPIA Compliance GPT</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>45dgof8 – South Africa POPIA Compliance GPT</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: linear-gradient(to bottom right, #2d2a4e, #5e548e); color: white; }
-    .btn { background: #00ffc3; color: #000; padding: 15px 25px; margin-top: 30px; text-decoration: none; font-size: 18px; border-radius: 8px; display: inline-block; }
-    .btn:hover { background: #00bfa5; }
-    footer { margin-top: 100px; padding: 10px; font-size: 0.9em; color: #cccccc; }
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1f1f1f;
+      --button-bg: #00796b;
+      --button-text: #ffffff;
+      --button-hover: #004d40;
+      --footer-bg: #f0f0f0;
+      --footer-text: #333333;
+      --link-color: #1f1f1f;
+      --link-hover: #00796b;
+    }
+
+    body.dark-mode {
+      --bg-color: #1e1e2f;
+      --text-color: #ffffff;
+      --button-bg: #00ffc3;
+      --button-text: #000000;
+      --button-hover: #00bfa5;
+      --footer-bg: #121212;
+      --footer-text: #cccccc;
+      --link-color: #ffd95a;
+      --link-hover: #00ffc3;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 60px 20px;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1em;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    .launch-btn, .toggle-btn {
+      display: inline-block;
+      padding: 14px 26px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: background 0.3s ease;
+      margin: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .launch-btn:hover, .toggle-btn:hover {
+      background-color: var(--button-hover);
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      margin-top: 60px;
+      padding: 20px 10px;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 1.7em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      .launch-btn, .toggle-btn {
+        width: 100%;
+        font-size: 1.05em;
+      }
+    }
   </style>
 </head>
 <body>
 
-<h1>🇿🇦 Welcome to 45dgof8 - South Africa POPIA Compliance GPT 🇿🇦</h1>
-<p style="max-width: 600px; margin: auto; font-size: 1.2em; line-height: 1.6;">
-  Guides SA businesses through POPIA with policy generators and breach tools.<br>
-  Features industry modules and Virtual IO for full local compliance.
-</p>
+  <h1>45dgof8 – South Africa POPIA Compliance GPT</h1>
 
-<a class="btn" href="https://chatgpt.com/g/g-67500c79dbcc81919efc3b758e89bb30-45dgof8-south-africa-popia-compliance-gpt" target="_blank">🚀 Open South Africa POPIA GPT</a>
+  <p>
+    Navigate South Africa’s Protection of Personal Information Act (POPIA) with precision.<br />
+    Generate policies, manage consent, and ensure real-world compliance through an AI assistant built for South African businesses.
+  </p>
 
-<footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
+  <a class="launch-btn" href="https://chat.openai.com/g/g-67500c79dbcc81919efc3b758e89bb30-45dgof8-south-africa-popia-compliance-gpt" target="_blank">
+    Launch POPIA Compliance GPT
+  </a>
+
+  <button class="toggle-btn" onclick="toggleTheme()">Toggle Light/Dark Theme</button>
+
+  <footer>
+    &copy; 2025 45dgof8 Compliance Hub |
+    <a href="https://45dgof8.com">Main Site</a> |
+    <a href="mailto:45dgof8@gmail.com">Contact</a>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 
 </body>
 </html>
