@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="45dgof8 – Australia's smart Privacy Compliance GPT assistant for small & medium businesses.">
+  <meta name="theme-color" content="#004d40">
   <title>45dgof8 – Australia Privacy Compliance GPT</title>
   <style>
     :root {
@@ -31,11 +32,16 @@
       justify-content: center;
       color: white;
       text-shadow: 0 0 10px #000;
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
     }
     header h1 {
       font-size: 2.5rem;
-      padding: 0 1rem;
-      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    header p.tagline {
+      font-style: italic;
     }
     main {
       padding: 2rem;
@@ -101,7 +107,7 @@
     }
     @media (max-width: 768px) {
       header {
-        height: 250px;
+        height: auto;
       }
       header h1 {
         font-size: 1.8rem;
@@ -109,6 +115,17 @@
       main {
         padding: 1rem;
       }
+    }
+    .features, .cta-buttons {
+      margin-top: 1rem;
+    }
+    .cta-buttons a {
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
     }
   </style>
   <script>
@@ -140,8 +157,9 @@
           });
         })
         .catch(error => {
-          console.error('Translation file not found or error loading.', error);
-          alert('Translation file not found for the selected language.');
+          console.error('Translation error:', error);
+          alert('Translation not found. Reverting to English.');
+          if (lang !== 'en') fetchTranslation('en');
         })
         .finally(() => {
           document.getElementById('loader').style.display = 'none';
@@ -152,16 +170,16 @@
 <body>
   <header>
     <h1>45dgof8 – Australia Privacy Compliance GPT</h1>
+    <p class="tagline">🛡️ Meet Your Privacy Powerhouse</p>
+    <p><a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank" rel="noopener noreferrer">Visit GPT on ChatGPT</a></p>
+    <p class="footer-link">Direct link on our site: <a href="https://45dgof8.com/" target="_blank" rel="noopener noreferrer">45dgof8.com</a></p>
   </header>
   <main>
     <h2>Your Virtual Privacy Officer</h2>
+
     <div id="loader">
       <img src="/5942c2cf-7d9a-410f-8d95-1959c9f93faa.png" alt="Loading...">
     </div>
-
-    <a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">
-  Chat with 45dgof8 – Privacy GPT
-    </a>
 
     <div id="content-en" class="lang-content active">
       <p id="dynamic-main-text">
@@ -180,9 +198,7 @@
     </ul>
 
     <h2>Languages Supported*</h2>
-    <p>
-      This assistant can support all major spoken languages in Australia, including English, Chinese (Simplified/Traditional), Arabic, Vietnamese, Italian, Greek, Hindi, Spanish, and more. We also respect and aim to expand future support for Aboriginal and Torres Strait Islander languages.
-    </p>
+    <p>This assistant can support all major spoken languages in Australia, including English, Chinese (Simplified/Traditional), Arabic, Vietnamese, Italian, Greek, Hindi, Spanish, and more. We also respect and aim to expand future support for Aboriginal and Torres Strait Islander languages.</p>
     <button class="btn" onclick="detectLanguage()">🌐 Check My Language Preference</button>
 
     <div style="margin-top: 1rem;">
@@ -197,69 +213,20 @@
     </div>
 
     <h2>Pricing (AUD – digital only)</h2>
-    <div class="pricing">
-      <strong>✔️ Mini Compliance Check – $55</strong><br>
-      Rapid scan of your practices against all 13 APPs. Delivered as PDF within 48 hours.
+    <div class="pricing"><strong>✔️ Mini Compliance Check – $55</strong><br>Rapid scan of your practices against all 13 APPs. Delivered as PDF within 48 hours.</div>
+    <div class="pricing"><strong>✔️ Privacy Notice – $30</strong><br>Customisable website/app policy (APP 1–5 compliant).</div>
+    <div class="pricing"><strong>✔️ Consent Language Snippets – $25</strong><br>Copy-paste ready phrases to ensure clear user opt-in.</div>
+    <div class="pricing"><strong>✔️ Breach Basics Pack – $18</strong><br>NDB-ready first-response documents + email template.</div>
+    <div class="pricing"><strong>✔️ Monthly Plan – $45/month</strong><br>1x compliance check, 3x Q&A sessions, legal update brief.</div>
+
+    <h3>⚡ Launch Offer (Limited Time Only)</h3>
+    <p>Privacy compliance from just <strong>$6.75</strong>. Lock in your discount while it's live.</p>
+
+    <div class="cta-buttons">
+      <a href="YOUR_LITE_PAYMENT_LINK" target="_blank" rel="noopener noreferrer" style="background: #0070BA;">👉 Start with Lite (PayPal or Card)</a>
+      <a href="YOUR_PRO_PAYMENT_LINK" target="_blank" rel="noopener noreferrer" style="background: #003087;">👉 Upgrade to Pro Pack (PayPal or Card)</a>
+      <a href="#compare-plans" style="background: #FF9800;">👉 Compare Plans</a>
     </div>
-    <div class="pricing">
-      <strong>✔️ Privacy Notice – $30</strong><br>
-      Customisable website/app policy (APP 1–5 compliant).
-    </div>
-    <div class="pricing">
-      <strong>✔️ Consent Language Snippets – $25</strong><br>
-      Copy-paste ready phrases to ensure clear user opt-in.
-    </div>
-    <div class="pricing">
-      <strong>✔️ Breach Basics Pack – $18</strong><br>
-      NDB-ready first-response documents + email template.
-    </div>
-    <div class="pricing">
-      <strong>✔️ Monthly Plan – $45/month</strong><br>
-      1x compliance check, 3x Q&A sessions, legal update brief.
-    </div>
-    <body>
-  <header>
-    <h1>🛡️ Meet Your Privacy Powerhouse</h1>
-    <p class="tagline">45dgof8 – Australia Privacy Act GPT</p>
-    <p><a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">Visit GPT on ChatGPT</a></p>
-    <p class="footer-link">Direct link on our site: <a href="https://45dgof8.com/">45dgof8.com</a></p>
-  </header>
-
-  <section class="section">
-    <h2>The only GPT you’ll ever need for Australian privacy compliance.</h2>
-    <p class="quote">“I don’t just know the Privacy Act 1988—I live it.”</p>
-
-    <p>I’m not your average chatbot. I’m the always-on virtual privacy consultant built specifically for Australian businesses, startups, and privacy-conscious professionals.</p>
-    <p>Whether you're writing your first privacy policy or navigating complex cross-border data flows—I make it simple, compliant, and fast.</p>
-
-    <h3>🧩 What I Do Best:</h3>
-    <ul class="features">
-      <li>Generate legally sound privacy policies — tailor-made for your business</li>
-      <li>Explain the 13 Australian Privacy Principles (APPs) in plain English</li>
-      <li>Help you comply with the Notifiable Data Breaches (NDB) scheme</li>
-      <li>Support cross-border data transfers (APP 8? Got it.)</li>
-      <li>Compare your practices to OAIC guidance</li>
-      <li>Offer step-by-step breach response advice</li>
-    </ul>
-
-    <p>Oh, and did I mention? I work 24/7.<br>No waitlists. No legalese. Just clarity, action, and results.</p>
-
-    <h3>💬 Built for Real People:</h3>
-    <p>I talk like a human. I explain complex laws like you’re five (if you want). And I’m always ready to help you impress your clients, your board—or the OAIC.</p>
-
-  <section>
-  <h3>⚡ Launch Offer (Limited Time Only)</h3>
-  <p>Privacy compliance from just <strong>$6.75</strong>. Lock in your discount while it's live.</p>
-
-  <div class="cta-buttons" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
-    <a href="YOUR_LITE_PAYMENT_LINK" target="_blank" style="padding: 12px 20px; background: #0070BA; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center;">👉 Start with Lite (PayPal or Card)</a>
-
-    <a href="YOUR_PRO_PAYMENT_LINK" target="_blank" style="padding: 12px 20px; background: #003087; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center;">👉 Upgrade to Pro Pack (PayPal or Card)</a>
-
-    <a href="#compare-plans" style="padding: 12px 20px; background: #FF9800; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center;">👉 Compare Plans</a>
-  </div>
-</section>
-
 
     <p><a class="btn" href="mailto:45dgof8@gmail.com">Contact: 45dgof8@gmail.com</a></p>
   </main>
