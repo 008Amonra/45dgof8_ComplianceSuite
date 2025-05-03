@@ -17,6 +17,23 @@
       padding: 2rem 1rem;
       text-align: center;
     }
+    .lang-switch {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .lang-switch button {
+      margin: 0 5px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      border: none;
+      background: #e2e8f0;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .lang-switch button.active {
+      background: #2b6cb0;
+      color: white;
+    }
     section {
       padding: 2rem 1.5rem;
       max-width: 800px;
@@ -34,6 +51,9 @@
     }
     p {
       line-height: 1.6;
+    }
+    ul {
+      padding-left: 1.2rem;
     }
     .button {
       display: inline-block;
@@ -56,45 +76,73 @@
 </head>
 <body>
   <header>
-    <h1>🇮🇩 Indonesia Compliance GPT</h1>
-    <p>Your Smart Assistant for PDPL Compliance in Indonesia</p>
+    <h1>🌐 Indonesia Compliance GPT</h1>
+    <p id="subtitle">Your Smart Assistant for PDPL Compliance in Indonesia</p>
   </header>
 
+  <div class="lang-switch">
+    <button onclick="setLanguage('en')" id="btn-en" class="active">English</button>
+    <button onclick="setLanguage('id')" id="btn-id">Bahasa Indonesia</button>
+  </div>
+
   <section>
-    <h2>Why Use 45dgof8 - Indonesia Compliance GPT?</h2>
-    <p>
-      Navigating Indonesia’s <strong>Personal Data Protection Law (PDPL)</strong> can be complex. 
-      <strong>Indonesia Compliance GPT</strong> is a tailored, intelligent assistant designed to simplify your journey toward compliance.
-    </p>
+    <div id="content-en">
+      <h2>Why Use 45dgof8 - Indonesia Compliance GPT?</h2>
+      <p>Navigating Indonesia’s <strong>Personal Data Protection Law (PDPL)</strong> can be complex. Our GPT is designed to simplify your journey toward compliance.</p>
+      <h2>Key Features</h2>
+      <ul>
+        <li>🔍 Translate legal obligations into actionable steps.</li>
+        <li>📄 Generate privacy policies in English & Bahasa Indonesia.</li>
+        <li>✅ Handle DSAR requests step by step.</li>
+        <li>📊 Help assess data risks and perform mapping.</li>
+        <li>🌍 Ensure cross-border data transfer compliance.</li>
+        <li>🔔 Stay updated with new legal developments.</li>
+      </ul>
+      <h2>For Whom?</h2>
+      <p>From e-commerce to fintech to SaaS platforms — this GPT adapts to your compliance needs in Indonesia.</p>
+      <h2>Pricing</h2>
+      <p>Start free. Monthly from <strong>IDR 49,000</strong>. One-time reports from <strong>IDR 29,000</strong>.</p>
+      <a class="button" href="mailto:45dgof8@gmail.com">📬 Contact Us</a>
+      <a class="button" href="https://paypal.me/45dgof8" style="background: #38a169;">💰 Support / Pay</a>
+    </div>
 
-    <h2>What This GPT Can Do for You</h2>
-    <ul>
-      <li>🔍 Translate legal obligations into actionable tasks.</li>
-      <li>📄 Generate privacy policy templates in English & Bahasa Indonesia.</li>
-      <li>✅ Provide step-by-step DSAR (Data Subject Access Request) handling guides.</li>
-      <li>📊 Help assess risk and map data in line with local law.</li>
-      <li>🌍 Guide on cross-border data transfer compliance.</li>
-      <li>🔔 Get notified of legal updates and practical interpretations.</li>
-    </ul>
-
-    <h2>Who It's For</h2>
-    <p>
-      Whether you're an <strong>e-commerce startup</strong>, a <strong>fintech innovator</strong>, or a <strong>global SaaS platform</strong> operating in Indonesia,
-      our GPT delivers <em>localized, practical, and affordable</em> compliance support.
-    </p>
-
-    <h2>Pricing</h2>
-    <p>Start free. Upgrade when ready. Subscriptions from <strong>IDR 49,000/month</strong> (approx. $3 USD).</p>
-    <p>
-      For occasional users, one-time report options start at <strong>IDR 29,000</strong>.
-    </p>
-
-    <a class="button" href="mailto:45dgof8@gmail.com">📬 Contact Us</a>
-    <a class="button" href="https://paypal.me/45dgof8" style="background: #38a169;">💰 Support / Pay</a>
+    <div id="content-id" style="display:none;">
+      <h2>Mengapa Menggunakan 45dgof8 - Indonesia Compliance GPT?</h2>
+      <p>Menavigasi <strong>Undang-Undang Perlindungan Data Pribadi (PDP)</strong> Indonesia bisa rumit. GPT kami dirancang untuk menyederhanakan proses kepatuhan Anda.</p>
+      <h2>Fitur Utama</h2>
+      <ul>
+        <li>🔍 Menerjemahkan kewajiban hukum ke dalam langkah praktis.</li>
+        <li>📄 Buat kebijakan privasi dalam Bahasa Indonesia & Inggris.</li>
+        <li>✅ Panduan lengkap penanganan permintaan subjek data (DSAR).</li>
+        <li>📊 Membantu dalam pemetaan dan penilaian risiko data.</li>
+        <li>🌍 Patuh terhadap transfer data lintas batas.</li>
+        <li>🔔 Notifikasi tentang pembaruan hukum terbaru.</li>
+      </ul>
+      <h2>Untuk Siapa?</h2>
+      <p>Dari e-commerce hingga fintech dan SaaS — GPT ini menyesuaikan kebutuhan kepatuhan Anda di Indonesia.</p>
+      <h2>Harga</h2>
+      <p>Mulai gratis. Berlangganan bulanan dari <strong>IDR 49.000</strong>. Laporan satu kali mulai dari <strong>IDR 29.000</strong>.</p>
+      <a class="button" href="mailto:45dgof8@gmail.com">📬 Hubungi Kami</a>
+      <a class="button" href="https://paypal.me/45dgof8" style="background: #38a169;">💰 Dukung / Bayar</a>
+    </div>
   </section>
 
   <footer>
-    &copy; 2025 45dgof8 - Indonesia Compliance GPT. All rights reserved.
+    &copy; 2025 45dgof8 - Indonesia Compliance GPT.
   </footer>
+
+  <script>
+    function setLanguage(lang) {
+      document.getElementById("content-en").style.display = lang === 'en' ? 'block' : 'none';
+      document.getElementById("content-id").style.display = lang === 'id' ? 'block' : 'none';
+
+      document.getElementById("btn-en").classList.toggle("active", lang === 'en');
+      document.getElementById("btn-id").classList.toggle("active", lang === 'id');
+
+      document.getElementById("subtitle").textContent = lang === 'id'
+        ? "Asisten Cerdas Anda untuk Kepatuhan PDP di Indonesia"
+        : "Your Smart Assistant for PDPL Compliance in Indonesia";
+    }
+  </script>
 </body>
 </html>
