@@ -89,7 +89,7 @@
   <img src="japan_bloom.webp" alt="Cherry Blossoms in Japan" width="600" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 </div>
 
-<div class="lang en">
+<div class="lang en" id="lang-en">
   <header>
     <h1>🌸 45dgof8 – Where Privacy Blooms with Precision 🌸</h1>
     <p>Your trusted guide to Japan’s APPI Compliance</p>
@@ -117,7 +117,7 @@
       <div class="card"><strong>Enterprise Sakura:</strong> $99/month – Full-suite compliance for corporations.</div>
     </div>
   </section>
-  <div class="lang jp">
+  <div class="lang jp" id="lang-jp">
   <header>
     <h1>🌸 45dgof8 – プライバシーが精密に花開く場所 🌸</h1>
     <p>あなたの信頼できるガイド — 日本のAPPI（個人情報保護法）コンプライアンスへ</p>
@@ -191,10 +191,9 @@
     const url = `https://www.paypal.com/paypalme/45dgof8?plan=${encodedPlanJP}`;
     window.open(url, '_blank');
     return false;
-  }`;
-    window.open(url, '_blank');
-    return false;
   }
+  // Remove stray ending from copy-paste
+  // Clean up malformed ending of script
 </script>
 
 </body>
