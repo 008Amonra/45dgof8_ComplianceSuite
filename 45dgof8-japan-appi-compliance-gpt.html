@@ -62,6 +62,7 @@
     }
     .lang { display: none; }
     .lang.en { display: block; }
+    .lang.jp { display: none; }
     .lang-switch { text-align: center; margin: 20px 0; }
     .lang-switch button {
       margin: 0 10px;
@@ -81,6 +82,8 @@
 <div style="text-align: center; margin: 40px 0;">
   <img src="japan_bloom.webp" alt="Cherry Blossoms in Japan" width="600" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 </div>
+
+<div class="lang en">
   <header>
     <h1>🌸 45dgof8 – Where Privacy Blooms with Precision 🌸</h1>
     <p>Your trusted guide to Japan’s APPI Compliance</p>
@@ -133,9 +136,9 @@
     <div class="features">
       <div class="card">🌸 <strong>データ保護の知恵</strong>：個人データと要配慮個人情報に関するAPPIの規則を理解・適用。</div>
       <div class="card">🌸 <strong>透明な同意の流れ</strong>：ユーザーが信頼できるフォームを作成。</div>
-      <div class="card">🌸 <strong>ユーザーの権利</strong>：アクセス・訂正・削除リクエストに自信を持って対応。</div>
-      <div class="card">🌸 <strong>越境データ移転も安心</strong>：国際的なデータ共有を適切に管理。</div>
-      <div class="card">🌸 <strong>迅速な漏えい対応</strong>：すぐに使えるテンプレートと対応ワークフロー。</div>
+      <div class="card">🌸 <strong>ユーザーの権利</strong>：アクセス・証正・削除リクエストに自信を持って対応。</div>
+      <div class="card">🌸 <strong>超境データ移転も安心</strong>：国際的なデータ共有を適切に管理。</div>
+      <div class="card">🌸 <strong>近速な漏えい対応</strong>：すぐに使えるテンプレートと対応ワークフロー。</div>
       <div class="card">🌸 <strong>業界別トレーニング</strong>：チーム教育に役立つガイドを提供。</div>
     </div>
   </section>
@@ -152,7 +155,7 @@
   </div>
   <section class="section">
     <h2>🌸 重要なお知らせ</h2>
-    <p>すべてのサービスは直感的なチャットインターフェースを通じて提供されます。個別サポートが必要な場合は、以下へご連絡ください：<a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
+    <p>すべてのサービスは直感的なチャットインターフェースを通じて提供されます。個別サポートが必要な場合は、下記までご連絡ください：<a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
   </section>
   <footer>© 2025 45dgof8 – 桜のように優雅なプライバシーを</footer>
 </div>
@@ -160,7 +163,8 @@
 <script>
   function setLanguage(lang) {
     document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-    document.querySelector('.lang.' + lang).style.display = 'block';
+    const target = document.querySelector('.lang.' + lang);
+    if (target) target.style.display = 'block';
   }
 </script>
 
