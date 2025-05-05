@@ -66,15 +66,27 @@
       font-size: 0.9rem;
       color: #555;
     }
-    .lang { display: none; }
-    .lang.en { display: block; }
-    .lang.jp { display: none; }
-    .lang-switch { text-align: center; margin: 20px 0; }
+    .lang {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .lang-switch {
+      text-align: center;
+      margin: 20px 0;
+    }
     .lang-switch button {
       margin: 0 10px;
       padding: 10px 20px;
       font-weight: bold;
       cursor: pointer;
+      background-color: #eee;
+      border: 2px solid transparent;
+    }
+    .lang-switch button.active {
+      background-color: #b30059;
+      color: white;
+      border-color: #b30059;
     }
   </style>
 </head>
@@ -89,14 +101,7 @@
   <img src="japan_bloom.webp" alt="Cherry Blossoms in Japan" width="600" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 </div>
 
-<div class="lang en" id="lang-en">
-  <header>
-    <h1>🌸 45dgof8 – Where Privacy Blooms with Precision 🌸</h1>
-    <p>Your trusted guide to Japan’s APPI Compliance</p>
-  </header>
-  <center>
-    <a href="https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f-45dgof8-japan-appi-compliance-gpt" class="launch-button" target="_blank">🚀 japan-appi-compliance</a>
-  </center>
+<div class="lang en">
   <section class="section">
     <h2>🌿 Why 45dgof8?</h2>
     <p>Just as cherry blossoms signal renewal, 45dgof8 helps you navigate Japan’s privacy law with confidence. Legal precision meets ethical clarity—every step of the way.</p>
@@ -116,17 +121,21 @@
       <div class="card"><strong>Professional Growth:</strong> $25/month – Tools for scaling companies.</div>
       <div class="card"><strong>Enterprise Sakura:</strong> $99/month – Full-suite compliance for corporations.</div>
     </div>
+    <div class="subscribe">
+      <form id="paypalForm" onsubmit="return goToPayPal();">
+        <label for="plan">Choose your plan:</label>
+        <select id="plan">
+          <option value="Basic Bloom">Basic Bloom – $5/month</option>
+          <option value="Professional Growth">Professional Growth – $25/month</option>
+          <option value="Enterprise Sakura">Enterprise Sakura – $99/month</option>
+        </select><br>
+        <a href="#" onclick="return goToPayPal();">💸 Subscribe Now</a>
+      </form>
+    </div>
   </section>
-  </div>
+</div>
 
-<div class="lang jp" id="lang-jp">
-  <header>
-    <h1>🌸 45dgof8 – プライバシーが精密に花開く場所 🌸</h1>
-    <p>あなたの信頼できるガイド — 日本のAPPI（個人情報保護法）コンプライアンスへ</p>
-  </header>
-  <center>
-    <a href="https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f-45dgof8-japan-appi-compliance-gpt" class="launch-button" target="_blank">🚀 japan-appi-compliance</a>
-  </center>
+<div class="lang jp">
   <section class="section">
     <h2>🌿 なぜ45dgof8？</h2>
     <p>桜が新たな季節の始まりを告げるように、45dgof8は日本のプライバシー法を安心して進めるための道しるべです。</p>
@@ -134,9 +143,9 @@
     <div class="features">
       <div class="card">🌸 <strong>データ保護の知恵</strong>：個人データと要配慮個人情報に関するAPPIの規則を理解・適用。</div>
       <div class="card">🌸 <strong>透明な同意の流れ</strong>：ユーザーが信頼できるフォームを作成。</div>
-      <div class="card">🌸 <strong>ユーザーの権利</strong>：アクセス・証正・削除リクエストに自信を持って対応。</div>
-      <div class="card">🌸 <strong>超境データ移転も安心</strong>：国際的なデータ共有を適切に管理。</div>
-      <div class="card">🌸 <strong>近速な漏えい対応</strong>：すぐに使えるテンプレートと対応ワークフロー。</div>
+      <div class="card">🌸 <strong>ユーザーの権利</strong>：アクセス・訂正・削除リクエストに自信を持って対応。</div>
+      <div class="card">🌸 <strong>越境データ移転も安心</strong>：国際的なデータ共有を適切に管理。</div>
+      <div class="card">🌸 <strong>迅速な漏えい対応</strong>：すぐに使えるテンプレートと対応ワークフロー。</div>
       <div class="card">🌸 <strong>業界別トレーニング</strong>：チーム教育に役立つガイドを提供。</div>
     </div>
   </section>
@@ -147,38 +156,39 @@
       <div class="card"><strong>プロフェッショナル・グロース：</strong>月額 $25 – 成長企業のための拡張ツール。</div>
       <div class="card"><strong>エンタープライズ・サクラ：</strong>月額 $99 – 企業向けフル機能コンプライアンス。</div>
     </div>
+    <div class="subscribe">
+      <form id="paypalFormJP" onsubmit="return goToPayPalJP();">
+        <label for="planJP">プランを選択してください：</label>
+        <select id="planJP">
+          <option value="ベーシック・ブルーム">🌱 ベーシック・ブルーム – 月額 $5</option>
+          <option value="プロフェッショナル・グロース">🌿 プロフェッショナル・グロース – 月額 $25</option>
+          <option value="エンタープライズ・サクラ">🌸 エンタープライズ・サクラ – 月額 $99</option>
+        </select><br>
+        <a href="#" onclick="return goToPayPalJP();">💸 今すぐ登録</a>
+      </form>
+    </div>
   </section>
-  <div class="subscribe">
-  <form id="paypalFormJP" onsubmit="return goToPayPalJP();">
-    <label for="planJP">プランを選択してください：</label>
-    <select id="planJP">
-  <option value="ベーシック・ブルーム">🌱 ベーシック・ブルーム – 月額 $5</option>
-  <option value="プロフェッショナル・グロース">🌿 プロフェッショナル・グロース – 月額 $25</option>
-  <option value="エンタープライズ・サクラ">🌸 エンタープライズ・サクラ – 月額 $99</option>
-</select>
-    <br>
-    <a href="#" onclick="return goToPayPalJP();">💸 今すぐ登録</a>
-  </form>
 </div>
-  <section class="section">
-    <h2>🌸 重要なお知らせ</h2>
-    <p>すべてのサービスは直感的なチャットインターフェースを通じて提供されます。個別サポートが必要な場合は、下記までご連絡ください：<a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
-  </section>
-  <footer>© 2025 45dgof8 – 桜のように優雅なプライバシーを</footer>
-</div>
-
-
-
 
 <script>
-  // 🔢 BLOCK 1: Language Switch Function
   function setLanguage(lang) {
-    document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.querySelector(`.lang-switch button[onclick="setLanguage('${lang}')"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+    localStorage.setItem('preferredLang', lang);
+
+    document.querySelectorAll('.lang').forEach(el => {
+      el.style.opacity = '0';
+      setTimeout(() => el.style.display = 'none', 300);
+    });
+
     const target = document.querySelector('.lang.' + lang);
-    if (target) target.style.display = 'block';
+    if (target) {
+      target.style.display = 'block';
+      setTimeout(() => target.style.opacity = '1', 10);
+    }
   }
 
-  // 🔢 BLOCK 2: PayPal Redirect Function
   function goToPayPal() {
     const plan = document.getElementById('plan').value;
     const encodedPlan = encodeURIComponent(plan);
@@ -194,8 +204,12 @@
     window.open(url, '_blank');
     return false;
   }
-  // Remove stray ending from copy-paste
-  // Clean up malformed ending of script
+
+  window.onload = function () {
+    const savedLang = localStorage.getItem('preferredLang');
+    const browserLang = navigator.language.startsWith('ja') ? 'jp' : 'en';
+    setLanguage(savedLang || browserLang);
+  };
 </script>
 
 </body>
