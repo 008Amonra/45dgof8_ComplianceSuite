@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -46,6 +46,11 @@
       text-align: center;
       margin: 2rem 0;
     }
+    .subscribe select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
     .subscribe a {
       background: #0070ba;
       color: white;
@@ -53,6 +58,7 @@
       text-decoration: none;
       border-radius: 6px;
       font-weight: bold;
+      display: inline-block;
     }
     footer {
       text-align: center;
@@ -112,14 +118,17 @@
     </div>
   </section>
   <div class="subscribe">
-    <a href="https://www.paypal.com/paypalme/45dgof8" target="_blank">💸 Subscribe Now</a>
+    <form id="paypalForm" onsubmit="return goToPayPal();">
+      <label for="plan">Choose your plan:</label>
+      <select id="plan">
+        🌱 Basic Bloom – $5/month</option>
+        🌿 Professional Growth – $25/month</option>
+        🌸 Enterprise Sakura – $99/month</option>
+      </select>
+      <br>
+      <a href="#" onclick="return goToPayPal();">💸 Subscribe Now</a>
+    </form>
   </div>
-  <section class="section">
-    <h2>🌸 Important Petal</h2>
-    <p>All services delivered via this intuitive, chat-based interface. For personal help, reach out: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
-  </section>
-  <footer>© 2025 45dgof8 – Privacy with the elegance of a cherry blossom.</footer>
-</div>
 
 <div class="lang jp">
   <header>
@@ -151,8 +160,17 @@
     </div>
   </section>
   <div class="subscribe">
-    <a href="https://www.paypal.com/paypalme/45dgof8" target="_blank">💸 今すぐ登録</a>
-  </div>
+  <form id="paypalFormJP" onsubmit="return goToPayPalJP();">
+    <label for="planJP">プランを選択してください：</label>
+    <select id="planJP">
+      🌱 ベーシック・ブルーム – 月額 $5</option>
+      🌿 プロフェッショナル・グロース – 月額 $25</option>
+      🌸 エンタープライズ・サクラ – 月額 $99</option>
+    </select>
+    <br>
+    <a href="#" onclick="return goToPayPalJP();">💸 今すぐ登録</a>
+  </form>
+</div>
   <section class="section">
     <h2>🌸 重要なお知らせ</h2>
     <p>すべてのサービスは直感的なチャットインターフェースを通じて提供されます。個別サポートが必要な場合は、下記までご連絡ください：<a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
@@ -160,11 +178,46 @@
   <footer>© 2025 45dgof8 – 桜のように優雅なプライバシーを</footer>
 </div>
 
+
+<div class="subscribe">
+  <form id="paypalForm" onsubmit="return goToPayPal();">
+    <label for="plan">Choose your plan:</label>
+    <select id="plan">
+      <option value="Basic Bloom">Basic Bloom – $5/month</option>
+      <option value="Professional Growth">Professional Growth – $25/month</option>
+      <option value="Enterprise Sakura">Enterprise Sakura – $99/month</option>
+    </select>
+    <br>
+    <a href="#" onclick="return goToPayPal();">💸 Subscribe Now</a>
+  </form>
+</div>
+
 <script>
+  // 🔢 BLOCK 1: Language Switch Function
   function setLanguage(lang) {
     document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
     const target = document.querySelector('.lang.' + lang);
     if (target) target.style.display = 'block';
+  }
+
+  // 🔢 BLOCK 2: PayPal Redirect Function
+  function goToPayPal() {
+    const plan = document.getElementById('plan').value;
+    const encodedPlan = encodeURIComponent(plan);
+    const url = `https://www.paypal.com/paypalme/45dgof8?plan=${encodedPlan}`;
+    window.open(url, '_blank');
+    return false;
+  }
+
+  function goToPayPalJP() {
+    const planJP = document.getElementById('planJP').value;
+    const encodedPlanJP = encodeURIComponent(planJP);
+    const url = `https://www.paypal.com/paypalme/45dgof8?plan=${encodedPlanJP}`;
+    window.open(url, '_blank');
+    return false;
+  }`;
+    window.open(url, '_blank');
+    return false;
   }
 </script>
 
