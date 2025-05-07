@@ -1,3 +1,5 @@
+# Let's calculate approximately how many rows are in the HTML for comparison.
+html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +14,18 @@
     .container { max-width: 960px; margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     h2 { color: #004d40; }
     ul { line-height: 1.8; }
-    .price-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .price-table th, .price-table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    .price-table th { background-color: #eeeeee; }
+    .price-table { width: 100%; border-collapse: collapse; margin-top: 1em; font-family: 'Segoe UI', sans-serif; font-size: 15px; }
+    .price-table th, .price-table td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+    .price-table th { background-color: #f2f2f2; font-weight: bold; }
+    .price-table td:first-child { font-weight: 500; }
+    .tooltip { position: relative; display: inline-block; cursor: help; }
+    .tooltip .tooltiptext {
+      visibility: hidden; width: 220px; background-color: #333; color: #fff;
+      text-align: left; border-radius: 6px; padding: 10px;
+      position: absolute; z-index: 1; bottom: 125%; left: 0;
+      opacity: 0; transition: opacity 0.3s; font-size: 13px;
+    }
+    .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
     a { color: #00695c; text-decoration: none; }
     footer { text-align: center; margin: 40px auto; font-size: 0.9em; color: #777; }
   </style>
@@ -23,8 +34,12 @@
 
   <header>
     <h1>45dgof8 – Mexico LFPDPPP Compliance GPT</h1>
-    <p class="tagline">Your AI-powered assistant for navigating Mexico’s privacy law for private entities.</p>
+    <p class="tagline">AI Legal Assistant – LFPDPPP | Cumplimiento Inteligente</p>
   </header>
+
+  <section style="padding: 2rem 1rem; text-align: center;">
+    <img src="uH7z.webp" alt="LFPDPPP Compliance" style="max-width: 100%; height: auto; border-radius: 10px;">
+  </section>
 
   <div class="container">
     <h2>What This GPT Does</h2>
@@ -37,118 +52,58 @@
       <li>Multilingual support in Spanish and select Indigenous languages</li>
     </ul>
 
-<style>
-  .price-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1em;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 15px;
-  }
+    <h2 class="tooltip">
+      Suggested Pricing (Smart & Accessible)
+      <span class="tooltiptext">We believe in fair, realistic pricing. In 2025, you get 25% off to support easier access to quality AI support.</span>
+    </h2>
 
-  .price-table th, .price-table td {
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    text-align: left;
-  }
-
-  .price-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-
-  .price-table td:first-child {
-    font-weight: 500;
-  }
-
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: help;
-  }
-
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 220px;
-    background-color: #333;
-    color: #fff;
-    text-align: left;
-    border-radius: 6px;
-    padding: 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; 
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 13px;
-  }
-
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
-<section style="padding: 2rem 1rem; text-align: center;">
-  <img src="uH7z.webp" alt="LFPDPPP Compliance">
-  <header>
-    <h1>45dgof8 – Mexico LFPDPPP Compliance GPT</h1>
-    <p class="tagline">AI Legal Assistant – LFPDPPP | Cumplimiento Inteligente</p>
-  </header>
-</section>
-
-
-<h2 class="tooltip">
-  Suggested Pricing (Smart & Accessible)
-  <span class="tooltiptext">We believe in fair, realistic pricing. In 2025, you get 25% off to support easier access to quality AI support.</span>
-</h2>
-
-<table class="price-table">
-  <tr>
-    <th>Service</th>
-    <th>Price (MX$)</th>
-    <th>Approx. USD</th>
-  </tr>
-  <tr>
-    <td>💡 Basic GPT Consulting (per hour)</td>
-    <td>MX$249</td>
-    <td>~$13</td>
-  </tr>
-  <tr>
-    <td>🎙️ Premium GPT Live Support (interactive)</td>
-    <td>MX$499</td>
-    <td>~$25</td>
-  </tr>
-  <tr>
-    <td>📝 Document Generator (Lite)</td>
-    <td>MX$149</td>
-    <td>~$7.50</td>
-  </tr>
-  <tr>
-    <td>❓ FAQ Toolkit (10 Custom Q&As)</td>
-    <td>MX$199</td>
-    <td>~$10</td>
-  </tr>
-  <tr>
-    <td>🧭 Risk Self-Check Report</td>
-    <td>MX$299</td>
-    <td>~$15</td>
-  </tr>
-  <tr>
-    <td>📆 Monthly GPT Access Pass</td>
-    <td>MX$187/month</td>
-    <td>~$9.50/month</td>
-  </tr>
-</table>
+    <table class="price-table">
+      <tr>
+        <th>Service</th>
+        <th>Price (MX$)</th>
+        <th>Approx. USD</th>
+      </tr>
+      <tr>
+        <td>💡 Basic GPT Consulting (per hour)</td>
+        <td>MX$249</td>
+        <td>~$13</td>
+      </tr>
+      <tr>
+        <td>🎙️ Premium GPT Live Support (interactive)</td>
+        <td>MX$499</td>
+        <td>~$25</td>
+      </tr>
+      <tr>
+        <td>📝 Document Generator (Lite)</td>
+        <td>MX$149</td>
+        <td>~$7.50</td>
+      </tr>
+      <tr>
+        <td>❓ FAQ Toolkit (10 Custom Q&As)</td>
+        <td>MX$199</td>
+        <td>~$10</td>
+      </tr>
+      <tr>
+        <td>🧭 Risk Self-Check Report</td>
+        <td>MX$299</td>
+        <td>~$15</td>
+      </tr>
+      <tr>
+        <td>📆 Monthly GPT Access Pass</td>
+        <td>MX$187/month</td>
+        <td>~$9.50/month</td>
+      </tr>
+    </table>
 
     <p><strong>Payment Info:</strong> All financial transactions are securely managed through <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8–pulse</a>, our trusted payment infrastructure.</p>
-  </div>
 
-  <div style="margin-top: 20px; text-align: center;">
-  <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank"
-     style="background-color: #0078D4; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold; display: inline-block;">
-    💬 Start Chat with Mexican GPT
-  </a>
-</div>
+    <div style="margin-top: 20px; text-align: center;">
+      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank"
+         style="background-color: #0078D4; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold; display: inline-block;">
+        💬 Start Chat with Mexican GPT
+      </a>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 45dgof8 – Mexico LFPDPPP GPT. All rights reserved.
@@ -156,5 +111,8 @@
 
 </body>
 </html>
+"""
 
-
+# Count the number of lines
+num_lines = len(html_code.strip().splitlines())
+num_lines
