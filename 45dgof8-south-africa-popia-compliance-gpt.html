@@ -119,6 +119,75 @@
     Launch POPIA Compliance GPT
   </a>
 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>POPIA Compliance</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    select, button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- Language Selector -->
+  <label for="languageSelect">🌍 Choose your language:</label>
+  <select id="languageSelect">
+    <option value="en">English</option>
+    <option value="af">Afrikaans</option>
+    <option value="zu">isiZulu</option>
+  </select>
+
+  <!-- Headline and Button Area -->
+  <h2 id="headline">Navigate South Africa’s Protection of Personal Information Act (POPIA) with precision.</h2>
+  <p id="subline">Generate policies, manage consent, and ensure real-world compliance through an AI assistant built for South African businesses.</p>
+  <button id="launchBtn">Launch POPIA Compliance GPT</button>
+
+  <script>
+    const translations = {
+      en: {
+        headline: "Navigate South Africa’s Protection of Personal Information Act (POPIA) with precision.",
+        subline: "Generate policies, manage consent, and ensure real-world compliance through an AI assistant built for South African businesses.",
+        launchBtn: "Launch POPIA Compliance GPT"
+      },
+      af: {
+        headline: "Navigeer Suid-Afrika se Wet op Beskerming van Persoonlike Inligting (POPIA) met presisie.",
+        subline: "Skep beleide, bestuur toestemming, en verseker werklike nakoming deur 'n KI-assistent vir Suid-Afrikaanse besighede.",
+        launchBtn: "Begin POPIA Nakomings-GPT"
+      },
+      zu: {
+        headline: "Zulawula Umthetho Wokuvikelwa Kolwazi Lomuntu Siqu eNingizimu Afrika (POPIA) ngokunemba.",
+        subline: "Dala izinqubomgomo, lawula imvume, futhi uqinisekise ukuthobela ngokweqiniso ngomsizi we-AI wakwaNingizimu Afrika.",
+        launchBtn: "Qalisa i-POPIA Compliance GPT"
+      }
+    };
+
+    const languageSelect = document.getElementById('languageSelect');
+    const headline = document.getElementById('headline');
+    const subline = document.getElementById('subline');
+    const launchBtn = document.getElementById('launchBtn');
+
+    function updateLanguage(lang) {
+      const t = translations[lang];
+      headline.textContent = t.headline;
+      subline.textContent = t.subline;
+      launchBtn.textContent = t.launchBtn;
+      localStorage.setItem("preferredLang", lang);
+    }
+
+    languageSelect.addEventListener('change', (e) => updateLanguage(e.target.value));
+
+    // Auto-apply saved language
+    const savedLang = localStorage.getItem("preferredLang") || "en";
+    languageSelect.value = savedLang;
+    updateLanguage(savedLang);
+  </script>
+
+</body>
+</html>
+
+
   <button class="toggle-btn" onclick="toggleTheme()">Toggle Light/Dark Theme</button>
 
   <footer>
