@@ -15,44 +15,47 @@
     img.logo { max-width: 200px; margin: 1rem auto; display: block; }
     .highlight-box { background: #222; padding: 1rem; border-left: 4px solid #00ff99; margin: 2rem 0; border-radius: 4px; }
     .glow-on-scroll {
-    transition: box-shadow 0.5s ease;
-  }
-  .glow-on-scroll.active {
-    box-shadow: 0 0 20px 5px #00ffcc;
-  }
-  .glitzer-text {
-    font-family: "Brush Script MT", cursive;
-    font-size: 2rem;
-    background: linear-gradient(90deg, #ffccff, #ccffff, #ffccff);
-    background-size: 200% auto;
-    color: #fff;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 3s linear infinite;
-    display: inline-block;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-  }
-  .animate-on-load.loaded {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+      transition: box-shadow 0.5s ease;
+    }
+    .glow-on-scroll.active {
+      box-shadow: 0 0 20px 5px #00ffcc;
+    }
+    .glitzer-text {
+      font-family: "Brush Script MT", cursive;
+      font-size: 2rem;
+      background: linear-gradient(90deg, #ffccff, #ccffff, #ffccff);
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+      display: inline-block;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+    .animate-on-load {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 1s ease;
+    }
+    .animate-on-load.loaded {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
-      <img src="ready2comply.webp" alt="Ready2Comply Logo" style="max-width: 300px; width: 100%; height: auto; opacity: 0; transform: translateY(-20px); transition: all 1s ease;" class="animate-on-load">
-      <img src="ready2comply_center.webp" alt="Ready2Comply Visual" style="max-width: 300px; width: 100%; height: auto; opacity: 0; transform: translateY(-20px); transition: all 1s ease 0.3s;" class="animate-on-load">
+      <img src="ready2comply.webp" alt="Ready2Comply Logo" style="max-width: 300px; width: 100%; height: auto;" class="animate-on-load">
+      <img src="ready2comply_center.webp" alt="Ready2Comply Visual" style="max-width: 300px; width: 100%; height: auto;" class="animate-on-load">
     </div>
     <p>GPSR-konforme Produktdokumente für Etsy, Handmade & Kreativshops</p>
   </header>
-  
-    
+  <main>
     <section class="highlight-box">
       <h2>Gesetzeskonforme <span class="glitzer-text">Hyperkreativität</span>?</h2>
       <p>Ja, das geht! Mit Ready2Comply bekommst du nicht nur trockene Pflichterfüllung, sondern kreative, visuell ansprechende und rechtssichere Dokumente, die deine Marke stärken. Wir verwandeln Paragraphen-Chaos in Klarheit und geben dir Werkzeuge, die du sofort einsetzen kannst.</p>
@@ -74,7 +77,8 @@
       <p>Du verkaufst Tassen, Kerzen, Poster oder Dekoartikel online? Dann brauchst du ab Dezember 2024 die richtigen Infos für den EWR und Nordirland. Wir helfen dir!</p>
     </section>
     <section>
-       Zusätzlich sind wir offen für moderne Zahlungsformen wie USD oder sogar XRP – sprich uns einfach an!</p>
+      <h2>Was kostet das?</h2>
+      <p>Unsere Vorlagen bekommst du schon ab 2 CHF. Für individuell erstellte Risikoanalysen und Dokumente berechnen wir faire 5 CHF pro Produkt. Zusätzlich sind wir offen für moderne Zahlungsformen wie USD oder sogar XRP – sprich uns einfach an!</p>
     </section>
     <section>
       <h2>Starte jetzt:</h2>
@@ -86,31 +90,6 @@
     Bereitgestellt mit Unterstützung von Eva, deiner empathischen KI-Begleiterin für kreative Prozesse und smarte Automatisierung.
   </footer>
 <script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  });
-
-  document.querySelectorAll('.glow-on-scroll').forEach(el => {
-    observer.observe(el);
-  });
-</script>
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  });
-
-  document.querySelectorAll('.glow-on-scroll').forEach(el => {
-    observer.observe(el);
-  });
-
   window.addEventListener('load', () => {
     document.querySelectorAll('.animate-on-load').forEach(el => {
       el.classList.add('loaded');
