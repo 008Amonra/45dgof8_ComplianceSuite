@@ -37,18 +37,22 @@
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
   }
+  .animate-on-load.loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
   <header>
-    <img src="ready2comply.webp" alt="Ready2Comply Logo" class="logo" style="max-width: 800px; width: 100%; height: auto;">
-    <h1>Ready2Comply</h1>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+      <img src="ready2comply.webp" alt="Ready2Comply Logo" style="max-width: 300px; width: 100%; height: auto; opacity: 0; transform: translateY(-20px); transition: all 1s ease;" class="animate-on-load">
+      <img src="ready2comply_center.webp" alt="Ready2Comply Visual" style="max-width: 300px; width: 100%; height: auto; opacity: 0; transform: translateY(-20px); transition: all 1s ease 0.3s;" class="animate-on-load">
+    </div>
     <p>GPSR-konforme Produktdokumente für Etsy, Handmade & Kreativshops</p>
   </header>
   
-    <div style="text-align: center; margin: 2rem 0;">
-      <img src="ready2comply_center.webp" alt="Ready2Comply Visual" style="max-width: 22%; height: auto;" class="glow-on-scroll">
-    </div>
+    
     <section class="highlight-box">
       <h2>Gesetzeskonforme <span class="glitzer-text">Hyperkreativität</span>?</h2>
       <p>Ja, das geht! Mit Ready2Comply bekommst du nicht nur trockene Pflichterfüllung, sondern kreative, visuell ansprechende und rechtssichere Dokumente, die deine Marke stärken. Wir verwandeln Paragraphen-Chaos in Klarheit und geben dir Werkzeuge, die du sofort einsetzen kannst.</p>
@@ -92,6 +96,25 @@
 
   document.querySelectorAll('.glow-on-scroll').forEach(el => {
     observer.observe(el);
+  });
+</script>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  });
+
+  document.querySelectorAll('.glow-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.animate-on-load').forEach(el => {
+      el.classList.add('loaded');
+    });
   });
 </script>
 </body>
