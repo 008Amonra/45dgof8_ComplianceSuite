@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>45dgof8-DNA – Glypheon Navigator</title>
+  <style>
+    body { margin: 0; background: #000; color: #fff; overflow: hidden; font-family: sans-serif; }
+    .container { position: relative; width: 100vw; height: 100vh; }
+    .glypheon {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0.4;
+      cursor: pointer;
+    }
+    .glypheon img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .glypheon.focused {
+      transform: scale(1.5);
+      opacity: 1;
+      z-index: 10;
+    }
+    .glypheon:hover {
+      transform: scale(1.3);
+      opacity: 0.8;
+      z-index: 5;
+    }
+    .controls {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      display: flex;
+      gap: 4px;
+    }
+    .controls button {
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0;
+    }
+    #addForm {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    #addForm input {
+      margin: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="dnaStrand"></div>
+  <form id="addForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="url" id="url" placeholder="URL" required>
+    <input type="url" id="icon" placeholder="Icon URL" required>
+    <button type="submit">+</button>
+  </form>
+  <script>
+    const container = document.getElementById('dnaStrand');
+    const radius = 200;
+    const links = JSON.parse(localStorage.getItem('glypheons')) || [
+      { name: 'Ready2Comply', url: 'https://45dgof8.com/Ready2Comply.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/ready2comply.webp' },
+      { name: 'Eva Answers', url: 'https://chat.openai.com/g/g-M0LhoBCGF-eva-answers', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/eva.png' },
+      { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/etsy.png' },
+      { name: 'CatArt Creator', url: 'https://chat.openai.com/g/g-GJMKhCrYm-catart-creator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/catart.png' },
+      { name: 'Tech Support GPT', url: 'https://chat.openai.com/g/g-mRtoSSJdi-tech-support', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/techsupport.png' },
+      { name: 'Dion GPT', url: 'https://chat.openai.com/g/g-KfzlhBxKe-dion', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/dion.png' },
+      { name: 'GalacticChoices', url: 'https://chat.openai.com/g/g-fJuMC19cv-galacticchoices', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/galactic.png' }
+    ];
+
+    function render() {
+      container.innerHTML = '';
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      links.forEach((link, i) => {
+        const angle = i * (Math.PI / 6);
+        const x = centerX + radius * Math.cos(angle) - 32;
+        const y = centerY + radius * Math.sin(angle) - 32;
+
+        const el = document.createElement('div');
+        el.className = 'glypheon';
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.title = link.name;
+        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+
+        const controls = document.createElement('div');
+        controls.className = 'controls';
+        controls.innerHTML = `
+          <button title="Entfernen">&times;</button>
+          <button title="Fixieren">&#10003;</button>
+        `;
+        controls.children[0].onclick = () => {
+          links.splice(i, 1);
+          localStorage.setItem('glypheons', JSON.stringify(links));
+          render();
+        };
+        controls.children[1].onclick = () => el.classList.toggle('focused');
+
+        el.appendChild(controls);
+        el.appendChild(anchor);
+        container.appendChild(el);
+      });
+    }
+
+    render();
+
+    document.getElementById('addForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const url = document.getElementById('url').value;
+      const icon = document.getElementById('icon').value;
+      links.push({ name, url, icon });
+      localStorage.setItem('glypheons', JSON.stringify(links));
+      e.target.reset();
+      render();
+    });
+  </script>
+</body>
+</html>
