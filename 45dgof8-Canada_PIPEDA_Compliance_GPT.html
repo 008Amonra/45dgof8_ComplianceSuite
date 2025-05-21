@@ -81,13 +81,25 @@
       color: #777;
       padding: 2rem;
     }
-    [lang] { display: none; }
-    html[lang="en"] [lang="en"],
-    html[lang="fr"] [lang="fr"] {
-      display: block;
+    [lang] { display: inline; }
+    html[lang="en"] [lang="fr"] {
+      display: none;
+    }
+    html[lang="fr"] [lang="en"] {
+      display: none;
     }
   </style>
 </head>
+<body>
+  <div class="language-toggle">
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('fr')">Français</button>
+  </div>
+<script>
+  function setLanguage(lang) {
+    document.documentElement.setAttribute('lang', lang);
+  }
+</script>
 <body>
   <div class="language-toggle">
     <button onclick="setLanguage('en')">English</button>
