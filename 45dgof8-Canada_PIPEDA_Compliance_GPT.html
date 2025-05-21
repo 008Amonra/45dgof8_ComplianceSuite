@@ -23,6 +23,17 @@
       margin: 0;
       font-size: 2.5rem;
     }
+    .language-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .language-toggle button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
     section {
       max-width: 960px;
       margin: 2rem auto;
@@ -70,77 +81,130 @@
       color: #777;
       padding: 2rem;
     }
+    [lang] { display: none; }
+    html[lang="en"] [lang="en"],
+    html[lang="fr"] [lang="fr"] {
+      display: block;
+    }
   </style>
 </head>
 <body>
+  <div class="language-toggle">
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('fr')">Français</button>
+  </div>
   <header>
-    <h1>Canadian Privacy Compliance. Simplified.</h1>
-    <p>Comply with PIPEDA and Quebec Law 25 — fast and stress-free.</p>
+    <h1>
+      <span lang="en">Canadian Privacy Compliance. Simplified.</span>
+      <span lang="fr">Conformité à la vie privée canadienne. Simplifiée.</span>
+    </h1>
+    <p>
+      <span lang="en">Comply with PIPEDA and Quebec Law 25 — fast and stress-free.</span>
+      <span lang="fr">Conformez-vous à la LPRPDE et à la Loi 25 du Québec — rapidement et sans stress.</span>
+    </p>
   </header>
 
   <section style="padding: 2rem 1rem; text-align: center;">
-    <img src="Canada.webp" 
-         alt="The Dataflow is under control!" 
-         style="max-width: 100%; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.15); margin-bottom: 1rem;" />
+    <img src="Canada.webp" alt="The Dataflow is under control!" style="max-width: 100%; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.15); margin-bottom: 1rem;" />
     <p style="font-style: italic; color: #555;">
-      The Dataflow is under control! <strong>PIPEDA & Quebec Law 25 Checkpoint</strong>
+      <span lang="en">The Dataflow is under control! <strong>PIPEDA & Quebec Law 25 Checkpoint</strong></span>
+      <span lang="fr">Le flux de données est sous contrôle ! <strong>Contrôle de la LPRPDE et de la Loi 25</strong></span>
     </p>
   </section>
 
   <section>
-    <h2>What We Do</h2>
+    <h2><span lang="en">What We Do</span><span lang="fr">Ce que nous faisons</span></h2>
     <div class="features">
       <div class="feature">
-        <h3>✅ Consent Management</h3>
-        <p>Create, track, and validate user consent — implicit or explicit — with audit-ready tools.</p>
+        <h3>✅ <span lang="en">Consent Management</span><span lang="fr">Gestion du consentement</span></h3>
+        <p>
+          <span lang="en">Create, track, and validate user consent — implicit or explicit — with audit-ready tools.</span>
+          <span lang="fr">Créez, suivez et validez le consentement des utilisateurs — implicite ou explicite — avec des outils prêts pour l'audit.</span>
+        </p>
       </div>
       <div class="feature">
-        <h3>📦 Data Portability</h3>
-        <p>Export user data in standardized, user-friendly formats upon request.</p>
+        <h3>📦 <span lang="en">Data Portability</span><span lang="fr">Portabilité des données</span></h3>
+        <p>
+          <span lang="en">Export user data in standardized, user-friendly formats upon request.</span>
+          <span lang="fr">Exportez les données utilisateur dans des formats standardisés et conviviaux sur demande.</span>
+        </p>
       </div>
       <div class="feature">
-        <h3>🚨 Breach Notification</h3>
-        <p>Get instant guidance on breach severity, reporting timelines, and communication.</p>
+        <h3>🚨 <span lang="en">Breach Notification</span><span lang="fr">Notification de violation</span></h3>
+        <p>
+          <span lang="en">Get instant guidance on breach severity, reporting timelines, and communication.</span>
+          <span lang="fr">Obtenez des conseils instantanés sur la gravité des violations, les délais de déclaration et la communication.</span>
+        </p>
       </div>
       <div class="feature">
-        <h3>🔒 Privacy by Design</h3>
-        <p>Embed privacy-first design principles into your development and operations.</p>
+        <h3>🔒 <span lang="en">Privacy by Design</span><span lang="fr">Confidentialité intégrée</span></h3>
+        <p>
+          <span lang="en">Embed privacy-first design principles into your development and operations.</span>
+          <span lang="fr">Intégrez des principes de conception axés sur la confidentialité dans vos développements et opérations.</span>
+        </p>
       </div>
       <div class="feature">
-        <h3>🌐 Quebec Law 25 Tools</h3>
-        <p>Support for data localization, transparency in automation, and more — tailored to Quebec’s requirements.</p>
+        <h3>🌐 <span lang="en">Quebec Law 25 Tools</span><span lang="fr">Outils pour la Loi 25 du Québec</span></h3>
+        <p>
+          <span lang="en">Support for data localization, transparency in automation, and more — tailored to Quebec’s requirements.</span>
+          <span lang="fr">Support de la localisation des données, transparence de l'automatisation, et plus encore — adapté aux exigences du Québec.</span>
+        </p>
       </div>
     </div>
 
-    <center><a class="btn" href="https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425-45dgof8-canada-pipeda-compliance-gpt" target="_blank">Open Canada PIPEDA Compliance GPT</a></center>
+    <center>
+      <a class="btn" href="https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425-45dgof8-canada-pipeda-compliance-gpt" target="_blank">
+        <span lang="en">Open Canada PIPEDA Compliance GPT</span>
+        <span lang="fr">Ouvrir le GPT de conformité PIPEDA Canada</span>
+      </a>
+    </center>
 
-    <h2>Who We Help</h2>
-    <p>From startups to enterprises — any business handling Canadian personal data can benefit from our AI-driven solutions.</p>
+    <h2><span lang="en">Who We Help</span><span lang="fr">Qui nous aidons</span></h2>
+    <p>
+      <span lang="en">From startups to enterprises — any business handling Canadian personal data can benefit from our AI-driven solutions.</span>
+      <span lang="fr">Des startups aux grandes entreprises — toute organisation traitant des données personnelles canadiennes peut bénéficier de nos solutions pilotées par l'IA.</span>
+    </p>
 
     <div class="cta">
-      <h2>Ready to Get Started?</h2>
-      <p>No legal team required. No guesswork. Just results.</p>
+      <h2><span lang="en">Ready to Get Started?</span><span lang="fr">Prêt à commencer ?</span></h2>
+      <p>
+        <span lang="en">No legal team required. No guesswork. Just results.</span>
+        <span lang="fr">Pas besoin d'équipe juridique. Pas d'approximations. Juste des résultats.</span>
+      </p>
       <div class="cta-buttons">
- 
-</a>
+        <a href="mailto:45dgof8@gmail.com">
+          <span lang="en">Contact Us</span>
+          <span lang="fr">Contactez-nous</span>
+        </a>
       </div>
     </div>
 
     <div style="text-align: center; margin-top: 3rem;">
-      <h2>Welcome to 45dgof8 Canada PIPEDA Compliance GPT</h2>
+      <h2>
+        <span lang="en">Welcome to 45dgof8 Canada PIPEDA Compliance GPT</span>
+        <span lang="fr">Bienvenue sur 45dgof8 GPT de conformité à la LPRPDE</span>
+      </h2>
       <p style="max-width: 720px; margin: 0 auto;">
-        Automates Canada’s data compliance with scalable tools for consent, breach, and privacy-by-design.
+        <span lang="en">Automates Canada’s data compliance with scalable tools for consent, breach, and privacy-by-design.</span>
+        <span lang="fr">Automatise la conformité des données au Canada avec des outils adaptables pour le consentement, les violations et la confidentialité dès la conception.</span>
       </p>
-<p>
-  Translations on this site may be generated using automated services or AI tools. Accuracy is not guaranteed.
-  <strong>Use of translated content is at your own risk.</strong>
-  In case of discrepancy, the English and French versions take precedence.
-</p>
+      <p>
+        <span lang="en">Translations on this site may be generated using automated services or AI tools. Accuracy is not guaranteed. <strong>Use of translated content is at your own risk.</strong> In case of discrepancy, the English and French versions take precedence.</span>
+        <span lang="fr">Les traductions sur ce site peuvent être générées à l'aide de services automatisés ou d'outils d'IA. L'exactitude n'est pas garantie. <strong>L'utilisation du contenu traduit se fait à vos risques.</strong> En cas de divergence, les versions anglaise et française prévalent.</span>
+      </p>
     </div>
   </section>
 
   <footer>
     &copy; 2025 45dgof8 – Canadian Privacy Compliance Platform
   </footer>
+
+  <script>
+    function setLanguage(lang) {
+      document.documentElement.setAttribute('lang', lang);
+    }
+    // Set default language
+    setLanguage('en');
+  </script>
 </body>
 </html>
