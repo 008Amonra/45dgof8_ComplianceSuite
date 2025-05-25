@@ -48,24 +48,65 @@
 </head>
 <body>
 
-<h1>🇧🇷 Welcome to 45dgof8 - Brazil LGPD Compliance GPT 🇧🇷</h1>
+<div id="language-switcher" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
+  <select id="language-select" onchange="switchLanguage(this.value)">
+    <option value="auto">Auto Detect</option>
+    <option value="pt-BR">Português (Brasil)</option>
+    <option value="es">Español</option>
+    <option value="en">English</option>
+    <optgroup label="Other Languages">
+      <option value="hunsrik">Hunsrik (on demand)</option>
+      <option value="nheengatu">Nheengatu (on demand)</option>
+    </optgroup>
+  </select>
+</div>
+
+<h1>🇧🇷 <span id="pageTitle">Welcome to 45dgof8 - Brazil LGPD Compliance GPT</span> 🇧🇷</h1>
 
 <img src="brazil.webp" alt="Brazil LGPD Compliance Illustration">
 
-<p class="highlight">
+<p id="mainText" class="highlight">
   45dgof8 is your virtual advisor for Brazil’s General Data Protection Law (LGPD). It offers automated tools and expert guidance to help you:
-  <ul style="text-align:left; display: inline-block;">
-    <li>📜 Generate LGPD-compliant privacy policies, DPAs, and consent forms</li>
-    <li>🔐 Understand core principles like transparency, necessity, and security</li>
-    <li>⚙️ Automate workflows for managing data subject rights (e.g., access, correction, deletion)</li>
-    <li>📈 Monitor compliance efforts with checklists and interactive dashboards</li>
-    <li>🧑‍⚖️ Respond effectively to legal and operational requirements under LGPD</li>
-  </ul>
 </p>
+<ul id="whatItDoes" style="text-align:left; display: inline-block;">
+  <li>📜 Generate LGPD-compliant privacy policies, DPAs, and consent forms</li>
+  <li>🔐 Understand core principles like transparency, necessity, and security</li>
+  <li>⚙️ Automate workflows for managing data subject rights (e.g., access, correction, deletion)</li>
+  <li>📈 Monitor compliance efforts with checklists and interactive dashboards</li>
+  <li>🧑‍⚖️ Respond effectively to legal and operational requirements under LGPD</li>
+</ul>
 
 <a class="btn" href="https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55-45dgof8-brazil-lgpd-compliance-gpt" target="_blank">🚀 Open Brazil LGPD Compliance GPT</a>
 
 <footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
 
+<script>
+async function switchLanguage(lang) {
+  try {
+    const response = await fetch(`/lang-cloud/?lang=${lang}`);
+    const data = await response.json();
+
+    if (data.error) {
+      alert("Translation not available yet.");
+      return;
+    }
+
+    document.getElementById("pageTitle").innerText = data.pageTitle || document.getElementById("pageTitle").innerText;
+    document.getElementById("mainText").innerText = data.mainText;
+
+    const list = document.getElementById("whatItDoes");
+    list.innerHTML = "";
+    data.whatItDoes.forEach(item => {
+      const li = document.createElement("li");
+      li.innerText = item;
+      list.appendChild(li);
+    });
+  } catch (error) {
+    console.error("Language load error:", error);
+  }
+}
+</script>
+
 </body>
 </html>
+
