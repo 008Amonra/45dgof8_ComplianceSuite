@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-fetch(`lang-cloud/index.php?lang=${lang}`);
-  <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>45dgof8 - Brazil LGPD Compliance GPT</title>
@@ -84,7 +83,7 @@ fetch(`lang-cloud/index.php?lang=${lang}`);
 <script>
 async function switchLanguage(lang) {
   try {
-    const response = await fetch(`/lang-cloud/?lang=${lang}`);
+    const response = await fetch(`lang-cloud/index.php?lang=${lang}`);
     const data = await response.json();
 
     if (data.error) {
@@ -110,4 +109,3 @@ async function switchLanguage(lang) {
 
 </body>
 </html>
-
