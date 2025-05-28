@@ -66,6 +66,18 @@
 <a class="btn" href="https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55-45dgof8-brazil-lgpd-compliance-gpt" target="_blank">🚀 Open Brazil LGPD Compliance GPT</a>
 
 <footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
+<?php
+$language = $_GET['lang'] ?? 'en';
+$filename = __DIR__ . "/../languages/$language.json";
 
+if (file_exists($filename)) {
+    header("Content-Type: application/json; charset=UTF-8");
+    echo file_get_contents($filename);
+    exit;
+}
+
+header("HTTP/1.1 404 Not Found");
+echo json_encode(["error" => "Translation not found for '$language'"]);
+exit;
 </body>
 </html>
