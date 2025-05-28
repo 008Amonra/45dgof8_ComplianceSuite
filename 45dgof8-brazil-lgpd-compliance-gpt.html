@@ -83,7 +83,7 @@
 <script>
 async function switchLanguage(lang) {
   try {
-    const response = await fetch(`lang-cloud/index.php?lang=${lang}`);
+    const response = await fetch(`/lang-cloud/index.php?lang=${lang}`);
     const data = await response.json();
 
     if (data.error) {
