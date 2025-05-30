@@ -1,173 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Universe</title>
+  <title>Seite2 DNA Upgrade</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
   <style>
     body {
       margin: 0;
-      padding: 2rem;
       font-family: 'Arial', sans-serif;
       background: linear-gradient(to bottom, #1e1e1e, #121212);
       color: #fff;
+      overflow-x: hidden;
     }
 
-    .creative-icons {
+    .pulse-dot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+      background: gray;
+      border-radius: 50%;
+      box-shadow: 0 0 0 rgba(128,128,128, 0.4);
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(128,128,128, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(128,128,128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(128,128,128, 0); }
+    }
+
+    #authModal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+      display: none;
+    }
+
+    #authModalContent {
+      background: #222;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    #authModalContent input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      border: none;
+      width: 120px;
+    }
+
+    #dnaZone {
+      display: none;
+    }
+
+    #dropZone {
+      margin: 2rem auto;
+      padding: 2rem;
+      border: 2px dashed #ccc;
+      border-radius: 12px;
+      text-align: center;
+      width: 80%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      gap: 20px;
       margin-top: 2rem;
     }
 
-    .bubble-link {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      width: 160px;
-    }
-
-    .bubble-link img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
+    .gallery img {
+      width: 180px;
+      height: 180px;
       object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease;
-    }
-
-    .bubble-link:hover img {
-      transform: scale(1.1);
-    }
-
-    .label {
-      margin-top: 10px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #ffffff;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 4px 8px;
-      border-radius: 8px;
-    }
-
-    .description {
-      font-size: 0.9rem;
-      color: #cccccc;
-      margin-top: 4px;
-      text-align: center;
-      max-width: 150px;
-    }
-
-    .image-section {
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    .image-section img {
-      max-width: 280px;
-      margin: 0 15px;
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
     }
 
-    .go-back {
-      display: block;
-      text-align: center;
-      margin-top: 60px;
-      font-size: 18px;
-      text-decoration: none;
-      color: #00bcd4;
+    .glypheon {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0.6;
+      cursor: pointer;
     }
 
-    .navigation {
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .navigation a {
-      color: #bbb;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .navigation a:hover {
-      color: #00ffc3;
+    .glypheon img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
 
-  <h2 style="text-align: center; font-size: 2.2rem;">🌟 Creative Universe 🌟</h2>
+  <div class="pulse-dot" onclick="document.getElementById('authModal').style.display='flex'"></div>
 
-  <div class="creative-icons">
-    <!-- GPT Bubbles -->
-    <a class="bubble-link" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" title="Visit our Etsy Shop – Cosmic mugs, posters & more">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png" alt="Etsy Shop">
-      <div class="label">Etsy Shop</div>
-      <div class="description">Mugs, posters & cosmic designs</div>
-    </a>
-
-    <a class="bubble-link" href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank" title="CatArt Creator – Generate dreamy feline masterpieces">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png" alt="CatArt Creator" />
-      <div class="label">CatArt Creator</div>
-      <div class="description">Generates dreamy cat art in seconds</div>
-    </a>
-
-    <a class="bubble-link" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" title="Eva – Your empathetic AI co-pilot">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Answers" />
-      <div class="label">Eva Answers</div>
-      <div class="description">Your proactive, empathetic assistant</div>
-    </a>
-
-    <a class="bubble-link" href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank" title="Tech Support GPT – Fix your tech issues like a boss">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png" alt="Tech Support GPT" />
-      <div class="label">Tech Support GPT</div>
-      <div class="description">Fixes tech troubles like a champ</div>
-    </a>
-
-    <a class="bubble-link" href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" title="Dion – E-commerce insights from a sharp mind">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp" alt="Dion" />
-      <div class="label">Dion</div>
-      <div class="description">E-com insights with a wolf's wisdom</div>
-    </a>
-
-    <a class="bubble-link" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" target="_blank" title="GalacticChoices – A sci-fi survival journey in space">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp" alt="GalacticChoices" />
-      <div class="label">GalacticChoices</div>
-      <div class="description">A sci-fi story of stars and survival</div>
-    </a>
+  <div id="authModal">
+    <div id="authModalContent">
+      <h3>🔐 Enter DNA Code</h3>
+      <input type="text" id="dnaCode" placeholder="2FA Code">
+      <div>
+        <button onclick="checkDNA()">Access</button>
+      </div>
+    </div>
   </div>
-<div class="image-section" style="display: flex; gap: 10px; justify-content: center;">
-  <a data-fancybox="gallery" href="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp">
-    <img src="vardr-7e86e340-57ae-4ddb-afac-720f4a705c34.webp" alt="Centered Medal Image" style="width: 333px; border-radius: 8px;" />
-  </a>
-  <a data-fancybox="gallery" href="paw.webp">
-    <img src="paw.webp" alt="Paw Symbol" style="width: 333px; border-radius: 8px;" />
-  </a>
-  <a data-fancybox="gallery" href="CNml.webp">
-    <img src="CNml.webp" alt="Paw?" style="width: 333px; border-radius: 8px;" />
-</div>
 
-<div class="navigation">
-  <a href="index.html">1</a>
-  <a href="seite2.html">2</a>
-  <a href="dns-manager-gpt.html">3</a>
-  <a href="4. Cortegis.html">4</a>
-  <a href="seite5.html">5</a>
-  <a href="seite6.html">6</a>
-  <a href="seite7.html">7</a>
-  <a href="seite8.html">8</a>
-  <a href="45dgof8-pulse.html">9</a>
-</div>
-  
-  <a href="https://45dgof8.com" class="go-back">⬅️ Go Back to 45dgof8.com</a>
+  <div id="dnaZone">
+    <h2 style="text-align:center; margin-top:2rem;">🧬 DNA Interface Activated</h2>
+    <div id="dropZone" ondrop="handleDrop(event)" ondragover="event.preventDefault()">
+      <p>📁 Drag & Drop Images Here</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+    <div id="glypheonZone"></div>
+  </div>
 
+  <script>
+    function checkDNA() {
+      const code = document.getElementById('dnaCode').value;
+      if (code === "future88") {
+        document.getElementById('authModal').style.display = 'none';
+        document.getElementById('dnaZone').style.display = 'block';
+        renderGlypheons();
+      } else {
+        alert("Invalid Code. Try 'future88'");
+      }
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      for (let file of files) {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            document.getElementById('gallery').appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    }
+
+    function renderGlypheons() {
+      const links = [
+        { name: 'Eva Answers', url: 'https://45dgof8.com/eva/answers.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/eva.png' },
+        { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/galactic.png' },
+        { name: 'CatArt', url: 'https://45dgof8.com/catart/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/catart.png' }
+      ];
+
+      const container = document.getElementById('glypheonZone');
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const radius = 180;
+
+      links.forEach((link, i) => {
+        const angle = i * (Math.PI / 4);
+        const x = centerX + radius * Math.cos(angle) - 32;
+        const y = centerY + radius * Math.sin(angle) - 32;
+
+        const el = document.createElement('div');
+        el.className = 'glypheon';
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.position = 'absolute';
+
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.title = link.name;
+        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+
+        el.appendChild(anchor);
+        container.appendChild(el);
+      });
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
 </html>
