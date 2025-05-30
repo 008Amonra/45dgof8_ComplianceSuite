@@ -107,6 +107,12 @@
       border-radius: 50%;
       pointer-events: none;
     }
+
+    #kolibriDNA {
+      display: block;
+      margin: 2rem auto 3rem;
+      width: 220px;
+    }
   </style>
 </head>
 <body>
@@ -124,6 +130,7 @@
   </div>
 
   <h2 style="text-align:center; margin-top:2rem;">🧬 DNA Interface Activated</h2>
+  <img id="kolibriDNA" src="kolibri_dna.webp" alt="Kolibri DNA">
   <div id="dropZone" ondrop="handleDrop(event)" ondragover="event.preventDefault()">
     <p>📁 Drag & Drop Images Here</p>
   </div>
@@ -173,13 +180,15 @@
         { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' }
       ];
 
+      const dnaImg = document.getElementById('kolibriDNA');
       const container = document.getElementById('glypheonZone');
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const radius = 180;
+      const rect = dnaImg.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + window.scrollY + rect.height / 2;
+      const radius = rect.width / 2 + 60;
 
       links.forEach((link, i) => {
-        const angle = i * (Math.PI / 4);
+        const angle = i * (2 * Math.PI / links.length);
         const x = centerX + radius * Math.cos(angle) - 32;
         const y = centerY + radius * Math.sin(angle) - 32;
 
