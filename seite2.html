@@ -100,12 +100,12 @@
       transition: transform 0.3s, opacity 0.3s;
       opacity: 0.6;
       cursor: pointer;
-      animation: floaty 10s infinite ease-in-out;
+      animation: floaty 6s infinite ease-in-out;
     }
 
     @keyframes floaty {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-12px); }
       100% { transform: translateY(0); }
     }
 
@@ -122,6 +122,7 @@
       width: 220px;
       position: relative;
       z-index: 10;
+      transform: perspective(1000px) rotateX(10deg);
     }
 
     #glypheonZone {
@@ -215,13 +216,13 @@
 
       links.forEach((link, i) => {
         const angle = i * (2 * Math.PI / links.length);
-        const x = centerX + radius * Math.cos(angle) - 32;
-        const y = centerY + radius * Math.sin(angle) - 32;
+        const x = radius * Math.cos(angle) - 32;
+        const y = radius * Math.sin(angle) - 32;
 
         const el = document.createElement('div');
         el.className = 'glypheon';
-        el.style.left = `${x}px`;
-        el.style.top = `${y}px`;
+        el.style.left = `calc(50% + ${x}px)`;
+        el.style.top = `calc(50% + ${y}px)`;
 
         const anchor = document.createElement('a');
         anchor.href = link.url;
@@ -234,6 +235,11 @@
       });
     }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+</body>
+</html>
+
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
