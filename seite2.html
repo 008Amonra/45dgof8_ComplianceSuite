@@ -9,7 +9,8 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, #1e1e1e, #121212);
+      background: url('kolibri_dna.webp') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
       overflow-x: hidden;
       position: relative;
@@ -116,15 +117,6 @@
       pointer-events: none;
     }
 
-    #kolibriDNA {
-      display: block;
-      margin: 2rem auto 3rem;
-      width: 220px;
-      position: relative;
-      z-index: 10;
-      transform: perspective(1000px) rotateX(10deg);
-    }
-
     #glypheonZone {
       position: absolute;
       top: 50%;
@@ -157,8 +149,6 @@
     </div>
   </div>
 
-  <h2 style="text-align:center; margin-top:2rem;">🧬 DNA Interface Activated</h2>
-  <img id="kolibriDNA" src="kolibri_dna.webp" alt="Kolibri DNA">
   <div id="dropZone" ondrop="handleDrop(event)" ondragover="event.preventDefault()">
     <p>📁 Drag & Drop Images Here</p>
   </div>
@@ -211,9 +201,6 @@
 
       const container = document.getElementById('glypheonZone');
       const radius = 160;
-      const centerX = 0;
-      const centerY = 0;
-
       links.forEach((link, i) => {
         const angle = i * (2 * Math.PI / links.length);
         const x = radius * Math.cos(angle) - 32;
@@ -235,11 +222,6 @@
       });
     }
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-</body>
-</html>
-
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
