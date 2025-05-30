@@ -36,32 +36,6 @@
       100% { box-shadow: 0 0 0 0 rgba(128,128,128, 0); }
     }
 
-    #authModal {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1001;
-    }
-
-    #authModalContent {
-      background: #222;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    #authModalContent input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-      border-radius: 4px;
-      border: none;
-      width: 120px;
-    }
-
     #dropZone {
       display: none;
       margin: 2rem auto;
@@ -139,16 +113,6 @@
 
   <div class="pulse-dot" onclick="document.getElementById('dropZone').style.display='block'"></div>
 
-  <div id="authModal">
-    <div id="authModalContent">
-      <h3>🔐 Enter DNA Code</h3>
-      <input type="text" id="dnaCode" placeholder="2FA Code">
-      <div>
-        <button onclick="checkDNA()">Access</button>
-      </div>
-    </div>
-  </div>
-
   <div id="dropZone" ondrop="handleDrop(event)" ondragover="event.preventDefault()">
     <p>📁 Drag & Drop Images Here</p>
   </div>
@@ -157,15 +121,13 @@
   <div class="credits">Image made with nightcafe.studio</div>
 
   <script>
-    function checkDNA() {
-      const code = document.getElementById('dnaCode').value;
-      if (code === "future88") {
-        document.getElementById('authModal').style.display = 'none';
-        document.getElementById('dropZone').style.display = 'block';
-      } else {
-        alert("Invalid Code. Try 'future88'");
-      }
+    // Save current version before new updates
+    const currentVersion = document.documentElement.outerHTML;
+    const previous = localStorage.getItem('dna_previous_version');
+    if (previous) {
+      localStorage.setItem('dna_lastlast_version', previous);
     }
+    localStorage.setItem('dna_previous_version', currentVersion);
 
     function handleDrop(e) {
       e.preventDefault();
@@ -200,11 +162,12 @@
       ];
 
       const container = document.getElementById('glypheonZone');
-      const radius = 160;
+      const radiusX = 180;
+      const radiusY = 100;
       links.forEach((link, i) => {
         const angle = i * (2 * Math.PI / links.length);
-        const x = radius * Math.cos(angle) - 32;
-        const y = radius * Math.sin(angle) - 32;
+        const x = radiusX * Math.cos(angle) - 32;
+        const y = radiusY * Math.sin(angle) - 32;
 
         const el = document.createElement('div');
         el.className = 'glypheon';
