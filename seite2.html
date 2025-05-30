@@ -38,11 +38,10 @@
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.8);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       z-index: 1001;
-      display: none;
     }
 
     #authModalContent {
@@ -61,11 +60,8 @@
       width: 120px;
     }
 
-    #dnaZone {
-      display: none;
-    }
-
     #dropZone {
+      display: none;
       margin: 2rem auto;
       padding: 2rem;
       border: 2px dashed #ccc;
@@ -115,7 +111,7 @@
 </head>
 <body>
 
-  <div class="pulse-dot" onclick="document.getElementById('authModal').style.display='flex'"></div>
+  <div class="pulse-dot" onclick="document.getElementById('dropZone').style.display='block'"></div>
 
   <div id="authModal">
     <div id="authModalContent">
@@ -127,22 +123,19 @@
     </div>
   </div>
 
-  <div id="dnaZone">
-    <h2 style="text-align:center; margin-top:2rem;">🧬 DNA Interface Activated</h2>
-    <div id="dropZone" ondrop="handleDrop(event)" ondragover="event.preventDefault()">
-      <p>📁 Drag & Drop Images Here</p>
-    </div>
-    <div class="gallery" id="gallery"></div>
-    <div id="glypheonZone"></div>
+  <h2 style="text-align:center; margin-top:2rem;">🧬 DNA Interface Activated</h2>
+  <div id="dropZone" ondrop="handleDrop(event)" ondragover="event.preventDefault()">
+    <p>📁 Drag & Drop Images Here</p>
   </div>
+  <div class="gallery" id="gallery"></div>
+  <div id="glypheonZone"></div>
 
   <script>
     function checkDNA() {
       const code = document.getElementById('dnaCode').value;
       if (code === "future88") {
         document.getElementById('authModal').style.display = 'none';
-        document.getElementById('dnaZone').style.display = 'block';
-        renderGlypheons();
+        document.getElementById('dropZone').style.display = 'block';
       } else {
         alert("Invalid Code. Try 'future88'");
       }
@@ -164,49 +157,21 @@
       }
     }
 
+    window.onload = function() {
+      renderGlypheons();
+    };
+
     function renderGlypheons() {
-     const links = [
-  {
-    name: 'Etsy Shop',
-    url: 'https://www.etsy.com/ch/shop/45dgof8',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png'
-  },
-  {
-    name: 'CatArt Creator',
-    url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png'
-  },
-  {
-    name: 'Eva Answers',
-    url: 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png'
-  },
-  {
-    name: 'Tech Support GPT',
-    url: 'https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png'
-  },
-  {
-    name: 'Dion',
-    url: 'https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp'
-  },
-  {
-    name: 'GalacticChoices',
-    url: 'https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp'
-  },
-  {
-    name: '45dgof8-pulse',
-    url: 'https://45dgof8.com/45dgof8-pulse.html',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-pulse.webp'
-  },
-  {
-    name: 'dns-manager-gpt',
-    url: 'https://45dgof8.com/dns-manager-gpt.html',
-    icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp'
-  }
-];
+      const links = [
+        { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png' },
+        { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png' },
+        { name: 'Eva Answers', url: 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png' },
+        { name: 'Tech Support GPT', url: 'https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
+        { name: 'Dion', url: 'https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
+        { name: 'GalacticChoices', url: 'https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
+        { name: '45dgof8-pulse', url: 'https://45dgof8.com/45dgof8-pulse.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-pulse.webp' },
+        { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' }
+      ];
 
       const container = document.getElementById('glypheonZone');
       const centerX = window.innerWidth / 2;
