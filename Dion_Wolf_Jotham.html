@@ -9,8 +9,8 @@
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      background: #f8fafc;
-      color: #1f2937;
+      background: linear-gradient(145deg, #1e293b, #334155);
+      color: #f8fafc;
       animation: fadeIn 1s ease-in;
     }
     @keyframes fadeIn {
@@ -21,16 +21,16 @@
       max-width: 800px;
       margin: 40px auto;
       padding: 20px;
-      background: #ffffff;
+      background: #1e293b;
       border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       animation: popIn 0.8s ease-out;
     }
     @keyframes popIn {
       0% { transform: scale(0.95); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
-    h1, h2, .quiz, .footer, p {
+    h1, h2, .quiz, .footer, p, .mid-img {
       animation: fadeInUp 1s ease-out both;
     }
     @keyframes fadeInUp {
@@ -40,34 +40,44 @@
     h1 {
       font-size: 2.5em;
       margin-bottom: 0.3em;
+      color: #ffffff;
     }
     h2 {
       font-size: 1.5em;
-      color: #3b82f6;
+      color: #60a5fa;
     }
     p {
       font-size: 1.1em;
       line-height: 1.6;
+      color: #e2e8f0;
     }
     .footer {
       margin-top: 2em;
       font-size: 0.9em;
-      color: #6b7280;
+      color: #94a3b8;
     }
     .quiz {
       margin-top: 2em;
       padding: 1em;
-      background: #eff6ff;
+      background: #334155;
       border-radius: 12px;
     }
     .quiz select, .quiz button {
       margin-top: 0.5em;
       padding: 0.5em;
       font-size: 1em;
+      background: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid #64748b;
+      border-radius: 8px;
+    }
+    .quiz button:hover {
+      background: #475569;
     }
     .result {
       margin-top: 1em;
       font-weight: bold;
+      color: #38bdf8;
     }
     .hero {
       width: 100%;
@@ -75,6 +85,18 @@
       max-height: 400px;
       object-fit: cover;
       animation: fadeIn 1.2s ease-in-out;
+    }
+    .mid-img {
+      display: block;
+      margin: 40px auto;
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    a {
+      color: #93c5fd;
+    }
+    a:hover {
+      color: #ffffff;
     }
   </style>
 </head>
@@ -89,6 +111,9 @@
     <p>
       Besides that, I'm a big fan of AI-generated art and design. If you've got wild ideas and want to know if they can sell, hit me up for constructive, market-savvy feedback.
     </p>
+
+    <img class="mid-img" src="/mnt/data/Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham">
+
     <p>
       Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a>
     </p>
