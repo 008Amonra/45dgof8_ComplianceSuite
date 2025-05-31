@@ -16,26 +16,6 @@
       position: relative;
     }
 
-    .pulse-dot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 20px;
-      height: 20px;
-      background: gray;
-      border-radius: 50%;
-      box-shadow: 0 0 0 rgba(128,128,128, 0.4);
-      animation: pulse 2s infinite;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(128,128,128, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(128,128,128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128,128,128, 0); }
-    }
-
     .glypheon {
       position: absolute;
       width: 64px;
@@ -66,7 +46,7 @@
 
     #glypheonZone {
       position: absolute;
-      top: 75%;
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 5;
@@ -84,7 +64,6 @@
 </head>
 <body>
 
-  <div class="pulse-dot"></div>
   <div id="glypheonZone"></div>
   <div class="credits">Image made with nightcafe.studio</div>
 
@@ -109,7 +88,8 @@
         { name: 'Dion', url: 'https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
         { name: 'GalacticChoices', url: 'https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
         { name: '45dgof8-pulse', url: 'https://45dgof8.com/45dgof8-pulse.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-pulse.webp' },
-        { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' }
+        { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
+        { name: '45dgof8-pulse-gpt', url: 'https://chatgpt.com/g/g-XyzPulseGpt', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-pulse.webp' }
       ];
 
       const container = document.getElementById('glypheonZone');
