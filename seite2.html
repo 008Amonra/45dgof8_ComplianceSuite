@@ -46,7 +46,7 @@
 
     #glypheonZone {
       position: absolute;
-      top: 75%;
+      top: 85%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 5;
@@ -93,8 +93,8 @@
       ];
 
       const container = document.getElementById('glypheonZone');
-      const radiusX = 120;
-      const radiusY = 120;
+      const radiusX = 140;
+      const radiusY = 160;
       links.forEach((link, i) => {
         const angle = i * (2 * Math.PI / links.length);
         const x = radiusX * Math.cos(angle) - 32;
