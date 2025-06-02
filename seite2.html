@@ -33,17 +33,6 @@
       height: 360px;
       z-index: 5;
       transform-style: preserve-3d;
-      border: 1px dashed #f00;
-    }
-
-    #crosshair {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff0;
-      border-radius: 50%;
-      z-index: 10;
-      transform: translate(-50%, -50%);
     }
 
     .glypheon {
@@ -89,8 +78,7 @@
 
   <div class="image-container">
     <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird">
-    <div id="glypheonZone">
-      <div id="positionDisplay" style="position:absolute; top:-30px; left:0; color:#0f0; font-size:14px; font-family:monospace; background:#000a; padding:2px 6px; border-radius:4px;">Loading...</div><div id="crosshair"></div></div>
+    <div id="glypheonZone"></div>
     <div class="credits">Image made with nightcafe.studio</div>
   </div>
 
@@ -106,18 +94,46 @@
     ];
 
     const container = document.getElementById('glypheonZone');
-    const cross = document.getElementById('crosshair');
     const img = document.getElementById('heroImage');
 
-    let posX = 0.78, posY = 0.60;
-
-    img.onload = () => updatePosition();
-
-    function updatePosition() {
-      const posReadout = document.getElementById('positionDisplay');
+    img.onload = () => {
       const rect = img.getBoundingClientRect();
-      const centerX = rect.width * posX;
-      const centerY = rect.height * posY;
+      const centerX = rect.width * 0.63; // shifted slightly more to the right
+      const centerY = rect.height * 0.63;
       container.style.left = `${centerX}px`;
       container.style.top = `${centerY}px`;
-      posReadout.textContent = `X: ${posX.toFixed(3)} | Y: ${posY.toFixed(3)}`;
+
+      const radiusX = 180;
+      const radiusY = 180;
+      const tilt = 38 * Math.PI / 180;
+
+      links.forEach((link, i) => {
+        const angle = i * (2 * Math.PI / links.length);
+        const x = radiusX * Math.cos(angle);
+        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
+
+        const scale = 0.8 + 0.4 * (y / radiusY);
+        const opacity = 0.5 + 0.5 * (y / radiusY);
+
+        const el = document.createElement('div');
+        el.className = 'glypheon';
+        el.style.left = `${x + radiusX}px`;
+        el.style.top = `${radiusY - y}px`;
+        el.style.transform = `scale(${scale})`;
+        el.style.opacity = `${opacity}`;
+
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.title = link.name;
+        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+
+        el.appendChild(anchor);
+        container.appendChild(el);
+      });
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+</body>
+</html>
