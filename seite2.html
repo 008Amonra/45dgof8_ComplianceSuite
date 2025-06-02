@@ -9,20 +9,30 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background: url('kolibri_dna.webp') no-repeat center center fixed;
-      background-size: cover;
       color: #fff;
       overflow-x: hidden;
+      background-color: #000;
+    }
+
+    .image-container {
       position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .image-container img {
+      width: 100%;
+      display: block;
     }
 
     #glypheonZone {
-      position: fixed;
-      left: 62vw;
-      top: 70vh;
+      position: absolute;
+      left: 58%;
+      top: 63%;
+      transform: translate(-50%, -50%);
       width: 360px;
       height: 360px;
-      transform: translate(-50%, -50%);
       z-index: 5;
     }
 
@@ -61,62 +71,53 @@
       font-size: 10px;
       opacity: 0.4;
       font-style: italic;
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
-  <div id="glypheonZone"></div>
-  <div class="credits">Image made with nightcafe.studio</div>
+  <div class="image-container">
+    <img src="kolibri_dna.webp" alt="Flower and Hummingbird">
+    <div id="glypheonZone"></div>
+    <div class="credits">Image made with nightcafe.studio</div>
+  </div>
 
   <script>
-    const currentVersion = document.documentElement.outerHTML;
-    const previous = localStorage.getItem('dna_previous_version');
-    if (previous) {
-      localStorage.setItem('dna_lastlast_version', previous);
-    }
-    localStorage.setItem('dna_previous_version', currentVersion);
+    const links = [
+      { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png' },
+      { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png' },
+      { name: 'Eva Answers', url: 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png' },
+      { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
+      { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
+      { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
+      { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
+    ];
 
-    window.onload = function() {
-      renderGlypheons();
-    };
+    const container = document.getElementById('glypheonZone');
+    const radiusX = 180;
+    const radiusY = 180;
+    const tilt = 38 * Math.PI / 180;
 
-    function renderGlypheons() {
-      const links = [
-        { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png' },
-        { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png' },
-        { name: 'Eva Answers', url: 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png' },
-        { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
-        { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
-        { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
-        { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
-        
-      ];
+    links.forEach((link, i) => {
+      const angle = i * (2 * Math.PI / links.length);
+      const x = radiusX * Math.cos(angle);
+      const y = radiusY * Math.sin(angle) * Math.cos(tilt);
 
-      const container = document.getElementById('glypheonZone');
-      const radiusX = 180;
-      const radiusY = 180;
-      links.forEach((link, i) => {
-        const angle = i * (2 * Math.PI / links.length);
-        const tilt = 38 * Math.PI / 180;
-        const x = radiusX * Math.cos(angle);
-        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
+      const el = document.createElement('div');
+      el.className = 'glypheon';
+      el.style.left = `${x + radiusX}px`;
+      el.style.top = `${y + radiusY}px`;
 
-        const el = document.createElement('div');
-        el.className = 'glypheon';
-        el.style.left = `${x + radiusX}px`;
-        el.style.top = `${y + radiusY}px`;
+      const anchor = document.createElement('a');
+      anchor.href = link.url;
+      anchor.target = '_blank';
+      anchor.title = link.name;
+      anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
 
-        const anchor = document.createElement('a');
-        anchor.href = link.url;
-        anchor.target = '_blank';
-        anchor.title = link.name;
-        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
-
-        el.appendChild(anchor);
-        container.appendChild(el);
-      });
-    }
+      el.appendChild(anchor);
+      container.appendChild(el);
+    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
