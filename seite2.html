@@ -98,8 +98,8 @@
 
     img.onload = () => {
       const rect = img.getBoundingClientRect();
-      const centerX = rect.width * 0.63; // shifted slightly more to the right
-      const centerY = rect.height * 0.63;
+      const centerX = rect.width * 0.73; // shifted slightly more to the right
+      const centerY = rect.height * 0.73;
       container.style.left = `${centerX}px`;
       container.style.top = `${centerY}px`;
 
@@ -113,7 +113,7 @@
         const y = radiusY * Math.sin(angle) * Math.cos(tilt);
 
         const scale = 0.8 + 0.4 * (y / radiusY);
-        const opacity = 0.5 + 0.5 * (y / radiusY);
+        const opacity = 0.8 + 0.8 * (y / radiusY);
 
         const el = document.createElement('div');
         el.className = 'glypheon';
