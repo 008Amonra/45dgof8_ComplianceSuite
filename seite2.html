@@ -147,13 +147,46 @@
     const container = document.getElementById('glypheonZone');
 let posX = 0.595;
 let posY = 0.440;
+const container = document.getElementById('glypheonZone');
+const img = document.getElementById('heroImage');
+let posX = 0.595;
+let posY = 0.440;
 
-    
+const rect = img.getBoundingClientRect();
+const centerX = rect.width * posX;
+const centerY = rect.height * posY;
+container.style.left = `${centerX}px`;
+container.style.top = `${centerY}px`;
 
-    
+const radiusX = 144;
+const radiusY = 144;
+const tilt = 38 * Math.PI / 180;
 
-    
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+links.forEach((link, i) => {
+  const angle = i * (2 * Math.PI / links.length);
+  const x = radiusX * Math.cos(angle);
+  const y = radiusY * Math.sin(angle) * Math.cos(tilt);
+
+  const scale = 0.8 + 0.4 * (y / radiusY);
+  const opacity = 0.5 + 0.5 * (y / radiusY);
+
+  const el = document.createElement('div');
+  el.className = 'glypheon';
+  el.style.left = `${x + radiusX}px`;
+  el.style.top = `${radiusY - y}px`;
+  el.style.transform = `scale(${scale})`;
+  el.style.opacity = `${opacity}`;
+
+  const anchor = document.createElement('a');
+  anchor.href = link.url;
+  anchor.target = '_blank';
+  anchor.title = link.name;
+  anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+
+  el.appendChild(anchor);
+  container.appendChild(el);
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
 </html>
