@@ -19,6 +19,7 @@
       width: 100%;
       max-width: 1200px;
       margin: auto;
+      perspective: 800px;
     }
 
     .image-container img {
@@ -28,12 +29,10 @@
 
     #glypheonZone {
       position: absolute;
-      left: 58%;
-      top: 63%;
-      transform: translate(-50%, -50%);
       width: 360px;
       height: 360px;
       z-index: 5;
+      transform-style: preserve-3d;
     }
 
     .glypheon {
@@ -46,9 +45,9 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.3s, opacity 0.3s;
-      opacity: 0.6;
       cursor: pointer;
       animation: floaty 6s infinite ease-in-out;
+      will-change: transform, opacity;
     }
 
     @keyframes floaty {
@@ -78,7 +77,7 @@
 <body>
 
   <div class="image-container">
-    <img src="kolibri_dna.webp" alt="Flower and Hummingbird">
+    <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird">
     <div id="glypheonZone"></div>
     <div class="credits">Image made with nightcafe.studio</div>
   </div>
@@ -95,29 +94,44 @@
     ];
 
     const container = document.getElementById('glypheonZone');
-    const radiusX = 180;
-    const radiusY = 180;
-    const tilt = 38 * Math.PI / 180;
+    const img = document.getElementById('heroImage');
 
-    links.forEach((link, i) => {
-      const angle = i * (2 * Math.PI / links.length);
-      const x = radiusX * Math.cos(angle);
-      const y = radiusY * Math.sin(angle) * Math.cos(tilt);
+    img.onload = () => {
+      const rect = img.getBoundingClientRect();
+      const centerX = rect.width * 0.63; // shifted slightly more to the right
+      const centerY = rect.height * 0.63;
+      container.style.left = `${centerX}px`;
+      container.style.top = `${centerY}px`;
 
-      const el = document.createElement('div');
-      el.className = 'glypheon';
-      el.style.left = `${x + radiusX}px`;
-      el.style.top = `${y + radiusY}px`;
+      const radiusX = 180;
+      const radiusY = 180;
+      const tilt = 38 * Math.PI / 180;
 
-      const anchor = document.createElement('a');
-      anchor.href = link.url;
-      anchor.target = '_blank';
-      anchor.title = link.name;
-      anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+      links.forEach((link, i) => {
+        const angle = i * (2 * Math.PI / links.length);
+        const x = radiusX * Math.cos(angle);
+        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
 
-      el.appendChild(anchor);
-      container.appendChild(el);
-    });
+        const scale = 0.8 + 0.4 * (y / radiusY);
+        const opacity = 0.5 + 0.5 * (y / radiusY);
+
+        const el = document.createElement('div');
+        el.className = 'glypheon';
+        el.style.left = `${x + radiusX}px`;
+        el.style.top = `${radiusY - y}px`;
+        el.style.transform = `scale(${scale})`;
+        el.style.opacity = `${opacity}`;
+
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.title = link.name;
+        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+
+        el.appendChild(anchor);
+        container.appendChild(el);
+      });
+    };
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
