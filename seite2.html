@@ -110,7 +110,8 @@
     const cross = document.getElementById('crosshair');
     const img = document.getElementById('heroImage');
 
-    let posX = 0.78, posY = 0.60;
+    let posX = 0.545;
+    let posY = 0.420;
 
     img.onload = () => updatePosition();
 
@@ -135,8 +136,8 @@
 
       container.innerHTML = `<div id="positionDisplay" style="position:absolute; top:-30px; left:0; color:#0f0; font-size:14px; font-family:monospace; background:#000a; padding:2px 6px; border-radius:4px;">${posReadout.textContent}</div><div id="crosshair"></div>`;
 
-      const radiusX = 180;
-      const radiusY = 180;
+      const radiusX = 144; // 80% of 180
+      const radiusY = 144; // 80% of 180
       const tilt = 38 * Math.PI / 180;
 
       links.forEach((link, i) => {
