@@ -91,7 +91,8 @@
   <div class="image-container">
     <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird">
     <div id="glypheonZone">
-      <div id="positionDisplay" style="position:absolute; top:-30px; left:0; color:#0f0; font-size:14px; font-family:monospace; background:#000a; padding:2px 6px; border-radius:4px;">Loading...</div><div id="crosshair"></div>
+      <!-- Static glyph ring position locked -->
+      
     <div class="credits">Image made with nightcafe.studio</div>
   </div>
 
@@ -115,14 +116,7 @@
 
     img.onload = () => updatePosition();
 
-    window.addEventListener('keydown', (e) => {
-      const step = 0.005;
-      if (e.key === 'ArrowUp') posY -= step;
-      if (e.key === 'ArrowDown') posY += step;
-      if (e.key === 'ArrowLeft') posX -= step;
-      if (e.key === 'ArrowRight') posX += step;
-      updatePosition();
-    });
+    
 
     function updatePosition() {
       if (!img.complete || img.naturalWidth === 0) return;  // ensure image is loaded
