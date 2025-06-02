@@ -98,8 +98,8 @@
 
     img.onload = () => {
       const rect = img.getBoundingClientRect();
-      const centerX = rect.width * 0.63; // shifted slightly more to the right
-      const centerY = rect.height * 0.63;
+      const centerX = rect.width * 0.78; // shifted more to the right (15 spaces)
+      const centerY = rect.height * 0.60; // moved 3 rows up
       container.style.left = `${centerX}px`;
       container.style.top = `${centerY}px`;
 
