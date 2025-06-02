@@ -16,6 +16,16 @@
       position: relative;
     }
 
+    #glypheonZone {
+      position: fixed;
+      left: 62vw;
+      top: 70vh;
+      width: 360px;
+      height: 360px;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+    }
+
     .glypheon {
       position: absolute;
       width: 64px;
@@ -42,14 +52,6 @@
       height: 48px;
       border-radius: 50%;
       pointer-events: none;
-    }
-
-    #glypheonZone {
-      position: absolute;
-      top: 65%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 5;
     }
 
     .credits {
@@ -87,8 +89,8 @@
         { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
         { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
         { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
-        { name: '45dgof8-pulse', url: 'https://45dgof8.com/45dgof8-pulse.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-pulse.webp' },
-        { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },        
+        { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
+        
       ];
 
       const container = document.getElementById('glypheonZone');
@@ -96,13 +98,14 @@
       const radiusY = 180;
       links.forEach((link, i) => {
         const angle = i * (2 * Math.PI / links.length);
-        const x = radiusX * Math.cos(angle) - 32;
-        const y = radiusY * Math.sin(angle) - 32;
+        const tilt = 38 * Math.PI / 180;
+        const x = radiusX * Math.cos(angle);
+        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
 
         const el = document.createElement('div');
         el.className = 'glypheon';
-        el.style.left = `calc(65% + ${x}px)`;
-        el.style.top = `calc(35% + ${y}px)`;
+        el.style.left = `${x + radiusX}px`;
+        el.style.top = `${y + radiusY}px`;
 
         const anchor = document.createElement('a');
         anchor.href = link.url;
