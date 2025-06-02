@@ -91,7 +91,7 @@
   <div class="image-container">
     <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird">
     <div id="glypheonZone">
-    <div id="positionDisplay" style="position:absolute; top:-30px; left:0; color:#0f0; font-size:14px; font-family:monospace; background:#000a; padding:2px 6px; border-radius:4px;">Loading...</div><div id="crosshair"></div></div>
+      <div id="positionDisplay" style="position:absolute; top:-30px; left:0; color:#0f0; font-size:14px; font-family:monospace; background:#000a; padding:2px 6px; border-radius:4px;">Loading...</div><div id="crosshair"></div></div>
     <div class="credits">Image made with nightcafe.studio</div>
   </div>
 
@@ -114,6 +114,15 @@
 
     img.onload = () => updatePosition();
 
+    window.addEventListener('keydown', (e) => {
+      const step = 0.005;
+      if (e.key === 'ArrowUp') posY -= step;
+      if (e.key === 'ArrowDown') posY += step;
+      if (e.key === 'ArrowLeft') posX -= step;
+      if (e.key === 'ArrowRight') posX += step;
+      updatePosition();
+    });
+
     function updatePosition() {
       const posReadout = document.getElementById('positionDisplay');
       const rect = img.getBoundingClientRect();
@@ -122,3 +131,34 @@
       container.style.left = `${centerX}px`;
       container.style.top = `${centerY}px`;
       posReadout.textContent = `X: ${posX.toFixed(3)} | Y: ${posY.toFixed(3)}`;
+
+      container.innerHTML = '<div id="positionDisplay" style="position:absolute; top:-30px; left:0; color:#0f0; font-size:14px; font-family:monospace; background:#000a; padding:2px 6px; border-radius:4px;">' + posReadout.textContent + '</div><div id="crosshair"></div>';
+
+      const radiusX = 180;
+      const radiusY = 180;
+      const tilt = 38 * Math.PI / 180;
+
+      links.forEach((link, i) => {
+        const angle = i * (2 * Math.PI / links.length);
+        const x = radiusX * Math.cos(angle);
+        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
+
+        const scale = 0.8 + 0.4 * (y / radiusY);
+        const opacity = 0.5 + 0.5 * (y / radiusY);
+
+        const el = document.createElement('div');
+        el.className = 'glypheon';
+        el.style.left = `${x + radiusX}px`;
+        el.style.top = `${radiusY - y}px`;
+        el.style.transform = `scale(${scale})`;
+        el.style.opacity = `${opacity}`;
+
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.title = link.name;
+        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+
+        el.appendChild(anchor);
+        container.appendChild(el);
+      });
