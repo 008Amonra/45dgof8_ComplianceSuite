@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multilingual Compliance Plugin</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; padding: 2rem; text-align: center; }
+    select, button { font-size: 1rem; padding: 0.5rem 1rem; margin-top: 1rem; }
+    #output { margin-top: 2rem; background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    footer { margin-top: 3rem; font-size: 0.9rem; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>🌐 Multilingual Compliance Plugin</h1>
+  <p>Select an Indigenous Language to Load Compliance Info:</p>
+  
+  <select id="languageSelect">
+    <option value="">-- Choose Language --</option>
+    <option value="guarani">Guarani</option>
+    <option value="ticuna">Ticuna</option>
+    <!-- Add more as needed -->
+  </select>
+  <button onclick="loadLanguage()">Load Language</button>
+
+  <div id="output">🗂️ Language content will appear here...</div>
+
+  <footer>
+    Content is community-contributed. <em>Ohne Gewähr</em> – no legal warranty. | © 2025 45dgof8
+  </footer>
+
+  <script>
+    async function loadLanguage() {
+      const lang = document.getElementById('languageSelect').value;
+      const out = document.getElementById('output');
+
+      if (!lang) {
+        out.innerHTML = '<p>⚠️ Please select a language.</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch(`./lang-packs/${lang}.json`);
+        if (!res.ok) throw new Error('File not found');
+        const data = await res.json();
+        out.innerHTML = `<h2>${data.title}</h2><p>${data.description}</p>`;
+      } catch (err) {
+        out.innerHTML = '<p>⚠️ No content available for the selected language yet.</p>';
+      }
+    }
+  </script>
+</body>
+</html>
