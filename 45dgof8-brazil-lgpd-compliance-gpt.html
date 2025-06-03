@@ -7,10 +7,45 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
       background: linear-gradient(to bottom right, #2d2a4e, #5e548e);
       color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      padding: 2rem 1rem;
+    }
+    .lang-switch {
+      margin-top: 1rem;
+    }
+    .lang-switch button {
+      margin: 0 5px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      border: none;
+      background: #e2e8f0;
+      color: #000;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .lang-switch button.active {
+      background: #00ffc3;
+      color: black;
+    }
+    img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      margin: 30px 0;
+    }
+    .highlight {
+      font-size: 1.1em;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      text-align: left;
     }
     .btn {
       background: #00ffc3;
@@ -31,81 +66,61 @@
       font-size: 0.9em;
       color: #cccccc;
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 30px;
-    }
-    .highlight {
-      font-size: 1.1em;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🇧🇷 <span id="main-title">Welcome to 45dgof8 - Brazil LGPD Compliance GPT</span> 🇧🇷</h1>
+    <div class="lang-switch">
+      <button onclick="setLanguage('en')" id="btn-en" class="active">English</button>
+      <button onclick="setLanguage('pt')" id="btn-pt">Português</button>
+    </div>
+  </header>
 
-<div id="language-switcher" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
-  <select id="language-select" onchange="switchLanguage(this.value)">
-    <option value="auto">Auto Detect</option>
-    <option value="pt-BR">Português (Brasil)</option>
-    <option value="es">Español</option>
-    <option value="en">English</option>
-    <optgroup label="Other Languages">
-      <option value="hunsrik">Hunsrik (on demand)</option>
-      <option value="nheengatu">Nheengatu (on demand)</option>
-    </optgroup>
-  </select>
-</div>
+  <img src="brazil.webp" alt="Brazil LGPD Compliance Illustration">
 
-<h1>🇧🇷 <span id="pageTitle">Welcome to 45dgof8 - Brazil LGPD Compliance GPT</span> 🇧🇷</h1>
+  <div id="content-en" class="highlight">
+    <p>45dgof8 is your virtual advisor for Brazil’s General Data Protection Law (LGPD). It offers automated tools and expert guidance to help you:</p>
+    <ul>
+      <li>📜 Generate LGPD-compliant privacy policies, DPAs, and consent forms</li>
+      <li>🔐 Understand core principles like transparency, necessity, and security</li>
+      <li>⚙️ Automate workflows for managing data subject rights (e.g., access, correction, deletion)</li>
+      <li>📈 Monitor compliance efforts with checklists and interactive dashboards</li>
+      <li>🧑‍⚖️ Respond effectively to legal and operational requirements under LGPD</li>
+    </ul>
+  </div>
 
-<img src="brazil.webp" alt="Brazil LGPD Compliance Illustration">
+  <div id="content-pt" class="highlight" style="display: none;">
+    <p>45dgof8 é seu conselheiro virtual para a Lei Geral de Proteção de Dados (LGPD) do Brasil. Ele oferece ferramentas automatizadas e orientação especializada para ajudar você a:</p>
+    <ul>
+      <li>📜 Gerar políticas de privacidade, DPAs e formulários de consentimento compatíveis com a LGPD</li>
+      <li>🔐 Entender princípios fundamentais como transparência, necessidade e segurança</li>
+      <li>⚙️ Automatizar fluxos de trabalho para gestão de direitos dos titulares (ex.: acesso, correção, exclusão)</li>
+      <li>📈 Monitorar esforços de conformidade com listas de verificação e painéis interativos</li>
+      <li>🧑‍⚖️ Responder eficazmente a exigências legais e operacionais da LGPD</li>
+    </ul>
+  </div>
 
-<p id="mainText" class="highlight">
-  45dgof8 is your virtual advisor for Brazil’s General Data Protection Law (LGPD). It offers automated tools and expert guidance to help you:
-</p>
-<ul id="whatItDoes" style="text-align:left; display: inline-block;">
-<li>📜 Generate LGPD-compliant privacy policies, DPAs, and consent forms</li>
-<li>🔐 Understand core principles like transparency, necessity, and security</li>
-<li>⚙️ Automate workflows for managing data subject rights (e.g., access, correction, deletion)</li>
-<li>📈 Monitor compliance efforts with checklists and interactive dashboards</li>
-<li>🧑‍⚖️ Respond effectively to legal and operational requirements under LGPD</li>
-</ul>
+  <a class="btn" href="https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55-45dgof8-brazil-lgpd-compliance-gpt" target="_blank">🚀 <span id="launch-btn">Open Brazil LGPD Compliance GPT</span></a>
 
-<a class="btn" href="https://chatgpt.com/g/g-674365946c7081918b642b3e693fac55-45dgof8-brazil-lgpd-compliance-gpt" target="_blank">🚀 Open Brazil LGPD Compliance GPT</a>
+  <footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
 
-<footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
+  <script>
+    function setLanguage(lang) {
+      document.getElementById("content-en").style.display = lang === 'en' ? 'block' : 'none';
+      document.getElementById("content-pt").style.display = lang === 'pt' ? 'block' : 'none';
 
-<script>
-async function switchLanguage(lang) {
-  try {
-    const response = await fetch(`/lang-cloud/index.php?lang=${lang}`);
-    const data = await response.json();
+      document.getElementById("btn-en").classList.toggle("active", lang === 'en');
+      document.getElementById("btn-pt").classList.toggle("active", lang === 'pt');
 
-    if (data.error) {
-      alert("Translation not available yet.");
-      return;
+      document.getElementById("main-title").textContent = lang === 'pt'
+        ? "Bem-vindo ao 45dgof8 - GPT de Conformidade LGPD do Brasil"
+        : "Welcome to 45dgof8 - Brazil LGPD Compliance GPT";
+
+      document.getElementById("launch-btn").textContent = lang === 'pt'
+        ? "Abrir GPT de Conformidade LGPD do Brasil"
+        : "Open Brazil LGPD Compliance GPT";
     }
-
-    document.getElementById("pageTitle").innerText = data.pageTitle || document.getElementById("pageTitle").innerText;
-    document.getElementById("mainText").innerText = data.mainText;
-
-    const list = document.getElementById("whatItDoes");
-    list.innerHTML = "";
-    data.whatItDoes.forEach(item => {
-      const li = document.createElement("li");
-      li.innerText = item;
-      list.appendChild(li);
-    });
-  } catch (error) {
-    console.error("Language load error:", error);
-  }
-}
-</script>
-
+  </script>
 </body>
 </html>
