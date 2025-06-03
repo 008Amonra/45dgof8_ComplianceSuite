@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awakening</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(#01010f, #000);
+      color: #00ffea;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #00ffea;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .choices {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .choice {
+      background: #00ffea;
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 0 15px #00ffea;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .choice:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #00ffea;
+    }
+  </style>
+</head>
+<body>
+  <h1>You Awaken in Darkness</h1>
+  <p>
+    The cryopod hisses open. Cold mist surrounds you. A faint hum pulses through the metal walls.
+    You don't remember your name... but a voice echoes in your mind:
+    <br /><br /><em>"Choose who you are. The fate of the stars depends on it."</em>
+  </p>
+  <div class="choices">
+    <a class="choice" href="#">Scientist</a>
+    <a class="choice" href="#">Rogue</a>
+    <a class="choice" href="#">Diplomat</a>
+  </div>
+</body>
+</html>
