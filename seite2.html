@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seite2 DNA Upgrade</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <style>
@@ -14,7 +14,7 @@
       background: url('kolibri_dna.webp') no-repeat center center fixed;
       background-size: cover;
     }
-<img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird">
+
     .image-container {
       position: relative;
       width: 100%;
@@ -23,9 +23,8 @@
       perspective: 800px;
     }
 
-    .image-container img {
-      width: 100%;
-      display: block;
+    #heroImage {
+      display: none;
     }
 
     #glypheonZone {
@@ -34,17 +33,6 @@
       height: 360px;
       z-index: 5;
       transform-style: preserve-3d;
-      border: 0px dashed #f00;
-    }
-
-    #crosshair {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff0;
-      border-radius: 50%;
-      z-index: 10;
-      transform: translate(-50%, -50%);
     }
 
     .glypheon {
@@ -88,67 +76,69 @@
 </head>
 <body>
 
+  <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird" />
+  
   <div class="image-container">
     <div id="glypheonZone">
       <!-- Static glyph ring position locked -->
-      
-    <div class="credits">Image made with nightcafe.studio</div>
+      <div class="credits">Image made with nightcafe.studio</div>
+    </div>
   </div>
 
 <script>
-    const links = [
-      { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png' },
-      { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png' },
-      { name: 'Eva Answers', url: 'https://45dgof8.com/Eva_Answers.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png' },
-      { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
-      { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
-      { name: 'Ready2Comply', url: 'https://45dgof8.com/Ready2Comply.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/ready2comply.webp' },
-      { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
-      { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
-    ];
+  const links = [
+    { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png' },
+    { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png' },
+    { name: 'Eva Answers', url: 'https://45dgof8.com/Eva_Answers.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png' },
+    { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
+    { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
+    { name: 'Ready2Comply', url: 'https://45dgof8.com/Ready2Comply.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/ready2comply.webp' },
+    { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
+    { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
+  ];
 
-    const container = document.getElementById('glypheonZone');
-    const img = document.getElementById('heroImage');
-    let posX = 0.595;
-    let posY = 0.440;
+  const container = document.getElementById('glypheonZone');
+  const img = document.getElementById('heroImage');
+  let posX = 0.595;
+  let posY = 0.440;
 
-    img.onload = () => {
-  requestAnimationFrame(() => {
-    const rect = img.getBoundingClientRect();
-    const centerX = rect.width * posX;
-    const centerY = rect.height * posY;
-    container.style.left = `${centerX}px`;
-    container.style.top = `${centerY}px`;
+  img.onload = () => {
+    requestAnimationFrame(() => {
+      const rect = img.getBoundingClientRect();
+      const centerX = rect.width * posX;
+      const centerY = rect.height * posY;
+      container.style.left = `${centerX}px`;
+      container.style.top = `${centerY}px`;
 
-    const radiusX = 144;
-    const radiusY = 144;
-    const tilt = 38 * Math.PI / 180;
+      const radiusX = 144;
+      const radiusY = 144;
+      const tilt = 38 * Math.PI / 180;
 
-    links.forEach((link, i) => {
-      const angle = i * (2 * Math.PI / links.length);
-      const x = radiusX * Math.cos(angle);
-      const y = radiusY * Math.sin(angle) * Math.cos(tilt);
+      links.forEach((link, i) => {
+        const angle = i * (2 * Math.PI / links.length);
+        const x = radiusX * Math.cos(angle);
+        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
 
-      const scale = 0.8 + 0.4 * (y / radiusY);
-      const opacity = 0.5 + 0.5 * (y / radiusY);
+        const scale = 0.8 + 0.4 * (y / radiusY);
+        const opacity = 0.5 + 0.5 * (y / radiusY);
 
-      const el = document.createElement('div');
-      el.className = 'glypheon';
-      el.style.left = `${x + radiusX}px`;
-      el.style.top = `${radiusY - y}px`;
-      el.style.transform = `scale(${scale})`;
-      el.style.opacity = `${opacity}`;
+        const el = document.createElement('div');
+        el.className = 'glypheon';
+        el.style.left = `${x + radiusX}px`;
+        el.style.top = `${radiusY - y}px`;
+        el.style.transform = `scale(${scale})`;
+        el.style.opacity = `${opacity}`;
 
-      const anchor = document.createElement('a');
-      anchor.href = link.url;
-      anchor.target = '_blank';
-      anchor.title = link.name;
-      anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.title = link.name;
+        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
 
-      el.appendChild(anchor);
-      container.appendChild(el);
+        el.appendChild(anchor);
+        container.appendChild(el);
+      });
     });
-  });
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
