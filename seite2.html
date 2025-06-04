@@ -3,67 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Seite2 DNA Upgrade</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+  <title>DNA Spiral of Apps</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #fff;
       overflow: hidden;
+      font-family: 'Arial', sans-serif;
       background: url('kolibri_dna.webp') no-repeat center center fixed;
       background-size: cover;
     }
-
-    .image-container {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      perspective: 800px;
-    }
-
-    #heroImage {
-      opacity: 0;
-      width: 100%;
-    }
-
-    #glypheonZone {
+    .spiral-container {
       position: absolute;
-      width: 360px;
-      height: 360px;
-      z-index: 5;
-      transform-style: preserve-3d;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) perspective(1000px);
+      width: 400px;
+      height: 600px;
+      pointer-events: none;
     }
-
-    .glypheon {
+    .app-icon {
       position: absolute;
       width: 64px;
       height: 64px;
-      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s, opacity 0.3s;
-      cursor: pointer;
-      animation: floaty 6s infinite ease-in-out;
-      will-change: transform, opacity;
+      overflow: hidden;
+      will-change: transform, opacity, filter;
+      transition: transform 0.3s, opacity 0.3s, filter 0.3s;
     }
-
-    @keyframes floaty {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0); }
-    }
-
-    .glypheon img {
-      width: 48px;
-      height: 48px;
+    .app-icon img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      pointer-events: none;
     }
-
     .credits {
       position: absolute;
       bottom: 4px;
@@ -72,18 +43,13 @@
       opacity: 0.4;
       font-style: italic;
       color: #fff;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-
-  <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird" />
-  
-  <div class="image-container">
-    <div id="glypheonZone"></div>
-  </div>
-
-  <div class="credits">Image made with nightcafe.studio</div>
+<div class="spiral-container" id="spiral"></div>
+<div class="credits">Image made with nightcafe.studio</div>
 
 <script>
   const links = [
@@ -97,50 +63,32 @@
     { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
   ];
 
-  const container = document.getElementById('glypheonZone');
-  const img = document.getElementById('heroImage');
-  let posX = 0.585;
-  let posY = 0.72;
+  const spiral = document.getElementById('spiral');
+  const radius = 120;
+  const step = 60;
 
-  img.onload = () => {
-    requestAnimationFrame(() => {
-      const rect = img.getBoundingClientRect();
-      const centerX = rect.width * posX;
-      const centerY = rect.height * posY;
-      container.style.left = `${centerX}px`;
-      container.style.top = `${centerY}px`;
+  links.forEach((link, i) => {
+    const angle = i * 36;
+    const y = (i - links.length / 2) * step;
+    const rad = angle * Math.PI / 180;
+    const x = radius * Math.cos(rad);
+    const z = radius * Math.sin(rad);
+    const opacity = 1 - Math.abs(i - links.length/2) / links.length;
+    const blur = Math.abs(z) / radius * 2;
 
-      const radiusX = 144;
-      const radiusY = 144;
-      const tilt = 38 * Math.PI / 180;
+    const a = document.createElement('a');
+    a.href = link.url;
+    a.target = '_blank';
+    a.className = 'app-icon';
+    a.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+    a.style.opacity = opacity;
+    a.style.filter = `blur(${blur}px)`;
+    a.title = link.name;
+    a.innerHTML = `<img src="${link.icon}" alt="${link.name}"/>`;
 
-      links.forEach((link, i) => {
-        const angle = i * (2 * Math.PI / links.length);
-        const x = radiusX * Math.cos(angle);
-        const y = radiusY * Math.sin(angle) * Math.cos(tilt);
-
-        const scale = 0.8 + 0.4 * (y / radiusY);
-        const opacity = 0.5 + 0.5 * (y / radiusY);
-
-        const el = document.createElement('div');
-        el.className = 'glypheon';
-        el.style.left = `${x + radiusX}px`;
-        el.style.top = `${radiusY - y}px`;
-        el.style.transform = `scale(${scale})`;
-        el.style.opacity = `${opacity}`;
-
-        const anchor = document.createElement('a');
-        anchor.href = link.url;
-        anchor.target = '_blank';
-        anchor.title = link.name;
-        anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}">`;
-
-        el.appendChild(anchor);
-        container.appendChild(el);
-      });
-    });
-  };
+    spiral.appendChild(a);
+  });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
 </html>
+
