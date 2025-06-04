@@ -93,29 +93,79 @@
     </ul>
   </section>
 
-  
-  <section>
-    <h2>Payment & Pricing Info</h2>
-    <p>All financial flows are handled by our secure gateway: <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e">45dgof8-Pulse</a>. Eva just thinks, she doesn’t invoice!</p>
-  </section>
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
-  <section class="donate">
-    <h2>Was Eva helpful?</h2>
-    <p>This GPT is part of an independent, community-driven project. If you wish to support its ongoing development:</p>
-    <button onclick="toggleDetails()">💰 Show donation options</button>
-    <div id="donationDetails" style="display: none; margin-top: 1rem; text-align: left;">
-      <ul>
-        <li>PayPal: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></li>
-        <li>Bank Transfer:</li>
-        <ul>
-          <li><strong>IBAN:</strong> CH24 0070 0114 9024 5389 9</li>
-          <li><strong>SWIFT:</strong> ZKBKCHZZ80A</li>
-          <li><strong>Account Holder:</strong> Günther-45dgof8</li>
-        </ul>
-      </ul>
-      <p>Every contribution helps keep the lights on and the circuits spinning. Thank you 🌟</p>
+const TipJar = () => {
+  const [amount, setAmount] = useState(5);
+  const pulseLink = "https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e";
+
+  const handleTip = () => {
+    window.open(`${pulseLink}?amount=${amount}`, "_blank");
+  };
+
+  return (
+    <div className="p-6 max-w-md mx-auto">
+      <Card className="shadow-xl rounded-2xl">
+        <CardContent className="flex flex-col gap-4 p-6">
+          <h2 className="text-xl font-bold text-center">Support the Eva Project 💫</h2>
+          <p className="text-center text-sm text-gray-500">
+            If Eva has helped you, consider leaving a tip to support this independent project.
+          </p>
+          <div className="flex justify-around">
+            {[2, 5, 10].map((val) => (
+              <Button key={val} variant="outline" onClick={() => setAmount(val)}>
+                €{val}
+              </Button>
+            ))}
+          </div>
+          <Input
+            type="number"
+            min="1"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter custom amount (€)"
+          />
+          <Button onClick={handleTip} className="bg-blue-600 text-white">
+            Tip Eva via Pulse
+          </Button>
+        </CardContent>
+      </Card>
     </div>
-  </section>
+  );
+};
+
+export default TipJar;
+
+
+<section class="donate">
+  <h2>Enjoying Eva?</h2>
+  <p>This project is powered by curiosity, creativity, and community. If you'd like to support future updates:</p>
+  <button onclick="toggleDetails()">💡 Show support options</button>
+  <div id="donationDetails" style="display: none; margin-top: 1rem; text-align: left;">
+    <ul>
+      <li><a href="https://paypal.me/45dgof8" target="_blank">Support via PayPal</a></li>
+      <li>Prefer a bank transfer?</li>
+      <ul>
+        <li><strong>IBAN:</strong> CH24 0070 0114 9024 5389 9</li>
+        <li><strong>SWIFT:</strong> ZKBKCHZZ80A</li>
+        <li><strong>Account:</strong> Günther-45dgof8</li>
+      </ul>
+    </ul>
+    <p style="margin-top: 1rem;">Totally optional. Your presence here already means a lot 🕊️</p>
+  </div>
+</section>
+
+<script>
+  function toggleDetails() {
+    const box = document.getElementById('donationDetails');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
+
 
   <section>
     <h2>Contact & Feedback</h2>
