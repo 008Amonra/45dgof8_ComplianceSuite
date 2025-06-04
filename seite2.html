@@ -31,14 +31,14 @@
       cursor: pointer;
     }
     .app-icon:hover::after {
-      content: attr(title);
+      content: attr(data-description);
       position: absolute;
-      top: -24px;
+      top: -30px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       color: #fff;
-      padding: 2px 6px;
+      padding: 4px 8px;
       border-radius: 4px;
       font-size: 12px;
       white-space: nowrap;
@@ -68,14 +68,14 @@
 
 <script>
   const links = [
-    { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png' },
-    { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png' },
-    { name: 'Eva Answers', url: 'https://45dgof8.com/Eva_Answers.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png' },
-    { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png' },
-    { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp' },
-    { name: 'Ready2Comply', url: 'https://45dgof8.com/Ready2Comply.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/ready2comply.webp' },
-    { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp' },
-    { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp' },
+    { name: 'Etsy Shop', url: 'https://www.etsy.com/ch/shop/45dgof8', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/the_button.png', description: 'Handcrafted spiritual goods & art' },
+    { name: 'CatArt Creator', url: 'https://chatgpt.com/g/g-ARBG0WKCW-catartcreator', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/subtleaura.png', description: 'AI-powered cat-inspired art generator' },
+    { name: 'Eva Answers', url: 'https://45dgof8.com/Eva_Answers.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png', description: 'Your intelligent digital assistant' },
+    { name: 'Tech Support GPT', url: 'https://45dgof8.com/TSG-tech-support-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/techsupport.png', description: 'Troubleshooting and technical help' },
+    { name: 'Dion Wolf Presence', url: 'https://45dgof8.com/Dion_Wolf_Jotham.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/DionW.webp', description: 'Explore the digital essence of Dion Wolf' },
+    { name: 'Ready2Comply', url: 'https://45dgof8.com/Ready2Comply.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/icons/ready2comply.webp', description: 'Compliance tools for mindful businesses' },
+    { name: 'GalacticChoices', url: 'https://45dgof8.com/galactic/index.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/GalacticChoices.webp', description: 'Sci-fi adventure in ethical AI storytelling' },
+    { name: 'dns-manager-gpt', url: 'https://45dgof8.com/dns-manager-gpt.html', icon: 'https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/45dgof8-dns-manager-gpt.webp', description: 'Smart DNS management with GPT guidance' },
   ];
 
   const spiral = document.getElementById('spiral');
@@ -90,6 +90,7 @@
     a.target = '_blank';
     a.className = 'app-icon';
     a.title = link.name;
+    a.setAttribute('data-description', link.description);
     a.innerHTML = `<img src="${link.icon}" alt="${link.name}"/>`;
     spiral.appendChild(a);
     icons.push(a);
@@ -124,13 +125,11 @@
 
   renderSpiral();
 
-  // Scroll to rotate DNA
   window.addEventListener('wheel', (e) => {
     angleOffset += e.deltaY * 0.1;
     renderSpiral();
   });
 
-  // Keyboard navigation
   window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') {
       selectedIndex = (selectedIndex + 1) % icons.length;
@@ -147,7 +146,6 @@
     }
   });
 
-  // Auto-rotate toggle
   isAnimating = true;
   animate();
 </script>
