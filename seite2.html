@@ -10,7 +10,7 @@
       margin: 0;
       font-family: 'Arial', sans-serif;
       color: #fff;
-      overflow-x: hidden;
+      overflow: hidden;
       background: url('kolibri_dna.webp') no-repeat center center fixed;
       background-size: cover;
     }
@@ -23,10 +23,10 @@
       perspective: 800px;
     }
 
-   #heroImage {
-  opacity: 0;
-  width: 100%;
-}
+    #heroImage {
+      opacity: 0;
+      width: 100%;
+    }
 
     #glypheonZone {
       position: absolute;
@@ -99,12 +99,8 @@
 
   const container = document.getElementById('glypheonZone');
   const img = document.getElementById('heroImage');
-  let posX = 0.585; // slightly to the right
-  let posY = 0.72;  // lower toward the flower center
-  body {
-    overflow: hidden;
-  };
-
+  let posX = 0.585;
+  let posY = 0.72;
 
   img.onload = () => {
     requestAnimationFrame(() => {
