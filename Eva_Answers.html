@@ -93,57 +93,44 @@
     </ul>
   </section>
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-
-const TipJar = () => {
-  const [amount, setAmount] = useState(5);
-  const pulseLink = "https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e";
-
-  const handleTip = () => {
-    window.open(`${pulseLink}?amount=${amount}`, "_blank");
-  };
-
-  return (
-    <div className="p-6 max-w-md mx-auto">
-      <Card className="shadow-xl rounded-2xl">
-        <CardContent className="flex flex-col gap-4 p-6">
-          <h2 className="text-xl font-bold text-center">Support the Eva Project 💫</h2>
-          <p className="text-center text-sm text-gray-500">
-            If Eva has helped you, consider leaving a tip to support this independent project.
-          </p>
-          <div className="flex justify-around">
-            {[2, 5, 10].map((val) => (
-              <Button key={val} variant="outline" onClick={() => setAmount(val)}>
-                €{val}
-              </Button>
-            ))}
-          </div>
-          <Input
-            type="number"
-            min="1"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter custom amount (€)"
-          />
-          <Button onClick={handleTip} className="bg-blue-600 text-white">
-            Tip Eva via Pulse
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
-  );
-};
-
-export default TipJar;
-
+<section>
+  <h2>Contact & Feedback</h2>
 
 <section class="donate">
+  <h2>Support the Eva Project 💫</h2>
+  <p>If Eva has helped you, consider leaving a tip to support this independent project.</p>
+  <div id="tipjar" style="max-width: 400px; margin: 2rem auto; padding: 1rem; border-radius: 1rem; box-shadow: 0 0 20px rgba(0,0,0,0.1); background-color: #2e2e4d;">
+    <div style="display: flex; justify-content: space-around; margin-bottom: 1rem;">
+      <button onclick="setAmount(2)">€2</button>
+      <button onclick="setAmount(5)">€5</button>
+      <button onclick="setAmount(10)">€10</button>
+    </div>
+    <input type="number" id="customAmount" placeholder="Custom amount (€)" min="1" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;" />
+    <button onclick="sendTip()" style="margin-top: 1rem; width: 100%; padding: 0.75rem; background-color: #1e88e5; color: white; border: none; border-radius: 0.5rem;">
+      Tip Eva via Pulse
+    </button>
+  </div>
+  <p class="text-center" style="color: #aaa; font-size: 0.85rem;">
+    Enjoying Eva? This project is powered by curiosity, creativity, and community.
+  </p>
+</section>
 
-
+<script>
+  let tipAmount = 5;
+  function setAmount(amount) {
+    tipAmount = amount;
+    document.getElementById('customAmount').value = amount;
+  }
+  function sendTip() {
+    const input = document.getElementById('customAmount').value;
+    const amount = input ? parseFloat(input) : tipAmount;
+    if (amount && amount >= 1) {
+      window.open(`https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e?amount=${amount}`, '_blank');
+    } else {
+      alert('Please enter a valid amount.');
+    }
+  }
+</script>
 
   <section>
     <h2>Contact & Feedback</h2>
