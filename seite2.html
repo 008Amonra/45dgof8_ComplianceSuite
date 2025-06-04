@@ -24,7 +24,8 @@
     }
 
     #heroImage {
-      display: none;
+      visibility: hidden;
+      width: 100%;
     }
 
     #glypheonZone {
@@ -76,17 +77,13 @@
 </head>
 <body>
 
- <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird" style="visibility:hidden; width:100%;" />
-  
+  <img id="heroImage" src="kolibri_dna.webp" alt="Flower and Hummingbird" />
+
   <div class="image-container">
-    <div id="glypheonZone">
-      <!-- Static glyph ring position locked -->
-    </div>
+    <div id="glypheonZone"></div>
   </div>
 
-  <!-- ✅ Moved outside to stay anchored -->
   <div class="credits">Image made with nightcafe.studio</div>
-
 
 <script>
   const links = [
@@ -104,7 +101,6 @@
   const img = document.getElementById('heroImage');
   let posX = 0.725;
   let posY = 0.64;
-
 
   img.onload = () => {
     requestAnimationFrame(() => {
@@ -148,3 +144,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
 </html>
+
