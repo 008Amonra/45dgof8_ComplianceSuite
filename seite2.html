@@ -99,8 +99,12 @@
 
   const container = document.getElementById('glypheonZone');
   const img = document.getElementById('heroImage');
-  let posX = 0.725;
-  let posY = 0.64;
+let posX = 0.585; // slightly to the right
+let posY = 0.72;  // lower toward the flower center
+body {
+  overflow: hidden;
+}
+
 
   img.onload = () => {
     requestAnimationFrame(() => {
