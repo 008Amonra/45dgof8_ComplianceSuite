@@ -19,7 +19,6 @@
       transform: translate(-50%, -50%) perspective(1000px);
       width: 400px;
       height: 600px;
-      pointer-events: none;
     }
     .app-icon {
       position: absolute;
@@ -28,7 +27,8 @@
       border-radius: 50%;
       overflow: hidden;
       will-change: transform, opacity, filter;
-      transition: filter 0.3s;
+      transition: filter 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
     .app-icon img {
       width: 100%;
@@ -67,7 +67,7 @@
   const icons = [];
   const radius = 120;
   const step = 60;
-  const centerY = 0;
+  let selectedIndex = 0;
 
   links.forEach((link, i) => {
     const a = document.createElement('a');
@@ -81,7 +81,9 @@
   });
 
   let angleOffset = 0;
-  function animate() {
+  let isAnimating = false;
+
+  function renderSpiral() {
     icons.forEach((el, i) => {
       const angle = angleOffset + i * (360 / icons.length);
       const rad = angle * Math.PI / 180;
@@ -90,14 +92,50 @@
       const z = radius * Math.sin(rad);
       const opacity = 1 - Math.abs(z) / radius;
       const blur = Math.abs(z) / radius * 2;
+      const isFront = Math.round(z) === 0;
+
       el.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
       el.style.opacity = opacity;
       el.style.filter = `blur(${blur}px)`;
+      el.style.zIndex = Math.round(z);
+      el.style.boxShadow = (i === selectedIndex) ? '0 0 12px 4px rgba(255,255,255,0.8)' : 'none';
     });
+  }
+
+  function animate() {
+    if (!isAnimating) return;
     angleOffset += 0.5;
+    renderSpiral();
     requestAnimationFrame(animate);
   }
 
+  renderSpiral();
+
+  // Scroll to rotate DNA
+  window.addEventListener('wheel', (e) => {
+    angleOffset += e.deltaY * 0.1;
+    renderSpiral();
+  });
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      selectedIndex = (selectedIndex + 1) % icons.length;
+      angleOffset -= 360 / icons.length;
+      renderSpiral();
+    }
+    if (e.key === 'ArrowLeft') {
+      selectedIndex = (selectedIndex - 1 + icons.length) % icons.length;
+      angleOffset += 360 / icons.length;
+      renderSpiral();
+    }
+    if (e.key === 'Enter') {
+      icons[selectedIndex].click();
+    }
+  });
+
+  // Auto-rotate toggle
+  isAnimating = true;
   animate();
 </script>
 </body>
