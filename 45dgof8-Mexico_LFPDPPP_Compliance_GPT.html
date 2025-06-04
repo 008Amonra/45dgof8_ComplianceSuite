@@ -1,141 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>45dgof8 – Mexico LFPDPPP Compliance GPT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT de Cumplimiento LFPDPPP México</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f1f4f6; color: #333; }
-    header { background-color: #00695c; color: white; padding: 40px 20px; text-align: center; }
-    h1 { margin-bottom: 10px; font-size: 2.5em; }
-    .tagline { font-size: 1.2em; }
-    .container { max-width: 960px; margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    h2 { color: #004d40; }
-    ul { line-height: 1.8; }
-    .price-table { width: 100%; border-collapse: collapse; margin-top: 1em; font-family: 'Segoe UI', sans-serif; font-size: 15px; }
-    .price-table th, .price-table td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
-    .price-table th { background-color: #f2f2f2; font-weight: bold; }
-    .price-table td:first-child { font-weight: 500; }
-    .tooltip { position: relative; display: inline-block; cursor: help; }
-    .tooltip .tooltiptext {
-      visibility: hidden; width: 220px; background-color: #333; color: #fff;
-      text-align: left; border-radius: 6px; padding: 10px;
-      position: absolute; z-index: 1; bottom: 125%; left: 0;
-      opacity: 0; transition: opacity 0.3s; font-size: 13px;
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
     }
-    .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
-    a { color: #00695c; text-decoration: none; }
-    footer { text-align: center; margin: 40px auto; font-size: 0.9em; color: #777; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
+  <script>
+    async function switchLanguage(lang) {
+      const output = document.getElementById('translation-output');
+      output.innerHTML = '<p class="text-gray-500">Cargando traducción...</p>';
+      output.classList.remove('hidden');
+      output.classList.add('fade-in');
+      try {
+        const res = await fetch(`translations/${lang}.json`);
+        const data = await res.json();
+        output.innerHTML = `<h2 class='text-2xl font-semibold mb-2'>🗣️ ${data.title}</h2><p>${data.text}</p>`;
+      } catch (e) {
+        output.innerHTML = '<p class="text-red-600">Traducción no disponible.</p>';
+      }
+    }
+    window.addEventListener('DOMContentLoaded', () => switchLanguage('espanol'));
+  </script>
 </head>
-<body>
-
-  <header>
-    <h1>45dgof8 – Mexico LFPDPPP Compliance GPT</h1>
-    <p class="tagline">AI Legal Assistant – LFPDPPP | Cumplimiento Inteligente</p>
+<body class="bg-gray-50 text-gray-900">
+  <header class="bg-green-800 text-white text-center py-10 px-4">
+    <h1 class="text-4xl font-bold mb-2">45dgof8 – Mexico LFPDPPP Compliance GPT</h1>
+    <p class="text-lg">Asistente Legal de IA – LFPDPPP | Cumplimiento Inteligente</p>
   </header>
 
-  <section style="padding: 2rem 1rem; text-align: center;">
-    <img src="uH7z.webp" alt="LFPDPPP Compliance" style="max-width: 35%; height: auto; border-radius: 10px;">
+  <section class="text-center my-8">
+    <img src="uH7z.webp" alt="LFPDPPP Compliance" class="mx-auto rounded-lg" style="max-width: 35%;">
   </section>
 
-  <div class="container">
-    <h2>What This GPT Does</h2>
-    <p>This specialized AI tool helps businesses understand and comply with Mexico’s Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP). Services include:</p>
-    <ul>
-      <li>Explaining key LFPDPPP obligations</li>
-      <li>Supporting ARCO Rights (Access, Rectification, Cancellation, Opposition)</li>
-      <li>Guidance on consent, security, and cross-border data transfers</li>
-      <li>Templates, self-assessments, and automated risk reporting</li>
-      <li>Multilingual support in Spanish and select Indigenous languages</li>
+  <div class="max-w-6xl mx-auto py-12 px-6 bg-white rounded-xl shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">📘 ¿Qué hace este GPT?</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Explica obligaciones clave de la LFPDPPP</li>
+      <li>Soporta Derechos ARCO (Acceso, Rectificación, Cancelación, Oposición)</li>
+      <li>Guía sobre consentimiento, seguridad y transferencias de datos</li>
+      <li>Plantillas, autoevaluaciones e informes de riesgo</li>
+      <li>Soporte multilingüe en español y lenguas indígenas</li>
     </ul>
 
-    <h2 class="tooltip">
-      Suggested Pricing (Smart & Accessible)
-      <span class="tooltiptext">We believe in fair, realistic pricing. In 2025, you get 25% off to support easier access to quality AI support.</span>
-    </h2>
-
-    <table class="price-table">
-      <tr>
-        <th>Service</th>
-        <th>Price (MX$)</th>
-        <th>Approx. USD</th>
-      </tr>
-      <tr>
-        <td>💡 Basic GPT Consulting (per hour)</td>
-        <td>MX$249</td>
-        <td>~$13</td>
-      </tr>
-      <tr>
-        <td>🎙️ Premium GPT Live Support (interactive)</td>
-        <td>MX$499</td>
-        <td>~$25</td>
-      </tr>
-      <tr>
-        <td>📝 Document Generator (Lite)</td>
-        <td>MX$149</td>
-        <td>~$7.50</td>
-      </tr>
-      <tr>
-        <td>❓ FAQ Toolkit (10 Custom Q&As)</td>
-        <td>MX$199</td>
-        <td>~$10</td>
-      </tr>
-      <tr>
-        <td>🧭 Risk Self-Check Report</td>
-        <td>MX$299</td>
-        <td>~$15</td>
-      </tr>
-      <tr>
-        <td>📆 Monthly GPT Access Pass</td>
-        <td>MX$187/month</td>
-        <td>~$9.50/month</td>
-      </tr>
+    <h2 class="text-xl font-semibold mt-10 mb-2">💰 Precios sugeridos (Inteligente y accesible)</h2>
+    <table class="w-full table-auto border mt-4 text-sm">
+      <thead class="bg-gray-100">
+        <tr><th class="p-2 border">Servicio</th><th class="p-2 border">Precio (MX$)</th><th class="p-2 border">USD aprox.</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="border p-2">💡 Consultoría GPT Básica (por hora)</td><td class="border p-2">MX$249</td><td class="border p-2">~$13</td></tr>
+        <tr><td class="border p-2">🎙️ Soporte GPT Premium en Vivo</td><td class="border p-2">MX$499</td><td class="border p-2">~$25</td></tr>
+        <tr><td class="border p-2">📝 Generador de Documentos (Lite)</td><td class="border p-2">MX$149</td><td class="border p-2">~$7.50</td></tr>
+        <tr><td class="border p-2">❓ Kit de Preguntas Frecuentes (10 Q&A)</td><td class="border p-2">MX$199</td><td class="border p-2">~$10</td></tr>
+        <tr><td class="border p-2">🧭 Informe de Autoevaluación de Riesgos</td><td class="border p-2">MX$299</td><td class="border p-2">~$15</td></tr>
+        <tr><td class="border p-2">📆 Pase Mensual GPT</td><td class="border p-2">MX$187/mes</td><td class="border p-2">~$9.50/mes</td></tr>
+      </tbody>
     </table>
 
-    <p><strong>Payment Info:</strong> All financial transactions are securely managed through <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8–pulse</a>, our trusted payment infrastructure.</p>
+    <p class="mt-4">🔐 <strong>Información de pago:</strong> Las transacciones se gestionan de forma segura a través de <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" class="text-blue-600 underline">45dgof8–pulse</a>.</p>
 
-    <div style="margin-top: 20px; text-align: center;">
-      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank"
-         style="background-color: #0078D4; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold; display: inline-block;">
-        💬 Start Chat with Mexican GPT
-      </a>
+    <div class="text-center my-6">
+      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold text-lg">💬 Iniciar Chat con el GPT Mexicano</a>
     </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      <div class="border p-4 rounded-lg bg-gray-50 shadow-sm">
+        <h3 class="text-xl font-semibold mb-1">🚀 Entrega acelerada</h3>
+        <p>La mayoría de los informes se generan en minutos. Esta opción prioriza tu solicitud y garantiza entrega en <strong>menos de 2 horas</strong>.</p>
+      </div>
+      <div class="border p-4 rounded-lg bg-gray-50 shadow-sm">
+        <h3 class="text-xl font-semibold mb-1">🌐 Informe bilingüe 🇲🇽</h3>
+        <p>Recibe tu informe en <strong>español e inglés</strong>. Ideal para cumplimiento local e internacional.</p>
+      </div>
+      <div class="border p-4 rounded-lg bg-gray-50 shadow-sm">
+        <h3 class="text-xl font-semibold mb-1">🛡️ Verificación extendida 🇰🇷</h3>
+        <p>Escaneo profundo basado en la normativa PIPA de Corea del Sur. Útil antes de compartir resultados con asesoría legal.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold mt-12 mb-4">🌍 Traducciones Dinámicas</h2>
+    <label for="language" class="block text-lg font-medium mb-2">Selecciona un idioma:</label>
+    <select id="language" onchange="switchLanguage(this.value)" class="mb-4 p-2 border rounded">
+      <option value="espanol">Español</option>
+      <option value="nahuatl">Náhuatl</option>
+      <option value="maya">Maya</option>
+      <option value="zapoteco">Zapoteco</option>
+    </select>
+    <div id="translation-output" class="fade-in mt-4"></div>
   </div>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; font-family: 'Segoe UI', sans-serif;">
 
-
-  <!-- Expedited Delivery -->
-  <div style="flex: 0 1 300px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; background: #f9fafb; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-    <h3 style="margin-top: 0; color: #1f2937; font-size: 1.25rem;">🚀 Expedited Delivery</h3>
-    <p style="margin: 0; color: #374151; font-size: 1rem;">
-      Most reports are generated within minutes. This option prioritizes your request in our queue and ensures delivery within <strong>2 hours</strong> — even during high demand.
-    </p>
-  </div>
-
-<!-- Bilingual Report Output - Mexico -->
-<div style="flex: 0 1 300px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; background: #f9fafb; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-  <h3 style="margin-top: 0; color: #1f2937; font-size: 1.25rem;">🌐 Bilingual Report Output <span title="México">🇲🇽</span></h3>
-  <p style="margin: 0; color: #374151; font-size: 1rem;">
-    Receive your report in both <strong>Spanish and English</strong>. Ideal for bilingual communication, local compliance with Mexican regulations, or cross-border collaboration.
-  </p>
-</div>
-
-  <!-- Extended Compliance Check -->
-  <div style="flex: 0 1 300px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; background: #f9fafb; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-    <h3 style="margin-top: 0; color: #1f2937; font-size: 1.25rem;">🛡️ Extended Compliance Check <span title="South Korea Only">🇰🇷</span></h3>
-    <p style="margin: 0; color: #374151; font-size: 1rem;">
-      A deeper, AI-powered scan based on South Korea's PIPA regulations and common audit flags. Designed to help you prepare before sharing results with human counsel.
-    </p>
-  </div>
-
-</div>
-
-
-
-  <footer>
-    &copy; 2025 45dgof8 – Mexico LFPDPPP GPT. All rights reserved.
+  <footer class="text-center text-sm text-gray-500 my-8">
+    © 2025 45dgof8 – GPT de Cumplimiento LFPDPPP México. Todos los derechos reservados.
   </footer>
-
 </body>
 </html>
