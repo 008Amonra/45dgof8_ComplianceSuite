@@ -28,7 +28,7 @@
       border-radius: 50%;
       overflow: hidden;
       will-change: transform, opacity, filter;
-      transition: transform 0.3s, opacity 0.3s, filter 0.3s;
+      transition: filter 0.3s;
     }
     .app-icon img {
       width: 100%;
@@ -64,31 +64,41 @@
   ];
 
   const spiral = document.getElementById('spiral');
+  const icons = [];
   const radius = 120;
   const step = 60;
+  const centerY = 0;
 
   links.forEach((link, i) => {
-    const angle = i * 36;
-    const y = (i - links.length / 2) * step;
-    const rad = angle * Math.PI / 180;
-    const x = radius * Math.cos(rad);
-    const z = radius * Math.sin(rad);
-    const opacity = 1 - Math.abs(i - links.length/2) / links.length;
-    const blur = Math.abs(z) / radius * 2;
-
     const a = document.createElement('a');
     a.href = link.url;
     a.target = '_blank';
     a.className = 'app-icon';
-    a.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
-    a.style.opacity = opacity;
-    a.style.filter = `blur(${blur}px)`;
     a.title = link.name;
     a.innerHTML = `<img src="${link.icon}" alt="${link.name}"/>`;
-
     spiral.appendChild(a);
+    icons.push(a);
   });
+
+  let angleOffset = 0;
+  function animate() {
+    icons.forEach((el, i) => {
+      const angle = angleOffset + i * (360 / icons.length);
+      const rad = angle * Math.PI / 180;
+      const y = (i - icons.length / 2) * step;
+      const x = radius * Math.cos(rad);
+      const z = radius * Math.sin(rad);
+      const opacity = 1 - Math.abs(z) / radius;
+      const blur = Math.abs(z) / radius * 2;
+      el.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+      el.style.opacity = opacity;
+      el.style.filter = `blur(${blur}px)`;
+    });
+    angleOffset += 0.5;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 </script>
 </body>
 </html>
-
