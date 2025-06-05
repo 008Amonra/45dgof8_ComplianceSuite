@@ -6,30 +6,9 @@
   <title>GPT de Cumplimiento LFPDPPP México</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .fade-in {
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    .fade-in { animation: fadeIn 0.5s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
-  <script>
-    async function switchLanguage(lang) {
-      const output = document.getElementById('translation-output');
-      output.innerHTML = '<p class="text-gray-500">Cargando traducción...</p>';
-      output.classList.remove('hidden');
-      output.classList.add('fade-in');
-      try {
-        const res = await fetch(`translations/${lang}.json`);
-        const data = await res.json();
-        output.innerHTML = `<h2 class='text-2xl font-semibold mb-2'>🗣️ ${data.title}</h2><p>${data.text}</p>`;
-      } catch (e) {
-        output.innerHTML = '<p class="text-red-600">Traducción no disponible.</p>';
-      }
-    }
-    window.addEventListener('DOMContentLoaded', () => switchLanguage('espanol'));
-  </script>
 </head>
 <body class="bg-gray-50 text-gray-900">
   <header class="bg-green-800 text-white text-center py-10 px-4">
@@ -88,18 +67,43 @@
     </div>
 
     <h2 class="text-2xl font-bold mt-12 mb-4">🌍 Traducciones Dinámicas</h2>
-    <label for="language" class="block text-lg font-medium mb-2">Selecciona un idioma:</label>
-    <select id="language" onchange="switchLanguage(this.value)" class="mb-4 p-2 border rounded">
-      <option value="espanol">Español</option>
-      <option value="nahuatl">Náhuatl</option>
-      <option value="maya">Maya</option>
-      <option value="zapoteco">Zapoteco</option>
-    </select>
-    <div id="translation-output" class="fade-in mt-4"></div>
+    <div class="bg-gray-100 p-6 rounded-lg">
+      <label for="langSelect" class="block text-lg font-medium mb-2">Selecciona un idioma:</label>
+      <select id="langSelect" onchange="updateText()" class="w-full mb-4 p-2 border rounded">
+        <option value="es">🇲🇽 Español</option>
+        <option value="nahuatl">🪶 Náhuatl</option>
+        <option value="maya">🌀 Maya</option>
+        <option value="zapoteco">🌄 Zapoteco</option>
+        <option value="otomi">🌿 Otomí (Hñähñü)</option>
+        <option value="totonac">🌽 Totonac</option>
+        <option value="chol">🌳 Ch’ol</option>
+        <option value="en">🇺🇸 English</option>
+      </select>
+      <div id="translation" class="bg-white p-4 rounded shadow text-gray-800"></div>
+    </div>
   </div>
 
   <footer class="text-center text-sm text-gray-500 my-8">
     © 2025 45dgof8 – GPT de Cumplimiento LFPDPPP México. Todos los derechos reservados.
   </footer>
+
+  <script>
+    const translations = {
+      es: "Esta herramienta de IA especializada ayuda a las empresas a comprender y cumplir con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.",
+      nahuatl: "Inin IA tlamantli techpalehuia tlen tlacualchihualoyan tlen techpualtia uan titechmoneki tiquejmoni tlen Ley Federal de Protección de Datos Personales.",
+      maya: "Le máak in k'ajóoltik tu'ux tu yáantik le u leyil protección datos personales ichil jump'éel empresa.",
+      zapoteco: "Ba yuxhibani IA ca xteneguia guxhiladi guendaranabani ca xquidxi guendarani Ley Federal de Protección de Datos Personales.",
+      otomi: "Jä ñätho da gätho ne xudi yo xudi di ja jä’i ya näthäda, di nä nänädi da LFPDPPP, däni jä’i da jäi mä jäfi yo dädi yo nu’i mäski.",
+      totonac: "Tajin ina IA ti chuchutsniya nin ichiin ti la ju’stakamanin ti LFPDPPP, ti ichachayaka chi ti ichichin ti sepa ikni.",
+      chol: "Jiñi IA tsa’bä ñächob tsa’käñ k’uxi ajkuñelob mi icha’leñ ta LFPDPPP mi tsa’ käleñ yo tsa’añbil.",
+      en: "This specialized AI tool helps companies understand and comply with Mexico’s Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP)."
+    };
+    function updateText() {
+      const lang = document.getElementById("langSelect").value;
+      const translation = document.getElementById("translation");
+      translation.textContent = translations[lang] || "Traducción no disponible.";
+    }
+    window.onload = updateText;
+  </script>
 </body>
 </html>
