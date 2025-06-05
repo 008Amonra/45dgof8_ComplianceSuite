@@ -69,7 +69,8 @@
   </section>
 <body>
     <div class="banner-container">
-    <center> <img src="TCXm.webp" alt="Eva's the best!" class="banner"></center>
+    <center><img id="evaBanner" src="TCXm.webp" alt="Eva's the best!" class="banner"></center>
+
   <section>
     <h2>What I Can Do for You</h2>
     <div class="card-container">
@@ -144,6 +145,14 @@
   <footer>
     <p>© 2025 Eva Answers for 45dgof8 – Powered by Wit, Empathy, and AI</p>
   </footer>
+  <script>
+  window.addEventListener("load", () => {
+    const banner = document.getElementById("evaBanner");
+    if (banner) {
+      banner.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+</script>
 </body>
 </html>
 
