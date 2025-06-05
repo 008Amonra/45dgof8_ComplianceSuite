@@ -14,13 +14,13 @@
     }
     .container {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-around;
       padding: 50px;
     }
     .text {
-      max-width: 500px;
+      max-width: 800px;
+      text-align: center;
     }
     h1 {
       font-size: 2.5rem;
@@ -39,8 +39,15 @@
       text-decoration: none;
       border-radius: 5px;
     }
-    img {
-      max-width: 400px;
+    .images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+      justify-content: center;
+    }
+    .images img {
+      max-width: 300px;
       border-radius: 10px;
     }
   </style>
@@ -52,7 +59,12 @@
       <p>Create Your Custom Cat Artwork: Let your imagination run wild! Describe your dream cat image – choose styles, breeds, scenarios, moods, and even color themes. Our GPT will craft a unique cat image just for you. Whether it’s a majestic Siamese in a surreal landscape or a playful tabby in a cozy setting, we’re here to bring your vision to life.</p>
       <a class="button" href="https://chatgpt.com/g/g-ARBG0WKCW-catartcreator" target="_blank">Visit CatArtCreator</a>
     </div>
-    <img src="/mnt/data/A_promotional_web_page_for_\"CatArtCreator\"_feature.png" alt="Promotional Cat Art">
+    <div class="images">
+      <img src="/mnt/data/A_promotional_web_page_for_\"CatArtCreator\"_feature.png" alt="Promotional Cat Art">
+      <img src="promo.webp" alt="Promotional Image">
+      <img src="2nd.webp" alt="Second Promotional Image">
+    </div>
   </div>
 </body>
 </html>
+
