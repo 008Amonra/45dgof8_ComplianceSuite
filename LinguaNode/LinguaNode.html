@@ -16,6 +16,40 @@
     <p class="text-lg" data-key="subtitle">Asistente Legal de IA – LFPDPPP | Cumplimiento Inteligente</p>
   </header>
 
+  const translationMap = {
+  es: { /* Spanish translations */ },
+  en: { /* English translations */ },
+  maya: { /* Maya translations */ },
+  zapoteco: { /* Zapotec translations */ },
+  otomi: { /* Otomi translations */ },
+  totonac: { /* Totonac translations */ },
+  chol: { /* Chol translations */ }
+};
+function updateText() {
+  const lang = document.getElementById("langSelect").value;
+  const data = translationMap[lang];
+  if (!data) return;
+
+  Object.entries(data).forEach(([key, text]) => {
+    const el = document.querySelector(`[data-key="${key}"]`);
+    if (el) el.innerHTML = text;
+  });
+}
+  
+window.addEventListener('DOMContentLoaded', () => {
+  const selector = document.getElementById('langSelect');
+  const userLang = navigator.language.split('-')[0];
+  const supported = Object.keys(translationMap);
+  const defaultLang = supported.includes(userLang) ? userLang : 'es';
+
+  if (selector) {
+    selector.value = defaultLang;
+    selector.addEventListener('change', updateText);
+    updateText(); // apply on load
+  }
+});
+
+
   <section class="text-center my-8">
     <img src="uH7z.webp" alt="LFPDPPP Compliance" class="mx-auto rounded-lg" style="max-width: 35%;">
   </section>
