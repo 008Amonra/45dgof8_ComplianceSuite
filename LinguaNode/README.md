@@ -4,7 +4,7 @@
 
 ## 📁 Structure
 LinguaNode/
-├── index.html # Main plugin interface
+├── LinguaNode.html # Main plugin interface
 ├── lang-packs/ # Folder for JSON-based language packs
 │ ├── guarani.json
 │ ├── ticuna.json
@@ -13,7 +13,7 @@ LinguaNode/
 
 ## 🚀 Usage
 
-1. Open `index.html` in a browser (no server required).
+1. Open `LinguaNode.html` in a browser (no server required).
 2. Select a language.
 3. The corresponding `.json` file from `lang-packs/` is loaded dynamically.
 
