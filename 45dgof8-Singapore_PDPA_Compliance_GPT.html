@@ -141,6 +141,44 @@
         <h3>📣 DNC Registry Compliance</h3>
         <p>Ensure your marketing campaigns comply with the Do Not Call Registry — avoid fines and friction.</p>
       </div>
+      <div id="multi-intro" style="text-align:center; margin: 2rem 0;">
+  <!-- Language Switch Buttons -->
+  <button onclick="showLang('en')">🇬🇧 English</button>
+  <button onclick="showLang('zh')">🇨🇳 简体中文</button>
+  <button onclick="showLang('ms')">🇲🇾 Melayu</button>
+
+  <!-- English -->
+  <div id="lang-en">
+    <h2>Welcome to 45dgof8’s Singapore PDPA Compliance GPT</h2>
+    <p>Your dedicated assistant for navigating Singapore's <em>Personal Data Protection Act (PDPA)</em>.</p>
+    <p>Whether you're managing a business, launching a service, or handling personal data, this GPT helps ensure you comply with Singapore’s data protection obligations.</p>
+  </div>
+
+  <!-- Simplified Chinese -->
+  <div id="lang-zh" style="display:none;">
+    <h2>欢迎使用 45dgof8 新加坡个人资料保护法 (PDPA) 合规 GPT</h2>
+    <p>为您提供指导，助您在新加坡《个人资料保护法》(PDPA) 下保持合规。</p>
+    <p>无论是企业管理、产品发布，还是处理个人资料，本 GPT 都能助您一臂之力。</p>
+  </div>
+
+  <!-- Bahasa Melayu -->
+  <div id="lang-ms" style="display:none;">
+    <h2>Selamat datang ke 45dgof8’s Singapore PDPA Compliance GPT</h2>
+    <p>Pembantu anda untuk memahami <em>Personal Data Protection Act (PDPA)</em> Singapura.</p>
+    <p>Sama ada anda mengurus perniagaan, melancarkan perkhidmatan, atau mengendalikan data peribadi, GPT ini membantu memastikan anda mematuhi undang-undang perlindungan data Singapura.</p>
+  </div>
+</div>
+
+<script>
+  function showLang(lang) {
+    ['en','zh','ms'].forEach(l => {
+      document.getElementById('lang-'+l).style.display = l === lang ? 'block' : 'none';
+    });
+  }
+</script>
+
+
+      
     </section>
 
     <section class="donate">
