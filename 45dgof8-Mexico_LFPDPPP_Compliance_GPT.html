@@ -291,20 +291,32 @@
   }
 };
 
-// Auto-detect browser language and sync with selector
-window.addEventListener('DOMContentLoaded', () => {
-  const userLang = navigator.language.split('-')[0];
-  const supported = Object.keys(translationMap);
-  const defaultLang = supported.includes(userLang) ? userLang : 'es';
-  const selector = document.getElementById('language');
-  if (selector) {
-    selector.value = defaultLang;
-    selector.addEventListener('change', (e) => switchLanguage(e.target.value));
+    },
+    // Additional languages to be appended here in follow-up updates
+  };
+
+  function updateText() {
+    const lang = document.getElementById("langSelect").value;
+    const data = translationMap[lang];
+    if (!data) return;
+    for (const [key, text] of Object.entries(data)) {
+      const el = document.querySelector(`[data-key="${key}"]`);
+      if (el) el.innerHTML = text;
+    }
   }
-  if (typeof switchLanguage === 'function') {
-    switchLanguage(defaultLang);
-  }
-});
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const userLang = navigator.language.split('-')[0];
+    const supported = Object.keys(translationMap);
+    const defaultLang = supported.includes(userLang) ? userLang : 'es';
+    const selector = document.getElementById('langSelect');
+    if (selector) {
+      selector.value = defaultLang;
+      selector.addEventListener('change', updateText);
+    }
+    updateText();
+  });
+</script>
 
   </script>
 </body>
