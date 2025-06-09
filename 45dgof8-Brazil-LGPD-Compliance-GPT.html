@@ -106,21 +106,27 @@
   <footer>© 2025 45dgof8 Compliance Hub | <a href="https://45dgof8.com" style="color: #ffe082;">Back to Home</a></footer>
 
   <script>
-    function setLanguage(lang) {
-      document.getElementById("content-en").style.display = lang === 'en' ? 'block' : 'none';
-      document.getElementById("content-pt").style.display = lang === 'pt' ? 'block' : 'none';
-
-      document.getElementById("btn-en").classList.toggle("active", lang === 'en');
-      document.getElementById("btn-pt").classList.toggle("active", lang === 'pt');
-
-      document.getElementById("main-title").textContent = lang === 'pt'
-        ? "Bem-vindo ao 45dgof8 - GPT de Conformidade LGPD do Brasil"
-        : "Welcome to 45dgof8 - Brazil LGPD Compliance GPT";
-
-      document.getElementById("launch-btn").textContent = lang === 'pt'
-        ? "Abrir GPT de Conformidade LGPD do Brasil"
-        : "Open Brazil LGPD Compliance GPT";
+  function updateText() {
+    const lang = document.getElementById("langSelect").value;
+    const data = translationMap[lang];
+    if (!data) return;
+    for (const [key, text] of Object.entries(data)) {
+      const el = document.querySelector(`[data-key="${key}"]`);
+      if (el) el.innerHTML = text;
     }
-  </script>
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const userLang = navigator.language.split('-')[0];
+    const supported = Object.keys(translationMap);
+    const defaultLang = supported.includes(userLang) ? userLang : 'es';
+    const selector = document.getElementById('langSelect');
+    if (selector) {
+      selector.value = defaultLang;
+      selector.addEventListener('change', updateText);
+    }
+    updateText();
+  });
+</script>
 </body>
 </html>
