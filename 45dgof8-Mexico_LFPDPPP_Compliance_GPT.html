@@ -110,21 +110,9 @@
         bilingual_desc: "Recibe tu informe en <strong>español e inglés</strong>. Ideal para cumplimiento local e internacional.",
         audit_title: "🛡️ Verificación extendida 🇰🇷",
         audit_desc: "Escaneo profundo basado en la normativa PIPA de Corea del Sur. Útil antes de compartir resultados con asesoría legal."
-      }
+      },
 
 
-    function updateText() {
-      const lang = document.getElementById("langSelect").value;
-      const data = translationMap[lang];
-      if (!data) return;
-      for (const [key, text] of Object.entries(data)) {
-        const el = document.querySelector(`[data-key="${key}"]`);
-        if (el) el.innerHTML = text;
-      }
-    }
-    window.onload = updateText;
-    const translationMap = {
-  es: { /* ... */ },
   en: {
     title: "45dgof8 – Mexico LFPDPPP Compliance GPT",
     subtitle: "AI Legal Assistant – LFPDPPP | Smart Compliance",
@@ -148,32 +136,6 @@
     audit_title: "🛡️ Extended Verification 🇰🇷",
     audit_desc: "Deep scan based on South Korea’s PIPA framework. Useful before legal counsel review."
   },
- const translationMap = {
-  es: { /* ... */ },
-  en: {
-    title: "45dgof8 – Mexico LFPDPPP Compliance GPT",
-    subtitle: "AI Legal Assistant – LFPDPPP | Smart Compliance",
-    what_title: "📘 What does this GPT do?",
-    item1: "Explains key LFPDPPP obligations",
-    item2: "Supports ARCO Rights (Access, Rectification, Cancellation, Opposition)",
-    item3: "Guidance on consent, security, and data transfers",
-    item4: "Templates, self-assessments, and risk reports",
-    item5: "Multilingual support in Spanish and Indigenous languages",
-    pricing_title: "💰 Suggested Pricing (Smart & Accessible)",
-    col1: "Service", col2: "Price (MX$)", col3: "Approx. USD",
-    svc1: "💡 Basic GPT Consulting (per hour)", svc2: "🎙️ Premium GPT Live Support",
-    svc3: "📝 Document Generator (Lite)", svc4: "❓ FAQ Toolkit (10 Q&As)",
-    svc5: "🧭 Risk Self-Check Report", svc6: "📆 Monthly GPT Access Pass",
-    payment_info: "🔐 <strong>Payment Info:</strong> All transactions are securely managed through <a href=\"https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e\" class=\"text-blue-600 underline\">45dgof8–pulse</a>.",
-    chat_btn: "💬 Start Chat with Mexican GPT",
-    expedited_title: "🚀 Expedited Delivery",
-    expedited_desc: "Most reports are generated within minutes. This option prioritizes your request and ensures delivery in <strong>under 2 hours</strong>.",
-    bilingual_title: "🌐 Bilingual Report 🇲🇽",
-    bilingual_desc: "Receive your report in <strong>Spanish and English</strong>. Ideal for local and international compliance.",
-    audit_title: "🛡️ Extended Verification 🇰🇷",
-    audit_desc: "Deep scan based on South Korea’s PIPA framework. Useful before legal counsel review."
-  },
-  nahuatl: { /* existing content */ },
   maya: {
     title: "45dgof8 – Mexico LFPDPPP Compliance GPT",
     subtitle: "Máak Inteligente – LFPDPPP | Jach tu xook",
