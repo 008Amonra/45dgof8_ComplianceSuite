@@ -2,16 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mission: Scientist</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('A_user_interface_webpage_for_a_fictional_interacti.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0ff;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #a6f;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .choice-button {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      cursor: pointer;
+      color: #f0f0ff;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .choice-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    audio {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Chapter 1: The Signal</h2>
-  <p>Dr. Elara Myles adjusted the frequency on her long-range quantum receiver...</p>
-  <ul>
-    <li>Form a small, mobile research team and request a vessel...</li>
-    <li>Discreetly share the signal with a rival researcher...</li>
-    <li>Re-run simulations and delay reporting...</li>
-    <li>Leak a fragment anonymously to stir debate...</li>
-  </ul>
+  <div class="overlay">
+    <h1>Chapter 1: The Signal</h1>
+    <p>Dr. Elara Myles adjusted the frequency on her long-range quantum receiver...</p>
+    <div class="choices">
+      <a class="choice-button" href="#" onclick="alert('You chose to request a vessel.')">Form a small, mobile research team and request a vessel...</a>
+      <a class="choice-button" href="#" onclick="alert('You chose to share the signal.')">Discreetly share the signal with a rival researcher...</a>
+      <a class="choice-button" href="#" onclick="alert('You chose to delay reporting.')">Re-run simulations and delay reporting...</a>
+      <a class="choice-button" href="#" onclick="alert('You chose to leak a fragment.')">Leak a fragment anonymously to stir debate...</a>
+    </div>
+  </div>
+  <audio autoplay loop>
+    <source src="ambient.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </body>
 </html>
