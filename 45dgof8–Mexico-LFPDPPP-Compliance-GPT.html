@@ -191,7 +191,7 @@
 
   <script>
     function setLanguage(lang) {
-      const ids = ['es', 'en'];
+      const ids = ['es', 'en', 'nahuatl', 'maya', 'zapoteco', 'otomi', 'totonac', 'chol'];
       ids.forEach(id => {
         document.getElementById(`content-${id}`).style.display = (id === lang) ? 'block' : 'none';
         document.getElementById(`btn-${id}`).classList.toggle("active", id === lang);
