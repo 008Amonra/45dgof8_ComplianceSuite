@@ -8,7 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 40px;
+            margin: 20px;
+            padding: 10px;
             background-color: #f9f9f9;
             color: #333;
         }
@@ -40,26 +41,83 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: space-between;
+            justify-content: center;
             margin-top: 40px;
         }
         .feature-box {
             background-color: #fff;
             border: 1px solid #ccc;
             padding: 20px;
-            flex: 1 1 30%;
-            min-width: 250px;
+            flex: 1 1 300px;
+            max-width: 400px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
         }
+        .lang-buttons {
+            text-align: center;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .lang-buttons button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #0072bc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1 1 120px;
+        }
+        .lang-buttons button:hover {
+            background-color: #005b99;
+        }
+        .translation {
+            display: none;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #ccc;
+        }
+        @media screen and (max-width: 600px) {
+            body {
+                margin: 10px;
+                padding: 5px;
+            }
+            .feature-box {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
     </style>
+    <script>
+        function showLang(code) {
+            document.querySelectorAll('.translation').forEach(el => el.style.display = 'none');
+            document.querySelectorAll(`.translation[data-lang="${code}"]`).forEach(el => el.style.display = 'block');
+        }
+    </script>
 </head>
 <body>
     <div class="banner-container">
         <img src="india.webp" alt="India Theme Banner" class="banner">
     </div>
 
+    <div class="lang-buttons">
+        <button onclick="showLang('hi')">1. हिंदी</button>
+        <button onclick="showLang('bn')">2. বাংলা</button>
+        <button onclick="showLang('te')">3. తెలుగు</button>
+        <button onclick="showLang('mr')">4. मराठी</button>
+        <button onclick="showLang('ta')">5. தமிழ்</button>
+        <button onclick="showLang('gu')">6. ગુજરાતી</button>
+        <button onclick="showLang('ur')">7. اردو</button>
+        <button onclick="showLang('kn')">8. ಕನ್ನಡ</button>
+        <button onclick="showLang('or')">9. ଓଡ଼ିଆ</button>
+        <button onclick="showLang('ml')">10. മലയാളം</button>
+        <button onclick="showLang('pa')">11. ਪੰਜਾਬੀ</button>
+    </div>
+
     <h2>Welcome</h2>
+    <!-- Translations follow here as already included -->
 
     <h1>About 45dgof8 – India Compliance GPT</h1>
     <p><strong>Your Trusted Partner in Navigating India’s Legal Landscape</strong></p>
