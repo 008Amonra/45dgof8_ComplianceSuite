@@ -92,12 +92,6 @@
     <div class="lang-switch">
       <button onclick="setLanguage('es')" id="btn-es" class="active">Español</button>
       <button onclick="setLanguage('en')" id="btn-en">English</button>
-      <button onclick="setLanguage('nahuatl')" id="btn-nahuatl">Náhuatl</button>
-      <button onclick="setLanguage('maya')" id="btn-maya">Maya</button>
-      <button onclick="setLanguage('zapoteco')" id="btn-zapoteco">Zapoteco</button>
-      <button onclick="setLanguage('otomi')" id="btn-otomi">Otomí</button>
-      <button onclick="setLanguage('totonac')" id="btn-totonac">Totonac</button>
-      <button onclick="setLanguage('chol')" id="btn-chol">Ch’ol</button>
     </div>
     <div class="theme-toggle">
       <button onclick="document.body.dataset.theme = document.body.dataset.theme === 'serious' ? 'vibrant' : 'serious'">
@@ -108,7 +102,8 @@
 
   <img src="mexico.webp" alt="Mexico LFPDPPP Compliance Illustration">
 
-  <div id="content-es" class="highlight">
+
+    <div id="content-es" class="highlight">
     <p>45dgof8 – Mexico LFPDPPP Compliance GPT es tu asesor virtual para la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) en México. Ofrece herramientas automáticas y guía experta para ayudarte a:</p>
     <ul>
       <li>📜 Generar políticas de privacidad y formularios conforme a la ley</li>
@@ -189,33 +184,26 @@
     </ul>
   </div>
 
+
   <a class="btn" href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">🚀 <span id="launch-btn">Open 45dgof8 – Mexico LFPDPPP Compliance GPT</span></a>
 
   <footer>© 2025 45dgof8 – Mexico LFPDPPP Compliance GPT | <a href="https://45dgof8.com" style="color: #ffe082;">Volver al Inicio</a></footer>
 
   <script>
     function setLanguage(lang) {
-      const ids = ['es', 'en', 'nahuatl', 'maya', 'zapoteco', 'otomi', 'totonac', 'chol'];
+      const ids = ['es', 'en'];
       ids.forEach(id => {
         document.getElementById(`content-${id}`).style.display = (id === lang) ? 'block' : 'none';
         document.getElementById(`btn-${id}`).classList.toggle("active", id === lang);
       });
 
-      const titles = ids.reduce((acc, id) => {
-        acc[id] = "45dgof8 – Mexico LFPDPPP Compliance GPT";
-        return acc;
-      }, {});
-
-      document.getElementById("main-title").textContent = titles[lang];
+      document.getElementById("main-title").textContent = "45dgof8 – Mexico LFPDPPP Compliance GPT";
       document.getElementById("launch-btn").textContent = "Open 45dgof8 – Mexico LFPDPPP Compliance GPT";
     }
-        </div>
-    <div class="theme-toggle">
-      <button onclick="document.body.dataset.theme = document.body.dataset.theme === 'serious' ? 'vibrant' : 'serious'">
-        🎨 Toggle Style Mode
-      </button>
-    </div>
-  </header>
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setLanguage('es');
+    });
   </script>
 </body>
 </html>
