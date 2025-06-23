@@ -62,6 +62,21 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
+    .back-button {
+      margin-top: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f0f0ff;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
     audio {
       position: absolute;
       bottom: 10px;
@@ -79,6 +94,7 @@
       <a class="choice-button" href="#" onclick="alert('You chose to delay reporting.')">Re-run simulations and delay reporting...</a>
       <a class="choice-button" href="#" onclick="alert('You chose to leak a fragment.')">Leak a fragment anonymously to stir debate...</a>
     </div>
+    <a class="back-button" href="start.html">⬅ Back to Awakening</a>
   </div>
   <audio autoplay loop>
     <source src="/galactic/audio/ambient.mp3" type="audio/mpeg">
