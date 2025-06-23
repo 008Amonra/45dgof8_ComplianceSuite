@@ -137,6 +137,19 @@
     .chess-lounge p {
       color: #cbd5e1;
     }
+    #chess-chat {
+  margin-top: 1em;
+  padding: 1em;
+  background: #0f172a;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.95em;
+  color: #38bdf8;
+  height: 180px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
 
     #reset-btn {
       margin-top: 10px;
@@ -285,6 +298,30 @@
         const randomMove = moves[Math.floor(Math.random() * moves.length)];
         game.move(randomMove);
         board.position(game.fen());
+      }, 500);
+    }
+    <script>
+  const chatBox = document.getElementById('chess-chat');
+  function addChatLine(text) {
+    chatBox.textContent += '\nDion: ' + text;
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  const board = Chessboard('chessboard', {
+    draggable: true,
+    position: 'start',
+    onDrop: (source, target) => {
+      const move = game.move({ from: source, to: target, promotion: 'q' });
+      if (move === null) return 'snapback';
+      addChatLine(`Hmm... ${move.san} — interesting choice.`);
+
+      setTimeout(() => {
+        const moves = game.moves();
+        if (moves.length === 0) return;
+        const randomMove = moves[Math.floor(Math.random() * moves.length)];
+        game.move(randomMove);
+        board.position(game.fen());
+        addChatLine(`I'll play ${randomMove}`);
       }, 500);
     }
   });
