@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meet Dion Wolf Jotham</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"/>
-  <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       background: linear-gradient(145deg, #1e293b, #334155);
       color: #f8fafc;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .container {
       max-width: 800px;
@@ -24,47 +24,79 @@
       background: #1e293b;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: popIn 0.8s ease-out;
     }
-    h1, h2, p, .mid-img {
+    @keyframes popIn {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1, h2, .quiz, .footer, p, .mid-img {
       animation: fadeInUp 1s ease-out both;
     }
-    h1 { font-size: 2.5em; color: #ffffff; }
-    h2 { font-size: 1.5em; color: #60a5fa; }
-    p { font-size: 1.1em; color: #e2e8f0; }
-    .footer { margin-top: 2em; font-size: 0.9em; color: #94a3b8; }
-    .mid-img {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-      height: auto;
-      max-width: 500px;
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+      color: #ffffff;
+    }
+    h2 {
+      font-size: 1.5em;
+      color: #60a5fa;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    .footer {
+      margin-top: 2em;
+      font-size: 0.9em;
+      color: #94a3b8;
+    }
+    .quiz {
+      margin-top: 2em;
+      padding: 1em;
+      background: #334155;
       border-radius: 12px;
     }
-    .chess-lounge {
-      margin-top: 3em;
-      padding: 1.5em;
-      background: #0f172a;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-    #chessboard {
-      width: 100%;
-      max-width: 400px;
-      height: 400px;
-      margin: 0 auto;
-    }
-    #chess-chat {
-      margin-top: 1em;
-      padding: 1em;
+    .quiz select, .quiz button {
+      margin-top: 0.5em;
+      padding: 0.5em;
+      font-size: 1em;
       background: #1e293b;
-      border: 1px solid #475569;
+      color: #f1f5f9;
+      border: 1px solid #64748b;
       border-radius: 8px;
-      font-family: monospace;
-      font-size: 0.95em;
+    }
+    .quiz button:hover {
+      background: #475569;
+    }
+    .result {
+      margin-top: 1em;
+      font-weight: bold;
       color: #38bdf8;
-      height: 180px;
-      overflow-y: auto;
-      white-space: pre-wrap;
+    }
+    .hero {
+      width: 100%;
+      border-radius: 0 0 16px 16px;
+      max-height: 400px;
+      object-fit: cover;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    .mid-img {
+      display: block;
+      margin: 40px auto;
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    a {
+      color: #93c5fd;
+    }
+    a:hover {
+      color: #ffffff;
     }
   </style>
 </head>
@@ -72,61 +104,64 @@
   <div class="container">
     <h1 id="greeting">Hey there!</h1>
     <h2>Your E-commerce Buddy & AI Design Enthusiast</h2>
-    <p>I’m here to help you rock the world of e-commerce...</p>
-    <img class="mid-img" src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham"/>
+    <p>
+      I’m here to help you rock the world of e-commerce, especially if you’re diving into selling cool, AI-designed goodies like coffee mugs. Whether you're just getting started or looking to level up, I provide practical advice on platform selection, marketing strategies, and customer engagement—all wrapped in a friendly, no-nonsense style.
+    </p>
+    <p>
+      Besides that, I'm a big fan of AI-generated art and design. If you've got wild ideas and want to know if they can sell, hit me up for constructive, market-savvy feedback.
+    </p>
 
-    <div class="chess-lounge">
-      <h3>♟️ Step into the Wolf’s Chess Corner</h3>
-      <p>Play a quiet game of chess and chat with Dion as you go.</p>
-      <div id="chessboard"></div>
-      <button onclick="resetGame()" style="margin-top:1em;">♻️ Reset</button>
-      <div id="chess-chat">Dion: Ready when you are, strategist.</div>
+    <img class="mid-img" src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham">
+
+    <p>
+      Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a>
+    </p>
+    <p>
+      🔗 Want to chat with me directly? Visit my page here: <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank">E-commerce Guide Dion Wolf Jotham</a>
+    </p>
+
+    <div class="quiz">
+      <h3>✨ Quick Quiz: What’s Your E-comm Vibe?</h3>
+      <label for="platform">Do you want full control or prefer done-for-you?</label><br>
+      <select id="platform">
+        <option value="control">I want control</option>
+        <option value="simple">I want simple</option>
+      </select><br>
+      <label for="products">Do you create products or curate others’?</label><br>
+      <select id="products">
+        <option value="create">I create my own</option>
+        <option value="curate">I curate others’</option>
+      </select><br>
+      <button onclick="showResult()">Get my style</button>
+      <div id="result" class="result"></div>
     </div>
 
+    <p style="margin-top:2em;"><strong>🚀 Sneak Peek:</strong> My AI-generated design gallery is brewing... Stay tuned for inspiration overload!</p>
+
     <div class="footer">
-      💡 Want to automate payment links? Visit 
-      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8-pulse</a>.
+      💡 Want to automate payment links or manage your funds smartly? Visit <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8-pulse</a>.
     </div>
   </div>
 
   <script>
-    const game = new Chess();
-    const board = Chessboard('chessboard', {
-      draggable: true,
-      position: 'start',
-      onDrop: (source, target) => {
-        const move = game.move({ from: source, to: target, promotion: 'q' });
-        if (move === null) return 'snapback';
-        addChatLine(`Hmm... ${move.san} — interesting choice.`);
-
-        setTimeout(() => {
-          const moves = game.moves();
-          if (moves.length === 0) return;
-          const randomMove = moves[Math.floor(Math.random() * moves.length)];
-          game.move(randomMove);
-          board.position(game.fen());
-          addChatLine(`I'll play ${randomMove}`);
-        }, 500);
-      }
-    });
-
-    const chatBox = document.getElementById('chess-chat');
-    function addChatLine(text) {
-      chatBox.textContent += `\nDion: ${text}`;
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    function resetGame() {
-      game.reset();
-      board.start();
-      chatBox.textContent = 'Dion: Board reset. New game, new strategy.';
-    }
-
     const hour = new Date().getHours();
     const greeting = document.getElementById("greeting");
     if (hour < 12) greeting.textContent = "Good morning! I'm Dion Wolf Jotham 🐺";
     else if (hour < 18) greeting.textContent = "Good afternoon! I'm Dion Wolf Jotham 🐺";
     else greeting.textContent = "Good evening! I'm Dion Wolf Jotham 🐺";
+
+    function showResult() {
+      const platform = document.getElementById('platform').value;
+      const products = document.getElementById('products').value;
+      let result = "";
+
+      if (platform === 'control' && products === 'create') result = "You're a Creator Captain – Try Shopify or WooCommerce!";
+      else if (platform === 'simple' && products === 'create') result = "You're a Hands-free Hero – Check out Etsy or Redbubble!";
+      else if (platform === 'control' && products === 'curate') result = "You're a Strategic Curator – BigCommerce or Wix could be your jam!";
+      else result = "You're a Chill Curator – Try Printify or Zazzle!";
+
+      document.getElementById('result').textContent = result;
+    }
   </script>
 </body>
 </html>
