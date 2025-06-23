@@ -98,6 +98,21 @@
     a:hover {
       color: #ffffff;
     }
+    .chess-lounge {
+      margin-top: 3em;
+      padding: 1.5em;
+      background: #0f172a;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      animation: fadeInUp 1.5s ease-out both;
+    }
+    .chess-lounge h3 {
+      color: #facc15;
+      font-size: 1.4em;
+    }
+    .chess-lounge p {
+      color: #cbd5e1;
+    }
   </style>
 </head>
 <body>
@@ -138,6 +153,14 @@
 
     <p style="margin-top:2em;"><strong>🚀 Sneak Peek:</strong> My AI-generated design gallery is brewing... Stay tuned for inspiration overload!</p>
 
+    <div class="chess-lounge">
+      <h3>♟️ Step into the Wolf’s Chess Corner</h3>
+      <p>Play a quiet game of chess and chat with Dion as you go. Strategy meets e-commerce wisdom.</p>
+      <div id="chessboard" style="margin-top:20px;"></div>
+      <div id="chess-chat" style="margin-top:20px;"></div>
+      <p style="font-size:0.9em; color:#94a3b8;">This area is a work-in-progress... the wolf is thinking.</p>
+    </div>
+
     <div class="footer">
       💡 Want to automate payment links or manage your funds smartly? Visit <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8-pulse</a>.
     </div>
@@ -163,5 +186,26 @@
       document.getElementById('result').textContent = result;
     }
   </script>
+  <!-- Chessboard.js + Chess.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.css" />
+
+<script>
+  const game = new Chess();
+  const board = Chessboard('chessboard', {
+    draggable: true,
+    position: 'start',
+    onDrop: (source, target) => {
+      const move = game.move({
+        from: source,
+        to: target,
+        promotion: 'q' // auto promote to queen
+      });
+
+      if (move === null) return 'snapback';
+    }
+  });
+</script>
 </body>
 </html>
