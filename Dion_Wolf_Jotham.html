@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meet Dion Wolf Jotham</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- jQuery (required for Chessboard.js) -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
-        crossorigin="anonymous"></script>
 
-<!-- Chessboard.js CSS and JS -->
-<link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
-<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<!-- Chess.js logic -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <!-- Chessboard.js -->
+  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+  <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
+  <!-- Chess.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -35,11 +35,6 @@
       background: #1e293b;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      animation: popIn 0.8s ease-out;
-    }
-    @keyframes popIn {
-      0% { transform: scale(0.95); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
     }
     h1, h2, .quiz, .footer, p, .mid-img {
       animation: fadeInUp 1s ease-out both;
@@ -48,120 +43,39 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.3em;
-      color: #ffffff;
-    }
-    h2 {
-      font-size: 1.5em;
-      color: #60a5fa;
-    }
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #e2e8f0;
-    }
-    .footer {
-      margin-top: 2em;
-      font-size: 0.9em;
-      color: #94a3b8;
-    }
-    .quiz {
-      margin-top: 2em;
-      padding: 1em;
-      background: #334155;
-      border-radius: 12px;
-    }
-    .quiz select, .quiz button {
-      margin-top: 0.5em;
-      padding: 0.5em;
-      font-size: 1em;
-      background: #1e293b;
-      color: #f1f5f9;
-      border: 1px solid #64748b;
-      border-radius: 8px;
-    }
-    .quiz button:hover {
-      background: #475569;
-    }
-    .result {
-      margin-top: 1em;
-      font-weight: bold;
-      color: #38bdf8;
-    }
-    .hero {
-      width: 100%;
-      border-radius: 0 0 16px 16px;
-      max-height: 400px;
-      object-fit: cover;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    .mid-img {
-      display: block;
-      margin: 40px auto;
-      max-width: 100%;
-      border-radius: 12px;
-    }
-    a {
-      color: #93c5fd;
-    }
-    a:hover {
-      color: #ffffff;
-    }
-    #chessboard {
-  width: 100%;
-  max-width: 400px;
-  height: 400px;
-}
+    h1 { font-size: 2.5em; margin-bottom: 0.3em; color: #ffffff; }
+    h2 { font-size: 1.5em; color: #60a5fa; }
+    p { font-size: 1.1em; line-height: 1.6; color: #e2e8f0; }
+    .footer { margin-top: 2em; font-size: 0.9em; color: #94a3b8; }
 
-#chess-chat {
-  margin-top: 1em;
-  padding: 1em;
-  background: #1e293b;
-  border-radius: 12px;
-  min-height: 100px;
-}
     .chess-lounge {
       margin-top: 3em;
       padding: 1.5em;
       background: #0f172a;
       border-radius: 16px;
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      animation: fadeInUp 1.5s ease-out both;
     }
-    .chess-lounge h3 {
-      color: #facc15;
-      font-size: 1.4em;
-    }
-    .chess-lounge p {
-      color: #cbd5e1;
+    #chessboard {
+      width: 100%;
+      max-width: 400px;
+      height: 400px;
     }
     #chess-chat {
-  margin-top: 1em;
-  padding: 1em;
-  background: #0f172a;
-  border: 1px solid #475569;
-  border-radius: 8px;
-  font-family: monospace;
-  font-size: 0.95em;
-  color: #38bdf8;
-  height: 180px;
-  overflow-y: auto;
-  white-space: pre-wrap;
-}
-
-    #reset-btn {
-      margin-top: 10px;
-      padding: 0.5em 1em;
-      background: #475569;
-      color: #f1f5f9;
-      border: none;
+      margin-top: 1em;
+      padding: 1em;
+      background: #1e293b;
+      border: 1px solid #475569;
       border-radius: 8px;
-      cursor: pointer;
+      font-family: monospace;
+      font-size: 0.95em;
+      color: #38bdf8;
+      height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1 id="greeting">Hey there!</h1>
@@ -325,6 +239,47 @@
       }, 500);
     }
   });
+</script>
+  <div class="chess-lounge">
+  <h3>♟️ Step into the Wolf’s Chess Corner</h3>
+  <p>Play a quiet game of chess and chat with Dion as you go. Strategy meets e-commerce wisdom.</p>
+  <div id="chessboard"></div>
+  <div id="chess-chat">Dion: Ready when you are, strategist.</div>
+  <button onclick="resetGame()" style="margin-top:1em; padding:0.5em 1em; background:#334155; color:#f1f5f9; border:none; border-radius:8px;">♻️ Reset</button>
+</div>
+
+<script>
+  const game = new Chess();
+  const board = Chessboard('chessboard', {
+    draggable: true,
+    position: 'start',
+    onDrop: (source, target) => {
+      const move = game.move({ from: source, to: target, promotion: 'q' });
+      if (move === null) return 'snapback';
+      addChatLine(`Hmm... ${move.san} — interesting choice.`);
+
+      setTimeout(() => {
+        const moves = game.moves();
+        if (moves.length === 0) return;
+        const randomMove = moves[Math.floor(Math.random() * moves.length)];
+        game.move(randomMove);
+        board.position(game.fen());
+        addChatLine(`I'll play ${randomMove}`);
+      }, 500);
+    }
+  });
+
+  const chatBox = document.getElementById('chess-chat');
+  function addChatLine(text) {
+    chatBox.textContent += `\nDion: ${text}`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function resetGame() {
+    game.reset();
+    board.start();
+    chatBox.textContent = 'Dion: Board reset. New game, new strategy.';
+  }
 </script>
 </body>
 </html>
