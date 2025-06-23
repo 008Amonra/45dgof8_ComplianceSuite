@@ -113,6 +113,22 @@
     .chess-lounge p {
       color: #cbd5e1;
     }
+    #chess-chat {
+      margin-top: 1em;
+      padding: 1em;
+      background: #1e293b;
+      border-radius: 12px;
+      min-height: 100px;
+    }
+    #reset-btn {
+      margin-top: 10px;
+      padding: 0.5em 1em;
+      background: #475569;
+      color: #f1f5f9;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -157,7 +173,10 @@
       <h3>♟️ Step into the Wolf’s Chess Corner</h3>
       <p>Play a quiet game of chess and chat with Dion as you go. Strategy meets e-commerce wisdom.</p>
       <div id="chessboard" style="margin-top:20px;"></div>
-      <div id="chess-chat" style="margin-top:20px;"></div>
+      <button id="reset-btn">♻️ Reset Game</button>
+      <div id="chess-chat">
+        <p><em>Dion:</em> I see you're pondering your next move... like a true strategist.</p>
+      </div>
       <p style="font-size:0.9em; color:#94a3b8;">This area is a work-in-progress... the wolf is thinking.</p>
     </div>
 
@@ -186,26 +205,45 @@
       document.getElementById('result').textContent = result;
     }
   </script>
+
   <!-- Chessboard.js + Chess.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard.min.css" />
 
-<script>
-  const game = new Chess();
-  const board = Chessboard('chessboard', {
-    draggable: true,
-    position: 'start',
-    onDrop: (source, target) => {
-      const move = game.move({
-        from: source,
-        to: target,
-        promotion: 'q' // auto promote to queen
-      });
+  <script>
+    const game = new Chess();
+    const board = Chessboard('chessboard', {
+      draggable: true,
+      position: 'start',
+      onDrop: (source, target) => {
+        const move = game.move({
+          from: source,
+          to: target,
+          promotion: 'q'
+        });
 
-      if (move === null) return 'snapback';
-    }
-  });
-</script>
+        if (move === null) return 'snapback';
+
+        document.getElementById('chess-chat').innerHTML += `<p><em>Dion:</em> Bold move to ${target}. Let me think...</p>`;
+
+        setTimeout(() => {
+          const possibleMoves = game.moves();
+          if (game.game_over() || possibleMoves.length === 0) return;
+
+          const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+          game.move(randomMove);
+          board.position(game.fen());
+          document.getElementById('chess-chat').innerHTML += `<p><em>Dion:</em> I play ${randomMove} – your turn!</p>`;
+        }, 1000);
+      }
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      game.reset();
+      board.start();
+      document.getElementById('chess-chat').innerHTML = `<p><em>Dion:</em> Ready when you are, my friend.</p>`;
+    });
+  </script>
 </body>
 </html>
