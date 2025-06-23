@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meet Dion Wolf Jotham</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- jQuery (required for Chessboard.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+        crossorigin="anonymous"></script>
+
+<!-- Chessboard.js CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
+<!-- Chess.js logic -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -252,5 +263,31 @@
       document.getElementById('chess-chat').innerHTML = `<p><em>Dion:</em> Ready when you are, my friend.</p>`;
     });
   </script>
+  <script>
+  const game = new Chess();
+  const board = Chessboard('chessboard', {
+    draggable: true,
+    position: 'start',
+    onDrop: (source, target) => {
+      const move = game.move({
+        from: source,
+        to: target,
+        promotion: 'q'
+      });
+
+      if (move === null) return 'snapback';
+
+      // Simple AI: random move
+      window.setTimeout(() => {
+        const moves = game.moves();
+        if (moves.length === 0) return;
+
+        const randomMove = moves[Math.floor(Math.random() * moves.length)];
+        game.move(randomMove);
+        board.position(game.fen());
+      }, 500);
+    }
+  });
+</script>
 </body>
 </html>
