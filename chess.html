@@ -4,24 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Chessboard</title>
+  
+  <!-- jQuery (required for Chessboard.js) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <!-- Chess.js and Chessboard.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css" />
+
   <style>
     #board {
       width: 400px;
       margin: 40px auto;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
     }
   </style>
 </head>
 <body>
   <h2 style="text-align:center;">Chess & Chats Interactive Board</h2>
   <div id="board"></div>
+
   <script>
     const board = Chessboard('board', {
       draggable: true,
       dropOffBoard: 'snapback',
-      position: 'start'
+      position: 'start',
+      pieceTheme: 'https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/img/chesspieces/wikipedia/{piece}.png'
     });
   </script>
 </body>
