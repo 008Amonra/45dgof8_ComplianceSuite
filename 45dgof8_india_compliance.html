@@ -98,18 +98,35 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="https://45dgof8.com/pulse.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://45dgof8.com/pulse.js"></script>
 <script>
-  pulse.init({
-    product: "India Compliance GPT",
-    price: 1.50,
-    currency: "USD",
-    billingModel: "trial",
-    trialDays: 2,
-    paymentUrl: "https://pay.pulse/india123",
-    redirectUrl: "https://chatgpt.com/g/g-6753ee6bd6108191a33f017d5b2de60b-45dgof8-india-compliance-gpt"
-  });
+async function checkChatGPTLoginAndRedirect(gptUrl) {
+  try {
+    const res = await fetch("https://chat.openai.com/api/auth/session", { credentials: "include" });
+    if (res.ok) {
+      window.location.href = gptUrl;
+    } else {
+      window.location.href = "https://chat.openai.com/login";
+    }
+  } catch (e) {
+    window.location.href = "https://chat.openai.com/login";
+  }
+}
+
+// Corrected: use a function that triggers the check, not returns a string
+pulse.init({
+  product: "India Compliance GPT",
+  price: 1.50,
+  currency: "USD",
+  billingModel: "trial",
+  trialDays: 2,
+  paymentUrl: "https://pay.pulse/india123",
+  redirectUrl: function() {
+    checkChatGPTLoginAndRedirect("https://chatgpt.com/g/g-67d8be53451c8191a43158fc91e5a44e");
+  }
+});
 </script>
 </body>
 </html>
+
