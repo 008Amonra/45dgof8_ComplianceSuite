@@ -29,6 +29,7 @@
       z-index: 1000;
       text-decoration: none;
       animation: pulse 2s infinite;
+      display: none;
     }
     .chat-bubble-button:hover {
       background-color: #ffb700;
@@ -118,6 +119,17 @@
     const bubble = document.getElementById('nibbler-chat-button');
     if (bubble) bubble.style.animation = 'none';
   }, 8000);
+
+  window.addEventListener('scroll', () => {
+    const bubble = document.getElementById('nibbler-chat-button');
+    if (!bubble) return;
+    const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if (scrollPercent > 0.6) {
+      bubble.style.display = 'block';
+    } else {
+      bubble.style.display = 'none';
+    }
+  });
 </script>
 </body>
 </html>
