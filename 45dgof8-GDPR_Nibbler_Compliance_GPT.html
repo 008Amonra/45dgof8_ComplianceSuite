@@ -15,6 +15,29 @@
     .price { font-size: 1.5em; margin: 10px 0; }
     .cta-button { display: inline-block; margin-top: 10px; padding: 12px 24px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
     .cta-button:hover { background-color: #43a047; }
+    .chat-bubble-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #ffcc00;
+      color: #000;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 1000;
+      text-decoration: none;
+      animation: pulse 2s infinite;
+    }
+    .chat-bubble-button:hover {
+      background-color: #ffb700;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+    }
   </style>
 </head>
 <body>
@@ -88,7 +111,13 @@
 
 <a href="mailto:45dgof8@gmail.com" class="cta-button">📧 Contact</a>
 <p class="mission">GDPR Nibbler: Your slow but thorough compliance partner. Always evolving, always protecting.</p>
+<a href="https://chat.openai.com/g/g-67c8884a41288191ab4211b6d693b19a-gdpr-nibbler" target="_blank" class="chat-bubble-button" id="nibbler-chat-button">💬 Ask GDPR Nibbler</a>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+  setTimeout(() => {
+    const bubble = document.getElementById('nibbler-chat-button');
+    if (bubble) bubble.style.animation = 'none';
+  }, 8000);
+</script>
 </body>
 </html>
-
