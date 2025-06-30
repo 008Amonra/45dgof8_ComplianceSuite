@@ -1,1 +1,25 @@
+{
+  "tips": [
+    "🍎 Open Spotlight with <code>Cmd + Space</code>.",
+    "🧹 Clear cache: <code>~/Library/Caches</code> (with caution).",
+    "🧰 View system logs: open <code>Console.app</code>.",
+    "🔧 Reset PRAM: Restart + hold <code>Cmd + Option + P + R</code>.",
+    "💡 Quick preview: select file + press <code>Space</code>.",
+    "📋 Force quit: <code>Cmd + Option + Esc</code>.",
+    "🧭 Open hidden Library: <code>Cmd + Shift + G</code> then <code>~/Library</code>.",
+    "🔍 Find large files: use <code>Finder > File > Find</code> with size filter.",
+    "🧩 See login items: <code>System Settings > General > Login Items</code>.",
+    "🎨 Screenshot tool: <code>Cmd + Shift + 5</code>.",
+    "🌐 Network diagnostics: <code>Wireless Diagnostics</code> tool.",
+    "📦 Manage apps: <code>Applications > Utilities > Activity Monitor</code>.",
+    "🧼 Free up storage: <code>Apple Menu > About This Mac > Storage</code>.",
+    "🔑 View saved passwords: <code>Keychain Access</code>.",
+    "🧪 Disk Utility checks: run First Aid on volumes.",
+    "💽 Boot options: hold <code>Option</code> during startup.",
+    "📡 Reset network: delete <code>com.apple.airport.preferences.plist</code>.",
+    "🔒 Lock screen: <code>Control + Cmd + Q</code>.",
+    "🔁 Check update logs: <code>log show --predicate 'process == \"softwareupdated\"'</code>",
+    "🖱️ Invert scroll direction: <code>System Settings > Trackpad</code>."
+  ]
+}
 
