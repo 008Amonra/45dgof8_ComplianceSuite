@@ -195,26 +195,44 @@
   <footer>
     <p>&copy; 2025 TSG – Tech Support GPT | Hosted on <a href="https://45dgof8.com" target="_blank">45dgof8.com</a></p>
   </footer>
+<!-- OS Selector -->
+<div style="margin-bottom: 10px;">
+  <label for="os-select">Choose your OS: </label>
+  <select id="os-select" onchange="loadTSGTips(this.value)">
+    <option value="linux">Linux</option>
+    <option value="windows">Windows</option>
+    <option value="macos">macOS</option>
+  </select>
+</div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-  <script>
-    async function loadTSGTips() {
-      try {
-        const res = await fetch('https://45dgof8.com/tsg-feed.json');
-        const data = await res.json();
-        const tips = data.tips || ["TSG is loading your wisdom..."];
-        let index = 0;
-        const box = document.getElementById('tsg-tips');
-        box.innerHTML = tips[0];
-        setInterval(() => {
-          index = (index + 1) % tips.length;
-          box.innerHTML = tips[index];
-        }, 10000);
-      } catch (e) {
-        document.getElementById('tsg-tips').innerHTML = "⚠️ Unable to load TSG tips. Please check connection.";
-      }
+<script>
+  async function loadTSGTips(os = 'linux') {
+    const feedMap = {
+      linux: 'https://45dgof8.com/tsg-feed.json',
+      windows: 'https://45dgof8.com/tsg-feed-windows.json',
+      macos: 'https://45dgof8.com/tsg-feed-macos.json'
+    };
+
+    try {
+      const res = await fetch(feedMap[os]);
+      const data = await res.json();
+      const tips = data.tips || ["TSG is loading your wisdom..."];
+      let index = 0;
+      const box = document.getElementById('tsg-tips');
+      box.innerHTML = tips[0];
+      clearInterval(window.tipInterval); // Avoid multiple intervals
+      window.tipInterval = setInterval(() => {
+        index = (index + 1) % tips.length;
+        box.innerHTML = tips[index];
+      }, 10000);
+    } catch (e) {
+      document.getElementById('tsg-tips').innerHTML = "⚠️ Unable to load TSG tips. Please check connection.";
     }
-    loadTSGTips();
-  </script>
+  }
+
+  // Initial load
+  window.addEventListener('DOMContentLoaded', () => loadTSGTips());
+</script>
+
 </body>
 </html>
