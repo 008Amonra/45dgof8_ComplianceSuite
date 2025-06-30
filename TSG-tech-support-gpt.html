@@ -195,10 +195,9 @@
   <footer>
     <p>&copy; 2025 TSG – Tech Support GPT | Hosted on <a href="https://45dgof8.com" target="_blank">45dgof8.com</a></p>
   </footer>
-<!-- Centered OS Selector -->
-<div style="position: fixed; top: 10px; width: 100%; text-align: center; z-index: 9999;">
-  <label for="os-select" style="font-weight: bold;">Choose your OS: </label>
-  <select id="os-select" onchange="loadTSGTips(this.value)">
+<div style="position: fixed; top: 10px; width: 100%; text-align: center; z-index: 9999; font-size: 4vw;">
+  <label for="os-select" style="font-weight: bold;">Choose your OS:</label>
+  <select id="os-select" style="font-size: 4vw; padding: 2px;" onchange="loadTSGTips(this.value)">
     <option value="linux">Linux</option>
     <option value="windows">Windows</option>
     <option value="macos">macOS</option>
@@ -229,7 +228,27 @@
       document.getElementById('tsg-tips').innerHTML = "⚠️ Unable to load TSG tips. Please check connection.";
     }
   }
-
+  #os-select-bar {
+  position: fixed;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 9999;
+  font-size: 4vw;
+}
+#os-select-bar select {
+  font-size: 4vw;
+  padding: 2px;
+}
+  
+<div id="os-select-bar">
+  <label for="os-select"><strong>Choose your OS:</strong></label>
+  <select id="os-select" onchange="loadTSGTips(this.value)">
+    <option value="linux">Linux</option>
+    <option value="windows">Windows</option>
+    <option value="macos">macOS</option>
+  </select>
+</div>
   // Initial load
   window.addEventListener('DOMContentLoaded', () => loadTSGTips());
 </script>
