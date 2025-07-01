@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your powerhouse for Privacy Act 1988 compliance in Australia. Generate policies, navigate APPs, and respond to breaches—all in one place.">
-  <center><title>45dgof8 – Australia Privacy Act GPT</title></center>
-  <center><img src="mountkosouchu.png" alt="Mount Kosouchu"></center>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Your powerhouse for Privacy Act 1988 compliance in Australia. Generate policies, navigate APPs, and respond to breaches—all in one place." />
+  <title>45dgof8 – Australia Privacy Act GPT</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -16,20 +16,22 @@
       padding: 2rem;
       line-height: 1.6;
     }
-    header {
+    header, .footer-link {
       text-align: center;
-      padding-bottom: 1rem;
+    }
+    header img {
+      max-width: 300px;
+      margin: 1rem auto;
+      display: block;
+      animation: zoomIn 1.5s ease;
     }
     h1 {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      margin-bottom: 0.2rem;
     }
     .tagline {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 3vw, 1.2rem);
       color: #555;
-    }
-    a {
-      color: #0b72b9;
-      text-decoration: none;
     }
     .section {
       max-width: 800px;
@@ -39,83 +41,128 @@
       border-radius: 1rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-    .features {
+    ul.features {
       list-style: none;
       padding-left: 0;
     }
-    .features li::before {
+    ul.features li::before {
       content: '✅';
       margin-right: 0.5rem;
     }
     .quote {
       font-style: italic;
+      color: #444;
       margin: 1rem 0;
-      font-weight: 600;
     }
     .cta-buttons {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1rem;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
     }
     .cta-buttons a {
       background: #0b72b9;
       color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 2rem;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+    .cta-buttons a:hover {
+      transform: scale(1.03);
+      background-color: #094e8e;
+    }
+    .cta-buttons a:nth-child(2) {
+      background: #FF9800;
+    }
+    .cta-buttons a:nth-child(2):hover {
+      background-color: #e08900;
+    }
+    .cta-buttons a:nth-child(3) {
+      background: #003087;
+    }
+    .cta-buttons a:nth-child(3):hover {
+      background-color: #002263;
     }
     .footer-link {
-      text-align: center;
-      margin-top: 2rem;
       font-size: 0.9rem;
       color: #777;
+      margin-top: 2rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      .section {
+        padding: 1.5rem;
+      }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🛡️ Meet Your Privacy Powerhouse</h1>
-    <p class="tagline">45dgof8 – Australia Privacy Act GPT</p>
-    <p><a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">Visit GPT on ChatGPT</a></p>
-    <p class="footer-link">Direct link on our site: <a href="https://45dgof8.com/">45dgof8.com</a></p>
+    <img src="mountkosouchu.png" alt="Mount Kosouchu" />
+    <h1>🛡️ Your Privacy Compliance Assistant</h1>
+    <p class="tagline">45dgof8 – AI built for Australia’s Privacy Act 1988</p>
+    <p><a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">Launch GPT on ChatGPT</a></p>
+    <p class="footer-link">Visit us: <a href="https://45dgof8.com/">45dgof8.com</a></p>
   </header>
 
-  <section class="section">
-    <h2>The only GPT you’ll ever need for Australian privacy compliance.</h2>
-    <p class="quote">“I don’t just know the Privacy Act 1988—I live it.”</p>
+  <section class="section" data-aos="fade-up">
+    <h2>Your all-in-one solution for Australian privacy compliance</h2>
+    <p class="quote">“I know the Privacy Act 1988—inside and out.”</p>
 
-    <p>I’m not your average chatbot. I’m the always-on virtual privacy consultant built specifically for Australian businesses, startups, and privacy-conscious professionals.</p>
-    <p>Whether you're writing your first privacy policy or navigating complex cross-border data flows—I make it simple, compliant, and fast.</p>
+    <p>This AI is your virtual privacy consultant—always on and ready to help. Whether you're drafting your first privacy policy or tackling cross-border data transfers, I make the process simple and compliant.</p>
 
-    <h3>🧩 What I Do Best:</h3>
+    <h3>🧩 What I Can Help You With:</h3>
     <ul class="features">
-      <li>Generate legally sound privacy policies — tailor-made for your business</li>
-      <li>Explain the 13 Australian Privacy Principles (APPs) in plain English</li>
-      <li>Help you comply with the Notifiable Data Breaches (NDB) scheme</li>
-      <li>Support cross-border data transfers (APP 8? Got it.)</li>
+      <li>Create tailored privacy policies</li>
+      <li>Explain the 13 Australian Privacy Principles (APPs)</li>
+      <li>Support Notifiable Data Breaches (NDB) compliance</li>
+      <li>Guide cross-border data flows (APP 8)</li>
       <li>Compare your practices to OAIC guidance</li>
-      <li>Offer step-by-step breach response advice</li>
+      <li>Offer breach response guidance</li>
     </ul>
 
-    <p>Oh, and did I mention? I work 24/7.<br>No waitlists. No legalese. Just clarity, action, and results.</p>
+    <h3>💬 Designed for Practical Use</h3>
+    <p>I speak plainly, explain legal jargon simply, and help you deliver compliance with confidence—whether you're talking to your clients or the OAIC.</p>
 
-    <h3>💬 Built for Real People:</h3>
-    <p>I talk like a human. I explain complex laws like you’re five (if you want). And I’m always ready to help you impress your clients, your board—or the OAIC.</p>
+    <h3>⚡ Try It Now – No Sign-up Needed</h3>
+    <div class="cta-buttons">
+      <a href="https://chatgpt.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">
+        👉 Try the GPT (No sign-up needed)
+      </a>
+      <a href="#upgrade-options">
+        👉 Compare Plans
+      </a>
+    </div>
+  </section>
 
-  <section>
-  <h3>⚡ Launch Offer (Limited Time Only)</h3>
-  <p>Privacy compliance from just <strong>$6.75</strong>. Lock in your discount while it's live.</p>
+  <section class="section" id="upgrade-options" data-aos="fade-up">
+    <h3>🔐 Ready to Upgrade?</h3>
+    <p>When you're ready to unlock the full power of 45dgof8, you can purchase access securely via our payment partner.</p>
 
-  <div class="cta-buttons" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
-    <a href="YOUR_LITE_PAYMENT_LINK" target="_blank" style="padding: 12px 20px; background: #0070BA; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center;">👉 Start with Lite (PayPal or Card)</a>
+    <div class="cta-buttons">
+      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">
+        👉 Upgrade via 45dgof8-pulse (Secure Checkout)
+      </a>
+    </div>
 
-    <a href="YOUR_PRO_PAYMENT_LINK" target="_blank" style="padding: 12px 20px; background: #003087; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center;">👉 Upgrade to Pro Pack (PayPal or Card)</a>
+    <p class="footer-link">Payments are handled securely by <strong>45dgof8-pulse</strong>.</p>
+  </section>
 
-    <a href="#compare-plans" style="padding: 12px 20px; background: #FF9800; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center;">👉 Compare Plans</a>
-  </div>
-</section>
-
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800
+    });
+  </script>
 </body>
 </html>
