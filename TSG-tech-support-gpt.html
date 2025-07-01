@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TSG–Tech Support GPT</title>
-
-  <meta name="description" content="Get expert, step-by-step tech support for Linux, Windows, macOS, and hardware issues. TSG empowers users with clear guidance, security tips, and customization help." />
+  <meta name="description" content="Get expert, step-by-step tech support for Linux, Windows, macOS, and hardware issues." />
   <meta name="keywords" content="tech support, Linux help, Windows troubleshooting, macOS tips, computer repair, secure computing, TSG, 45dgof8, tech gpt" />
   <meta name="author" content="45dgof8" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph for Facebook and others -->
   <meta property="og:title" content="TSG-Tech Support GPT" />
   <meta property="og:description" content="Professional, approachable tech help for your personal computing needs." />
   <meta property="og:url" content="https://45dgof8.com/TSG-tech-support-gpt.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://45dgof8.com/TSG-pic.webp" />
 
-  <!-- Twitter Card metadata -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="TSG-Tech Support GPT" />
-  <meta name="twitter:description" content="Get expert, approachable tech support for your computing issues — Linux, Windows, macOS, and more." />
+  <meta name="twitter:description" content="Expert, approachable tech support for computing issues — Linux, Windows, macOS and more." />
   <meta name="twitter:image" content="https://45dgof8.com/TSG-pic.webp" />
   <meta name="twitter:site" content="@45dgof8" />
 
   <link rel="canonical" href="https://45dgof8.com/TSG-tech-support-gpt.html" />
-</head>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding-top: 60px;
       background: #f4f4f4;
       color: #333;
     }
@@ -46,14 +43,13 @@
       display: block;
       margin: 1em auto;
       object-fit: contain;
-      object-position: top center;
     }
     .container {
       padding: 2em;
       max-width: 900px;
       margin: auto;
       background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     h1, h2 {
       color: #222;
@@ -86,15 +82,45 @@
       max-width: 800px;
       text-align: center;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    #os-select-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 8px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #os-select-bar label {
+      font-weight: bold;
+      font-size: 1rem;
+      margin-right: 0.5em;
+    }
+    #os-select-bar select {
+      font-size: 1rem;
+      padding: 4px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
 <body>
-<header>
-  <h1 style="color:#FFD700; text-shadow: 1px 1px 2px #000;">👑 TSG – Tech Support GPT</h1>
-  <p>Your Expert for PC Troubleshooting, Optimization & Legacy Support</p>
-</header>
+  <div id="os-select-bar">
+    <label for="os-select">Choose your OS:</label>
+    <select id="os-select" onchange="loadTSGTips(this.value)">
+      <option value="linux">Linux</option>
+      <option value="windows">Windows</option>
+      <option value="macos">macOS</option>
+    </select>
+  </div>
+
+  <header>
+    <h1 style="color:#FFD700; text-shadow: 1px 1px 2px #000;">👑 TSG – Tech Support GPT</h1>
+    <p>Your Expert for PC Troubleshooting, Optimization & Legacy Support</p>
+  </header>
 
   <img src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT" class="hero" />
 
@@ -126,39 +152,28 @@
 
     <h2>🌐 Recommended Resources</h2>
     <ul>
-  <!-- General Tech Support -->
-  <li><a href="https://superuser.com" target="_blank">SuperUser</a></li>
-  <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
-  <li><a href="https://forums.tomshardware.com" target="_blank">Tom's Hardware Forums</a></li>
-  <li><a href="https://www.techsupportforum.com" target="_blank">TechSupport Forum</a></li>
-
-  <!-- Linux-Focused -->
-  <li><a href="https://wiki.archlinux.org/" target="_blank">Arch Wiki</a></li>
-  <li><a href="https://askubuntu.com/" target="_blank">AskUbuntu</a></li>
-  <li><a href="https://www.reddit.com/r/linuxquestions/" target="_blank">Reddit r/linuxquestions</a></li>
-  <li><a href="https://lkml.org/" target="_blank">Linux Kernel Mailing List</a></li>
-  <li><a href="https://wiki.debian.org/" target="_blank">Debian Wiki</a></li>
-  <li><a href="https://docs.fedoraproject.org/" target="_blank">Fedora Docs</a></li>
-  <li><a href="https://forum.manjaro.org/" target="_blank">Manjaro Forum</a></li>
-
-  <!-- macOS Help -->
-  <li><a href="https://discussions.apple.com" target="_blank">Apple Discussions</a></li>
-  <li><a href="https://forums.macrumors.com" target="_blank">MacRumors Forums</a></li>
-  <li><a href="https://www.ifixit.com/Device/Mac" target="_blank">iFixit Mac Repair Guides</a></li>
-
-  <!-- Windows Support -->
-  <li><a href="https://learn.microsoft.com" target="_blank">Microsoft Learn</a></li>
-  <li><a href="https://www.tenforums.com" target="_blank">TenForums</a></li>
-  <li><a href="https://www.windowscentral.com" target="_blank">Windows Central</a></li>
-  <li><a href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank">Sysinternals Suite</a></li>
-
-  <!-- Retro & Niche Systems -->
-  <li><a href="https://www.lemon64.com/forum/" target="_blank">Lemon64 – C64 Support</a></li>
-  <li><a href="https://www.vogons.org/" target="_blank">VOGONS – Vintage PC Gaming</a></li>
-  <li><a href="http://amigaworld.net" target="_blank">AmigaWorld</a></li>
-  <li><a href="http://vcfed.org/forum/" target="_blank">Vintage Computer Federation</a></li>
-</ul>
-
+      <li><a href="https://superuser.com" target="_blank">SuperUser</a></li>
+      <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
+      <li><a href="https://forums.tomshardware.com" target="_blank">Tom's Hardware Forums</a></li>
+      <li><a href="https://www.techsupportforum.com" target="_blank">TechSupport Forum</a></li>
+      <li><a href="https://wiki.archlinux.org/" target="_blank">Arch Wiki</a></li>
+      <li><a href="https://askubuntu.com/" target="_blank">AskUbuntu</a></li>
+      <li><a href="https://www.reddit.com/r/linuxquestions/" target="_blank">Reddit r/linuxquestions</a></li>
+      <li><a href="https://lkml.org/" target="_blank">Linux Kernel Mailing List</a></li>
+      <li><a href="https://wiki.debian.org/" target="_blank">Debian Wiki</a></li>
+      <li><a href="https://docs.fedoraproject.org/" target="_blank">Fedora Docs</a></li>
+      <li><a href="https://forum.manjaro.org/" target="_blank">Manjaro Forum</a></li>
+      <li><a href="https://discussions.apple.com" target="_blank">Apple Discussions</a></li>
+      <li><a href="https://forums.macrumors.com" target="_blank">MacRumors Forums</a></li>
+      <li><a href="https://www.ifixit.com/Device/Mac" target="_blank">iFixit Mac Repair Guides</a></li>
+      <li><a href="https://learn.microsoft.com" target="_blank">Microsoft Learn</a></li>
+      <li><a href="https://www.tenforums.com" target="_blank">TenForums</a></li>
+      <li><a href="https://www.windowscentral.com" target="_blank">Windows Central</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank">Sysinternals Suite</a></li>
+      <li><a href="https://www.lemon64.com/forum/" target="_blank">Lemon64 – C64 Support</a></li>
+      <li><a href="https://www.vogons.org/" target="_blank">VOGONS – Vintage PC Gaming</a></li>
+      <li><a href="http://amigaworld.net" target="_blank">AmigaWorld</a></li>
+      <li><a href="http://vcfed.org/forum/" target="_blank">Vintage Computer Federation</a></li>
     </ul>
 
     <h2>🔐 Security Best Practices</h2>
@@ -178,7 +193,7 @@
     </ul>
 
     <h2>📩 Contact & Support</h2>
-    <p>Questions or feedback? Email us: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a7e7f2e2d252c720a2d272b232664292527">[email&#160;protected]</a></strong></p>
+    <p>Questions or feedback? Email us: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a7e7f2e2d252c720a2d272b232664292527">[email protected]</a></strong></p>
     <p>Support the project: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></p>
     <p>Payments & invoices: <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8-pulse</a></p>
 
@@ -195,63 +210,46 @@
   <footer>
     <p>&copy; 2025 TSG – Tech Support GPT | Hosted on <a href="https://45dgof8.com" target="_blank">45dgof8.com</a></p>
   </footer>
-<div style="position: fixed; top: 10px; width: 100%; text-align: center; z-index: 9999; font-size: 4vw;">
-  <label for="os-select" style="font-weight: bold;">Choose your OS:</label>
-  <select id="os-select" style="font-size: 4vw; padding: 2px;" onchange="loadTSGTips(this.value)">
-    <option value="linux">Linux</option>
-    <option value="windows">Windows</option>
-    <option value="macos">macOS</option>
-  </select>
-</div>
 
-<script>
-  async function loadTSGTips(os = 'linux') {
-    const feedMap = {
-      linux: 'https://45dgof8.com/tsg-feed.json',
-      windows: 'https://45dgof8.com/tsg-feed-windows.json',
-      macos: 'https://45dgof8.com/tsg-feed-macos.json'
-    };
+  <script>
+    let tips = ["TSG is loading your wisdom..."];
+    let index = 0;
 
-    try {
-      const res = await fetch(feedMap[os]);
-      const data = await res.json();
-      const tips = data.tips || ["TSG is loading your wisdom..."];
-      let index = 0;
-      const box = document.getElementById('tsg-tips');
-      box.innerHTML = tips[0];
-      clearInterval(window.tipInterval); // Avoid multiple intervals
-      window.tipInterval = setInterval(() => {
-        index = (index + 1) % tips.length;
-        box.innerHTML = tips[index];
-      }, 10000);
-    } catch (e) {
-      document.getElementById('tsg-tips').innerHTML = "⚠️ Unable to load TSG tips. Please check connection.";
+    async function loadTSGTips(os = 'linux') {
+      const feedMap = {
+        linux: 'https://45dgof8.com/tsg-feed.json',
+        windows: 'https://45dgof8.com/tsg-feed-windows.json',
+        macos: 'https://45dgof8.com/tsg-feed-macos.json'
+      };
+
+      try {
+        const res = await fetch(feedMap[os]);
+        const data = await res.json();
+        tips = data.tips || ["TSG is loading your wisdom..."];
+        index = 0;
+        updateTip();
+        clearInterval(window.tipInterval);
+        window.tipInterval = setInterval(showNextTip, 10000);
+      } catch (e) {
+        document.getElementById('tsg-tips').innerHTML = "⚠️ Unable to load TSG tips. Please check connection.";
+      }
     }
-  }
-  #os-select-bar {
-  position: fixed;
-  top: 10px;
-  width: 100%;
-  text-align: center;
-  z-index: 9999;
-  font-size: 4vw;
-}
-#os-select-bar select {
-  font-size: 4vw;
-  padding: 2px;
-}
-  
-<div id="os-select-bar">
-  <label for="os-select"><strong>Choose your OS:</strong></label>
-  <select id="os-select" onchange="loadTSGTips(this.value)">
-    <option value="linux">Linux</option>
-    <option value="windows">Windows</option>
-    <option value="macos">macOS</option>
-  </select>
-</div>
-  // Initial load
-  window.addEventListener('DOMContentLoaded', () => loadTSGTips());
-</script>
 
+    function updateTip() {
+      document.getElementById('tsg-tips').innerHTML = tips[index];
+    }
+
+    function showNextTip() {
+      index = (index + 1) % tips.length;
+      updateTip();
+    }
+
+    function showPreviousTip() {
+      index = (index - 1 + tips.length) % tips.length;
+      updateTip();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => loadTSGTips());
+  </script>
 </body>
 </html>
