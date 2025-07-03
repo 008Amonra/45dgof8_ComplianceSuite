@@ -214,8 +214,9 @@
     <option value="ar">العربية</option>
     <option value="vi">Tiếng Việt</option>
     <option value="it">Italiano</option>
+    <option value="custom">More languages...</option>
   </select>
-  <input type="text" id="custom-lang" placeholder="Or enter language code..." style="display:none; margin-top: 0.3rem; width: 100%; padding: 0.4rem; border-radius: 6px; border: none;">
+  <input type="text" id="custom-lang" placeholder="Enter language code (e.g., sm for Samoan)" style="display:none; margin-top: 0.3rem; width: 100%; padding: 0.4rem; border-radius: 6px; border: none;">
   <p id="translate-note" style="display:none; font-size: 0.75rem; color: #ccc; margin-top: 0.3rem; text-align: center;">
     ✨ Translations may not be perfect, but we do our best to help!
   </p>
@@ -269,27 +270,42 @@
     const t = translationsCache?.[lang] || translationsCache?.en;
     if (!t) return;
 
-    document.querySelector('header h1').textContent = t.title;
-    document.querySelector('main h2').textContent = t.heading;
-    document.querySelector('#intro').textContent = t.intro;
-    document.querySelector('.desc-starter').textContent = t.starter_desc;
-    document.querySelector('.desc-oneday').textContent = t.oneday_desc;
-    document.querySelector('.desc-monthly').textContent = t.monthly_desc;
-    document.querySelector('.cta-buttons a:nth-child(1)').textContent = t.try;
-    document.querySelector('.cta-buttons a:nth-child(2)').textContent = t.upgrade;
-    document.querySelector('.pricing h2').textContent = t.pricing_header;
+    const header = document.querySelector('header h1');
+    const intro = document.querySelector('#intro');
+    const heading = document.querySelector('main h2');
+    const starterDesc = document.querySelector('.desc-starter');
+    const onedayDesc = document.querySelector('.desc-oneday');
+    const monthlyDesc = document.querySelector('.desc-monthly');
+    const ctaBtns = document.querySelectorAll('.cta-buttons a');
+    const pricingTitle = document.querySelector('.pricing h2');
+
+    if (header) header.textContent = t.title;
+    if (heading) heading.textContent = t.heading;
+    if (intro) intro.textContent = t.intro;
+    if (starterDesc) starterDesc.textContent = t.starter_desc;
+    if (onedayDesc) onedayDesc.textContent = t.oneday_desc;
+    if (monthlyDesc) monthlyDesc.textContent = t.monthly_desc;
+    if (ctaBtns[0]) ctaBtns[0].textContent = t.try;
+    if (ctaBtns[1]) ctaBtns[1].textContent = t.upgrade;
+    if (pricingTitle) pricingTitle.textContent = t.pricing_header;
 
     const cards = document.querySelectorAll('.pricing-card');
     ['starter', 'oneday', 'monthly'].forEach((key, i) => {
-      if (cards[i]) {
-        cards[i].querySelector('h3').textContent = t[`${key}_title`];
-        cards[i].querySelector('p.price').textContent = t[`${key}_price`];
-        cards[i].querySelector('a.btn').textContent = t[`${key}_btn`];
-        const items = cards[i].querySelectorAll('ul li');
-        items.forEach((item, index) => {
-          item.textContent = t[`${key}_li${index + 1}`] || item.textContent;
-        });
-      }
+      const card = cards[i];
+      if (!card) return;
+
+      const title = card.querySelector('h3');
+      const price = card.querySelector('p');
+      const btn = card.querySelector('a.btn');
+      const items = card.querySelectorAll('ul li');
+
+      if (title) title.textContent = t[`${key}_title`];
+      if (price) price.textContent = t[`${key}_price`];
+      if (btn) btn.textContent = t[`${key}_btn`];
+
+      items.forEach((item, index) => {
+        item.textContent = t[`${key}_li${index + 1}`] || item.textContent;
+      });
     });
   }
 
@@ -306,6 +322,7 @@
 
     document.getElementById('lang-select').addEventListener('change', async (e) => {
       const lang = e.target.value;
+      if (lang === 'custom') return; // wait for manual input
       await loadTranslations();
       applyTranslation(lang);
     });
@@ -316,9 +333,12 @@
 
       if (lang === 'tlh' && Math.random() < 0.25) {
         alert('🖖 majQa’! Displaying in Klingon (sort of)...');
-        document.querySelector('header h1').textContent = "45dgof8 – qo' Sov Hoch";
-        document.querySelector('main h2').textContent = "SoH Daq Daq Sov!";
-        document.querySelector('#intro').textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
+        const header = document.querySelector('header h1');
+        const heading = document.querySelector('main h2');
+        const intro = document.querySelector('#intro');
+        if (header) header.textContent = "45dgof8 – qo' Sov Hoch";
+        if (heading) heading.textContent = "SoH Daq Daq Sov!";
+        if (intro) intro.textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
         return;
       }
 
@@ -326,7 +346,6 @@
       applyTranslation(lang);
     });
 
-    // Sample button handlers
     const btns = {
       'btn-starter': 'Starter kit purchased!',
       'btn-oneday': 'One-day access granted!',
