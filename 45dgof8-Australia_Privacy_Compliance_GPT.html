@@ -202,5 +202,110 @@
       AOS.init({ once: true, duration: 800 });
     });
   </script>
+  <!-- Translation Companion Widget -->
+<div id="translator-widget">
+  <button id="translate-btn">🌐 Translate</button>
+  <select id="lang-select" style="display:none;">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+    <option value="ar">العربية</option>
+    <option value="vi">Tiếng Việt</option>
+    <option value="it">Italiano</option>
+  </select>
+  <input type="text" id="custom-lang" placeholder="Or enter language code..." style="display:none; margin-top: 0.3rem; width: 100%; padding: 0.4rem; border-radius: 6px; border: none;">
+  <p id="translate-note" style="display:none; font-size: 0.75rem; color: #ccc; margin-top: 0.3rem; text-align: center;">
+    ✨ Translations may not be perfect, but we do our best to help!
+  </p>
+</div>
+
+<style>
+  #translator-widget {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 999;
+  }
+  #translate-btn, #lang-select, #custom-lang {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+  }
+  #lang-select, #custom-lang {
+    width: 100%;
+    background: #2e3b3b;
+    color: white;
+  }
+  #custom-lang {
+    background: #1c1c1c;
+    font-weight: normal;
+  }
+</style>
+
+<script>
+  document.getElementById('translate-btn').addEventListener('click', () => {
+    const select = document.getElementById('lang-select');
+    const custom = document.getElementById('custom-lang');
+    const note = document.getElementById('translate-note');
+    const isHidden = select.style.display === 'none';
+    select.style.display = isHidden ? 'block' : 'none';
+    custom.style.display = isHidden ? 'block' : 'none';
+    note.style.display = isHidden ? 'block' : 'none';
+  });
+
+  function applyTranslation(lang) {
+    if (!window.translations) return;
+    const t = window.translations[lang] || window.translations['en'];
+    document.querySelector('header h1').textContent = t.title;
+    document.querySelector('main h2').textContent = t.heading;
+    document.querySelector('#intro').textContent = t.intro;
+    document.querySelectorAll('main ul li').forEach((li, i) => {
+      li.textContent = t[`li${i + 1}`];
+    });
+    document.querySelector('.cta-buttons a:nth-child(1)').textContent = t.try;
+    document.querySelector('.cta-buttons a:nth-child(2)').textContent = t.upgrade;
+    document.querySelector('.pricing h2').textContent = t.pricing_header;
+    const cards = document.querySelectorAll('.pricing-card');
+    ['starter', 'oneday', 'monthly'].forEach((key, i) => {
+      if (cards[i]) {
+        cards[i].querySelector('h3').textContent = t[`${key}_title`];
+        cards[i].querySelector('p.price').textContent = t[`${key}_price`];
+        cards[i].querySelector('a.btn').textContent = t[`${key}_btn`];
+      }
+    });
+  }
+
+  document.getElementById('lang-select').addEventListener('change', async (e) => {
+    const lang = e.target.value;
+    if (!window.translations) {
+      window.translations = await fetch('lang-australia.json').then(res => res.json());
+    }
+    applyTranslation(lang);
+  });
+
+  document.getElementById('custom-lang').addEventListener('change', async (e) => {
+    const lang = e.target.value.trim().toLowerCase();
+    if (!lang) return;
+
+    // Klingon Easter Egg (tlh)
+    if (lang === 'tlh' && Math.random() < 0.25) {
+      alert('🖖 majQa’! Displaying in Klingon (sort of)...');
+      document.querySelector('header h1').textContent = "45dgof8 – qo' Sov Hoch";
+      document.querySelector('main h2').textContent = "SoH Daq Daq Sov!";
+      document.querySelector('#intro').textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
+      return;
+    }
+
+    if (!window.translations) {
+      window.translations = await fetch('lang-australia.json').then(res => res.json());
+    }
+    applyTranslation(lang);
+  });
+</script>
 </body>
 </html>
