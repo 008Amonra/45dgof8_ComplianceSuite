@@ -257,7 +257,7 @@
   async function loadTranslations() {
     if (!translationsCache) {
       try {
-        const res = await fetch('lang-australia-multilang-full.json');
+        const res = await fetch('lang-australia-multilang.json');
         translationsCache = await res.json();
       } catch (err) {
         console.error('Failed to load translation file:', err);
@@ -281,7 +281,7 @@
 
     if (header) header.textContent = t.title;
     if (heading) heading.textContent = t.heading;
-    if (intro) intro.textContent = t.intro;
+    if (intro && t.intro_block) intro.innerHTML = t.intro_block;
     if (starterDesc) starterDesc.textContent = t.starter_desc;
     if (onedayDesc) onedayDesc.textContent = t.oneday_desc;
     if (monthlyDesc) monthlyDesc.textContent = t.monthly_desc;
@@ -322,7 +322,7 @@
 
     document.getElementById('lang-select').addEventListener('change', async (e) => {
       const lang = e.target.value;
-      if (lang === 'custom') return; // wait for manual input
+      if (lang === 'custom') return;
       await loadTranslations();
       applyTranslation(lang);
     });
