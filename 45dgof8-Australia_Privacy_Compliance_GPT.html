@@ -293,7 +293,7 @@
   document.getElementById('lang-select').addEventListener('change', async (e) => {
     const lang = e.target.value;
     if (!window.translations) {
-      window.translations = await fetch('lang-australia-multilang.json').then(res => res.json());
+      window.translations = await fetch('lang-australia-multilang-full.json').then(res => res.json());
     }
     applyTranslation(lang);
   });
@@ -311,7 +311,7 @@
     }
 
     if (!window.translations) {
-      window.translations = await fetch('lang-australia-multilang.json').then(res => res.json());
+      window.translations = await fetch('lang-australia-multilang-full.json').then(res => res.json());
     }
     applyTranslation(lang);
   });
