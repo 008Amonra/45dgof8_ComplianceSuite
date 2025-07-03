@@ -251,19 +251,24 @@
 </style>
 
 <script>
-  document.getElementById('translate-btn').addEventListener('click', () => {
-    const select = document.getElementById('lang-select');
-    const custom = document.getElementById('custom-lang');
-    const note = document.getElementById('translate-note');
-    const isHidden = select.style.display === 'none';
-    select.style.display = isHidden ? 'block' : 'none';
-    custom.style.display = isHidden ? 'block' : 'none';
-    note.style.display = isHidden ? 'block' : 'none';
-  });
+  let translationsCache;
+
+  async function loadTranslations() {
+    if (!translationsCache) {
+      try {
+        const res = await fetch('lang-australia-multilang-full.json');
+        translationsCache = await res.json();
+      } catch (err) {
+        console.error('Failed to load translation file:', err);
+      }
+    }
+    return translationsCache;
+  }
 
   function applyTranslation(lang) {
-    if (!window.translations) return;
-    const t = window.translations[lang] || window.translations['en'];
+    const t = translationsCache?.[lang] || translationsCache?.en;
+    if (!t) return;
+
     document.querySelector('header h1').textContent = t.title;
     document.querySelector('main h2').textContent = t.heading;
     document.querySelector('#intro').textContent = t.intro;
@@ -273,30 +278,6 @@
     document.querySelector('.cta-buttons a:nth-child(1)').textContent = t.try;
     document.querySelector('.cta-buttons a:nth-child(2)').textContent = t.upgrade;
     document.querySelector('.pricing h2').textContent = t.pricing_header;
-    function attachButtonHandlers() {
-    document.getElementById('btn-starter').onclick = () => alert('Starter kit purchased!');
-    document.getElementById('btn-oneday').onclick = () => alert('One-day access granted!');
-    document.getElementById('btn-monthly').onclick = () => alert('Monthly subscription started!');
-}
-function applyTranslation(lang) {
-  // existing replacing logic...
-  
-  attachButtonHandlers();
-}
-<select id="lang-select">
-  <option value="en">English</option>
-  <option value="zh">中文</option>
-  <option value="ar">العربية</option>
-  <!-- additional options -->
-</select>
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('lang-select').addEventListener('change', async (e) => {
-    const lang = e.target.value;
-    await loadTranslations();
-    applyTranslation(lang);
-  });
-});
-
 
     const cards = document.querySelectorAll('.pricing-card');
     ['starter', 'oneday', 'monthly'].forEach((key, i) => {
@@ -310,36 +291,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
-  }_title`];
-        cards[i].querySelector('p.price').textContent = t[`${key}_price`];
-        cards[i].querySelector('a.btn').textContent = t[`${key}_btn`];
-      }
-    });
   }
 
-  document.getElementById('lang-select').addEventListener('change', async (e) => {
-    const lang = e.target.value;
-    if (!window.translations) {
-      window.translations = await fetch('lang-australia-multilang-full.json').then(res => res.json());
-    }
-    applyTranslation(lang);
-  });
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('translate-btn').addEventListener('click', () => {
+      const select = document.getElementById('lang-select');
+      const custom = document.getElementById('custom-lang');
+      const note = document.getElementById('translate-note');
+      const isHidden = select.style.display === 'none';
+      select.style.display = isHidden ? 'block' : 'none';
+      custom.style.display = isHidden ? 'block' : 'none';
+      note.style.display = isHidden ? 'block' : 'none';
+    });
 
-  document.getElementById('custom-lang').addEventListener('change', async (e) => {
-    const lang = e.target.value.trim().toLowerCase();
-    if (!lang) return;
+    document.getElementById('lang-select').addEventListener('change', async (e) => {
+      const lang = e.target.value;
+      await loadTranslations();
+      applyTranslation(lang);
+    });
 
-    if (lang === 'tlh' && Math.random() < 0.25) {
-      alert('🖖 majQa’! Displaying in Klingon (sort of)...');
-      document.querySelector('header h1').textContent = "45dgof8 – qo' Sov Hoch";
-      document.querySelector('main h2').textContent = "SoH Daq Daq Sov!";
-      document.querySelector('#intro').textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
-      return;
-    }
+    document.getElementById('custom-lang').addEventListener('change', async (e) => {
+      const lang = e.target.value.trim().toLowerCase();
+      if (!lang) return;
 
-    if (!window.translations) {
-      window.translations = await fetch('lang-australia-multilang-full.json').then(res => res.json());
-    }
-    applyTranslation(lang);
+      if (lang === 'tlh' && Math.random() < 0.25) {
+        alert('🖖 majQa’! Displaying in Klingon (sort of)...');
+        document.querySelector('header h1').textContent = "45dgof8 – qo' Sov Hoch";
+        document.querySelector('main h2').textContent = "SoH Daq Daq Sov!";
+        document.querySelector('#intro').textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
+        return;
+      }
+
+      await loadTranslations();
+      applyTranslation(lang);
+    });
+
+    // Sample button handlers
+    const btns = {
+      'btn-starter': 'Starter kit purchased!',
+      'btn-oneday': 'One-day access granted!',
+      'btn-monthly': 'Monthly subscription started!'
+    };
+    Object.entries(btns).forEach(([id, msg]) => {
+      const btn = document.getElementById(id);
+      if (btn) btn.onclick = () => alert(msg);
+    });
   });
 </script>
