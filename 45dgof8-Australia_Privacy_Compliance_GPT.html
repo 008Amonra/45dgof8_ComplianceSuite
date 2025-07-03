@@ -202,7 +202,7 @@
       AOS.init({ once: true, duration: 800 });
     });
   </script>
- <!-- Translation Companion Widget -->
+<!-- Translation Companion Widget -->
 <div id="translator-widget">
   <button id="translate-btn">🌐 Translate</button>
   <select id="lang-select" style="display:none;">
@@ -311,7 +311,7 @@
     }
 
     if (!window.translations) {
-      window.translations = await fetch('lang-australia-all.json').then(res => res.json());
+      window.translations = await fetch('lang-australia-full-extended.json').then(res => res.json());
     }
     applyTranslation(lang);
   });
