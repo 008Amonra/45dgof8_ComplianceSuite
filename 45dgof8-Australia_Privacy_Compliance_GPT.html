@@ -62,6 +62,12 @@
       padding: 2rem;
       max-width: 960px;
       margin: auto;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
     }
     h2 {
       color: var(--accent-color);
@@ -192,7 +198,9 @@
   </footer>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script>
-    AOS.init({ once: true, duration: 800 });
+    window.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ once: true, duration: 800 });
+    });
   </script>
 </body>
 </html>
