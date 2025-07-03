@@ -189,6 +189,9 @@
           </ul>
           <a href="#" class="btn">Subscribe Now</a>
         </div>
+        <a id="btn-starter" class="btn" href="#">Buy Now</a>
+        <a id="btn-oneday" class="btn" href="#">Get Access</a>
+        <a id="btn-monthly" class="btn" href="#">Subscribe Now</a>
       </div>
     </div>
   </section>
@@ -270,6 +273,30 @@
     document.querySelector('.cta-buttons a:nth-child(1)').textContent = t.try;
     document.querySelector('.cta-buttons a:nth-child(2)').textContent = t.upgrade;
     document.querySelector('.pricing h2').textContent = t.pricing_header;
+    function attachButtonHandlers() {
+    document.getElementById('btn-starter').onclick = () => alert('Starter kit purchased!');
+    document.getElementById('btn-oneday').onclick = () => alert('One-day access granted!');
+    document.getElementById('btn-monthly').onclick = () => alert('Monthly subscription started!');
+}
+function applyTranslation(lang) {
+  // existing replacing logic...
+  
+  attachButtonHandlers();
+}
+<select id="lang-select">
+  <option value="en">English</option>
+  <option value="zh">中文</option>
+  <option value="ar">العربية</option>
+  <!-- additional options -->
+</select>
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('lang-select').addEventListener('change', async (e) => {
+    const lang = e.target.value;
+    await loadTranslations();
+    applyTranslation(lang);
+  });
+});
+
 
     const cards = document.querySelectorAll('.pricing-card');
     ['starter', 'oneday', 'monthly'].forEach((key, i) => {
