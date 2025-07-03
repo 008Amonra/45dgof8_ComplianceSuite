@@ -1,154 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="45dgof8 – Australia's smart privacy compliance GPT assistant for small & medium businesses.">
-  <title>45dgof8 – Australia Privacy Compliance GPT</title>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
-  <style>
-    :root {
-      --main-color: #004d40;
-      --accent-color: #26a69a;
-      --background-color: #1b1b1b;
-      --text-color: #e0e0e0;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: var(--background-color);
-      color: var(--text-color);
-    }
-    header {
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 0 0 10px #000;
-      background-color: #333;
-      background-image: url('/3c2bf58d-b5bc-4686-9fbb-7b78265769b2.webp');
-      background-size: cover;
-      background-position: center;
-    }
-    header::after {
-      content: "NO IMAGE TODAY!";
-      display: block;
-      color: #ccc;
-      text-align: center;
-      font-size: 1.2rem;
-      padding-top: 2rem;
-      visibility: hidden;
-    }
-    header[style*="background-image: none"]::after {
-      visibility: visible;
-    }
-    header img {
-      max-width: 120px;
-      margin-bottom: 1rem;
-    }
-    header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      padding: 0 1rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-      max-width: 960px;
-      margin: auto;
-    }
-    h2 {
-      color: var(--accent-color);
-    }
-    .pricing {
-      padding: 2rem;
-      background-color: var(--background-color);
-      color: var(--text-color);
-    }
-    .pricing-card {
-      background: #2e3b3b;
-      padding: 1.5rem;
-      border-left: 6px solid var(--main-color);
-      border-radius: 12px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: var(--main-color);
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background: #00332e;
-    }
-    .cta-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .cta-buttons a {
-      background: var(--accent-color);
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .cta-buttons a:hover {
-      background-color: #1e8b84;
-      transform: scale(1.03);
-    }
-    #loader {
-      display: none;
-      text-align: center;
-      margin: 1rem 0;
-    }
-    #loader img {
-      height: 80px;
-      animation: hop 1s infinite alternate;
-    }
-    @keyframes hop {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-15px); }
-    }
-    @media (max-width: 768px) {
-      header {
-        height: 250px;
-      }
-      main {
-        padding: 1rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="logo-symbol-45dgof8-transparent.webp" alt="45dgof8 logo" onerror="this.style.display='none';">
-    <h1>45dgof8 – Australia Privacy Compliance GPT</h1>
-  </header>
-  <main data-aos="fade-up">
-    <h2>Your Virtual Privacy Officer</h2>
-    <div id="loader">
-      <img src="/5942c2cf-7d9a-410f-8d95-1959c9f93faa.png" alt="Loading...">
-    </div>
-    <p>
-      45dgof8 is a specialised AI assistant designed to help Australian businesses stay compliant with the Privacy Act 1988 and the 13 Australian Privacy Principles (APPs).
-      It’s ideal for SMEs, privacy officers, legal teams, developers, and anyone handling personal information. 45dgof8 is an independent initiative. We're not affiliated with the Australian Government, but we're here to help you understand and apply the Privacy Act 1988 with clarity, care, and AI efficiency
+<section class="intro bg-white py-10">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl font-bold mb-4">Your Virtual Privacy Officer</h1>
+    <p class="text-gray-700 mb-6 max-w-3xl mx-auto">
+      45dgof8 is a specialised AI assistant designed to help Australian businesses stay compliant with the Privacy Act 1988 and the 13 Australian Privacy Principles (APPs). It’s ideal for SMEs, privacy officers, legal teams, developers, and anyone handling personal information. 45dgof8 is an independent initiative. We're not affiliated with the Australian Government, but we're here to help you understand and apply the Privacy Act 1988 with clarity, care, and AI efficiency.
     </p>
-    <ul>
+    <ul class="text-gray-600 mb-6 space-y-1 max-w-xl mx-auto text-left">
       <li>✅ Privacy compliance audits & gap checks</li>
       <li>📄 Policy & consent generator</li>
       <li>🔍 Cross-border data transfer helper (APP 8)</li>
@@ -156,64 +12,55 @@
       <li>🧑‍⚖️ Clarifies legal roles (controller/processor)</li>
       <li>🧠 Explains legal concepts in plain English (supports major Australian languages)</li>
     </ul>
-    <div class="cta-buttons">
-      <a href="https://chat.openai.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">
-        👉 Try the GPT (No Sign-Up Needed)
-      </a>
-      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">
-        🔐 Upgrade Securely via 45dgof8-pulse
-      </a>
-    </div>
-  </main>
+    <p class="mt-4">
+      👉 <a href="#" class="text-blue-600 font-semibold hover:underline">Try the GPT (No Sign-Up Needed)</a><br>
+      🔐 <a href="#" class="text-blue-600 font-semibold hover:underline">Upgrade Securely via 45dgof8-pulse</a>
+    </p>
+  </div>
+</section>
 
-  <section class="pricing">
-    <div style="max-width: 960px; margin: auto;">
-      <h2 style="text-align: center; margin-bottom: 2rem;">Our Pricing</h2>
-      <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        <div class="pricing-card">
-          <h3>Privacy Starter Kit</h3>
-          <p>Best for 90% of users. One-time download.</p>
-          <p style="font-size: 2rem; font-weight: bold;">$35 AUD</p>
-          <ul>
-            <li>Privacy Policy (web/app ready)</li>
-            <li>Consent Snippets (checkboxes, cookie bar)</li>
-            <li>Breach Response Kit</li>
-            <li>APPs Mini Checklist</li>
-          </ul>
-          <a href="#" class="btn">Buy Now</a>
-        </div>
-        <div class="pricing-card">
-          <h3>One-Day Access Pass</h3>
-          <p>Great for freelancers and students.</p>
-          <p style="font-size: 2rem; font-weight: bold;">$4.50 AUD</p>
-          <ul>
-            <li>24h full access to tools</li>
-            <li>Ask up to 3 questions</li>
-          </ul>
-          <a href="#" class="btn">Get Access</a>
-        </div>
-        <div class="pricing-card">
-          <h3>Monthly Access Plan</h3>
-          <p>Unlimited downloads & Q&A.</p>
-          <p style="font-size: 2rem; font-weight: bold;">$20 AUD/month</p>
-          <ul>
-            <li>Unlimited downloads</li>
-            <li>Unlimited Q&As</li>
-            <li>Monthly law alert summary</li>
-          </ul>
-          <a href="#" class="btn">Subscribe Now</a>
-        </div>
+<section class="pricing bg-gray-100 py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Our Pricing</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Privacy Starter Kit -->
+      <div class="bg-white p-6 rounded-2xl shadow-md">
+        <h3 class="text-xl font-semibold mb-4">Privacy Starter Kit</h3>
+        <p class="text-gray-600 mb-4">Best for 90% of users. One-time download.</p>
+        <p class="text-3xl font-bold mb-4">$35 AUD</p>
+        <ul class="text-gray-700 mb-6 space-y-2">
+          <li>✔ Privacy Policy (web/app ready)</li>
+          <li>✔ Consent Snippets (checkboxes, cookie bar)</li>
+          <li>✔ Breach Response Kit</li>
+          <li>✔ APPs Mini Checklist</li>
+        </ul>
+        <a href="#" class="block text-center bg-blue-600 text-white py-2 rounded-xl font-semibold">Buy Now</a>
+      </div>
+
+      <!-- One-Day Access Pass -->
+      <div class="bg-white p-6 rounded-2xl shadow-md">
+        <h3 class="text-xl font-semibold mb-4">One-Day Access Pass</h3>
+        <p class="text-gray-600 mb-4">Great for freelancers and students.</p>
+        <p class="text-3xl font-bold mb-4">$4.50 AUD</p>
+        <ul class="text-gray-700 mb-6 space-y-2">
+          <li>✔ 24h full access to tools</li>
+          <li>✔ Ask up to 3 questions</li>
+        </ul>
+        <a href="#" class="block text-center bg-green-600 text-white py-2 rounded-xl font-semibold">Get Access</a>
+      </div>
+
+      <!-- Monthly Access Plan -->
+      <div class="bg-white p-6 rounded-2xl shadow-md">
+        <h3 class="text-xl font-semibold mb-4">Monthly Access Plan</h3>
+        <p class="text-gray-600 mb-4">Unlimited downloads & Q&A.</p>
+        <p class="text-3xl font-bold mb-4">$20 AUD/month</p>
+        <ul class="text-gray-700 mb-6 space-y-2">
+          <li>✔ Unlimited downloads</li>
+          <li>✔ Unlimited Q&As</li>
+          <li>✔ Monthly law alert summary</li>
+        </ul>
+        <a href="#" class="block text-center bg-purple-600 text-white py-2 rounded-xl font-semibold">Subscribe Now</a>
       </div>
     </div>
-  </section>
-
-  <footer>
-    Visit us at <a href="https://45dgof8.com" style="color: var(--accent-color);">45dgof8.com</a><br>
-    Payments powered by <strong>45dgof8-pulse</strong>.
-  </footer>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
-  <script>
-    AOS.init({ once: true, duration: 800 });
-  </script>
-</body>
-</html>
+  </div>
+</section>
