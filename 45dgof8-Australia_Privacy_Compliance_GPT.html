@@ -344,16 +344,7 @@
 
       await loadTranslations();
       applyTranslation(lang);
-    });
 
-    const btns = {
-      'btn-starter': 'Starter kit purchased!',
-      'btn-oneday': 'One-day access granted!',
-      'btn-monthly': 'Monthly subscription started!'
-    };
-    Object.entries(btns).forEach(([id, msg]) => {
-      const btn = document.getElementById(id);
-      if (btn) btn.onclick = () => alert(msg);
     });
   });
 </script>
