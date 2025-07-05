@@ -253,7 +253,7 @@
   async function loadTranslations() {
     if (!translationsCache) {
       try {
-        const res = await fetch('lang-australia-long.json');
+        const res = await fetch('lang_australia_long.json');
         translationsCache = await res.json();
       } catch (err) {
         console.error('Failed to load translation file:', err);
