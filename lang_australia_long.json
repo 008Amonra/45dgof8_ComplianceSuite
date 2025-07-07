@@ -56,8 +56,8 @@
     "monthly_li1": "无限下载",
     "monthly_li2": "无限问答",
     "monthly_li3": "每月法律提醒摘要"
-}
- "it": {
+  },
+  "it": {
     "title": "45dgof8 – Assistente per la Conformità alla Privacy in Australia",
     "heading": "Il tuo Responsabile Virtuale della Privacy",
     "intro_block": "45dgof8 è un assistente AI specializzato progettato per aiutare le aziende australiane a rispettare il Privacy Act del 1988 e i 13 Principi Australiani sulla Privacy (APP). È ideale per PMI, responsabili della privacy, team legali, sviluppatori e chiunque gestisca informazioni personali. 45dgof8 è un’iniziativa indipendente. Non siamo affiliati al governo australiano, ma siamo qui per aiutarti a comprendere e applicare il Privacy Act con chiarezza, cura ed efficienza.\n\nCaratteristiche:\n- Audit di conformità e controllo delle lacune\n- Generatore di policy e consensi\n- Supporto per trasferimenti di dati internazionali (APP 8)\n- Assistenza in caso di violazioni (APP 11 e schema NDB)\n- Chiarimenti sui ruoli legali (titolare/responsabile del trattamento)\n- Spiegazioni dei concetti legali in inglese semplice (supporta le principali lingue australiane)",
@@ -118,7 +118,7 @@
   "vi": {
     "title": "45dgof8 – Trợ lý Tuân thủ Quyền riêng tư tại Úc",
     "heading": "Cán bộ Bảo mật Ảo của Bạn",
-    "intro_block": "45dgof8 là trợ lý AI chuyên dụng giúp các doanh nghiệp Úc tuân thủ Đạo luật Bảo mật 1988 và 13 Nguyên tắc Bảo mật của Úc (APP). Phù hợp với doanh nghiệp vừa và nhỏ, cán bộ bảo mật, nhóm pháp lý, nhà phát triển và bất kỳ ai xử lý thông tin cá nhân. 45dgof8 là một sáng kiến độc lập, không liên kết với Chính phủ Úc, nhưng luôn sẵn sàng hỗ trợ bạn hiểu và áp dụng luật một cách rõ ràng, cẩn thận và hiệu quả.\n\nTính năng:\n- Kiểm tra tuân thủ và phân tích lỗ hổng\n- Trình tạo chính sách và biểu mẫu đồng ý\n- Hỗ trợ chuyển giao dữ liệu xuyên biên giới (APP 8)\n- Trợ lý xử lý vi phạm (APP 11 và cơ chế NDB)\n- Giải thích vai trò pháp lý (người kiểm soát/người xử lý dữ liệu)\n- Giải thích các khái niệm pháp lý bằng tiếng Anh đơn giản (hỗ trợ các ngôn ngữ chính của Úc)",
+    "intro_block": "45dgof8 là trợ lý AI chuyên dụng giúp các doanh nghiệp Úúc tuân thủ Đạo luật Bảo mật 1988 và 13 Nguyên tắc Bảo mật của Úc (APP). Phù hợp với doanh nghiệp vừa và nhỏ, cán bộ bảo mật, nhóm pháp lý, nhà phát triển và bất kỳ ai xử lý thông tin cá nhân. 45dgof8 là một sáng kiến độc lập, không liên kết với Chính phủ Úc, nhưng luôn sẵn sàng hỗ trợ bạn hiểu và áp dụng luật một cách rõ ràng, cẩn thận và hiệu quả.\n\nTính năng:\n- Kiểm tra tuân thủ và phân tích lỗ hổng\n- Trình tạo chính sách và biểu mẫu đồng ý\n- Hỗ trợ chuyển giao dữ liệu xuyên biên giới (APP 8)\n- Trợ lý xử lý vi phạm (APP 11 và cơ chế NDB)\n- Giải thích vai trò pháp lý (người kiểm soát/người xử lý dữ liệu)\n- Giải thích các khái niệm pháp lý bằng tiếng Anh đơn giản (hỗ trợ các ngôn ngữ chính của Úc)",
     "try": "Dùng thử GPT ngay (không cần đăng ký)",
     "upgrade": "Nâng cấp an toàn qua 45dgof8-pulse",
     "pricing_header": "Bảng giá của chúng tôi",
