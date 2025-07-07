@@ -28,12 +28,12 @@
     "monthly_li2": "Unlimited Q&As",
     "monthly_li3": "Monthly law alert summary",
     "features_list": 
-      "✅ Privacy compliance audits & gap checks,
+      {✅ Privacy compliance audits & gap checks,
        📄 Policy & consent generator,
        🔍 Cross-border data transfer helper (APP 8),
        🚨 Breach assistant for APP 11 & NDB scheme,
        🧑‍⚖️ Clarifies legal roles (controller/processor),
-       🧠 Explains legal concepts in plain English (supports major Australian languages)"
+       🧠 Explains legal concepts in plain English (supports major Australian languages)}
     },
   "zh": {
     "title": "45dgof8 – 澳大利亚隐私合规助手",
