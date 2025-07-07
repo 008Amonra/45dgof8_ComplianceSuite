@@ -13,9 +13,7 @@
       --background-color: #1b1b1b;
       --text-color: #e0e0e0;
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
@@ -49,10 +47,7 @@
     header[style*="background-image: none"]::after {
       visibility: visible;
     }
-    header img {
-      max-width: 120px;
-      margin-bottom: 1rem;
-    }
+    header img { max-width: 120px; margin-bottom: 1rem; }
     header h1 {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       padding: 0 1rem;
@@ -65,18 +60,9 @@
       visibility: visible !important;
       opacity: 1 !important;
     }
-    [data-aos] {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-    h2 {
-      color: var(--accent-color);
-    }
-    .pricing {
-      padding: 2rem;
-      background-color: var(--background-color);
-      color: var(--text-color);
-    }
+    [data-aos] { opacity: 1 !important; transform: none !important; }
+    h2 { color: var(--accent-color); }
+    .pricing { padding: 2rem; background-color: var(--background-color); }
     .pricing-card {
       background: #2e3b3b;
       padding: 1.5rem;
@@ -94,15 +80,8 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .btn:hover {
-      background: #00332e;
-    }
-    .cta-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
-    }
+    .btn:hover { background: #00332e; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
     .cta-buttons a {
       background: var(--accent-color);
       color: white;
@@ -118,19 +97,15 @@
       transform: scale(1.03);
     }
     @media (max-width: 768px) {
-      header {
-        height: 250px;
-      }
-      main {
-        padding: 1rem;
-      }
+      header { height: 250px; }
+      main { padding: 1rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <img src="logo-symbol-45dgof8-transparent.webp" alt="45dgof8 logo" onerror="this.style.display='none';">
-    <h1>45dgof8–Australia_Privacy_Compliance_GPT</h1>
+    <h1>45dgof8 – Australia Privacy Compliance GPT</h1>
   </header>
   <main data-aos="fade-up">
     <section>
@@ -147,8 +122,8 @@
         <li>🧠 Explains legal concepts in plain English (supports major Australian languages)</li>
       </ul>
       <div class="cta-buttons">
-        <a href="https://chat.openai.com/g/g-67fd397a2e84819190856a6e3e26897a-45dgof8-australia-privacy-compliance-gpt" target="_blank">👉 Try the GPT (No Sign-Up Needed)</a>
-        <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">🔐 Upgrade Securely via 45dgof8-pulse</a>
+        <a id="btn-try" href="#" target="_blank">Try the GPT (No sign-up needed)</a>
+        <a id="btn-upgrade" href="#" target="_blank">Upgrade securely via 45dgof8-pulse</a>
       </div>
     </section>
   </main>
@@ -157,191 +132,125 @@
       <h2 style="text-align: center; margin-bottom: 2rem;">Our Pricing</h2>
       <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
         <div class="pricing-card">
-          <h3>Privacy Starter Kit</h3>
+          <h3 class="title-starter">Privacy Starter Kit</h3>
           <p class="desc-starter">Best for 90% of users. One-time download.</p>
-          <p style="font-size: 2rem; font-weight: bold;">$35 AUD</p>
-          <ul>
+          <p style="font-size: 2rem; font-weight: bold;" class="price-starter">$35 AUD</p>
+          <ul class="list-starter">
             <li>Privacy Policy (web/app ready)</li>
             <li>Consent Snippets (checkboxes, cookie bar)</li>
             <li>Breach Response Kit</li>
             <li>APPs Mini Checklist</li>
           </ul>
-          <a href="#" class="btn">Buy Now</a>
+          <a href="#" class="btn" id="btn-starter">Buy Now</a>
         </div>
         <div class="pricing-card">
-          <h3>One-Day Access Pass</h3>
-         <p class="desc-oneday">Great for freelancers and students.</p>
-          <p style="font-size: 2rem; font-weight: bold;">$4.50 AUD</p>
-          <ul>
-            <li>24h full access to tools</li>
+          <h3 class="title-oneday">One-Day Access Pass</h3>
+          <p class="desc-oneday">Great for freelancers and students.</p>
+          <p style="font-size: 2rem; font-weight: bold;" class="price-oneday">$4.50 AUD</p>
+          <ul class="list-oneday">
+            <li>24-hour full access to tools</li>
             <li>Ask up to 3 questions</li>
           </ul>
-          <a href="#" class="btn">Get Access</a>
+          <a href="#" class="btn" id="btn-oneday">Get Access</a>
         </div>
         <div class="pricing-card">
-          <h3>Monthly Access Plan</h3>
+          <h3 class="title-monthly">Monthly Access Plan</h3>
           <p class="desc-monthly">Unlimited downloads & Q&A.</p>
-          <p style="font-size: 2rem; font-weight: bold;">$20 AUD/month</p>
-          <ul>
+          <p style="font-size: 2rem; font-weight: bold;" class="price-monthly">$20 AUD/month</p>
+          <ul class="list-monthly">
             <li>Unlimited downloads</li>
             <li>Unlimited Q&As</li>
             <li>Monthly law alert summary</li>
           </ul>
-          <a href="#" class="btn">Subscribe Now</a>
+          <a href="#" class="btn" id="btn-monthly">Subscribe Now</a>
         </div>
       </div>
+    </div>
   </section>
   <footer>
     Visit us at <a href="https://45dgof8.com" style="color: var(--accent-color);">45dgof8.com</a><br>
     Payments powered by <strong>45dgof8-pulse</strong>.
   </footer>
+
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      AOS.init({ once: true, duration: 800 });
-    });
+    window.addEventListener('DOMContentLoaded', () => AOS.init({ once: true, duration: 800 }));
   </script>
-<!-- Translation Companion Widget -->
-<div id="translator-widget">
-  <button id="translate-btn">🌐 Translate</button>
-  <select id="lang-select" style="display:none;">
-    <option value="en">English</option>
-    <option value="zh">中文</option>
-    <option value="ar">العربية</option>
-    <option value="vi">Tiếng Việt</option>
-    <option value="it">Italiano</option>
 
-  </select>
-  <input type="text" id="custom-lang" placeholder="Enter language code (e.g., sm for Samoan)" style="display:none; margin-top: 0.3rem; width: 100%; padding: 0.4rem; border-radius: 6px; border: none;">
-  <p id="translate-note" style="display:none; font-size: 0.75rem; color: #ccc; margin-top: 0.3rem; text-align: center;">
-     Translations may not be perfect, but we do our best to help!
-  </p>
-</div>
+  <!-- Translation Companion Widget -->
+  <div id="translator-widget">
+    <button id="translate-btn">🌐 Translate</button>
+    <select id="lang-select" style="display:none;">
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="it">Italiano</option>
+      <option value="custom">More…</option>
+    </select>
+    <input type="text" id="custom-lang" placeholder="Enter code (e.g. sm)" style="display:none;">
+    <p id="translate-note" style="display:none; font-size:0.75rem; color:#ccc;">
+      Translations may not be perfect, but we do our best!
+    </p>
+  </div>
 
-<style>
-  #translator-widget {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 999;
-  }
-  #translate-btn, #lang-select, #custom-lang {
-    padding: 0.5rem 0.8rem;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--accent-color);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    margin-bottom: 0.5rem;
-  }
-  #lang-select, #custom-lang {
-    width: 100%;
-    background: #2e3b3b;
-    color: white;
-  }
-  #custom-lang {
-    background: #1c1c1c;
-    font-weight: normal;
-  }
-</style>
+  <style>
+    #translator-widget { position: fixed; bottom:1rem; right:1rem; z-index:999; }
+    #translate-btn, #lang-select, #custom-lang {
+      padding:0.5rem 0.8rem; border:none; border-radius:6px;
+      background: var(--accent-color); color:white; font-weight:bold;
+      cursor:pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      margin-bottom:0.5rem;
+    }
+    #lang-select, #custom-lang { width:100%; background:#2e3b3b; }
+    #custom-lang { background:#1c1c1c; }
+  </style>
 
   <script>
-  let translationsCache;
-
-  async function loadTranslations() {
-    if (!translationsCache) {
-      try {
+    let translationsCache;
+    async function loadTranslations() {
+      if (!translationsCache) {
         const res = await fetch('lang_australia_long.json');
         translationsCache = await res.json();
-      } catch (err) {
-        console.error('Failed to load translation file:', err);
       }
+      return translationsCache;
     }
-    return translationsCache;
-  }
-
-  function applyTranslation(lang) {
-    const t = translationsCache?.[lang] || translationsCache?.en;
-    if (!t) return;
-
-    const header = document.querySelector('header h1');
-    const intro = document.querySelector('#intro');
-    const heading = document.querySelector('main h2');
-    const starterDesc = document.querySelector('.desc-starter');
-    const onedayDesc = document.querySelector('.desc-oneday');
-    const monthlyDesc = document.querySelector('.desc-monthly');
-    const ctaBtns = document.querySelectorAll('.cta-buttons a');
-    const pricingTitle = document.querySelector('.pricing h2');
-
-    if (header) header.textContent = t.title;
-    if (heading) heading.textContent = t.heading;
-    if (intro && t.intro_block) intro.innerHTML = t.intro_block;
-    if (starterDesc) starterDesc.textContent = t.starter_desc;
-    if (onedayDesc) onedayDesc.textContent = t.oneday_desc;
-    if (monthlyDesc) monthlyDesc.textContent = t.monthly_desc;
-    if (ctaBtns[0]) ctaBtns[0].textContent = t.try;
-    if (ctaBtns[1]) ctaBtns[1].textContent = t.upgrade;
-    if (pricingTitle) pricingTitle.textContent = t.pricing_header;
-
-    const cards = document.querySelectorAll('.pricing-card');
-    ['starter', 'oneday', 'monthly'].forEach((key, i) => {
-      const card = cards[i];
-      if (!card) return;
-
-      const title = card.querySelector('h3');
-      const price = card.querySelector('p');
-      const btn = card.querySelector('a.btn');
-      const items = card.querySelectorAll('ul li');
-
-      if (title) title.textContent = t[`${key}_title`];
-      if (price) price.textContent = t[`${key}_price`];
-      if (btn) btn.textContent = t[`${key}_btn`];
-
-      items.forEach((item, index) => {
-        item.textContent = t[`${key}_li${index + 1}`] || item.textContent;
+    function applyTranslation(lang) {
+      const t = translationsCache[lang] || translationsCache.en;
+      document.querySelector('header h1').textContent = t.title;
+      document.querySelector('main h2').textContent = t.heading;
+      document.querySelector('#intro').innerHTML = t.intro_block;
+      document.getElementById('btn-try').textContent = t.try;
+      document.getElementById('btn-upgrade').textContent = t.upgrade;
+      document.querySelector('.pricing h2').textContent = t.pricing_header;
+      ['starter','oneday','monthly'].forEach((key, i) => {
+        const card = document.getElementsByClassName('pricing-card')[i];
+        card.querySelector('h3').textContent = t[`${key}_title`];
+        card.querySelector(`.price-${key}`) && (card.querySelector(`.price-${key}`).textContent = t[`${key}_price`]);
+        card.querySelector(`.desc-${key}`) && (card.querySelector(`.desc-${key}`).textContent = t[`${key}_desc`]);
+        card.querySelector('a.btn').textContent = t[`${key}_btn`];
+        card.querySelectorAll('ul li').forEach((li, idx) => {
+          li.textContent = t[`${key}_li${idx+1}`];
+        });
       });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('translate-btn').onclick = () => {
+        ['lang-select','custom-lang','translate-note'].forEach(id => {
+          const el = document.getElementById(id);
+          el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        });
+      };
+      document.getElementById('lang-select').onchange = async e => {
+        if (e.target.value === 'custom') return;
+        await loadTranslations(); applyTranslation(e.target.value);
+      };
+      document.getElementById('custom-lang').onchange = async e => {
+        const lang = e.target.value.trim().toLowerCase();
+        if (!lang) return;
+        await loadTranslations(); applyTranslation(lang);
+      };
     });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('translate-btn').addEventListener('click', () => {
-      const select = document.getElementById('lang-select');
-      const custom = document.getElementById('custom-lang');
-      const note = document.getElementById('translate-note');
-      const isHidden = select.style.display === 'none';
-      select.style.display = isHidden ? 'block' : 'none';
-      custom.style.display = isHidden ? 'block' : 'none';
-      note.style.display = isHidden ? 'block' : 'none';
-    });
-
-    document.getElementById('lang-select').addEventListener('change', async (e) => {
-      const lang = e.target.value;
-      if (lang === 'custom') return;
-      await loadTranslations();
-      applyTranslation(lang);
-    });
-
-    document.getElementById('custom-lang').addEventListener('change', async (e) => {
-      const lang = e.target.value.trim().toLowerCase();
-      if (!lang) return;
-
-      if (lang === 'tlh' && Math.random() < 0.25) {
-        alert('majQa’! Displaying in Klingon (sort of)...');
-        const header = document.querySelector('header h1');
-        const heading = document.querySelector('main h2');
-        const intro = document.querySelector('#intro');
-        if (header) header.textContent = "45dgof8 – qo' Sov Hoch";
-        if (heading) heading.textContent = "SoH Daq Daq Sov!";
-        if (intro) intro.textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
-        return;
-      }
-
-      await loadTranslations();
-      applyTranslation(lang);
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
