@@ -28,12 +28,12 @@
     "monthly_li2": "Unlimited Q&As",
     "monthly_li3": "Monthly law alert summary",
     "features_list": [
-     "✅ Privacy compliance audits & gap checks",
-     "📄 Policy & consent generator",
-     "🔍 Cross-border data transfer helper (APP 8)",
-     "🚨 Breach assistant for APP 11 & NDB scheme",
-     "🧑‍⚖️ Clarifies legal roles (controller/processor)",
-     "🧠 Explains legal concepts in plain English (supports major Australian languages)"
+       "✅ Privacy compliance audits & gap checks",
+       "📄 Policy & consent generator",
+       "🔍 Cross-border data transfer helper (APP 8)",
+       "🚨 Breach assistant for APP 11 & NDB scheme",
+       "🧑‍⚖️ Clarifies legal roles (controller/processor)",
+       "🧠 Explains legal concepts in plain English (supports major Australian languages)"
    ]
   },
   "zh": {
@@ -65,12 +65,12 @@
     "monthly_li2": "无限问答",
     "monthly_li3": "每月法律提醒摘要",
     "features_list": [
-      "✅ 隐私合规审核与差距检查",
-      "📄 政策与同意生成器",
-      "🔍 跨境数据传输助手（APP 第8条）",
-      "🚨 数据泄露助手（APP 第11条和NDB机制）",
-      "🧑‍⚖️ 阐明法律角色（控制者/处理者）",
-      "🧠 用通俗语言解释法律概念（支持主要澳大利亚语言）"
+        "✅ 隐私合规审核与差距检查",
+        "📄 政策与同意生成器",
+        "🔍 跨境数据传输助手（APP 第8条）",
+        "🚨 数据泄露助手（APP 第11条和NDB机制）",
+        "🧑‍⚖️ 阐明法律角色（控制者/处理者）",
+        "🧠 用通俗语言解释法律概念（支持主要澳大利亚语言）"
    ]
   },
   "it": {
@@ -102,12 +102,12 @@
     "monthly_li2": "Domande e risposte illimitate",
     "monthly_li3": "Riepilogo mensile delle novità legali",
     "features_list": [
-      "✅ Audit sulla privacy e controlli di conformità",
-      "📄 Generatore di policy e consenso",
-      "🔍 Assistente al trasferimento dati transfrontaliero (APP 8)",
-      "🚨 Assistente per violazioni APP 11 e schema NDB",
-      "🧑‍⚖️ Chiarisce i ruoli legali (controllore/fornitore)",
-      "🧠 Spiega concetti legali in modo semplice (supporta le lingue principali australiane)"
+        "✅ Audit sulla privacy e controlli di conformità",
+        "📄 Generatore di policy e consenso",
+        "🔍 Assistente al trasferimento dati transfrontaliero (APP 8)",
+        "🚨 Assistente per violazioni APP 11 e schema NDB",
+        "🧑‍⚖️ Chiarisce i ruoli legali (controllore/fornitore)",
+        "🧠 Spiega concetti legali in modo semplice (supporta le lingue principali australiane)"
     ]
   },
   "ar": {
@@ -139,12 +139,12 @@
     "monthly_li2": "أسئلة وأجوبة غير محدودة",
     "monthly_li3": "ملخص قانوني شهري",
       "features_list": [
-      "✅ تدقيقات التوافق مع الخصوصية وفحص الثغرات",
-      "📄 مولد السياسات والموافقة",
-      "🔍 مساعد نقل البيانات عبر الحدود (المبدأ 8)",
-      "🚨 مساعد الانتهاكات (المبدأ 11 ونظام الإبلاغ عن الاختراقات)",
-      "🧑‍⚖️ توضيح الأدوار القانونية (المتحكم/المعالج)",
-      "🧠 شرح المفاهيم القانونية بلغة بسيطة (يدعم اللغات الرئيسية في أستراليا)"
+        "✅ تدقيقات التوافق مع الخصوصية وفحص الثغرات",
+        "📄 مولد السياسات والموافقة",
+        "🔍 مساعد نقل البيانات عبر الحدود (المبدأ 8)",
+        "🚨 مساعد الانتهاكات (المبدأ 11 ونظام الإبلاغ عن الاختراقات)",
+        "🧑‍⚖️ توضيح الأدوار القانونية (المتحكم/المعالج)",
+        "🧠 شرح المفاهيم القانونية بلغة بسيطة (يدعم اللغات الرئيسية في أستراليا)"
     ]
   },
   "vi": {
@@ -176,11 +176,11 @@
     "monthly_li2": "Hỏi đáp không giới hạn",
     "monthly_li3": "Tóm tắt thông tin pháp lý hàng tháng",
     "features_list": [
-      "✅ Kiểm tra tuân thủ và đánh giá khoảng cách về quyền riêng tư",
-      "📄 Trình tạo chính sách và đồng ý",
-      "🔍 Trợ lý chuyển giao dữ liệu xuyên biên giới (APP 8)",
-      "🚨 Trợ lý vi phạm (APP 11 & cơ chế NDB)",
-      "🧑‍⚖️ Làm rõ vai trò pháp lý (bên kiểm soát/xử lý)",
-      "🧠 Giải thích các khái niệm pháp lý bằng ngôn ngữ đơn giản (hỗ trợ ngôn ngữ chính tại Úc)"
+        "✅ Kiểm tra tuân thủ và đánh giá khoảng cách về quyền riêng tư",
+        "📄 Trình tạo chính sách và đồng ý",
+        "🔍 Trợ lý chuyển giao dữ liệu xuyên biên giới (APP 8)",
+        "🚨 Trợ lý vi phạm (APP 11 & cơ chế NDB)",
+        "🧑‍⚖️ Làm rõ vai trò pháp lý (bên kiểm soát/xử lý)",
+        "🧠 Giải thích các khái niệm pháp lý bằng ngôn ngữ đơn giản (hỗ trợ ngôn ngữ chính tại Úc)"
    ]
   }
