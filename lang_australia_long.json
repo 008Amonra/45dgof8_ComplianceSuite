@@ -26,15 +26,8 @@
     "monthly_desc": "Unlimited downloads and Q&A.",
     "monthly_li1": "Unlimited downloads",
     "monthly_li2": "Unlimited Q&As",
-    "monthly_li3": "Monthly law alert summary",
-    "features_list": 
-      "✅ Privacy compliance audits & gap checks",
-      "📄 Policy & consent generator",
-      "🔍 Cross-border data transfer helper (APP 8)",
-      "🚨 Breach assistant for APP 11 & NDB scheme",
-      "🧑‍⚖️ Clarifies legal roles (controller/processor)",
-      "🧠 Explains legal concepts in plain English (supports major Australian languages)"}
-    },
+    "monthly_li3": "Monthly law alert summary"
+  },
   "zh": {
     "title": "45dgof8 – 澳大利亚隐私合规助手",
     "heading": "您的虚拟隐私专员",
@@ -62,15 +55,7 @@
     "monthly_desc": "无限制下载与问答。",
     "monthly_li1": "无限下载",
     "monthly_li2": "无限问答",
-    "monthly_li3": "每月法律提醒摘要",
-    "features_list": [
-        "✅ 隐私合规审核与差距检查",
-        "📄 政策与同意生成器",
-        "🔍 跨境数据传输助手（APP 第8条）",
-        "🚨 数据泄露助手（APP 第11条和NDB机制）",
-        "🧑‍⚖️ 阐明法律角色（控制者/处理者）",
-        "🧠 用通俗语言解释法律概念（支持主要澳大利亚语言）"
-   ]
+    "monthly_li3": "每月法律提醒摘要"
   },
   "it": {
     "title": "45dgof8 – Assistente per la Conformità alla Privacy in Australia",
@@ -99,15 +84,7 @@
     "monthly_desc": "Download e domande illimitate.",
     "monthly_li1": "Download illimitati",
     "monthly_li2": "Domande e risposte illimitate",
-    "monthly_li3": "Riepilogo mensile delle novità legali",
-    "features_list": [
-        "✅ Audit sulla privacy e controlli di conformità",
-        "📄 Generatore di policy e consenso",
-        "🔍 Assistente al trasferimento dati transfrontaliero (APP 8)",
-        "🚨 Assistente per violazioni APP 11 e schema NDB",
-        "🧑‍⚖️ Chiarisce i ruoli legali (controllore/fornitore)",
-        "🧠 Spiega concetti legali in modo semplice (supporta le lingue principali australiane)"
-    ]
+    "monthly_li3": "Riepilogo mensile delle novità legali"
   },
   "ar": {
     "title": "45dgof8 – مساعد الامتثال لخصوصية أستراليا",
@@ -136,20 +113,12 @@
     "monthly_desc": "تنزيلات غير محدودة وأسئلة وأجوبة.",
     "monthly_li1": "تنزيلات غير محدودة",
     "monthly_li2": "أسئلة وأجوبة غير محدودة",
-    "monthly_li3": "ملخص قانوني شهري",
-      "features_list": [
-        "✅ تدقيقات التوافق مع الخصوصية وفحص الثغرات",
-        "📄 مولد السياسات والموافقة",
-        "🔍 مساعد نقل البيانات عبر الحدود (المبدأ 8)",
-        "🚨 مساعد الانتهاكات (المبدأ 11 ونظام الإبلاغ عن الاختراقات)",
-        "🧑‍⚖️ توضيح الأدوار القانونية (المتحكم/المعالج)",
-        "🧠 شرح المفاهيم القانونية بلغة بسيطة (يدعم اللغات الرئيسية في أستراليا)"
-    ]
+    "monthly_li3": "ملخص قانوني شهري"
   },
   "vi": {
     "title": "45dgof8 – Trợ lý Tuân thủ Quyền riêng tư tại Úc",
     "heading": "Cán bộ Bảo mật Ảo của Bạn",
-    "intro_block": "45dgof8 là trợ lý AI chuyên dụng giúp các doanh nghiệp úc tuân thủ Đạo luật Bảo mật 1988 và 13 Nguyên tắc Bảo mật của Úc (APP). Phù hợp với doanh nghiệp vừa và nhỏ, cán bộ bảo mật, nhóm pháp lý, nhà phát triển và bất kỳ ai xử lý thông tin cá nhân. 45dgof8 là một sáng kiến độc lập, không liên kết với Chính phủ Úc, nhưng luôn sẵn sàng hỗ trợ bạn hiểu và áp dụng luật một cách rõ ràng, cẩn thận và hiệu quả.\n\nTính năng:\n- Kiểm tra tuân thủ và phân tích lỗ hổng\n- Trình tạo chính sách và biểu mẫu đồng ý\n- Hỗ trợ chuyển giao dữ liệu xuyên biên giới (APP 8)\n- Trợ lý xử lý vi phạm (APP 11 và cơ chế NDB)\n- Giải thích vai trò pháp lý (người kiểm soát/người xử lý dữ liệu)\n- Giải thích các khái niệm pháp lý bằng tiếng Anh đơn giản (hỗ trợ các ngôn ngữ chính của Úc)",
+    "intro_block": "45dgof8 là trợ lý AI chuyên dụng giúp các doanh nghiệp Úúc tuân thủ Đạo luật Bảo mật 1988 và 13 Nguyên tắc Bảo mật của Úc (APP). Phù hợp với doanh nghiệp vừa và nhỏ, cán bộ bảo mật, nhóm pháp lý, nhà phát triển và bất kỳ ai xử lý thông tin cá nhân. 45dgof8 là một sáng kiến độc lập, không liên kết với Chính phủ Úc, nhưng luôn sẵn sàng hỗ trợ bạn hiểu và áp dụng luật một cách rõ ràng, cẩn thận và hiệu quả.\n\nTính năng:\n- Kiểm tra tuân thủ và phân tích lỗ hổng\n- Trình tạo chính sách và biểu mẫu đồng ý\n- Hỗ trợ chuyển giao dữ liệu xuyên biên giới (APP 8)\n- Trợ lý xử lý vi phạm (APP 11 và cơ chế NDB)\n- Giải thích vai trò pháp lý (người kiểm soát/người xử lý dữ liệu)\n- Giải thích các khái niệm pháp lý bằng tiếng Anh đơn giản (hỗ trợ các ngôn ngữ chính của Úc)",
     "try": "Dùng thử GPT ngay (không cần đăng ký)",
     "upgrade": "Nâng cấp an toàn qua 45dgof8-pulse",
     "pricing_header": "Bảng giá của chúng tôi",
@@ -173,13 +142,7 @@
     "monthly_desc": "Tải về và hỏi đáp không giới hạn.",
     "monthly_li1": "Tải về không giới hạn",
     "monthly_li2": "Hỏi đáp không giới hạn",
-    "monthly_li3": "Tóm tắt thông tin pháp lý hàng tháng",
-    "features_list": [
-        "✅ Kiểm tra tuân thủ và đánh giá khoảng cách về quyền riêng tư",
-        "📄 Trình tạo chính sách và đồng ý",
-        "🔍 Trợ lý chuyển giao dữ liệu xuyên biên giới (APP 8)",
-        "🚨 Trợ lý vi phạm (APP 11 & cơ chế NDB)",
-        "🧑‍⚖️ Làm rõ vai trò pháp lý (bên kiểm soát/xử lý)",
-        "🧠 Giải thích các khái niệm pháp lý bằng ngôn ngữ đơn giản (hỗ trợ ngôn ngữ chính tại Úc)"
-   ]
+    "monthly_li3": "Tóm tắt thông tin pháp lý hàng tháng"
   }
+}
+
