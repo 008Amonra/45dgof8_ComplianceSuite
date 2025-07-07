@@ -247,7 +247,7 @@
   }
 </style>
 
-<script>
+  <script>
   let translationsCache;
 
   async function loadTranslations() {
@@ -333,16 +333,15 @@
         const heading = document.querySelector('main h2');
         const intro = document.querySelector('#intro');
         if (header) header.textContent = "45dgof8 – qo' Sov Hoch";
-        if (heading) heading.textContent/h = "SoH Daq Daq Sov!";
+        if (heading) heading.textContent = "SoH Daq Daq Sov!";
         if (intro) intro.textContent = "45dgof8 'oH ghotpu' DuQbogh Hevlaw' Qav, QIv 'ej lugh";
         return;
       }
 
       await loadTranslations();
       applyTranslation(lang);
-
     });
   });
-   </script> 
+</script>
 </body>
 </html>
