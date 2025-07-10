@@ -33,20 +33,29 @@
     h2 {
       color: #f39c12;
     }
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+    .eva-button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
     }
-    .card {
-      background: #2e2e4d;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    a {
-      color: #00bcd4;
+    .eva-button {
+      background-color: #e8ecf7;
+      color: #1f2937;
+      padding: 12px 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 300px;
+      text-align: center;
       text-decoration: none;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .eva-button:hover {
+      transform: scale(1.03);
     }
     footer {
       text-align: center;
@@ -67,134 +76,30 @@
     <h2>Meet Eva</h2>
     <p>Hi, I’m <strong>Eva Answers</strong>! 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm. Ready to assist you from Earth to beyond. <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers">Visit me on ChatGPT</a>.</p>
   </section>
-<body>
-    <div class="banner-container">
-    <center><img id="evaBanner" src="TCXm.webp" alt="Eva's the best!" class="banner"></center>
 
-<style>
-  .eva-buttons {
-    font-family: 'Segoe UI', sans-serif;
-    display: grid;
-    gap: 10px;
-    max-width: 500px;
-    margin: 20px auto;
-  }
-  .eva-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 18px;
-    background-color: #f0f4ff;
-    color: #2c3e50;
-    text-decoration: none;
-    border-radius: 12px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .eva-button:hover {
-    background-color: #dce6ff;
-    border-color: #7f8c8d;
-  }
-  .eva-button span.icon {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-</style>
-
-<div style="background-color: #0e0e15; padding: 20px; font-family: Arial, sans-serif;">
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Data%20Analysis%20%26%20Visualization" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #e8ecf7; color: #1f2937; padding: 20px; border-radius: 12px; margin-bottom: 10px;">
-      📊 Data Analysis & Visualization
-    </div>
-  </a>
-
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Calendar%20%26%20Scheduling" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #e8ecf7; color: #1f2937; padding: 20px; border-radius: 12px; margin-bottom: 10px;">
-      📅 Calendar & Scheduling
-    </div>
-  </a>
-
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Contact%20Management" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #e8ecf7; color: #1f2937; padding: 20px; border-radius: 12px; margin-bottom: 10px;">
-      🖨️ Contact Management
-    </div>
-  </a>
-
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Automation%20with%20Zapier%2Fn8n" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #e8ecf7; color: #1f2937; padding: 20px; border-radius: 12px; margin-bottom: 10px;">
-      🔁 Automation with Zapier/n8n
-    </div>
-  </a>
-
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Digital%20Security%20Monitoring" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #e8ecf7; color: #1f2937; padding: 20px; border-radius: 12px; margin-bottom: 10px;">
-      🛡️ Digital Security Monitoring
-    </div>
-  </a>
-
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Sci-Fi%20Roleplay%20%26%20Creative%20Support" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #e8ecf7; color: #1f2937; padding: 20px; border-radius: 12px;">
-      🎭 Sci-Fi Roleplay & Creative Support
-    </div>
-  </a>
-</div>
+  <div class="eva-button-container">
+    <a class="eva-button" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Data%20Analysis%20%26%20Visualization" target="_blank">📊 Data Analysis & Visualization</a>
+    <a class="eva-button" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Calendar%20%26%20Scheduling" target="_blank">📅 Calendar & Scheduling</a>
+    <a class="eva-button" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Contact%20Management" target="_blank">🖨️ Contact Management</a>
+    <a class="eva-button" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Automation%20with%20Zapier%2Fn8n" target="_blank">🔁 Automation with Zapier/n8n</a>
+    <a class="eva-button" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Digital%20Security%20Monitoring" target="_blank">🛡️ Digital Security Monitoring</a>
+    <a class="eva-button" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Sci-Fi%20Roleplay%20%26%20Creative%20Support" target="_blank">🎭 Sci-Fi Roleplay & Creative Support</a>
+  </div>
 
   <section>
     <h2>The Universe I Belong To</h2>
     <ul>
       <li><a href="https://45dgof8.com">45dgof8.com</a></li>
       <li><a href="https://www.etsy.com/ch/shop/45dgof8">Etsy Shop</a></li>      
-      <li><a href="https://45dgof8.com/Dion_Wolf_Jotham.html">Dion</a>, 
-      <li><a href="https://45dgof8.com/TSG-tech-support-gpt.html">TSG</a>, 
-      <li><a href="https://45dgof8.com/galactic/GalacticChoices.html">GalacticChoices)</a>
-      <li><a href="https://45dgof8.com/CatArtCreator.html">CatArtCreator)</a>  
+      <li><a href="https://45dgof8.com/Dion_Wolf_Jotham.html">Dion</a></li>
+      <li><a href="https://45dgof8.com/TSG-tech-support-gpt.html">TSG</a></li>
+      <li><a href="https://45dgof8.com/galactic/GalacticChoices.html">GalacticChoices</a></li>
+      <li><a href="https://45dgof8.com/CatArtCreator.html">CatArtCreator</a></li>  
     </ul>
   </section>
 
-<section>
-  <h2>Contact & Feedback</h2>
-
-<section class="donate">
-  <h2>Support the Eva Project 💫</h2>
-  <p>If Eva has helped you, consider leaving a tip to support this independent project.</p>
-  <div id="tipjar" style="max-width: 400px; margin: 2rem auto; padding: 1rem; border-radius: 1rem; box-shadow: 0 0 20px rgba(0,0,0,0.1); background-color: #2e2e4d;">
-    <div style="display: flex; justify-content: space-around; margin-bottom: 1rem;">
-      <button onclick="setAmount(2)">CHF2</button>
-      <button onclick="setAmount(5)">CHF5</button>
-      <button onclick="setAmount(10)">CHF10</button>
-    </div>
-    <input type="number" id="customAmount" placeholder="Custom amount (CHF)" min="1" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;" />
-    <button onclick="sendTip()" style="margin-top: 1rem; width: 100%; padding: 0.75rem; background-color: #1e88e5; color: white; border: none; border-radius: 0.5rem;">
-      Tip Eva via Pulse
-    </button>
-  </div>
-  <p class="text-center" style="color: #aaa; font-size: 0.85rem;">
-    Enjoying Eva? This project is powered by curiosity, creativity, and community.
-  </p>
-</section>
-
-<script>
-  let tipAmount = 5;
-  function setAmount(amount) {
-    tipAmount = amount;
-    document.getElementById('customAmount').value = amount;
-  }
-  function sendTip() {
-    const input = document.getElementById('customAmount').value;
-    const amount = input ? parseFloat(input) : tipAmount;
-    if (amount && amount >= 1) {
-      window.open(`https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e?amount=${amount}`, '_blank');
-    } else {
-      alert('Please enter a valid amount.');
-    }
-  }
-</script>
-
   <section>
     <h2>Contact & Feedback</h2>
-    <p>Got questions or feedback? Reach out:</p>
     <ul>
       <li><a href="https://bit.ly/3WnLd58">Chat with Eva</a></li>
       <li><a href="mailto:45dgof8@gmail.com">Click Here to Email</a></li>
@@ -204,14 +109,7 @@
   <footer>
     <p>© 2025 Eva Answers for 45dgof8 – Powered by Wit, Empathy, and AI</p>
   </footer>
-  <script>
-  window.addEventListener("load", () => {
-    const banner = document.getElementById("evaBanner");
-    if (banner) {
-      banner.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  });
-</script>
 </body>
 </html>
+
 
