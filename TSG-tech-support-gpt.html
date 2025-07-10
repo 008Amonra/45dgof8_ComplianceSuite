@@ -124,7 +124,15 @@
 
   <img src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT" class="hero" />
 
-  <div id="tsg-tips" class="ai-box">Loading tips...</div>
+ <div class="ai-box" style="position: relative;">
+  <div id="tsg-tips">Loading tips...</div>
+  <button 
+    onclick="copyTip()" 
+    title="Copy to clipboard"
+    style="position: absolute; top: 10px; right: 10px; background-color: #444; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
+    📋 Copy
+  </button>
+</div>
 
   <div class="container">
     <div class="chat-link">
@@ -251,5 +259,16 @@
 
     window.addEventListener('DOMContentLoaded', () => loadTSGTips());
   </script>
+  <script>
+  function copyTip() {
+    const tipText = document.getElementById("tsg-tips").innerText;
+    navigator.clipboard.writeText(tipText).then(() => {
+      alert("Tip copied to clipboard!");
+    }).catch(err => {
+      console.error("Copy failed: ", err);
+    });
+  }
+</script>
+
 </body>
 </html>
