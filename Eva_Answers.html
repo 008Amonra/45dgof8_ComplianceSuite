@@ -25,6 +25,20 @@
       font-size: 1.2rem;
       color: #aaa;
     }
+    .eva-hero {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .eva-hero img {
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      width: 120px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
     section {
       padding: 2rem;
       max-width: 900px;
@@ -67,10 +81,13 @@
 </head>
 <body>
   <header>
-    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon" width="100">
     <h1>Welcome to the Fun Side of Chatting with Eva!</h1>
     <p>Your cosmic co-pilot for data, decisions, and delightful discoveries.</p>
   </header>
+
+  <div class="eva-hero">
+    <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon" id="evaBanner">
+  </div>
 
   <section>
     <h2>Meet Eva</h2>
@@ -109,7 +126,14 @@
   <footer>
     <p>© 2025 Eva Answers for 45dgof8 – Powered by Wit, Empathy, and AI</p>
   </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      const banner = document.getElementById("evaBanner");
+      if (banner) {
+        banner.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  </script>
 </body>
 </html>
-
-
