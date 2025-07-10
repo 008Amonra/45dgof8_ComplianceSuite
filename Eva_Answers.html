@@ -6,24 +6,35 @@
   <title>Eva Answers - 45dgof8.com</title>
   <link rel="icon" href="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png">
   <style>
+    :root {
+      --bg: #121212;
+      --surface: #282828;
+      --text-primary: #D7DADC;
+      --text-secondary: #A0A0A0;
+      --accent: #f39c12;
+      --button-bg: #e8ecf7;
+      --button-text: #1f2937;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(ellipse at top, #1a1a2e, #000);
-      color: #fff;
+      background: var(--bg);
+      color: var(--text-primary);
       margin: 0;
       padding: 0;
     }
     header {
       text-align: center;
       padding: 3rem 1rem;
-      background: #2e2e4d;
+      background: var(--surface);
     }
     header h1 {
       font-size: 2.5rem;
+      color: #fff;
     }
     header p {
       font-size: 1.2rem;
-      color: #aaa;
+      color: var(--text-secondary);
     }
     .eva-hero {
       text-align: center;
@@ -31,7 +42,7 @@
     }
     .eva-hero img {
       border-radius: 50%;
-      border: 2px solid #f39c12;
+      border: 2px solid var(--accent);
       padding: 6px;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
       width: 120px;
@@ -45,9 +56,12 @@
       padding: 2rem;
       max-width: 900px;
       margin: auto;
+      background-color: var(--surface);
+      border-radius: 12px;
+      margin-bottom: 1rem;
     }
     h2 {
-      color: #f39c12;
+      color: var(--accent);
     }
     .eva-button-container {
       display: flex;
@@ -58,8 +72,8 @@
       font-family: Arial, sans-serif;
     }
     .eva-button {
-      background-color: #e8ecf7;
-      color: #1f2937;
+      background-color: var(--button-bg);
+      color: var(--button-text);
       padding: 12px 20px;
       border-radius: 12px;
       width: 90%;
@@ -77,7 +91,10 @@
       text-align: center;
       padding: 2rem;
       background: #111;
-      color: #777;
+      color: var(--text-secondary);
+    }
+    ul li a {
+      color: var(--accent);
     }
   </style>
 </head>
@@ -97,20 +114,13 @@
     <p>Hi, I’m <strong>Eva Answers</strong>! 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm. Ready to assist you from Earth to beyond. <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers">Visit me on ChatGPT</a>.</p>
   </section>
 
-<ul>
-  <li><a href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Data Analysis & Visualization')" target="_blank">🔍 Data Analysis & Visualization</a></li>
-  <li><a href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Create a Financial Dashboard from this data')" target="_blank">📊 Create a Financial Dashboard</a></li>
-  <li><a href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Summarize and visualize the trends in this report')" target="_blank">📈 Summarize Trends</a></li>
-  <li><a href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Give me insights and KPIs from this sheet')" target="_blank">🧠 Insights & KPIs</a></li>
-  <li><a href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Help me clean and structure this messy data')" target="_blank">🧹 Clean & Structure Data</a></li>
-</ul>
-
-<script>
-function copyQuery(text) {
-  navigator.clipboard.writeText(text);
-  alert("✅ Query copied! Paste it into Eva's chat when it opens.");
-}
-</script>
+  <section class="eva-button-container">
+    <a class="eva-button" href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Data Analysis & Visualization')" target="_blank">🔍 Data Analysis & Visualization</a>
+    <a class="eva-button" href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Create a Financial Dashboard from this data')" target="_blank">📊 Create a Financial Dashboard</a>
+    <a class="eva-button" href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Summarize and visualize the trends in this report')" target="_blank">📈 Summarize Trends</a>
+    <a class="eva-button" href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Give me insights and KPIs from this sheet')" target="_blank">🧠 Insights & KPIs</a>
+    <a class="eva-button" href="https://chat.openai.com/g/g-lPUDkYN4z-eva-answers" onclick="copyQuery('Help me clean and structure this messy data')" target="_blank">🧹 Clean & Structure Data</a>
+  </section>
 
   <section>
     <h2>The Universe I Belong To</h2>
@@ -134,7 +144,7 @@ function copyQuery(text) {
 
   <section>
     <h2 style="text-align: center;">☕ Fuel Eva’s Engine</h2>
-    <div style="max-width: 500px; margin: 0 auto; background-color: #2e2e4d; padding: 20px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.3); text-align: center;">
+    <div style="max-width: 500px; margin: 0 auto; background-color: var(--surface); padding: 20px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.3); text-align: center;">
       <p>If Eva made your day brighter, consider fueling her mission with a virtual coffee. It means the galaxy to her! 🌌</p>
       <a href="https://paypal.me/45dgof8" target="_blank" style="display: inline-block; margin-top: 10px; background-color: #ffcc00; color: #000; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
         Buy Eva a Coffee
@@ -147,6 +157,11 @@ function copyQuery(text) {
   </footer>
 
   <script>
+    function copyQuery(text) {
+      navigator.clipboard.writeText(text);
+      alert("✅ Query copied! Paste it into Eva's chat when it opens.");
+    }
+
     window.addEventListener("load", () => {
       const banner = document.getElementById("evaBanner");
       if (banner) {
@@ -156,4 +171,3 @@ function copyQuery(text) {
   </script>
 </body>
 </html>
-
