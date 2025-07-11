@@ -3,101 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GalacticChoices Awakening</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <title>GalacticChoices Launch</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(#01010f, #000);
-      color: #00ffea;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
       text-align: center;
-      padding: 1rem;
+      background-color: #000;
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 15px #00ffea;
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin-bottom: 2rem;
-    }
-
-    .choices {
+    .hero {
+      background: url('https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/refs/heads/main/fueXl9EX.webp') no-repeat center center/cover;
+      height: 100vh;
       display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .choice {
-      background: #00ffea;
-      color: #000;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      box-shadow: 0 0 15px #00ffea;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .choice:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #00ffea;
-    }
-
-    .dual-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
       align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     }
-
-    .subchoice {
-      font-size: 0.85rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid #00ffea;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      background-color: #1a73e8;
+      border: none;
       border-radius: 8px;
-      color: #00ffea;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: background-color 0.3s;
     }
-
-    .subchoice:hover {
-      background-color: #00ffea;
-      color: #000;
-      box-shadow: 0 0 10px #00ffea;
+    .btn:hover {
+      background-color: #155ab6;
     }
   </style>
 </head>
 <body>
-  <h1>Your Story Begins</h1>
-  <p>
-    Somewhere between the stars and the unknown, your consciousness stirs. You awaken in a cryopod—light flickering, the air thick with mystery. A voice, melodic and distant, echoes in your mind:
-    <br><br><em>"You are the spark. The cosmos awaits your choice. Who will you become?"</em>
-  </p>
-  <div class="choices">
-    <div class="dual-links">
-      <a class="choice" href="mission_scientist.html">Scientist</a>
-      <a class="subchoice" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices?prompt=I%20chose%20to%20be%20a%20Scientist.%20Begin%20my%20GalacticChoices%20journey.">Start via GPT</a>
-    </div>
-    <div class="dual-links">
-      <a class="choice" href="mission_rogue.html">Rogue</a>
-      <a class="subchoice" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices?prompt=I%20chose%20to%20be%20a%20Rogue.%20Begin%20my%20GalacticChoices%20journey.">Start via GPT</a>
-    </div>
-    <div class="dual-links">
-      <a class="choice" href="mission_diplomat.html">Diplomat</a>
-      <a class="subchoice" href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices?prompt=I%20chose%20to%20be%20a%20Diplomat.%20Begin%20my%20GalacticChoices%20journey.">Start via GPT</a>
-    </div>
+  <div class="hero">
+    <h1>Welcome, Captain. The stars await your command…</h1>
+    <a href="https://chatgpt.com/g/g-8uMUWsp5m-galacticchoices" class="btn">Begin Adventure</a>
   </div>
 </body>
 </html>
