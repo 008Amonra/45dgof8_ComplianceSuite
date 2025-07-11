@@ -81,12 +81,51 @@
       z-index: 2;
     }
 
-    .intro, .buttons {
+    .intro, .buttons, .settings, .headlines {
       max-width: 600px;
-      margin: 40px auto;
-      text-align: center;
-      z-index: 1;
+      margin: 20px auto;
       padding: 0 10px;
+      z-index: 1;
+    }
+
+    .settings, .headlines {
+      background: var(--button-bg);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .headline-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: #333;
+      border-left: 4px solid #09f;
+      border-radius: 5px;
+    }
+
+    .headline-item.interest {
+      border-left: 4px solid #0f9;
     }
 
     .welcome-back {
@@ -158,23 +197,50 @@
     <p><a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" style="color: var(--accent); text-decoration: underline;">Visit me on ChatGPT</a></p>
   </div>
 
-<div class="buttons">
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Data%20Analysis%20%26%20Visualization" target="_blank">
-    <button class="feature-button">🔍 Data Analysis & Visualization</button>
-  </a>
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Create%20a%20Financial%20Dashboard" target="_blank">
-    <button class="feature-button">📊 Create a Financial Dashboard</button>
-  </a>
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Summarize%20Trends" target="_blank">
-    <button class="feature-button">🧾 Summarize Trends</button>
-  </a>
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Insights%20%26%20KPIs" target="_blank">
-    <button class="feature-button">🧠 Insights & KPIs</button>
-  </a>
-  <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Clean%20%26%20Structure%20Data" target="_blank">
-    <button class="feature-button">🧹 Clean & Structure Data</button>
-  </a>
-</div>
+  <div class="buttons">
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Data%20Analysis%20%26%20Visualization" target="_blank">
+      <button class="feature-button">🔍 Data Analysis & Visualization</button>
+    </a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Create%20a%20Financial%20Dashboard" target="_blank">
+      <button class="feature-button">📊 Create a Financial Dashboard</button>
+    </a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Summarize%20Trends" target="_blank">
+      <button class="feature-button">🧾 Summarize Trends</button>
+    </a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Insights%20%26%20KPIs" target="_blank">
+      <button class="feature-button">🧠 Insights & KPIs</button>
+    </a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?q=Hi%20Eva%2C%20I%27d%20like%20help%20with%3A%20Clean%20%26%20Structure%20Data" target="_blank">
+      <button class="feature-button">🧹 Clean & Structure Data</button>
+    </a>
+  </div>
+
+  <div class="settings">
+    <h2>🔧 Personalization Settings</h2>
+    <label>Name: <input type="text" placeholder="Enter your name"></label>
+    <label>Theme: 
+      <select>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+    </label>
+    <label>Interests: <input type="text" placeholder="e.g. crypto, science, news"></label>
+    <label>Followed Assets: <input type="text" placeholder="e.g. XRP, SOL"></label>
+    <label>News Sources: <input type="text" placeholder="e.g. cointelegraph, sciencealert"></label>
+  </div>
+
+  <div class="headlines">
+    <h2>📰 Top Headlines</h2>
+    <div class="headline-item">🌍 Global Crisis Looms Over Resource Shortages</div>
+    <div class="headline-item">🧬 Breakthrough in Quantum Computing Announced</div>
+  </div>
+
+  <div class="headlines">
+    <h2>⭐ Based on Your Interests</h2>
+    <div class="headline-item interest">🚀 XRP Surges 10% After Major Exchange Listing</div>
+    <div class="headline-item interest">🔬 New Discovery on Mars Rocks the Science World</div>
+    <div class="headline-item interest">📉 SOL Falls Amid Regulatory Concerns</div>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
