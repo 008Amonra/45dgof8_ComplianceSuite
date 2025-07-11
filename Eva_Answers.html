@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Eva Answers - Your AI galactic assistant for data, scheduling, automation, and more. Meet Eva and explore your universe!">
   <title>Meet Eva</title>
   <style>
     :root {
@@ -56,6 +57,7 @@
       gap: 24px;
       margin-top: 40px;
       z-index: 1;
+      flex-wrap: wrap;
     }
 
     .eva-hero a img {
@@ -63,6 +65,7 @@
       border-radius: 16px;
       transition: transform 0.3s ease, border-color 0.3s;
       width: 200px;
+      max-width: 90vw;
       cursor: pointer;
     }
 
@@ -83,6 +86,7 @@
       margin: 40px auto;
       text-align: center;
       z-index: 1;
+      padding: 0 10px;
     }
 
     .welcome-back {
@@ -115,17 +119,24 @@
     .buttons .feature-button:hover {
       background-color: var(--button-hover);
     }
+
+    @media (max-width: 480px) {
+      .eva-hero {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="sparkles"></div>
 
   <div class="theme-switcher">
-    <label for="theme">🌈 Theme:</label>
+    <label for="theme"> Theme:</label>
     <select id="theme" onchange="switchTheme(this.value)">
+      <option value="galaxy">Galaxy</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
-      <option value="galaxy">Galaxy</option>
     </select>
   </div>
 
@@ -139,26 +150,20 @@
   </div>
 
   <div class="welcome-back" id="welcomeMessage"></div>
-  <div class="privacy-note">🔒 Your conversations are never saved—only in your browser's memory. You are in control.</div>
+  <div class="privacy-note">🔒 No secrets here — just transparent stardust.</div>
 
   <div class="intro">
     <h2 style="color: var(--accent);">Meet Eva</h2>
     <p><strong>Hi, I'm <span style="color: var(--accent);">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
     <p><a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" style="color: var(--accent); text-decoration: underline;">Visit me on ChatGPT</a></p>
-    <div style="margin-top: 20px;">
-      <label for="chatInput">Your chat:</label><br>
-      <textarea id="chatInput" rows="5" cols="60" placeholder="Type your galactic ideas here..."></textarea><br>
-      <button onclick="saveChat()">💾 Save Chat</button>
-      <input type="file" id="fileInput" onchange="loadChat(event)">
-    </div>
   </div>
 
   <div class="buttons">
-    <button class="feature-button">🔍 Data Analysis & Visualization</button>
-    <button class="feature-button">📊 Create a Financial Dashboard</button>
-    <button class="feature-button">🧾 Summarize Trends</button>
-    <button class="feature-button">🧠 Insights & KPIs</button>
-    <button class="feature-button">🧹 Clean & Structure Data</button>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🔍 Data Analysis & Visualization</button></a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">📊 Create a Financial Dashboard</button></a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧾 Summarize Trends</button></a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧠 Insights & KPIs</button></a>
+    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧹 Clean & Structure Data</button></a>
   </div>
 
   <script>
@@ -185,39 +190,11 @@
         document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
         localStorage.setItem("evaVisited", true);
       }
-
-      const savedChat = sessionStorage.getItem("evaChat");
-      if (savedChat) {
-        document.getElementById("chatInput").value = savedChat;
-      }
     });
 
     function switchTheme(theme) {
       document.body.className = theme;
       localStorage.setItem("evaTheme", theme);
-    }
-
-    function saveChat() {
-      const chat = document.getElementById("chatInput").value;
-      sessionStorage.setItem("evaChat", chat);
-      const blob = new Blob([chat], { type: "text/plain" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "eva_chat.txt";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function loadChat(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        document.getElementById("chatInput").value = e.target.result;
-        sessionStorage.setItem("evaChat", e.target.result);
-      };
-      reader.readAsText(file);
     }
   </script>
 </body>
