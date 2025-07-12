@@ -186,19 +186,60 @@
     <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧹 Clean & Structure Data</button></a>
   </div>
 
-  <div class="settings-section">
-    <h2>🧠 Personalize Your Eva Experience</h2>
-    <form id="settingsForm">
-      <label>Your Name:<input type="text" id="name"></label>
-      <label>Interests:<input type="text" id="interests" placeholder="e.g. crypto,science,news"></label>
-      <label>Followed Assets:<input type="text" id="assets" placeholder="e.g. XRP,SOL"></label>
-      <label>News Sources:<input type="text" id="sources" placeholder="e.g. https://news.ycombinator.com/rss"></label>
-      <div style="text-align:center; margin-top: 10px;">
-        <button type="button" onclick="exportSettings()">Export Settings</button>
-        <input type="file" id="fileInput" onchange="importSettings(event)">
-      </div>
-    </form>
-  </div>
+<div class="settings-section">
+  <h2>🧠 Personalize Your Eva Experience</h2>
+  <form id="settingsForm">
+    <label>Your Name:<input type="text" id="name"></label>
+    <fieldset>
+      <legend>Select Your Interests:</legend>
+      <label><input type="checkbox" name="interests" value="crypto"> Crypto</label>
+      <label><input type="checkbox" name="interests" value="science"> Science</label>
+      <label><input type="checkbox" name="interests" value="news"> News</label>
+      <label><input type="checkbox" name="interests" value="art"> Art</label>
+      <label><input type="checkbox" name="interests" value="tech"> Tech</label>
+    </fieldset>
+    <label>Followed Assets:<input type="text" id="assets" placeholder="e.g. XRP,SOL"></label>
+    <label>News Sources:<input type="text" id="sources" placeholder="e.g. https://news.ycombinator.com/rss"></label>
+    <div style="text-align:center; margin-top: 10px;">
+      <button type="button" onclick="exportSettings()">Export Settings</button>
+      <input type="file" id="fileInput" onchange="importSettings(event)">
+    </div>
+  </form>
+</div>
+
+<!-- Optional script to collect the selected interests -->
+<script>
+function exportSettings() {
+  const selectedInterests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(el => el.value);
+  const settings = {
+    name: document.getElementById('name').value,
+    interests: selectedInterests,
+    assets: document.getElementById('assets').value,
+    sources: document.getElementById('sources').value
+  };
+  const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'eva_settings.json';
+  a.click();
+}
+
+function importSettings(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const settings = JSON.parse(e.target.result);
+    document.getElementById('name').value = settings.name || '';
+    document.getElementById('assets').value = settings.assets || '';
+    document.getElementById('sources').value = settings.sources || '';
+    document.querySelectorAll('input[name="interests"]').forEach(el => {
+      el.checked = settings.interests.includes(el.value);
+    });
+  };
+  reader.readAsText(file);
+}
+</script>
 
   <div id="newsFeed" class="settings-section"></div>
 
