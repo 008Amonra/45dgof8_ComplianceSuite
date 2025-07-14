@@ -1,350 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eva Answers - Your AI galactic assistant for data, scheduling, automation, and more. Meet Eva and explore your universe!">
-  <title>Meet Eva</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>45dgof8 – Japan APPI Compliance GPT | AI Privacy Assistant</title>
+
+  <!-- PayPal SDK -->
+  <script 
+    src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&disable-funding=venmo&currency=JPY">
+  </script>
+
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #222222;
-      --accent: #f39c12;
-      --button-bg: #f1f1f1;
-      --button-hover: #e2e2e2;
-    }
-
-    body.dark {
-      --bg: #1c1c1e;
-      --text: #f0f0f0;
-      --accent: #ff9f43;
-      --button-bg: #2c2c2e;
-      --button-hover: #3c3c3e;
-    }
-
-    body.galaxy {
-      --bg: #090923;
-      --text: #fefefe;
-      --accent: #7d5fff;
-      --button-bg: #1f1f3a;
-      --button-hover: #292950;
-    }
-
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background-color 0.5s, color 0.5s;
-      overflow-x: hidden;
+      font-family: "Helvetica Neue", sans-serif;
+      background: #fff8f5;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0 1rem;
     }
-
-    .sparkles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png');
-      opacity: 0.3;
-      z-index: 0;
+    header {
+      background-color: #fcddec;
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 4px solid #f8c3d7;
     }
-
-    .eva-hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      margin-top: 40px;
-      z-index: 1;
-      flex-wrap: wrap;
+    header h1 {
+      font-size: 2rem;
+      color: #b30059;
     }
-
-    .eva-hero a img {
-      border: 3px solid var(--accent);
-      border-radius: 16px;
-      transition: transform 0.3s ease, border-color 0.3s;
-      width: 200px;
-      max-width: 90vw;
+    .section {
+      padding: 2rem 0;
+      max-width: 800px;
+      margin: auto;
+    }
+    .section h2 {
+      color: #b30059;
+    }
+    .card {
+      background: #fff;
+      padding: 1rem;
+      border-left: 6px solid #f8c3d7;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .plans {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .lang {
+      display: none;
+    }
+    .lang-switch {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .lang-switch button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-weight: bold;
       cursor: pointer;
+      background-color: #eee;
+      border: 2px solid transparent;
     }
-
-    .eva-hero a:hover img {
-      transform: scale(1.05);
-      border-color: var(--text);
-    }
-
-    .theme-switcher {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      z-index: 2;
-    }
-
-    .intro, .buttons {
-      max-width: 600px;
-      margin: 40px auto;
-      text-align: center;
-      z-index: 1;
-      padding: 0 10px;
-    }
-
-    .welcome-back {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-top: 20px;
-      color: var(--accent);
-    }
-
-    .privacy-note {
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--text);
-      opacity: 0.8;
-      margin-top: 8px;
-    }
-
-    .buttons .feature-button {
-      background-color: var(--button-bg);
-      color: var(--text);
-      border: none;
-      border-radius: 12px;
-      padding: 12px 20px;
-      margin: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .buttons .feature-button:hover {
-      background-color: var(--button-hover);
-    }
-
-    .settings-section, #newsFeed {
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      background: var(--button-bg);
-      border-radius: 12px;
-    }
-
-    label, input, select {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .news-item {
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    @media (max-width: 480px) {
-      .eva-hero {
-        flex-direction: column;
-        gap: 16px;
-      }
+    .lang-switch button.active {
+      background-color: #b30059;
+      color: white;
+      border-color: #b30059;
     }
   </style>
 </head>
 <body>
-  <div class="sparkles"></div>
 
-  <div class="theme-switcher">
-    <label for="theme"> Theme:</label>
-    <select id="theme" onchange="switchTheme(this.value)">
-      <option value="galaxy">Galaxy</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  </div>
-
-  <div class="eva-hero">
-    <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
-      <img src="https://45dgof8.com/TCXm.webp" alt="Coffee Cup">
-    </a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon">
-    </a>
-  </div>
-
-  <div class="welcome-back" id="welcomeMessage"></div>
-  <div class="privacy-note">🔒 No secrets here — just transparent stardust.</div>
-
-  <div class="intro">
-    <h2 style="color: var(--accent);">Meet Eva</h2>
-    <p><strong>Hi, I'm <span style="color: var(--accent);">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
-    <p><a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" style="color: var(--accent); text-decoration: underline;">Visit me on ChatGPT</a></p>
-  </div>
-
-  <div class="buttons">
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🔍 Data Analysis & Visualization</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">📊 Create a Financial Dashboard</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧾 Summarize Trends</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧠 Insights & KPIs</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧹 Clean & Structure Data</button></a>
-  </div>
-
-<div class="settings-section">
-  <h2>🧠 Personalize Your Eva Experience</h2>
-  <form id="settingsForm">
-    <label>Your Name:<input type="text" id="name"></label>
-    <fieldset>
-      <legend>Select Your Interests:</legend>
-      <label><input type="checkbox" name="interests" value="crypto"> Crypto</label>
-      <label><input type="checkbox" name="interests" value="science"> Science</label>
-      <label><input type="checkbox" name="interests" value="news"> News</label>
-      <label><input type="checkbox" name="interests" value="art"> Art</label>
-      <label><input type="checkbox" name="interests" value="tech"> Tech</label>
-    </fieldset>
-    <label>Followed Assets:<input type="text" id="assets" placeholder="e.g. XRP,SOL"></label>
-    <label>News Sources:<input type="text" id="sources" placeholder="e.g. https://news.ycombinator.com/rss"></label>
-    <div style="text-align:center; margin-top: 10px;">
-      <button type="button" onclick="exportSettings()">Export Settings</button>
-      <input type="file" id="fileInput" onchange="importSettings(event)">
-    </div>
-  </form>
+<!-- Language Switch -->
+<div class="lang-switch">
+  <button onclick="setLanguage('en')">English</button>
+  <button onclick="setLanguage('jp')">日本語</button>
 </div>
 
-<!-- Optional script to collect the selected interests -->
-<script>
-function exportSettings() {
-  const selectedInterests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(el => el.value);
-  const settings = {
-    name: document.getElementById('name').value,
-    interests: selectedInterests,
-    assets: document.getElementById('assets').value,
-    sources: document.getElementById('sources').value
-  };
-  const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'eva_settings.json';
-  a.click();
-}
+<!-- Hero Image -->
+<div style="text-align: center; margin: 40px 0;">
+  <img src="japan_bloom.webp" alt="Cherry Blossoms in Japan" width="600" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
 
-function importSettings(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const settings = JSON.parse(e.target.result);
-    document.getElementById('name').value = settings.name || '';
-    document.getElementById('assets').value = settings.assets || '';
-    document.getElementById('sources').value = settings.sources || '';
-    document.querySelectorAll('input[name="interests"]').forEach(el => {
-      el.checked = settings.interests.includes(el.value);
-    });
-  };
-  reader.readAsText(file);
-}
+<!-- English Section -->
+<div class="lang en">
+  <header>
+    <h1>🌸 45dgof8 – Where Privacy Blooms with Precision 🌸</h1>
+    <p>Your trusted guide to Japan’s APPI Compliance</p>
+  </header>
+
+  <section class="section">
+    <h2>🌿 Why 45dgof8?</h2>
+    <p>Just as cherry blossoms signal renewal, 45dgof8 helps you navigate Japan’s privacy law with confidence and clarity.</p>
+    <center>
+      <a class="button" href="https://chat.openai.com/g/g-676739efea60819198a77b106e854b7f-45dgof8-japan-appi-compliance-gpt" target="_blank">
+        🚀 Launch Japan APPI GPT
+      </a>
+    </center>
+    <div class="card">🌸 <strong>Data Protection Wisdom</strong>: Understand and apply APPI's rules for personal and sensitive data.</div>
+    <div class="card">🌸 <strong>Consent Flows</strong>: Build forms users trust.</div>
+    <div class="card">🌸 <strong>User Rights</strong>: Handle access and deletion requests with confidence.</div>
+    <div class="card">🌸 <strong>Cross-Border Compliance</strong>: Transfer data internationally with peace of mind.</div>
+    <div class="card">🌸 <strong>Breach Response</strong>: Get templates and workflows ready-to-use.</div>
+    <div class="card">🌸 <strong>Training Kits</strong>: Educate your team with sector-specific guides.</div>
+  </section>
+
+  <section class="section">
+    <h2>🌸 Subscription Plans</h2>
+    <div class="plans">
+      <div class="card">🌱 <strong>Basic Bloom:</strong> ¥500/month – Essentials for individuals and startups.</div>
+      <div class="card">🌿 <strong>Professional Growth:</strong> ¥2,500/month – Tools for scaling companies.</div>
+      <div class="card">🌸 <strong>Enterprise Sakura:</strong> ¥9,800/month – Full-suite compliance for corporations.</div>
+    </div>
+
+    <p style="text-align: center;">👇 Choose your plan in the PayPal dropdown below and click <strong>「今すぐ購入」</strong> to subscribe.</p>
+
+    <div style="text-align: center;">
+      <div id="paypal-container-VXZ8E2T96XB5A"></div>
+    </div>
+  </section>
+</div>
+
+<!-- Japanese Section -->
+<div class="lang jp">
+  <header>
+    <h1>🌸 45dgof8 – プライバシーが精密に花開く場所 🌸</h1>
+    <p>信頼できるAPPI（個人情報保護法）コンプライアンス・アシスタント</p>
+  </header>
+
+  <section class="section">
+    <h2>🌿 45dgof8の強み</h2>
+    <p>桜が春の訪れを告げるように、45dgof8は安心のプライバシー対応を提供します。</p>
+    <div class="card">🌸 <strong>データ保護知識</strong>：個人・要配慮情報に関するルールを理解。</div>
+    <div class="card">🌸 <strong>同意取得フロー</strong>：ユーザーが信頼できるフォーム設計。</div>
+    <div class="card">🌸 <strong>ユーザー権利</strong>：アクセス・削除リクエストを対応。</div>
+    <div class="card">🌸 <strong>越境データ移転</strong>：国際的な取扱も安心。</div>
+    <div class="card">🌸 <strong>漏えい対応</strong>：テンプレートとフローをすぐに利用。</div>
+    <div class="card">🌸 <strong>チーム教育</strong>：業界ごとのガイドでサポート。</div>
+  </section>
+
+  <section class="section">
+    <h2>🌸 サブスクリプションプラン</h2>
+    <div class="plans">
+      <div class="card">🌱 <strong>ベーシック・ブルーム：</strong>月額 ¥500 – 個人・スタートアップ向けの基本機能。</div>
+      <div class="card">🌿 <strong>プロフェッショナル・グロース：</strong>月額 ¥2,500 – 拡張機能とサポート。</div>
+      <div class="card">🌸 <strong>エンタープライズ・サクラ：</strong>月額 ¥9,800 – 法務・企業部門に最適な全機能。</div>
+    </div>
+
+    <p style="text-align: center;">👇 以下のPayPalメニューでプランを選択し、「今すぐ購入」をクリックしてください。</p>
+
+    <div style="text-align: center;">
+      <div id="paypal-container-VXZ8E2T96XB5A"></div>
+    </div>
+  </section>
+</div>
+
+<!-- PayPal Render Script -->
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "VXZ8E2T96XB5A",
+  }).render("#paypal-container-VXZ8E2T96XB5A");
 </script>
 
-  <div id="newsFeed" class="settings-section"></div>
+<!-- Language Switch Logic -->
+<script>
+  function setLanguage(lang) {
+    document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-switch button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+    localStorage.setItem('preferredLang', lang);
+    document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+    const target = document.querySelector('.lang.' + lang);
+    if (target) target.style.display = 'block';
+  }
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const savedTheme = localStorage.getItem("evaTheme");
-      if (savedTheme) {
-        document.body.className = savedTheme;
-        document.getElementById("theme").value = savedTheme;
-      }
+  window.onload = function () {
+    const savedLang = localStorage.getItem('preferredLang');
+    const browserLang = navigator.language.startsWith('ja') ? 'jp' : 'en';
+    setLanguage(savedLang || browserLang);
+  };
+</script>
 
-      let name = localStorage.getItem("evaName");
-      if (!name) {
-        name = prompt("Welcome! What's your name?");
-        if (name) localStorage.setItem("evaName", name);
-      }
-
-      const welcomeBack = localStorage.getItem("evaVisited");
-      const hour = new Date().getHours();
-      let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
-
-      if (welcomeBack && name) {
-        document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
-      } else if (name) {
-        document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
-        localStorage.setItem("evaVisited", true);
-      }
-
-      const savedSource = localStorage.getItem("evaSource") || "https://news.ycombinator.com/rss";
-      document.getElementById("sources").value = savedSource;
-      loadNewsFeed(savedSource);
-
-      document.getElementById("sources").addEventListener("change", function () {
-        localStorage.setItem("evaSource", this.value);
-        loadNewsFeed(this.value);
-      });
-    });
-
-    function switchTheme(theme) {
-      document.body.className = theme;
-      localStorage.setItem("evaTheme", theme);
-    }
-
-    function exportSettings() {
-      const name = document.getElementById('name').value;
-      const interests = document.getElementById('interests').value;
-      const assets = document.getElementById('assets').value;
-      const sources = document.getElementById('sources').value;
-      const theme = document.getElementById('theme').value;
-      const content = `name=${name}\ntheme=${theme}\ninterests=${interests}\nfollowed_assets=${assets}\nnews_sources=${sources}`;
-      const blob = new Blob([content], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${name || 'eva'}_settings.txt`;
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
-    function importSettings(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const lines = e.target.result.split('\n');
-        lines.forEach(line => {
-          const [key, value] = line.split('=');
-          if (key && value && document.getElementById(key)) {
-            document.getElementById(key).value = value;
-          }
-        });
-      };
-      reader.readAsText(file);
-    }
-
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      }, err => {
-        alert('Failed to copy: ' + err);
-      });
-    }
-
-    async function loadNewsFeed(feedUrl) {
-      const proxyUrl = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
-      try {
-        const response = await fetch(proxyUrl);
-        const data = await response.json();
-
-        const newsContainer = document.getElementById("newsFeed");
-        newsContainer.innerHTML = "<h3>🌍 Latest Headlines</h3>";
-
-        data.items.slice(0, 5).forEach(item => {
-          const div = document.createElement("div");
-          div.className = "news-item";
-          div.innerHTML = `
-            <strong>${item.title}</strong><br>
-            <a href="${item.link}" target="_blank">Read more</a>
-            <button onclick="copyToClipboard('${item.title} - ${item.link}')">Copy</button>
-          `;
-          newsContainer.appendChild(div);
-        });
-      } catch (err) {
-        document.getElementById("newsFeed").innerHTML = "<p>⚠️ Could not load news.</p>";
-      }
-    }
-  </script>
 </body>
 </html>
