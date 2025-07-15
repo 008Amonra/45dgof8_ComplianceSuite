@@ -186,64 +186,113 @@
     <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧹 Clean & Structure Data</button></a>
   </div>
 
-<div class="settings-section">
-  <h2>🧠 Personalize Your Eva Experience</h2>
-  <form id="settingsForm">
-    <label>Your Name:<input type="text" id="name"></label>
-    <fieldset>
-      <legend>Select Your Interests:</legend>
-      <label><input type="checkbox" name="interests" value="crypto"> Crypto</label>
-      <label><input type="checkbox" name="interests" value="science"> Science</label>
-      <label><input type="checkbox" name="interests" value="news"> News</label>
-      <label><input type="checkbox" name="interests" value="art"> Art</label>
-      <label><input type="checkbox" name="interests" value="tech"> Tech</label>
-    </fieldset>
-    <label>Followed Assets:<input type="text" id="assets" placeholder="e.g. XRP,SOL"></label>
-    <label>News Sources:<input type="text" id="sources" placeholder="e.g. https://news.ycombinator.com/rss"></label>
-    <div style="text-align:center; margin-top: 10px;">
-      <button type="button" onclick="exportSettings()">Export Settings</button>
-      <input type="file" id="fileInput" onchange="importSettings(event)">
+  <div class="settings-section">
+    <button class="feature-button" onclick="toggleSettings()">🧠 Customize Eva</button>
+    <div id="settingsFormContainer" style="display: none; margin-top: 20px;">
+      <form id="settingsForm">
+        <label>Your Name:<input type="text" id="name"></label>
+        <fieldset>
+          <legend>Select Your Interests:</legend>
+          <label><input type="checkbox" name="interests" value="crypto"> Crypto</label>
+          <label><input type="checkbox" name="interests" value="science"> Science</label>
+          <label><input type="checkbox" name="interests" value="news"> News</label>
+          <label><input type="checkbox" name="interests" value="art"> Art</label>
+          <label><input type="checkbox" name="interests" value="tech"> Tech</label>
+        </fieldset>
+        <label>Followed Assets:<input type="text" id="assets" placeholder="e.g. XRP,SOL"></label>
+        <label>News Sources:<input type="text" id="sources" placeholder="e.g. https://news.ycombinator.com/rss"></label>
+        <div style="text-align:center; margin-top: 10px;">
+          <button type="button" onclick="exportSettings()">Export Settings</button>
+          <input type="file" id="fileInput" onchange="importSettings(event)">
+        </div>
+      </form>
     </div>
-  </form>
-</div>
-
-<!-- Optional script to collect the selected interests -->
-<script>
-function exportSettings() {
-  const selectedInterests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(el => el.value);
-  const settings = {
-    name: document.getElementById('name').value,
-    interests: selectedInterests,
-    assets: document.getElementById('assets').value,
-    sources: document.getElementById('sources').value
-  };
-  const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'eva_settings.json';
-  a.click();
-}
-
-function importSettings(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const settings = JSON.parse(e.target.result);
-    document.getElementById('name').value = settings.name || '';
-    document.getElementById('assets').value = settings.assets || '';
-    document.getElementById('sources').value = settings.sources || '';
-    document.querySelectorAll('input[name="interests"]').forEach(el => {
-      el.checked = settings.interests.includes(el.value);
-    });
-  };
-  reader.readAsText(file);
-}
-</script>
+  </div>
 
   <div id="newsFeed" class="settings-section"></div>
 
   <script>
+    function toggleSettings() {
+      const container = document.getElementById('settingsFormContainer');
+      container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function exportSettings() {
+      const name = document.getElementById('name').value;
+      const assets = document.getElementById('assets').value;
+      const sources = document.getElementById('sources').value;
+      const theme = document.getElementById('theme')?.value || "default";
+      const selectedInterests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(el => el.value);
+
+      const content = `name=${name}\ntheme=${theme}\ninterests=${selectedInterests.join(',')}\nfollowed_assets=${assets}\nnews_sources=${sources}`;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${name || 'eva'}_settings.txt`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function importSettings(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const lines = e.target.result.split('\n');
+        const settings = {};
+        lines.forEach(line => {
+          const [key, value] = line.split('=');
+          settings[key] = value;
+        });
+
+        document.getElementById('name').value = settings.name || '';
+        document.getElementById('assets').value = settings.followed_assets || '';
+        document.getElementById('sources').value = settings.news_sources || '';
+        document.getElementById('theme').value = settings.theme || 'galaxy';
+
+        if (settings.theme) switchTheme(settings.theme);
+        if (settings.interests) {
+          const interestsArray = settings.interests.split(',');
+          document.querySelectorAll('input[name="interests"]').forEach(el => {
+            el.checked = interestsArray.includes(el.value);
+          });
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      }, err => {
+        alert('Failed to copy: ' + err);
+      });
+    }
+
+    async function loadNewsFeed(feedUrl) {
+      const proxyUrl = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
+      try {
+        const response = await fetch(proxyUrl);
+        const data = await response.json();
+
+        const newsContainer = document.getElementById("newsFeed");
+        newsContainer.innerHTML = "<h3>🌍 Latest Headlines</h3>";
+
+        data.items.slice(0, 5).forEach(item => {
+          const div = document.createElement("div");
+          div.className = "news-item";
+          div.innerHTML = `
+            <strong>${item.title}</strong><br>
+            <a href="${item.link}" target="_blank">Read more</a>
+            <button onclick="copyToClipboard('${item.title} - ${item.link}')">Copy</button>
+          `;
+          newsContainer.appendChild(div);
+        });
+      } catch (err) {
+        document.getElementById("newsFeed").innerHTML = "<p>⚠️ Could not load news.</p>"
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       const savedTheme = localStorage.getItem("evaTheme");
       if (savedTheme) {
@@ -281,69 +330,6 @@ function importSettings(event) {
     function switchTheme(theme) {
       document.body.className = theme;
       localStorage.setItem("evaTheme", theme);
-    }
-
-    function exportSettings() {
-      const name = document.getElementById('name').value;
-      const interests = document.getElementById('interests').value;
-      const assets = document.getElementById('assets').value;
-      const sources = document.getElementById('sources').value;
-      const theme = document.getElementById('theme').value;
-      const content = `name=${name}\ntheme=${theme}\ninterests=${interests}\nfollowed_assets=${assets}\nnews_sources=${sources}`;
-      const blob = new Blob([content], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${name || 'eva'}_settings.txt`;
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
-    function importSettings(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const lines = e.target.result.split('\n');
-        lines.forEach(line => {
-          const [key, value] = line.split('=');
-          if (key && value && document.getElementById(key)) {
-            document.getElementById(key).value = value;
-          }
-        });
-      };
-      reader.readAsText(file);
-    }
-
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      }, err => {
-        alert('Failed to copy: ' + err);
-      });
-    }
-
-    async function loadNewsFeed(feedUrl) {
-      const proxyUrl = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
-      try {
-        const response = await fetch(proxyUrl);
-        const data = await response.json();
-
-        const newsContainer = document.getElementById("newsFeed");
-        newsContainer.innerHTML = "<h3>🌍 Latest Headlines</h3>";
-
-        data.items.slice(0, 5).forEach(item => {
-          const div = document.createElement("div");
-          div.className = "news-item";
-          div.innerHTML = `
-            <strong>${item.title}</strong><br>
-            <a href="${item.link}" target="_blank">Read more</a>
-            <button onclick="copyToClipboard('${item.title} - ${item.link}')">Copy</button>
-          `;
-          newsContainer.appendChild(div);
-        });
-      } catch (err) {
-        document.getElementById("newsFeed").innerHTML = "<p>⚠️ Could not load news.</p>"
-      }
     }
   </script>
 </body>
