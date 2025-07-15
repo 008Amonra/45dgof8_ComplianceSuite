@@ -64,7 +64,9 @@
     "screenshot": "https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/JAPAN_APPI_COMPLIANCE_GPT.webp"
   }
   </script>
-
+<div style="display: flex; justify-content: center; margin: 2rem 0;">
+  <div id="paypal-container-VXZ8E2T96XB5A"></div>
+</div>
   <!-- Styles -->
   <style>
     body {
@@ -190,14 +192,11 @@
       <div class="card"><strong>エンタープライズ・サクラ：</strong>月額 $99 – 企業向けフル機能コンプライアンス。</div>
     </div>
     <div class="subscribe">
-      <form id="paypalFormJP" onsubmit="return goToPayPalJP();">
-        <label for="planJP">プランを選択してください：</label>
-        <select id="planJP">
-          <option value="ベーシック・ブルーム">🌱 ベーシック・ブルーム – 月額 $5</option>
-          <option value="プロフェッショナル・グロース">🌿 プロフェッショナル・グロース – 月額 $25</option>
-          <option value="エンタープライズ・サクラ">🌸 エンタープライズ・サクラ – 月額 $99</option>
-        </select><br>
-        <a href="#" onclick="return goToPayPalJP();">💸 今すぐ登録</a>
+<!-- Hosted PayPal Button -->
+<div style="text-align:center; margin: 2rem 0;">
+  <div id="paypal-container-VXZ8E2T96XB5A"></div>
+</div>
+
       </form>
     </div>
   </section>
@@ -215,34 +214,63 @@
     if (target) target.style.display = 'block';
   }
 
-  function goToPayPal() {
-    const plan = document.getElementById('plan').value;
-    const encodedPlan = encodeURIComponent(plan);
-    const url = `https://www.paypal.com/paypalme/45dgof8?plan=${encodedPlan}`;
-    window.open(url, '_blank');
-    return false;
-  }
-
-  function goToPayPalJP() {
-    const planJP = document.getElementById('planJP').value;
-    const encodedPlanJP = encodeURIComponent(planJP);
-    const url = `https://www.paypal.com/paypalme/45dgof8?plan=${encodedPlanJP}`;
-    window.open(url, '_blank');
-    return false;
-  }
 
   window.onload = function () {
     const savedLang = localStorage.getItem('preferredLang');
     const browserLang = navigator.language.startsWith('ja') ? 'jp' : 'en';
     setLanguage(savedLang || browserLang);
   }
+
+<!-- PayPal SDK -->
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&disable-funding=venmo&currency=JPY">
 </script>
+
+<!-- PayPal Hosted Button -->
+<div id="paypal-container-VXZ8E2T96XB5A" style="text-align:center; margin-top:1rem;"></div>
+<script>
+  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-VXZ8E2T96XB5A");
+</script>
+
+<!-- Language & Footer -->
+<script>
+function setLanguage(lang) {
+  document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.querySelector(`.lang-switch button[onclick="setLanguage('${lang}')"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  localStorage.setItem('preferredLang', lang);
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  const target = document.querySelector('.lang.' + lang);
+  if (target) target.style.display = 'block';
+}
+
+window.onload = function () {
+  const savedLang = localStorage.getItem('preferredLang');
+  const browserLang = navigator.language.startsWith('ja') ? 'jp' : 'en';
+  setLanguage(savedLang || browserLang);
+};
+</script>
+
+<!-- Footer Notice -->
+<center>
+  <footer>
+    <p>
+      Japan (APPI): This service is operated by a private individual in Switzerland and is not a Japanese legal entity. 
+      <a href="https://45dgof8.com/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. <br>
+      日本における法人ではなく、スイスの個人によって運営されています。
+    </p>
+    <p>© 2025 45dgof8 – Japan APPI Compliance Assistant</p>
+  </footer>
+</center>
+
+<!-- Load PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&disable-funding=venmo&currency=JPY"></script>
+
+<!-- Render PayPal Button -->
+<script>
+  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-VXZ8E2T96XB5A");
+</script>
+
 </body>
- <center><footer>
-  <p>
-    Japan (APPI): This service is operated by a private individual in Switzerland and is not a Japanese legal entity. 
-    <a href="https://45dgof8.com/privacy.html" target="_blank">Privacy Policy</a>. 
-    日本における法人ではなく、スイスの個人によって運営されています。
-  </p>
-</footer></center>
 </html>
