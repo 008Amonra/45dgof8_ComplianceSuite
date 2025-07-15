@@ -301,33 +301,33 @@
       const savedTheme = localStorage.getItem("evaTheme");
       if (savedTheme) {
         document.body.className = savedTheme;
-        document.getElementById("theme").value = savedTheme;
+        document.getElementById("theme").value = savedTheme
       }
 
       let name = localStorage.getItem("evaName");
       if (!name) {
         name = prompt("Welcome! What's your name?");
-        if (name) localStorage.setItem("evaName", name);
+        if (name) localStorage.setItem("evaName", name)
       }
 
       const welcomeBack = localStorage.getItem("evaVisited");
       const hour = new Date().getHours();
-      let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
+      let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening"
 
       if (welcomeBack && name) {
         document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
       } else if (name) {
         document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
-        localStorage.setItem("evaVisited", true);
+        localStorage.setItem("evaVisited", true)
       }
 
       const savedSource = localStorage.getItem("evaSource") || "https://news.ycombinator.com/rss";
       document.getElementById("sources").value = savedSource;
-      loadNewsFeed(savedSource);
+      loadNewsFeed(savedSource)
 
       document.getElementById("sources").addEventListener("change", function () {
         localStorage.setItem("evaSource", this.value);
-        loadNewsFeed(this.value);
+        loadNewsFeed(this.value)
       });
     });
 
