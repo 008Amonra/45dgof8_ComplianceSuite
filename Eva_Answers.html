@@ -179,15 +179,32 @@
   </div>
 
   <div class="buttons">
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button"><🔍 Data Analysis & Visualization</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button"><📊 Create a Financial Dashboard</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button"><🧾 Summarize Trends</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button"><🧠 Insights & KPIs</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button"><🧹 Clean & Structure Data</button></a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button"><🧹 Clean & Structure Data</button></a>
-    <a href="Eva'sBlog.html" target="_blank"><button class="feature-button">Go to My Blog </a>
-    <a href="Eva Introduction.html" target="_blank"><button class="feature-button"">besides that...</a>
-  </div>
+<!-- Chat Input Field -->
+<input type="text" id="chatInput" placeholder="Type your message here..." style="width: 100%; padding: 10px; margin-bottom: 15px; font-size: 16px;">
+
+<!-- Feature Buttons -->
+<div class="feature-buttons">
+  <button class="feature-button" onclick="handleFeatureClick('🔍 Data Analysis & Visualization', 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers')">🔍 Data Analysis & Visualization</button>
+  <button class="feature-button" onclick="handleFeatureClick('📊 Create a Financial Dashboard', 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers')">📊 Create a Financial Dashboard</button>
+  <button class="feature-button" onclick="handleFeatureClick('🧾 Summarize Trends', 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers')">🧾 Summarize Trends</button>
+  <button class="feature-button" onclick="handleFeatureClick('🧠 Insights & KPIs', 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers')">🧠 Insights & KPIs</button>
+  <button class="feature-button" onclick="handleFeatureClick('🧹 Clean & Structure Data', 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers')">🧹 Clean & Structure Data</button>
+  <button class="feature-button" onclick="handleFeatureClick('🧹 Clean & Structure Data', 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers')">🧹 Clean & Structure Data</button>
+  <a href="Eva'sBlog.html" target="_blank"><button class="feature-button">Go to My Blog </a>
+  <a href="Eva Introduction.html" target="_blank"><button class="feature-button"">besides that...</a>
+</div>
+
+<!-- JS: Open link + auto-fill input -->
+<script>
+  function handleFeatureClick(label, link) {
+    window.open(link, '_blank');
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+      chatInput.value = `${label}: ${link}`;
+      chatInput.focus();
+    }
+  }
+</script>
   
   <div class="settings-section">
     <button class="feature-button" onclick="toggleSettings()">🧠 Customize Eva</button>
