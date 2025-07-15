@@ -192,45 +192,23 @@
       <div class="card"><strong>エンタープライズ・サクラ：</strong>月額 $99 – 企業向けフル機能コンプライアンス。</div>
     </div>
     <div class="subscribe">
-<!-- Hosted PayPal Button -->
-<div style="text-align:center; margin: 2rem 0;">
-  <div id="paypal-container-VXZ8E2T96XB5A"></div>
+<!-- 🇯🇵 45dgof8 – 日本語サブスクリプションボックス -->
+<div style="
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+">
+  <h2>🌸 45dgof8 サブスクリプションプラン</h2>
+  <p>プランを選んで、月額でサポートいただけます。</p>
+  <div id="paypal-container-VXZ8E2T96XB5A" style="margin-top: 1rem;"></div>
+  <p style="margin-top: 1rem;"><small>💳 クレジットカード対応・PayPal 安全決済</small></p>
 </div>
 
-      </form>
-    </div>
-  </section>
-</div>
-
-<script>
-  function setLanguage(lang) {
-    document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.querySelector(`.lang-switch button[onclick="setLanguage('${lang}')"]`);
-    if (activeBtn) activeBtn.classList.add('active');
-    localStorage.setItem('preferredLang', lang);
-
-    document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-    const target = document.querySelector('.lang.' + lang);
-    if (target) target.style.display = 'block';
-  }
-
-
-  window.onload = function () {
-    const savedLang = localStorage.getItem('preferredLang');
-    const browserLang = navigator.language.startsWith('ja') ? 'jp' : 'en';
-    setLanguage(savedLang || browserLang);
-  }
-
-<!-- PayPal SDK -->
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&disable-funding=venmo&currency=JPY">
-</script>
-
-<!-- PayPal Hosted Button -->
-<div id="paypal-container-VXZ8E2T96XB5A" style="text-align:center; margin-top:1rem;"></div>
-<script>
-  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-VXZ8E2T96XB5A");
-</script>
 
 <!-- Language & Footer -->
 <script>
@@ -267,9 +245,9 @@ window.onload = function () {
 <!-- Load PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&disable-funding=venmo&currency=JPY"></script>
 
-<!-- Render PayPal Button -->
+<!-- Render the button inside the Japanese section -->
 <script>
-  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-VXZ8E2T96XB5A")
+  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-VXZ8E2T96XB5A");
 </script>
 
 </body>
