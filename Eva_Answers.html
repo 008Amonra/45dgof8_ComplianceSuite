@@ -12,12 +12,11 @@
       const name = document.getElementById('username').value || "Explorer";
       const greeting = `Hello, ${name}! Ready to journey with Eva?`;
       document.getElementById('greeting').innerText = greeting;
-      playSound();
     }
 
     function playSound() {
-      const audio = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_44a82cfa2d.mp3");
-      audio.play();
+      const audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_44a82cfa2d.mp3?filename=notification-113218.mp3");
+      audio.play().catch(err => console.error("Audio play error:", err));
     }
 
     async function sendToN8n() {
@@ -28,48 +27,66 @@
         sources: document.querySelector('input[placeholder="https://news.ycombinator.com/rss"]').value
       };
 
-      await fetch("https://n8n.45dgof8.com/webhook/test-input", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+      try {
+        await fetch("https://n8n.45dgof8.com/webhook/test-input", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
 
-      document.getElementById("feedback").innerText = "✅ Settings transmitted successfully!";
-      document.getElementById("feedback").classList.remove("hidden");
+        await fetch("https://hooks.zapier.com/hooks/catch/123456/abcde", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
 
-      await fetch("https://hooks.zapier.com/hooks/catch/123456/abcde", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+        document.getElementById("feedback").innerText = "✅ Settings transmitted successfully!";
+        document.getElementById("feedback").classList.remove("hidden");
+      } catch (error) {
+        console.error("Submission failed:", error);
+        document.getElementById("feedback").innerText = "⚠️ Failed to transmit settings.";
+        document.getElementById("feedback").classList.remove("hidden");
+      }
     }
 
-    if (annyang) {
-      const commands = {
-        'hello': () => greetUser(),
-        'export': () => sendToN8n(),
-        'sound': () => playSound(),
-        'my name is *name': name => {
-          document.getElementById('username').value = name;
-          greetUser();
-        }
-      };
-      annyang.addCommands(commands);
-      annyang.start();
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof annyang !== "undefined" && annyang) {
+        const commands = {
+          'hello': () => greetUser(),
+          'export': () => sendToN8n(),
+          'sound': () => playSound(),
+          'my name is *name': name => {
+            document.getElementById('username').value = name;
+            greetUser();
+          }
+        };
+        annyang.addCommands(commands);
+        annyang.start();
+      } else {
+        document.getElementById("voiceFallback").classList.remove("hidden");
+      }
+    });
   </script>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans min-h-screen p-8 animate-fadeIn">
   <div class="max-w-3xl mx-auto bg-gray-800 p-6 rounded-2xl shadow-2xl">
     <div class="flex justify-between items-center mb-4">
-      <a href="https://45dgof8.com/blog" class="text-purple-400 hover:underline">Go to My Blog</a>
+      <a href="https://45dgof8.com" class="text-purple-400 hover:underline">Go to My Blog</a>
       <button class="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-500">Customize Eva</button>
     </div>
 
     <h1 class="text-3xl font-bold mb-2 text-center">Welcome to Eva's Answer Hub 🌌</h1>
     <p id="greeting" class="text-center text-lg mb-6 italic text-purple-300">Greetings, Space Traveller...</p>
 
-    <!-- Holographic Avatar -->
+    <div id="voiceFallback" class="hidden bg-yellow-100 text-yellow-900 p-4 rounded mb-4">
+      ⚠️ Voice commands aren't supported in your browser. Use the buttons below instead!
+      <div class="flex space-x-2 mt-2">
+        <button onclick="greetUser()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-1 rounded">Hello</button>
+        <button onclick="sendToN8n()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-1 rounded">Export</button>
+        <button onclick="playSound()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-1 rounded">Sound</button>
+      </div>
+    </div>
+
     <div class="flex justify-center mb-6">
       <iframe src="https://app.readyplayer.me/avatar?frameApi" allow="camera *; microphone *" class="w-64 h-96 rounded-xl shadow-lg border-4 border-purple-700"></iframe>
     </div>
@@ -79,11 +96,11 @@
 
     <label class="block mb-2">Select Your Interests:</label>
     <div class="grid grid-cols-2 gap-2 mb-4">
-      <label class="flex items-center"><input type="checkbox" class="mr-2"> Crypto</label>
-      <label class="flex items-center"><input type="checkbox" class="mr-2"> Science</label>
-      <label class="flex items-center"><input type="checkbox" class="mr-2"> News</label>
-      <label class="flex items-center"><input type="checkbox" class="mr-2"> Art</label>
-      <label class="flex items-center"><input type="checkbox" class="mr-2"> Tech</label>
+      <label class="flex items-center"><input type="checkbox" value="Crypto" class="mr-2"> Crypto</label>
+      <label class="flex items-center"><input type="checkbox" value="Science" class="mr-2"> Science</label>
+      <label class="flex items-center"><input type="checkbox" value="News" class="mr-2"> News</label>
+      <label class="flex items-center"><input type="checkbox" value="Art" class="mr-2"> Art</label>
+      <label class="flex items-center"><input type="checkbox" value="Tech" class="mr-2"> Tech</label>
     </div>
 
     <label class="block mb-2">Followed Assets:</label>
@@ -102,7 +119,7 @@
       <button onclick="playSound()" class="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-4 py-2 rounded-xl shadow-md">🔊 Sound Test</button>
     </div>
 
-    <div id="feedback" class="text-center mt-4 text-green-400 hidden">✅ Settings transmitted successfully!</div>
+    <div id="feedback" class="text-center mt-4 text-green-400 hidden"></div>
   </div>
 
   <style>
