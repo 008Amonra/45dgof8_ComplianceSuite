@@ -374,6 +374,89 @@
     document.body.className = theme;
     localStorage.setItem("evaTheme", theme)
   }
+    // Entire HTML document remains unchanged, except for updated script
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const nameFromURL = urlParams.get("name");
+    const profileFromURL = urlParams.get("profile");
+
+    const savedTheme = localStorage.getItem("evaTheme");
+    if (savedTheme) {
+      document.body.className = savedTheme;
+      document.getElementById("theme").value = savedTheme;
+    }
+
+    let name = nameFromURL || localStorage.getItem("evaName");
+    if (!name) {
+      name = prompt("Welcome! What's your name?");
+      if (name) localStorage.setItem("evaName", name);
+    } else if (!localStorage.getItem("evaName")) {
+      localStorage.setItem("evaName", name);
+    }
+
+    let profile = profileFromURL || localStorage.getItem("evaProfile") || "default";
+    if (profileFromURL && profileFromURL !== localStorage.getItem("evaProfile")) {
+      localStorage.setItem("evaProfile", profileFromURL);
+    }
+
+    const welcomeBack = localStorage.getItem("evaVisited");
+    const hour = new Date().getHours();
+    let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
+
+    if (welcomeBack && name) {
+      document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
+    } else if (name) {
+      document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
+      localStorage.setItem("evaVisited", true);
+    }
+
+    const inputs = document.querySelectorAll(".settings input, .settings select");
+    inputs.forEach(input => {
+      const key = `eva_${profile}_` + input.placeholder.replace(/[^a-z]/gi, '').toLowerCase();
+      if (localStorage.getItem(key)) input.value = localStorage.getItem(key);
+      input.addEventListener("change", () => localStorage.setItem(key, input.value));
+    });
+
+    const timestamp = () => new Date().toISOString().replace(/[:.]/g, '-');
+
+    const versionBtn = document.createElement("button");
+    versionBtn.textContent = "🕓 Load Previous Version";
+    versionBtn.className = "feature-button";
+    versionBtn.onclick = function () {
+      fetch(`https://n8n.45dgof8.com/webhook/eva/list-versions?username=${encodeURIComponent(name + '_' + profile)}`)
+        .then(res => res.ok ? res.json() : Promise.reject("Not found"))
+        .then(versions => {
+          const pick = prompt("Select a version to load:\n" + versions.map((v, i) => `${i + 1}: ${v}`).join("\n"));
+          const choice = parseInt(pick);
+          if (!isNaN(choice) && choice > 0 && choice <= versions.length) {
+            fetch(`https://n8n.45dgof8.com/webhook/eva/load-settings-version?file=${encodeURIComponent(versions[choice - 1])}`)
+              .then(res => res.ok ? res.text() : Promise.reject("Failed"))
+              .then(text => {
+                const lines = text.split("\n");
+                lines.forEach(line => {
+                  const [key, value] = line.split("=");
+                  const input = Array.from(inputs).find(i => i.previousElementSibling && i.previousElementSibling.textContent.toLowerCase().includes(key));
+                  if (input) {
+                    input.value = decodeURIComponent(value);
+                    localStorage.setItem(`eva_${profile}_` + key, decodeURIComponent(value));
+                  }
+                });
+              });
+          }
+        })
+        .catch(() => alert("❌ Could not list versions"));
+    };
+    document.querySelector(".settings").appendChild(versionBtn);
+
+    // ... (rest of your buttons remain unchanged)
+  });
+
+  function switchTheme(theme) {
+    document.body.className = theme;
+    localStorage.setItem("evaTheme", theme);
+  }
 </script>
 
 </body>
