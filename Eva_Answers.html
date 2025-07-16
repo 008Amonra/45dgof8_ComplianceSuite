@@ -1,400 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eva Answers - Your AI galactic assistant for data, scheduling, automation, and more. Meet Eva and explore your universe!">
-  <title>Meet Eva</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #222222;
-      --accent: #f39c12;
-      --button-bg: #f1f1f1;
-      --button-hover: #e2e2e2;
-    }<div class="feature-buttons">
- <button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Create+a+financial+dashboard+template', 
-  '_blank')">
-  📊 Create Financial Dashboard
-</button>
-
-    body.dark {
-      --bg: #1c1c1e;
-      --text: #f0f0f0;
-      --accent: #ff9f43;
-      --button-bg: #2c2c2e;
-      --button-hover: #3c3c3e;
-    }
-
-    body.galaxy {
-      --bg: #090923;
-      --text: #fefefe;
-      --accent: #7d5fff;
-      --button-bg: #1f1f3a;
-      --button-hover: #292950;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background-color 0.5s, color 0.5s;
-      overflow-x: hidden;
-    }
-
-    .sparkles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png');
-      opacity: 0.3;
-      z-index: 0;
-    }
-
-    .eva-hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      margin-top: 40px;
-      z-index: 1;
-      flex-wrap: wrap;
-    }
-
-    .eva-hero a img {
-      border: 3px solid var(--accent);
-      border-radius: 16px;
-      transition: transform 0.3s ease, border-color 0.3s;
-      width: 200px;
-      max-width: 90vw;
-      cursor: pointer;
-    }
-
-    .eva-hero a:hover img {
-      transform: scale(1.05);
-      border-color: var(--text);
-    }
-
-    .theme-switcher {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      z-index: 2;
-    }
-
-    .intro, .buttons {
-      max-width: 600px;
-      margin: 40px auto;
-      text-align: center;
-      z-index: 1;
-      padding: 0 10px;
-    }
-
-    .welcome-back {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-top: 20px;
-      color: var(--accent);
-    }
-
-    .privacy-note {
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--text);
-      opacity: 0.8;
-      margin-top: 8px;
-    }
-
-    .buttons .feature-button {
-      background-color: var(--button-bg);
-      color: var(--text);
-      border: none;
-      border-radius: 12px;
-      padding: 12px 20px;
-      margin: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .buttons .feature-button:hover {
-      background-color: var(--bu<div class="feature-buttons">
- <button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Create+a+financial+dashboard+template', 
-  '_blank')">
-  📊 Create Financial Dashboard
-</button>tton-hover);
-    }
-
-    .settings-section, #newsFeed {
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      background: var(--button-bg);
-      border-radius: 12px;
-    }
-
-    label, input, select {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .news-item {
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    @media (max-width: 480px) {
-      .eva-hero {
-        flex-direction: column;
-        gap: 16px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="sparkles"></div>
-
-  <div class="theme-switcher">
-    <label for="theme"> Theme:</label>
-    <select id="theme" onchange="switchTheme(this.value)">
-      <option value="galaxy">Galaxy</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  </div>
-
-  <div class="eva-hero">
-    <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
-      <img src="https://45dgof8.com/TCXm.webp" alt="Coffee Cup">
-    </a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon">
-    </a>
-  </div>
-
-  <div class="welcome-back" id="welcomeMessage"></div>
-  <div class="privacy-note">🔒 No secrets here — just transparent stardust.</div>
-
-  <div class="intro">
-    <h2 style="color: var(--accent);">Meet Eva</h2>
-    <p><strong>Hi, I'm <span style="color: var(--accent);">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
-    <p><a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" style="color: var(--accent); text-decoration: underline;">Visit me on ChatGPT</a></p>
-  </div>
-
-  <div class="buttons">
-<!-- Chat Input Field -->
-<input type="text" id="chatInput" placeholder="Type your message here..." style="width: 100%; padding: 10px; margin-bottom: 15px; font-size: 16px;">
-
-<!-- Feature Buttons -->
-<button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Create+a+financial+dashboard+template', 
-  '_blank')">
-  📊 Create Financial Dashboard
-</button>
-
-<button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Summarize+financial+trends+for+Q1+2025', 
-  '_blank')">
-  🧾 Summarize Trends
-</button>
-
-<button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Identify+key+insights+and+KPIs+from+my+financial+data', 
-  '_blank')">
-  🧠 Insights & KPIs
-</button>
-
-<button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Clean+and+structure+this+financial+data+for+analysis', 
-  '_blank')">
-  🧹 Clean & Structure Data
-</button>
-
-<button onclick="window.open(
-  'https://chat.openai.com/?model=gpt-4&q=Clean+and+structure+this+financial+data+for+analysis', 
-  '_blank')">
-  🧹 Clean & Structure Data
-</button></div>
-
-<!-- JS: Open link + auto-fill input -->
-<script>
-  function handleFeatureClick(label, link) {
-    window.open(link, '_blank');
-    const chatInput = document.getElementById('chatInput');
-    if (chatInput) {
-      chatInput.value = `${label}: ${link}`;
-      chatInput.focus();
-    }
-  }
-</script>  
-  <a href="Eva'sBlog.html" target="_blank"><button class="feature-button">Go to My Blog </a>
-  <a href="Eva Introduction.html" target="_blank"><button class="feature-button"">besides that...</a>
-</div>
-
-<!-- JS: Open link + auto-fill input -->
-<script>
-  function handleFeatureClick(label, link) {
-    window.open(link, '_blank');
-    const chatInput = document.getElementById('chatInput');
-    if (chatInput) {
-      chatInput.value = `${label}: ${link}`;
-      chatInput.focus();
-    }
-  }
-</script>
-  
-  <div class="settings-section">
-    <button class="feature-button" onclick="toggleSettings()">🧠 Customize Eva</button>
-    <div id="settingsFormContainer" style="display: none; margin-top: 20px;">
-      <form id="settingsForm">
-        <label>Your Name:<input type="text" id="name"></label>
-        <fieldset>
-          <legend>Select Your Interests:</legend>
-          <label><input type="checkbox" name="interests" value="crypto"> Crypto</label>
-          <label><input type="checkbox" name="interests" value="science"> Science</label>
-          <label><input type="checkbox" name="interests" value="news"> News</label>
-          <label><input type="checkbox" name="interests" value="art"> Art</label>
-          <label><input type="checkbox" name="interests" value="tech"> Tech</label>
-        </fieldset>
-        <label>Followed Assets:<input type="text" id="assets" placeholder="e.g. XRP,SOL"></label>
-        <label>News Sources:<input type="text" id="sources" placeholder="e.g. https://news.ycombinator.com/rss"></label>
-        <div style="text-align:center; margin-top: 10px;">
-          <button type="button" onclick="exportSettings()">Export Settings</button>
-          <input type="file" id="fileInput" onchange="importSettings(event)">
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="newsFeed" class="settings-section"></div>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eva Answers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js"></script>
   <script>
-    function toggleSettings() {
-      const container = document.getElementById('settingsFormContainer');
-      container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    function greetUser() {
+      const name = document.getElementById('username').value || "Explorer";
+      const greeting = `Hello, ${name}! Ready to journey with Eva?`;
+      document.getElementById('greeting').innerText = greeting;
+      playSound();
     }
 
-    function exportSettings() {
-      const name = document.getElementById('name').value;
-      const assets = document.getElementById('assets').value;
-      const sources = document.getElementById('sources').value;
-      const theme = document.getElementById('theme')?.value || "default";
-      const selectedInterests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(el => el.value);
-
-      const content = `name=${name}\ntheme=${theme}\ninterests=${selectedInterests.join(',')}\nfollowed_assets=${assets}\nnews_sources=${sources}`;
-      const blob = new Blob([content], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${name || 'eva'}_settings.txt`;
-      a.click();
-      URL.revokeObjectURL(a.href);
+    function playSound() {
+      const audio = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_44a82cfa2d.mp3");
+      audio.play();
     }
 
-    function importSettings(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const lines = e.target.result.split('\n');
-        const settings = {};
-        lines.forEach(line => {
-          const [key, value] = line.split('=');
-          settings[key] = value;
-        });
+    async function sendToN8n() {
+      const payload = {
+        name: document.getElementById('username').value,
+        interests: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.parentElement.innerText.trim()),
+        assets: document.querySelector('input[placeholder="e.g. XRP,SOL"]').value,
+        sources: document.querySelector('input[placeholder="https://news.ycombinator.com/rss"]').value
+      };
 
-        document.getElementById('name').value = settings.name || '';
-        document.getElementById('assets').value = settings.followed_assets || '';
-        document.getElementById('sources').value = settings.news_sources || '';
-        document.getElementById('theme').value = settings.theme || 'galaxy';
+      await fetch("https://n8n.45dgof8.com/webhook/test-input", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-        if (settings.theme) switchTheme(settings.theme);
-        if (settings.interests) {
-          const interestsArray = settings.interests.split(',');
-          document.querySelectorAll('input[name="interests"]').forEach(el => {
-            el.checked = interestsArray.includes(el.value);
-          });
+      document.getElementById("feedback").innerText = "✅ Settings transmitted successfully!";
+      document.getElementById("feedback").classList.remove("hidden");
+
+      await fetch("https://hooks.zapier.com/hooks/catch/123456/abcde", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    }
+
+    if (annyang) {
+      const commands = {
+        'hello': () => greetUser(),
+        'export': () => sendToN8n(),
+        'sound': () => playSound(),
+        'my name is *name': name => {
+          document.getElementById('username').value = name;
+          greetUser();
         }
       };
-      reader.readAsText(file);
-    }
-
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      }, err => {
-        alert('Failed to copy: ' + err);
-      });
-    }
-
-    async function loadNewsFeed(feedUrl) {
-      const proxyUrl = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
-      try {
-        const response = await fetch(proxyUrl);
-        const data = await response.json();
-
-        const newsContainer = document.getElementById("newsFeed");
-        newsContainer.innerHTML = "<h3>🌍 Latest Headlines</h3>";
-
-        data.items.slice(0, 5).forEach(item => {
-          const div = document.createElement("div");
-          div.className = "news-item";
-          div.innerHTML = `
-            <strong>${item.title}</strong><br>
-            <a href="${item.link}" target="_blank">Read more</a>
-            <button onclick="copyToClipboard('${item.title} - ${item.link}')">Copy</button>
-          `;
-          newsContainer.appendChild(div);
-        });
-      } catch (err) {
-        document.getElementById("newsFeed").innerHTML = "<p>⚠️ Could not load news.</p>"
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const savedTheme = localStorage.getItem("evaTheme");
-      if (savedTheme) {
-        document.body.className = savedTheme;
-        document.getElementById("theme").value = savedTheme
-      }
-
-      let name = localStorage.getItem("evaName");
-      if (!name) {
-        name = prompt("Welcome! What's your name?");
-        if (name) localStorage.setItem("evaName", name)
-      }
-
-      const welcomeBack = localStorage.getItem("evaVisited");
-      const hour = new Date().getHours();
-      let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening"
-
-      if (welcomeBack && name) {
-        document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
-      } else if (name) {
-        document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
-        localStorage.setItem("evaVisited", true)
-      }
-
-      const savedSource = localStorage.getItem("evaSource") || "https://news.ycombinator.com/rss";
-      document.getElementById("sources").value = savedSource;
-      loadNewsFeed(savedSource)
-
-      document.getElementById("sources").addEventListener("change", function () {
-        localStorage.setItem("evaSource", this.value);
-        loadNewsFeed(this.value)
-      });
-    });
-
-    function switchTheme(theme) {
-      document.body.className = theme;
-      localStorage.setItem("evaTheme", theme)
+      annyang.addCommands(commands);
+      annyang.start();
     }
   </script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans min-h-screen p-8 animate-fadeIn">
+  <div class="max-w-3xl mx-auto bg-gray-800 p-6 rounded-2xl shadow-2xl">
+    <div class="flex justify-between items-center mb-4">
+      <a href="https://45dgof8.com/blog" class="text-purple-400 hover:underline">Go to My Blog</a>
+      <button class="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-500">Customize Eva</button>
+    </div>
+
+    <h1 class="text-3xl font-bold mb-2 text-center">Welcome to Eva's Answer Hub 🌌</h1>
+    <p id="greeting" class="text-center text-lg mb-6 italic text-purple-300">Greetings, Space Traveller...</p>
+
+    <!-- Holographic Avatar -->
+    <div class="flex justify-center mb-6">
+      <iframe src="https://app.readyplayer.me/avatar?frameApi" allow="camera *; microphone *" class="w-64 h-96 rounded-xl shadow-lg border-4 border-purple-700"></iframe>
+    </div>
+
+    <label class="block mb-2">Your Name:</label>
+    <input id="username" type="text" oninput="greetUser()" class="w-full p-2 mb-4 rounded bg-gray-700 border border-gray-600" />
+
+    <label class="block mb-2">Select Your Interests:</label>
+    <div class="grid grid-cols-2 gap-2 mb-4">
+      <label class="flex items-center"><input type="checkbox" class="mr-2"> Crypto</label>
+      <label class="flex items-center"><input type="checkbox" class="mr-2"> Science</label>
+      <label class="flex items-center"><input type="checkbox" class="mr-2"> News</label>
+      <label class="flex items-center"><input type="checkbox" class="mr-2"> Art</label>
+      <label class="flex items-center"><input type="checkbox" class="mr-2"> Tech</label>
+    </div>
+
+    <label class="block mb-2">Followed Assets:</label>
+    <input type="text" placeholder="e.g. XRP,SOL" class="w-full p-2 mb-4 rounded bg-gray-700 border border-gray-600" />
+
+    <label class="block mb-2">News Sources:</label>
+    <input type="text" placeholder="https://news.ycombinator.com/rss" class="w-full p-2 mb-4 rounded bg-gray-700 border border-gray-600" />
+
+    <div class="mb-4">
+      <label class="block mb-2">Upload Preferences:</label>
+      <input type="file" class="w-full bg-gray-700 p-2 rounded" />
+    </div>
+
+    <div class="text-center mt-6 space-x-4">
+      <button onclick="sendToN8n()" class="bg-green-500 hover:bg-green-400 text-black font-semibold px-6 py-2 rounded-xl shadow-md">Export Settings</button>
+      <button onclick="playSound()" class="bg-blue-500 hover:bg-blue-400 text-white font-semibold px-4 py-2 rounded-xl shadow-md">🔊 Sound Test</button>
+    </div>
+
+    <div id="feedback" class="text-center mt-4 text-green-400 hidden">✅ Settings transmitted successfully!</div>
+  </div>
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 1.2s ease-out;
+    }
+  </style>
 </body>
 </html>
