@@ -218,6 +218,162 @@
     document.body.className = theme;
     localStorage.setItem("evaTheme", theme);
   }
+    // Entire HTML document remains unchanged, except for updated script
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const nameFromURL = urlParams.get("name");
+    const profileFromURL = urlParams.get("profile");
+
+    const savedTheme = localStorage.getItem("evaTheme");
+    if (savedTheme) {
+      document.body.className = savedTheme;
+      document.getElementById("theme").value = savedTheme;
+    }
+
+    let name = nameFromURL || localStorage.getItem("evaName");
+    if (!name) {
+      name = prompt("Welcome! What's your name?");
+      if (name) localStorage.setItem("evaName", name);
+    } else if (!localStorage.getItem("evaName")) {
+      localStorage.setItem("evaName", name);
+    }
+
+    let profile = profileFromURL || localStorage.getItem("evaProfile") || "default";
+    if (profileFromURL && profileFromURL !== localStorage.getItem("evaProfile")) {
+      localStorage.setItem("evaProfile", profileFromURL);
+    }
+
+    const welcomeBack = localStorage.getItem("evaVisited");
+    const hour = new Date().getHours();
+    let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
+
+    if (welcomeBack && name) {
+      document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
+    } else if (name) {
+      document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
+      localStorage.setItem("evaVisited", true);
+    }
+
+    const inputs = document.querySelectorAll(".settings input, .settings select");
+    inputs.forEach(input => {
+      const key = `eva_${profile}_` + input.placeholder.replace(/[^a-z]/gi, '').toLowerCase();
+      if (localStorage.getItem(key)) input.value = localStorage.getItem(key);
+      input.addEventListener("change", () => localStorage.setItem(key, input.value));
+    });
+
+    const timestamp = () => new Date().toISOString().replace(/[:.]/g, '-');
+
+    const exportBtn = document.createElement("button");
+    exportBtn.textContent = "📤 Export Settings";
+    exportBtn.className = "feature-button";
+    exportBtn.onclick = function () {
+      const lines = [];
+      inputs.forEach(input => {
+        const label = input.previousElementSibling ? input.previousElementSibling.textContent.split(':')[0].toLowerCase() : "";
+        lines.push(`${label}=${input.value}`);
+      });
+      const blob = new Blob([lines.join("\n")], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `eva_${profile}_${timestamp()}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+    document.querySelector(".settings").appendChild(exportBtn);
+
+    const importBtn = document.createElement("button");
+    importBtn.textContent = "📥 Import Settings";
+    importBtn.className = "feature-button";
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = ".txt";
+    fileInput.style.display = "none";
+    importBtn.onclick = () => fileInput.click();
+    fileInput.onchange = function () {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function () {
+        const lines = reader.result.split("\n");
+        lines.forEach(line => {
+          const [key, value] = line.split("=");
+          const input = Array.from(inputs).find(i => i.previousElementSibling && i.previousElementSibling.textContent.toLowerCase().includes(key));
+          if (input) {
+            input.value = value;
+            localStorage.setItem(`eva_${profile}_` + key, value);
+          }
+        });
+      };
+      reader.readAsText(file);
+    };
+    document.querySelector(".settings").appendChild(importBtn);
+    document.querySelector(".settings").appendChild(fileInput);
+
+    const saveCloudBtn = document.createElement("button");
+    saveCloudBtn.textContent = "☁️ Save to Cloud";
+    saveCloudBtn.className = "feature-button";
+    saveCloudBtn.onclick = function () {
+      const lines = [];
+      inputs.forEach(input => {
+        const label = input.previousElementSibling ? input.previousElementSibling.textContent.split(':')[0].toLowerCase() : "";
+        lines.push(`${label}=${input.value}`);
+      });
+      fetch("https://n8n.45dgof8.com/webhook/eva/save-settings", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: `${name}_${profile}`, data: lines.join("\n") })
+      }).then(res => res.ok ? alert("✅ Saved to cloud!") : alert("❌ Save failed"));
+    };
+    document.querySelector(".settings").appendChild(saveCloudBtn);
+
+    const loadCloudBtn = document.createElement("button");
+    loadCloudBtn.textContent = "☁️ Load My Settings";
+    loadCloudBtn.className = "feature-button";
+    loadCloudBtn.onclick = function () {
+      fetch(`https://n8n.45dgof8.com/webhook/eva/load-settings?username=${encodeURIComponent(name + '_' + profile)}`)
+        .then(res => res.ok ? res.text() : Promise.reject("Not found"))
+        .then(text => {
+          const lines = text.split("\n");
+          lines.forEach(line => {
+            const [key, value] = line.split("=");
+            const input = Array.from(inputs).find(i => i.previousElementSibling && i.previousElementSibling.textContent.toLowerCase().includes(key));
+            if (input) {
+              input.value = value;
+              localStorage.setItem(`eva_${profile}_` + key, value);
+            }
+          });
+        })
+        .catch(() => alert("❌ Failed to load profile"));
+    };
+    document.querySelector(".settings").appendChild(loadCloudBtn);
+
+    const profileInput = document.createElement("input");
+    profileInput.placeholder = "Enter profile name (default)";
+    profileInput.value = profile;
+    profileInput.className = "feature-button";
+    profileInput.onchange = function () {
+      localStorage.setItem("evaProfile", this.value);
+      location.reload();
+    };
+    document.querySelector(".settings").appendChild(profileInput);
+
+    const shareBtn = document.createElement("button");
+    shareBtn.textContent = "🔗 Copy Share Link";
+    shareBtn.className = "feature-button";
+    shareBtn.onclick = function () {
+      const url = `${window.location.origin}${window.location.pathname}?name=${encodeURIComponent(name)}&profile=${encodeURIComponent(profile)}`;
+      navigator.clipboard.writeText(url).then(() => alert("🔗 Share link copied!"));
+    };
+    document.querySelector(".settings").appendChild(shareBtn);
+  });
+
+  function switchTheme(theme) {
+    document.body.className = theme;
+    localStorage.setItem("evaTheme", theme);
+  }
 </script>
 
 </body>
