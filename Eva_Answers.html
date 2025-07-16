@@ -131,5 +131,94 @@
       animation: fadeIn 1.2s ease-out;
     }
   </style>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem("evaTheme");
+    if (savedTheme) {
+      document.body.className = savedTheme;
+      document.getElementById("theme").value = savedTheme;
+    }
+
+    let name = localStorage.getItem("evaName");
+    if (!name) {
+      name = prompt("Welcome! What's your name?");
+      if (name) localStorage.setItem("evaName", name);
+    }
+
+    const welcomeBack = localStorage.getItem("evaVisited");
+    const hour = new Date().getHours();
+    let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
+
+    if (welcomeBack && name) {
+      document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
+    } else if (name) {
+      document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
+      localStorage.setItem("evaVisited", true);
+    }
+
+    // Save personalization settings
+    const inputs = document.querySelectorAll(".settings input, .settings select");
+    inputs.forEach(input => {
+      const key = "eva_" + input.placeholder.replace(/[^a-z]/gi, '').toLowerCase();
+      if (localStorage.getItem(key)) input.value = localStorage.getItem(key);
+      input.addEventListener("change", () => localStorage.setItem(key, input.value));
+    });
+
+    // Export Settings
+    const exportBtn = document.createElement("button");
+    exportBtn.textContent = "📤 Export Settings";
+    exportBtn.className = "feature-button";
+    exportBtn.onclick = function () {
+      const lines = [];
+      inputs.forEach(input => {
+        const label = input.previousElementSibling ? input.previousElementSibling.textContent.split(':')[0].toLowerCase() : "";
+        lines.push(`${label}=${input.value}`);
+      });
+      const blob = new Blob([lines.join("\n")], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'eva_settings.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+    document.querySelector(".settings").appendChild(exportBtn);
+
+    // Import Settings
+    const importBtn = document.createElement("button");
+    importBtn.textContent = "📥 Import Settings";
+    importBtn.className = "feature-button";
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = ".txt";
+    fileInput.style.display = "none";
+    importBtn.onclick = () => fileInput.click();
+    fileInput.onchange = function () {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function () {
+        const lines = reader.result.split("\n");
+        lines.forEach(line => {
+          const [key, value] = line.split("=");
+          const input = Array.from(inputs).find(i => i.previousElementSibling && i.previousElementSibling.textContent.toLowerCase().includes(key));
+          if (input) {
+            input.value = value;
+            localStorage.setItem("eva_" + key, value);
+          }
+        });
+      };
+      reader.readAsText(file);
+    };
+    document.querySelector(".settings").appendChild(importBtn);
+    document.querySelector(".settings").appendChild(fileInput);
+  });
+
+  function switchTheme(theme) {
+    document.body.className = theme;
+    localStorage.setItem("evaTheme", theme);
+  }
+</script>
+
 </body>
 </html>
