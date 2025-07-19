@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eva Memory Test</title>
+</head>
+<body>
+  <h2>Eva Memory Test</h2>
+  <button onclick="readMemory()">Read Memory</button>
+  <button onclick="writeMemory()">Write Test Value</button>
+  <pre id="output"></pre>
+  
+  <script>
+    function readMemory() {
+      fetch('eva_memory.php?action=read')
+        .then(r => r.json())
+        .then(data => document.getElementById('output').textContent = JSON.stringify(data, null, 2));
+    }
+
+    function writeMemory() {
+      fetch('eva_memory.php?action=write&key=test&value=HelloEva')
+        .then(r => r.json())
+        .then(data => document.getElementById('output').textContent = JSON.stringify(data, null, 2));
+    }
+  </script>
+</body>
+</html>
