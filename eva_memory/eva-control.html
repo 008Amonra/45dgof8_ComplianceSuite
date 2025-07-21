@@ -3,104 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Control Center 1.1</title>
+  <title>Eva Control Center 1.2</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      padding: 20px;
-    }
-    h2, h3 {
-      color: #444;
-    }
-    .tabs {
-      display: flex;
-      margin-bottom: 10px;
-    }
-    .tab {
-      padding: 10px;
-      margin-right: 5px;
-      cursor: pointer;
-      background: #ddd;
-      border-radius: 5px 5px 0 0;
-    }
-    .tab.active {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-bottom: none;
-    }
-    .tab-content {
-      background: #fff;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 0 5px 5px 5px;
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
-    button {
-      margin: 2px;
-      padding: 5px 8px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    input[type="text"] {
-      padding: 5px;
-      margin: 5px 2px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin: 5px 0;
-      padding: 5px;
-      background: #eee;
-      border-radius: 3px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .completed {
-      text-decoration: line-through;
-      color: #888;
-    }
-    .footer {
-      margin-top: 15px;
-      font-size: 0.9em;
-      color: #555;
-    }
-    .log-entry {
-      background: #fafafa;
-      border: 1px solid #ddd;
-      padding: 5px;
-      margin-bottom: 5px;
-      border-radius: 3px;
-    }
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; padding: 20px; }
+    h2, h3 { color: #444; }
+    .tabs { display: flex; margin-bottom: 10px; }
+    .tab { padding: 10px; margin-right: 5px; cursor: pointer; background: #ddd; border-radius: 5px 5px 0 0; }
+    .tab.active { background: #fff; border: 1px solid #ccc; border-bottom: none; }
+    .tab-content { background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 0 5px 5px 5px; display: none; }
+    .tab-content.active { display: block; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 8px; text-align: left; }
+    button { margin: 2px; padding: 5px 8px; border: none; background-color: #007bff; color: white; border-radius: 3px; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    input[type="text"] { padding: 5px; margin: 5px 2px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 5px 0; padding: 5px; background: #eee; border-radius: 3px; display: flex; justify-content: space-between; align-items: center; }
+    .completed { text-decoration: line-through; color: #888; }
+    .footer { margin-top: 15px; font-size: 0.9em; color: #555; }
+    .log-entry { background: #fafafa; border: 1px solid #ddd; padding: 5px; margin-bottom: 5px; border-radius: 3px; }
   </style>
 </head>
 <body>
-  <h2>Eva Control Center 1.1</h2>
+  <h2>Eva Control Center 1.2</h2>
 
   <div class="tabs">
     <div class="tab active" onclick="switchTab('dashboard')">Dashboard</div>
@@ -114,7 +40,7 @@
     <h3>Übersicht</h3>
     <p><strong>n8n Status:</strong> <span id="n8nStatus">Unbekannt</span></p>
     <p><strong>Letztes Backup:</strong> <span id="lastBackup">--</span></p>
-    <p><strong>Telegram:</strong> <span id="telegramStatus">Unkonfiguriert</span></p>
+    <button onclick="createBackup()">Jetzt Backup erstellen</button>
     <button onclick="suggestImprovements()">Zeige Verbesserungen</button>
     <ul id="improvements"></ul>
   </div>
@@ -148,16 +74,15 @@
   </div>
 
   <div class="footer">
-    <p><strong>Version:</strong> 1.1 | <strong>Changelog:</strong> Logbuch hinzugefügt.</p>
+    <p><strong>Version:</strong> 1.2 | <strong>Changelog:</strong> Auto-Backup & Backup-Button.</p>
   </div>
 
   <script>
     const STORAGE_KEY = "eva_control_data";
 
     function loadData() {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { memory: {}, todos: [], logs: [] };
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { memory: {}, todos: [], logs: [], meta: {} };
     }
-
     function saveData(data) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       renderMemory();
@@ -181,6 +106,24 @@
         <li>Cloudflared als stabilen Service konfigurieren</li>
         <li>Telegram-Benachrichtigungen aktivieren</li>
       `;
+    }
+
+    function createBackup() {
+      const data = loadData();
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const filename = `eva_backup_${timestamp}.json`;
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      data.meta.lastBackup = new Date().toLocaleString();
+      saveData(data);
+      document.getElementById("lastBackup").innerText = data.meta.lastBackup;
+      logEvent(`Backup erstellt: ${filename}`);
     }
 
     // ---- Memorybank ----
@@ -270,8 +213,9 @@
       const data = loadData();
       const timestamp = new Date().toLocaleString();
       data.logs.unshift(`[${timestamp}] ${msg}`);
-      if (data.logs.length > 50) data.logs.pop(); // Max 50 Einträge
+      if (data.logs.length > 50) data.logs.pop();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderLogs();
     }
 
     function renderLogs() {
@@ -289,20 +233,20 @@
 
     // ---- Export ----
     function exportData() {
-      const dataStr = JSON.stringify(loadData(), null, 2);
-      const blob = new Blob([dataStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "eva_control_data.json";
-      a.click();
-      URL.revokeObjectURL(url);
+      createBackup();
     }
 
     // Init
+    const initData = loadData();
+    if (initData.meta.lastBackup) {
+      document.getElementById("lastBackup").innerText = initData.meta.lastBackup;
+    }
     renderMemory();
     renderTasks();
     renderLogs();
+
+    // Auto Backup on load
+    setTimeout(createBackup, 1000);
   </script>
 </body>
 </html>
