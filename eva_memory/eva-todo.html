@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eva To-Do Monitor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      padding: 20px;
+    }
+    h2 {
+      color: #444;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin: 5px;
+      padding: 5px 8px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    input[type="text"] {
+      padding: 5px;
+      width: 70%;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h2>Eva To-Do Monitor</h2>
+  <div>
+    <input type="text" id="newTask" placeholder="Neue Aufgabe..." />
+    <button onclick="addTask()">Add</button>
+  </div>
+  <ul id="taskList"></ul>
+
+  <script>
+    const STORAGE_KEY = "eva_todo_list";
+
+    function loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="${task.done ? 'completed' : ''}" onclick="toggleTask(${index})">${task.text}</span>
+          <button onclick="deleteTask(${index})">Delete</button>
+        `;
+        taskList.appendChild(li);
+      });
+    }
+
+    function saveTasks(tasks) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      loadTasks();
+    }
+
+    function addTask() {
+      const newTask = document.getElementById("newTask").value.trim();
+      if (newTask === "") return;
+      const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      tasks.push({ text: newTask, done: false });
+      saveTasks(tasks);
+      document.getElementById("newTask").value = "";
+    }
+
+    function toggleTask(index) {
+      const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      tasks[index].done = !tasks[index].done;
+      saveTasks(tasks);
+    }
+
+    function deleteTask(index) {
+      const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      tasks.splice(index, 1);
+      saveTasks(tasks);
+    }
+
+    // Init
+    loadTasks();
+  </script>
+</body>
+</html>
