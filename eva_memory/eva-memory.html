@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eva Memory 2.0 (Static)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    h2 {
+      color: #444;
+    }
+    table {
+      width: 100%;
+      max-width: 500px;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: #fff;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    button {
+      margin: 2px;
+      padding: 5px 8px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    input {
+      padding: 5px;
+      margin: 5px 2px;
+    }
+    .actions {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Eva Memory 2.0 (Local Storage)</h2>
+  <div>
+    <input id="key" placeholder="Key" />
+    <input id="value" placeholder="Value" />
+    <button onclick="addOrUpdate()">Add / Update</button>
+    <button onclick="clearMemory()">Clear All</button>
+  </div>
+
+  <table id="memoryTable">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+        <th class="actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Memory entries will appear here -->
+    </tbody>
+  </table>
+
+  <script>
+    const MEMORY_KEY = "eva_memory_data";
+
+    function getMemory() {
+      let data = localStorage.getItem(MEMORY_KEY);
+      return data ? JSON.parse(data) : {};
+    }
+
+    function saveMemory(data) {
+      localStorage.setItem(MEMORY_KEY, JSON.stringify(data));
+      renderTable();
+    }
+
+    function addOrUpdate() {
+      const key = document.getElementById("key").value.trim();
+      const value = document.getElementById("value").value.trim();
+      if (!key) return alert("Please enter a key.");
+      let data = getMemory();
+      data[key] = value || "";
+      saveMemory(data);
+      document.getElementById("key").value = "";
+      document.getElementById("value").value = "";
+    }
+
+    function deleteEntry(key) {
+      let data = getMemory();
+      delete data[key];
+      saveMemory(data);
+    }
+
+    function editEntry(key) {
+      const data = getMemory();
+      document.getElementById("key").value = key;
+      document.getElementById("value").value = data[key];
+    }
+
+    function clearMemory() {
+      if (!confirm("Clear all memory?")) return;
+      localStorage.removeItem(MEMORY_KEY);
+      renderTable();
+    }
+
+    function renderTable() {
+      const data = getMemory();
+      const tbody = document.getElementById("memoryTable").querySelector("tbody");
+      tbody.innerHTML = "";
+      Object.keys(data).forEach(key => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${key}</td>
+          <td>${data[key]}</td>
+          <td class="actions">
+            <button onclick="editEntry('${key}')">Edit</button>
+            <button onclick="deleteEntry('${key}')">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Initialize the table on page load
+    renderTable();
+  </script>
+</body>
+</html>
