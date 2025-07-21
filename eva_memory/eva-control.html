@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eva Control Center 1.0</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      padding: 20px;
+    }
+    h2, h3 {
+      color: #444;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .tab {
+      padding: 10px;
+      margin-right: 5px;
+      cursor: pointer;
+      background: #ddd;
+      border-radius: 5px 5px 0 0;
+    }
+    .tab.active {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-bottom: none;
+    }
+    .tab-content {
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 0 5px 5px 5px;
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    button {
+      margin: 2px;
+      padding: 5px 8px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    input[type="text"] {
+      padding: 5px;
+      margin: 5px 2px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+      padding: 5px;
+      background: #eee;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .footer {
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h2>Eva Control Center 1.0</h2>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('dashboard')">Dashboard</div>
+    <div class="tab" onclick="switchTab('memory')">Memorybank</div>
+    <div class="tab" onclick="switchTab('todo')">To-Do</div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="tab-content active">
+    <h3>Übersicht</h3>
+    <p><strong>n8n Status:</strong> <span id="n8nStatus">Unbekannt</span></p>
+    <p><strong>Letztes Backup:</strong> <span id="lastBackup">--</span></p>
+    <p><strong>Telegram:</strong> <span id="telegramStatus">Unkonfiguriert</span></p>
+    <button onclick="suggestImprovements()">Zeige Verbesserungen</button>
+    <ul id="improvements"></ul>
+  </div>
+
+  <!-- Memorybank -->
+  <div id="memory" class="tab-content">
+    <h3>Memorybank</h3>
+    <input id="key" placeholder="Key" />
+    <input id="value" placeholder="Value" />
+    <button onclick="addOrUpdateMemory()">Add / Update</button>
+    <button onclick="exportData()">Export JSON</button>
+    <table>
+      <thead><tr><th>Key</th><th>Value</th><th>Action</th></tr></thead>
+      <tbody id="memoryList"></tbody>
+    </table>
+  </div>
+
+  <!-- To-Do -->
+  <div id="todo" class="tab-content">
+    <h3>To-Do List</h3>
+    <input type="text" id="newTask" placeholder="Neue Aufgabe..." />
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <div class="footer">
+    <p><strong>Version:</strong> 1.0 | <strong>Changelog:</strong> Dashboard + Memory + To-Do integriert.</p>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "eva_control_data";
+
+    function loadData() {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { memory: {}, todos: [], meta: {} };
+    }
+    function saveData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderMemory();
+      renderTasks();
+    }
+
+    // ---- Tabs ----
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+      document.getElementById(tab).classList.add('active');
+    }
+
+    // ---- Dashboard ----
+    function suggestImprovements() {
+      const ul = document.getElementById("improvements");
+      ul.innerHTML = `
+        <li>n8n Backup automatisieren</li>
+        <li>Cloudflared als stabilen Service konfigurieren</li>
+        <li>Telegram-Benachrichtigungen aktivieren</li>
+      `;
+    }
+
+    // ---- Memorybank ----
+    function renderMemory() {
+      const data = loadData();
+      const memoryList = document.getElementById("memoryList");
+      memoryList.innerHTML = "";
+      Object.keys(data.memory).forEach(key => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${key}</td>
+          <td>${data.memory[key]}</td>
+          <td>
+            <button onclick="editMemory('${key}')">Edit</button>
+            <button onclick="deleteMemory('${key}')">Delete</button>
+          </td>`;
+        memoryList.appendChild(tr);
+      });
+    }
+
+    function addOrUpdateMemory() {
+      const key = document.getElementById("key").value.trim();
+      const value = document.getElementById("value").value.trim();
+      if (!key) return alert("Bitte Key eingeben.");
+      const data = loadData();
+      data.memory[key] = value;
+      saveData(data);
+      document.getElementById("key").value = "";
+      document.getElementById("value").value = "";
+    }
+    function editMemory(key) {
+      const data = loadData();
+      document.getElementById("key").value = key;
+      document.getElementById("value").value = data.memory[key];
+    }
+    function deleteMemory(key) {
+      const data = loadData();
+      delete data.memory[key];
+      saveData(data);
+    }
+
+    // ---- To-Do ----
+    function renderTasks() {
+      const data = loadData();
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+      data.todos.forEach((task, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="${task.done ? 'completed' : ''}" onclick="toggleTask(${i})">${task.text}</span>
+          <button onclick="deleteTask(${i})">Delete</button>`;
+        taskList.appendChild(li);
+      });
+    }
+    function addTask() {
+      const newTask = document.getElementById("newTask").value.trim();
+      if (!newTask) return;
+      const data = loadData();
+      data.todos.push({ text: newTask, done: false });
+      saveData(data);
+      document.getElementById("newTask").value = "";
+    }
+    function toggleTask(i) {
+      const data = loadData();
+      data.todos[i].done = !data.todos[i].done;
+      saveData(data);
+    }
+    function deleteTask(i) {
+      const data = loadData();
+      data.todos.splice(i, 1);
+      saveData(data);
+    }
+
+    // ---- Export ----
+    function exportData() {
+      const dataStr = JSON.stringify(loadData(), null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "eva_control_data.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Init
+    renderMemory();
+    renderTasks();
+  </script>
+</body>
+</html>
