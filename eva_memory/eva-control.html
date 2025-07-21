@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Control Center 1.0</title>
+  <title>Eva Control Center 1.1</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -90,15 +90,23 @@
       font-size: 0.9em;
       color: #555;
     }
+    .log-entry {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      padding: 5px;
+      margin-bottom: 5px;
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
-  <h2>Eva Control Center 1.0</h2>
+  <h2>Eva Control Center 1.1</h2>
 
   <div class="tabs">
     <div class="tab active" onclick="switchTab('dashboard')">Dashboard</div>
     <div class="tab" onclick="switchTab('memory')">Memorybank</div>
     <div class="tab" onclick="switchTab('todo')">To-Do</div>
+    <div class="tab" onclick="switchTab('logbook')">Logbuch</div>
   </div>
 
   <!-- Dashboard -->
@@ -132,20 +140,29 @@
     <ul id="taskList"></ul>
   </div>
 
+  <!-- Logbuch -->
+  <div id="logbook" class="tab-content">
+    <h3>Logbuch</h3>
+    <button onclick="clearLogs()">Clear Logs</button>
+    <div id="logs"></div>
+  </div>
+
   <div class="footer">
-    <p><strong>Version:</strong> 1.0 | <strong>Changelog:</strong> Dashboard + Memory + To-Do integriert.</p>
+    <p><strong>Version:</strong> 1.1 | <strong>Changelog:</strong> Logbuch hinzugefügt.</p>
   </div>
 
   <script>
     const STORAGE_KEY = "eva_control_data";
 
     function loadData() {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { memory: {}, todos: [], meta: {} };
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { memory: {}, todos: [], logs: [] };
     }
+
     function saveData(data) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       renderMemory();
       renderTasks();
+      renderLogs();
     }
 
     // ---- Tabs ----
@@ -189,18 +206,23 @@
       const value = document.getElementById("value").value.trim();
       if (!key) return alert("Bitte Key eingeben.");
       const data = loadData();
+      const action = data.memory[key] ? "Updated" : "Added";
       data.memory[key] = value;
+      logEvent(`Memory ${action}: ${key} = ${value}`);
       saveData(data);
       document.getElementById("key").value = "";
       document.getElementById("value").value = "";
     }
+
     function editMemory(key) {
       const data = loadData();
       document.getElementById("key").value = key;
       document.getElementById("value").value = data.memory[key];
     }
+
     function deleteMemory(key) {
       const data = loadData();
+      logEvent(`Memory Deleted: ${key}`);
       delete data.memory[key];
       saveData(data);
     }
@@ -218,22 +240,50 @@
         taskList.appendChild(li);
       });
     }
+
     function addTask() {
       const newTask = document.getElementById("newTask").value.trim();
       if (!newTask) return;
       const data = loadData();
       data.todos.push({ text: newTask, done: false });
+      logEvent(`Task Added: ${newTask}`);
       saveData(data);
       document.getElementById("newTask").value = "";
     }
+
     function toggleTask(i) {
       const data = loadData();
       data.todos[i].done = !data.todos[i].done;
+      logEvent(`Task Toggled: ${data.todos[i].text} (${data.todos[i].done ? 'Done' : 'Open'})`);
       saveData(data);
     }
+
     function deleteTask(i) {
       const data = loadData();
+      logEvent(`Task Deleted: ${data.todos[i].text}`);
       data.todos.splice(i, 1);
+      saveData(data);
+    }
+
+    // ---- Logs ----
+    function logEvent(msg) {
+      const data = loadData();
+      const timestamp = new Date().toLocaleString();
+      data.logs.unshift(`[${timestamp}] ${msg}`);
+      if (data.logs.length > 50) data.logs.pop(); // Max 50 Einträge
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function renderLogs() {
+      const data = loadData();
+      const logsDiv = document.getElementById("logs");
+      logsDiv.innerHTML = data.logs.map(l => `<div class="log-entry">${l}</div>`).join('');
+    }
+
+    function clearLogs() {
+      if (!confirm("Alle Logs löschen?")) return;
+      const data = loadData();
+      data.logs = [];
       saveData(data);
     }
 
@@ -252,6 +302,7 @@
     // Init
     renderMemory();
     renderTasks();
+    renderLogs();
   </script>
 </body>
 </html>
