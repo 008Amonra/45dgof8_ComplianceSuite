@@ -52,6 +52,7 @@
     <button onclick="checkStatus()">Jetzt Status prüfen</button>
     <button onclick="createBackup()">Jetzt Backup erstellen</button>
     <button onclick="telegramTest()">Telegram Test</button>
+    <button onclick="telegramDiagnose()">Telegram Diagnose</button>
     <button onclick="suggestImprovements()">Zeige Verbesserungen</button>
     <ul id="improvements"></ul>
   </div>
@@ -285,6 +286,46 @@
     // ---- Init ----
     loadFromServer();
     checkStatus();
+    async function telegramDiagnose() {
+  if (!TELEGRAM_TOKEN) {
+    alert("Bitte TELEGRAM_TOKEN in den Code eintragen!");
+    return;
+  }
+  
+  try {
+    // 1. Token prüfen
+    let res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/getMe`);
+    let data = await res.json();
+    if (!data.ok) {
+      alert("❌ Telegram-Token ist ungültig oder nicht erreichbar!");
+      logEvent("Telegram Diagnose: Token ungültig.");
+      return;
+    } else {
+      logEvent(`Telegram Diagnose: Bot gefunden (@${data.result.username})`);
+    }
+
+    // 2. Testnachricht, falls Chat-ID existiert
+    if (TELEGRAM_CHAT_ID) {
+      let testRes = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=Eva%20sagt%20Hallo!`
+      );
+      let testData = await testRes.json();
+      if (testData.ok) {
+        alert(`✅ Telegram OK! Nachricht an ${TELEGRAM_CHAT_ID} gesendet.`);
+        logEvent("Telegram Diagnose: Nachricht erfolgreich gesendet.");
+      } else {
+        alert("⚠️ Bot gefunden, aber Nachricht konnte nicht gesendet werden.");
+        logEvent("Telegram Diagnose: Nachricht nicht gesendet.");
+      }
+    } else {
+      alert("ℹ️ Bot gefunden. Bitte TELEGRAM_CHAT_ID eintragen, um Nachrichten zu testen.");
+      logEvent("Telegram Diagnose: Chat-ID fehlt.");
+    }
+  } catch (error) {
+    alert("❌ Telegram-Verbindung fehlgeschlagen: " + error);
+    logEvent("Telegram Diagnose: Fehler " + error);
+  }
+}
   </script>
 </body>
 </html>
