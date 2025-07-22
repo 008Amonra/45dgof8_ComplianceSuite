@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Control Center 1.3</title>
+  <title>Eva Control Center 1.4</title>
   <style>
     body { font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; padding: 20px; }
-    h2, h3 { color: #444; }
+    header { display: flex; align-items: center; margin-bottom: 20px; }
+    header img { height: 60px; margin-right: 15px; }
+    h2 { color: #444; margin: 0; }
     .tabs { display: flex; margin-bottom: 10px; }
     .tab { padding: 10px; margin-right: 5px; cursor: pointer; background: #ddd; border-radius: 5px 5px 0 0; }
     .tab.active { background: #fff; border: 1px solid #ccc; border-bottom: none; }
@@ -28,7 +30,10 @@
   </style>
 </head>
 <body>
-  <h2>Eva Control Center 1.3</h2>
+  <header>
+    <img src="eva-logo.png" alt="Eva Control Logo">
+    <h2>Eva Control Center 1.4</h2>
+  </header>
 
   <div class="tabs">
     <div class="tab active" onclick="switchTab('dashboard')">Dashboard</div>
@@ -46,6 +51,7 @@
     <p><strong>Letztes Backup:</strong> <span id="lastBackup">--</span></p>
     <button onclick="checkStatus()">Jetzt Status prüfen</button>
     <button onclick="createBackup()">Jetzt Backup erstellen</button>
+    <button onclick="telegramTest()">Telegram Test</button>
     <button onclick="suggestImprovements()">Zeige Verbesserungen</button>
     <ul id="improvements"></ul>
   </div>
@@ -79,23 +85,18 @@
   </div>
 
   <div class="footer">
-    <p><strong>Version:</strong> 1.3 | <strong>Changelog:</strong> Live-Status für n8n & Cloudflared.</p>
+    <p><strong>Version:</strong> 1.4 | <strong>Changelog:</strong> Server-Sync & Telegram-Test.</p>
   </div>
 
   <script>
-    const STORAGE_KEY = "eva_control_data";
-    const n8nURL = "https://45dgof8.com";   // <-- anpassen, falls anderer n8n-Endpoint
-    const cloudURL = "https://45dgof8.com"; // <-- Cloudflared Ziel-Domain
+    const TOKEN = "EVA12345";
+    const API_URL = "https://45dgof8.com/eva_memory/eva_memory.php";
+    const n8nURL = "https://n8n.45dgof8.com";
+    const cloudURL = "https://45dgof8.com";
+    const TELEGRAM_TOKEN = "8125749231:AAFTjA4pLBqBqUE1C30fzst8JsEe-9rRRuE"; 
+    const TELEGRAM_CHAT_ID = "EvaN8NMonitorBot"; // Deine Chat-ID hier eintragen
 
-    function loadData() {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { memory: {}, todos: [], logs: [], meta: {} };
-    }
-    function saveData(data) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      renderMemory();
-      renderTasks();
-      renderLogs();
-    }
+    let appData = { memory: {}, todos: [], logs: [], meta: {} };
 
     // ---- Tabs ----
     function switchTab(tab) {
@@ -105,68 +106,92 @@
       document.getElementById(tab).classList.add('active');
     }
 
+    // ---- Server Sync ----
+    async function loadFromServer() {
+      try {
+        const res = await fetch(`${API_URL}?action=read&token=${TOKEN}`);
+        appData = await res.json();
+        renderMemory();
+        renderTasks();
+        renderLogs();
+        if (appData.meta.lastBackup) document.getElementById("lastBackup").innerText = appData.meta.lastBackup;
+      } catch (e) {
+        console.error("Fehler beim Laden von Server:", e);
+      }
+    }
+
+    async function saveToServer() {
+      try {
+        await fetch(`${API_URL}?action=sync&token=${TOKEN}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(appData)
+        });
+      } catch (e) {
+        console.error("Fehler beim Speichern:", e);
+      }
+    }
+
     // ---- Dashboard ----
     async function checkStatus() {
       document.getElementById("n8nStatus").innerText = "Prüfe...";
       document.getElementById("cloudStatus").innerText = "Prüfe...";
-
       const n8nOK = await pingURL(n8nURL);
-      document.getElementById("n8nStatus").innerHTML = n8nOK ? "<span class='status-ok'>OK</span>" : "<span class='status-down'>Down</span>";
-
       const cloudOK = await pingURL(cloudURL);
+      document.getElementById("n8nStatus").innerHTML = n8nOK ? "<span class='status-ok'>OK</span>" : "<span class='status-down'>Down</span>";
       document.getElementById("cloudStatus").innerHTML = cloudOK ? "<span class='status-ok'>OK</span>" : "<span class='status-down'>Down</span>";
-
       const now = new Date().toLocaleString();
       document.getElementById("lastCheck").innerText = now;
-      logEvent(`Status-Check durchgeführt: n8n=${n8nOK ? 'OK' : 'Down'}, Cloudflared=${cloudOK ? 'OK' : 'Down'}`);
+      logEvent(`Status-Check: n8n=${n8nOK?'OK':'Down'}, Cloud=${cloudOK?'OK':'Down'}`);
     }
 
     async function pingURL(url) {
-      try {
-        const res = await fetch(url, { mode: "no-cors" });
-        return res.ok || true; // no-cors gibt kein res.ok zurück, daher default auf true
-      } catch (err) {
-        return false;
-      }
-    }
-
-    function suggestImprovements() {
-      const ul = document.getElementById("improvements");
-      ul.innerHTML = `
-        <li>n8n Backup automatisieren</li>
-        <li>Cloudflared als stabilen Service konfigurieren</li>
-        <li>Telegram-Benachrichtigungen aktivieren</li>
-      `;
+      try { await fetch(url, { mode: "no-cors" }); return true; }
+      catch (e) { return false; }
     }
 
     function createBackup() {
-      const data = loadData();
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const filename = `eva_backup_${timestamp}.json`;
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const blob = new Blob([JSON.stringify(appData, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       a.click();
       URL.revokeObjectURL(url);
-
-      data.meta.lastBackup = new Date().toLocaleString();
-      saveData(data);
-      document.getElementById("lastBackup").innerText = data.meta.lastBackup;
+      appData.meta.lastBackup = new Date().toLocaleString();
       logEvent(`Backup erstellt: ${filename}`);
+      saveToServer();
+      document.getElementById("lastBackup").innerText = appData.meta.lastBackup;
+    }
+
+    function telegramTest() {
+      if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
+        alert("Telegram Token oder Chat-ID fehlt!");
+        return;
+      }
+      fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=Hello%20Eva!`)
+        .then(() => logEvent("Telegram Testnachricht gesendet"))
+        .catch(err => logEvent("Telegram Fehler: " + err));
+    }
+
+    function suggestImprovements() {
+      document.getElementById("improvements").innerHTML = `
+        <li>Server-Backup Rotation implementieren</li>
+        <li>Telegram-Benachrichtigung bei Fehlern aktivieren</li>
+        <li>n8n Workflows automatisieren</li>`;
     }
 
     // ---- Memorybank ----
     function renderMemory() {
-      const data = loadData();
       const memoryList = document.getElementById("memoryList");
       memoryList.innerHTML = "";
-      Object.keys(data.memory).forEach(key => {
+      Object.keys(appData.memory).forEach(key => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${key}</td>
-          <td>${data.memory[key]}</td>
+          <td>${appData.memory[key]}</td>
           <td>
             <button onclick="editMemory('${key}')">Edit</button>
             <button onclick="deleteMemory('${key}')">Delete</button>
@@ -174,36 +199,36 @@
         memoryList.appendChild(tr);
       });
     }
+
     function addOrUpdateMemory() {
       const key = document.getElementById("key").value.trim();
       const value = document.getElementById("value").value.trim();
       if (!key) return alert("Bitte Key eingeben.");
-      const data = loadData();
-      const action = data.memory[key] ? "Updated" : "Added";
-      data.memory[key] = value;
-      logEvent(`Memory ${action}: ${key} = ${value}`);
-      saveData(data);
+      appData.memory[key] = value;
+      logEvent(`Memory updated: ${key}=${value}`);
+      saveToServer();
+      renderMemory();
       document.getElementById("key").value = "";
       document.getElementById("value").value = "";
     }
+
     function editMemory(key) {
-      const data = loadData();
       document.getElementById("key").value = key;
-      document.getElementById("value").value = data.memory[key];
+      document.getElementById("value").value = appData.memory[key];
     }
+
     function deleteMemory(key) {
-      const data = loadData();
-      logEvent(`Memory Deleted: ${key}`);
-      delete data.memory[key];
-      saveData(data);
+      delete appData.memory[key];
+      logEvent(`Memory deleted: ${key}`);
+      saveToServer();
+      renderMemory();
     }
 
     // ---- To-Do ----
     function renderTasks() {
-      const data = loadData();
       const taskList = document.getElementById("taskList");
       taskList.innerHTML = "";
-      data.todos.forEach((task, i) => {
+      appData.todos.forEach((task, i) => {
         const li = document.createElement("li");
         li.innerHTML = `
           <span class="${task.done ? 'completed' : ''}" onclick="toggleTask(${i})">${task.text}</span>
@@ -211,55 +236,54 @@
         taskList.appendChild(li);
       });
     }
+
     function addTask() {
       const newTask = document.getElementById("newTask").value.trim();
       if (!newTask) return;
-      const data = loadData();
-      data.todos.push({ text: newTask, done: false });
-      logEvent(`Task Added: ${newTask}`);
-      saveData(data);
+      appData.todos.push({ text: newTask, done: false });
+      logEvent(`Task added: ${newTask}`);
+      saveToServer();
+      renderTasks();
       document.getElementById("newTask").value = "";
     }
+
     function toggleTask(i) {
-      const data = loadData();
-      data.todos[i].done = !data.todos[i].done;
-      logEvent(`Task Toggled: ${data.todos[i].text} (${data.todos[i].done ? 'Done' : 'Open'})`);
-      saveData(data);
+      appData.todos[i].done = !appData.todos[i].done;
+      logEvent(`Task toggled: ${appData.todos[i].text} (${appData.todos[i].done?'done':'open'})`);
+      saveToServer();
+      renderTasks();
     }
+
     function deleteTask(i) {
-      const data = loadData();
-      logEvent(`Task Deleted: ${data.todos[i].text}`);
-      data.todos.splice(i, 1);
-      saveData(data);
+      logEvent(`Task deleted: ${appData.todos[i].text}`);
+      appData.todos.splice(i, 1);
+      saveToServer();
+      renderTasks();
     }
 
     // ---- Logs ----
     function logEvent(msg) {
-      const data = loadData();
       const timestamp = new Date().toLocaleString();
-      data.logs.unshift(`[${timestamp}] ${msg}`);
-      if (data.logs.length > 50) data.logs.pop();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      appData.logs.unshift(`[${timestamp}] ${msg}`);
+      if (appData.logs.length > 50) appData.logs.pop();
       renderLogs();
     }
+
     function renderLogs() {
-      const data = loadData();
-      const logsDiv = document.getElementById("logs");
-      logsDiv.innerHTML = data.logs.map(l => `<div class="log-entry">${l}</div>`).join('');
-    }
-    function clearLogs() {
-      if (!confirm("Alle Logs löschen?")) return;
-      const data = loadData();
-      data.logs = [];
-      saveData(data);
+      document.getElementById("logs").innerHTML = appData.logs.map(l => `<div class="log-entry">${l}</div>`).join('');
     }
 
-    // Init
-    const initData = loadData();
-    if (initData.meta.lastBackup) document.getElementById("lastBackup").innerText = initData.meta.lastBackup;
-    renderMemory();
-    renderTasks();
-    renderLogs();
+    function clearLogs() {
+      if (!confirm("Alle Logs löschen?")) return;
+      appData.logs = [];
+      saveToServer();
+      renderLogs();
+    }
+
+    function exportData() { createBackup(); }
+
+    // ---- Init ----
+    loadFromServer();
     checkStatus();
   </script>
 </body>
