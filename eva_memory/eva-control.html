@@ -100,21 +100,23 @@
       document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
       document.getElementById(tab).classList.add('active');
     }
-
-    // ---- Status ----
-    function checkStatus() {
-      const now = new Date().toLocaleString();
-      document.getElementById("lastCheck").innerText = now;
-      // Dummy status, später durch fetch(eva_status.php) ersetzt
-      document.getElementById("n8nStatus").innerHTML = "<span class='status-ok'>OK</span>";
-      document.getElementById("cloudStatus").innerHTML = "<span class='status-ok'>OK</span>";
-      logEvent(`Status-Check durchgeführt.`);
-    }
-
-    function restartServices() {
-      logEvent("Restart-Button gedrückt (Dummy).");
-      alert("Restart n8n & Cloudflared (Dummy).");
-    }
+async function checkStatus() {
+  try {
+    const res = await fetch("https://45dgof8.com/eva_memory/eva_status.php");
+    const status = await res.json();
+    document.getElementById("n8nStatus").innerHTML = status.n8n === "OK" ? 
+        "<span class='status-ok'>OK</span>" : 
+        "<span class='status-down'>Down</span>";
+    document.getElementById("cloudStatus").innerHTML = status.cloudflared === "OK" ? 
+        "<span class='status-ok'>OK</span>" : 
+        "<span class='status-down'>Down</span>";
+    document.getElementById("lastCheck").innerText = status.last_check;
+    logEvent(`Status-Check: n8n=${status.n8n}, Cloud=${status.cloudflared}`);
+  } catch (e) {
+    console.error("Fehler beim Status-Check:", e);
+    logEvent("Fehler beim Status-Check.");
+  }
+}
 
     // ---- Backup ----
     function createBackup() {
