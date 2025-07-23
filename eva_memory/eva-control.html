@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Control Center 2.0</title>
+  <title>Eva Control Center 2.1</title>
   <style>
     body { font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; padding: 20px; }
     header { display: flex; align-items: center; margin-bottom: 20px; }
@@ -32,7 +32,7 @@
 <body>
   <header>
     <img src="eva_control_center.webp" alt="Eva Control Logo">
-    <h2>Eva Control Center 2.0</h2>
+    <h2>Eva Control Center 2.1</h2>
   </header>
 
   <div class="tabs">
@@ -52,7 +52,6 @@
     <button onclick="checkStatus()">Jetzt Status prüfen</button>
     <button onclick="createBackup()">Jetzt Backup erstellen</button>
     <button onclick="restartServices()">Restart n8n & Cloudflared</button>
-    <button onclick="telegramTest()">Telegram Test</button>
   </div>
 
   <!-- Memorybank -->
@@ -83,13 +82,12 @@
   </div>
 
   <div class="footer">
-    <p><strong>Version:</strong> 2.0 | <strong>Status:</strong> Basis 2.0 mit Dummy-Status und Backup.</p>
+    <p><strong>Version:</strong> 2.1 | <strong>Status:</strong> Getrennte Daten und echte Statusabfrage.</p>
   </div>
 
   <script>
-    const TOKEN = "EVA12345";
     const API_URL = "https://45dgof8.com/eva_memory/eva_memory.php";
-    const BACKUP_PATH = "https://45dgof8.com/eva_memory/backup/";
+    const STATUS_URL = "https://45dgof8.com/eva_memory/eva_status.php";
 
     let appData = { memory: {}, todos: [], logs: [], meta: {} };
 
@@ -100,23 +98,30 @@
       document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
       document.getElementById(tab).classList.add('active');
     }
-async function checkStatus() {
-  try {
-    const res = await fetch("https://45dgof8.com/eva_memory/eva_status.php");
-    const status = await res.json();
-    document.getElementById("n8nStatus").innerHTML = status.n8n === "OK" ? 
-        "<span class='status-ok'>OK</span>" : 
-        "<span class='status-down'>Down</span>";
-    document.getElementById("cloudStatus").innerHTML = status.cloudflared === "OK" ? 
-        "<span class='status-ok'>OK</span>" : 
-        "<span class='status-down'>Down</span>";
-    document.getElementById("lastCheck").innerText = status.last_check;
-    logEvent(`Status-Check: n8n=${status.n8n}, Cloud=${status.cloudflared}`);
-  } catch (e) {
-    console.error("Fehler beim Status-Check:", e);
-    logEvent("Fehler beim Status-Check.");
-  }
-}
+
+    // ---- Status ----
+    async function checkStatus() {
+      try {
+        const res = await fetch(STATUS_URL);
+        const status = await res.json();
+        document.getElementById("n8nStatus").innerHTML = status.n8n === "OK" ?
+            "<span class='status-ok'>OK</span>" :
+            "<span class='status-down'>Down</span>";
+        document.getElementById("cloudStatus").innerHTML = status.cloudflared === "OK" ?
+            "<span class='status-ok'>OK</span>" :
+            "<span class='status-down'>Down</span>";
+        document.getElementById("lastCheck").innerText = status.last_check;
+        logEvent(`Status-Check: n8n=${status.n8n}, Cloud=${status.cloudflared}`);
+      } catch (e) {
+        console.error("Fehler beim Status-Check:", e);
+        logEvent("Fehler beim Status-Check.");
+      }
+    }
+
+    function restartServices() {
+      logEvent("Restart-Button gedrückt (noch Dummy).");
+      alert("Restart von n8n & Cloudflared wird bald automatisiert.");
+    }
 
     // ---- Backup ----
     function createBackup() {
@@ -132,12 +137,6 @@ async function checkStatus() {
       appData.meta.lastBackup = new Date().toLocaleString();
       document.getElementById("lastBackup").innerText = appData.meta.lastBackup;
       logEvent(`Backup erstellt: ${filename}`);
-    }
-
-    // ---- Telegram Test ----
-    function telegramTest() {
-      alert("Telegram Test (Dummy).");
-      logEvent("Telegram Test ausgeführt.");
     }
 
     // ---- Memorybank ----
@@ -157,60 +156,24 @@ async function checkStatus() {
       });
     }
 
-    function addOrUpdateMemory() {
+    async function addOrUpdateMemory() {
       const key = document.getElementById("key").value.trim();
       const value = document.getElementById("value").value.trim();
       if (!key) return alert("Bitte Key eingeben.");
       appData.memory[key] = value;
-      logEvent(`Memory updated: ${key}=${value}`);
+      await saveToServer();
       renderMemory();
       document.getElementById("key").value = "";
       document.getElementById("value").value = "";
     }
 
-    function editMemory(key) {
-      document.getElementById("key").value = key;
-      document.getElementById("value").value = appData.memory[key];
-    }
-
-    function deleteMemory(key) {
-      delete appData.memory[key];
-      logEvent(`Memory deleted: ${key}`);
-      renderMemory();
-    }
-
-    // ---- To-Do ----
-    function renderTasks() {
-      const taskList = document.getElementById("taskList");
-      taskList.innerHTML = "";
-      appData.todos.forEach((task, i) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span class="${task.done ? 'completed' : ''}" onclick="toggleTask(${i})">${task.text}</span>
-          <button onclick="deleteTask(${i})">Delete</button>`;
-        taskList.appendChild(li);
-      });
-    }
-
-    function addTask() {
-      const newTask = document.getElementById("newTask").value.trim();
-      if (!newTask) return;
-      appData.todos.push({ text: newTask, done: false });
-      logEvent(`Task added: ${newTask}`);
-      renderTasks();
-      document.getElementById("newTask").value = "";
-    }
-
-    function toggleTask(i) {
-      appData.todos[i].done = !appData.todos[i].done;
-      logEvent(`Task toggled: ${appData.todos[i].text} (${appData.todos[i].done?'done':'open'})`);
-      renderTasks();
-    }
-
-    function deleteTask(i) {
-      logEvent(`Task deleted: ${appData.todos[i].text}`);
-      appData.todos.splice(i, 1);
-      renderTasks();
+    async function saveToServer() {
+      try {
+        await fetch(`${API_URL}?action=write&key=memory&value=${encodeURIComponent(JSON.stringify(appData.memory))}`);
+        logEvent("Memorybank gespeichert.");
+      } catch (e) {
+        console.error("Fehler beim Speichern:", e);
+      }
     }
 
     // ---- Logs ----
@@ -234,8 +197,6 @@ async function checkStatus() {
     // Init
     checkStatus();
     renderMemory();
-    renderTasks();
   </script>
 </body>
 </html>
-
