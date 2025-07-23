@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Control Center 1.4</title>
+  <title>Eva Control Center 2.0</title>
   <style>
     body { font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; padding: 20px; }
     header { display: flex; align-items: center; margin-bottom: 20px; }
@@ -31,8 +31,8 @@
 </head>
 <body>
   <header>
-    <img src="eva-logo.png" alt="Eva Control Logo">
-    <h2>Eva Control Center 1.4</h2>
+    <img src="eva_control_center.webp" alt="Eva Control Logo">
+    <h2>Eva Control Center 2.0</h2>
   </header>
 
   <div class="tabs">
@@ -51,10 +51,8 @@
     <p><strong>Letztes Backup:</strong> <span id="lastBackup">--</span></p>
     <button onclick="checkStatus()">Jetzt Status prüfen</button>
     <button onclick="createBackup()">Jetzt Backup erstellen</button>
+    <button onclick="restartServices()">Restart n8n & Cloudflared</button>
     <button onclick="telegramTest()">Telegram Test</button>
-    <button onclick="telegramDiagnose()">Telegram Diagnose</button>
-    <button onclick="suggestImprovements()">Zeige Verbesserungen</button>
-    <ul id="improvements"></ul>
   </div>
 
   <!-- Memorybank -->
@@ -63,7 +61,6 @@
     <input id="key" placeholder="Key" />
     <input id="value" placeholder="Value" />
     <button onclick="addOrUpdateMemory()">Add / Update</button>
-    <button onclick="exportData()">Export JSON</button>
     <table>
       <thead><tr><th>Key</th><th>Value</th><th>Action</th></tr></thead>
       <tbody id="memoryList"></tbody>
@@ -86,16 +83,13 @@
   </div>
 
   <div class="footer">
-    <p><strong>Version:</strong> 1.4 | <strong>Changelog:</strong> Server-Sync & Telegram-Test.</p>
+    <p><strong>Version:</strong> 2.0 | <strong>Status:</strong> Basis 2.0 mit Dummy-Status und Backup.</p>
   </div>
 
   <script>
     const TOKEN = "EVA12345";
     const API_URL = "https://45dgof8.com/eva_memory/eva_memory.php";
-    const n8nURL = "https://n8n.45dgof8.com";
-    const cloudURL = "https://45dgof8.com";
-    const TELEGRAM_TOKEN = "8125749231:AAFTjA4pLBqBqUE1C30fzst8JsEe-9rRRuE"; 
-    const TELEGRAM_CHAT_ID = "5032947163"; // Deine Chat-ID hier eintragen
+    const BACKUP_PATH = "https://45dgof8.com/eva_memory/backup/";
 
     let appData = { memory: {}, todos: [], logs: [], meta: {} };
 
@@ -107,50 +101,22 @@
       document.getElementById(tab).classList.add('active');
     }
 
-    // ---- Server Sync ----
-    async function loadFromServer() {
-      try {
-        const res = await fetch(`${API_URL}?action=read&token=${TOKEN}`);
-        appData = await res.json();
-        renderMemory();
-        renderTasks();
-        renderLogs();
-        if (appData.meta.lastBackup) document.getElementById("lastBackup").innerText = appData.meta.lastBackup;
-      } catch (e) {
-        console.error("Fehler beim Laden von Server:", e);
-      }
-    }
-
-    async function saveToServer() {
-      try {
-        await fetch(`${API_URL}?action=sync&token=${TOKEN}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(appData)
-        });
-      } catch (e) {
-        console.error("Fehler beim Speichern:", e);
-      }
-    }
-
-    // ---- Dashboard ----
-    async function checkStatus() {
-      document.getElementById("n8nStatus").innerText = "Prüfe...";
-      document.getElementById("cloudStatus").innerText = "Prüfe...";
-      const n8nOK = await pingURL(n8nURL);
-      const cloudOK = await pingURL(cloudURL);
-      document.getElementById("n8nStatus").innerHTML = n8nOK ? "<span class='status-ok'>OK</span>" : "<span class='status-down'>Down</span>";
-      document.getElementById("cloudStatus").innerHTML = cloudOK ? "<span class='status-ok'>OK</span>" : "<span class='status-down'>Down</span>";
+    // ---- Status ----
+    function checkStatus() {
       const now = new Date().toLocaleString();
       document.getElementById("lastCheck").innerText = now;
-      logEvent(`Status-Check: n8n=${n8nOK?'OK':'Down'}, Cloud=${cloudOK?'OK':'Down'}`);
+      // Dummy status, später durch fetch(eva_status.php) ersetzt
+      document.getElementById("n8nStatus").innerHTML = "<span class='status-ok'>OK</span>";
+      document.getElementById("cloudStatus").innerHTML = "<span class='status-ok'>OK</span>";
+      logEvent(`Status-Check durchgeführt.`);
     }
 
-    async function pingURL(url) {
-      try { await fetch(url, { mode: "no-cors" }); return true; }
-      catch (e) { return false; }
+    function restartServices() {
+      logEvent("Restart-Button gedrückt (Dummy).");
+      alert("Restart n8n & Cloudflared (Dummy).");
     }
 
+    // ---- Backup ----
     function createBackup() {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const filename = `eva_backup_${timestamp}.json`;
@@ -162,26 +128,14 @@
       a.click();
       URL.revokeObjectURL(url);
       appData.meta.lastBackup = new Date().toLocaleString();
-      logEvent(`Backup erstellt: ${filename}`);
-      saveToServer();
       document.getElementById("lastBackup").innerText = appData.meta.lastBackup;
+      logEvent(`Backup erstellt: ${filename}`);
     }
 
+    // ---- Telegram Test ----
     function telegramTest() {
-      if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
-        alert("Telegram Token oder Chat-ID fehlt!");
-        return;
-      }
-      fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=Hello%20Eva!`)
-        .then(() => logEvent("Telegram Testnachricht gesendet"))
-        .catch(err => logEvent("Telegram Fehler: " + err));
-    }
-
-    function suggestImprovements() {
-      document.getElementById("improvements").innerHTML = `
-        <li>Server-Backup Rotation implementieren</li>
-        <li>Telegram-Benachrichtigung bei Fehlern aktivieren</li>
-        <li>n8n Workflows automatisieren</li>`;
+      alert("Telegram Test (Dummy).");
+      logEvent("Telegram Test ausgeführt.");
     }
 
     // ---- Memorybank ----
@@ -207,7 +161,6 @@
       if (!key) return alert("Bitte Key eingeben.");
       appData.memory[key] = value;
       logEvent(`Memory updated: ${key}=${value}`);
-      saveToServer();
       renderMemory();
       document.getElementById("key").value = "";
       document.getElementById("value").value = "";
@@ -221,7 +174,6 @@
     function deleteMemory(key) {
       delete appData.memory[key];
       logEvent(`Memory deleted: ${key}`);
-      saveToServer();
       renderMemory();
     }
 
@@ -243,7 +195,6 @@
       if (!newTask) return;
       appData.todos.push({ text: newTask, done: false });
       logEvent(`Task added: ${newTask}`);
-      saveToServer();
       renderTasks();
       document.getElementById("newTask").value = "";
     }
@@ -251,14 +202,12 @@
     function toggleTask(i) {
       appData.todos[i].done = !appData.todos[i].done;
       logEvent(`Task toggled: ${appData.todos[i].text} (${appData.todos[i].done?'done':'open'})`);
-      saveToServer();
       renderTasks();
     }
 
     function deleteTask(i) {
       logEvent(`Task deleted: ${appData.todos[i].text}`);
       appData.todos.splice(i, 1);
-      saveToServer();
       renderTasks();
     }
 
@@ -277,55 +226,14 @@
     function clearLogs() {
       if (!confirm("Alle Logs löschen?")) return;
       appData.logs = [];
-      saveToServer();
       renderLogs();
     }
 
-    function exportData() { createBackup(); }
-
-    // ---- Init ----
-    loadFromServer();
+    // Init
     checkStatus();
-    async function telegramDiagnose() {
-  if (!TELEGRAM_TOKEN) {
-    alert("Bitte TELEGRAM_TOKEN in den Code eintragen!");
-    return;
-  }
-  
-  try {
-    // 1. Token prüfen
-    let res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/getMe`);
-    let data = await res.json();
-    if (!data.ok) {
-      alert("❌ Telegram-Token ist ungültig oder nicht erreichbar!");
-      logEvent("Telegram Diagnose: Token ungültig.");
-      return;
-    } else {
-      logEvent(`Telegram Diagnose: Bot gefunden (@${data.result.username})`);
-    }
-
-    // 2. Testnachricht, falls Chat-ID existiert
-    if (TELEGRAM_CHAT_ID) {
-      let testRes = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=Eva%20sagt%20Hallo!`
-      );
-      let testData = await testRes.json();
-      if (testData.ok) {
-        alert(`✅ Telegram OK! Nachricht an ${TELEGRAM_CHAT_ID} gesendet.`);
-        logEvent("Telegram Diagnose: Nachricht erfolgreich gesendet.");
-      } else {
-        alert("⚠️ Bot gefunden, aber Nachricht konnte nicht gesendet werden.");
-        logEvent("Telegram Diagnose: Nachricht nicht gesendet.");
-      }
-    } else {
-      alert("ℹ️ Bot gefunden. Bitte TELEGRAM_CHAT_ID eintragen, um Nachrichten zu testen.");
-      logEvent("Telegram Diagnose: Chat-ID fehlt.");
-    }
-  } catch (error) {
-    alert("❌ Telegram-Verbindung fehlgeschlagen: " + error);
-    logEvent("Telegram Diagnose: Fehler " + error);
-  }
-}
+    renderMemory();
+    renderTasks();
   </script>
 </body>
 </html>
+
