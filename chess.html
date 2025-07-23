@@ -11,10 +11,9 @@
 </head>
 <body>
   <div id="root"></div>
-  <script type="module">
-    import * as THREE from 'https://cdn.skypack.dev/three';
-    import { OrbitControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls.js';
-
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x202020);
 
@@ -24,10 +23,9 @@
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.physicallyCorrectLights = true;
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    document.getElementById('root').appendChild(renderer.domElement);
+    document.body.appendChild(renderer.domElement);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.target.set(3.5, 0, 3.5);
     controls.update();
 
@@ -39,7 +37,7 @@
     const ambient = new THREE.AmbientLight(0x404040, 1.2);
     scene.add(ambient);
 
-    // Load marble textures with shininess
+    // Load marble textures
     const textureLoader = new THREE.TextureLoader();
     const whiteMarble = textureLoader.load('https://threejs.org/examples/textures/marble.jpg');
     const blackMarble = textureLoader.load('https://threejs.org/examples/textures/marble.jpg');
@@ -116,6 +114,7 @@
       bishop.add(bottom, body, top);
       return bishop;
     };
+
     const createKnight = (color) => {
       const material = createMaterial(color);
       const knight = new THREE.Group();
@@ -183,7 +182,6 @@
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     };
-
     animate();
   </script>
 </body>
