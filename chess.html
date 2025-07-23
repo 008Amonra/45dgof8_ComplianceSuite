@@ -11,8 +11,9 @@
 </head>
 <body>
   <div id="root"></div>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Use reliable CDN links for Three.js -->
+  <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.150.1/examples/js/controls/OrbitControls.js"></script>
   <script>
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x202020);
@@ -37,7 +38,6 @@
     const ambient = new THREE.AmbientLight(0x404040, 1.2);
     scene.add(ambient);
 
-    // Load marble textures
     const textureLoader = new THREE.TextureLoader();
     const whiteMarble = textureLoader.load('https://threejs.org/examples/textures/marble.jpg');
     const blackMarble = textureLoader.load('https://threejs.org/examples/textures/marble.jpg');
@@ -49,7 +49,6 @@
       return mat;
     }
 
-    // Chessboard
     const board = new THREE.Group();
     for (let x = 0; x < 8; x++) {
       for (let z = 0; z < 8; z++) {
@@ -64,7 +63,6 @@
     }
     scene.add(board);
 
-    // Chess pieces group
     const pieces = new THREE.Group();
 
     const createMaterial = (color) => {
@@ -172,6 +170,7 @@
         pieces.add(piece);
       }
     };
+
     placePieces(white, 0);
     placePieces(black, 7);
 
