@@ -1,0 +1,29 @@
+===== EVA MEMORY HISTORY =====
+Stand: 2025-07-25
+Pfad: /home/jace/eva_memory
+
+[1] Wichtige Dateien:
+    - secrets.json       → Tokens, URLs, Containername
+    - n8n-autoheal.sh    → Überprüft n8n + Tunnel, sendet Telegram-Alarm
+    - backup_n8n.sh      → Macht Backups der n8n Datenbank (kommt bald)
+    - eva-control.html   → Web-Dashboard (läuft unter https://45dgof8.com/eva_memory/)
+    - history.txt        → Diese Übersicht
+
+[2] Änderungen:
+    2025-07-25:
+    - secrets.json Template erstellt
+    - n8n-autoheal.sh eingeführt
+    - Eva Control Center (v2.x) verknüpft
+
+[3] To-Do:
+    - backup_n8n.sh erstellen
+    - Cronjobs dokumentieren
+    - Telegram Bot und Chat-ID bestätigen
+
+[4] Cronjobs:
+    - */10 * * * * /home/jace/n8n-autoheal.sh
+
+[5] Hinweise:
+    - n8n läuft als Docker-Container "n8n"
+    - Cloudflared Tunnel-Name: n8n-tunnel (UUID siehe secrets.json)
+
