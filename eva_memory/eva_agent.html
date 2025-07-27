@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eva Agent Console</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h2 {
+      color: #444;
+    }
+    select, textarea, button {
+      margin: 5px 0;
+      padding: 8px;
+      font-size: 14px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-family: monospace;
+    }
+    button {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      margin-right: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h2>Eva Agent Console</h2>
 
+  <div>
+    <button onclick="loadFiles()">Reload File List</button>
+    <button onclick="createBackup()">Create Backup</button>
+  </div>
+
+  <div>
+    <label for="fileSelect">Files:</label>
+    <select id="fileSelect" onchange="loadFileContent()"></select>
+  </div>
+
+  <div>
+    <textarea id="fileContent" placeholder="File content will appear here..."></textarea>
+  </div>
+
+  <div>
+    <button onclick="saveFile()">Save File</button>
+    <button onclick="deleteFile()">Delete File</button>
+  </div>
+
+  <div id="status">Ready.</div>
+
+  <script>
+    const API_URL = "agent_api.php?token=EVA12345";
+
+    async function apiRequest(action, file = '', method = 'GET', body = null) {
+      let url = `${API_URL}&action=${action}`;
+      if (file) url += `&file=${encodeURIComponent(file)}`;
+      const options = { method };
+      if (body) options.body = body;
+      const response = await fetch(url, options);
+      return response.json();
+    }
+
+    async function loadFiles() {
+      const res = await apiRequest('list');
+      const select = document.getElementById('fileSelect');
+      select.innerHTML = '';
+      if (res.status === 'ok') {
+        res.files.forEach(f => {
+          const opt = document.createElement('option');
+          opt.value = f;
+          opt.textContent = f;
+          select.appendChild(opt);
+        });
+        document.getElementById('status').textContent = `Loaded ${res.files.length} files.`;
+        if (res.files.length) loadFileContent();
+      } else {
+        document.getElementById('status').textContent = res.message || 'Error loading files.';
+      }
+    }
+
+    async function loadFileContent() {
+      const file = document.getElementById('fileSelect').value;
+      if (!file) return;
+      const res = await apiRequest('read', file);
+      if (res.status === 'ok') {
+        document.getElementById('fileContent').value = res.content;
+        document.getElementById('status').textContent = `Loaded: ${file}`;
+      } else {
+        document.getElementById('status').textContent = res.message;
+      }
+    }
+
+    async function saveFile() {
+      const file = document.getElementById('fileSelect').value;
+      const content = document.getElementById('fileContent').value;
+      const res = await apiRequest('write', file, 'POST', content);
+      document.getElementById('status').textContent = res.message || 'Save complete.';
+    }
+
+    async function deleteFile() {
+      if (!confirm('Delete this file?')) return;
+      const file = document.getElementById('fileSelect').value;
+      const res = await apiRequest('delete', file);
+      document.getElementById('status').textContent = res.message || 'File deleted.';
+      loadFiles();
+    }
+
+    async function createBackup() {
+      const res = await apiRequest('backup');
+      document.getElementById('status').textContent = res.message || 'Backup done.';
+      loadFiles();
+    }
+
+    // Init
+    loadFiles();
+  </script>
+</body>
+</html>
