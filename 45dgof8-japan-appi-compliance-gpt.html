@@ -180,7 +180,7 @@
     <div style="max-width: 420px; margin: 40px auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
       <h3>🇯🇵 Subscribe Now with PayPal</h3>
       <p>All plans are billed in Japanese Yen.</p>
-      <div id="paypal-container-VXZ8E2T96XB5A" style="margin-top: 1rem;"></div>
+      <div id="paypal-container-en" style="margin-top: 1rem;"></div>
       <p style="margin-top: 1rem;"><small>💳 Credit Card & PayPal Supported</small></p>
     </div>
   </section>
@@ -213,7 +213,7 @@
     <div style="max-width: 420px; margin: 40px auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
       <h3>🇯🇵 PayPalで今すぐ購読</h3>
       <p>すべてのプランは日本円で請求されます。</p>
-      <div id="paypal-container-VXZ8E2T96XB5A" style="margin-top: 1rem;"></div>
+      <div id="paypal-container-jp" style="margin-top: 1rem;"></div>
       <p style="margin-top: 1rem;"><small>💳 クレジットカード & PayPal 対応</small></p>
     </div>
   </section>
@@ -250,7 +250,8 @@ window.onload = function () {
 <!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&currency=JPY"></script>
 <script>
-  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-VXZ8E2T96XB5A");
+  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-en");
+  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-jp");
 </script>
 
 </body>
