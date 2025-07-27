@@ -22,64 +22,6 @@
   <meta name="twitter:description" content="AI assistant for APPI law compliance in Japan.">
   <meta name="twitter:image" content="https://45dgof8.com/JAPAN_APPI_COMPLIANCE_GPT.webp">
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "APP Compliance GPT",
-  "alternateName": "Japan APPI Compliance GPT",
-  "applicationCategory": "LegalService",
-  "operatingSystem": "Web",
-  "browserRequirements": "Requires JavaScript",
-  "description": "AI-powered privacy assistant that helps companies comply with Japan's Act on the Protection of Personal Information (APPI). Detects risk, automates checks, and generates compliance roadmaps.",
-  "url": "https://45dgof8.com/45dgof8-japan-appi-compliance-gpt.html",
-  "publisher": {
-    "@type": "Organization",
-    "name": "45dgof8",
-    "url": "https://45dgof8.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://45dgof8.com/assets/images/webp/45dgof8.webp"
-    }
-  },
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Starter Plan",
-      "price": "500",
-      "priceCurrency": "JPY",
-      "availability": "https://schema.org/InStock",
-      "url": "https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f-45dgof8-japan-appi-compliance-gpt"
-    },
-    {
-      "@type": "Offer",
-      "name": "Pro Plan",
-      "price": "2500",
-      "priceCurrency": "JPY",
-      "availability": "https://schema.org/InStock",
-      "url": "https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f-45dgof8-japan-appi-compliance-gpt"
-    },
-    {
-      "@type": "Offer",
-      "name": "Enterprise Plan",
-      "price": "9800",
-      "priceCurrency": "JPY",
-      "availability": "https://schema.org/InStock",
-      "url": "https://chatgpt.com/g/g-676739efea60819198a77b106e854b7f-45dgof8-japan-appi-compliance-gpt"
-    }
-  ],
-  "applicationSuite": "45dgof8 Privacy Tools",
-  "featureList": [
-    "Automated APPI Risk Analysis",
-    "Cross-Border Data Flow Checker",
-    "Vendor Risk Flagging",
-    "Real-Time Legal Monitoring",
-    "Privacy Roadmap Generator"
-  ],
-  "countriesSupported": "JP"
-}
-</script>
-
   <!-- Styles -->
   <style>
     body {
@@ -168,22 +110,6 @@
     <div class="card">🌸 <strong>Cross-Border:</strong> Compliant international transfers.</div>
     <div class="card">🌸 <strong>Incident Response:</strong> Fast, guided breach handling.</div>
   </section>
-
-  <!-- Subscription -->
-  <section class="section">
-    <h2>🌸 Subscribe – Japan Support Tier</h2>
-    <div class="card"><strong>Basic Bloom:</strong> ¥500/month</div>
-    <div class="card"><strong>Professional Growth:</strong> ¥2,500/month</div>
-    <div class="card"><strong>Enterprise Sakura:</strong> ¥9,900/month</div>
-
-    <!-- PayPal Module -->
-    <div style="max-width: 420px; margin: 40px auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-      <h3>🇯🇵 Subscribe Now with PayPal</h3>
-      <p>All plans are billed in Japanese Yen.</p>
-      <div id="paypal-container-en" style="margin-top: 1rem;"></div>
-      <p style="margin-top: 1rem;"><small>💳 Credit Card & PayPal Supported</small></p>
-    </div>
-  </section>
 </div>
 
 <!-- Japanese Section -->
@@ -202,21 +128,18 @@
     <div class="card">🌸 <strong>越境データ移転:</strong> 国際移転の適正対応。</div>
     <div class="card">🌸 <strong>インシデント対応:</strong> 漏えい時の迅速なガイド。</div>
   </section>
+</div>
 
-  <!-- Subscription -->
-  <section class="section">
-    <h2>🌸 サブスクリプション – 日本向けプラン</h2>
-    <div class="card"><strong>ベーシック・ブルーム:</strong> ¥500/月</div>
-    <div class="card"><strong>プロフェッショナル・グロース:</strong> ¥2,500/月</div>
-    <div class="card"><strong>エンタープライズ・サクラ:</strong> ¥9,900/月</div>
-
-    <div style="max-width: 420px; margin: 40px auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-      <h3>🇯🇵 PayPalで今すぐ購読</h3>
-      <p>すべてのプランは日本円で請求されます。</p>
-      <div id="paypal-container-jp" style="margin-top: 1rem;"></div>
-      <p style="margin-top: 1rem;"><small>💳 クレジットカード & PayPal 対応</small></p>
-    </div>
-  </section>
+<!-- Unified PayPal Module -->
+<div style="max-width: 420px; margin: 40px auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+  <h3>🇯🇵 サブスクリプションを選択してPayPalで購読</h3>
+  <select id="plan-selector" onchange="updatePayPal()">
+    <option value="basic">ベーシック・ブルーム – ¥500</option>
+    <option value="pro">プロフェッショナル・グロース – ¥2,500</option>
+    <option value="enterprise">エンタープライズ・サクラ – ¥9,900</option>
+  </select>
+  <div id="paypal-container" style="margin-top: 1rem;"></div>
+  <p style="margin-top: 1rem;"><small>💳 クレジットカード & PayPal 対応</small></p>
 </div>
 
 <!-- Footer -->
@@ -244,14 +167,24 @@ window.onload = function () {
   const savedLang = localStorage.getItem('preferredLang');
   const browserLang = navigator.language.startsWith('ja') ? 'jp' : 'en';
   setLanguage(savedLang || browserLang);
+  updatePayPal();
 };
 </script>
 
 <!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&currency=JPY"></script>
 <script>
-  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-en");
-  paypal.HostedButtons({ hostedButtonId: "VXZ8E2T96XB5A" }).render("#paypal-container-jp");
+const paypalButtons = {
+  basic: "VXZ8E2T96XB5A",    // Basic Plan ID (¥500)
+  pro:   "YOUR_PRO_PLAN_ID", // <-- Replace with Pro Plan ID
+  enterprise: "YOUR_ENT_PLAN_ID" // <-- Replace with Enterprise Plan ID
+};
+
+function updatePayPal() {
+  const plan = document.getElementById('plan-selector').value;
+  document.querySelector('#paypal-container').innerHTML = "";
+  paypal.HostedButtons({ hostedButtonId: paypalButtons[plan] }).render('#paypal-container');
+}
 </script>
 
 </body>
