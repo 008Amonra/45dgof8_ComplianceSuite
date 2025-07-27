@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Memory 2.0 (Static)</title>
+  <title>Eva Memory 2.0 (Server)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,9 +11,7 @@
       background-color: #f5f5f5;
       color: #333;
     }
-    h2 {
-      color: #444;
-    }
+    h2 { color: #444; }
     table {
       width: 100%;
       max-width: 500px;
@@ -21,13 +19,8 @@
       margin-top: 10px;
       background-color: #fff;
     }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 8px; text-align: left; }
     button {
       margin: 2px;
       padding: 5px 8px;
@@ -37,20 +30,13 @@
       border-radius: 3px;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #0056b3;
-    }
-    input {
-      padding: 5px;
-      margin: 5px 2px;
-    }
-    .actions {
-      text-align: center;
-    }
+    button:hover { background-color: #0056b3; }
+    input { padding: 5px; margin: 5px 2px; }
+    .actions { text-align: center; }
   </style>
 </head>
 <body>
-  <h2>Eva Memory 2.0 (Local Storage)</h2>
+  <h2>Eva Memory 2.0 (Server)</h2>
   <div>
     <input id="key" placeholder="Key" />
     <input id="value" placeholder="Value" />
@@ -66,56 +52,56 @@
         <th class="actions">Actions</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Memory entries will appear here -->
-    </tbody>
+    <tbody></tbody>
   </table>
 
   <script>
-    const MEMORY_KEY = "eva_memory_data";
+    const API_URL = 'eva_memory.php?token=EVA12345';
 
-    function getMemory() {
-      let data = localStorage.getItem(MEMORY_KEY);
-      return data ? JSON.parse(data) : {};
+    async function getMemory() {
+      const res = await fetch(`${API_URL}&action=read`);
+      const data = await res.json();
+      return data.memory || {};
     }
 
-    function saveMemory(data) {
-      localStorage.setItem(MEMORY_KEY, JSON.stringify(data));
+    async function saveEntry(key, value) {
+      await fetch(`${API_URL}&action=write&key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`);
       renderTable();
     }
 
-    function addOrUpdate() {
+    async function deleteEntry(key) {
+      await saveEntry(key, ""); // Set to empty, or remove
+      const memory = await getMemory();
+      delete memory[key];
+      await syncMemory(memory);
+    }
+
+    async function syncMemory(memory) {
+      await fetch(`${API_URL}&action=sync`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({memory, todos: [], logs: []})
+      });
+      renderTable();
+    }
+
+    async function addOrUpdate() {
       const key = document.getElementById("key").value.trim();
       const value = document.getElementById("value").value.trim();
       if (!key) return alert("Please enter a key.");
-      let data = getMemory();
-      data[key] = value || "";
-      saveMemory(data);
+      await saveEntry(key, value);
       document.getElementById("key").value = "";
       document.getElementById("value").value = "";
     }
 
-    function deleteEntry(key) {
-      let data = getMemory();
-      delete data[key];
-      saveMemory(data);
-    }
-
-    function editEntry(key) {
-      const data = getMemory();
-      document.getElementById("key").value = key;
-      document.getElementById("value").value = data[key];
-    }
-
-    function clearMemory() {
+    async function clearMemory() {
       if (!confirm("Clear all memory?")) return;
-      localStorage.removeItem(MEMORY_KEY);
-      renderTable();
+      await syncMemory({});
     }
 
-    function renderTable() {
-      const data = getMemory();
-      const tbody = document.getElementById("memoryTable").querySelector("tbody");
+    async function renderTable() {
+      const data = await getMemory();
+      const tbody = document.querySelector("#memoryTable tbody");
       tbody.innerHTML = "";
       Object.keys(data).forEach(key => {
         const tr = document.createElement("tr");
@@ -131,7 +117,13 @@
       });
     }
 
-    // Initialize the table on page load
+    async function editEntry(key) {
+      const data = await getMemory();
+      document.getElementById("key").value = key;
+      document.getElementById("value").value = data[key];
+    }
+
+    // Init
     renderTable();
   </script>
 </body>
