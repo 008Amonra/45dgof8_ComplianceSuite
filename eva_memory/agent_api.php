@@ -1,11 +1,11 @@
-{<?php
+<?php
 // =============================
-// Eva Agent File API
+// Eva Agent File API (for /eva_memory/)
 // =============================
 
 // --- CONFIG ---
-$baseDir = __DIR__ . '/eva_memory'; // Change this to your folder
-$token = 'EVA12345';                // Security token
+$baseDir = __DIR__ . '/';  // This script will sit in /eva_memory/
+$token = 'EVA12345';       // Security token
 
 header('Content-Type: application/json');
 
@@ -20,7 +20,7 @@ if ($reqToken !== $token) {
 function safePath($file) {
     global $baseDir;
     $file = basename($file); // Avoid directory traversal
-    return $baseDir . '/' . $file;
+    return $baseDir . $file;
 }
 
 // --- ACTIONS ---
@@ -28,7 +28,7 @@ $action = $_GET['action'] ?? '';
 
 if ($action === 'list') {
     // List files in the baseDir
-    $files = array_values(array_diff(scandir($baseDir), ['.', '..']));
+    $files = array_values(array_diff(scandir($baseDir), ['.', '..', 'agent_api.php']));
     echo json_encode(['status' => 'ok', 'files' => $files]);
     exit;
 }
@@ -81,6 +81,20 @@ if ($action === 'delete') {
     exit;
 }
 
+// --- Backup Action ---
+if ($action === 'backup') {
+    $source = safePath('eva_memory.json');
+    if (!file_exists($source)) {
+        echo json_encode(['status' => 'error', 'message' => 'eva_memory.json not found']);
+        exit;
+    }
+    $backupName = 'eva_memory_backup_' . date('Ymd_His') . '.json';
+    $target = safePath($backupName);
+    copy($source, $target);
+    echo json_encode(['status' => 'ok', 'message' => 'Backup created', 'backup_file' => $backupName]);
+    exit;
+}
+
 echo json_encode(['status' => 'error', 'message' => 'Unknown action']);
 exit;
-?>}
+?>
