@@ -103,6 +103,19 @@
       margin-top: 0.5em;
     }
 
+    .lang-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #004aad;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.6em;
@@ -123,89 +136,108 @@
         padding: 0.6em;
       }
     }
-    </head>
-<body>
-    <header>
-        <img src="southkorea.webp" alt="South Korea Compliance AI Visual" style="width:100%; height:auto;">
-    </header>
   </style>
 </head>
 <body>
-    <header>
-        <img src="southkorea.webp" alt="South Korea Compliance AI Visual" style="width:100%; height:auto;">
-    </header>
-<header>
-  <h1>PIPA Compliance Made Simple</h1>
-  <p>Your affordable AI partner for South Korea's privacy law compliance</p>
-  <img src="4fc335d1-438a-4c2c-9f72-0527e77bd160.png" alt="South Korea Compliance AI Visual">
-  <div class="image-credit">
-    Image generated with <a href="https://creator.nightcafe.studio/" target="_blank">NightCafe Studio</a> using HiDream I1 Dev.
+  <button class="lang-toggle" onclick="toggleLanguage()">한국어 / EN</button>
+
+  <header>
+    <img src="southkorea.webp" alt="South Korea Compliance AI Visual" style="width:100%; height:auto;">
+    <h1 data-en="PIPA Compliance Made Simple" data-ko="PIPA 준수, 간단하게">PIPA Compliance Made Simple</h1>
+    <p data-en="Your affordable AI partner for South Korea's privacy law compliance" data-ko="대한민국 개인정보 보호법 준수를 위한 합리적인 AI 파트너">Your affordable AI partner for South Korea's privacy law compliance</p>
+    <img src="4fc335d1-438a-4c2c-9f72-0527e77bd160.png" alt="South Korea Compliance AI Visual">
+    <div class="image-credit">
+      <span data-en="Image generated with" data-ko="이미지는 다음을 사용해 생성됨">Image generated with</span> <a href="https://creator.nightcafe.studio/" target="_blank">NightCafe Studio</a> <span data-en="using HiDream I1 Dev." data-ko="HiDream I1 Dev. 사용">using HiDream I1 Dev.</span>
+    </div>
+  </header>
+
+  <section>
+    <h2 data-en="⚖️ What is the 45dgof8 South Korea PIPA Compliance GPT?" data-ko="⚖️ 45dgof8 한국 PIPA 컴플라이언스 GPT란?">⚖️ What is the 45dgof8 South Korea PIPA Compliance GPT?</h2>
+    <p data-en="It’s a purpose-built AI tool that helps businesses, startups, and legal teams comply with the Personal Information Protection Act (PIPA) in South Korea. This GPT streamlines contract reviews, privacy audits, breach management, and cross-border data checks — for a fraction of traditional legal costs."
+       data-ko="이 GPT는 기업, 스타트업, 법률 팀이 대한민국 개인정보 보호법(PIPA)을 준수하도록 돕기 위해 설계된 AI 도구입니다. 계약 검토, 프라이버시 감사, 침해 관리, 국경 간 데이터 검증을 기존 법률 비용의 일부만으로 간소화합니다.">
+       It’s a purpose-built AI tool that helps businesses, startups, and legal teams comply with the Personal Information Protection Act (PIPA) in South Korea. This GPT streamlines contract reviews, privacy audits, breach management, and cross-border data checks — for a fraction of traditional legal costs.
+    </p>
+
+    <a href="https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button" data-en="💬 Try the GPT Now" data-ko="💬 지금 GPT 사용하기">💬 Try the GPT Now</a>
+
+    <h2 data-en="📋 Transparent, Discounted Pricing (USD)" data-ko="📋 투명하고 할인된 가격 (USD)">📋 Transparent, Discounted Pricing (USD)</h2>
+    <p data-en="Promotional early-access pricing." data-ko="프로모션 얼리 액세스 가격.">Promotional early-access pricing.</p>
+    <table class="pricing-table">
+      <tr>
+        <th data-en="Service" data-ko="서비스">Service</th>
+        <th data-en="Price" data-ko="가격">Price</th>
+        <th data-en="Description" data-ko="설명">Description</th>
+      </tr>
+      <tr>
+        <td data-en="Contract Review" data-ko="계약 검토">Contract Review</td>
+        <td>$10.00</td>
+        <td data-en="Multilingual contract support" data-ko="다국어 계약 지원">Multilingual contract support</td>
+      </tr>
+      <tr>
+        <td data-en="Compliance Audit" data-ko="컴플라이언스 감사">Compliance Audit</td>
+        <td>$11.00</td>
+        <td data-en="Full PIPA compliance check" data-ko="완전한 PIPA 준수 점검">Full PIPA compliance check</td>
+      </tr>
+      <tr>
+        <td data-en="Custom Legal Advice" data-ko="맞춤형 법률 자문">Custom Legal Advice</td>
+        <td>$12.00</td>
+        <td data-en="Strategic support for complex needs" data-ko="복잡한 요구사항을 위한 전략적 지원">Strategic support for complex needs</td>
+      </tr>
+      <tr>
+        <td data-en="Employment Law Advice" data-ko="고용 법률 자문">Employment Law Advice</td>
+        <td>$9.00</td>
+        <td data-en="HR and employee data compliance" data-ko="인사 및 직원 데이터 준수">HR and employee data compliance</td>
+      </tr>
+    </table>
+
+    <h3 data-en="➕ Add-ons" data-ko="➕ 추가 서비스">➕ Add-ons</h3>
+    <ul>
+      <li data-en="<strong>Expedited Service:</strong> $3.66 — Get results in under 2 hours during business hours." 
+          data-ko="<strong>신속 서비스:</strong> $3.66 — 업무 시간 내 2시간 이내 결과 제공.">
+        <strong>Expedited Service:</strong> $3.66 — Get results in under 2 hours during business hours.
+      </li>
+      <li data-en="<strong>Bilingual Report Output:</strong> $2.16 — Receive your report in both Korean and English." 
+          data-ko="<strong>이중 언어 보고서:</strong> $2.16 — 한국어와 영어로 보고서 제공.">
+        <strong>Bilingual Report Output:</strong> $2.16 — Receive your report in both Korean and English.
+      </li>
+      <li data-en="<strong>Extended Compliance Check:</strong> $0.00 (included) — A deeper AI-powered scan that applies advanced PIPA rules and common audit flags. Ideal before sharing with human counsel." 
+          data-ko="<strong>확장 준수 점검:</strong> $0.00 (포함) — 고급 PIPA 규칙과 일반 감사 플래그를 적용한 심층 AI 검사. 인적 검토 전에 이상적.">
+        <strong>Extended Compliance Check:</strong> $0.00 (included) — A deeper AI-powered scan that applies advanced PIPA rules and common audit flags. Ideal before sharing with human counsel.
+      </li>
+    </ul>
+
+    <h2 data-en="💼 Perfect for:" data-ko="💼 추천 대상:">💼 Perfect for:</h2>
+    <ul>
+      <li data-en="Startups expanding into South Korea" data-ko="한국에 진출하는 스타트업">Startups expanding into South Korea</li>
+      <li data-en="Legal professionals scaling their practice" data-ko="업무 확장을 원하는 법률 전문가">Legal professionals scaling their practice</li>
+      <li data-en="Data protection officers handling cross-border transfers" data-ko="국경 간 데이터 전송을 관리하는 데이터 보호 책임자">Data protection officers handling cross-border transfers</li>
+      <li data-en="SMEs needing reliable, budget-friendly compliance help" data-ko="합리적인 비용으로 신뢰할 수 있는 준수 지원이 필요한 중소기업">SMEs needing reliable, budget-friendly compliance help</li>
+    </ul>
+
+    <h2 data-en="📣 Try It Now" data-ko="📣 지금 사용해 보세요">📣 Try It Now</h2>
+    <p data-en="Get instant, AI-powered compliance answers. No forms, no fuss — just helpful guidance."
+       data-ko="즉각적인 AI 기반 준수 답변을 받아보세요. 복잡한 양식 없이 간단하고 유용한 가이드만 제공합니다.">
+       Get instant, AI-powered compliance answers. No forms, no fuss — just helpful guidance.
+    </p>
+    <a href="https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button" data-en="🚀 Launch the GPT" data-ko="🚀 GPT 실행하기">🚀 Launch the GPT</a>
+  </section>
+
+  <div class="footer">
+    Maintained by Jens Guenther – Contact: <a href="/cdn-cgi/l/email-protection#13272677747c752b53747e727a7f3d707c7e"><span class="__cf_email__" data-cfemail="497d7c2d2e262f71092e24282025672a2624">[email&#160;protected]</span></a> | Support the project: <a href="https://paypal.me/45dgof8">Donate via PayPal</a>
+    <small data-en="Header image generated with NightCafe Studio (HiDream I1 Dev)." data-ko="헤더 이미지는 NightCafe Studio (HiDream I1 Dev)로 생성되었습니다.">
+      Header image generated with NightCafe Studio (HiDream I1 Dev).
+    </small>
   </div>
-</header>
 
-<section>
-  <h2>⚖️ What is the 45dgof8 South Korea PIPA Compliance GPT?</h2>
-  <p>
-    It’s a purpose-built AI tool that helps businesses, startups, and legal teams comply with the Personal Information Protection Act (PIPA) in South Korea. 
-    This GPT streamlines contract reviews, privacy audits, breach management, and cross-border data checks — for a fraction of traditional legal costs.
-  </p>
-
-  <a href="https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button">💬 Try the GPT Now</a>
-<h2>📋 Transparent, Discounted Pricing (USD)</h2>
-<p>Promotional early-access pricing.</p>
-<table class="pricing-table">
-  <tr>
-    <th>Service</th>
-    <th>Price</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>Contract Review</td>
-    <td>$10.00</td>
-    <td>Multilingual contract support</td>
-  </tr>
-  <tr>
-    <td>Compliance Audit</td>
-    <td>$11.00</td>
-    <td>Full PIPA compliance check</td>
-  </tr>
-  <tr>
-    <td>Custom Legal Advice</td>
-    <td>$12.00</td>
-    <td>Strategic support for complex needs</td>
-  </tr>
-  <tr>
-    <td>Employment Law Advice</td>
-    <td>$9.00</td>
-    <td>HR and employee data compliance</td>
-  </tr>
-</table>
-
-<h3>➕ Add-ons</h3>
-<ul>
-  <li><strong>Expedited Service:</strong> $3.66 — Get results in under 2 hours during business hours.</li>
-  <li><strong>Bilingual Report Output:</strong> $2.16 — Receive your report in both Korean and English.</li>
-  <li><strong>Extended Compliance Check:</strong> $0.00 (included) — A deeper AI-powered scan that applies advanced PIPA rules and common audit flags. Ideal before sharing with human counsel.</li>
-</ul>
-
-
-  <h2>💼 Perfect for:</h2>
-  <ul>
-    <li>Startups expanding into South Korea</li>
-    <li>Legal professionals scaling their practice</li>
-    <li>Data protection officers handling cross-border transfers</li>
-    <li>SMEs needing reliable, budget-friendly compliance help</li>
-  </ul>
-
-  <h2>📣 Try It Now</h2>
-  <p>Get instant, AI-powered compliance answers. No forms, no fuss — just helpful guidance.</p>
-  <a href="https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button">🚀 Launch the GPT</a>
-</section>
-
-<div class="footer">
-  Maintained by Jens Guenther – Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a> | Support the project: <a href="https://paypal.me/45dgof8">Donate via PayPal</a>
-  <small>Header image generated with <a href="https://creator.nightcafe.studio/" target="_blank">NightCafe Studio</a> (HiDream I1 Dev).</small>
-</div>
-
+  <script>
+    function toggleLanguage() {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const current = el.innerHTML.trim();
+        const en = el.getAttribute('data-en');
+        const ko = el.getAttribute('data-ko');
+        el.innerHTML = current === en ? ko : en;
+      });
+    }
+  </script>
 </body>
 </html>
