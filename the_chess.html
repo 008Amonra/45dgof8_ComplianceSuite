@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dion's Chess Lounge</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #0f172a, #111);
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: #f8fafc;
+    }
+    #overlay {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    #overlay h1 {
+      font-size: 2em;
+      margin-bottom: 0.3em;
+      color: #60a5fa;
+    }
+    #overlay p {
+      margin: 0;
+      font-size: 1em;
+    }
+    #cta {
+      margin-top: 10px;
+      background: #2563eb;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    #cta:hover {
+      background: #1e40af;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="overlay">
+    <h1>♟ Welcome to Dion's Chess Lounge</h1>
+    <p>Take a seat, play a game, and let's talk about your e-commerce empire.</p>
+    <button id="cta" onclick="alert('Let’s strategize like grandmasters!')">Discover My Services</button>
+  </div>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/21/audio_c1b39c1a16.mp3" type="audio/mp3">
+  </audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    // Scene
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#0f172a');
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(8, 12, 8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Lights
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+    scene.add(hemiLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(10, 20, 10);
+    scene.add(dirLight);
+
+    // Chessboard
+    const board = new THREE.Group();
+    const tileSize = 1;
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        const color = (i + j) % 2 === 0 ? 0xffffff : 0x222;
+        const tile = new THREE.Mesh(
+          new THREE.BoxGeometry(tileSize, 0.05, tileSize),
+          new THREE.MeshPhongMaterial({ color })
+        );
+        tile.position.set(i - 3.5, 0, j - 3.5);
+        board.add(tile);
+      }
+    }
+    scene.add(board);
+
+    // Placeholder pieces
+    const pieceMaterial = new THREE.MeshPhongMaterial({ color: 0xeab308 });
+    for (let i = 0; i < 8; i++) {
+      const pawn = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 0.7, 16), pieceMaterial);
+      pawn.position.set(i - 3.5, 0.4, -3);
+      board.add(pawn);
+    }
+
+    // Controls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    // Render
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
