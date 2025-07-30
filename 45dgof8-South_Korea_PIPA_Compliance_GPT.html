@@ -9,6 +9,101 @@
       --primary-color: #004aad;
     }
 
+    /* General Section Styling */
+h2, h3 {
+  font-family: Arial, sans-serif;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Pricing Table Styling */
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+.pricing-table th, .pricing-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.pricing-table th {
+  background-color: #f0f0f0;
+  color: #444;
+  font-weight: bold;
+}
+
+.pricing-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.pricing-table tr:hover {
+  background-color: #f3f8ff;
+  transition: background 0.3s ease;
+}
+
+/* Add-ons Section */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+ul li strong {
+  color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pricing-table, 
+  .pricing-table thead, 
+  .pricing-table tbody, 
+  .pricing-table th, 
+  .pricing-table td, 
+  .pricing-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .pricing-table th {
+    text-align: center;
+  }
+
+  .pricing-table tr {
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .pricing-table td {
+    text-align: left;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .pricing-table td:last-child {
+    border-bottom: none;
+  }
+}
+
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f7f8fa;
