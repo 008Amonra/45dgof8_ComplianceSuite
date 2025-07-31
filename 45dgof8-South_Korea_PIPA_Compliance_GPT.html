@@ -8,101 +8,101 @@
     :root {
       --primary-color: #004aad;
     }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f8fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 2em 1em;
+      text-align: center;
+    }
+    header img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    section {
+      padding: 1.5em 1em;
+      max-width: 960px;
+      margin: auto;
+    }
+    h2 {
+      color: var(--primary-color);
+    }
+    .button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.8em 1.2em;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1em;
+      display: inline-block;
+      margin: 1em 0;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+    .pricing-table th, .pricing-table td {
+      border: 1px solid #ccc;
+      padding: 0.75em;
+      text-align: left;
+    }
+    ul {
+      padding-left: 1.2em;
+    }
+    .footer {
+      background-color: #f9f9f9;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      padding: 20px;
+    }
+    .lang-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #004aad;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .unlock-banner {
+      background: #e0f7da;
+      color: #2e7d32;
+      padding: 1em;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&components=hosted-buttons&disable-funding=venmo&currency=CHF"></script>
+</head>
+<body>
+  <script>
+    // Display unlock message if module access was granted via thank-you page
+    if (localStorage.getItem('moduleAccess') === 'true') {
+      const banner = document.createElement('div');
+      banner.className = 'unlock-banner';
+      banner.textContent = '✅ Thank you! Your module is now activated.';
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+  </script>
 
-    /* General Section Styling */
-h2, h3 {
-  font-family: Arial, sans-serif;
-  color: #222;
-  margin-bottom: 10px;
-}
+  <button class="lang-toggle" onclick="toggleLanguage()">한국어 / EN</button>
 
-p {
-  color: #555;
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-/* Pricing Table Styling */
-.pricing-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 0.95rem;
-}
-
-.pricing-table th, .pricing-table td {
-  border: 1px solid #ddd;
-  padding: 12px 15px;
-  text-align: left;
-}
-
-.pricing-table th {
-  background-color: #f0f0f0;
-  color: #444;
-  font-weight: bold;
-}
-
-.pricing-table tr:nth-child(even) {
-  background-color: #fafafa;
-}
-
-.pricing-table tr:hover {
-  background-color: #f3f8ff;
-  transition: background 0.3s ease;
-}
-
-/* Add-ons Section */
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  margin-bottom: 8px;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-ul li strong {
-  color: #000;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .pricing-table, 
-  .pricing-table thead, 
-  .pricing-table tbody, 
-  .pricing-table th, 
-  .pricing-table td, 
-  .pricing-table tr {
-    display: block;
-    width: 100%;
-  }
-
-  .pricing-table th {
-    text-align: center;
-  }
-
-  .pricing-table tr {
-    margin-bottom: 15px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  }
-
-  .pricing-table td {
-    text-align: left;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #eee;
-  }
-
-  .pricing-table td:last-child {
-    border-bottom: none;
-  }
-}
-
+  <header>
+    <img src="southkorea.webp" alt="South Korea Compliance AI Visual">
+    <h1 data-en="PIPA Compliance Made Simple" data-ko="PIPA 준수, 간단하게">PIPA Compliance Made Simple</h1>
+    <p data-en="Your affordable AI partner for South Korea's privacy law compliance" data-ko="대한민국 개인정보 보호법 준수를 위한 합리적인 AI 파트너">Your affordable AI partner for South Korea's privacy law compliance</p>
+  </header>
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
