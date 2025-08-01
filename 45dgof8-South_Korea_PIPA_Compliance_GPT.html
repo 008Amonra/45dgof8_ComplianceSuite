@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>South Korea PIPA Compliance GPT</title>
+  <title data-ko="한국 PIPA 컴플라이언스 GPT" data-en="South Korea PIPA Compliance GPT">한국 PIPA 컴플라이언스 GPT</title>
   <style>
     :root {
       --primary-color: #004aad;
@@ -87,266 +87,96 @@
 </head>
 <body>
   <script>
-    // Display unlock message if module access was granted via thank-you page
     if (localStorage.getItem('moduleAccess') === 'true') {
       const banner = document.createElement('div');
       banner.className = 'unlock-banner';
-      banner.textContent = '✅ Thank you! Your module is now activated.';
+      banner.textContent = '✅ 감사합니다! 모듈이 활성화되었습니다.';
       document.body.insertBefore(banner, document.body.firstChild);
+    }
+
+    function toggleLanguage() {
+      document.querySelectorAll('[data-ko]').forEach(el => {
+        const current = el.innerHTML.trim();
+        const ko = el.getAttribute('data-ko');
+        const en = el.getAttribute('data-en');
+        if (current === ko) {
+          el.innerHTML = en;
+        } else {
+          el.innerHTML = ko;
+        }
+      });
+      document.documentElement.lang = document.documentElement.lang === 'ko' ? 'en' : 'ko';
     }
   </script>
 
   <button class="lang-toggle" onclick="toggleLanguage()">한국어 / EN</button>
 
   <header>
-    <img src="southkorea.webp" alt="South Korea Compliance AI Visual">
-    <h1 data-en="PIPA Compliance Made Simple" data-ko="PIPA 준수, 간단하게">PIPA Compliance Made Simple</h1>
-    <p data-en="Your affordable AI partner for South Korea's privacy law compliance" data-ko="대한민국 개인정보 보호법 준수를 위한 합리적인 AI 파트너">Your affordable AI partner for South Korea's privacy law compliance</p>
-  </header>
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f8fa;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 2em 1em;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-    }
-
-    header p {
-      font-size: 1em;
-    }
-
-    header img {
-      margin-top: 1em;
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .image-credit {
-      font-size: 0.8em;
-      color: #e0e0e0;
-      margin-top: 0.5em;
-    }
-
-    .image-credit a {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 1.5em 1em;
-      max-width: 960px;
-      margin: auto;
-    }
-
-    h2 {
-      color: var(--primary-color);
-      margin-top: 1.5em;
-    }
-
-    .button {
-      display: inline-block;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.8em 1.2em;
-      margin: 1em 0;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1em;
-      font-size: 0.95em;
-    }
-
-    .pricing-table th,
-    .pricing-table td {
-      border: 1px solid #ccc;
-      padding: 0.75em;
-      text-align: left;
-    }
-
-    ul {
-      padding-left: 1.2em;
-    }
-
-    .footer {
-      background-color: #eee;
-      padding: 1.5em 1em;
-      text-align: center;
-      font-size: 0.9em;
-    }
-
-    .footer small {
-      display: block;
-      margin-top: 0.5em;
-    }
-
-    .lang-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #004aad;
-      color: white;
-      border: none;
-      padding: 0.5em 1em;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6em;
-      }
-
-      header p {
-        font-size: 0.95em;
-      }
-
-      .button {
-        font-size: 0.95em;
-        padding: 0.7em 1em;
-      }
-
-      .pricing-table th,
-      .pricing-table td {
-        font-size: 0.9em;
-        padding: 0.6em;
-      }
-    }
-  </style>
-</head>
-<body>
-  <button class="lang-toggle" onclick="toggleLanguage()">한국어 / EN</button>
-
-  <header>
-    <img src="southkorea.webp" alt="South Korea Compliance AI Visual" style="width:100%; height:auto;">
-    <h1 data-en="PIPA Compliance Made Simple" data-ko="PIPA 준수, 간단하게">PIPA Compliance Made Simple</h1>
-    <p data-en="Your affordable AI partner for South Korea's privacy law compliance" data-ko="대한민국 개인정보 보호법 준수를 위한 합리적인 AI 파트너">Your affordable AI partner for South Korea's privacy law compliance</p>
-    <img src="4fc335d1-438a-4c2c-9f72-0527e77bd160.png" alt="South Korea Compliance AI Visual">
-    <div class="image-credit">
-      <span data-en="Image generated with" data-ko="이미지는 다음을 사용해 생성됨">Image generated with</span> <a href="https://creator.nightcafe.studio/" target="_blank">NightCafe Studio</a> <span data-en="using HiDream I1 Dev." data-ko="HiDream I1 Dev. 사용">using HiDream I1 Dev.</span>
-    </div>
+    <img src="southkorea.webp" alt="대한민국 컴플라이언스 AI 시각 자료">
+    <h1 data-ko="PIPA 준수, 간단하게" data-en="PIPA Compliance Made Simple">PIPA 준수, 간단하게</h1>
+    <p data-ko="대한민국 개인정보 보호법 준수를 위한 합리적인 AI 파트너" data-en="Your affordable AI partner for South Korea's privacy law compliance">대한민국 개인정보 보호법 준수를 위한 합리적인 AI 파트너</p>
   </header>
 
   <section>
-    <h2 data-en="⚖️ What is the 45dgof8 South Korea PIPA Compliance GPT?" data-ko="⚖️ 45dgof8 한국 PIPA 컴플라이언스 GPT란?">⚖️ What is the 45dgof8 South Korea PIPA Compliance GPT?</h2>
-    <p data-en="It’s a purpose-built AI tool that helps businesses, startups, and legal teams comply with the Personal Information Protection Act (PIPA) in South Korea. This GPT streamlines contract reviews, privacy audits, breach management, and cross-border data checks — for a fraction of traditional legal costs."
-       data-ko="이 GPT는 기업, 스타트업, 법률 팀이 대한민국 개인정보 보호법(PIPA)을 준수하도록 돕기 위해 설계된 AI 도구입니다. 계약 검토, 프라이버시 감사, 침해 관리, 국경 간 데이터 검증을 기존 법률 비용의 일부만으로 간소화합니다.">
-       It’s a purpose-built AI tool that helps businesses, startups, and legal teams comply with the Personal Information Protection Act (PIPA) in South Korea. This GPT streamlines contract reviews, privacy audits, breach management, and cross-border data checks — for a fraction of traditional legal costs.
+    <h2 data-ko="⚖️ 45dgof8 한국 PIPA 컴플라이언스 GPT란?" data-en="⚖️ What is the 45dgof8 South Korea PIPA Compliance GPT?">⚖️ 45dgof8 한국 PIPA 컴플라이언스 GPT란?</h2>
+    <p data-ko="이 GPT는 기업, 스타트업, 법률 팀이 대한민국 개인정보 보호법(PIPA)을 준수하도록 돕기 위해 설계된 AI 도구입니다. 계약 검토, 프라이버시 감사, 침해 관리, 국경 간 데이터 검증을 기존 법률 비용의 일부만으로 간소화합니다."
+       data-en="This GPT is an AI tool designed to help businesses, startups, and legal teams comply with South Korea's Personal Information Protection Act (PIPA). It simplifies contract review, privacy audits, breach management, and cross-border data validation — at a fraction of traditional legal costs.">
+      이 GPT는 기업, 스타트업, 법률 팀이 대한민국 개인정보 보호법(PIPA)을 준수하도록 돕기 위해 설계된 AI 도구입니다. 계약 검토, 프라이버시 감사, 침해 관리, 국경 간 데이터 검증을 기존 법률 비용의 일부만으로 간소화합니다.
     </p>
 
-    <a href="https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button" data-en="💬 Try the GPT Now" data-ko="💬 지금 GPT 사용하기">💬 Try the GPT Now</a>
+    <a href="https://chat.openai.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button" data-ko="💬 지금 GPT 사용하기" data-en="💬 Try the GPT Now">💬 지금 GPT 사용하기</a>
 
-<h2 data-en="📋 Transparent, Discounted Pricing (USD)" data-ko="📋 투명하고 할인된 가격 (USD)">📋 Transparent, Discounted Pricing (USD)</h2>
-<p data-en="Promotional early-access pricing." data-ko="프로모션 얼리 액세스 가격.">Promotional early-access pricing.</p>
+    <h2 data-ko="📋 투명하고 할인된 가격 (CHF)" data-en="📋 Transparent, Discounted Pricing (CHF)">📋 투명하고 할인된 가격 (CHF)</h2>
+    <p data-ko="프로모션 얼리 액세스 가격입니다." data-en="Promotional early-access pricing.">프로모션 얼리 액세스 가격입니다.</p>
 
-<table class="pricing-table">
-  <tr>
-    <th data-en="Service" data-ko="서비스">Service</th>
-    <th data-en="Price" data-ko="가격">Price</th>
-    <th data-en="Description" data-ko="설명">Description</th>
-  </tr>
-  <tr>
-    <td data-en="Contract Review" data-ko="계약 검토">Contract Review</td>
-    <td>$9.90</td>
-    <td data-en="Fast, multilingual AI-powered contract checks" data-ko="빠른 다국어 AI 계약 검토">Fast, multilingual AI-powered contract checks</td>
-  </tr>
-  <tr>
-    <td data-en="Compliance Audit" data-ko="컴플라이언스 감사">Compliance Audit</td>
-    <td>$10.90</td>
-    <td data-en="Full AI-driven PIPA compliance scan" data-ko="완전한 AI 기반 PIPA 준수 점검">Full AI-driven PIPA compliance scan</td>
-  </tr>
-  <tr>
-    <td data-en="Custom Legal Advice" data-ko="맞춤형 법률 자문">Custom Legal Advice</td>
-    <td>$14.90</td>
-    <td data-en="Strategic AI guidance for complex scenarios" data-ko="복잡한 상황을 위한 전략적 AI 지원">Strategic AI guidance for complex scenarios</td>
-  </tr>
-  <tr>
-    <td data-en="Employment Law Advice" data-ko="고용 법률 자문">Employment Law Advice</td>
-    <td>$8.90</td>
-    <td data-en="HR and employee data compliance support" data-ko="인사 및 직원 데이터 준수 지원">HR and employee data compliance support</td>
-  </tr>
-</table>
+    <table class="pricing-table">
+      <tr>
+        <th data-ko="서비스" data-en="Service">서비스</th>
+        <th data-ko="가격" data-en="Price">가격</th>
+        <th data-ko="설명" data-en="Description">설명</th>
+      </tr>
+      <tr>
+        <td data-ko="계약 검토" data-en="Contract Review">계약 검토</td>
+        <td>CHF 8.90 (약 ₩13,500)</td>
+        <td data-ko="빠른 다국어 AI 계약 검토" data-en="Fast, multilingual AI-powered contract checks">빠른 다국어 AI 계약 검토</td>
+      </tr>
+      <tr>
+        <td data-ko="컴플라이언스 감사" data-en="Compliance Audit">컴플라이언스 감사</td>
+        <td>CHF 9.80 (약 ₩14,800)</td>
+        <td data-ko="완전한 AI 기반 PIPA 준수 점검" data-en="Full AI-driven PIPA compliance scan">완전한 AI 기반 PIPA 준수 점검</td>
+      </tr>
+      <tr>
+        <td data-ko="맞춤형 법률 자문" data-en="Custom Legal Advice">맞춤형 법률 자문</td>
+        <td>CHF 13.50 (약 ₩20,400)</td>
+        <td data-ko="복잡한 상황을 위한 전략적 AI 지원" data-en="Strategic AI guidance for complex scenarios">복잡한 상황을 위한 전략적 AI 지원</td>
+      </tr>
+      <tr>
+        <td data-ko="고용 법률 자문" data-en="Employment Law Advice">고용 법률 자문</td>
+        <td>CHF 7.90 (약 ₩12,000)</td>
+        <td data-ko="인사 및 직원 데이터 준수 지원" data-en="HR and employee data compliance support">인사 및 직원 데이터 준수 지원</td>
+      </tr>
+    </table>
 
-<h3 data-en="➕ Add-ons" data-ko="➕ 추가 서비스">➕ Add-ons</h3>
-<ul>
-  <li data-en="<strong>Expedited Service:</strong> $3.50 — Get results in under 2 hours during business hours." 
-      data-ko="<strong>신속 서비스:</strong> $3.50 — 업무 시간 내 2시간 이내 결과 제공.">
-    <strong>Expedited Service:</strong> $3.50 — Get results in under 2 hours during business hours.
-  </li>
-  <li data-en="<strong>Bilingual Report Output:</strong> $2.00 — Receive your report in both Korean and English." 
-      data-ko="<strong>이중 언어 보고서:</strong> $2.00 — 한국어와 영어로 보고서 제공.">
-    <strong>Bilingual Report Output:</strong> $2.00 — Receive your report in both Korean and English.
-  </li>
-  <li data-en="<strong>Extended Compliance Check:</strong> $0.00 (included) — A deeper AI-powered scan that applies advanced PIPA rules and common audit flags. Ideal before sharing with human counsel." 
-      data-ko="<strong>확장 준수 점검:</strong> $0.00 (포함) — 고급 PIPA 규칙과 일반 감사 플래그를 적용한 심층 AI 검사. 인적 검토 전에 이상적.">
-    <strong>Extended Compliance Check:</strong> $0.00 (included) — A deeper AI-powered scan that applies advanced PIPA rules and common audit flags. Ideal before sharing with human counsel.
-  </li>
-</ul>
-
-    <h2 data-en="💼 Perfect for:" data-ko="💼 추천 대상:">💼 Perfect for:</h2>
-    <ul>
-      <li data-en="Startups expanding into South Korea" data-ko="한국에 진출하는 스타트업">Startups expanding into South Korea</li>
-      <li data-en="Legal professionals scaling their practice" data-ko="업무 확장을 원하는 법률 전문가">Legal professionals scaling their practice</li>
-      <li data-en="Data protection officers handling cross-border transfers" data-ko="국경 간 데이터 전송을 관리하는 데이터 보호 책임자">Data protection officers handling cross-border transfers</li>
-      <li data-en="SMEs needing reliable, budget-friendly compliance help" data-ko="합리적인 비용으로 신뢰할 수 있는 준수 지원이 필요한 중소기업">SMEs needing reliable, budget-friendly compliance help</li>
-    </ul>
-
-    <h2 data-en="📣 Try It Now" data-ko="📣 지금 사용해 보세요">📣 Try It Now</h2>
-    <p data-en="Get instant, AI-powered compliance answers. No forms, no fuss — just helpful guidance."
-       data-ko="즉각적인 AI 기반 준수 답변을 받아보세요. 복잡한 양식 없이 간단하고 유용한 가이드만 제공합니다.">
-       Get instant, AI-powered compliance answers. No forms, no fuss — just helpful guidance.
-    </p>
-    <a href="https://chatgpt.com/g/g-6752d26a9574819196ca511c9e3fa3f9-45dgof8-south-korea-pipa-compliance-gpt" class="button" data-en="🚀 Launch the GPT" data-ko="🚀 GPT 실행하기">🚀 Launch the GPT</a>
+    <div id="paypal-container-ZRZJGRGLUELUQ" style="margin-top: 1.5em;"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "ZRZJGRGLUELUQ",
+        onApprove: function(data, actions) {
+          window.location.href = 'skpipa_thank_you.html';
+        },
+        onCancel: function(data) {
+          window.location.href = 'skpipa_cancel.html';
+        }
+      }).render("#paypal-container-ZRZJGRGLUELUQ");
+    </script>
   </section>
-  
-<h2 data-en="🚨 Why PIPA Compliance Matters" data-ko="🚨 왜 PIPA 준수가 중요한가요?">🚨 Why PIPA Compliance Matters</h2>
-<p data-en="South Korea enforces some of the world’s toughest privacy laws. Non-compliance can result in fines, audits, or legal exposure — even if unintentional. Our GPT helps you stay protected." 
-   data-ko="대한민국은 세계에서 가장 엄격한 개인정보 보호법을 시행합니다. 비의도적인 위반이라도 벌금, 감사 또는 법적 노출이 발생할 수 있습니다. 우리의 GPT는 여러분을 보호하는 데 도움을 줍니다.">
-   South Korea enforces some of the world’s toughest privacy laws. Non-compliance can result in fines, audits, or legal exposure — even if unintentional. Our GPT helps you stay protected.
-</p>
-  
-<div class="footer" style="text-align:center; font-size:14px; color:#333; padding:20px; background-color:#f9f9f9;">
-    Maintained by Jens Guenther – Contact: 
-    <a href="mailto:45dgof8@gmail.com" style="color:#0066cc;">45dgof8@gmail.com</a> | 
-    Support the project: 
-    <a href="https://paypal.me/45dgof8" target="_blank" style="color:#0066cc;">Donate via PayPal</a>
-    <br><br>
-    Header image generated with NightCafe Studio (HiDream I1 Dev).
-    <br><br>
-    <p style="font-size:12px; color:#666; margin:0;">
-        Developed in Switzerland – Not affiliated with South Korean authorities – PIPA info is for general guidance only, not legal advice.<br>
-        스위스에서 개발되었으며 대한민국 당국과는 관련이 없습니다 – PIPA 정보는 일반적인 안내를 위한 것이며 법적 조언이 아닙니다.
-    </p>
-</div>
 
-  <script>
-    function toggleLanguage() {
-      document.querySelectorAll('[data-en]').forEach(el => {
-        const current = el.innerHTML.trim();
-        const en = el.getAttribute('data-en');
-        const ko = el.getAttribute('data-ko');
-        el.innerHTML = current === en ? ko : en;
-      });
-    }
-  </script>
+  <div class="footer">
+    유지 및 관리: Jens Guenther – 연락처: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br>
+    프로젝트 후원: <a href="https://paypal.me/45dgof8" target="_blank">PayPal 후원하기</a>
+    <p style="font-size:12px; color:#558; margin:0;">
+      스위스에서 개발되었으며 대한민국 당국과는 관련이 없습니다 – PIPA 정보는 일반적인 안내를 위한 것이며 법적 조언이 아닙니다.
+    </p>
+  </div>
 </body>
 </html>
