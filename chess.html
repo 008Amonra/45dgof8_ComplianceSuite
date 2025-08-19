@@ -57,10 +57,12 @@
     chatBox.innerText = playerColor === 'white'
       ? "Dion: You won the toss! Your move, white wizard."
       : "Dion: I go first—let the hunt begin! 🐺";
-
-    if (playerColor === 'black') {
-      setTimeout(makeEngineMove, 500);
-    }
+if (playerColor === 'black') {
+  setTimeout(() => {
+    board.position('start', false); // ensure synced
+    makeEngineMove();
+  }, 500);
+}
 
     engine.onmessage = function (event) {
       const line = typeof event === 'object' ? event.data : event;
