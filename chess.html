@@ -1,186 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Chess with Dion</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Chess with Dion</title>
+  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
   <style>
-    body, html { margin: 0; padding: 0; overflow: hidden; height: 100%; background: #202020; }
-    canvas { display: block; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    #board {
+      width: 400px;
+      margin-top: 20px;
+    }
+    #chat {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 12px;
+      width: 400px;
+      margin-top: 20px;
+      min-height: 100px;
+      font-size: 0.95em;
+    }
   </style>
 </head>
 <body>
-  <div id="root"></div>
-  <!-- Use reliable CDN links for Three.js -->
-  <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
-  <script src="https://unpkg.com/three@0.150.1/examples/js/controls/OrbitControls.js"></script>
+  <h1>♟️ Play Chess with Dion</h1>
+  <div id="board"></div>
+  <div id="chat">Flipping coin to decide who goes first...</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.0.0/chess.min.js"></script>
+  <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/stockfish@16/stockfish.min.js"></script>
   <script>
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x202020);
+    const game = new Chess();
+    const engine = STOCKFISH();
+    const chatBox = document.getElementById('chat');
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    camera.position.set(4, 6, 12);
+    let playerColor = Math.random() < 0.5 ? 'white' : 'black';
+    const board = Chessboard('board', {
+      draggable: true,
+      position: 'start',
+      orientation: playerColor,
+      onDrop: onDrop
+    });
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.physicallyCorrectLights = true;
-    document.body.appendChild(renderer.domElement);
+    chatBox.innerText = playerColor === 'white'
+      ? "Dion: You won the toss! Your move, white wizard."
+      : "Dion: I go first—let the hunt begin! 🐺";
 
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target.set(3.5, 0, 3.5);
-    controls.update();
-
-    const light = new THREE.DirectionalLight(0xffffff, 1.2);
-    light.position.set(10, 20, 10);
-    light.castShadow = true;
-    scene.add(light);
-
-    const ambient = new THREE.AmbientLight(0x404040, 1.2);
-    scene.add(ambient);
-
-    const textureLoader = new THREE.TextureLoader();
-    const whiteMarble = textureLoader.load('https://threejs.org/examples/textures/marble.jpg');
-    const blackMarble = textureLoader.load('https://threejs.org/examples/textures/marble.jpg');
-
-    function createPolishedMaterial(texture) {
-      const mat = new THREE.MeshStandardMaterial({ map: texture });
-      mat.roughness = 0.2;
-      mat.metalness = 0.3;
-      return mat;
+    if (playerColor === 'black') {
+      setTimeout(makeEngineMove, 500);
     }
 
-    const board = new THREE.Group();
-    for (let x = 0; x < 8; x++) {
-      for (let z = 0; z < 8; z++) {
-        const colorTexture = (x + z) % 2 === 0 ? whiteMarble : blackMarble;
-        const square = new THREE.Mesh(
-          new THREE.BoxGeometry(1, 0.1, 1),
-          createPolishedMaterial(colorTexture)
-        );
-        square.position.set(x, 0, z);
-        board.add(square);
+    engine.onmessage = function (event) {
+      const line = typeof event === 'object' ? event.data : event;
+      if (line.startsWith('bestmove')) {
+        const move = line.split(' ')[1];
+        game.move({ from: move.substr(0, 2), to: move.substr(2, 2) });
+        board.position(game.fen());
+        dionSays(move);
       }
+    };
+
+    function onDrop(source, target) {
+      if (game.turn() !== playerColor[0]) return 'snapback';
+      const move = game.move({ from: source, to: target, promotion: 'q' });
+      if (!move) return 'snapback';
+      board.position(game.fen());
+      window.setTimeout(makeEngineMove, 250);
     }
-    scene.add(board);
 
-    const pieces = new THREE.Group();
+    function makeEngineMove() {
+      engine.postMessage('position fen ' + game.fen());
+      engine.postMessage('go depth 15');
+    }
 
-    const createMaterial = (color) => {
-      return createPolishedMaterial(color === 0xffffff ? whiteMarble : blackMarble);
-    };
-
-    const createBase = (color, height = 0.1, radius = 0.25) => {
-      return new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, height, 32), createMaterial(color));
-    };
-
-    const createPawn = (color) => {
-      const material = createMaterial(color);
-      const pawn = new THREE.Group();
-      const head = new THREE.Mesh(new THREE.SphereGeometry(0.3, 32, 32), material);
-      head.position.y = 0.5;
-      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 0.5, 32), material);
-      body.position.y = 0.25;
-      const bottom = createBase(color);
-      bottom.position.y = 0.05;
-      pawn.add(bottom, body, head);
-      return pawn;
-    };
-
-    const createRook = (color) => {
-      const material = createMaterial(color);
-      const rook = new THREE.Group();
-      const tower = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.3, 0.7, 32), material);
-      tower.position.y = 0.35;
-      const crown = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.05, 16, 32), material);
-      crown.position.y = 0.7;
-      crown.rotation.x = Math.PI / 2;
-      const bottom = createBase(color);
-      bottom.position.y = 0.05;
-      rook.add(bottom, tower, crown);
-      return rook;
-    };
-
-    const createBishop = (color) => {
-      const material = createMaterial(color);
-      const bishop = new THREE.Group();
-      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.28, 0.7, 32), material);
-      body.position.y = 0.35;
-      const top = new THREE.Mesh(new THREE.SphereGeometry(0.2, 32, 32), material);
-      top.position.y = 0.8;
-      const bottom = createBase(color);
-      bottom.position.y = 0.05;
-      bishop.add(bottom, body, top);
-      return bishop;
-    };
-
-    const createKnight = (color) => {
-      const material = createMaterial(color);
-      const knight = new THREE.Group();
-      const body = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.7, 0.2), material);
-      body.position.y = 0.35;
-      const head = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.2), material);
-      head.position.set(0, 0.8, 0);
-      const bottom = createBase(color);
-      bottom.position.y = 0.05;
-      knight.add(bottom, body, head);
-      return knight;
-    };
-
-    const createQueen = (color) => {
-      const material = createMaterial(color);
-      const queen = new THREE.Group();
-      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.3, 0.9, 32), material);
-      body.position.y = 0.45;
-      const crown = new THREE.Mesh(new THREE.SphereGeometry(0.25, 32, 32), material);
-      crown.position.y = 0.9;
-      const bottom = createBase(color);
-      bottom.position.y = 0.05;
-      queen.add(bottom, body, crown);
-      return queen;
-    };
-
-    const createKing = (color) => {
-      const material = createMaterial(color);
-      const king = new THREE.Group();
-      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.32, 1, 32), material);
-      body.position.y = 0.5;
-      const cross = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.2, 0.05), material);
-      cross.position.set(0, 1.1, 0);
-      const crossBar = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.05, 0.05), material);
-      crossBar.position.set(0, 1.1, 0);
-      const bottom = createBase(color);
-      bottom.position.y = 0.05;
-      king.add(bottom, body, cross, crossBar);
-      return king;
-    };
-
-    const white = 0xffffff;
-    const black = 0x000000;
-
-    const placePieces = (color, zBase) => {
-      const majorPieces = [createRook, createKnight, createBishop, createQueen, createKing, createBishop, createKnight, createRook];
-      for (let i = 0; i < 8; i++) {
-        const pawn = createPawn(color);
-        pawn.position.set(i, 0.1, zBase + (color === white ? 1 : -1));
-        pieces.add(pawn);
-      }
-      for (let i = 0; i < 8; i++) {
-        const piece = majorPieces[i](color);
-        piece.position.set(i, 0.1, zBase);
-        pieces.add(piece);
-      }
-    };
-
-    placePieces(white, 0);
-    placePieces(black, 7);
-
-    scene.add(pieces);
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    };
-    animate();
+    function dionSays(move) {
+      const lines = [
+        `Oof! That move? Bold. I respect it.`,
+        `Alright, I'm warming up... your turn!`,
+        `Check your corners, this wolf plays sharp.`,
+        `That last move? Chef’s kiss.`,
+        `You sure you’re not a grandmaster in disguise?`,
+        `Hmm, interesting... let's dance.`
+      ];
+      const text = lines[Math.floor(Math.random() * lines.length)];
+      chatBox.innerText = `Dion: ${text}`;
+    }
   </script>
 </body>
 </html>
