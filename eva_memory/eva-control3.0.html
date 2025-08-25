@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eva Control Center 3.0 (Standalone)</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;--fg:#1f2937;--muted:#6b7280;--card:#ffffff;--primary:#2563eb;--primary-600:#1d4ed8;--ok:#16a34a;--down:#dc2626;--border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; background:var(--bg); color:var(--fg); margin:0;}
+    header{display:flex; align-items:center; gap:14px; padding:20px; background:var(--card); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10}
+    header img{height:44px; border-radius:10px}
+    h1{font-size:20px; margin:0}
+
+    .wrap{max-width:1100px; margin:18px auto; padding:0 16px}
+    .tabs{display:flex; gap:6px; flex-wrap:wrap}
+    .tab{padding:10px 12px; cursor:pointer; background:#e5ecff; color:#0f172a; border:1px solid #dbe3ff; border-bottom:none; border-radius:10px 10px 0 0; font-weight:600}
+    .tab.active{background:var(--card); border:1px solid var(--border); border-bottom:none}
+
+    .panel{display:none; background:var(--card); border:1px solid var(--border); border-radius:0 12px 12px 12px; padding:16px; margin-top:-1px}
+    .panel.active{display:block}
+
+    .row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+    .btn{appearance:none; border:none; background:var(--primary); color:#fff; border-radius:10px; padding:8px 12px; cursor:pointer; font-weight:600}
+    .btn:hover{background:var(--primary-600)}
+    .btn.secondary{background:#e5e7eb; color:#111827}
+    .btn.secondary:hover{background:#d1d5db}
+    .stat{padding:6px 10px; border-radius:999px; font-weight:700}
+    .ok{color:#065f46; background:#def7ec}
+    .down{color:#991b1b; background:#fee2e2}
+    .muted{color:var(--muted)}
+    .grid{display:grid; gap:12px}
+    .grid.two{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .grid.three{grid-template-columns:repeat(3, minmax(0,1fr))}
+    @media (max-width:900px){.grid.two,.grid.three{grid-template-columns:1fr}}
+
+    input[type="text"], textarea{width:100%; padding:10px; border:1px solid var(--border); border-radius:10px; background:#fff; font-family:inherit}
+    table{width:100%; border-collapse:collapse}
+    th,td{border:1px solid var(--border); padding:8px; text-align:left}
+    ul{list-style:none; padding:0; margin:0}
+    li{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px; border:1px solid var(--border); border-radius:10px; background:#fafafa}
+    .completed{ text-decoration:line-through; color:#6b7280 }
+    .debug{background:#0b1220; color:#a7f3d0; padding:10px; border-radius:10px; white-space:pre-wrap; overflow:auto}
+    .footer{color:var(--muted); margin-top:16px}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{background:#eef2ff; color:#3730a3; font-weight:700; padding:4px 8px; border-radius:999px}
+    .spacer{height:6px}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="eva_control_center.webp" alt="Eva Logo" onerror="this.style.display='none'">
+    <h1>Eva Control Center 3.0<span class="muted"> — Standalone</span></h1>
+  </header>
+
+  <div class="wrap">
+    <div class="tabs">
+      <div class="tab active" data-tab="dashboard">Dashboard</div>
+      <div class="tab" data-tab="memory">Memorybank</div>
+      <div class="tab" data-tab="todo">To‑Do</div>
+      <div class="tab" data-tab="logbook">Logbuch</div>
+      <div class="tab" data-tab="debug">Debug</div>
+    </div>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="panel active">
+      <div class="grid two">
+        <div>
+          <h3>Übersicht</h3>
+          <div class="chips">
+            <span>n8n Status: <span id="n8nStatus" class="chip">Prüfe…</span></span>
+            <span>Cloudflared Status: <span id="cloudStatus" class="chip">Prüfe…</span></span>
+          </div>
+          <div class="spacer"></div>
+          <p><strong>Letzter Status‑Check:</strong> <span id="lastCheck">–</span></p>
+          <p><strong>Letztes Backup (lokal):</strong> <span id="lastBackup">–</span></p>
+          <div class="row">
+            <button class="btn" id="btnCheck">Jetzt Status prüfen</button>
+            <button class="btn" id="btnBackup">Backup herunterladen</button>
+            <label class="btn secondary" for="importFile">Backup importieren</label>
+            <input id="importFile" type="file" accept="application/json" style="display:none"/>
+            <button class="btn secondary" id="btnTelegram">Telegram Test</button>
+            <button class="btn secondary" id="btnImprovements">Verbesserungen</button>
+          </div>
+          <ul id="improvements"></ul>
+        </div>
+        <div>
+          <h3>Schnellnotiz</h3>
+          <textarea id="quicknote" placeholder="Kurze Notiz…" rows="10"></textarea>
+          <div class="row">
+            <button class="btn" id="btnSaveQuick">Notiz speichern</button>
+            <span class="muted" id="quickSaved">–</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memorybank -->
+    <section id="memory" class="panel">
+      <h3>Memorybank</h3>
+      <div class="grid two">
+        <div>
+          <input id="memKey" placeholder="Key" />
+          <textarea id="memValue" placeholder="Value" rows="5"></textarea>
+          <div class="row">
+            <button class="btn" id="btnMemSave">Add / Update</button>
+            <button class="btn secondary" id="btnMemClear">Felder leeren</button>
+          </div>
+        </div>
+        <div>
+          <table>
+            <thead><tr><th>Key</th><th>Value</th><th>Aktion</th></tr></thead>
+            <tbody id="memoryList"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button class="btn secondary" id="btnExport">Export JSON</button>
+      </div>
+    </section>
+
+    <!-- To‑Do -->
+    <section id="todo" class="panel">
+      <h3>To‑Do Liste</h3>
+      <div class="row">
+        <input type="text" id="newTask" placeholder="Neue Aufgabe…" />
+        <button class="btn" id="btnAddTask">Add</button>
+      </div>
+      <ul id="taskList" style="margin-top:10px"></ul>
+    </section>
+
+    <!-- Logbuch -->
+    <section id="logbook" class="panel">
+      <h3>Logbuch</h3>
+      <div class="row">
+        <button class="btn secondary" id="btnClearLogs">Logs löschen</button>
+      </div>
+      <div id="logs" style="margin-top:8px"></div>
+    </section>
+
+    <!-- Debug -->
+    <section id="debug" class="panel">
+      <h3>Debug‑Panel</h3>
+      <button class="btn secondary" id="btnRunDebug">Debug neu laden</button>
+      <pre id="debugOutput" class="debug"></pre>
+    </section>
+
+    <div class="footer">Version 3.0 • Standalone (speichert in LocalStorage). Ideal, wenn kein Backend aktiv ist.</div>
+  </div>
+
+<script>
+  // ===== Config =====
+  const CFG = {
+    token: 'EVA12345',
+    n8nURL: 'https://n8n.45dgof8.com',
+    cloudURL: 'https://45dgof8.com',
+    telegramWebhook: '' // optional: z.B. n8n-Webhook-URL
+  };
+
+  // ===== State (LocalStorage) =====
+  const LS_KEY = 'eva_cc3_state';
+  const state = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  if(!state.memory) state.memory = {}; // key -> value
+  if(!state.todos) state.todos = [];    // {id,text,done}
+  if(!state.logs) state.logs = [];      // strings
+  if(!state.meta) state.meta = {};      // lastBackup, quicknote
+
+  const el = id => document.getElementById(id);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  function persist(){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+  function log(msg){
+    const ts = new Date().toLocaleString();
+    state.logs.unshift(`[${ts}] ${msg}`);
+    if (state.logs.length>200) state.logs.pop();
+    persist(); renderLogs();
+  }
+
+  // ===== Tabs =====
+  $$('.tab').forEach(t=>t.addEventListener('click',()=>{
+    const tab = t.dataset.tab;
+    $$('.tab').forEach(x=>x.classList.remove('active'));
+    $$('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    el(tab).classList.add('active');
+  }));
+
+  // ===== Dashboard =====
+  async function headPing(url,label){
+    try{
+      const controller = new AbortController();
+      const to = setTimeout(()=>controller.abort(), 5000);
+      const res = await fetch(url, { method:'HEAD', mode:'no-cors', signal:controller.signal });
+      clearTimeout(to);
+      // In no-cors we cannot read status; if it doesn't throw, count as ok
+      return true;
+    }catch(e){ log(`${label}-Check Fehler: ${e.message}`); return false; }
+  }
+  async function checkStatus(){
+    el('n8nStatus').textContent='Prüfe…';
+    el('cloudStatus').textContent='Prüfe…';
+
+    const [n8nOK, cloudOK] = await Promise.all([
+      headPing(CFG.n8nURL,'n8n'), headPing(CFG.cloudURL,'Cloudflared')
+    ]);
+
+    el('n8nStatus').textContent = n8nOK? 'OK':'Down';
+    el('n8nStatus').className = 'chip ' + (n8nOK? 'ok':'down');
+    el('cloudStatus').textContent = cloudOK? 'OK':'Down';
+    el('cloudStatus').className = 'chip ' + (cloudOK? 'ok':'down');
+    el('lastCheck').textContent = new Date().toLocaleString();
+    log(`Status‑Check: n8n=${n8nOK?'OK':'Down'}, Cloud=${cloudOK?'OK':'Down'}`);
+  }
+
+  // Quicknote
+  el('quicknote').value = state.meta.quicknote || '';
+  el('btnSaveQuick').addEventListener('click',()=>{
+    state.meta.quicknote = el('quicknote').value;
+    persist();
+    const t = new Date().toLocaleTimeString();
+    el('quickSaved').textContent = `Gespeichert um ${t}`;
+    log('Quicknote gespeichert');
+  });
+
+  // Backup Export + Import (JSON)
+  function download(filename, data){
+    const blob = new Blob([data], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download=filename; a.click();
+    URL.revokeObjectURL(url);
+  }
+  el('btnBackup').addEventListener('click',()=>{
+    const stamp = new Date().toISOString().replace(/[:.]/g,'-');
+    state.meta.lastBackup = new Date().toLocaleString();
+    persist(); renderMeta();
+    download(`eva_backup_${stamp}.json`, JSON.stringify(state, null, 2));
+    log('Backup exportiert');
+  });
+  el('importFile').addEventListener('change', async (e)=>{
+    const file = e.target.files[0]; if(!file) return;
+    const text = await file.text();
+    try{
+      const obj = JSON.parse(text);
+      if(!obj || typeof obj !== 'object') throw new Error('Kein JSON');
+      localStorage.setItem(LS_KEY, JSON.stringify(obj));
+      location.reload();
+    }catch(err){ alert('Import fehlgeschlagen: '+err.message); }
+  });
+
+  // Telegram Test (optional webhook)
+  el('btnTelegram').addEventListener('click', async ()=>{
+    if(!CFG.telegramWebhook){
+      const url = prompt('Webhook URL (n8n/Telegram) eintragen:');
+      if(!url) return; CFG.telegramWebhook = url; log('Webhook gesetzt.');
+    }
+    try{
+      await fetch(CFG.telegramWebhook, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({msg:'Eva Test: '+ new Date().toISOString(), token: CFG.token})});
+      alert('Gesendet.'); log('Telegram-Test gesendet');
+    }catch(e){ alert('Fehler beim Senden: '+e.message); log('Telegram-Test Fehler: '+e.message); }
+  });
+
+  // Improvements (static)
+  el('btnImprovements').addEventListener('click',()=>{
+    el('improvements').innerHTML = `
+      <li>Server‑Backup‑Rotation (7/30 Tage) einführen</li>
+      <li>Fehler‑Alerts via Telegram/Email</li>
+      <li>n8n‑Workflows für tägliche Health‑Checks</li>`;
+  });
+
+  function renderMeta(){ el('lastBackup').textContent = state.meta.lastBackup || '–'; }
+
+  // ===== Memorybank =====
+  function renderMemory(){
+    const tbody = el('memoryList');
+    const keys = Object.keys(state.memory).sort();
+    tbody.innerHTML = keys.map(k=>{
+      const safe = state.memory[k].toString().replace(/</g,'&lt;');
+      return `<tr><td>${k}</td><td style="max-width:520px; white-space:pre-wrap">${safe}</td>
+        <td>
+          <button class="btn secondary" data-edit="${k}">Edit</button>
+          <button class="btn secondary" data-del="${k}">Del</button>
+        </td></tr>`;
+    }).join('');
+    tbody.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>{
+      const k=b.dataset.edit; el('memKey').value=k; el('memValue').value=state.memory[k];
+    }));
+    tbody.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
+      const k=b.dataset.del; if(confirm(`Eintrag „${k}“ löschen?`)){ delete state.memory[k]; persist(); renderMemory(); log(`Memory gelöscht: ${k}`);} 
+    }));
+  }
+  el('btnMemSave').addEventListener('click',()=>{
+    const k = el('memKey').value.trim(); const v = el('memValue').value;
+    if(!k){ alert('Key fehlt'); return; }
+    state.memory[k]=v; persist(); renderMemory(); log(`Memory gespeichert: ${k}`);
+  });
+  el('btnMemClear').addEventListener('click',()=>{ el('memKey').value=''; el('memValue').value='';});
+  el('btnExport').addEventListener('click',()=>{
+    download('eva_memory.json', JSON.stringify(state.memory, null, 2));
+  });
+
+  // ===== To‑Do =====
+  function renderTodos(){
+    el('taskList').innerHTML = state.todos.map(t=>
+      `<li>
+        <span class="${t.done?'completed':''}">${t.text}</span>
+        <span class="row">
+          <button class="btn secondary" data-done="${t.id}">${t.done?'Undo':'Done'}</button>
+          <button class="btn secondary" data-del="${t.id}">Del</button>
+        </span>
+      </li>`
+    ).join('');
+    el('taskList').querySelectorAll('[data-done]').forEach(b=>b.addEventListener('click',()=>{
+      const id = b.dataset.done; const t = state.todos.find(x=>x.id===id); t.done=!t.done; persist(); renderTodos();
+    }));
+    el('taskList').querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
+      const id=b.dataset.del; state.todos = state.todos.filter(x=>x.id!==id); persist(); renderTodos();
+    }));
+  }
+  function addTask(){
+    const inp = el('newTask'); const text = inp.value.trim(); if(!text) return;
+    const id = Math.random().toString(36).slice(2,9);
+    state.todos.unshift({id,text,done:false}); inp.value=''; persist(); renderTodos(); log('To‑Do hinzugefügt');
+  }
+  el('btnAddTask').addEventListener('click', addTask);
+  el('newTask').addEventListener('keydown', e=>{ if(e.key==='Enter') addTask(); });
+
+  // ===== Logbuch / Debug =====
+  function renderLogs(){ el('logs').innerHTML = state.logs.map(l=>`<div class="log-entry">${l}</div>`).join(''); }
+  el('btnClearLogs').addEventListener('click',()=>{ if(confirm('Alle Logs löschen?')){ state.logs=[]; persist(); renderLogs(); }});
+  function runDebug(){
+    const out = [
+      `Token gesetzt: ${!!CFG.token}`,
+      `n8n URL: ${CFG.n8nURL}`,
+      `Cloud URL: ${CFG.cloudURL}`,
+      `Webhook gesetzt: ${!!CFG.telegramWebhook}`,
+      '', 'Letzte 10 Logs:',
+      ...state.logs.slice(0,10)
+    ].join('\n');
+    el('debugOutput').textContent = out;
+  }
+  el('btnRunDebug').addEventListener('click', runDebug);
+
+  // ===== Init =====
+  function init(){
+    renderMemory(); renderTodos(); renderLogs(); renderMeta(); checkStatus();
+  }
+  el('btnCheck').addEventListener('click', checkStatus);
+  init();
+</script>
+</body>
+</html>
