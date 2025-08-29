@@ -196,6 +196,51 @@ const sparks = [
       "Create a bundle that pairs two products in a surprising way.",
       "Draw inspiration from your favorite childhood toy.",
       "Turn your best customer question into a design prompt."
+  <div class="llama-mask">
+<h3>🦙 Pitch Your Product to a Llama</h3>
+<p>
+“Hey Llama, you know when
+<select id="problem">
+<option>your coffee gets cold too fast</option>
+<option>you spill drinks on your desk</option>
+<option>you can’t find a fun gift</option>
+<option>your mornings feel dull</option>
+</select>
+happens? This
+<select id="product">
+<option>mug</option>
+<option>t-shirt</option>
+<option>poster</option>
+<option>tote bag</option>
+</select>
+<select id="benefit">
+<option>keeps your drink warm for hours</option>
+<option>makes people smile instantly</option>
+<option>adds personality to your space</option>
+<option>is eco-friendly and reusable</option>
+</select>.
+It’s
+<select id="different">
+<option>AI-designed and one-of-a-kind</option>
+<option>made with sustainable materials</option>
+<option>customizable just for you</option>
+<option>backed by wolf-approved testing 🐺</option>
+</select>.
+<select id="cta">
+<option>Want one?</option>
+<option>Grab yours today!</option>
+<option>Don’t miss out!</option>
+<option>Let’s make your mornings epic!</option>
+</select>”
+</p>
+<button onclick="generateLlamaPitch()">Show Me the Pitch</button>
+<div id="llama-result" class="llama-output"></div>
+</div>
+
+<script>
+function generateLlamaPitch() {
+const problem = document.getElementById('problem').value;
+}
       ];
       function showSpark() {
 
