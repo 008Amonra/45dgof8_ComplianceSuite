@@ -180,12 +180,25 @@
 
     function showSpark() {
       const sparks = [
-        "Create a mug with a quote you'd tell your past self.",
-        "Sketch a design inspired by your last vacation.",
-        "Write a product description using only emojis.",
-        "Pitch your product to a llama (yes, pretend!).",
-        "Find a product that blends two weird niches together."
+const sparks = [
+      "Create a mug with a quote you'd tell your past self.",
+      "Sketch a design inspired by your last vacation.",
+      "Write a product description using only emojis.",
+      "Pitch your product to a llama (yes, pretend!).",
+      "Find a product that blends two weird niches together.",
+      "Design a logo using only geometric shapes.",
+      "Imagine your store as a theme park – what ride would you add?",
+      "Create a limited edition product for your favorite season.",
+      "Design packaging that doubles as something useful.",
+      "Invent a holiday just for your brand and design merchandise for it.",
+      "Write a product review from the perspective of your pet.",
+      "Think of your shop as a café – what’s the signature drink?",
+      "Create a bundle that pairs two products in a surprising way.",
+      "Draw inspiration from your favorite childhood toy.",
+      "Turn your best customer question into a design prompt."
       ];
+      function showSpark() {
+
       const randomSpark = sparks[Math.floor(Math.random() * sparks.length)];
       document.getElementById('spark-result').textContent = randomSpark;
     }
