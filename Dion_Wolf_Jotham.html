@@ -30,7 +30,7 @@
       0% { transform: scale(0.95); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
-    h1, h2, .quiz, .footer, p, .mid-img {
+    h1, h2, .quiz, .footer, p, .mid-img, .retreat {
       animation: fadeInUp 1s ease-out both;
     }
     @keyframes fadeInUp {
@@ -56,13 +56,13 @@
       font-size: 0.9em;
       color: #94a3b8;
     }
-    .quiz {
+    .quiz, .retreat {
       margin-top: 2em;
       padding: 1em;
       background: #334155;
       border-radius: 12px;
     }
-    .quiz select, .quiz button {
+    .quiz select, .quiz button, .retreat button {
       margin-top: 0.5em;
       padding: 0.5em;
       font-size: 1em;
@@ -71,7 +71,7 @@
       border: 1px solid #64748b;
       border-radius: 8px;
     }
-    .quiz button:hover {
+    .quiz button:hover, .retreat button:hover {
       background: #475569;
     }
     .result {
@@ -86,7 +86,7 @@
       object-fit: cover;
       animation: fadeIn 1.2s ease-in-out;
     }
-    .mid-img {
+    .mid-img, .retreat-img {
       display: block;
       margin: 40px auto;
       max-width: 100%;
@@ -124,7 +124,7 @@
     <p>You don’t need a marketing degree to start a store.<br>You need a compass, a little clarity, and someone who’s got your back.<br>That’s me. 🧭</p>
     <p>And if you’re ready to go deeper or just want to say hello—<br>📫 Reach me anytime at <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br>I’m here to help you rock the world of e-commerce, especially if you’re diving into selling cool, AI-designed goodies like coffee mugs. Whether you're just getting started or looking to level up, I provide practical advice on platform selection, marketing strategies, and customer engagement—all wrapped in a friendly, no-nonsense style.</p>
     <p>Besides that, I'm a big fan of AI-generated art and design. If you've got wild ideas and want to know if they can sell, hit me up for constructive, market-savvy feedback.</p>
-    <img class="mid-img" src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham">
+    <img class="mid-img" src="relaxed_dion.webp" alt="Portrait of Dion Wolf Jotham">
     <p>Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></p>
     <p>🔗 Want to chat with me directly? Visit my page here: <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank">E-commerce Guide Dion Wolf Jotham</a></p>
     <div class="quiz">
@@ -142,18 +142,17 @@
       <button onclick="showResult()">Get my style</button>
       <div id="result" class="result"></div>
     </div>
+
+    <div class="retreat">
+      <h3>🌍 Virtual Retreat for Creative Hustlers</h3>
+      <img class="retreat-img" src="https://source.unsplash.com/800x400/?beach,vacation" alt="Virtual Retreat Image">
+      <p><em>“Every good idea starts with a break. Rest is research.”</em> – Dion</p>
+      <p>Take a deep breath. Imagine your dream shop, your best-sellers flying off the shelves... and click below for your <strong>Daily Spark</strong> ✨</p>
+      <button onclick="showSpark()">Give me a Spark!</button>
+      <div id="spark-result" class="result"></div>
+    </div>
+
     <p style="margin-top:2em;"><strong>🚀 Sneak Peek:</strong> My AI-generated design gallery is brewing... Stay tuned for inspiration overload!</p>
-<section style="background: #111; color: white; text-align: center; padding: 20px; margin-top: 20px;">
-  <h2>♟️ Play Chess with Dion</h2>
-  <p>Challenge the AI wolf! Flip a coin each visit to see who moves first.</p>
-<div style="position: relative; padding-bottom: 110%; height: 0; overflow: hidden;">
-  <iframe
-    src="chess.html"
-    title="Chess with Dion"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
-  </iframe>
-</div>
-</section>
     <div class="footer">💡 Want to automate payment links or manage your funds smartly? Visit <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8-pulse</a>.</div>
   </div>
   <script>
@@ -174,6 +173,18 @@
       else result = "You're a Chill Curator – Try Printify or Zazzle!";
 
       document.getElementById('result').textContent = result;
+    }
+
+    function showSpark() {
+      const sparks = [
+        "Create a mug with a quote you'd tell your past self.",
+        "Sketch a design inspired by your last vacation.",
+        "Write a product description using only emojis.",
+        "Pitch your product to a llama (yes, pretend!).",
+        "Find a product that blends two weird niches together."
+      ];
+      const randomSpark = sparks[Math.floor(Math.random() * sparks.length)];
+      document.getElementById('spark-result').textContent = randomSpark;
     }
   </script>
 </body>
