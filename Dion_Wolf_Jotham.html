@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meet Dion Wolf Jotham</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     body { font-family: 'Inter', sans-serif; margin: 0; background: linear-gradient(145deg, #1e293b, #334155); color: #f8fafc; }
     .container { max-width: 800px; margin: 40px auto; padding: 20px; background: #1e293b; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     h1, h2, h3, p, .quiz, .retreat, .llama-mask { margin-bottom: 1em; }
-    select, button { margin: 0.3em 0; padding: 0.3em; border-radius: 8px; background: #1e293b; color: #f1f5f9; border: 1px solid #64748b; }
-    .llama-mask { margin-top: 2em; padding: 1em; background: #334155; border-radius: 12px; }
-    .llama-output { margin-top: 1em; font-weight: bold; color: #38bdf8; white-space: pre-line; }
-    button:hover { background: #475569; }
-  .ad-wrap{display:grid;grid-template-columns:1fr;gap:16px}.ad-box{background:#0f172a;border:1px dashed #64748b;border-radius:12px;padding:12px;text-align:center;color:#94a3b8}.ad-box small{display:block;margin-top:6px;opacity:.8}@media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
+    .mid-img, .retreat-img, .relaxed-img { display:block; margin:40px auto; max-width:100%; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+    select, button { margin: 0.3em 0; padding: 0.5em 0.7em; border-radius: 8px; background: #1e293b; color: #f1f5f9; border: 1px solid #64748b; }
+    button:hover { background:#475569; }
+    .footer { margin-top: 2em; font-size: 0.9em; color: #94a3b8; }
+    a { color:#93c5fd; } a:hover{ color:#fff; }
+    .result, .llama-output { margin-top:1em; font-weight:bold; color:#38bdf8; }
+
+    /* Ad layout next to the llama tool on wide screens */
+    .ad-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+    .ad-box{background:#0f172a;border:1px dashed #64748b;border-radius:12px;padding:12px;text-align:center;color:#94a3b8}
+    .ad-box small{display:block;margin-top:6px;opacity:.8}
+    @media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
   </style>
 </head>
 <body>
@@ -21,38 +28,84 @@
     <h1 id="greeting">Hey there!</h1>
     <h2>Your E-commerce Buddy & AI Design Enthusiast</h2>
 
+    <p><strong>Welcome to Your E-Commerce Companion</strong></p>
+    <p>Practical advice. Playful creativity. Purposeful growth.</p>
+    <p>👋 Hey, I'm Dion Wolf Jotham. Your friendly guide in the world of AI-powered merchandise and e-commerce. Whether you're dreaming of selling clever coffee mugs, launching a side hustle, or curious about turning AI designs into something real—this is your space.</p>
+
+    <h3>What I Do</h3>
+    <ul>
+      <li>I simplify e-commerce.</li>
+      <li>I help you turn ideas into income.</li>
+      <li>And I keep it real. No hype. Just good strategy.</li>
+    </ul>
+
+    <h3>Here’s what you’ll find here:</h3>
+    <ul>
+      <li>Step-by-step e-commerce guidance for beginners</li>
+      <li>AI design tips to boost your product appeal</li>
+      <li>Marketing ideas that are doable (and sometimes even fun)</li>
+      <li>The occasional dad joke. Sorry, not sorry.</li>
+    </ul>
+
+    <h3>Why This Matters</h3>
+    <p>You don’t need a marketing degree to start a store.<br/>You need a compass, a little clarity, and someone who’s got your back.<br/>That’s me. 🧭</p>
+    <p>And if you’re ready to go deeper or just want to say hello—<br/>📫 Reach me anytime at <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br/>I’m here to help you rock the world of e-commerce, especially if you’re diving into selling cool, AI-designed goodies like coffee mugs. Whether you're just getting started or looking to level up, I provide practical advice on platform selection, marketing strategies, and customer engagement—all wrapped in a friendly, no-nonsense style.</p>
+    <p>Besides that, I'm a big fan of AI-generated art and design. If you've got wild ideas and want to know if they can sell, hit me up for constructive, market-savvy feedback.</p>
+
+    <img class="mid-img" src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham" />
+    <img class="relaxed-img" src="relaxed-dion.webp" alt="Vacation Dion relaxing on the beach with laptop" />
+
+    <p>Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
+    <p>🔗 Want to chat with me directly? Visit my page here: <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener">E-commerce Guide Dion Wolf Jotham</a></p>
+
+    <div class="quiz">
+      <h3>✨ Quick Quiz: What’s Your E-comm Vibe?</h3>
+      <label for="platform">Do you want full control or prefer done-for-you?</label><br/>
+      <select id="platform">
+        <option value="control">I want control</option>
+        <option value="simple">I want simple</option>
+      </select><br/>
+      <label for="products">Do you create products or curate others’?</label><br/>
+      <select id="products">
+        <option value="create">I create my own</option>
+        <option value="curate">I curate others’</option>
+      </select><br/>
+      <button onclick="showResult()">Get my style</button>
+      <div id="result" class="result" aria-live="polite"></div>
+    </div>
+
     <div class="ad-wrap">
       <div class="llama-mask">
         <h3>🦙 Pitch Your Product to a Llama</h3>
         <p>
           “Hey Llama, you know when 
-          <select id="problem">
+          <select id="problem" aria-label="Problem">
             <option>your coffee gets cold too fast</option>
             <option>you spill drinks on your desk</option>
             <option>you can’t find a fun gift</option>
             <option>your mornings feel dull</option>
           </select>
-          ? This 
-          <select id="product">
+          happens? This 
+          <select id="product" aria-label="Product">
             <option>mug</option>
             <option>t-shirt</option>
             <option>poster</option>
             <option>tote bag</option>
           </select>
-          <select id="benefit">
+          <select id="benefit" aria-label="Benefit">
             <option>keeps your drink warm for hours</option>
             <option>makes people smile instantly</option>
             <option>adds personality to your space</option>
             <option>is eco-friendly and reusable</option>
           </select>.
           It’s 
-          <select id="different">
+          <select id="different" aria-label="What makes it different">
             <option>AI-designed and one-of-a-kind</option>
             <option>made with sustainable materials</option>
             <option>customizable just for you</option>
             <option>backed by wolf-approved testing 🐺</option>
           </select>.
-          <select id="cta">
+          <select id="cta" aria-label="Call to action">
             <option>Want one?</option>
             <option>Grab yours today!</option>
             <option>Don’t miss out!</option>
@@ -64,21 +117,76 @@
           <button onclick="randomizeLlamaPitch()">🎛️ Shuffle Dropdowns</button>
           <button onclick="randomWordsPitch()">🎲 Random Words</button>
         </div>
-        <div id="llama-result" class="llama-output"></div>
+        <div id="llama-result" class="llama-output" aria-live="polite"></div>
       </div>
 
-      <aside class="ad-box">
+      <aside class="ad-box" aria-label="Ad space">
         <strong>Ad space</strong>
         <div style="height:250px;display:flex;align-items:center;justify-content:center;">300×250</div>
         <small>Place for your partner ad, affiliate banner, or promotion.</small>
       </aside>
     </div>
+
+    <div class="retreat">
+      <h3>🌍 Virtual Retreat for Creative Hustlers</h3>
+      <img class="retreat-img" src="https://source.unsplash.com/800x400/?beach,vacation" alt="Virtual Retreat Image" />
+      <p><em>“Every good idea starts with a break. Rest is research.”</em> – Dion</p>
+      <p>Take a deep breath. Imagine your dream shop, your best-sellers flying off the shelves... and click below for your <strong>Daily Spark</strong> ✨</p>
+      <button onclick="showSpark()">Give me a Spark!</button>
+      <div id="spark-result" class="result" aria-live="polite"></div>
     </div>
 
+    <p style="margin-top:2em;"><strong>🚀 Sneak Peek:</strong> Our AI-generated design gallery is brewing... Stay tuned for inspiration overload!</p>
+    <img class="mid-img" src="d9is.webp" alt="Royal Lady" />
+
+    <div class="footer">💡 Want to automate payment links or manage your funds smartly? Visit <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>.</div>
   </div>
 
   <script>
-    function generateLlamaPitch() {
+    // Greeting
+    const hour = new Date().getHours();
+    const greeting = document.getElementById('greeting');
+    if (hour < 12) greeting.textContent = "Good morning! I'm Dion Wolf Jotham 🐺";
+    else if (hour < 18) greeting.textContent = "Good afternoon! I'm Dion Wolf Jotham 🐺";
+    else greeting.textContent = "Good evening! I'm Dion Wolf Jotham 🐺";
+
+    // Quiz
+    function showResult(){
+      const platform = document.getElementById('platform').value;
+      const products = document.getElementById('products').value;
+      let result = '';
+      if (platform === 'control' && products === 'create') result = "You're a Creator Captain – Try Shopify or WooCommerce!";
+      else if (platform === 'simple' && products === 'create') result = "You're a Hands-free Hero – Check out Etsy or Redbubble!";
+      else if (platform === 'control' && products === 'curate') result = "You're a Strategic Curator – BigCommerce or Wix could be your jam!";
+      else result = "You're a Chill Curator – Try Printify or Zazzle!";
+      document.getElementById('result').textContent = result;
+    }
+
+    // Daily Sparks
+    const sparks = [
+      "Create a mug with a quote you'd tell your past self.",
+      "Sketch a design inspired by your last vacation.",
+      "Write a product description using only emojis.",
+      "Pitch your product to a llama (yes, pretend!).",
+      "Find a product that blends two weird niches together.",
+      "Design a logo using only geometric shapes.",
+      "Imagine your store as a theme park – what ride would you add?",
+      "Create a limited edition product for your favorite season.",
+      "Design packaging that doubles as something useful.",
+      "Invent a holiday just for your brand and design merchandise for it.",
+      "Write a product review from the perspective of your pet.",
+      "Think of your shop as a café – what’s the signature drink?",
+      "Create a bundle that pairs two products in a surprising way.",
+      "Draw inspiration from your favorite childhood toy.",
+      "Turn your best customer question into a design prompt."
+    ];
+    function showSpark(){
+      const randomSpark = sparks[Math.floor(Math.random() * sparks.length)];
+      document.getElementById('spark-result').textContent = randomSpark;
+    }
+
+    // Llama Pitch
+    function generateLlamaPitch(){
       const problem = document.getElementById('problem').value;
       const product = document.getElementById('product').value;
       const benefit = document.getElementById('benefit').value;
@@ -87,61 +195,40 @@
       const pitch = `“Hey Llama, you know when ${problem} happens? This ${product} ${benefit}. It’s ${different}. ${cta}”`;
       document.getElementById('llama-result').textContent = pitch;
     }
-
-    function randomizeLlamaPitch() {
-      const selects = ['problem','product','benefit','different','cta'];
-      selects.forEach(id => {
+    function randomizeLlamaPitch(){
+      ['problem','product','benefit','different','cta'].forEach(id=>{
         const sel = document.getElementById(id);
-        const options = sel.options;
-        sel.selectedIndex = Math.floor(Math.random() * options.length);
+        sel.selectedIndex = Math.floor(Math.random() * sel.options.length);
       });
       generateLlamaPitch();
     }
-  
-    // ===== Random Words Mode (no external calls) =====
+
+    // Random Words Mode (no external calls)
     const WORDS = {
       nouns:["coffee","desk","morning","backpack","laptop","notebook","idea","studio","camera","market","design","art","wolf","mug","shirt","poster","tote","habit","energy","focus","gift","friend","team","project","vibes","color","pattern","brand","launch","store","order","package","weekend","mountain","beach","sunrise","city","forest"],
-      verbs:["spill","lose","forget","break","boost","spark","organize","bolden","brighten","simplify","inspire","warm","cool","protect","carry","celebrate","refresh","tidy","highlight","upgrade","delight"],
+      verbs:["spill","lose","forget","break","boost","spark","organize","brighten","simplify","inspire","warm","cool","protect","carry","celebrate","refresh","tidy","highlight","upgrade","delight"],
       adjs:["warm","clean","bright","quick","playful","calm","smart","bold","eco","custom","durable","minimal","cozy","sleek","unique"],
       ctas:["Want one?","Grab yours today!","Let’s make your mornings epic!","Add to cart","Treat yourself","Snag it now"]
     };
-
     const rand = a => a[Math.floor(Math.random()*a.length)];
-    const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
-
     function randomProblem(){
-      const pattern = Math.random() < 0.5
-        ? `your ${rand(WORDS.nouns)} ${rand(WORDS.verbs)}s`
-        : `your ${rand(WORDS.nouns)} feels ${rand(WORDS.adjs)}`;
-      return pattern;
+      return Math.random()<0.5 ? `your ${rand(WORDS.nouns)} ${rand(WORDS.verbs)}s` : `your ${rand(WORDS.nouns)} feels ${rand(WORDS.adjs)}`;
     }
     function randomProduct(){
-      // Mostly real products, sometimes any noun for fun
-      const base = ["mug","t-shirt","poster","tote bag","sticker pack","hoodie","notebook","phone case"]; 
+      const base=["mug","t-shirt","poster","tote bag","sticker pack","hoodie","notebook","phone case"]; 
       return Math.random()<0.8 ? rand(base) : rand(WORDS.nouns);
     }
     function randomBenefit(){
-      const patterns = [
-        `helps you ${rand(WORDS.verbs)} ${rand(WORDS.nouns)}`,
-        `keeps things ${rand(WORDS.adjs)}`,
-        `${rand(WORDS.verbs)}s your ${rand(WORDS.nouns)}`,
-        `adds ${rand(WORDS.adjs)} vibes to your ${rand(WORDS.nouns)}`
-      ];
+      const patterns=[`helps you ${rand(WORDS.verbs)} ${rand(WORDS.nouns)}`,`keeps things ${rand(WORDS.adjs)}`,`${rand(WORDS.verbs)}s your ${rand(WORDS.nouns)}`,`adds ${rand(WORDS.adjs)} vibes to your ${rand(WORDS.nouns)}`];
       return rand(patterns);
     }
     function randomDifferent(){
-      const patterns = [
-        `${rand(WORDS.adjs)} by design`,
-        `crafted with ${rand(WORDS.adjs)} detail`,
-        `powered by ${rand(WORDS.adjs)} ideas`,
-        `${rand(WORDS.adjs)} and one‑of‑a‑kind`
-      ];
+      const patterns=[`${rand(WORDS.adjs)} by design`,`crafted with ${rand(WORDS.adjs)} detail`,`powered by ${rand(WORDS.adjs)} ideas`,`${rand(WORDS.adjs)} and one‑of‑a‑kind`];
       return rand(patterns);
     }
     function randomCTA(){ return rand(WORDS.ctas); }
-
     function randomWordsPitch(){
-      const pitch = `“Hey Llama, you know what happens when ${randomProblem()} ? This ${randomProduct()} ${randomBenefit()}. It’s ${randomDifferent()}. ${randomCTA()}”`;
+      const pitch = `“Hey Llama, you know when ${randomProblem()} happens? This ${randomProduct()} ${randomBenefit()}. It’s ${randomDifferent()}. ${randomCTA()}”`;
       document.getElementById('llama-result').textContent = pitch;
     }
   </script>
