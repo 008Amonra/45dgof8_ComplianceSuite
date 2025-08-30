@@ -21,6 +21,37 @@
     .ad-box{background:#0f172a;border:1px dashed #64748b;border-radius:12px;padding:12px;text-align:center;color:#94a3b8}
     .ad-box small{display:block;margin-top:6px;opacity:.8}
     @media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
+    /* Fullscreen Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.show {
+  display: flex;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
   </style>
 </head>
 <body>
@@ -265,6 +296,25 @@
       // Generate initial pitch once DOM is ready
       if (byId('problem')) generateLlamaPitch();
     });
+      const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('show');
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+    lightboxImg.src = '';
+  });
   </script>
+  <!-- Lightbox Container -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="Zoomed image">
+</div>
 </body>
 </html>
