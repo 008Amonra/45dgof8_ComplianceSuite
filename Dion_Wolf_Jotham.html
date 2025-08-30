@@ -73,7 +73,7 @@
         <option value="create">I create my own</option>
         <option value="curate">I curate others’</option>
       </select><br/>
-      <button id="quizBtn" onclick="showResult()">Get my style</button>
+      <button id="quizBtn">Get my style</button>
       <div id="result" class="result" aria-live="polite"></div>
     </div>
 
@@ -116,9 +116,9 @@
           </select>”
         </p>
         <div>
-          <button id="llamaShowBtn" onclick="generateLlamaPitch()">Show Me the Pitch</button>
-          <button id="llamaShuffleBtn" onclick="randomizeLlamaPitch()">🎛️ Shuffle Dropdowns</button>
-          <button id="llamaRandomWordsBtn" onclick="randomWordsPitch()">🎲 Random Words</button>
+          <button id="llamaShowBtn">Show Me the Pitch</button>
+          <button id="llamaShuffleBtn">🎛️ Shuffle Dropdowns</button>
+          <button id="llamaRandomWordsBtn">🎲 Random Words</button>
         </div>
         <div id="llama-result" class="llama-output" aria-live="polite"></div>
       </div>
@@ -244,7 +244,7 @@
       safe('quizBtn', showResult);
 
       // Spark
-      safe('sparkBtn', showSpark);
+     safe('sparkBtn', showSpark);
 
       // Llama buttons
       safe('llamaShowBtn', generateLlamaPitch);
