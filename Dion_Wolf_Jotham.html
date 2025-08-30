@@ -275,6 +275,12 @@
     window.addEventListener('DOMContentLoaded', () => {
       const byId = id => document.getElementById(id);
       const safe = (id, fn) => { const el = byId(id); if (el) el.addEventListener('click', fn); };
+      document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    lightbox.classList.remove('show');
+    lightboxImg.src = '';
+  }
+});
 
       // Quiz
       safe('quizBtn', showResult);
@@ -296,25 +302,46 @@
       // Generate initial pitch once DOM is ready
       if (byId('problem')) generateLlamaPitch();
     });
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
 
-  document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add('show');
+    document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('show');
+      });
     });
-  });
-
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('show');
-    lightboxImg.src = '';
-  });
-  </script>
-  <!-- Lightbox Container -->
+<!-- Lightbox Container -->
 <div class="lightbox" id="lightbox">
   <img id="lightbox-img" src="" alt="Zoomed image">
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // Set up click for all relevant images
+    document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('show');
+      });
+    });
+    // Clicking the lightbox itself closes it
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+      lightboxImg.src = '';
+    });
+  });
+</script>
+  <!-- Lightbox Container -->
+<div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="Zoomed image">
 </div>
 </body>
 </html>
