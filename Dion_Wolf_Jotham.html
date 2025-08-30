@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Meet Dion Wolf Jotham – E-Commerce Guide & AI Design Buddy</title>
 
   <!-- SEO Meta -->
@@ -26,10 +27,93 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
 
-  <!-- Styles -->
+  <!-- Optional favicon (place your icon at /favicon.ico or update path) -->
+  <!-- <link rel="icon" href="/favicon.ico" /> -->
+
   <style>
-    /* your CSS here (unchanged) */
-    /* ...lightbox, layout, etc... */
+    :root{
+      --bg1:#1e293b; /* slate-800 */
+      --bg2:#334155; /* slate-700 */
+      --panel:#1e293b;
+      --text:#f8fafc; /* slate-50 */
+      --muted:#94a3b8; /* slate-400 */
+      --link:#93c5fd; /* sky-300 */
+      --accent:#38bdf8; /* sky-400 */
+      --border:#64748b; /* slate-500 */
+    }
+
+    html,body{height:100%}
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: linear-gradient(145deg, var(--bg1), var(--bg2));
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    h1, h2, h3, p, .quiz, .retreat, .llama-mask { margin-bottom: 1em; }
+    ul { padding-left: 1.2em; }
+
+    /* Image presentation (keeps them from getting too big) */
+    .mid-img, .retreat-img, .relaxed-img {
+      display:block;
+      margin: 32px auto;
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    select, button {
+      margin: 0.3em 0;
+      padding: 0.6em 0.9em;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #f1f5f9;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    button:hover { background:#475569; }
+
+    .footer { margin-top: 2em; font-size: 0.9em; color: var(--muted); }
+    a { color: var(--link); text-decoration: none; }
+    a:hover{ color:#fff; text-decoration: underline; }
+    .result, .llama-output { margin-top:1em; font-weight:600; color: var(--accent); }
+
+    /* Ad layout next to the llama tool on wide screens */
+    .ad-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+    .ad-box{background:#0f172a;border:1px dashed var(--border);border-radius:12px;padding:12px;text-align:center;color:var(--muted)}
+    .ad-box small{display:block;margin-top:6px;opacity:.9}
+    @media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
+
+    /* Fullscreen Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 99999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.3s ease;
+    }
+    .lightbox.show { display: flex; animation: fadeIn 0.2s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 
   <!-- JSON-LD Structured Data -->
@@ -47,7 +131,6 @@
   }
   </script>
 </head>
-
 <body>
   <div class="container">
     <h1 id="greeting">Hey there!</h1>
@@ -74,22 +157,32 @@
 
     <h3>Why This Matters</h3>
     <p>You don’t need a marketing degree to start a store.<br/>You need a compass, a little clarity, and someone who’s got your back.<br/>That’s me. 🧭</p>
-    <p>And if you’re ready to go deeper or just want to say hello—<br/>📫 Reach me anytime at <a href="/cdn-cgi/l/email-protection#45717021222a237d052228242c296b262a28"><span class="__cf_email__" data-cfemail="eadedf8e8d858cd2aa8d878b8386c4898587">[email&nbsp;protected]</span></a><br/>I’m here to help you rock the world of e-commerce, especially if you’re diving into selling cool, AI-designed goodies like coffee mugs. Whether you're just getting started or looking to level up, I provide practical advice on platform selection, marketing strategies, and customer engagement—all wrapped in a friendly, no-nonsense style.</p>
+    <p>And if you’re ready to go deeper or just want to say hello—<br/>📫 Reach me anytime at
+      <a href="/cdn-cgi/l/email-protection#45717021222a237d052228242c296b262a28">
+        <span class="__cf_email__" data-cfemail="eadedf8e8d858cd2aa8d878b8386c4898587">[email&nbsp;protected]</span>
+      </a>
+      <br/>I’m here to help you rock the world of e-commerce, especially if you’re diving into selling cool, AI-designed goodies like coffee mugs. Whether you're just getting started or looking to level up, I provide practical advice on platform selection, marketing strategies, and customer engagement—all wrapped in a friendly, no-nonsense style.
+    </p>
     <p>Besides that, I'm a big fan of AI-generated art and design. If you've got wild ideas and want to know if they can sell, hit me up for constructive, market-savvy feedback.</p>
 
-     <!-- Floating Chat with Dion Button -->
-    <a href="https://chat.openai.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener" style="position:fixed;bottom:20px;right:20px;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.3);border-radius:12px;overflow:hidden;">
-    <img src="chat_with_Dion.png" alt="Chat with Dion Wolf Jotham" style="width:160px;height:auto;display:block;">
+    <!-- Floating Chat with Dion Button -->
+    <a href="https://chat.openai.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener"
+       style="position:fixed;bottom:20px;right:20px;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.3);border-radius:12px;overflow:hidden;">
+      <img src="chat_with_Dion.png" alt="Chat with Dion Wolf Jotham" style="width:160px;height:auto;display:block;">
     </a>
-    
+
     <img class="mid-img" src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham" />
     <img class="relaxed-img" src="relaxed-dion.webp" alt="Vacation Dion relaxing on the beach with laptop" />
     <!-- Restoring the two missing ladies -->
     <img class="mid-img" src="/assets/images/webp/AUQ.webp" alt="Lady AUQ" />
     <img class="mid-img" src="/assets/images/webp/CNml.webp" alt="Lady CNml" />
 
-    <p>Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
-    <p>🔗 Want to chat with me directly? Visit my page here: <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener">E-commerce Guide Dion Wolf Jotham</a></p>
+    <p>Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar:
+      <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a>
+    </p>
+    <p>🔗 Want to chat with me directly? Visit my page here:
+      <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener">E-commerce Guide Dion Wolf Jotham</a>
+    </p>
 
     <div class="quiz">
       <h3>✨ Quick Quiz: What’s Your E-comm Vibe?</h3>
@@ -111,14 +204,14 @@
       <div class="llama-mask">
         <h3>🦙 Pitch Your Product to a Llama</h3>
         <p>
-          “Hey Llama, you know when 
+          “Hey Llama, you know when
           <select id="problem" aria-label="Problem">
             <option>your coffee gets cold too fast</option>
             <option>you spill drinks on your desk</option>
             <option>you can’t find a fun gift</option>
             <option>your mornings feel dull</option>
           </select>
-          happens? This 
+          happens? This
           <select id="product" aria-label="Product">
             <option>mug</option>
             <option>t-shirt</option>
@@ -131,7 +224,7 @@
             <option>adds personality to your space</option>
             <option>is eco-friendly and reusable</option>
           </select>.
-          It’s 
+          It’s
           <select id="different" aria-label="What makes it different">
             <option>AI-designed and one-of-a-kind</option>
             <option>made with sustainable materials</option>
@@ -156,7 +249,12 @@
       <aside class="ad-box" aria-label="Ad space">
         <strong>Ad space</strong>
         <div style="height:250px;display:flex;align-items:center;justify-content:center;">300×250</div>
-        <small>Place for your partner ad, affiliate banner, or promotion.<br/>📫 Contact: <a href=\"mailto:45dgof8@gmail.com\">45dgof8@gmail.com</a><br/>💡 For secure payment & monetization setup, visit <a href=\"https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e\" target=\"_blank\" rel=\"noopener\">45dgof8-pulse</a>.</small>
+        <small>
+          Place for your partner ad, affiliate banner, or promotion.<br/>
+          📫 Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br/>
+          💡 For secure payment & monetization setup, visit
+          <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>.
+        </small>
       </aside>
     </div>
 
@@ -165,34 +263,43 @@
       <img class="retreat-img" src="https://source.unsplash.com/800x400/?beach,vacation" alt="Virtual Retreat Image" />
       <p><em>“Every good idea starts with a break. Rest is research.”</em> – Dion</p>
       <p>Take a deep breath. Imagine your dream shop, your best-sellers flying off the shelves... and click below for your <strong>Daily Spark</strong> ✨</p>
-      <button id="sparkBtn" onclick="showSpark()">Give me a Spark!</button>
+      <button id="sparkBtn">Give me a Spark!</button>
       <div id="spark-result" class="result" aria-live="polite"></div>
     </div>
 
     <p style="margin-top:2em;"><strong>🚀 Sneak Peek:</strong> Our AI-generated design gallery is brewing... Stay tuned for inspiration overload!</p>
     <img class="mid-img" src="d9is.webp" alt="Royal Lady" />
 
-    <div class="footer">💡 Want to automate payment links or manage your funds smartly? Visit <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>.</div>
+    <div class="footer">
+      💡 Want to automate payment links or manage your funds smartly? Visit
+      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>.
+    </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Greeting
-    const hour = new Date().getHours();
-    const greeting = document.getElementById('greeting');
-    if (hour < 12) greeting.textContent = "Good morning! I'm Dion Wolf Jotham 🐺";
-    else if (hour < 18) greeting.textContent = "Good afternoon! I'm Dion Wolf Jotham 🐺";
-    else greeting.textContent = "Good evening! I'm Dion Wolf Jotham 🐺";
+  <!-- Lightbox Container -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="Zoomed image">
+  </div>
 
-    // Quiz
+  <!-- Cloudflare email decode (optional, supports protected email display) -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+  <!-- Behavior Scripts -->
+  <script>
+    // Core helpers
+    const byId = id => document.getElementById(id);
+    const rand = a => a[Math.floor(Math.random()*a.length)];
+
+    // Quiz logic
     function showResult(){
-      const platform = document.getElementById('platform').value;
-      const products = document.getElementById('products').value;
+      const platform = byId('platform').value;
+      const products = byId('products').value;
       let result = '';
       if (platform === 'control' && products === 'create') result = "You're a Creator Captain – Try Shopify or WooCommerce!";
       else if (platform === 'simple' && products === 'create') result = "You're a Hands-free Hero – Check out Etsy or Redbubble!";
       else if (platform === 'control' && products === 'curate') result = "You're a Strategic Curator – BigCommerce or Wix could be your jam!";
       else result = "You're a Chill Curator – Try Printify or Zazzle!";
-      document.getElementById('result').textContent = result;
+      byId('result').textContent = result;
     }
 
     // Daily Sparks
@@ -215,66 +322,76 @@
     ];
     function showSpark(){
       const randomSpark = sparks[Math.floor(Math.random() * sparks.length)];
-      document.getElementById('spark-result').textContent = randomSpark;
+      byId('spark-result').textContent = randomSpark;
     }
 
     // Llama Pitch
     function generateLlamaPitch(){
-      const problem = document.getElementById('problem').value;
-      const product = document.getElementById('product').value;
-      const benefit = document.getElementById('benefit').value;
-      const different = document.getElementById('different').value;
-      const cta = document.getElementById('cta').value;
+      const problem = byId('problem').value;
+      const product = byId('product').value;
+      const benefit = byId('benefit').value;
+      const different = byId('different').value;
+      const cta = byId('cta').value;
       const pitch = `“Hey Llama, you know when ${problem} happens? This ${product} ${benefit}. It’s ${different}. ${cta}”`;
-      document.getElementById('llama-result').textContent = pitch;
+      byId('llama-result').textContent = pitch;
     }
     function randomizeLlamaPitch(){
       ['problem','product','benefit','different','cta'].forEach(id=>{
-        const sel = document.getElementById(id);
-        sel.selectedIndex = Math.floor(Math.random() * sel.options.length);
+        const sel = byId(id);
+        if (sel) sel.selectedIndex = Math.floor(Math.random() * sel.options.length);
       });
       generateLlamaPitch();
     }
 
-    // Random Words Mode (no external calls)
+    // Random Words mode
     const WORDS = {
       nouns:["coffee","desk","morning","backpack","laptop","notebook","idea","studio","camera","market","design","art","wolf","mug","shirt","poster","tote","habit","energy","focus","gift","friend","team","project","vibes","color","pattern","brand","launch","store","order","package","weekend","mountain","beach","sunrise","city","forest"],
       verbs:["spill","lose","forget","break","boost","spark","organize","brighten","simplify","inspire","warm","cool","protect","carry","celebrate","refresh","tidy","highlight","upgrade","delight"],
       adjs:["warm","clean","bright","quick","playful","calm","smart","bold","eco","custom","durable","minimal","cozy","sleek","unique"],
       ctas:["Want one?","Grab yours today!","Let’s make your mornings epic!","Add to cart","Treat yourself","Snag it now"]
     };
-    const rand = a => a[Math.floor(Math.random()*a.length)];
     function randomProblem(){
       return Math.random()<0.5 ? `your ${rand(WORDS.nouns)} ${rand(WORDS.verbs)}s` : `your ${rand(WORDS.nouns)} feels ${rand(WORDS.adjs)}`;
     }
     function randomProduct(){
-      const base=["mug","t-shirt","poster","tote bag","sticker pack","hoodie","notebook","phone case"]; 
+      const base=["mug","t-shirt","poster","tote bag","sticker pack","hoodie","notebook","phone case"];
       return Math.random()<0.8 ? rand(base) : rand(WORDS.nouns);
     }
     function randomBenefit(){
-      const patterns=[`helps you ${rand(WORDS.verbs)} ${rand(WORDS.nouns)}`,`keeps things ${rand(WORDS.adjs)}`,`${rand(WORDS.verbs)}s your ${rand(WORDS.nouns)}`,`adds ${rand(WORDS.adjs)} vibes to your ${rand(WORDS.nouns)}`];
+      const patterns=[
+        `helps you ${rand(WORDS.verbs)} ${rand(WORDS.nouns)}`,
+        `keeps things ${rand(WORDS.adjs)}`,
+        `${rand(WORDS.verbs)}s your ${rand(WORDS.nouns)}`,
+        `adds ${rand(WORDS.adjs)} vibes to your ${rand(WORDS.nouns)}`
+      ];
       return rand(patterns);
     }
     function randomDifferent(){
-      const patterns=[`${rand(WORDS.adjs)} by design`,`crafted with ${rand(WORDS.adjs)} detail`,`powered by ${rand(WORDS.adjs)} ideas`,`${rand(WORDS.adjs)} and one‑of‑a‑kind`];
+      const patterns=[
+        `${rand(WORDS.adjs)} by design`,
+        `crafted with ${rand(WORDS.adjs)} detail`,
+        `powered by ${rand(WORDS.adjs)} ideas`,
+        `${rand(WORDS.adjs)} and one-of-a-kind`
+      ];
       return rand(patterns);
     }
     function randomCTA(){ return rand(WORDS.ctas); }
     function randomWordsPitch(){
       const pitch = `“Hey Llama, you know when ${randomProblem()} happens? This ${randomProduct()} ${randomBenefit()}. It’s ${randomDifferent()}. ${randomCTA()}”`;
-      document.getElementById('llama-result').textContent = pitch;
+      byId('llama-result').textContent = pitch;
     }
-  
-    // --- Robust event wiring (handles CMS stripping inline handlers) ---
+
+    // DOM wiring + lightbox + greeting
     window.addEventListener('DOMContentLoaded', () => {
-      const byId = id => document.getElementById(id);
+      // Greeting
+      const hour = new Date().getHours();
+      const greeting = byId('greeting');
+      if (hour < 12) greeting.textContent = "Good morning! I'm Dion Wolf Jotham 🐺";
+      else if (hour < 18) greeting.textContent = "Good afternoon! I'm Dion Wolf Jotham 🐺";
+      else greeting.textContent = "Good evening! I'm Dion Wolf Jotham 🐺";
+
+      // Safe binder
       const safe = (id, fn) => { const el = byId(id); if (el) el.addEventListener('click', fn); };
-      document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    lightbox.classList.remove('show');
-    lightboxImg.src = '';
-  }
-});
 
       // Quiz
       safe('quizBtn', showResult);
@@ -287,73 +404,41 @@
       safe('llamaShuffleBtn', randomizeLlamaPitch);
       safe('llamaRandomWordsBtn', randomWordsPitch);
 
-      // Live update llama pitch on any selection change
+      // Live update llama pitch on selection change
       ['problem','product','benefit','different','cta'].forEach(id => {
         const el = byId(id);
         if (el) el.addEventListener('change', generateLlamaPitch);
       });
 
-      // Generate initial pitch once DOM is ready
+      // Initial pitch
       if (byId('problem')) generateLlamaPitch();
-    });
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
 
-    document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('show');
+      // Lightbox
+      const lightbox = byId('lightbox');
+      const lightboxImg = byId('lightbox-img');
+      document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightbox.classList.add('show');
+        });
       });
-    });
-<!-- Lightbox Container -->
-<div class="lightbox" id="lightbox">
-  <img id="lightbox-img" src="" alt="Zoomed image">
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    // Set up click for all relevant images
-    document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('show');
+      lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('show');
+        lightboxImg.src = '';
       });
-    });
-    // Clicking the lightbox itself closes it
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('show');
-      lightboxImg.src = '';
-    });
-  });
-</script>
-  <!-- Lightbox Container -->
-<div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="Zoomed image">
-
-  <!-- Floating Chat Invite -->
-<div id="chatWithDion">
-  <!-- your image button or floating chat HTML -->
-</div>
-
-<!-- Optional scroll-to-chat JS -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const urlHash = window.location.hash;
-    if (urlHash === '#chat') {
-      const chatBox = document.querySelector('#chatWithDion');
-      if (chatBox) {
-        chatBox.scrollIntoView({ behavior: 'smooth' });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('show');
+          lightboxImg.src = '';
+        }
+      });
+      // Hash-based scroll to chat
+      if (window.location.hash === '#chat') {
+        const chatBox = document.querySelector('#chatWithDion');
+        if (chatBox) chatBox.scrollIntoView({ behavior: 'smooth' });
       }
-    }
-  });
-</script>
-</div>
+    });
+  </script>
 </body>
 </html>
