@@ -73,7 +73,7 @@
         <option value="create">I create my own</option>
         <option value="curate">I curate others’</option>
       </select><br/>
-      <button onclick="showResult()">Get my style</button>
+      <button id="quizBtn" onclick="showResult()">Get my style</button>
       <div id="result" class="result" aria-live="polite"></div>
     </div>
 
@@ -116,9 +116,9 @@
           </select>”
         </p>
         <div>
-          <button onclick="generateLlamaPitch()">Show Me the Pitch</button>
-          <button onclick="randomizeLlamaPitch()">🎛️ Shuffle Dropdowns</button>
-          <button onclick="randomWordsPitch()">🎲 Random Words</button>
+          <button id="llamaShowBtn" onclick="generateLlamaPitch()">Show Me the Pitch</button>
+          <button id="llamaShuffleBtn" onclick="randomizeLlamaPitch()">🎛️ Shuffle Dropdowns</button>
+          <button id="llamaRandomWordsBtn" onclick="randomWordsPitch()">🎲 Random Words</button>
         </div>
         <div id="llama-result" class="llama-output" aria-live="polite"></div>
       </div>
@@ -126,7 +126,7 @@
       <aside class="ad-box" aria-label="Ad space">
         <strong>Ad space</strong>
         <div style="height:250px;display:flex;align-items:center;justify-content:center;">300×250</div>
-        <small>Place for your partner ad, affiliate banner, or promotion.</small>
+        <small>Place for your partner ad, affiliate banner, or promotion.<br/>📫 Contact: <a href=\"mailto:45dgof8@gmail.com\">45dgof8@gmail.com</a><br/>💡 For secure payment & monetization setup, visit <a href=\"https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e\" target=\"_blank\" rel=\"noopener\">45dgof8-pulse</a>.</small>
       </aside>
     </div>
 
@@ -135,7 +135,7 @@
       <img class="retreat-img" src="https://source.unsplash.com/800x400/?beach,vacation" alt="Virtual Retreat Image" />
       <p><em>“Every good idea starts with a break. Rest is research.”</em> – Dion</p>
       <p>Take a deep breath. Imagine your dream shop, your best-sellers flying off the shelves... and click below for your <strong>Daily Spark</strong> ✨</p>
-      <button onclick="showSpark()">Give me a Spark!</button>
+      <button id="sparkBtn" onclick="showSpark()">Give me a Spark!</button>
       <div id="spark-result" class="result" aria-live="polite"></div>
     </div>
 
@@ -234,6 +234,32 @@
       const pitch = `“Hey Llama, you know when ${randomProblem()} happens? This ${randomProduct()} ${randomBenefit()}. It’s ${randomDifferent()}. ${randomCTA()}”`;
       document.getElementById('llama-result').textContent = pitch;
     }
+  
+    // --- Robust event wiring (handles CMS stripping inline handlers) ---
+    window.addEventListener('DOMContentLoaded', () => {
+      const byId = id => document.getElementById(id);
+      const safe = (id, fn) => { const el = byId(id); if (el) el.addEventListener('click', fn); };
+
+      // Quiz
+      safe('quizBtn', showResult);
+
+      // Spark
+      safe('sparkBtn', showSpark);
+
+      // Llama buttons
+      safe('llamaShowBtn', generateLlamaPitch);
+      safe('llamaShuffleBtn', randomizeLlamaPitch);
+      safe('llamaRandomWordsBtn', randomWordsPitch);
+
+      // Live update llama pitch on any selection change
+      ['problem','product','benefit','different','cta'].forEach(id => {
+        const el = byId(id);
+        if (el) el.addEventListener('change', generateLlamaPitch);
+      });
+
+      // Generate initial pitch once DOM is ready
+      if (byId('problem')) generateLlamaPitch();
+    });
   </script>
 </body>
 </html>
