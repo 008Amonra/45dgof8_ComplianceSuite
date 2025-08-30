@@ -201,7 +201,7 @@
     function randomizeLlamaPitch(){
       ['problem','product','benefit','different','cta'].forEach(id=>{
         const sel = document.getElementById(id);
-        sel.selectedIndex = Math.floor(Math.random() * sel.options length);
+        sel.selectedIndex = Math.floor(Math.random() * sel.options.length);
       });
       generateLlamaPitch();
     }
