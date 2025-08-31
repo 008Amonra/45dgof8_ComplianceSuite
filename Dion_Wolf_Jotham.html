@@ -114,6 +114,73 @@
     }
     .lightbox.show { display: flex; animation: fadeIn 0.2s ease-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* Hero Banner */
+.hero-banner {
+  position: relative;
+  text-align: center;
+  padding: 70px 20px 90px;
+  background: linear-gradient(135deg, #3b82f6, #9333ea, #f59e0b);
+  background-size: 600% 600%;
+  animation: gradientShift 15s ease infinite;
+  color: white;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+
+.hero-banner .overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/coffee-beans.png");
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.hero-banner h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-banner h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.95;
+  position: relative;
+  z-index: 1;
+}
+
+/* Coffee steam animation */
+.steam {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 60px;
+  height: 150px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 20%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(12px);
+  animation: rise 5s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes rise {
+  0% { transform: translateX(-50%) translateY(20px) scale(1); opacity: 0.6; }
+  50% { transform: translateX(-50%) translateY(-40px) scale(1.2); opacity: 0.3; }
+  100% { transform: translateX(-50%) translateY(-100px) scale(1); opacity: 0; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   </style>
 
   <!-- JSON-LD Structured Data -->
@@ -132,6 +199,14 @@
   </script>
 </head>
 <body>
+  <!-- Title Banner -->
+<header class="hero-banner">
+  <div class="overlay"></div>
+  <div class="steam"></div>
+  <h1>🐺 Dion Wolf Jotham</h1>
+  <h2>Your E-Commerce Buddy & AI Design Enthusiast</h2>
+</header>
+
   <div class="container">
     <h1 id="greeting">Hey there!</h1>
     <h2>Your E-commerce Buddy & AI Design Enthusiast</h2>
