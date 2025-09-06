@@ -60,62 +60,54 @@
     .cta:hover { filter: brightness(1.08); }
     .cta:active { transform: translateY(1px); }
     .card[role="link"] { cursor: pointer; }
+    .buttons, .settings-section { margin-top: 48px; }
+    .buttons a { margin-right: 8px; display: inline-block; }
+    .feature-button { background: var(--accent); color: white; border: none; padding: 10px 16px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    .settings-section input { display: block; margin: 8px 0; padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card); color: var(--text); }
+    .settings-section button { margin-top: 10px; background: var(--accent); color: white; border: none; padding: 10px 16px; border-radius: 10px; font-weight: bold; cursor: pointer; }
     footer { margin-top: 36px; padding-top: 20px; border-top:1px solid var(--card-border); color: var(--muted); font-size: .9rem; }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
   <div class="container">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Back to Eva Answers home">
-        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva icon" />
-        <span>Eva Answers</span>
-      </a>
-      <div class="theme-switcher">
-        <label for="theme">Theme</label>
-        <select id="theme" onchange="switchTheme(this.value)">
-          <option value="galaxy">Galaxy</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
-    </header>
-
-    <section class="hero">
-      <div class="eyebrow">Prompt Packs & Tools</div>
-      <h1 class="title">Ready‑made GPT personalities to drop into your workflow</h1>
-      <p class="subtitle">More coming soon. Click a pack to request details, or use the button to contact Eva directly.</p>
-    </section>
-
-    <section class="grid" id="packs">
-      <article class="card" role="link" tabindex="0" data-href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT.">
-        <h3>MuseGPT – Creative Writing Companion</h3>
-        <p>Poetic, encouraging, brilliant at unblocking ideas.</p>
-        <a class="cta" href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT.">Get Pack</a>
-      </article>
-
-      <article class="card" role="link" tabindex="0" data-href="mailto:45dgof8@gmail.com?subject=Auto‑Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto‑Journal.">
-        <h3>Auto‑Journal GPT – Daily Reflection</h3>
-        <p>Gentle prompts + automation blueprint for daily clarity.</p>
-        <a class="cta" href="mailto:45dgof8@gmail.com?subject=Auto‑Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto‑Journal.">Get Pack</a>
-      </article>
-
-      <article class="card" aria-disabled="true" tabindex="-1">
-        <h3>Coming Soon</h3>
-        <p>New assistants are warming up in the launch bay.</p>
-        <span class="cta" style="pointer-events:none; opacity:.6;">Soon</span>
-      </article>
-    </section>
-
-    <div class="sparkles"></div>
-
-    <div class="eva-hero">
+    <div class="eva-hero" style="display:flex; gap: 16px; align-items:center; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
       <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
-        <img src="https://45dgof8.com/TCXm.webp" alt="Coffee Cup">
+        <img src="https://45dgof8.com/TCXm.webp" alt="Coffee Cup" style="height: 90px; border-radius: 12px;" />
       </a>
       <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
-        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon" style="height: 90px; border-radius: 12px;" />
       </a>
+      <div id="welcomeMessage" style="font-weight: 500; font-size: 1rem; color: var(--accent);"></div>
+    </div>
+
+    <div class="privacy-note" style="text-align:center; font-size: .9rem; margin-top: 8px; color: var(--muted);">
+      🔒 No secrets here — just transparent stardust.
+    </div>
+
+    <div class="intro" style="text-align:center; margin-top: 18px;">
+      <h2 style="color: var(--accent);">Meet Eva</h2>
+      <p><strong>Hi, I'm <span style="color: var(--accent);">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
+      <p><a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" style="color: var(--accent); text-decoration: underline;">Visit me on ChatGPT</a></p>
+    </div>
+    <!-- existing content omitted for brevity -->
+
+    <div class="buttons">
+      <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🔍 Data Analysis & Visualization</button></a>
+      <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">📊 Create a Financial Dashboard</button></a>
+      <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧾 Summarize Trends</button></a>
+      <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧠 Insights & KPIs</button></a>
+      <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧹 Clean & Structure Data</button></a>
+    </div>
+
+    <div class="settings-section">
+      <h3 style="color: var(--accent);">✨ Personalize Your Journey</h3>
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="text" id="interests" placeholder="Interests: crypto, ai, etc">
+      <input type="text" id="assets" placeholder="Assets: XRP, BTC">
+      <input type="text" id="sources" placeholder="News Sources: sciencealert, etc">
+      <button onclick="exportSettings()">📤 Export Settings</button>
+      <input type="file" id="fileInput" onchange="importSettings(event)">
     </div>
 
     <footer>
@@ -124,33 +116,65 @@
   </div>
 
   <script>
-    (function initTheme() {
-      const saved = localStorage.getItem("evaTheme") || 'galaxy';
-      document.body.className = saved;
-      const themeSelect = document.getElementById("theme");
-      if (themeSelect) themeSelect.value = saved;
-    })();
+    document.addEventListener("DOMContentLoaded", function () {
+      const savedTheme = localStorage.getItem("evaTheme");
+      if (savedTheme) {
+        document.body.className = savedTheme;
+        document.getElementById("theme").value = savedTheme;
+      }
+
+      let name = localStorage.getItem("evaName");
+      if (!name) {
+        name = prompt("Welcome! What's your name?");
+        if (name) localStorage.setItem("evaName", name);
+      }
+
+      const welcomeBack = localStorage.getItem("evaVisited");
+      const hour = new Date().getHours();
+      let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
+
+      if (welcomeBack && name) {
+        document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
+      } else if (name) {
+        document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
+        localStorage.setItem("evaVisited", true);
+      }
+    });
 
     function switchTheme(theme) {
       document.body.className = theme;
       localStorage.setItem("evaTheme", theme);
     }
 
-    document.querySelectorAll('.card[role="link"]').forEach(card => {
-      const go = () => {
-        const url = card.getAttribute('data-href');
-        if (url) window.location.href = url;
+    function exportSettings() {
+      const name = document.getElementById('name').value;
+      const interests = document.getElementById('interests').value;
+      const assets = document.getElementById('assets').value;
+      const sources = document.getElementById('sources').value;
+      const theme = document.getElementById('theme').value;
+      const content = `name=${name}\ntheme=${theme}\ninterests=${interests}\nassets=${assets}\nsources=${sources}`;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${name || 'eva'}_settings.txt`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function importSettings(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const lines = e.target.result.split('\n');
+        lines.forEach(line => {
+          const [key, value] = line.split('=');
+          const input = document.getElementById(key);
+          if (input) input.value = value;
+        });
       };
-      card.addEventListener('click', (e) => {
-        if (!(e.target instanceof HTMLAnchorElement)) go();
-      });
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          go();
-        }
-      });
-    });
+      reader.readAsText(file);
+    }
   </script>
 </body>
 </html>
