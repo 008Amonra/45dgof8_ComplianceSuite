@@ -1,221 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eva Answers - Your AI galactic assistant for data, scheduling, automation, and more. Meet Eva and explore your universe!">
-  <title>Meet Eva</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompt Packs & Tools · Eva Answers</title>
+  <meta name="description" content="Ready‑made GPT personalities to drop into your workflow. More coming soon." />
   <style>
     :root {
       --bg: #ffffff;
       --text: #222222;
-      --accent: #f39c12;
-      --button-bg: #f1f1f1;
-      --button-hover: #e2e2e2;
+      --muted: #6b7280;
+      --accent: #7d5fff; /* match galaxy accent from main site */
+      --card: #f7f7fb;
+      --card-border: #e5e7eb;
+      --button-bg: #1f1f3a;
+      --button-text: #ffffff;
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(0,0,0,.08);
     }
-
     body.dark {
       --bg: #1c1c1e;
-      --text: #f0f0f0;
+      --text: #f5f5f7;
+      --muted: #a1a1aa;
       --accent: #ff9f43;
+      --card: #222226;
+      --card-border: #2f3037;
       --button-bg: #2c2c2e;
-      --button-hover: #3c3c3e;
+      --button-text: #f5f5f7;
+      --shadow: 0 8px 24px rgba(0,0,0,.35);
     }
-
     body.galaxy {
       --bg: #090923;
       --text: #fefefe;
+      --muted: #c7c8fe;
       --accent: #7d5fff;
+      --card: #111136;
+      --card-border: #23234d;
       --button-bg: #1f1f3a;
-      --button-hover: #292950;
+      --button-text: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
     }
 
+    /* Page base */
+    html, body { height: 100%; }
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background-color 0.5s, color 0.5s;
-      overflow-x: hidden;
       margin: 0;
-    }
-
-    nav {
-      text-align: center;
-      margin: 20px 0;
-    }
-    nav a {
-      color: var(--accent);
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .sparkles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png');
-      opacity: 0.3;
-      z-index: 0;
-    }
-
-    .eva-hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      margin-top: 40px;
-      z-index: 1;
-      flex-wrap: wrap;
-    }
-
-    .eva-hero a img {
-      border: 3px solid var(--accent);
-      border-radius: 16px;
-      transition: transform 0.3s ease, border-color 0.3s;
-      width: 200px;
-      max-width: 90vw;
-      cursor: pointer;
-    }
-
-    .eva-hero a:hover img {
-      transform: scale(1.05);
-      border-color: var(--text);
-    }
-
-    .intro, .buttons, .settings-section {
-      max-width: 800px;
-      margin: 40px auto;
-      text-align: center;
-      z-index: 1;
-      padding: 0 10px;
-    }
-
-    .buttons .feature-button {
-      background-color: var(--button-bg);
+      background: var(--bg);
       color: var(--text);
-      border: none;
-      border-radius: 12px;
-      padding: 12px 20px;
-      margin: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background .3s ease, color .3s ease;
     }
 
-    .buttons .feature-button:hover {
-      background-color: var(--button-hover);
-    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 28px 16px 64px; }
 
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
+    /* Header */
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
+    .brand img { width: 28px; height: 28px; border-radius: 8px; }
+    .brand span { font-weight: 700; letter-spacing:.2px; }
+
+    .theme-switcher { display:flex; align-items:center; gap:8px; }
+    .theme-switcher select { background: var(--card); color: var(--text); border:1px solid var(--card-border); border-radius: 10px; padding:8px 10px; }
+
+    /* Hero */
+    .hero { margin: 26px 0 12px; }
+    .eyebrow { color: var(--muted); font-size: .9rem; text-transform: uppercase; letter-spacing: .12em; }
+    .title { font-size: clamp(1.6rem, 2.2vw + 1.2rem, 2.6rem); margin: 6px 0 8px; }
+    .subtitle { color: var(--muted); max-width: 60ch; }
+
+    /* Grid */
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 22px; }
+
+    .card { position: relative; background: var(--card); border:1px solid var(--card-border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+    .card p { margin: 0 0 12px; color: var(--muted); }
+
+    .cta {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      background: var(--accent); color: #fff; text-decoration:none; font-weight: 700;
+      padding: 10px 14px; border-radius: 12px; transition: transform .08s ease, filter .25s ease;
     }
-    .card {
-      background: #1f1f3a;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(125, 95, 255, 0.2);
-    }
-    .card h3 {
-      color: #f39c12;
-    }
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
+    .cta:hover { filter: brightness(1.08); }
+    .cta:active { transform: translateY(1px); }
+
+    /* Make whole card clickable, but keep accessible */
+    .card[role="link"] { cursor: pointer; }
+
+    /* Footer */
+    footer { margin-top: 36px; padding-top: 20px; border-top:1px solid var(--card-border); color: var(--muted); font-size: .9rem; }
+
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="sparkles"></div>
+  <div class="container">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Back to Eva Answers home">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva icon" />
+        <span>Eva Answers</span>
+      </a>
+      <div class="theme-switcher">
+        <label for="theme">Theme</label>
+        <select id="theme" aria-label="Theme" onchange="switchTheme(this.value)">
+          <option value="galaxy">Galaxy</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+    </header>
 
-  <div class="theme-switcher" style="text-align:right;padding:10px 20px;">
-    <label for="theme"> Theme:</label>
-    <select id="theme" onchange="switchTheme(this.value)">
-      <option value="galaxy">Galaxy</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  </div>
+    <section class="hero">
+      <div class="eyebrow">Prompt Packs & Tools</div>
+      <h1 class="title">Ready‑made GPT personalities to drop into your workflow</h1>
+      <p class="subtitle">More coming soon. Click a pack to request details, or use the button to contact Eva directly.</p>
+    </section>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="blog.html">Blog</a>
-    <a href="custom-assistant.html">Custom Assistant</a>
-    <a href="auto-journal.html">Auto‑Journal</a>
-    <a href="write-with-eva.html">Eva Writes For You</a>
-    <a href="prompt-packs.html">Prompt Packs</a>
-    <a href="gpt-lottery.html">🎰 GPT Lottery</a>
-  </nav>
+    <section class="grid" id="packs">
+      <!-- MuseGPT Card -->
+      <article class="card" role="link" tabindex="0" data-href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT.">
+        <h3>MuseGPT – Creative Writing Companion</h3>
+        <p>Poetic, encouraging, brilliant at unblocking ideas.</p>
+        <a class="cta" href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT.">Get Pack</a>
+      </article>
 
-  <div class="eva-hero">
-    <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
-      <img src="https://45dgof8.com/TCXm.webp" alt="Coffee Cup">
-    </a>
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
-      <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon">
-    </a>
-  </div>
+      <!-- Auto‑Journal Card -->
+      <article class="card" role="link" tabindex="0" data-href="mailto:45dgof8@gmail.com?subject=Auto‑Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto‑Journal.">
+        <h3>Auto‑Journal GPT – Daily Reflection</h3>
+        <p>Gentle prompts + automation blueprint for daily clarity.</p>
+        <a class="cta" href="mailto:45dgof8@gmail.com?subject=Auto‑Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto‑Journal.">Get Pack</a>
+      </article>
 
-  <div class="intro">
-    <h2 style="color: var(--accent);">Meet Eva</h2>
-    <p><strong>Hi, I'm <span style="color: var(--accent);">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
-  </div>
+      <!-- Placeholder for upcoming packs -->
+      <article class="card" aria-disabled="true">
+        <h3>Coming Soon</h3>
+        <p>New assistants are warming up in the launch bay.</p>
+        <span class="cta" style="pointer-events:none; opacity:.6;">Soon</span>
+      </article>
+    </section>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Custom Assistant</h3>
-      <p>Tell us what assistant you want — fixed price, tailored to you.</p>
-      <a href="custom-assistant.html">Go</a>
-    </div>
-    <div class="card">
-      <h3>Auto‑Journal</h3>
-      <p>Daily prompts and automation to capture your thoughts.</p>
-      <a href="auto-journal.html">Go</a>
-    </div>
-    <div class="card">
-      <h3>Eva Writes For You</h3>
-      <p>From bios to product descriptions — your tone, my words.</p>
-      <a href="write-with-eva.html">Go</a>
-    </div>
-    <div class="card">
-      <h3>Prompt Packs</h3>
-      <p>Ready‑made GPT personalities for instant use.</p>
-      <a href="prompt-packs.html">Go</a>
-    </div>
-    <div class="card">
-      <h3>🎰 GPT Lottery</h3>
-      <p>Pick a vibe — I’ll create your unique GPT.</p>
-      <a href="gpt-lottery.html">Go</a>
-    </div>
+    <footer>
+      <p>For payments, pricing, invoicing, or monetization, use 45dgof8‑pulse (secure checkout). You may replace the mailto links above with your pulse links at any time.</p>
+    </footer>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const savedTheme = localStorage.getItem("evaTheme");
-      if (savedTheme) {
-        document.body.className = savedTheme;
-        document.getElementById("theme").value = savedTheme;
-      }
-    });
+    // Theme persistence to match main site behavior
+    (function initTheme() {
+      const saved = localStorage.getItem("evaTheme");
+      const select = document.getElementById("theme");
+      const theme = saved || 'galaxy';
+      document.body.className = theme;
+      if (select) select.value = theme;
+    })();
 
     function switchTheme(theme) {
       document.body.className = theme;
       localStorage.setItem("evaTheme", theme);
     }
+
+    // Make entire card clickable + keyboard accessible
+    document.querySelectorAll('.card[role="link"]').forEach(card => {
+      const go = () => {
+        const url = card.getAttribute('data-href');
+        if (url) window.location.href = url;
+      };
+      card.addEventListener('click', (e) => {
+        // Avoid double navigation if inner <a> is clicked
+        if (!(e.target instanceof HTMLAnchorElement)) go();
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+      });
+    });
   </script>
 </body>
 </html>
