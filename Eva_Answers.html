@@ -10,7 +10,7 @@
       --bg: #ffffff;
       --text: #222222;
       --muted: #6b7280;
-      --accent: #7d5fff; /* match galaxy accent from main site */
+      --accent: #7d5fff;
       --card: #f7f7fb;
       --card-border: #e5e7eb;
       --button-bg: #1f1f3a;
@@ -40,61 +40,28 @@
       --button-text: #ffffff;
       --shadow: 0 10px 30px rgba(0,0,0,.45);
     }
-
-    /* Page base */
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transition: background .3s ease, color .3s ease;
-    }
-
+    html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--bg); color: var(--text); transition: background .3s ease, color .3s ease; }
     .container { max-width: 1000px; margin: 0 auto; padding: 28px 16px 64px; }
-
-    /* Header */
     .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; }
     .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
     .brand img { width: 28px; height: 28px; border-radius: 8px; }
     .brand span { font-weight: 700; letter-spacing:.2px; }
-
     .theme-switcher { display:flex; align-items:center; gap:8px; }
     .theme-switcher select { background: var(--card); color: var(--text); border:1px solid var(--card-border); border-radius: 10px; padding:8px 10px; }
-
-    /* Hero */
     .hero { margin: 26px 0 12px; }
     .eyebrow { color: var(--muted); font-size: .9rem; text-transform: uppercase; letter-spacing: .12em; }
     .title { font-size: clamp(1.6rem, 2.2vw + 1.2rem, 2.6rem); margin: 6px 0 8px; }
     .subtitle { color: var(--muted); max-width: 60ch; }
-
-    /* Grid */
     .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 22px; }
-
     .card { position: relative; background: var(--card); border:1px solid var(--card-border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
     .card h3 { margin: 0 0 6px; font-size: 1.1rem; }
     .card p { margin: 0 0 12px; color: var(--muted); }
-
-    .cta {
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      background: var(--accent); color: #fff; text-decoration:none; font-weight: 700;
-      padding: 10px 14px; border-radius: 12px; transition: transform .08s ease, filter .25s ease;
-    }
+    .cta { display:inline-flex; align-items:center; justify-content:center; gap:8px; background: var(--accent); color: #fff; text-decoration:none; font-weight: 700; padding: 10px 14px; border-radius: 12px; transition: transform .08s ease, filter .25s ease; }
     .cta:hover { filter: brightness(1.08); }
     .cta:active { transform: translateY(1px); }
-
-    /* Make whole card clickable, but keep accessible */
     .card[role="link"] { cursor: pointer; }
-
-    /* Footer */
     footer { margin-top: 36px; padding-top: 20px; border-top:1px solid var(--card-border); color: var(--muted); font-size: .9rem; }
-
-    /* Reduce motion preference */
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
-    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
@@ -106,7 +73,7 @@
       </a>
       <div class="theme-switcher">
         <label for="theme">Theme</label>
-        <select id="theme" aria-label="Theme" onchange="switchTheme(this.value)">
+        <select id="theme" onchange="switchTheme(this.value)">
           <option value="galaxy">Galaxy</option>
           <option value="light">Light</option>
           <option value="dark">Dark</option>
@@ -121,41 +88,47 @@
     </section>
 
     <section class="grid" id="packs">
-      <!-- MuseGPT Card -->
       <article class="card" role="link" tabindex="0" data-href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT.">
         <h3>MuseGPT – Creative Writing Companion</h3>
         <p>Poetic, encouraging, brilliant at unblocking ideas.</p>
         <a class="cta" href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT.">Get Pack</a>
       </article>
 
-      <!-- Auto‑Journal Card -->
       <article class="card" role="link" tabindex="0" data-href="mailto:45dgof8@gmail.com?subject=Auto‑Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto‑Journal.">
         <h3>Auto‑Journal GPT – Daily Reflection</h3>
         <p>Gentle prompts + automation blueprint for daily clarity.</p>
         <a class="cta" href="mailto:45dgof8@gmail.com?subject=Auto‑Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto‑Journal.">Get Pack</a>
       </article>
 
-      <!-- Placeholder for upcoming packs -->
-      <article class="card" aria-disabled="true">
+      <article class="card" aria-disabled="true" tabindex="-1">
         <h3>Coming Soon</h3>
         <p>New assistants are warming up in the launch bay.</p>
         <span class="cta" style="pointer-events:none; opacity:.6;">Soon</span>
       </article>
     </section>
 
+    <div class="sparkles"></div>
+
+    <div class="eva-hero">
+      <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
+        <img src="https://45dgof8.com/TCXm.webp" alt="Coffee Cup">
+      </a>
+      <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank">
+        <img src="https://raw.githubusercontent.com/008Amonra/45dgof8_ComplianceSuite/main/Eva_Answers.png" alt="Eva Icon">
+      </a>
+    </div>
+
     <footer>
-      <p>For payments, pricing, invoicing, or monetization, use 45dgof8‑pulse (secure checkout). You may replace the mailto links above with your pulse links at any time.</p>
+      <p>For payments, pricing, invoicing, or monetization, use <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8‑pulse</a> (secure checkout).</p>
     </footer>
   </div>
 
   <script>
-    // Theme persistence to match main site behavior
     (function initTheme() {
-      const saved = localStorage.getItem("evaTheme");
-      const select = document.getElementById("theme");
-      const theme = saved || 'galaxy';
-      document.body.className = theme;
-      if (select) select.value = theme;
+      const saved = localStorage.getItem("evaTheme") || 'galaxy';
+      document.body.className = saved;
+      const themeSelect = document.getElementById("theme");
+      if (themeSelect) themeSelect.value = saved;
     })();
 
     function switchTheme(theme) {
@@ -163,18 +136,19 @@
       localStorage.setItem("evaTheme", theme);
     }
 
-    // Make entire card clickable + keyboard accessible
     document.querySelectorAll('.card[role="link"]').forEach(card => {
       const go = () => {
         const url = card.getAttribute('data-href');
         if (url) window.location.href = url;
       };
       card.addEventListener('click', (e) => {
-        // Avoid double navigation if inner <a> is clicked
         if (!(e.target instanceof HTMLAnchorElement)) go();
       });
       card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          go();
+        }
       });
     });
   </script>
