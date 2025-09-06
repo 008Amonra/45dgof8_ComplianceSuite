@@ -174,75 +174,66 @@
     <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank"><button class="feature-button">🧹 Clean & Structure Data</button></a>
   </div>
 
-  <div class="settings-section">
-    <h3 style="color: var(--accent);">✨ Personalize Your Journey</h3>
-    <input type="text" id="name" placeholder="Your Name">
-    <input type="text" id="interests" placeholder="Interests: crypto, ai, etc">
-    <input type="text" id="assets" placeholder="Assets: XRP, BTC">
-    <input type="text" id="sources" placeholder="News Sources: sciencealert, etc">
-    <button onclick="exportSettings()">📤 Export Settings</button>
-    <input type="file" id="fileInput" onchange="importSettings(event)">
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Trigger</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    button {
+      padding: 1em 2em;
+      font-size: 1.2rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="copyToClipboard()">🚀 I want to create a financial dashboard</button>
+
+  <div class="toast" id="toast">Copied to clipboard! Paste it wherever you want ✨</div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const savedTheme = localStorage.getItem("evaTheme");
-      if (savedTheme) {
-        document.body.className = savedTheme;
-        document.getElementById("theme").value = savedTheme;
-      }
-
-      let name = localStorage.getItem("evaName");
-      if (!name) {
-        name = prompt("Welcome! What's your name?");
-        if (name) localStorage.setItem("evaName", name);
-      }
-
-      const welcomeBack = localStorage.getItem("evaVisited");
-      const hour = new Date().getHours();
-      let greeting = hour < 12 ? "☀️ Good morning" : hour < 18 ? "🌞 Good afternoon" : "🌙 Good evening";
-
-      if (welcomeBack && name) {
-        document.getElementById("welcomeMessage").textContent = `${greeting}, ${name}! Welcome back ✨`;
-      } else if (name) {
-        document.getElementById("welcomeMessage").textContent = `👋 Welcome, ${name}! Ready to explore?`;
-        localStorage.setItem("evaVisited", true);
-      }
-    });
-
-    function switchTheme(theme) {
-      document.body.className = theme;
-      localStorage.setItem("evaTheme", theme);
-    }
-
-    function exportSettings() {
-      const name = document.getElementById('name').value;
-      const interests = document.getElementById('interests').value;
-      const assets = document.getElementById('assets').value;
-      const sources = document.getElementById('sources').value;
-      const theme = document.getElementById('theme').value;
-      const content = `name=${name}\ntheme=${theme}\ninterests=${interests}\nassets=${assets}\nsources=${sources}`;
-      const blob = new Blob([content], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${name || 'eva'}_settings.txt`;
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
-    function importSettings(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const lines = e.target.result.split('\n');
-        lines.forEach(line => {
-          const [key, value] = line.split('=');
-          const input = document.getElementById(key);
-          if (input) input.value = value;
-        });
-      };
-      reader.readAsText(file);
+    function copyToClipboard() {
+      const text = 'I want to create a financial dashboard';
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      }).catch(err => {
+        alert('Failed to copy. Please copy manually: ' + text);
+      });
     }
   </script>
 </body>
