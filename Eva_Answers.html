@@ -1,73 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Eva Answers</title>
-<meta name="description" content="Meet Eva Answers – data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm." />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
---bg: #0b0f1a;
---panel: #101827;
---text: #e6e9ef;
---muted: #a3acc2;
---accent: #8b5cf6;
---accent-2: #22d3ee;
---card: #0f172a;
---border: #1f2a44;
---good: #34d399;
---warn: #f59e0b;
---shadow: 0 10px 30px rgba(0,0,0,.25);
-}
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-margin: 0;
-font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-background: radial-gradient(1200px 600px at 15% -10%, rgba(139,92,246,.25), transparent 60%),
-radial-gradient(1000px 500px at 110% 10%, rgba(34,211,238,.20), transparent 60%),
-var(--bg);
-color: var(--text);
-line-height: 1.5;
-}
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eva Answers</title>
+  <meta name="description" content="Meet Eva Answers – data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --panel: #101827;
+      --text: #e6e9ef;
+      --muted: #a3acc2;
+      --accent: #8b5cf6;
+      --accent-2: #22d3ee;
+      --card: #0f172a;
+      --border: #1f2a44;
+      --good: #34d399;
+      --warn: #f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 15% -10%, rgba(139,92,246,.25), transparent 60%),
+                  radial-gradient(1000px 500px at 110% 10%, rgba(34,211,238,.20), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
 
-.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
+    .brand .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); display: grid; place-items: center; font-size: 20px; }
+    nav { display: flex; gap: 14px; flex-wrap: wrap; }
+    nav a { color: var(--muted); font-weight: 600; padding: 6px 10px; border-radius: 10px; }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decoration: none; }
 
+    .hero { text-align: center; padding: 28px 0 10px; }
+    .hero h1 { font-size: clamp(28px, 3.5vw, 44px); margin: 0 0 8px; }
+    .hero p { color: var(--muted); margin-top: 0; }
 
-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 20px; }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
-.brand .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); display: grid; place-items: center; font-size: 20px; }
-nav { display: flex; gap: 14px; flex-wrap: wrap; }
-nav a { color: var(--muted); font-weight: 600; padding: 6px 10px; border-radius: 10px; }
-nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decoration: none; }
+    /* Hero banner (your big image) */
+    .hero-banner-img { position: relative; border-radius: 18px; overflow: hidden; margin-bottom: 18px; }
+    .hero-banner-img img { width: 100%; height: auto; max-height: 360px; object-fit: cover; display: block; }
+    .hero-banner-img .banner-text { position: absolute; inset: auto 16px 16px 16px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.15); color: #fff; padding: 10px 14px; border-radius: 12px; font-weight: 800; letter-spacing: .3px; }
 
+    /* Resize inline hero/shop images */
+    .hero img.inline-img, .shop img.inline-img { max-width: 280px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto; }
 
-.hero { text-align: center; padding: 28px 0 10px; }
-.hero h1 { font-size: clamp(28px, 3.5vw, 44px); margin: 0 0 8px; }
-.hero p { color: var(--muted); margin-top: 0; }
+    @media (max-width: 480px){
+      .hero-banner-img img { max-height: 240px; }
+      .hero img.inline-img, .shop img.inline-img { max-width: 200px; }
+    }
 
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+    .btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,.35); }
+    .btn.secondary { background: #101827; color: var(--text); border: 1px solid var(--border); }
 
-/* Hero banner (your big image) */
-.hero-banner-img { position: relative; border-radius: 18px; overflow: hidden; margin-bottom: 18px; }
-.hero-banner-img img { width: 100%; height: auto; max-height: 360px; object-fit: cover; display: block; }
-.hero-banner-img .banner-text { position: absolute; inset: auto 16px 16px 16px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.15); color: #fff; padding: 10px 14px; border-radius: 12px; font-weight: 800; letter-spacing: .3px; }
+    .panel { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
 
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    @media (min-width: 860px){ .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    @media (max-width: 560px){ .grid { grid-template-columns: 1fr; } }
 
-/* Resize inline hero/shop images */
-.hero img.inline-img, .shop img.inline-img { max-width: 280px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto; }
+    .feature-button { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 14px; padding: 14px 14px; font-weight: 700; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+    .feature-button:hover { background: #111b32; }
+    .feature-button small { color: var(--muted); font-weight: 600; }
 
+    .phrase-bar { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; margin-top: 18px; }
+    .phrase-input { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: #0f172a; color: var(--text); font-size: 16px; }
+    .options { display: flex; gap: 12px; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; margin-top: 8px; }
 
-@media (max-width: 480px){
-.hero-banner-img img { max-height: 240px; }
-.hero img.inline-img, .shop img.inline-img { max-width: 200px; }
-}
+    .note { color: var(--muted); font-size: 13px; text-align: center; margin-top: 8px; }
 
+    .cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+    @media (max-width: 700px){ .cards { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 18px; display: grid; gap: 12px; }
+    .card h3 { margin: 0; }
+    .card p { color: var(--muted); margin: 0; }
+    .card .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
-.btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(139,92,246,.15); border: 1px solid rgba(139,92,246,.35); color: #c7b7ff; padding: 6px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; }
+
+    .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; background: #101827; color: var(--text); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+    .toast.show { opacity: 1; transform: translate(-50%, -4px); }
+
+    footer { color: var(--muted); text-align: center; margin: 36px 0 10px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Fixed hero banner block -->
+    <header class="hero-banner-img" aria-label="Eva Answers banner">
+      <img src="dhx5q2000.webp" alt="Eva Answers" loading="lazy">
+      <div class="banner-text"><h1 style="margin:0">EVA</h1></div>
+    </header>
+
+    <header>
+      <div class="brand">
+        <div class="logo">✨</div>
+        <div>Eva Answers</div>
+      </div>
+      <nav>
+        <a href="#meet">Meet Eva</a>
+        <a href="#tools">Prompt Packs</a>
+        <!-- <a href="#shop">Shop</a> -->
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="meet" class="hero">
+      <span class="badge">🔒 No secrets here — just transparent stardust.</span>
+      <h1>Meet <span style="color:var(--accent)">Eva</span></h1>
+      <p><strong>Hi, I'm <span style="color:var(--accent)">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
+      <img class="inline-img" src="dhx5q2000.webp" alt="Eva preview" loading="lazy" />
+      <div class="cta-row">
+        <a class="btn" id="openEvaBtn" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">Visit me on ChatGPT</a>
+        <a class="btn secondary" href="https://45dgof8.com/" target="_blank" rel="noopener">🏠 Home</a>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 26px;">
+      <h2 style="margin:0 0 10px">Quick Prompts</h2>
+      <p class="note">Click a button to copy the phrase and (optionally) open Eva on ChatGPT. Due to browser security and ChatGPT limitations, we can’t auto‑type into the chat box — just paste with <strong>Ctrl/⌘+V</strong>.</p>
+
+      <div class="grid" role="list">
+        <button class="feature-button" data-text="Data Analysis & Visualization" role="listitem">🔍 <span>Data Analysis & Visualization</span></button>
+        <button class="feature-button" data-text="Create a Financial Dashboard" role="listitem">📊 <span>Create a Financial Dashboard</span></button>
+        <button class="feature-button" data-text="Summarize Trends" role="listitem">🧾 <span>Summarize Trends</span></button>
+        <button class="feature-button" data-text="Insights & KPIs" role="listitem">🧠 <span>Insights & KPIs</span></button>
+        <button class="feature-button" data-text="Clean & Structure Data" role="listitem">🧹 <span>Clean & Structure Data</span></button>
+        <button class="feature-button" data-text="Draft a product description in my brand voice" role="listitem">✍️ <span>Product Description (Brand Voice)</span></button>
+      </div>
+
+      <div class="phrase-bar">
+        <input id="phrase" class="phrase-input" type="text" placeholder="Your selected phrase appears here…" />
+        <button id="copyBtn" class="btn" type="button">Copy</button>
+      </div>
+      <div class="options">
+        <label><input type="checkbox" id="openAfterCopy" checked> Open Eva on ChatGPT after copy</label>
+        <span>•</span>
+        <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?model=gpt-5" target="_blank" rel="noopener">Use model: gpt‑5</a>
+      </div>
+    </section>
+
+    <section id="tools" style="margin-top:28px;">
+      <h2 style="margin:0 0 12px">Prompt Packs & Tools</h2>
+      <p class="note">Ready‑made GPT personalities to drop into your workflow. Click a pack to request details or message Eva directly.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>MuseGPT – Creative Writing Companion</h3>
+          <p>Poetic, encouraging, brilliant at unblocking ideas.</p>
+          <div class="actions">
+            <a class="btn" href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT." target="_blank" rel="noopener">Get Pack</a>
+            <a class="btn secondary" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">Ask Eva</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Auto‑Journal GPT – Daily Reflection</h3>
+          <p>Gentle prompts + automation blueprint for daily clarity.</p>
+          <div class="actions">
+            <a class="btn" href="mailto:45dgof8@gmail.com?subject=Auto%E2%80%91Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto%E2%80%91Journal." target="_blank" rel="noopener">Get Pack</a>
+            <a class="btn secondary" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">Ask Eva</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Shop section kept for later but hidden
+    <section id="shop" style="margin-top:28px;">
+      ...
+    </section>
+    -->
+
+    <section id="contact" style="margin-top:28px;">
+      <h2 style="margin:0 0 12px">Contact</h2>
+      <div class="panel">
+        <div class="cta-row" style="justify-content:flex-start;">
+          <a class="btn" href="mailto:45dgof8@gmail.com" target="_blank" rel="noopener">✉️ Email Eva</a>
+          <a class="btn secondary" href="https://bit.ly/3WnLd58" target="_blank" rel="noopener">Direct Message</a>
+          <a class="btn secondary" href="https://45dgof8.com/" target="_blank" rel="noopener">Website</a>
+        </div>
+        <p class="note" style="margin-top:10px;">Feedback welcome: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Eva Answers — Built with care.
+        <span style="display:block; margin-top:6px;">Links: <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">ChatGPT</a> • <a href="https://45dgof8.com/" target="_blank" rel="noopener">45dgof8.com</a></span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <script>
+    const CHATGPT_URL = 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers';
+
+    const phraseInput = document.getElementById('phrase');
+    const copyBtn = document.getElementById('copyBtn');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(()=> toast.classList.remove('show'), 1600);
+    }
+
+    async function copyToClipboard(text){
+      try { await navigator.clipboard.writeText(text); }
+      catch (err) {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        try { document.execCommand('copy'); } catch(_){}
+        document.body.removeChild(ta);
+      }
+    }
+
+    function setPhrase(text){ phraseInput.value = text; }
+
+    function cleanText(text){
+      return text.replace(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}]\s*)/u, '').trim();
+    }
+
+    document.querySelectorAll('.feature-button').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const raw = btn.dataset.text || btn.textContent.trim();
+        const text = cleanText(raw);
+        setPhrase(text);
+        await copyToClipboard(text);
+        showToast('Copied: "' + text + '"');
+        if (document.getElementById('openAfterCopy').checked){
+          window.open(CHATGPT_URL, '_blank', 'noopener');
+        }
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const text = phraseInput.value.trim();
+      if (!text){ showToast('Nothing to copy'); return; }
+      await copyToClipboard(text);
+      showToast('Copied: "' + text + '"');
+      if (document.getElementById('openAfterCopy').checked){
+        window.open(CHATGPT_URL, '_blank', 'noopener');
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
