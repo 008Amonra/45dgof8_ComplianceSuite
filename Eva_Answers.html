@@ -1,92 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Eva Answers</title>
-  <meta name="description" content="Meet Eva Answers – data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0f1a;
-      --panel: #101827;
-      --text: #e6e9ef;
-      --muted: #a3acc2;
-      --accent: #8b5cf6; /* violet */
-      --accent-2: #22d3ee; /* cyan */
-      --card: #0f172a;
-      --border: #1f2a44;
-      --good: #34d399;
-      --warn: #f59e0b;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 15% -10%, rgba(139,92,246,.25), transparent 60%),
-                  radial-gradient(1000px 500px at 110% 10%, rgba(34,211,238,.20), transparent 60%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eva Answers</title>
+<meta name="description" content="Meet Eva Answers – data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm." />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg: #0b0f1a;
+--panel: #101827;
+--text: #e6e9ef;
+--muted: #a3acc2;
+--accent: #8b5cf6;
+--accent-2: #22d3ee;
+--card: #0f172a;
+--border: #1f2a44;
+--good: #34d399;
+--warn: #f59e0b;
+--shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+margin: 0;
+font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+background: radial-gradient(1200px 600px at 15% -10%, rgba(139,92,246,.25), transparent 60%),
+radial-gradient(1000px 500px at 110% 10%, rgba(34,211,238,.20), transparent 60%),
+var(--bg);
+color: var(--text);
+line-height: 1.5;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
 
-    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 20px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
-    .brand .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); display: grid; place-items: center; font-size: 20px; }
-    nav { display: flex; gap: 14px; flex-wrap: wrap; }
-    nav a { color: var(--muted); font-weight: 600; padding: 6px 10px; border-radius: 10px; }
-    nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decoration: none; }
+.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
 
-    .hero { text-align: center; padding: 28px 0 10px; }
-    .hero h1 { font-size: clamp(28px, 3.5vw, 44px); margin: 0 0 8px; }
-    .hero p { color: var(--muted); margin-top: 0; }
 
-    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
-    .btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,.35); }
-    .btn.secondary { background: #101827; color: var(--text); border: 1px solid var(--border); }
+header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 20px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
+.brand .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); display: grid; place-items: center; font-size: 20px; }
+nav { display: flex; gap: 14px; flex-wrap: wrap; }
+nav a { color: var(--muted); font-weight: 600; padding: 6px 10px; border-radius: 10px; }
+nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decoration: none; }
 
-    .panel { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
 
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-    @media (min-width: 860px){ .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-    @media (max-width: 560px){ .grid { grid-template-columns: 1fr; } }
+.hero { text-align: center; padding: 28px 0 10px; }
+.hero h1 { font-size: clamp(28px, 3.5vw, 44px); margin: 0 0 8px; }
+.hero p { color: var(--muted); margin-top: 0; }
 
-    .feature-button { width: 100%; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 14px; padding: 14px 14px; font-weight: 700; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-    .feature-button:hover { background: #111b32; }
-    .feature-button small { color: var(--muted); font-weight: 600; }
 
-    .phrase-bar { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; margin-top: 18px; }
-    .phrase-input { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: #0f172a; color: var(--text); font-size: 16px; }
-    .options { display: flex; gap: 12px; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; margin-top: 8px; }
+/* Resize hero/spotlight image */
+.hero img, .shop img {
+max-width: 280px;
+width: 100%;
+height: auto;
+border-radius: 12px;
+display: block;
+margin: 0 auto;
+}
 
-    .note { color: var(--muted); font-size: 13px; text-align: center; margin-top: 8px; }
 
-    .cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
-    @media (max-width: 700px){ .cards { grid-template-columns: 1fr; } }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 18px; display: grid; gap: 12px; }
-    .card h3 { margin: 0; }
-    .card p { color: var(--muted); margin: 0; }
-    .card .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+.btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,.35); }
+.btn.secondary { background: #101827; color: var(--text); border: 1px solid var(--border); }
 
-    .shop { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; align-items: center; }
-    @media (max-width: 860px){ .shop { grid-template-columns: 1fr; } }
 
-    .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(139,92,246,.15); border: 1px solid rgba(139,92,246,.35); color: #c7b7ff; padding: 6px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; }
+.panel { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
 
-    .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; background: #101827; color: var(--text); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
-    .toast.show { opacity: 1; transform: translate(-50%, -4px); }
 
-    footer { color: var(--muted); text-align: center; margin: 36px 0 10px; font-size: 14px; }
-  </style>
-</head>
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+@media (min-width: 860px){ .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+<div class="container">
 <body>
   <header class="hero-banner-img">
   <img src="dhx5q2000.webp" alt="Eva Answers" loading="lazy">
