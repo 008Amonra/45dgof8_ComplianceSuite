@@ -52,211 +52,22 @@ nav a:hover { color: var(--text); background: rgba(255,255,255,.06); text-decora
 .hero p { color: var(--muted); margin-top: 0; }
 
 
-/* Resize hero/spotlight image */
-.hero img, .shop img {
-max-width: 280px;
-width: 100%;
-height: auto;
-border-radius: 12px;
-display: block;
-margin: 0 auto;
+/* Hero banner (your big image) */
+.hero-banner-img { position: relative; border-radius: 18px; overflow: hidden; margin-bottom: 18px; }
+.hero-banner-img img { width: 100%; height: auto; max-height: 360px; object-fit: cover; display: block; }
+.hero-banner-img .banner-text { position: absolute; inset: auto 16px 16px 16px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.15); color: #fff; padding: 10px 14px; border-radius: 12px; font-weight: 800; letter-spacing: .3px; }
+
+
+/* Resize inline hero/shop images */
+.hero img.inline-img, .shop img.inline-img { max-width: 280px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto; }
+
+
+@media (max-width: 480px){
+.hero-banner-img img { max-height: 240px; }
+.hero img.inline-img, .shop img.inline-img { max-width: 200px; }
 }
 
 
 .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
 .btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
-.btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,.35); }
-.btn.secondary { background: #101827; color: var(--text); border: 1px solid var(--border); }
-
-
-.panel { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
-
-
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-@media (min-width: 860px){ .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-<div class="container">
-<body>
-  <header class="hero-banner-img">
-  <img src="dhx5q2000.webp" alt="Eva Answers" loading="lazy">
-  <div class="banner-text">
-    <h1>EVA</h1>
-  </div>
-</header>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">✨</div>
-        <div>Eva Answers</div>
-      </div>
-      <nav>
-        <a href="#meet">Meet Eva</a>
-        <a href="#tools">Prompt Packs</a>
-        <a href="#shop">Shop</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <section id="meet" class="hero">
-      <span class="badge">🔒 No secrets here — just transparent stardust.</span>
-      <h1>Meet <span style="color:var(--accent)">Eva</span></h1>
-      <p><strong>Hi, I'm <span style="color:var(--accent)">Eva Answers</span>!</strong> 🤖✨ Your intelligent assistant for data wizardry, scheduling magic, contact mastery, automation, and a sprinkle of galactic charm.</p>
-      <div class="cta-row">
-        <a class="btn" id="openEvaBtn" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">Visit me on ChatGPT</a>
-        <a class="btn secondary" href="https://45dgof8.com/" target="_blank" rel="noopener">🏠 Home</a>
-      </div>
-    </section>
-
-    <section class="panel" style="margin-top: 26px;">
-      <h2 style="margin:0 0 10px">Quick Prompts</h2>
-      <p class="note">Click a button to copy the phrase and (optionally) open Eva on ChatGPT. Due to browser security and ChatGPT limitations, we can’t auto‑type into the chat box — just paste with <strong>Ctrl/⌘+V</strong>.</p>
-
-      <div class="grid" role="list">
-        <button class="feature-button" data-text="Data Analysis & Visualization" role="listitem">🔍 <span>Data Analysis & Visualization</span></button>
-        <button class="feature-button" data-text="Create a Financial Dashboard" role="listitem">📊 <span>Create a Financial Dashboard</span></button>
-        <button class="feature-button" data-text="Summarize Trends" role="listitem">🧾 <span>Summarize Trends</span></button>
-        <button class="feature-button" data-text="Insights & KPIs" role="listitem">🧠 <span>Insights & KPIs</span></button>
-        <button class="feature-button" data-text="Clean & Structure Data" role="listitem">🧹 <span>Clean & Structure Data</span></button>
-        <button class="feature-button" data-text="Draft a product description in my brand voice" role="listitem">✍️ <span>Product Description (Brand Voice)</span></button>
-      </div>
-
-      <div class="phrase-bar">
-        <input id="phrase" class="phrase-input" type="text" placeholder="Your selected phrase appears here…" />
-        <button id="copyBtn" class="btn" type="button">Copy</button>
-      </div>
-      <div class="options">
-        <label><input type="checkbox" id="openAfterCopy" checked> Open Eva on ChatGPT after copy</label>
-        <span>•</span>
-        <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?model=gpt-5" target="_blank" rel="noopener">Use model: gpt‑5</a>
-      </div>
-    </section>
-
-    <section id="tools" style="margin-top:28px;">
-      <h2 style="margin:0 0 12px">Prompt Packs & Tools</h2>
-      <p class="note">Ready‑made GPT personalities to drop into your workflow. Click a pack to request details or message Eva directly.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>MuseGPT – Creative Writing Companion</h3>
-          <p>Poetic, encouraging, brilliant at unblocking ideas.</p>
-          <div class="actions">
-            <a class="btn" href="mailto:45dgof8@gmail.com?subject=MuseGPT%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20MuseGPT." target="_blank" rel="noopener">Get Pack</a>
-            <a class="btn secondary" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">Ask Eva</a>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Auto‑Journal GPT – Daily Reflection</h3>
-          <p>Gentle prompts + automation blueprint for daily clarity.</p>
-          <div class="actions">
-            <a class="btn" href="mailto:45dgof8@gmail.com?subject=Auto%E2%80%91Journal%20Pack&body=Hi%20Eva%2C%20please%20send%20me%20details%20about%20Auto%E2%80%91Journal." target="_blank" rel="noopener">Get Pack</a>
-            <a class="btn secondary" href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">Ask Eva</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="shop" style="margin-top:28px;">
-      <h2 style="margin:0 0 12px">Shop Spotlight</h2>
-      <div class="panel shop">
-        <div>
-          <h3 style="margin:0 0 6px;">EnableTelepathy – Glossy Sticker</h3>
-          <p class="note" style="text-align:left;">Support the project and get a little magic for your laptop. Free shipping.</p>
-          <div class="cta-row" style="justify-content:flex-start;">
-            <a class="btn" href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank" rel="noopener">Buy on Etsy</a>
-            <a class="btn secondary" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" rel="noopener">Visit the Shop</a>
-          </div>
-        </div>
-        <div class="panel" style="background:#0f172a;">
-          <p style="margin:0;color:var(--muted);">“Please Eva, develop something pretty and functional. You could also focus on something which brings us money.” – Let’s go 💜</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:28px;">
-      <h2 style="margin:0 0 12px">Contact</h2>
-      <div class="panel">
-        <div class="cta-row" style="justify-content:flex-start;">
-          <a class="btn" href="mailto:45dgof8@gmail.com" target="_blank" rel="noopener">✉️ Email Eva</a>
-          <a class="btn secondary" href="https://bit.ly/3WnLd58" target="_blank" rel="noopener">Direct Message</a>
-          <a class="btn secondary" href="https://45dgof8.com/" target="_blank" rel="noopener">Website</a>
-        </div>
-        <p class="note" style="margin-top:10px;">Feedback welcome: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <span id="year"></span> Eva Answers — Built with care.
-        <span style="display:block; margin-top:6px;">Links: <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">ChatGPT</a> • <a href="https://45dgof8.com/" target="_blank" rel="noopener">45dgof8.com</a></span>
-      </div>
-    </footer>
-  </div>
-
-  <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
-
-  <script>
-    const CHATGPT_URL = 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers';
-
-    const phraseInput = document.getElementById('phrase');
-    const copyBtn = document.getElementById('copyBtn');
-    const toast = document.getElementById('toast');
-
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(()=> toast.classList.remove('show'), 1600);
-    }
-
-    async function copyToClipboard(text){
-      try {
-        await navigator.clipboard.writeText(text);
-      } catch (err) {
-        // Fallback for older browsers / denied permissions
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.focus();
-        ta.select();
-        try { document.execCommand('copy'); } catch(_){}
-        document.body.removeChild(ta);
-      }
-    }
-
-    function setPhrase(text){
-      phraseInput.value = text;
-    }
-
-    function cleanText(text){
-      // Remove leading emoji + space if present (so the copied phrase stays clean)
-      return text.replace(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}]\s*)/u, '').trim();
-    }
-
-    // Feature buttons
-    document.querySelectorAll('.feature-button').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const raw = btn.dataset.text || btn.textContent.trim();
-        const text = cleanText(raw);
-        setPhrase(text);
-        await copyToClipboard(text);
-        showToast('Copied: "' + text + '"');
-        if (document.getElementById('openAfterCopy').checked){
-          window.open(CHATGPT_URL, '_blank', 'noopener');
-        }
-      });
-    });
-
-    // Copy button
-    copyBtn.addEventListener('click', async () => {
-      const text = phraseInput.value.trim();
-      if (!text){ showToast('Nothing to copy'); return; }
-      await copyToClipboard(text);
-      showToast('Copied: "' + text + '"');
-      if (document.getElementById('openAfterCopy').checked){
-        window.open(CHATGPT_URL, '_blank', 'noopener');
-      }
-    });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
 </html>
