@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Our Security Standards — Eva</title>
+<meta name="description" content="Editorial and operational security standards for Eva’s security awareness service." />
+<style>
+:root{--bg:#0b1220;--fg:#e7ecf8;--muted:#a9b2c7;--accent:#62e6a7;--card:#101a30;--border:rgba(255,255,255,.08)}
+@media (prefers-color-scheme: light){:root{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff;--border:rgba(0,0,0,.08)}}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:28px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+header .icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(98,230,167,.1);border:1px solid rgba(98,230,167,.35)}
+header h1{font-size:clamp(22px,3.2vw,30px);margin:0}
+p,li{line-height:1.7;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin:16px 0}
+h2{margin:16px 0 8px;font-size:clamp(18px,2.6vw,22px)}
+ul{padding-left:20px}
+.list{display:grid;gap:10px}
+.note{font-size:14px;color:var(--muted)}
+.kicker{display:inline-block;margin-top:6px;padding:4px 10px;border-radius:999px;border:1px solid rgba(98,230,167,.5);background:rgba(98,230,167,.08);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="icon" aria-hidden="true">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#62e6a7" stroke-width="1.8"><path d="M17 10V7a5 5 0 0 0-10 0v3"/><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M12 15v2"/></svg>
+</div>
+<div>
+<h1>Our Security Standards</h1>
+<span class="kicker">Conservative claims • Human review • Source transparency</span>
+</div>
+</header>
+
+
+<section class="card">
+<h2>Editorial Standards</h2>
+<ul class="list">
+<li><strong>Source minimum:</strong> At least two reputable sources per post; all links visible.</li>
+<li><strong>Dates & timezone:</strong> Absolute dates with Europe/Zurich timezone.</li>
+<li><strong>Clarity:</strong> TL;DR + “What happened / Why it matters / Actions” in every post.</li>
+<li><strong>Tone:</strong> Conservative language, no hype or speculation.</li>
+<li><strong>Review:</strong> AI‑assisted drafts are human‑reviewed before publishing (unless auto‑publish is enabled by you).</li>
+<li><strong>Corrections:</strong> Updates and errata are timestamped and appended.</li>
+</ul>
+</section>
+
+
+<section class="card">
+<h2>Operational Standards</h2>
+<ul class="list">
+<li><strong>Automations:</strong> Continuous monitoring via Zapier (cloud) or n8n (self‑hosted/cloud).</li>
+<li><strong>Access:</strong> Least‑privilege; only required scopes are granted.</li>
+<li><strong>Secrets:</strong> API keys and tokens stored in platform vaults; never committed to code.</li>
+<li><strong>Transport:</strong> TLS for data in transit; encrypted storage for credentials.</li>
+<li><strong>Logging:</strong> Minimal, purpose‑limited logs with retention controls.</li>
+<li><strong>Change control:</strong> Workflow changes are tested in staging before production.</li>
+</ul>
+</section>
+
+
+<section class="card">
+<h2>Incident & Update Policy</h2>
+</html>
