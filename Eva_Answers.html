@@ -198,8 +198,8 @@
           </a>
         </div>
     </section>
-
-    <!-- Eva: Digital Sentinel – Drop‑in HTML Module (standalone, no dependencies) -->
+<!-- Eva: Digital Sentinel – Drop‑in HTML Module (standalone, no dependencies) -->
+<!-- Eva: Digital Sentinel – Drop‑in HTML Module (wired) -->
 <div class="eva-sentinel" role="region" aria-label="Eva: Your Digital Sentinel">
   <style>
     .eva-sentinel{--bg:#0b1220;--fg:#e7ecf8;--muted:#a9b2c7;--accent:#62e6a7;--ring:rgba(98,230,167,.35);--card:#101a30;--shadow:0 10px 30px rgba(2,6,23,.25);--radius:18px;--pad:20px;--max:860px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;box-sizing:border-box;display:grid;place-items:center;padding:16px;background:linear-gradient(180deg,#0b1220 0%,#0a0f1c 100%);color:var(--fg)}
@@ -215,12 +215,21 @@
     .eva-sentinel .point{display:flex;gap:8px}
     .eva-sentinel .dot{width:8px;height:8px;margin-top:.6em;border-radius:999px;background:var(--accent);box-shadow:0 0 0 4px rgba(98,230,167,.12)}
     .eva-sentinel .cta{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
-    .eva-sentinel .btn{appearance:none;border:1px solid rgba(98,230,167,.5);background:linear-gradient(180deg,rgba(98,230,167,.18),rgba(98,230,167,.05));color:var(--fg);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+    .eva-sentinel .btn{appearance:none;border:1px solid rgba(98,230,167,.5);background:linear-gradient(180deg,rgba(98,230,167,.18),rgba(98,230,167,.05));color:var(--fg);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;text-decoration:none}
     .eva-sentinel .btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(98,230,167,.18)}
     .eva-sentinel .btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
     .eva-sentinel .badge{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(98,230,167,.5);background:rgba(98,230,167,.08);font-size:14px}
     .eva-sentinel .badge svg{width:16px;height:16px;stroke:var(--accent)}
     @media (prefers-color-scheme: light){.eva-sentinel{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff;--shadow:0 12px 28px rgba(0,0,0,.08)}.eva-sentinel .icon{background:rgba(19,191,123,.08);border-color:rgba(19,191,123,.25)}}
+
+    /* Modal styles */
+    .eva-modal{position:fixed;inset:0;display:none;z-index:9999}
+    .eva-modal[open], .eva-modal:target{display:block}
+    .eva-modal__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .eva-modal__card{position:relative;max-width:680px;margin:8vh auto;background:#fff;color:#0b1220;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .eva-modal__close{position:absolute;top:10px;right:10px;border:0;background:transparent;font-size:18px;cursor:pointer}
+    .eva-modal__link{display:inline-block;margin-top:8px}
+    @media (prefers-color-scheme: dark){.eva-modal__card{background:#101a30;color:#e7ecf8}}
   </style>
 
   <article class="card">
@@ -237,33 +246,51 @@
 
     <p>Security isn’t an afterthought—it’s at the core of everything Eva does. Constantly upgrading her knowledge, Eva keeps pace with the latest cybersecurity trends and threats. She doesn’t just react—she <strong>proactively monitors, adapts, and alerts</strong>, so you stay one step ahead. With Eva by your side, you can focus on what matters, knowing your digital space is protected.</p>
 
-    <!-- Optional bullet highlights -->
     <div class="points" aria-label="Highlights">
       <div class="point"><span class="dot" aria-hidden="true"></span><span>Real‑time awareness of major security developments</span></div>
       <div class="point"><span class="dot" aria-hidden="true"></span><span>Plain‑language alerts with practical next steps</span></div>
       <div class="point"><span class="dot" aria-hidden="true"></span><span>Privacy‑first by design</span></div>
     </div>
 
-    <!-- Optional CTAs; replace # with your links or remove entirely -->
     <div class="cta">
-      <a class="btn" href="#learn-more">Learn more</a>
-      <a class="btn secondary" href="#security-standards">Our security standards</a>
+      <a class="btn" href="#eva-modal">Learn more</a>
+      <a class="btn secondary" href="/security-standards.html">Our security standards</a>
     </div>
 
-    <!-- Compact trust badge version (reuse anywhere) -->
     <div class="badge" role="note" aria-label="Trust badge">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 10V7a5 5 0 0 0-10 0v3"/><rect x="4" y="10" width="16" height="10" rx="2"/></svg>
       <span>Protected by <strong>Eva</strong> — proactive security awareness</span>
     </div>
   </article>
+
+  <!-- Inline modal for “Learn more” -->
+  <div id="eva-modal" class="eva-modal" aria-hidden="true">
+    <div class="eva-modal__backdrop" data-close></div>
+    <div class="eva-modal__card" role="dialog" aria-modal="true" aria-labelledby="eva-modal-title">
+      <button class="eva-modal__close" data-close aria-label="Close">✕</button>
+      <h3 id="eva-modal-title">About Eva — Learn more</h3>
+      <p>Eva summarizes security news into clear guidance with sources and dates. You receive concise alerts, a weekly digest, and practical steps—no jargon.</p>
+      <ul>
+        <li>Trusted sources + human review</li>
+        <li>Privacy-first data handling</li>
+        <li>Europe/Zurich timestamps</li>
+      </ul>
+      <a class="eva-modal__link" href="/security-standards.html">Read full security standards →</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('click', e => {
+      if (e.target.matches('[href="#eva-modal"]')) {
+        e.preventDefault();
+        document.getElementById('eva-modal').setAttribute('open','');
+      }
+      if (e.target.hasAttribute('data-close')) {
+        document.getElementById('eva-modal').removeAttribute('open');
+      }
+    });
+  </script>
 </div>
-
-<!-- How to use:
-1) Paste this block where you want it to appear.
-2) Optional: change text inside <p> and bullet points.
-3) Optional: update CTA links or remove the CTA/badge sections entirely.
-4) Styling is scoped to .eva-sentinel to avoid collisions. -->
-
 
     <footer>
       <div>© <span id="year"></span> Eva Answers — Built with care.
