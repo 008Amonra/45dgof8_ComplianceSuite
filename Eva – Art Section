@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eva – Art Section</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --accent: #6d28d9; /* violet-700 */
+      --accent-2: #f59e0b; /* amber-500 */
+      --ring: rgba(13, 148, 136, 0.25); /* teal ring */
+      --shadow: 0 8px 30px rgba(2, 6, 23, 0.08);
+      --radius: 20px;
+    }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: #f8fafc; color: var(--fg); }
+    .wrap { max-width: 960px; margin: 40px auto; padding: 0 20px; }
+    .card { background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(20px, 4vw, 40px); border: 1px solid rgba(2,6,23,0.06); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--muted); letter-spacing: 0.2px; }
+    .paint { width: 22px; height: 22px; }
+    h1 { font-size: clamp(22px, 3vw, 32px); line-height: 1.2; margin: 8px 0 12px; }
+    p.lead { color: var(--muted); line-height: 1.6; margin: 0 0 18px; }
+    ul { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+    .item { display: grid; grid-template-columns: 24px 1fr; align-items: start; gap: 12px; }
+    .check { width: 22px; height: 22px; color: var(--accent); }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { appearance: none; border: 1px solid rgba(2,6,23,0.08); padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; color: var(--fg); background: #f9fafb; transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease; box-shadow: 0 1px 0 rgba(2, 6, 23, 0.02); }
+    .btn:hover { transform: translateY(-1px); border-color: rgba(109,40,217,0.35); box-shadow: 0 8px 24px rgba(109,40,217,0.12); }
+    .btn.primary { background: linear-gradient(135deg, rgba(109,40,217,0.12), rgba(245,158,11,0.12)); border-color: rgba(109,40,217,0.35); }
+    .footer { margin-top: 8px; font-size: 14px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <section class="wrap">
+    <div class="card" aria-labelledby="art-title">
+      <div class="eyebrow" aria-hidden="true">
+        <!-- Palette Icon -->
+        <svg class="paint" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 3C7.03 3 3 6.93 3 11.67 3 14.45 5.11 16.5 7.62 16.5h1.05c.54 0 .98.44.98.98 0 1.41 1.18 2.55 2.6 2.55 4.97 0 8.75-3.88 8.75-8.61C21 6.38 16.97 3 12 3Z" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="7.5" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="12" cy="8" r="1.2" fill="currentColor"/>
+          <circle cx="16.5" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="14.5" cy="13.5" r="1.2" fill="currentColor"/>
+        </svg>
+        <span>Art & Creativity</span>
+      </div>
+
+      <h1 id="art-title">Eva: Your Creative Companion</h1>
+      <p class="lead">Creativity flows when tools feel effortless. Eva guides you through software, hardware, and prompting so your ideas move smoothly from spark to finished piece.</p>
+
+      <ul>
+        <li class="item">
+          <svg class="check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Smart picks for creative software & platforms that match your style</span>
+        </li>
+        <li class="item">
+          <svg class="check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Hardware guidance, from drawing tablets to VR/AR tools</span>
+        </li>
+        <li class="item">
+          <svg class="check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Prompting help to get the best results from AI art tools</span>
+        </li>
+        <li class="item">
+          <svg class="check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Practical workflows so you spend more time creating, not troubleshooting</span>
+        </li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="#tools" aria-label="Explore creative tools">Explore creative tools</a>
+        <a class="btn" href="#tips" aria-label="Tips for digital artists">Tips for digital artists</a>
+      </div>
+
+      <p class="footer">Powered by Eva — creative support that keeps pace with your imagination.</p>
+    </div>
+  </section>
+</body>
+</html>
+
