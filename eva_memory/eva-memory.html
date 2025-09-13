@@ -93,6 +93,9 @@
 
     .overlay { position: fixed; inset: 0; background: rgba(10,14,30,.55); display: none; align-items: center; justify-content: center; z-index: 100; }
     .overlay .modal { background: #0f1840; border: 1px solid var(--border); border-radius: 14px; padding: 16px; width: min(520px, calc(100% - 32px)); box-shadow: var(--shadow); }
+  .dropzone { border: 2px dashed var(--border); border-radius: 12px; padding: 18px; text-align: center; background:#0e1533; cursor: pointer;}
+    .dropzone.drag { outline: 3px solid rgba(124,156,255,.35); }
+    .thumb { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border:1px solid var(--border); }
   </style>
 </head>
 <body>
@@ -114,6 +117,10 @@
         <label>
           <div class="sub">Token</div>
           <input class="input" id="apiToken" placeholder="EVA12345" />
+        </label>
+        <label>
+          <div class="sub">Upload Endpoint</div>
+          <input class="input" id="uploadBase" placeholder="eva_upload.php" />
         </label>
         <label style="grid-column: 1 / -1;">
           <div class="sub">Search</div>
@@ -156,6 +163,20 @@
   </div>
 
   <section class="card" style="margin-top:16px;">
+    <h3 style="margin:0 0 8px 0">Media Uploads</h3>
+    <div class="sub">Drop images here or pick files. Successful uploads get indexed into memory as keys like <span class="kbd">media:filename</span>.</div>
+    <div id="drop" class="dropzone" tabindex="0">Drop images or click to choose…
+      <input id="filePick" type="file" accept="image/*" multiple style="display:none" />
+    </div>
+    <div class="table-wrap" style="margin-top:12px;">
+      <table>
+        <thead><tr><th style="width:74px">Preview</th><th>Name</th><th style="width:35%">URL</th><th style="width:160px">Actions</th></tr></thead>
+        <tbody id="mediaBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px;">
     <div class="table-wrap">
       <table aria-label="Memory entries">
         <thead>
@@ -190,6 +211,7 @@
       filter: '',
       pendingDeleteKey: null,
       connected: false,
+      media: []
     };
 
     const persist = {
@@ -293,8 +315,47 @@
         td.textContent = state.filter ? 'No results.' : 'No entries yet.';
         tr.appendChild(td);
         tbody.appendChild(tr);
-        return;
+      } else {
+        for(const [key, value] of entries){
+          const tr = document.createElement('tr');
+          const tdK = document.createElement('td');
+          const tdV = document.createElement('td');
+          const tdA = document.createElement('td');
+          tdA.className = 'row-actions';
+
+          tdK.textContent = key;
+          tdV.textContent = String(value);
+
+          const btnEdit = document.createElement('button');
+          btnEdit.className = 'btn';
+          btnEdit.textContent = 'Edit';
+          btnEdit.onclick = () => {
+            $('#key').value = key;
+            $('#value').value = String(value);
+            $('#value').focus();
+          };
+
+          const btnCopy = document.createElement('button');
+          btnCopy.className = 'btn';
+          btnCopy.textContent = 'Copy';
+          btnCopy.onclick = async () => {
+            await navigator.clipboard.writeText(String(value));
+            toast('Value copied');
+          };
+
+          const btnDelete = document.createElement('button');
+          btnDelete.className = 'btn danger';
+          btnDelete.textContent = 'Delete';
+          btnDelete.onclick = () => confirmDelete(key);
+
+          tdA.append(btnEdit, btnCopy, btnDelete);
+          tr.append(tdK, tdV, tdA);
+          tbody.appendChild(tr);
+        }
       }
+
+      renderMedia();
+    }
 
       for(const [key, value] of entries){
         const tr = document.createElement('tr');
@@ -416,7 +477,7 @@
     $('#btnAdd').addEventListener('click', addOrUpdate);
     $('#btnReset').addEventListener('click', resetForm);
     $('#btnRefresh').addEventListener('click', refresh);
-    $('#btnConnect').addEventListener('click', () => { persist.save(); refresh(); });
+    $('#btnConnect').addEventListener('click', () => { persist.save(); localStorage.setItem('eva.uploadBase', document.getElementById('uploadBase').value.trim()); refresh(); });
     $('#btnClear').addEventListener('click', clearAll);
     $('#btnExport').addEventListener('click', exportJSON);
     $('#btnImport').addEventListener('click', () => $('#fileImport').click());
@@ -435,9 +496,83 @@
     $('#cancelDelete').addEventListener('click', () => { state.pendingDeleteKey = null; $('#overlay').style.display = 'none'; });
     $('#confirmDelete').addEventListener('click', performDelete);
 
+    // Upload events
+    const drop = document.getElementById('drop');
+    const filePick = document.getElementById('filePick');
+    drop.addEventListener('click', ()=> filePick.click());
+    drop.addEventListener('dragover', (e)=> { e.preventDefault(); drop.classList.add('drag'); });
+    drop.addEventListener('dragleave', ()=> drop.classList.remove('drag'));
+    drop.addEventListener('drop', (e)=> { e.preventDefault(); drop.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+    filePick.addEventListener('change', (e)=> handleFiles(e.target.files));
+
     // Init
     persist.load();
+    // load persisted upload endpoint
+    document.getElementById('uploadBase').value = localStorage.getItem('eva.uploadBase') || 'eva_upload.php';
     refresh();
+  
+    // === Media helpers ===
+    function uploadUrl(){
+      const base = (document.getElementById('uploadBase').value || 'eva_upload.php').trim();
+      const token = $('#apiToken').value.trim();
+      const u = new URL(base, window.location.href);
+      const sp = new URLSearchParams({ token, _t: Date.now() });
+      u.search = sp.toString();
+      return u.toString();
+    }
+
+    async function handleFiles(fileList){
+      const files = Array.from(fileList || []);
+      if(files.length === 0) return;
+      for(const f of files){
+        if(!/^image\//.test(f.type)){ toast(`Skipped non-image: ${f.name}`, 'warn'); continue; }
+        try{ await uploadFile(f); } catch(err){ toast('Upload failed: ' + err.message, 'err'); }
+      }
+      await refresh();
+    }
+
+    async function uploadFile(file){
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch(uploadUrl(), { method: 'POST', body: fd });
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const url = data.url || data.path || '';
+      const name = data.name || file.name;
+      if(!url){ throw new Error('No URL returned'); }
+      // index into memory
+      const key = `media:${name}`;
+      await saveEntry(key, url);
+      state.memory[key] = url;
+      toast(`Uploaded ${name}`);
+    }
+
+    function renderMedia(){
+      const body = document.getElementById('mediaBody');
+      if(!body) return;
+      body.innerHTML = '';
+      const media = Object.entries(state.memory).filter(([k]) => k.startsWith('media:')).sort((a,b)=> a[0].localeCompare(b[0]));
+      if(media.length === 0){
+        const tr = document.createElement('tr');
+        const td = document.createElement('td'); td.colSpan = 4; td.style.color='var(--muted)'; td.textContent = 'No images uploaded yet.'; tr.appendChild(td); body.appendChild(tr); return;
+      }
+      for(const [key, url] of media){
+        const tr = document.createElement('tr');
+        const tdPrev = document.createElement('td');
+        const img = document.createElement('img'); img.className='thumb'; img.src = url; img.alt = key; tdPrev.appendChild(img);
+        const tdName = document.createElement('td'); tdName.textContent = key.replace(/^media:/,'');
+        const tdUrl = document.createElement('td'); tdUrl.textContent = url;
+        const tdAct = document.createElement('td');
+        const bCopy = document.createElement('button'); bCopy.className='btn'; bCopy.textContent='Copy URL'; bCopy.onclick = async ()=>{ await navigator.clipboard.writeText(url); toast('URL copied'); };
+        const bUse = document.createElement('button'); bUse.className='btn'; bUse.textContent='Use in value'; bUse.onclick = ()=>{ document.getElementById('value').value = url; toast('Inserted into value'); };
+        const bForget = document.createElement('button'); bForget.className='btn danger'; bForget.textContent='Unindex'; bForget.onclick = async ()=>{ await saveEntry(key, ''); const mem = await getMemory(); delete mem[key]; await syncMemory(mem); state.memory = mem; renderTable(); toast('Unindexed'); };
+        tdAct.append(bCopy, bUse, bForget);
+        tr.append(tdPrev, tdName, tdUrl, tdAct);
+        body.appendChild(tr);
+      }
+    }
   </script>
+</body>
+</html>
 </body>
 </html>
