@@ -165,10 +165,16 @@
   <section class="card" style="margin-top:16px;">
     <h3 style="margin:0 0 8px 0">Media Uploads</h3>
     <div class="sub">Drop images here or pick files. Successful uploads get indexed into memory as keys like <span class="kbd">media:filename</span>.</div>
-    <div id="drop" class="dropzone" tabindex="0">Drop images or click to choose…
-      <input id="filePick" type="file" accept="image/*" multiple style="display:none" />
-    </div>
-    <div class="table-wrap" style="margin-top:12px;">
+   <div id="drop" class="dropzone" tabindex="0">Drop images or click to choose…
+  <input id="filePick" type="file" accept="image/*" multiple style="display:none" />
+  </div>
+    <div class="toolbar" style="margin-top:8px">
+  <button class="btn primary" id="btnPick">Choose Images</button>
+  <span class="sub">…or drop/paste images here</span>
+</div>
+
+
+      <div class="table-wrap" style="margin-top:12px;">
       <table>
         <thead><tr><th style="width:74px">Preview</th><th>Name</th><th style="width:35%">URL</th><th style="width:160px">Actions</th></tr></thead>
         <tbody id="mediaBody"></tbody>
@@ -504,13 +510,26 @@
     drop.addEventListener('dragleave', ()=> drop.classList.remove('drag'));
     drop.addEventListener('drop', (e)=> { e.preventDefault(); drop.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
     filePick.addEventListener('change', (e)=> handleFiles(e.target.files));
+    document.getElementById('btnPick').addEventListener('click', ()=> filePick.click());
+    document.addEventListener('paste', handlePaste);
 
     // Init
     persist.load();
     // load persisted upload endpoint
     document.getElementById('uploadBase').value = localStorage.getItem('eva.uploadBase') || 'eva_upload.php';
     refresh();
-  
+
+    async function handlePaste(e){
+  const items = Array.from(e.clipboardData?.items || []);
+  const files = items
+    .filter(it => it.kind === 'file' && /^image\//.test(it.type))
+    .map(it => it.getAsFile());
+  if(files.length){
+    e.preventDefault();
+    await handleFiles(files);
+      }
+    }
+
     // === Media helpers ===
     function uploadUrl(){
       const base = (document.getElementById('uploadBase').value || 'eva_upload.php').trim();
@@ -565,14 +584,22 @@
         const tdAct = document.createElement('td');
         const bCopy = document.createElement('button'); bCopy.className='btn'; bCopy.textContent='Copy URL'; bCopy.onclick = async ()=>{ await navigator.clipboard.writeText(url); toast('URL copied'); };
         const bUse = document.createElement('button'); bUse.className='btn'; bUse.textContent='Use in value'; bUse.onclick = ()=>{ document.getElementById('value').value = url; toast('Inserted into value'); };
-        const bForget = document.createElement('button'); bForget.className='btn danger'; bForget.textContent='Unindex'; bForget.onclick = async ()=>{ await saveEntry(key, ''); const mem = await getMemory(); delete mem[key]; await syncMemory(mem); state.memory = mem; renderTable(); toast('Unindexed'); };
-        tdAct.append(bCopy, bUse, bForget);
-        tr.append(tdPrev, tdName, tdUrl, tdAct);
-        body.appendChild(tr);
-      }
+        const bForget = document.createElement('button'); bForget.className='btn danger'; bForget.textContent='Unindex'; bForget.onclick = async ()=>{ await saveEntry(key, ''); const mem = await getMemory(); delete mem[key]; await syncMemory(mem); state.memory = mem;      
+        const bForget = document.createElement('button');                          
+        bForget.className = 'btn danger';
+        bForget.textContent = 'Unindex';
+        bForget.onclick = async () => {
+        await saveEntry(key, '');
+        const mem = await getMemory();
+        delete mem[key];
+        await syncMemory(mem);
+        state.memory = mem;
+        renderTable();
+        toast('Unindexed');
+};
+                                                                                                                                             }
     }
   </script>
 </body>
 </html>
-</body>
-</html>
+
