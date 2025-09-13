@@ -3,128 +3,441 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Memory 2.0 (Server)</title>
+  <title>Eva Memory 2.0 — Admin</title>
   <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121937;
+      --panel-2: #1a2350;
+      --text: #e7ecff;
+      --muted: #a9b3d4;
+      --accent: #7c9cff;
+      --accent-2: #89f0c3;
+      --danger: #ff6b6b;
+      --warning: #ffd166;
+      --ok: #2dd4bf;
+      --border: #2a346a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f5f5f5;
-      color: #333;
+      margin: 0; padding: 24px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% 10%, #101737 0%, var(--bg) 60%);
+      color: var(--text);
     }
-    h2 { color: #444; }
-    table {
+    header { display: grid; gap: 10px; grid-template-columns: 1fr auto; align-items: center; }
+    h1 { font-size: 22px; font-weight: 700; margin: 0; letter-spacing: .3px; }
+    .sub { font-size: 12px; color: var(--muted); }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .grid { display: grid; gap: 16px; }
+    .grid.cols { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 900px){ .grid.cols { grid-template-columns: 1fr; } }
+
+    input, button, select, textarea {
+      font: inherit; color: var(--text);
+    }
+    .input, .select, .textarea {
       width: 100%;
-      max-width: 500px;
-      border-collapse: collapse;
-      margin-top: 10px;
-      background-color: #fff;
+      background: #0e1533;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border .15s ease, box-shadow .15s ease;
     }
-    table, th, td { border: 1px solid #ccc; }
-    th, td { padding: 8px; text-align: left; }
-    button {
-      margin: 2px;
-      padding: 5px 8px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 3px;
-      cursor: pointer;
+    .input:focus, .select:focus, .textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,156,255,.25); }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: #0f1840;
+      padding: 8px 12px; border-radius: 10px; cursor: pointer;
+      transition: transform .05s ease, background .2s ease, border-color .2s ease;
+      display: inline-flex; align-items: center; gap: 8px;
+      user-select: none;
     }
-    button:hover { background-color: #0056b3; }
-    input { padding: 5px; margin: 5px 2px; }
-    .actions { text-align: center; }
+    .btn:hover { background: #142157; border-color: #3a468a; }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { background: linear-gradient(180deg, #1a2a6c 0%, #152456 100%); border-color: #4051a8; }
+    .btn.primary:hover { background: linear-gradient(180deg, #21348a 0%, #1a2c6e 100%); }
+    .btn.danger { background: linear-gradient(180deg, #5a1b27 0%, #3d1018 100%); border-color: #8b2a3a; }
+
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .toolbar .group { display: inline-flex; gap: 8px; align-items: center; }
+
+    .table-wrap { overflow: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    thead th { position: sticky; top: 0; background: #12193a; z-index: 1; text-align: left; font-weight: 600; }
+    tbody tr:hover { background: rgba(124,156,255,.05); }
+
+    .pill { font-size: 11px; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+    .status { position: fixed; right: 16px; bottom: 16px; display: grid; gap: 8px; width: min(380px, calc(100% - 32px)); }
+    .toast { background: #0f1840; border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; box-shadow: var(--shadow); display: grid; gap: 4px; }
+    .toast.ok { border-color: #1f7a6e; }
+    .toast.warn { border-color: #7a6a1f; }
+    .toast.err { border-color: #7a2a2a; }
+
+    .row-actions { display: flex; gap: 6px; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; background: #0b1433; border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; color: var(--muted); }
+
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .overlay { position: fixed; inset: 0; background: rgba(10,14,30,.55); display: none; align-items: center; justify-content: center; z-index: 100; }
+    .overlay .modal { background: #0f1840; border: 1px solid var(--border); border-radius: 14px; padding: 16px; width: min(520px, calc(100% - 32px)); box-shadow: var(--shadow); }
   </style>
 </head>
 <body>
-  <h2>Eva Memory 2.0 (Server)</h2>
-  <div>
-    <input id="key" placeholder="Key" />
-    <input id="value" placeholder="Value" />
-    <button onclick="addOrUpdate()">Add / Update</button>
-    <button onclick="clearMemory()">Clear All</button>
+  <header>
+    <div>
+      <h1>Eva Memory 2.0 — Admin</h1>
+      <div class="sub">Lightweight UI to view & manage key/value memory on your server API.</div>
+    </div>
+    <div class="pill" id="env-indicator">Disconnected</div>
+  </header>
+
+  <div class="grid cols" style="margin-top:16px;">
+    <section class="card">
+      <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px; align-items: end;">
+        <label>
+          <div class="sub">API Endpoint (no query)</div>
+          <input class="input" id="apiBase" placeholder="eva_memory.php" />
+        </label>
+        <label>
+          <div class="sub">Token</div>
+          <input class="input" id="apiToken" placeholder="EVA12345" />
+        </label>
+        <label style="grid-column: 1 / -1;">
+          <div class="sub">Search</div>
+          <input class="input" id="search" placeholder="Filter by key or value… (press / to focus)" />
+        </label>
+        <div class="toolbar" style="grid-column: 1 / -1;">
+          <div class="group">
+            <button class="btn primary" id="btnConnect">Connect</button>
+            <button class="btn" id="btnRefresh">Refresh</button>
+          </div>
+          <div class="group">
+            <button class="btn" id="btnExport">Export JSON</button>
+            <input type="file" id="fileImport" accept="application/json" style="display:none" />
+            <button class="btn" id="btnImport">Import JSON</button>
+          </div>
+          <div style="margin-left:auto" class="group">
+            <button class="btn danger" id="btnClear">Clear All</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="grid" style="grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end;">
+        <label>
+          <div class="sub">Key</div>
+          <input class="input" id="key" placeholder="e.g., user:timezone" />
+        </label>
+        <label>
+          <div class="sub">Value</div>
+          <input class="input" id="value" placeholder="e.g., Europe/Zurich" />
+        </label>
+        <div class="toolbar">
+          <button class="btn primary" id="btnAdd">Add / Update</button>
+          <button class="btn" id="btnReset">Reset</button>
+        </div>
+        <div class="sub" style="grid-column: 1 / -1;">Tip: <span class="kbd">Enter</span> to save, <span class="kbd">Esc</span> to reset, <span class="kbd">/</span> to focus search.</div>
+      </div>
+    </section>
   </div>
 
-  <table id="memoryTable">
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-        <th class="actions">Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <section class="card" style="margin-top:16px;">
+    <div class="table-wrap">
+      <table aria-label="Memory entries">
+        <thead>
+          <tr>
+            <th style="width:28%">Key</th>
+            <th>Value</th>
+            <th style="width:180px">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="status" id="status"></div>
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+    <div class="modal">
+      <h3 id="overlayTitle" style="margin-top:0">Confirm delete</h3>
+      <p>Are you sure you want to delete <span id="confirmKey" class="kbd"></span>? This action cannot be undone.</p>
+      <div class="toolbar" style="justify-content: flex-end;">
+        <button class="btn" id="cancelDelete">Cancel</button>
+        <button class="btn danger" id="confirmDelete">Delete</button>
+      </div>
+    </div>
+  </div>
 
   <script>
-    const API_URL = 'eva_memory.php?token=EVA12345';
+    // === Utilities ===
+    const $ = (sel) => document.querySelector(sel);
+    const state = {
+      memory: {},
+      filter: '',
+      pendingDeleteKey: null,
+      connected: false,
+    };
 
-    async function getMemory() {
-      const res = await fetch(`${API_URL}&action=read`);
-      const data = await res.json();
+    const persist = {
+      load() {
+        const base = localStorage.getItem('eva.apiBase') || 'eva_memory.php';
+        const token = localStorage.getItem('eva.apiToken') || 'EVA12345';
+        $('#apiBase').value = base;
+        $('#apiToken').value = token;
+      },
+      save() {
+        localStorage.setItem('eva.apiBase', $('#apiBase').value.trim());
+        localStorage.setItem('eva.apiToken', $('#apiToken').value.trim());
+      }
+    };
+
+    function toast(msg, type='ok'){
+      const div = document.createElement('div');
+      div.className = `toast ${type}`;
+      div.textContent = msg;
+      $('#status').appendChild(div);
+      setTimeout(() => div.remove(), 3500);
+    }
+
+    function apiUrl(params={}){
+      const base = $('#apiBase').value.trim() || 'eva_memory.php';
+      const token = $('#apiToken').value.trim();
+      const u = new URL(base, window.location.href);
+      const sp = new URLSearchParams({ token, ...params, _t: Date.now() });
+      u.search = sp.toString();
+      return u.toString();
+    }
+
+    async function apiGet(params){
+      const res = await fetch(apiUrl(params), { credentials: 'same-origin' });
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    async function apiPost(params, body){
+      const res = await fetch(apiUrl(params), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json().catch(() => ({}));
+    }
+
+    function setConnected(on){
+      state.connected = !!on;
+      const pill = $('#env-indicator');
+      pill.textContent = on ? 'Connected' : 'Disconnected';
+      pill.style.borderColor = on ? '#236b5f' : 'var(--border)';
+      pill.style.color = on ? '#b3fff0' : 'var(--muted)';
+    }
+
+    // === Core API wrappers ===
+    async function getMemory(){
+      const data = await apiGet({ action: 'read' });
       return data.memory || {};
     }
 
-    async function saveEntry(key, value) {
-      await fetch(`${API_URL}&action=write&key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`);
-      renderTable();
+    async function saveEntry(key, value){
+      await apiGet({ action: 'write', key: encodeURIComponent(key), value: encodeURIComponent(value) });
     }
 
-    async function deleteEntry(key) {
-      await saveEntry(key, ""); // Set to empty, or remove
-      const memory = await getMemory();
-      delete memory[key];
-      await syncMemory(memory);
+    async function syncMemory(memory){
+      await apiPost({ action: 'sync' }, { memory, todos: [], logs: [] });
     }
 
-    async function syncMemory(memory) {
-      await fetch(`${API_URL}&action=sync`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({memory, todos: [], logs: []})
-      });
-      renderTable();
+    // === UI Actions ===
+    async function refresh(){
+      try{
+        const mem = await getMemory();
+        state.memory = mem;
+        setConnected(true);
+        renderTable();
+        toast('Memory loaded');
+      }catch(err){
+        setConnected(false);
+        toast('Failed to load memory: ' + err.message, 'err');
+      }
     }
 
-    async function addOrUpdate() {
-      const key = document.getElementById("key").value.trim();
-      const value = document.getElementById("value").value.trim();
-      if (!key) return alert("Please enter a key.");
-      await saveEntry(key, value);
-      document.getElementById("key").value = "";
-      document.getElementById("value").value = "";
-    }
+    function renderTable(){
+      const tbody = $('#tbody');
+      tbody.innerHTML = '';
+      const entries = Object.entries(state.memory)
+        .filter(([k,v]) => {
+          const f = state.filter.toLowerCase();
+          if(!f) return true;
+          return k.toLowerCase().includes(f) || String(v).toLowerCase().includes(f);
+        })
+        .sort((a,b) => a[0].localeCompare(b[0]));
 
-    async function clearMemory() {
-      if (!confirm("Clear all memory?")) return;
-      await syncMemory({});
-    }
-
-    async function renderTable() {
-      const data = await getMemory();
-      const tbody = document.querySelector("#memoryTable tbody");
-      tbody.innerHTML = "";
-      Object.keys(data).forEach(key => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${key}</td>
-          <td>${data[key]}</td>
-          <td class="actions">
-            <button onclick="editEntry('${key}')">Edit</button>
-            <button onclick="deleteEntry('${key}')">Delete</button>
-          </td>
-        `;
+      if(entries.length === 0){
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 3;
+        td.style.color = 'var(--muted)';
+        td.textContent = state.filter ? 'No results.' : 'No entries yet.';
+        tr.appendChild(td);
         tbody.appendChild(tr);
-      });
+        return;
+      }
+
+      for(const [key, value] of entries){
+        const tr = document.createElement('tr');
+        const tdK = document.createElement('td');
+        const tdV = document.createElement('td');
+        const tdA = document.createElement('td');
+        tdA.className = 'row-actions';
+
+        tdK.textContent = key;
+        tdV.textContent = String(value);
+
+        const btnEdit = document.createElement('button');
+        btnEdit.className = 'btn';
+        btnEdit.textContent = 'Edit';
+        btnEdit.onclick = () => {
+          $('#key').value = key;
+          $('#value').value = String(value);
+          $('#value').focus();
+        };
+
+        const btnCopy = document.createElement('button');
+        btnCopy.className = 'btn';
+        btnCopy.textContent = 'Copy';
+        btnCopy.onclick = async () => {
+          await navigator.clipboard.writeText(String(value));
+          toast('Value copied');
+        };
+
+        const btnDelete = document.createElement('button');
+        btnDelete.className = 'btn danger';
+        btnDelete.textContent = 'Delete';
+        btnDelete.onclick = () => confirmDelete(key);
+
+        tdA.append(btnEdit, btnCopy, btnDelete);
+        tr.append(tdK, tdV, tdA);
+        tbody.appendChild(tr);
+      }
     }
 
-    async function editEntry(key) {
-      const data = await getMemory();
-      document.getElementById("key").value = key;
-      document.getElementById("value").value = data[key];
+    async function addOrUpdate(){
+      const key = $('#key').value.trim();
+      const value = $('#value').value.trim();
+      if(!key){ toast('Please enter a key', 'warn'); return; }
+      try{
+        await saveEntry(key, value);
+        state.memory[key] = value;
+        renderTable();
+        $('#key').value = '';
+        $('#value').value = '';
+        toast('Saved');
+      }catch(err){
+        toast('Save failed: ' + err.message, 'err');
+      }
     }
+
+    function resetForm(){ $('#key').value=''; $('#value').value=''; }
+
+    function confirmDelete(key){
+      state.pendingDeleteKey = key;
+      $('#confirmKey').textContent = key;
+      $('#overlay').style.display = 'flex';
+    }
+
+    async function performDelete(){
+      const key = state.pendingDeleteKey; if(!key) return;
+      try{
+        // server compat path: write empty then sync without key
+        await saveEntry(key, '');
+        const mem = await getMemory();
+        delete mem[key];
+        await syncMemory(mem);
+        state.memory = mem;
+        renderTable();
+        toast(`Deleted ${key}`);
+      }catch(err){
+        toast('Delete failed: ' + err.message, 'err');
+      }finally{
+        state.pendingDeleteKey = null;
+        $('#overlay').style.display = 'none';
+      }
+    }
+
+    async function clearAll(){
+      if(!confirm('Clear all memory?')) return;
+      try{
+        await syncMemory({});
+        state.memory = {};
+        renderTable();
+        toast('All cleared');
+      }catch(err){
+        toast('Clear failed: ' + err.message, 'err');
+      }
+    }
+
+    function exportJSON(){
+      const blob = new Blob([JSON.stringify({ memory: state.memory }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `eva-memory-${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.json`;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    function importJSON(file){
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try{
+          const parsed = JSON.parse(reader.result);
+          const mem = parsed.memory || parsed || {};
+          await syncMemory(mem);
+          state.memory = mem;
+          renderTable();
+          toast('Import successful');
+        }catch(err){ toast('Import failed: ' + err.message, 'err'); }
+      };
+      reader.readAsText(file);
+    }
+
+    // === Event wiring ===
+    $('#btnAdd').addEventListener('click', addOrUpdate);
+    $('#btnReset').addEventListener('click', resetForm);
+    $('#btnRefresh').addEventListener('click', refresh);
+    $('#btnConnect').addEventListener('click', () => { persist.save(); refresh(); });
+    $('#btnClear').addEventListener('click', clearAll);
+    $('#btnExport').addEventListener('click', exportJSON);
+    $('#btnImport').addEventListener('click', () => $('#fileImport').click());
+    $('#fileImport').addEventListener('change', (e) => e.target.files[0] && importJSON(e.target.files[0]));
+
+    $('#search').addEventListener('input', (e) => { state.filter = e.target.value; renderTable(); });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === '/' && document.activeElement.tagName !== 'INPUT'){
+        e.preventDefault(); $('#search').focus();
+      }
+      if(e.key === 'Escape'){ resetForm(); }
+      if(e.key === 'Enter' && (document.activeElement === $('#key') || document.activeElement === $('#value'))){ addOrUpdate(); }
+    });
+
+    $('#cancelDelete').addEventListener('click', () => { state.pendingDeleteKey = null; $('#overlay').style.display = 'none'; });
+    $('#confirmDelete').addEventListener('click', performDelete);
 
     // Init
-    renderTable();
+    persist.load();
+    refresh();
   </script>
 </body>
 </html>
