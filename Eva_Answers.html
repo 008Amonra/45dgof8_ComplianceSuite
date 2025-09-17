@@ -65,7 +65,23 @@
        max-width: 100%;   /* never exceed container width */
        height: auto;      /* keep aspect ratio */
     }
-
+    .hero img,
+article img {
+  float: left;
+  max-width: 40%;    /* scale to 40% of container */
+  height: auto;
+  margin: 0 16px 12px 0;
+  border-radius: 12px;
+}
+@media (max-width: 760px) {
+  .hero img,
+  article img {
+    float: none;
+    max-width: 100%;
+    margin: 12px 0;
+    display: block;
+  }
+}
     .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
     .btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,.35); }
