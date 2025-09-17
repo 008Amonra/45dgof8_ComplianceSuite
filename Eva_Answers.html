@@ -222,7 +222,6 @@
     .eva-sentinel .badge{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(98,230,167,.5);background:rgba(98,230,167,.08);font-size:14px}
     .eva-sentinel .badge svg{width:16px;height:16px;stroke:var(--accent)}
     @media (prefers-color-scheme: light){.eva-sentinel{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff;--shadow:0 12px 28px rgba(0,0,0,.08)}.eva-sentinel .icon{background:rgba(19,191,123,.08);border-color:rgba(19,191,123,.25)}}
-
     /* Modal styles */
     .eva-modal{position:fixed;inset:0;display:none;z-index:9999}
     .eva-modal[open], .eva-modal:target{display:block}
@@ -232,7 +231,6 @@
     .eva-modal__link{display:inline-block;margin-top:8px}
     @media (prefers-color-scheme: dark){.eva-modal__card{background:#101a30;color:#e7ecf8}}
   </style>
-
   <article class="card">
     <div class="head">
       <div class="icon" aria-hidden="true">
@@ -244,26 +242,21 @@
       </div>
       <h3>🔒 Eva: Your Digital Sentinel</h3>
     </div>
-
     <p>Security isn’t an afterthought—it’s at the core of everything Eva does. Constantly upgrading her knowledge, Eva keeps pace with the latest cybersecurity trends and threats. She doesn’t just react—she <strong>proactively monitors, adapts, and alerts</strong>, so you stay one step ahead. With Eva by your side, you can focus on what matters, knowing your digital space is protected.</p>
-
     <div class="points" aria-label="Highlights">
       <div class="point"><span class="dot" aria-hidden="true"></span><span>Real‑time awareness of major security developments</span></div>
       <div class="point"><span class="dot" aria-hidden="true"></span><span>Plain‑language alerts with practical next steps</span></div>
       <div class="point"><span class="dot" aria-hidden="true"></span><span>Privacy‑first by design</span></div>
     </div>
-
     <div class="cta">
       <a class="btn" href="#eva-modal">Learn more</a>
       <a class="btn secondary" href="/security-standards.html">Our security standards</a>
     </div>
-
     <div class="badge" role="note" aria-label="Trust badge">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 10V7a5 5 0 0 0-10 0v3"/><rect x="4" y="10" width="16" height="10" rx="2"/></svg>
       <span>Protected by <strong>Eva</strong> — proactive security awareness</span>
     </div>
   </article>
-
   <!-- Inline modal for “Learn more” -->
   <div id="eva-modal" class="eva-modal" aria-hidden="true">
     <div class="eva-modal__backdrop" data-close></div>
@@ -279,7 +272,6 @@
       <a class="eva-modal__link" href="/security-standards.html">Read full security standards →</a>
     </div>
   </div>
-
   <script>
     document.addEventListener('click', e => {
       if (e.target.matches('[href="#eva-modal"]')) {
@@ -292,29 +284,23 @@
     });
   </script>
 </div>
-
     <footer>
       <div>© <span id="year"></span> Eva Answers — Built with care.
         <span style="display:block; margin-top:6px;">Links: <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">ChatGPT</a> • <a href="https://45dgof8.com/" target="_blank" rel="noopener">45dgof8.com</a></span>
       </div>
     </footer>
   </div>
-
   <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
-
   <script>
     const CHATGPT_URL = 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers';
-
     const phraseInput = document.getElementById('phrase');
     const copyBtn = document.getElementById('copyBtn');
     const toast = document.getElementById('toast');
-
     function showToast(msg){
       toast.textContent = msg;
       toast.classList.add('show');
       setTimeout(()=> toast.classList.remove('show'), 1600);
     }
-
     async function copyToClipboard(text){
       try { await navigator.clipboard.writeText(text); }
       catch (err) {
@@ -325,13 +311,10 @@
         document.body.removeChild(ta);
       }
     }
-
     function setPhrase(text){ phraseInput.value = text; }
-
     function cleanText(text){
       return text.replace(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}]\s*)/u, '').trim();
     }
-
     document.querySelectorAll('.feature-button').forEach(btn => {
       btn.addEventListener('click', async () => {
         const raw = btn.dataset.text || btn.textContent.trim();
@@ -344,7 +327,6 @@
         }
       });
     });
-
     copyBtn.addEventListener('click', async () => {
       const text = phraseInput.value.trim();
       if (!text){ showToast('Nothing to copy'); return; }
@@ -354,7 +336,6 @@
         window.open(CHATGPT_URL, '_blank', 'noopener');
       }
     });
-
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
