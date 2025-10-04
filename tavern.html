@@ -6,7 +6,7 @@
   <title>45dgof8 Universe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=IM+Fell+English:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=IM+Fell+English:ital,wght@0,400;0,700;1,400&family=UnifrakturCook:700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0b0a0a;
@@ -97,14 +97,21 @@
     .tiny { font-size: 11px; opacity: .9; }
 
     /* Center image elements and revert size */
-    img {
-      display: block;
-      margin: 24px auto;
+    .image-block {
+      text-align: center;
+      margin: 32px auto;
+    }
+    .image-block img {
+      max-width: 100%;
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 0 12px #00000099;
-      max-width: 100%;
-      width: 100%;
-      height: auto;
+    }
+    .rune-id {
+      margin-top: 8px;
+      font-size: 20px;
+      color: var(--accent);
+      font-family: 'UnifrakturCook', cursive;
     }
   </style>
 </head>
@@ -129,11 +136,24 @@
       <h3>Drop your creations into the cosmos.</h3>
       <p class="hint">JPEG • PNG • WEBP • GIF (up to ~25MB each). Click or drop to add.</p>
     </label>
- 
-  <img src="https://45dgof8.com/hmlvC.webp" alt="I have the stone!">
-  <img src="https://45dgof8.com/F1oLF.webp" alt="Variant A!">
-  <img src="https://45dgof8.com/joMNo.webp" alt="Variant C!">
-  <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!">
+
+    <div class="image-block">
+      <img src="https://45dgof8.com/hmlvC.webp" alt="I have the stone!">
+      <div class="rune-id">ᛁᛟ‑hml</div>
+    </div>
+    <div class="image-block">
+      <img src="https://45dgof8.com/F1oLF.webp" alt="Variant A!">
+      <div class="rune-id">ᚠᛉ‑f1o</div>
+    </div>
+    <div class="image-block">
+      <img src="https://45dgof8.com/joMNo.webp" alt="Variant C!">
+      <div class="rune-id">ᛃᚾ‑joM</div>
+    </div>
+    <div class="image-block">
+      <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!">
+      <div class="rune-id">ᚠᚹ‑fwV</div>
+    </div>
+
     <!-- Gallery -->
     <section class="gallery" id="gallery" aria-live="polite" aria-busy="false"></section>
 
