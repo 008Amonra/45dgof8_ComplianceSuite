@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tavern of Gloom</title>
+  <title>45dgof8 Universe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=IM+Fell+English:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -22,15 +22,8 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
-      margin: 0; color: var(--fg); background: var(--bg);
-      /* Wood + soot layered background */
-      background-image:
-        radial-gradient(60vmax 30vmax at 15% 10%, #00000090, transparent 60%),
-        radial-gradient(40vmax 30vmax at 85% 20%, #3b250880, transparent 60%),
-        linear-gradient(90deg, #1a120c 0 10px, #120c08 10px 20px),
-        linear-gradient(#1b140f 0 10px, #130e0a 10px 20px);
-      background-size: auto, auto, 20px 100%, 100% 20px;
-      background-blend-mode: multiply, screen, normal, normal;
+      margin: 0; color: var(--fg); background: #000;
+      background-image: radial-gradient(circle at center, #111 0%, #000 100%);
       font-family: "IM Fell English", serif;
     }
     a { color: var(--accent); text-decoration: none; }
@@ -102,14 +95,25 @@
 
     footer { color: var(--muted); font-size: 12px; text-align: center; margin: 40px 0 60px; }
     .tiny { font-size: 11px; opacity: .9; }
+
+    /* Center image elements and revert size */
+    img {
+      display: block;
+      margin: 24px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #00000099;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div>
-        <div class="title"><span class="lantern" aria-hidden="true"></span> Tavern of Gloom</div>
-        <div class="subtitle">A shadowy nook for your art. Drag images inside, or click the lantern to browse.</div>
+        <div class="title"><span class="lantern" aria-hidden="true"></span> 45dgof8 Universe</div>
+        <div class="subtitle">An interstellar gallery for AI-generated art. Drop images inside, or click the lantern to browse.</div>
       </div>
       <nav class="bar">
         <button class="btn accent" id="browseBtn" aria-label="Browse files">Browse</button>
@@ -122,231 +126,21 @@
     <!-- Drag & Drop Zone -->
     <label class="dropzone" id="dropzone">
       <input type="file" id="fileInput" accept="image/*" multiple />
-      <h3>Drop your offerings upon the oak.</h3>
+      <h3>Drop your creations into the cosmos.</h3>
       <p class="hint">JPEG • PNG • WEBP • GIF (up to ~25MB each). Click or drop to add.</p>
     </label>
  
-  <img src="https://45dgof8.com/hmlvC.webp" alt="I have the stone!" style="max-width:800px; height:auto;">
-  <img src="https://45dgof8.com/F1oLF.webp" alt="Variant A!" style="max-width:800px; height:auto;">
-  <img src="https://45dgof8.com/joMNo.webp" alt="Variant C!" style="max-width:800px; height:auto;">
-  <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!" style="max-width:800px; height:auto;">
+  <img src="https://45dgof8.com/hmlvC.webp" alt="I have the stone!">
+  <img src="https://45dgof8.com/F1oLF.webp" alt="Variant A!">
+  <img src="https://45dgof8.com/joMNo.webp" alt="Variant C!">
+  <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!">
     <!-- Gallery -->
     <section class="gallery" id="gallery" aria-live="polite" aria-busy="false"></section>
 
     <footer>
-      Lit by whispers & old wood. Your files stay in your browser unless you connect an upload endpoint.<br>
+      Cosmic signals only. Your files stay in your browser unless you connect an upload endpoint.<br>
       <span class="tiny">Tip: Captions auto-save locally. Clearing site data will remove them.</span>
     </footer>
   </div>
-
-  <script>
-    // ===== Utilities =====
-    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
-    const $ = (sel, ctx=document) => ctx.querySelector(sel);
-
-    const gallery = $('#gallery');
-    const dropzone = $('#dropzone');
-    const fileInput = $('#fileInput');
-    const browseBtn = $('#browseBtn');
-    const clearBtn = $('#clearBtn');
-    const selectAllBtn = $('#selectAllBtn');
-
-    // Local state
-    let items = []; // { id, file, url, name, size, selected, caption }
-    const persistKey = 'tavern-of-gloom:v1';
-
-    // Load from localStorage (thumbnails + captions persist across reloads)
-    try {
-      const raw = localStorage.getItem(persistKey);
-      if (raw) {
-        const saved = JSON.parse(raw);
-        if (Array.isArray(saved)) {
-          items = saved.map(x => ({...x, selected: false}));
-          render();
-        }
-      }
-    } catch (e) { /* ignore */ }
-
-    function persist() {
-      // Only persist data URIs (from previous session) and captions/flags
-      const toSave = items.map(({id, name, size, dataURI, caption}) => ({ id, name, size, dataURI, caption }));
-      localStorage.setItem(persistKey, JSON.stringify(toSave));
-    }
-
-    // ===== Drag & Drop =====
-    ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, e => {
-      e.preventDefault(); e.stopPropagation();
-      dropzone.classList.add('highlight');
-    }));
-    ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, e => {
-      e.preventDefault(); e.stopPropagation();
-      dropzone.classList.remove('highlight');
-    }));
-
-    dropzone.addEventListener('drop', e => {
-      const files = Array.from(e.dataTransfer.files || []);
-      addFiles(files);
-    });
-
-    // Click to browse
-    browseBtn.addEventListener('click', () => fileInput.click());
-    dropzone.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', () => addFiles(Array.from(fileInput.files || [])));
-
-    // ===== File handling =====
-    const ACCEPT = ['image/jpeg','image/png','image/webp','image/gif'];
-
-    function addFiles(files) {
-      if (!files?.length) return;
-      const ok = files.filter(f => ACCEPT.includes(f.type));
-      if (!ok.length) return alert('Only images are accepted (JPEG/PNG/WEBP/GIF).');
-      Promise.all(ok.map(fileToItem)).then(newItems => {
-        items = [...newItems, ...items];
-        render();
-        persist();
-        fileInput.value = '';
-      });
-    }
-
-    function fileToItem(file) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          resolve({
-            id: crypto.randomUUID(),
-            file,
-            url: URL.createObjectURL(file),
-            dataURI: reader.result, // for persistence
-            name: file.name,
-            size: file.size,
-            selected: false,
-            caption: ''
-          });
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function bytes(n) {
-      if (n < 1024) return n + ' B';
-      if (n < 1024*1024) return (n/1024).toFixed(1) + ' KB';
-      return (n/(1024*1024)).toFixed(1) + ' MB';
-    }
-
-    // ===== Render =====
-    function render() {
-      gallery.innerHTML = '';
-      items.forEach(item => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.dataset.id = item.id;
-
-        const img = document.createElement('img');
-        img.className = 'thumb';
-        img.alt = item.name;
-        img.src = item.dataURI || item.url;
-        card.appendChild(img);
-
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-
-        const name = document.createElement('div');
-        name.className = 'name';
-        name.textContent = item.name;
-        meta.appendChild(name);
-
-        const sub = document.createElement('div');
-        sub.className = 'sub';
-        sub.textContent = bytes(item.size);
-        meta.appendChild(sub);
-
-        const caption = document.createElement('input');
-        caption.className = 'caption';
-        caption.placeholder = 'Add a caption…';
-        caption.value = item.caption || '';
-        caption.addEventListener('input', (e) => {
-          const it = items.find(x => x.id === item.id);
-          if (it) { it.caption = e.target.value; persist(); }
-        });
-        meta.appendChild(caption);
-
-        const row = document.createElement('div');
-        row.className = 'row';
-
-        const selectBtn = document.createElement('button');
-        selectBtn.className = 'btn';
-        selectBtn.textContent = item.selected ? 'Selected' : 'Select';
-        selectBtn.addEventListener('click', () => {
-          item.selected = !item.selected; render();
-        });
-        row.appendChild(selectBtn);
-
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'btn danger';
-        removeBtn.textContent = 'Remove';
-        removeBtn.addEventListener('click', () => removeItems([item.id]));
-        row.appendChild(removeBtn);
-
-        meta.appendChild(row);
-        card.appendChild(meta);
-        gallery.appendChild(card);
-      });
-    }
-
-    // ===== Bulk actions =====
-    selectAllBtn.addEventListener('click', () => {
-      const anyUnsel = items.some(i => !i.selected);
-      items.forEach(i => i.selected = anyUnsel); // toggle all
-      render();
-    });
-
-    clearBtn.addEventListener('click', () => {
-      const ids = items.filter(i => i.selected).map(i => i.id);
-      if (!ids.length) return alert('No items selected.');
-      if (!confirm('Remove selected items from the gallery?')) return;
-      removeItems(ids);
-    });
-
-    function removeItems(ids) {
-      items = items.filter(i => !ids.includes(i.id));
-      render();
-      persist();
-      // Revoke object URLs (memory tidy)
-      ids.forEach(id => URL.revokeObjectURL(id.url));
-    }
-
-    // ===== Optional: Upload to your server =====
-    // Replace `UPLOAD_ENDPOINT` with your backend URL to receive images.
-    // The function below is unused by default but ready to wire to a button.
-    const UPLOAD_ENDPOINT = null; // e.g., '/api/upload' or full URL
-
-    async function uploadSelected() {
-      if (!UPLOAD_ENDPOINT) return alert('No upload endpoint configured.');
-      const chosen = items.filter(i => i.selected);
-      if (!chosen.length) return alert('Select items first.');
-      const form = new FormData();
-      chosen.forEach((i, idx) => {
-        const file = i.file || dataURItoFile(i.dataURI, i.name);
-        form.append('files', file, i.name);
-        form.append(`caption_${idx}`, i.caption || '');
-      });
-      try {
-        const res = await fetch(UPLOAD_ENDPOINT, { method: 'POST', body: form });
-        if (!res.ok) throw new Error('Upload failed');
-        alert('Uploaded successfully.');
-      } catch (err) {
-        alert('Upload error: ' + err.message);
-      }
-    }
-
-    function dataURItoFile(dataURI, name) {
-      const arr = dataURI.split(',');
-      const mime = arr[0].match(/:(.*?);/)[1];
-      const bstr = atob(arr[1]);
-      let n = bstr.length; const u8 = new Uint8Array(n);
-      while(n--) u8[n] = bstr.charCodeAt(n);
-      return new File([u8], name, { type: mime });
-    }
-  </script>
 </body>
 </html>
