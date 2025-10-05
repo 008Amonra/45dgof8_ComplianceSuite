@@ -45,29 +45,64 @@ footer{color:var(--muted);text-align:center;margin:32px 0 8px}
 
 
 <script>
-async function loadPosts(){
-const box = document.getElementById('blogContainer');
-try{
-const res = await fetch('blogposts.json', {cache:'no-store'});
-if(!res.ok) throw new Error('HTTP '+res.status);
-const posts = await res.json();
-if(!Array.isArray(posts) || posts.length===0){
-box.innerHTML = '<div class="error">No posts yet. Come back soon ✨</div>';
-return;
-}
-// sort by date desc
-posts.sort((a,b)=> new Date(b.date) - new Date(a.date));
-box.innerHTML = posts.map(renderPost).join('<div class="divider"></div>');
-}catch(err){
-box.innerHTML = '<div class="error">Could not load posts (blogposts.json). '+String(err.message)+'</div>';
-}
-}
+document.addEventListener('DOMContentLoaded', loadPosts);
 
+async function loadPosts(){
+  const box = document.getElementById('blogContainer');
+  try{
+    const res = await fetch('blogposts.json', { cache: 'no-store' });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const posts = await res.json();
+
+    if(!Array.isArray(posts) || posts.length === 0){
+      box.innerHTML = '<div class="error">No posts yet. Come back soon ✨</div>';
+      return;
+    }
+
+    // newest first
+    posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+    box.innerHTML = posts.map(renderPost).join('<div class="divider"></div>');
+  }catch(err){
+    console.error(err);
+    box.innerHTML = '<div class="error">Could not load posts (blogposts.json). ' + String(err.message) + '</div>';
+  }
+}
 
 function renderPost(p){
-const title = escapeHtml(p.title || 'Untitled');
-const subtitle = escapeHtml(p.subtitle || '');
-const dateStr = formatDate(p.date);
-// content may contain trusted HTML created by you/Eva
+  const title = escapeHtml(p.title || 'Untitled');
+  const subtitle = escapeHtml(p.subtitle || '');
+  const dateStr = formatDate(p.date);
+
+  // allow rich HTML if provided, else escape plain text
+  const content = (p.contentHtml && typeof p.contentHtml === 'string')
+    ? p.contentHtml
+    : `<p>${escapeHtml(p.content || '')}</p>`;
+
+  return `
+    <article class="post">
+      <div class="titlebar">
+        <h1>${title}</h1>
+      </div>
+      ${subtitle ? `<h2>${subtitle}</h2>` : ''}
+      <div class="content">${content}</div>
+      <div class="date">${dateStr}</div>
+    </article>
+  `;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+
+function formatDate(d){
+  try{
+    return new Date(d).toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric'});
+  }catch{
+    return d || '';
+  }
+}
 </script>
+
 </html>
