@@ -378,12 +378,13 @@ article img {
 <style>
 .blog-btn {
   background: linear-gradient(135deg, #4e3fa1, #9a84ff);
-  color: #ffffff;
+  color: #ffffff !important;   /* <— forces white text */
   padding: 12px 26px;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(255,255,255,0.6); /* adds glow to text */
   box-shadow: 0 0 10px rgba(154,132,255,0.6);
   transition: all 0.3s ease;
   display: inline-block;
@@ -392,13 +393,15 @@ article img {
   background: linear-gradient(135deg, #9a84ff, #4e3fa1);
   box-shadow: 0 0 20px rgba(154,132,255,0.9);
   transform: translateY(-2px);
+  color: #ffffff !important;
 }
 </style>
 
 
+
 <!-- Footer -->
 <footer style="text-align:center; margin-top:40px; font-size:14px; color:#aaa;">
-  © <span id="year"></span> Eva Answers — Built with care. Everything will function!  
+  © <span id="year"></span> Eva Answers — Built with care.
   <div style="margin-top:6px;">
     Links: 
     <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">ChatGPT</a> • 
