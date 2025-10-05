@@ -22,9 +22,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Ensure jq is available
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Ensure blogposts.json exists
         run: |
-          [[ -f blogposts.json ]] || echo "[]" > blogposts.json
+          [ -f blogposts.json ] || echo "[]" > blogposts.json
           cat blogposts.json
 
       - name: Decode HTML content
@@ -32,16 +35,20 @@ jobs:
           echo "${{ inputs.content_b64 }}" | base64 --decode > content.html
           wc -c content.html
 
-      - name: Append + sort
+      - name: Append + sort with jq
+        env:
+          IN_TITLE: ${{ inputs.title }}
+          IN_SUBTITLE: ${{ inputs.subtitle }}
+          IN_DATE: ${{ inputs.date }}
         run: |
-          TITLE="${{ inputs.title }}"
-          SUB="${{ inputs.subtitle }}"
-          DATE_IN="${{ inputs.date }}"
-          DATE=${DATE_IN:-"$(date -u +%Y-%m-%d)"}
+          DATE_VALUE="$IN_DATE"
+          if [ -z "$DATE_VALUE" ]; then
+            DATE_VALUE="$(date -u +%Y-%m-%d)"
+          fi
           jq \
-            --arg title "$TITLE" \
-            --arg subtitle "$SUB" \
-            --arg date "$DATE" \
+            --arg title "$IN_TITLE" \
+            --arg subtitle "$IN_SUBTITLE" \
+            --arg date "$DATE_VALUE" \
             --rawfile html content.html \
             '
             . + [{
@@ -53,13 +60,18 @@ jobs:
             | sort_by(.date) | reverse
             ' blogposts.json > blogposts.new.json
           mv blogposts.new.json blogposts.json
+          echo "Publishing date: $DATE_VALUE"
 
       - name: Commit & push
+        env:
+          COMMIT_DATE: ${{ inputs.date }}
         run: |
           git config user.name "eva-bot"
           git config user.email "bot@users.noreply.github.com"
           git add blogposts.json
-          git commit -m "blog: add post '${{ inputs.title }}' (${{ inputs.date || 'today' }})" || echo "No changes"
+          DATE_VALUE="$COMMIT_DATE"
+          if [ -z "$DATE_VALUE" ]; then
+            DATE_VALUE="$(date -u +%Y-%m-%d)"
+          fi
+          git commit -m "blog: add post '${{ inputs.title }}' ($DATE_VALUE)" || echo "No changes"
           git push
-
-add blog auto-publisher workflow
