@@ -1,0 +1,63 @@
+name: Publish Blog Post
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: Post title
+        required: true
+      subtitle:
+        description: Optional subtitle
+        required: false
+      date:
+        description: YYYY-MM-DD (optional; defaults to today UTC)
+        required: false
+      content_b64:
+        description: Base64-encoded HTML content
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure blogposts.json exists
+        run: |
+          [[ -f blogposts.json ]] || echo "[]" > blogposts.json
+          cat blogposts.json
+
+      - name: Decode HTML content
+        run: |
+          echo "${{ inputs.content_b64 }}" | base64 --decode > content.html
+          wc -c content.html
+
+      - name: Append + sort
+        run: |
+          TITLE="${{ inputs.title }}"
+          SUB="${{ inputs.subtitle }}"
+          DATE_IN="${{ inputs.date }}"
+          DATE=${DATE_IN:-"$(date -u +%Y-%m-%d)"}
+          jq \
+            --arg title "$TITLE" \
+            --arg subtitle "$SUB" \
+            --arg date "$DATE" \
+            --rawfile html content.html \
+            '
+            . + [{
+              date: $date,
+              title: $title,
+              subtitle: ($subtitle // ""),
+              contentHtml: $html
+            }]
+            | sort_by(.date) | reverse
+            ' blogposts.json > blogposts.new.json
+          mv blogposts.new.json blogposts.json
+
+      - name: Commit & push
+        run: |
+          git config user.name "eva-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add blogposts.json
+          git commit -m "blog: add post '${{ inputs.title }}' (${{ inputs.date || 'today' }})" || echo "No changes"
+          git push
