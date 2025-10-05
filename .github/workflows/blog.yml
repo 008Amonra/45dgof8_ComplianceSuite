@@ -61,3 +61,5 @@ jobs:
           git add blogposts.json
           git commit -m "blog: add post '${{ inputs.title }}' (${{ inputs.date || 'today' }})" || echo "No changes"
           git push
+
+add blog auto-publisher workflow
