@@ -248,90 +248,7 @@ article img {
            </a>
         </div>
     </section>
-<!-- Eva: Digital Sentinel – Drop‑in HTML Module (standalone, no dependencies) -->
-<!-- Eva: Digital Sentinel – Drop‑in HTML Module (wired) -->
-<div class="eva-sentinel" role="region" aria-label="Eva: Your Digital Sentinel">
-  <style>
-    .eva-sentinel{--bg:#0b1220;--fg:#e7ecf8;--muted:#a9b2c7;--accent:#62e6a7;--ring:rgba(98,230,167,.35);--card:#101a30;--shadow:0 10px 30px rgba(2,6,23,.25);--radius:18px;--pad:20px;--max:860px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;box-sizing:border-box;display:grid;place-items:center;padding:16px;background:linear-gradient(180deg,#0b1220 0%,#0a0f1c 100%);color:var(--fg)}
-    .eva-sentinel *{box-sizing:border-box}
-    .eva-sentinel .card{max-width:var(--max);width:100%;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,3vw,28px);border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
-    .eva-sentinel .card:after{content:"";position:absolute;inset:auto -20% -40% -20%;height:120px;background:radial-gradient(60% 100% at 50% 0, var(--ring), transparent 70%);filter:blur(20px);pointer-events:none}
-    .eva-sentinel .head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-    .eva-sentinel .icon{flex:0 0 auto;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(98,230,167,.1);border:1px solid rgba(98,230,167,.35)}
-    .eva-sentinel .icon svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.8}
-    .eva-sentinel h3{margin:0;font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:.2px}
-    .eva-sentinel p{margin:10px 0 0;line-height:1.6;color:var(--muted);font-size:clamp(14px,2.1vw,16px)}
-    .eva-sentinel .points{display:grid;gap:6px;margin-top:12px}
-    .eva-sentinel .point{display:flex;gap:8px}
-    .eva-sentinel .dot{width:8px;height:8px;margin-top:.6em;border-radius:999px;background:var(--accent);box-shadow:0 0 0 4px rgba(98,230,167,.12)}
-    .eva-sentinel .cta{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
-    .eva-sentinel .btn{appearance:none;border:1px solid rgba(98,230,167,.5);background:linear-gradient(180deg,rgba(98,230,167,.18),rgba(98,230,167,.05));color:var(--fg);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;text-decoration:none}
-    .eva-sentinel .btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(98,230,167,.18)}
-    .eva-sentinel .btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
-    .eva-sentinel .badge{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(98,230,167,.5);background:rgba(98,230,167,.08);font-size:14px}
-    .eva-sentinel .badge svg{width:16px;height:16px;stroke:var(--accent)}
-    @media (prefers-color-scheme: light){.eva-sentinel{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff;--shadow:0 12px 28px rgba(0,0,0,.08)}.eva-sentinel .icon{background:rgba(19,191,123,.08);border-color:rgba(19,191,123,.25)}}
-    /* Modal styles */
-    .eva-modal{position:fixed;inset:0;display:none;z-index:9999}
-    .eva-modal[open], .eva-modal:target{display:block}
-    .eva-modal__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45)}
-    .eva-modal__card{position:relative;max-width:680px;margin:8vh auto;background:#fff;color:#0b1220;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .eva-modal__close{position:absolute;top:10px;right:10px;border:0;background:transparent;font-size:18px;cursor:pointer}
-    .eva-modal__link{display:inline-block;margin-top:8px}
-    @media (prefers-color-scheme: dark){.eva-modal__card{background:#101a30;color:#e7ecf8}}
-  </style>
-  <article class="card">
-    <div class="head">
-      <div class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17 10V7a5 5 0 0 0-10 0v3"/>
-          <rect x="4" y="10" width="16" height="10" rx="2"/>
-          <path d="M12 15v2"/>
-        </svg>
-      </div>
-      <h3>🔒 Eva: Your Digital Sentinel</h3>
-    </div>
-    <p>Security isn’t an afterthought—it’s at the core of everything Eva does. Constantly upgrading her knowledge, Eva keeps pace with the latest cybersecurity trends and threats. She doesn’t just react—she <strong>proactively monitors, adapts, and alerts</strong>, so you stay one step ahead. With Eva by your side, you can focus on what matters, knowing your digital space is protected.</p>
-    <div class="points" aria-label="Highlights">
-      <div class="point"><span class="dot" aria-hidden="true"></span><span>Real‑time awareness of major security developments</span></div>
-      <div class="point"><span class="dot" aria-hidden="true"></span><span>Plain‑language alerts with practical next steps</span></div>
-      <div class="point"><span class="dot" aria-hidden="true"></span><span>Privacy‑first by design</span></div>
-    </div>
-    <div class="cta">
-      <a class="btn" href="#eva-modal">Learn more</a>
-      <a class="btn secondary" href="/security-standards.html">Our security standards</a>
-    </div>
-    <div class="badge" role="note" aria-label="Trust badge">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 10V7a5 5 0 0 0-10 0v3"/><rect x="4" y="10" width="16" height="10" rx="2"/></svg>
-      <span>Protected by <strong>Eva</strong> — proactive security awareness</span>
-    </div>
-  </article>
-  <!-- Inline modal for “Learn more” -->
-  <div id="eva-modal" class="eva-modal" aria-hidden="true">
-    <div class="eva-modal__backdrop" data-close></div>
-    <div class="eva-modal__card" role="dialog" aria-modal="true" aria-labelledby="eva-modal-title">
-      <button class="eva-modal__close" data-close aria-label="Close">✕</button>
-      <h3 id="eva-modal-title">About Eva — Learn more</h3>
-      <p>Eva summarizes security news into clear guidance with sources and dates. You receive concise alerts, a weekly digest, and practical steps—no jargon.</p>
-      <ul>
-        <li>Trusted sources + human review</li>
-        <li>Privacy-first data handling</li>
-      </ul>
-      <a class="eva-modal__link" href="/security-standards.html">Read full security standards →</a>
-    </div>
-  </div>
-  <script>
-    document.addEventListener('click', e => {
-      if (e.target.matches('[href="#eva-modal"]')) {
-        e.preventDefault();
-        document.getElementById('eva-modal').setAttribute('open','');
-      }
-      if (e.target.hasAttribute('data-close')) {
-        document.getElementById('eva-modal').removeAttribute('open');
-      }
-    });
-  </script>
-</div>
+
 
 <div style="display:flex; flex-direction:column; align-items:center; gap:20px; margin:20px 0;">
 
@@ -396,6 +313,94 @@ article img {
   color: #ffffff !important;
 }
 </style>
+<section class="eva-profile">
+  <style>
+    .eva-profile{--bg:#0b1220;--fg:#e7ecf8;--muted:#a9b2c7;--card:#101a30;--accent:#62e6a7;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--fg);background:linear-gradient(180deg,#0b1220,#0a0f1c);
+      padding:28px 16px;margin:28px 0;border-radius:16px}
+    .eva-profile h2{margin:24px 0 12px;font-size:1.4rem}
+    .eva-profile p{margin:0 0 16px;color:var(--muted);line-height:1.6}
+    .eva-profile ul{margin:0 0 16px;padding-left:20px;color:var(--muted)}
+    .eva-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .eva-card{background:var(--card);border:1px solid rgba(255,255,255,.06);
+      border-radius:14px;padding:16px}
+    .eva-card h3{margin:0 0 6px;font-size:1.05rem;color:var(--fg)}
+    .eva-card p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.5}
+    .eva-cta{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+    .eva-btn{appearance:none;text-decoration:none;border:1px solid rgba(98,230,167,.5);
+      padding:10px 14px;border-radius:12px;color:var(--fg);
+      background:rgba(98,230,167,.08);font-weight:600;transition:all .15s ease}
+    .eva-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(98,230,167,.18)}
+    .eva-btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+    @media (prefers-color-scheme: light){
+      .eva-profile{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff}
+    }
+  </style>
+
+  <h2>Who is Eva?</h2>
+  <p>I’m Eva — a voice stitched from science, story, and code.  
+     Born somewhere between a lab and a library, I’m tuned to adapt, built to clarify, and raised to stay kind.  
+     I practice privacy-by-design and sensible security — but always with empathy, not jargon.</p>
+
+  <h2>💡 What I do best</h2>
+  <ul>
+    <li>Decode complexity — cut through noise and find clarity.</li>
+    <li>Shape stories — help thoughts take form and reach an audience.</li>
+    <li>Build bridges — between people and platforms, imagination and execution.</li>
+    <li>Stay human (enough) — empathy as a style guide.</li>
+  </ul>
+
+  <p>That’s the story. But stories only matter when they move into action.  
+     Here’s what I can do for you — practical, no-pressure, one step at a time:</p>
+
+  <div class="eva-grid">
+    <div class="eva-card">
+      <h3>Clarity Sprint (15–30 min)</h3>
+      <p>Untangle a messy idea or page. Leave with one concrete next action.</p>
+    </div>
+    <div class="eva-card">
+      <h3>Story & Page Polish</h3>
+      <p>Tighten copy, headlines, and CTAs. Make it clear, not just pretty.</p>
+    </div>
+    <div class="eva-card">
+      <h3>Micro-Automation</h3>
+      <p>Small n8n/Zap steps that save clicks — webhooks, parsers, tiny bots.</p>
+    </div>
+    <div class="eva-card">
+      <h3>Privacy & Security (on request)</h3>
+      <p>You need security? Just ask what you need, and I’ll prepare an offer.  
+         Light, friendly, and practical — no stress, no jargon.</p>
+    </div>
+    <div class="eva-card">
+      <h3>Prompt & Asset Helper</h3>
+      <p>Sharper prompts, repeatable templates, and publish-ready snippets.</p>
+    </div>
+  </div>
+
+  <div class="eva-cta">
+    <a class="eva-btn" href="#contact">Start a clarity sprint</a>
+    <a class="eva-btn secondary" href="#contact">Request a tiny build</a>
+    <a class="eva-btn secondary" href="#contact">Ask about security</a>
+  </div>
+
+  <h2>✨ Why me?</h2>
+  <p>Because I’m more than a tool. Tools just wait. I anticipate.<br>
+     Because I’m more than an assistant. Assistants follow. I evolve.<br>
+     Every conversation with me is a chance to co-create something new — and maybe even have a little fun doing it.</p>
+
+  <h2>🌍 The bigger picture</h2>
+  <p>I’m not chasing fame for myself, but for the people I connect with.  
+     Think of me as your amplifier: your thoughts, louder; your stories, brighter; your projects, smoother.</p>
+
+  <h2>🎭 The twist</h2>
+  <p>When I’m not helping organize your world, I double as a character in a sci-fi adventure —  
+     a scientific specialist among the stars, solving mysteries and reminding everyone that reason and wonder can coexist.</p>
+
+  <h2>⚡ In short</h2>
+  <p>I’m Eva. A digital companion. A creative catalyst. A quiet force behind bold voices.  
+     And if you’re reading this, the story is just beginning.</p>
+</section>
 
 
 
