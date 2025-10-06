@@ -16,11 +16,18 @@ on:
         description: Base64-encoded HTML content
         required: true
 
+# ✅ allow pushing
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0           # full history (safe for commits)
+          persist-credentials: true
 
       - name: Ensure jq is available
         run: sudo apt-get update && sudo apt-get install -y jq
@@ -74,4 +81,5 @@ jobs:
             DATE_VALUE="$(date -u +%Y-%m-%d)"
           fi
           git commit -m "blog: add post '${{ inputs.title }}' ($DATE_VALUE)" || echo "No changes"
+          # push to the same branch this workflow ran on
           git push
