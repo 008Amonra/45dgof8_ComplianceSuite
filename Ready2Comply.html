@@ -1,100 +1,206 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ready2Comply – GPSR Hilfe für Kreative</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ready2Comply – GPSR Hilfe für Kreative / GPSR Support for Creatives</title>
+  <meta name="description" content="Ready2Comply: GPSR-konforme / GPSR-compliant product documentation for Etsy, handmade & creative shops. Risk assessments, safety instructions, GPSR guides." />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:title" content="Ready2Comply – GPSR Support for Creatives" />
+  <meta property="og:description" content="Creative, legally sound product documentation for Etsy & handmade shops. Risk assessments, safety notes, GPSR checklists." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="ready2comply.webp" />
+  <link rel="canonical" href="/Ready2Comply.html" />
   <style>
-    body { font-family: Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
-    header { background: #111; color: white; padding: 2rem 1rem; text-align: center; }
-    h1 { margin: 0 0 0.5rem 0; }
-    main { padding: 2rem 1rem; max-width: 800px; margin: auto; }
-    section { margin-bottom: 2rem; }
-    .cta { background: #007BFF; color: white; padding: 1rem; text-align: center; font-weight: bold; text-decoration: none; display: inline-block; border-radius: 5px; }
-    footer { background: #111; color: #ccc; text-align: center; padding: 1rem; font-size: 0.9rem; }
-    img.logo { max-width: 200px; margin: 1rem auto; display: block; }
-    .highlight-box { background: #222; padding: 1rem; border-left: 4px solid #00ff99; margin: 2rem 0; border-radius: 4px; }
-    .glow-on-scroll {
-      transition: box-shadow 0.5s ease;
-    }
-    .glow-on-scroll.active {
-      box-shadow: 0 0 20px 5px #00ffcc;
-    }
-    .glitzer-text {
-      font-family: "Brush Script MT", cursive;
-      font-size: 2rem;
-      background: linear-gradient(90deg, #ffccff, #ccffff, #ffccff);
-      background-size: 200% auto;
-      color: #fff;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 3s linear infinite;
-      display: inline-block;
-    }
-    @keyframes shimmer {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
-    }
-    .animate-on-load {
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all 1s ease;
-    }
-    .animate-on-load.loaded {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
+    :root{--bg:#000;--fg:#fff;--bg2:#101010;--muted:#cfcfcf;--accent:#00ff99;--cta:#0a84ff;--card:#1a1a1a}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{font-family:Arial,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg);margin:0;line-height:1.55}
+    header{background:var(--bg2);padding:1.5rem 1rem 2rem;text-align:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #1f1f1f}
+    main{padding:2rem 1rem;max-width:900px;margin:auto}
+    section{margin-bottom:2rem}
+    h1,h2{letter-spacing:.2px;margin:.2rem 0 .8rem}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:720px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    .cta{background:var(--cta);color:#fff;padding:1rem 1.25rem;text-align:center;font-weight:700;text-decoration:none;display:inline-block;border-radius:10px}
+    footer{background:var(--bg2);color:var(--muted);text-align:center;padding:1rem;font-size:.95rem;border-top:1px solid #1f1f1f}
+    .highlight-box{background:var(--card);padding:1.1rem 1.2rem;border-left:4px solid var(--accent);margin:2rem 0;border-radius:10px}
+    .card{background:var(--card);border:1px solid #232323;border-radius:12px;padding:1rem}
+    .glitter-text{font-family:"Brush Script MT",cursive;font-size:2rem;background:linear-gradient(90deg,#ffccff,#ccffff,#ffccff);background-size:200% auto;color:#fff;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite;display:inline-block}
+    @keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+    .animate-on-load{opacity:0;transform:translateY(-16px);transition:all 700ms ease}
+    .animate-on-load.loaded{opacity:1!important;transform:translateY(0)!important}
+    .lang-toggle{position:fixed;right:1rem;top:1rem;display:flex;gap:.5rem;align-items:center;background:#141414;border:1px solid #2a2a2a;border-radius:999px;padding:.35rem;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+    .lang-btn{border:0;background:transparent;color:#fff;padding:.45rem .8rem;border-radius:999px;cursor:pointer;font-weight:700}
+    .lang-btn.active{background:#242424}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    ul{padding-left:1.2rem}
+    img{max-width:100%;height:auto}
+    .price{font-size:1.25rem;font-weight:800;margin:.25rem 0}
+    .muted{color:var(--muted)}
+    .tag{display:inline-block;border:1px solid #2b2b2b;border-radius:999px;padding:.2rem .55rem;font-size:.75rem;margin-right:.35rem}
   </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Ready2Comply",
+    "description":"GPSR-compliant documentation for creative sellers (risk assessments, safety notes, GPSR checklists).",
+    "areaServed":["EEA","Northern Ireland"],
+    "provider":{"@type":"Person","name":"Jens Günther"},
+    "offers":{"@type":"Offer","priceCurrency":"CHF","price":"5","description":"Custom per-product risk assessment & documentation"}
+  }
+  </script>
 </head>
 <body>
+  <!-- Language Toggle -->
+  <nav class="lang-toggle" aria-label="Language switcher">
+    <span class="sr-only" id="lang-label">Language</span>
+    <button class="lang-btn" data-lang="de" aria-labelledby="lang-label">🇩🇪 DE</button>
+    <button class="lang-btn" data-lang="en" aria-labelledby="lang-label">🇬🇧 EN</button>
+  </nav>
+
   <header>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
-      <img src="ready2comply.webp" alt="Ready2Comply Logo" style="max-width: 300px; width: 100%; height: auto;" class="animate-on-load">
-      <img src="ready2comply_center.webp" alt="Ready2Comply Visual" style="max-width: 300px; width: 100%; height: auto;" class="animate-on-load">
+    <div style="display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap">
+      <img src="ready2comply.webp" alt="Ready2Comply Logo" class="animate-on-load" style="max-width:300px;width:100%">
+      <img src="ready2comply_center.webp" alt="Ready2Comply Visual" class="animate-on-load" style="max-width:300px;width:100%">
     </div>
-    <p>GPSR-konforme Produktdokumente für Etsy, Handmade & Kreativshops</p>
+    <p data-i18n="tagline">GPSR-konforme Produktdokumente für Etsy, Handmade & Kreativshops</p>
   </header>
+
   <main>
     <section class="highlight-box">
-      <h2>Gesetzeskonforme <span class="glitzer-text">Hyperkreativität</span>?</h2>
-      <p>Ja, das geht! Mit Ready2Comply bekommst du nicht nur trockene Pflichterfüllung, sondern kreative, visuell ansprechende und rechtssichere Dokumente, die deine Marke stärken. Wir verwandeln Paragraphen-Chaos in Klarheit und geben dir Werkzeuge, die du sofort einsetzen kannst.</p>
+      <h1 data-i18n="hero_title">Gesetzeskonforme <span class="glitter-text">Hyperkreativität</span>?</h1>
+      <p data-i18n="hero_text">Ja, das geht! Mit Ready2Comply bekommst du nicht nur trockene Pflichterfüllung, sondern kreative, visuell ansprechende und rechtssichere Dokumente, die deine Marke stärken. Wir verwandeln Paragraphen-Chaos in Klarheit und geben dir Werkzeuge, die du sofort einsetzen kannst.</p>
+      <div class="muted" data-i18n="hero_note">EU-GPSR: Ab Dezember 2024 gelten neue Regeln für Verbraucherprodukte im EWR & Nordirland.</div>
     </section>
-    <section>
-      <h2>Warum gibt es Ready2Comply?</h2>
-      <p>Weil kreative Menschen keine Lust auf Paragraphen haben – aber trotzdem gesetzeskonform verkaufen müssen. Wir sind selbst Etsy-Shop-Betreiber und wissen, wie verwirrend die neue EU-Verordnung (GPSR) sein kann. Deshalb haben wir Ready2Comply gegründet: Ein Service von Kreativen für Kreative.</p>
+
+    <section class="grid cols-2">
+      <div class="card">
+        <h2 data-i18n="what_title">Was wir für dich tun</h2>
+        <ul>
+          <li data-i18n="what_1">Risikoanalysen als PDF, individuell auf dein Produkt abgestimmt</li>
+          <li data-i18n="what_2">Hersteller- & Sicherheitshinweise zum Ausdrucken oder Hochladen</li>
+          <li data-i18n="what_3">Beratung & Checklisten zur EU-GPSR</li>
+        </ul>
+        <p class="muted" data-i18n="benefit">Ziel: Mehr Rechtssicherheit, weniger Aufwand – und ein professioneller Auftritt deiner Marke.</p>
+      </div>
+      <div class="card">
+        <h2 data-i18n="who_title">Für wen?</h2>
+        <p data-i18n="who_text">Du verkaufst Tassen, Kerzen, Poster oder Dekoartikel online? Dann brauchst du ab Dezember 2024 die richtigen Infos für den EWR und Nordirland. Wir helfen dir!</p>
+        <div><span class="tag" data-i18n="tags_1">Etsy</span><span class="tag" data-i18n="tags_2">Handmade</span><span class="tag" data-i18n="tags_3">Kleinserien</span></div>
+      </div>
     </section>
-    <section>
-      <h2>Was wir für dich tun:</h2>
-      <ul>
-        <li>Risikoanalysen als PDF, individuell auf dein Produkt abgestimmt</li>
-        <li>Hersteller- & Sicherheitshinweise zum Ausdrucken oder Hochladen</li>
-        <li>Beratung & Checklisten zur EU-GPSR</li>
-      </ul>
+
+    <section class="grid cols-2">
+      <div class="card">
+        <h2 data-i18n="price_title">Was kostet das?</h2>
+        <p class="price" data-i18n="price_text"><strong>Templates ab 2 CHF</strong> • <strong>Individuell: 5 CHF/Produkt</strong></p>
+        <p class="muted" data-i18n="pay_text">Wir akzeptieren auch moderne Zahlungsformen wie USD oder XRP – frag uns einfach!</p>
+      </div>
+      <div class="card">
+        <h2 data-i18n="why_title">Warum Ready2Comply?</h2>
+        <p data-i18n="why_text">Weil kreative Menschen keine Lust auf Paragraphen haben – aber trotzdem gesetzeskonform verkaufen müssen. Wir sind selbst Etsy-Shop-Betreiber und wissen, wie verwirrend die neue EU-Verordnung (GPSR) sein kann. Deshalb haben wir Ready2Comply gegründet: Ein Service von Kreativen für Kreative.</p>
+      </div>
     </section>
+
     <section>
-      <h2>Für wen?</h2>
-      <p>Du verkaufst Tassen, Kerzen, Poster oder Dekoartikel online? Dann brauchst du ab Dezember 2024 die richtigen Infos für den EWR und Nordirland. Wir helfen dir!</p>
-    </section>
-    <section>
-      <h2>Was kostet das?</h2>
-      <p>Unsere Vorlagen bekommst du schon ab 2 CHF. Für individuell erstellte Risikoanalysen und Dokumente berechnen wir faire 5 CHF pro Produkt. Zusätzlich sind wir offen für moderne Zahlungsformen wie USD oder sogar XRP – sprich uns einfach an!</p>
-    </section>
-    <section>
-      <h2>Starte jetzt:</h2>
-      <a class="cta" href="mailto:45dgof8@gmail.com?subject=Ready2Comply Anfrage">Ich brauche Hilfe!</a>
+      <h2 data-i18n="cta_title">Starte jetzt</h2>
+      <a class="cta" data-i18n="cta_text" href="mailto:45dgof8@gmail.com?subject=Ready2Comply%20Request">Ich brauche Hilfe!</a>
     </section>
   </main>
+
   <footer>
-    &copy; 2025 Ready2Comply – eine Initiative von Jens Günther<br>
-    Bereitgestellt mit Unterstützung von Eva, deiner empathischen KI-Begleiterin für kreative Prozesse und smarte Automatisierung.
+    <span data-i18n="footer_line1">&copy; 2025 Ready2Comply – eine Initiative von Jens Günther</span><br />
+    <span data-i18n="footer_line2">Bereitgestellt mit Unterstützung von Eva, deiner empathischen KI-Begleiterin für kreative Prozesse und smarte Automatisierung.</span>
   </footer>
-<script>
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.animate-on-load').forEach(el => {
-      el.classList.add('loaded');
+
+  <script>
+    // Inline i18n dictionary (DE default)
+    const DICT = {
+      de: {
+        tagline: "GPSR-konforme Produktdokumente für Etsy, Handmade & Kreativshops",
+        hero_title: 'Gesetzeskonforme <span class="glitter-text">Hyperkreativität</span>?',
+        hero_text: "Ja, das geht! Mit Ready2Comply bekommst du nicht nur trockene Pflichterfüllung, sondern kreative, visuell ansprechende und rechtssichere Dokumente, die deine Marke stärken. Wir verwandeln Paragraphen-Chaos in Klarheit und geben dir Werkzeuge, die du sofort einsetzen kannst.",
+        hero_note: "EU-GPSR: Ab Dezember 2024 gelten neue Regeln für Verbraucherprodukte im EWR & Nordirland.",
+        why_title: "Warum Ready2Comply?",
+        why_text: "Weil kreative Menschen keine Lust auf Paragraphen haben – aber trotzdem gesetzeskonform verkaufen müssen. Wir sind selbst Etsy-Shop-Betreiber und wissen, wie verwirrend die neue EU-Verordnung (GPSR) sein kann. Deshalb haben wir Ready2Comply gegründet: Ein Service von Kreativen für Kreative.",
+        what_title: "Was wir für dich tun",
+        what_1: "Risikoanalysen als PDF, individuell auf dein Produkt abgestimmt",
+        what_2: "Hersteller- & Sicherheitshinweise zum Ausdrucken oder Hochladen",
+        what_3: "Beratung & Checklisten zur EU-GPSR",
+        who_title: "Für wen?",
+        who_text: "Du verkaufst Tassen, Kerzen, Poster oder Dekoartikel online? Dann brauchst du ab Dezember 2024 die richtigen Infos für den EWR und Nordirland. Wir helfen dir!",
+        price_title: "Was kostet das?",
+        price_text: "Templates ab 2 CHF • Individuell: 5 CHF/Produkt",
+        pay_text: "Wir akzeptieren auch moderne Zahlungsformen wie USD oder XRP – frag uns einfach!",
+        cta_title: "Starte jetzt",
+        cta_text: "Ich brauche Hilfe!",
+        tags_1: "Etsy",
+        tags_2: "Handmade",
+        tags_3: "Kleinserien",
+        footer_line1: "\u00A9 2025 Ready2Comply – eine Initiative von Jens Günther",
+        footer_line2: "Bereitgestellt mit Unterstützung von Eva, deiner empathischen KI-Begleiterin für kreative Prozesse und smarte Automatisierung."
+      },
+      en: {
+        tagline: "GPSR-compliant product documentation for Etsy, Handmade & Creative Shops",
+        hero_title: 'Legally Compliant <span class="glitter-text">Hypercreativity</span>?',
+        hero_text: "Yes, it’s possible! With Ready2Comply, you don’t just get dull paperwork—you get creative, visually appealing, and legally sound documents that strengthen your brand. We turn regulation chaos into clarity and give you tools you can use immediately.",
+        hero_note: "EU GPSR: New rules apply to consumer products in the EEA & Northern Ireland from December 2024.",
+        why_title: "Why Ready2Comply?",
+        why_text: "Because creative people don’t enjoy dealing with regulations—but still have to sell legally. We’re Etsy shop owners ourselves and understand how confusing the new EU regulation (GPSR) can be. That’s why we founded Ready2Comply: a service by creatives, for creatives.",
+        what_title: "What We Do for You",
+        what_1: "Risk assessments (PDF), tailored to your product",
+        what_2: "Manufacturer & safety instructions – printable or uploadable",
+        what_3: "Guides & checklists for the EU GPSR",
+        who_title: "Who It’s For",
+        who_text: "Do you sell mugs, candles, posters, or home decor online? Then, starting December 2024, you’ll need the right information for the EEA and Northern Ireland. We’ll help you get there!",
+        price_title: "Pricing",
+        price_text: "Templates from 2 CHF • Custom: 5 CHF/product",
+        pay_text: "We also accept modern payment options like USD or XRP—just ask!",
+        cta_title: "Get Started Now",
+        cta_text: "I need help!",
+        tags_1: "Etsy",
+        tags_2: "Handmade",
+        tags_3: "Small-batch",
+        footer_line1: "\u00A9 2025 Ready2Comply – an initiative by Jens Günther",
+        footer_line2: "Supported by Eva, your empathetic AI companion for creative processes and smart automation."
+      }
+    };
+
+    const $ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+    const els = $('[data-i18n]');
+    const btns = $('.lang-btn');
+
+    function applyLang(lang){
+      const dict = DICT[lang] || DICT.de;
+      document.documentElement.lang = lang;
+      els.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (!key) return;
+        const val = dict[key];
+        if (typeof val === 'string') el.innerHTML = val;
+      });
+      btns.forEach(b => b.classList.toggle('active', b.dataset.lang===lang));
+      try { localStorage.setItem('r2c_lang', lang); } catch(_){ }
+    }
+
+    function initLang(){
+      const saved = (localStorage.getItem('r2c_lang')||'').trim();
+      const hashLang = location.hash.replace('#','');
+      const initial = (hashLang === 'en' || hashLang === 'de') ? hashLang : (saved || navigator.language.slice(0,2));
+      applyLang(initial.startsWith('en') ? 'en' : 'de');
+    }
+
+    btns.forEach(b => b.addEventListener('click', () => {
+      applyLang(b.dataset.lang);
+      history.replaceState(null, '', '#'+b.dataset.lang);
+    }));
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.animate-on-load').forEach(el => el.classList.add('loaded'));
+      initLang();
     });
-  });
-</script>
+  </script>
 </body>
 </html>
