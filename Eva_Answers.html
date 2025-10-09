@@ -335,6 +335,29 @@ article img {
     .eva-btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
     @media (prefers-color-scheme: light){
       .eva-profile{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff}
+      /* Bottom titles & links – contrast fix */
+    section, footer {
+    --eva-accent: #ffd36e;
+}
+
+#content :is(h2,h3,h4,h5,h6){
+  color: #f2eadf;            /* warm light */
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+
+#content a{
+  color: var(--eva-accent);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,211,110,.5);
+}
+#content a:hover{
+  color: #ffe8a6;
+  border-bottom-color: currentColor;
+}
+
+/* If any global 'muted' style is dimming headings: */
+#content .muted:is(h2,h3,h4,h5,h6){ color:#e9e3d6; opacity:1; }
+
     }
   </style>
 
