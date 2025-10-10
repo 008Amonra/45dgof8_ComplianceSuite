@@ -4,153 +4,172 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>45dgof8 Universe</title>
+
+  <!-- Sci‑fi readable fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=IM+Fell+English:ital,wght@0,400;0,700;1,400&family=UnifrakturCook:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #0b0a0a;
-      --fg: #e9e4d7;
-      --muted: #b7ad98;
-      --accent: #d7a85b;
-      --accent-2: #9c6b2f;
-      --danger: #d45c5c;
-      --card: #181512cc;
-      --edge: #2a251f;
+    :root{
+      --bg: #07080c;          /* deeper night */
+      --bg-2:#0b0f17;         /* panels */
+      --fg: #e8f0ff;          /* high contrast text */
+      --muted:#9fb4d1;        /* secondary text */
+      --accent:#6cf0ff;       /* neon cyan */
+      --accent-2:#8a6cff;     /* neon violet */
+      --danger:#ff6b6b;       /* alerts */
+      --edge:#1d2634;         /* borders */
+      --card:#0f1420cc;       /* glass card */
+      --glow: 0 0 0 transparent; /* default, overwritten where needed */
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; color: var(--fg); background: #000;
-      background-image: radial-gradient(circle at center, #111 0%, #000 100%);
-      font-family: "IM Fell English", serif;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
-
-    header {
-      display: grid; gap: 8px; align-items: end; margin-bottom: 16px;
-      grid-template-columns: 1fr auto;
-    }
-    .title {
-      font-family: Cinzel, serif; letter-spacing: 0.03em; text-transform: uppercase;
-      font-weight: 800; font-size: clamp(28px, 4vw, 48px);
-      display: flex; align-items: center; gap: 12px;
-    }
-    .lantern {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: radial-gradient(circle at 50% 50%, #ffd070, #ff9f1a 60%, transparent 70%);
-      box-shadow: 0 0 24px 6px #ffb94780, inset 0 0 8px #ffcf70;
-      display: inline-block;
-      animation: flicker 2.8s infinite ease-in-out;
-    }
-    @keyframes flicker {
-      0%, 100% { filter: brightness(1); box-shadow: 0 0 22px 6px #ffb94770; }
-      50% { filter: brightness(1.2); box-shadow: 0 0 30px 9px #ffb947aa; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--fg); background:var(--bg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.5;
+      overflow-x:hidden;
     }
 
-    .subtitle { color: var(--muted); margin-top: -6px; font-size: 14px; }
-
-    .bar {
-      display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 12px 0 20px;
+    /* Subtle starfield */
+    body::before, body::after{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+      background:
+        radial-gradient(1px 1px at 10% 20%, #fff8 98%, transparent) 0 0 / 120px 120px,
+        radial-gradient(1px 1px at 70% 40%, #fff6 98%, transparent) 0 0 / 160px 160px,
+        radial-gradient(1px 1px at 40% 80%, #fff5 98%, transparent) 0 0 / 200px 200px,
+        linear-gradient(180deg, #05070b, #070a10 35%, #0a0f18);
+      filter: drop-shadow(0 0 4px #89f9ff20);
     }
-    .btn { cursor: pointer; border: 1px solid var(--edge); background: linear-gradient(#2a231c, #1c1814);
-      color: var(--fg); padding: 10px 14px; border-radius: 12px; font-weight: 600;
-      transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease; font-family: Cinzel, serif; letter-spacing: .02em; }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px #00000050; border-color: #3b3127; }
-    .btn.accent { background: linear-gradient(#3c2e1f, #2c241b); border-color: #4b3a26; color: #f3e7cd; }
-    .btn.danger { background: linear-gradient(#3a1f1f, #291616); border-color: #5a2525; color: #ffe5e5; }
-    .btn:disabled { opacity: .5; cursor: not-allowed; }
 
-    .dropzone {
-      border: 2px dashed #5b4a36; border-radius: 18px; padding: 28px; text-align: center;
-      background: linear-gradient(180deg, #15110e, #120e0b);
-      outline: 2px solid transparent; outline-offset: 0;
-      transition: border-color .2s ease, outline-color .2s ease, background .2s ease;
+    /* Scanline sheen */
+    .sheen{position:fixed; inset:0; pointer-events:none; z-index:-1; mix-blend-mode:screen;
+      background: repeating-linear-gradient(transparent, transparent 2px, #cfffff08 3px, transparent 4px);
+      opacity:.25;
     }
-    .dropzone.highlight { border-color: var(--accent); outline-color: #00000080; background: #1a1612; }
-    .dropzone input[type="file"] { display: none; }
-    .dropzone .hint { color: var(--muted); font-size: 14px; }
 
-    .gallery {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px; margin: 22px 0 60px;
-    }
-    .card {
-      background: linear-gradient(180deg, #1a1612, #12100d);
-      border: 1px solid #2a241f; border-radius: 16px; overflow: hidden; position: relative;
-      box-shadow: 0 8px 24px #00000060;
-    }
-    .thumb { aspect-ratio: 4/3; width: 100%; object-fit: cover; display: block; background: #0b0b0b; }
-    .meta { padding: 10px 12px; display: grid; gap: 8px; }
-    .meta .name { font-weight: 700; font-family: Cinzel, serif; font-size: 14px; }
-    .meta .sub { color: var(--muted); font-size: 12px; }
-    .row { display: flex; gap: 8px; }
-    .row .btn { padding: 8px 10px; border-radius: 10px; font-size: 12px; }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
 
-    .caption { width: 100%; padding: 8px 10px; background: #0f0d0b; border: 1px solid #2b251f; border-radius: 10px; color: var(--fg); font-family: inherit; }
+    .wrap{max-width:1200px; margin:0 auto; padding:24px}
 
-    footer { color: var(--muted); font-size: 12px; text-align: center; margin: 40px 0 60px; }
-    .tiny { font-size: 11px; opacity: .9; }
+    header{display:grid; gap:12px; align-items:end; margin-bottom:12px; grid-template-columns:1fr auto}
 
-    /* Center image elements and revert size */
-    .image-block {
-      text-align: center;
-      margin: 32px auto;
+    .title{display:flex; align-items:center; gap:12px; letter-spacing:.06em; text-transform:uppercase}
+    .title h1{
+      margin:0; font-family: Orbitron, ui-sans-serif, system-ui; font-weight:800;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height:1.05;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow: 0 0 18px #6cf0ff40, 0 0 32px #8a6cff2e;
     }
-    .image-block img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 12px #00000099;
+
+    .lantern{
+      width:28px; height:28px; border-radius:50%; display:inline-block;
+      background: radial-gradient(circle at 50% 50%, #9ff 0%, #4cf 55%, #39c 100%);
+      box-shadow: 0 0 24px 6px #8cf8ff80, inset 0 0 14px #cfffff;
+      animation:flicker 2.4s infinite ease-in-out; cursor:pointer; border:1px solid #62d6ff55;
     }
-    .rune-id {
-      margin-top: 8px;
-      font-size: 20px;
-      color: var(--accent);
-      font-family: 'UnifrakturCook', cursive;
+    @keyframes flicker{0%,100%{filter:brightness(1)} 50%{filter:brightness(1.3)}}
+
+    .subtitle{color:var(--muted); margin-top:-6px; font-size:clamp(13px,1.6vw,15px)}
+
+    .bar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0 18px}
+
+    .btn{cursor:pointer; border:1px solid var(--edge); background: linear-gradient(180deg, #121a28, #0d1420);
+      color:var(--fg); padding:10px 14px; border-radius:14px; font-weight:700; letter-spacing:.02em;
+      transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease;
+      font-family: Orbitron, system-ui; text-transform:uppercase; font-size:12px;
+      box-shadow: 0 0 0 transparent;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px #0006, 0 0 16px #6cf0ff30; border-color:#28415e}
+    .btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+    .btn.accent{background: linear-gradient(180deg, #0f2230, #0a1a27); border-color:#2c5b73; color:#e9fbff}
+    .btn.danger{background: linear-gradient(180deg, #2a0f13, #1c0a0d); border-color:#5a1f2a; color:#ffecec}
+    .btn:disabled{opacity:.5; cursor:not-allowed}
+
+    .dropzone{border:1.5px dashed #2a4360; border-radius:18px; padding:28px; text-align:center;
+      background: linear-gradient(180deg, #0a111c, #0a0f19); outline:2px solid transparent; outline-offset:0;
+      transition:border-color .2s ease, outline-color .2s ease, background .2s ease, transform .2s ease; position:relative;
+    }
+    .dropzone.highlight{border-color:var(--accent); outline-color:#00000080; background:#0b1422; box-shadow:0 0 24px #6cf0ff22}
+    .dropzone h3{margin:0 0 6px; font-family: Orbitron; font-weight:800; letter-spacing:.08em}
+    .dropzone .hint{color:var(--muted); font-size:14px}
+    .dropzone input[type="file"]{display:none}
+
+    .gallery{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin:22px 0 60px}
+
+    .card{background:linear-gradient(180deg, var(--card), #0c1220);
+      border:1px solid #1a2540; border-radius:16px; overflow:hidden; position:relative; box-shadow:0 12px 26px #0008}
+    .thumb{aspect-ratio:4/3; width:100%; object-fit:cover; display:block; background:#0b0b0b}
+    .meta{padding:10px 12px; display:grid; gap:8px}
+    .meta .name{font-weight:800; font-family: Orbitron; font-size:13px; letter-spacing:.04em}
+    .meta .sub{color:var(--muted); font-size:12px}
+    .row{display:flex; gap:8px; flex-wrap:wrap}
+    .row .btn{padding:8px 10px; border-radius:10px; font-size:11px}
+
+    .select-toggle{position:absolute; top:10px; left:10px; width:22px; height:22px; border-radius:6px;
+      background:#0b1422cc; border:1px solid #2a4360; display:grid; place-items:center; color:var(--accent); font: 900 12px/1 Orbitron;
+    }
+    .select-toggle[aria-pressed="true"]{background:#002a3acc; border-color:#41d1ff; box-shadow:0 0 0 2px #41d1ff55 inset}
+
+    .caption{width:100%; padding:8px 10px; background:#0b111b; border:1px solid #1a2740; border-radius:10px; color:var(--fg); font-family: Inter, system-ui}
+
+    footer{color:var(--muted); font-size:12px; text-align:center; margin:40px 0 60px}
+    .tiny{font-size:11px; opacity:.9}
+
+    .image-block{text-align:center; margin:32px auto}
+    .image-block img{max-width:100%; height:auto; border-radius:14px; box-shadow:0 0 12px #0009}
+    .rune-id{margin-top:8px; font-size:18px; color:var(--accent); font-family: Orbitron, monospace; letter-spacing:.14em}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .lantern{animation:none}
+      .btn, .dropzone{transition:none}
     }
   </style>
 </head>
 <body>
+  <div class="sheen" aria-hidden="true"></div>
   <div class="wrap">
     <header>
-      <div>
-        <div class="title"><span class="lantern" aria-hidden="true"></span> 45dgof8 Universe</div>
-        <div class="subtitle">An interstellar gallery for AI-generated art. Drop images inside, or click the lantern to browse.</div>
+      <div class="title">
+        <span class="lantern" id="lantern" aria-hidden="false" role="button" tabindex="0" aria-label="Open file browser"></span>
+        <h1>45dgof8 Universe</h1>
       </div>
       <nav class="bar">
         <button class="btn accent" id="browseBtn" aria-label="Browse files">Browse</button>
-        <button class="btn" id="selectAllBtn">Select all</button>
+        <button class="btn" id="selectAllBtn" aria-pressed="false">Select all</button>
         <button class="btn danger" id="clearBtn">Remove selected</button>
         <a class="btn" href="Eva_Answers.html">↩ Back to Eva Answers</a>
       </nav>
+      <p class="subtitle">An interstellar gallery for AI‑generated art. Drop images below, or tap the lantern to browse.</p>
     </header>
 
     <!-- Drag & Drop Zone -->
     <label class="dropzone" id="dropzone">
       <input type="file" id="fileInput" accept="image/*" multiple />
-      <h3>.</h3>
-      <p class="hint">.</p>
+      <h3>Drop images here</h3>
+      <p class="hint">PNG, JPG, WEBP • Drag & drop or click to upload. Your files never leave this page.</p>
     </label>
 
     <div class="image-block">
-      <img src="https://45dgof8.com/hmlvC.webp" alt="I have the stone!">
+      <img src="https://45dgof8.com/hmlvC.webp" alt="I have the stone!" loading="lazy">
       <div class="rune-id">ᛁᛟ‑hml</div>
     </div>
     <div class="image-block">
-      <img src="https://45dgof8.com/F1oLF.webp" alt="Variant A!">
+      <img src="https://45dgof8.com/F1oLF.webp" alt="Variant A!" loading="lazy">
       <div class="rune-id">ᚠᛉ‑f1o</div>
     </div>
     <div class="image-block">
-      <img src="https://45dgof8.com/joMNo.webp" alt="Variant C!">
+      <img src="https://45dgof8.com/joMNo.webp" alt="Variant C!" loading="lazy">
       <div class="rune-id">ᛃᚾ‑joM</div>
     </div>
     <div class="image-block">
-      <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!">
+      <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!" loading="lazy">
       <div class="rune-id">ᚠᚹ‑fwV</div>
     </div>
 
@@ -159,8 +178,122 @@
 
     <footer>
       Cosmic signals only. some of my images....<br>
-      <span class="tiny">.</span>
+      <span class="tiny">Be kind to stars ✦</span>
     </footer>
   </div>
+
+  <script>
+    const $ = (sel, parent=document) => parent.querySelector(sel);
+    const $$ = (sel, parent=document) => Array.from(parent.querySelectorAll(sel));
+
+    const dropzone = $('#dropzone');
+    const fileInput = $('#fileInput');
+    const gallery = $('#gallery');
+    const browseBtn = $('#browseBtn');
+    const selectAllBtn = $('#selectAllBtn');
+    const clearBtn = $('#clearBtn');
+    const lantern = $('#lantern');
+
+    function openPicker(){ fileInput.click(); }
+
+    browseBtn.addEventListener('click', openPicker);
+    lantern.addEventListener('click', openPicker);
+    lantern.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openPicker(); }});
+
+    dropzone.addEventListener('click', openPicker);
+
+    function highlight(on){ dropzone.classList.toggle('highlight', !!on); }
+
+    ['dragenter','dragover'].forEach(evt => {
+      dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); e.stopPropagation(); highlight(true); dropzone.setAttribute('aria-busy','true'); });
+    });
+    ['dragleave','drop'].forEach(evt => {
+      dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); e.stopPropagation(); highlight(false); dropzone.setAttribute('aria-busy','false'); });
+    });
+
+    dropzone.addEventListener('drop', (e)=>{
+      const files = [...(e.dataTransfer?.files || [])].filter(f => f.type.startsWith('image/'));
+      addFiles(files);
+    });
+
+    fileInput.addEventListener('change', (e)=>{
+      addFiles([...e.target.files]);
+      fileInput.value = '';
+    });
+
+    function addFiles(files){
+      files.forEach(file => {
+        const url = URL.createObjectURL(file);
+        const name = file.name.replace(/\.[^.]+$/, '');
+        const card = renderCard(url, name, file.type);
+        gallery.prepend(card);
+      });
+    }
+
+    function renderCard(src, name, mime){
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      const toggle = document.createElement('button');
+      toggle.className = 'select-toggle';
+      toggle.type = 'button';
+      toggle.setAttribute('aria-pressed','false');
+      toggle.title = 'Select';
+      toggle.textContent = '□';
+      toggle.addEventListener('click', ()=>{
+        const pressed = toggle.getAttribute('aria-pressed') === 'true';
+        toggle.setAttribute('aria-pressed', String(!pressed));
+        toggle.textContent = pressed ? '□' : '■';
+        card.dataset.selected = (!pressed).toString();
+      });
+
+      const img = document.createElement('img');
+      img.className = 'thumb';
+      img.loading = 'lazy';
+      img.src = src; img.alt = name || 'Uploaded image';
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.innerHTML = `
+        <div class="name" title="${name}">${name || 'Untitled'}</div>
+        <div class="sub">${mime || 'image'} • ${new Date().toLocaleTimeString()}</div>
+        <div class="row">
+          <button class="btn" type="button">Download</button>
+          <button class="btn danger" type="button">Remove</button>
+        </div>
+      `;
+
+      const caption = document.createElement('textarea');
+      caption.className = 'caption';
+      caption.placeholder = 'Add a caption or prompt notes…';
+      meta.appendChild(caption);
+
+      meta.querySelector('.btn.danger').addEventListener('click', ()=> card.remove());
+      meta.querySelector('.btn').addEventListener('click', ()=>{
+        const a = document.createElement('a');
+        a.href = src; a.download = (name || 'image') + '.png';
+        document.body.appendChild(a); a.click(); a.remove();
+      });
+
+      card.append(toggle, img, meta);
+      return card;
+    }
+
+    selectAllBtn.addEventListener('click', ()=>{
+      const all = $$('.card');
+      const anyUnselected = all.some(c => c.dataset.selected !== 'true');
+      all.forEach(c => {
+        const t = $('.select-toggle', c);
+        t.setAttribute('aria-pressed', String(anyUnselected));
+        t.textContent = anyUnselected ? '■' : '□';
+        c.dataset.selected = String(anyUnselected);
+      });
+      selectAllBtn.setAttribute('aria-pressed', String(anyUnselected));
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      $$('.card').forEach(c => { if(c.dataset.selected === 'true') c.remove(); });
+    });
+  </script>
 </body>
 </html>
