@@ -172,7 +172,7 @@
       <img src="https://45dgof8.com/fwVa5.webp" alt="Variant E!" loading="lazy">
       <div class="rune-id">ᚠᚹ‑fwV</div>
     </div>
-        <div class="image-block">
+    <div class="image-block">
       <img src="https://45dgof8.com/dgcct.webp" alt="Variant E!" loading="lazy">
       <div class="rune-id">ᚠᚹ‑fwV</div>
     </div>
@@ -225,16 +225,50 @@
       fileInput.value = '';
     });
 
+    // ===== Duplicate-name handling (integrated) =====
+    function mimeToExt(m){
+      return (
+        m === 'image/jpeg' ? '.jpg' :
+        m === 'image/png' ? '.png' :
+        m === 'image/webp' ? '.webp' :
+        m === 'image/gif' ? '.gif' : ''
+      );
+    }
+
+    function splitName(fileName){
+      const m = fileName.match(/^(.*?)(\.[^.]+)?$/);
+      return { base: (m && m[1]) ? m[1] : 'image', ext: (m && m[2]) ? m[2] : '' };
+    }
+
+    function ensureUniqueNameWithSet(fullName, namesSet){
+      // fullName includes extension
+      const { base, ext } = splitName(fullName);
+      let candidate = fullName;
+      let n = 1;
+      while (namesSet.has(candidate.toLowerCase())){
+        candidate = `${base} (${n})${ext}`;
+        n++;
+      }
+      namesSet.add(candidate.toLowerCase());
+      return candidate; // returns full name with ext
+    }
+
     function addFiles(files){
+      // Collect current names from the gallery so we don't clash
+      const existingNames = new Set($$('.card .name').map(n => (n.textContent || '').toLowerCase()));
+
       files.forEach(file => {
         const url = URL.createObjectURL(file);
-        const name = file.name.replace(/\.[^.]+$/, '');
-        const card = renderCard(url, name, file.type);
+        const original = splitName(file.name || 'image');
+        const ext = original.ext || mimeToExt(file.type) || '';
+        const uniqueFull = ensureUniqueNameWithSet(original.base + ext, existingNames);
+        const displayName = uniqueFull.replace(/\.[^.]+$/, '');
+        const card = renderCard(url, displayName, file.type, uniqueFull);
         gallery.prepend(card);
       });
     }
 
-    function renderCard(src, name, mime){
+    function renderCard(src, displayName, mime, downloadName){
       const card = document.createElement('article');
       card.className = 'card';
 
@@ -254,12 +288,12 @@
       const img = document.createElement('img');
       img.className = 'thumb';
       img.loading = 'lazy';
-      img.src = src; img.alt = name || 'Uploaded image';
+      img.src = src; img.alt = displayName || 'Uploaded image';
 
       const meta = document.createElement('div');
       meta.className = 'meta';
       meta.innerHTML = `
-        <div class="name" title="${name}">${name || 'Untitled'}</div>
+        <div class="name" title="${displayName}">${displayName || 'Untitled'}</div>
         <div class="sub">${mime || 'image'} • ${new Date().toLocaleTimeString()}</div>
         <div class="row">
           <button class="btn" type="button">Download</button>
@@ -275,7 +309,7 @@
       meta.querySelector('.btn.danger').addEventListener('click', ()=> card.remove());
       meta.querySelector('.btn').addEventListener('click', ()=>{
         const a = document.createElement('a');
-        a.href = src; a.download = (name || 'image') + '.png';
+        a.href = src; a.download = downloadName || (displayName || 'image') + '.png';
         document.body.appendChild(a); a.click(); a.remove();
       });
 
