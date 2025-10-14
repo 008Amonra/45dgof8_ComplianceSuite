@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TSG – Tech Support GPT</title>
@@ -24,47 +25,6 @@
 
   <link rel="canonical" href="https://45dgof8.com/TSG-tech-support-gpt.html" />
 
-  <!-- Structured Data: Free Tool w/ Donations -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Tech-Support-GPT",
-    "alternateName": "TSG – 45dgof8 Support Assistant",
-    "applicationCategory": "ITSupport",
-    "operatingSystem": "Web",
-    "browserRequirements": "Requires JavaScript",
-    "description": "A free AI-powered tech support assistant for developers, sysadmins, and DevOps teams. Donations very welcome via PayPal if it helps you.",
-    "url": "https://45dgof8.com/TSG-tech-support-gpt.html",
-    "publisher": {
-      "@type": "Organization",
-      "name": "45dgof8",
-      "url": "https://45dgof8.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://45dgof8.com/assets/images/webp/45dgof8.webp"
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0.00",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://chatgpt.com/g/g-674df2f96f808191a3882e6d64e76127-45dgof8-tech-support-gpt"
-    },
-    "applicationSuite": "45dgof8 Infrastructure & Support Tools",
-    "featureList": [
-      "Command-line troubleshooting",
-      "Docker, SSH, and Git support",
-      "Sysadmin task guidance",
-      "CI/CD and DevOps automation",
-      "Infrastructure compliance diagnostics"
-    ],
-    "countriesSupported": "ALL"
-  }
-  </script>
-
-  <!-- CSS Styles -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -80,13 +40,14 @@
       text-align: center;
     }
     img.hero {
-      width: 50%;
+      width: 100%;
+      max-width: 600px;
       height: auto;
       display: block;
       margin: 1em auto;
       object-fit: contain;
     }
-    .container {
+    main {
       padding: 2em;
       max-width: 900px;
       margin: auto;
@@ -125,6 +86,7 @@
       text-align: center;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      position: relative;
     }
     #os-select-bar {
       position: fixed;
@@ -147,10 +109,24 @@
       border-radius: 5px;
       border: 1px solid #ccc;
     }
+    .visually-hidden-focusable {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .visually-hidden-focusable:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 1em;
+    }
   </style>
 </head>
-
 <body>
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
   <div id="os-select-bar">
     <label for="os-select">Choose your OS:</label>
     <select id="os-select" onchange="loadTSGTips(this.value)">
@@ -159,13 +135,11 @@
       <option value="macos">macOS</option>
     </select>
   </div>
-
   <header>
     <h1 style="color:#FFD700; text-shadow: 1px 1px 2px #000;">👑 TSG – Tech Support GPT</h1>
     <p>Your Expert for PC Troubleshooting, Optimization & Legacy Support</p>
   </header>
-
-  <img src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT" class="hero" />
+  <img src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT" class="hero" loading="lazy" />
 
  <div class="ai-box" style="position: relative;">
   <div id="tsg-tips">Loading tips...</div>
