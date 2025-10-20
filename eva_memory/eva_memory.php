@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 // ---- Sicherheit ----
 $token = $_GET['token'] ?? '';
-if ($token !== 'EVA12345') {
+if ($token !== 'evageheim!') {
     echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
     exit;
 }
