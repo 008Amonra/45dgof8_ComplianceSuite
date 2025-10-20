@@ -347,6 +347,166 @@
   }
   el('btnCheck').addEventListener('click', checkStatus);
   init();
+ // ===== extend =====
+import React, { useMemo, useState } from "react";
+
+export default function EvaMemoryChecklist() {
+  // --- State ---
+  const [db, setDb] = useState("/opt/eva/var/memory.db");
+  const [memoryId, setMemoryId] = useState("default");
+  const [note, setNote] = useState("");
+  const [tags, setTags] = useState("");
+  const [date, setDate] = useState("");
+  const [exportPath, setExportPath] = useState("/opt/eva/var/memory-export.json");
+  const [importPath, setImportPath] = useState("/opt/eva/var/memory-import.json");
+  const [chainMode, setChainMode] = useState("&&"); // or \n
+  const [ck, setCk] = useState({
+    init: false,
+    list: false,
+    summary: false,
+    add: false,
+    exists: false,
+    exportx: false,
+    importx: false,
+  });
+
+  const toggle = (k) => setCk((s) => ({ ...s, [k]: !s[k] }));
+
+  // --- Helpers ---
+  const base = useMemo(() => {
+    const p = ["python3", "mc.py"]; // generic runner
+    if (db) p.push("--db", db);
+    if (memoryId) p.push("--memory-id", memoryId);
+    return p.join(" ");
+  }, [db, memoryId]);
+
+  const buildAddArgs = () => {
+    const args = [];
+    const safeNote = note.trim().length ? note.trim().replaceAll("\\n", " ") : "<deine Notiz>";
+    args.push(`"${safeNote}"`);
+    if (tags.trim()) args.push(`--tags \"${tags.trim()}\"`);
+    if (date.trim()) args.push(`--date ${date.trim()}`);
+    return args.join(" ");
+  };
+
+  const commands = useMemo(() => {
+    const lines = [];
+    if (ck.init) lines.push(`${base} init`);
+    if (ck.list) lines.push(`${base} list`);
+    if (ck.summary) lines.push(`${base} summary`);
+    if (ck.add) lines.push(`${base} add ${buildAddArgs()}`);
+    if (ck.exists) lines.push(`${base} exists`);
+    if (ck.exportx) lines.push(`${base} export --out ${exportPath}`);
+    if (ck.importx) lines.push(`${base} import --in ${importPath}`);
+    return lines.join(chainMode === "&&" ? " \n&& " : "\n");
+  }, [ck, base, note, tags, date, exportPath, importPath, chainMode]);
+
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(commands || ""); } catch {}
+  };
+
+  const download = () => {
+    const blob = new Blob(["#!/usr/bin/env bash\nset -e\n" + (commands || "# leer") + "\n"], { type: "text/x-sh" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "eva-memory-commands.sh"; a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-amber-50 text-slate-800 p-6">
+      <div className="max-w-4xl mx-auto">
+        <header className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold tracking-tight">eva — Memory Commands as Checkboxes</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-xs px-2 py-1 rounded-full bg-emerald-100 text-emerald-700">local • offline</span>
+            <span className="text-xs px-2 py-1 rounded-full bg-slate-200 text-slate-700">safe</span>
+          </div>
+        </header>
+
+        <section className="grid lg:grid-cols-3 gap-4 mb-6">
+          <div className="bg-white rounded-2xl shadow p-4 lg:col-span-1">
+            <h2 className="font-semibold mb-3">Konfiguration</h2>
+            <label className="block text-sm mb-1">DB-Pfad</label>
+            <input className="w-full border rounded-xl px-3 py-2 mb-3" value={db} onChange={(e)=>setDb(e.target.value)} />
+            <label className="block text-sm mb-1">Memory-ID</label>
+            <input className="w-full border rounded-xl px-3 py-2 mb-1" value={memoryId} onChange={(e)=>setMemoryId(e.target.value)} />
+            <div className="text-xs text-slate-500 mb-2">Wechsle die ID, um verschiedene Kontexte zu trennen.</div>
+
+            <div className="mt-3">
+              <div className="text-sm font-medium mb-1">Chain-Modus</div>
+              <div className="flex items-center gap-3 text-sm">
+                <label className="flex items-center gap-1"><input type="radio" name="chain" checked={chainMode==="&&"} onChange={()=>setChainMode("&&")} /> && (stopp bei Fehler)</label>
+                <label className="flex items-center gap-1"><input type="radio" name="chain" checked={chainMode!=="&&"} onChange={()=>setChainMode("\\n")} /> Zeilenweise</label>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow p-4 lg:col-span-1">
+            <h2 className="font-semibold mb-3">Aktionen (ankreuzen)</h2>
+            <ul className="space-y-2">
+              {[
+                ["init","Init (neu)", "Erzeugt DB/Struktur"],
+                ["list","List (anzeigen)", "Alle Memory-Items"],
+                ["summary","Summary", "Kompakte Übersicht"],
+                ["add","Add (Notiz)", "Fügt Eintrag hinzu"],
+                ["exists","Exists", "Prüft auf Vorhandensein"],
+                ["exportx","Export", "→ Datei"],
+                ["importx","Import", "← Datei"],
+              ].map(([key, label, sub]) => (
+                <li key={key} className="flex items-start gap-3">
+                  <input id={key} type="checkbox" className="mt-1 h-5 w-5" checked={ck[key]} onChange={()=>toggle(key)} />
+                  <label htmlFor={key} className="cursor-pointer select-none">
+                    <div className="font-medium">{label}</div>
+                    <div className="text-xs text-slate-500">{sub}</div>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow p-4 lg:col-span-1">
+            <h2 className="font-semibold mb-3">Add-Optionen</h2>
+            <label className="block text-sm mb-1">Notiz</label>
+            <textarea className="w-full border rounded-xl px-3 py-2 min-h-[88px] mb-3" placeholder="Kurze Notiz…" value={note} onChange={(e)=>setNote(e.target.value)} />
+
+            <label className="block text-sm mb-1">Tags (kommagetrennt)</label>
+            <input className="w-full border rounded-xl px-3 py-2 mb-3" placeholder="infra,acl,timer" value={tags} onChange={(e)=>setTags(e.target.value)} />
+
+            <label className="block text-sm mb-1">Datum (ISO, optional)</label>
+            <input className="w-full border rounded-xl px-3 py-2" placeholder="2025-10-09" value={date} onChange={(e)=>setDate(e.target.value)} />
+          </div>
+        </section>
+
+        <section className="grid md:grid-cols-2 gap-4 mb-6">
+          <div className="bg-white rounded-2xl shadow p-4">
+            <h2 className="font-semibold mb-3">Export / Import</h2>
+            <label className="block text-sm mb-1">Export-Pfad</label>
+            <input className="w-full border rounded-xl px-3 py-2 mb-3" value={exportPath} onChange={(e)=>setExportPath(e.target.value)} />
+            <label className="block text-sm mb-1">Import-Pfad</label>
+            <input className="w-full border rounded-xl px-3 py-2" value={importPath} onChange={(e)=>setImportPath(e.target.value)} />
+          </div>
+
+          <div className="bg-white rounded-2xl shadow p-4">
+            <h2 className="font-semibold mb-3">Befehle</h2>
+            <div className="text-xs text-slate-500 mb-2">Diese Zeilen kannst du ins Terminal kopieren oder als Skript herunterladen.</div>
+            <pre className="bg-slate-900 text-slate-100 p-4 rounded-xl overflow-auto text-sm leading-6 min-h-[140px]">
+{commands || "# (wähle oben Aktionen aus)"}
+            </pre>
+            <div className="flex flex-wrap gap-2 mt-3">
+              <button onClick={copy} className="px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700">In Zwischenablage</button>
+              <button onClick={download} className="px-4 py-2 rounded-xl bg-slate-800 text-white hover:bg-slate-900">Als .sh speichern</button>
+              <button onClick={()=>{setCk({init:false,list:false,summary:false,add:false,exists:false,exportx:false,importx:false}); setNote("");}} className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200">Zurücksetzen</button>
+            </div>
+          </div>
+        </section>
+
+        <footer className="text-center text-xs text-slate-500 mt-6">© Eva Local Sister • Checklist UI • sicher & offline</footer>
+      </div>
+    </div>
+  );
+}
+  
 </script>
 </body>
 </html>
