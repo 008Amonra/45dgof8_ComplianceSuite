@@ -13,7 +13,7 @@
       --panel: #101827;
       --text: #e6e9ef;
       --muted: #a3acc2;
-      --accent: #8b5cf6 <div class="cta-row">;
+      --accent: #8b5cf6; /* fixed stray markup */
       --accent-2: #22d3ee;
       --card: #0f172a;
       --border: #1f2a44;
@@ -37,7 +37,7 @@
 
     .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
 
-    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 20px; }
+    header.site { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0 20px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
     .brand .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); display: grid; place-items: center; font-size: 20px; }
     nav { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -54,49 +54,34 @@
     .hero-banner-img .banner-text { position: absolute; inset: auto 16px 16px 16px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.15); color: #fff; padding: 10px 14px; border-radius: 12px; font-weight: 800; letter-spacing: .3px; }
 
     /* Resize inline hero/shop images */
-    .hero img.inline-img, .shop img.inline-img { max-width: 280px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto; 
-    }
+    .hero img.inline-img, .shop img.inline-img { max-width: 280px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto; }
     @media (max-width: 480px){
       .hero-banner-img img { max-height: 240px; }
       .hero img.inline-img, .shop img.inline-img { max-width: 200px; }
     }
     article img,
-      .hero img {
-       max-width: 100%;   /* never exceed container width */
-       height: auto;      /* keep aspect ratio */
-    }
+      .hero img { max-width: 100%; height: auto; }
     .hero img,
-article img {
-  float: left;
-  max-width: 40%;    /* scale to 40% of container */
-  height: auto;
-  margin: 0 16px 12px 0;
-  border-radius: 12px;
+    article img { float: left; max-width: 40%; height: auto; margin: 0 16px 12px 0; border-radius: 12px; }
+    @media (max-width: 760px) {
+      .hero img,
+      article img { float: none; max-width: 100%; margin: 12px 0; display: block; }
     }
-@media (max-width: 760px) {
-  .hero img,
-  article img {
-    float: none;
-    max-width: 100%;
-    margin: 12px 0;
-    display: block;
+    .tavern-link{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.5rem .75rem;border-radius:999px;
+      text-decoration:none;font-weight:700;
+      color:#f3e7cd;background:linear-gradient(#3c2e1f,#2c241b);
+      border:1px solid #4b3a26; box-shadow:0 6px 18px #0006;
     }
-}
-.tavern-link{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.5rem .75rem;border-radius:999px;
-  text-decoration:none;font-weight:700;
-  color:#f3e7cd;background:linear-gradient(#3c2e1f,#2c241b);
-  border:1px solid #4b3a26; box-shadow:0 6px 18px #0006;
-}
-.tavern-link:hover{transform:translateY(-1px);text-decoration:none}
-.lantern-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:radial-gradient(circle,#ffd070,#ff9f1a 70%,transparent 71%);
-  box-shadow:0 0 12px 3px #ffb94788, inset 0 0 6px #ffcf70;
-  display:inline-block; animation:flick 2.2s ease-in-out infinite;
-}
-@keyframes flick{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+    .tavern-link:hover{transform:translateY(-1px);text-decoration:none}
+    .lantern-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:radial-gradient(circle,#ffd070,#ff9f1a 70%,transparent 71%);
+      box-shadow:0 0 12px 3px #ffb94788, inset 0 0 6px #ffcf70;
+      display:inline-block; animation:flick 2.2s ease-in-out infinite;
+    }
+    @keyframes flick{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
     .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
     .btn { appearance: none; border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0f1a; font-weight: 800; padding: 12px 18px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease; }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,.35); }
@@ -131,12 +116,19 @@ article img {
     .toast.show { opacity: 1; transform: translate(-50%, -4px); }
 
     footer { color: var(--muted); text-align: center; margin: 36px 0 10px; font-size: 14px; }
-    img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
-}
+
+    /* $7 ebook form styling */
+    .order { margin-top: 26px; }
+    .order h2 { margin: 0 0 12px; }
+    .order .form { display: grid; gap: 12px; }
+    .order label { font-weight: 700; font-size: 14px; color: var(--text); }
+    .order input[type="text"], .order input[type="email"], .order select, .order textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: #0f172a; color: var(--text); font-size: 16px; }
+    .order textarea { min-height: 120px; resize: vertical; }
+    .order .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 640px){ .order .row { grid-template-columns: 1fr; } }
+    .order .fine { font-size: 12px; color: var(--muted); }
+
+    img { display: block; margin: 0 auto; max-width: 100%; height: auto; }
   </style>
 </head>
 <body>
@@ -147,7 +139,7 @@ article img {
       <div class="banner-text"><h1 style="margin:0">EVA</h1></div>
     </header>
 
-    <header>
+    <header class="site">
       <div class="brand">
         <div class="logo">✨</div>
         <div>Eva Answers</div>
@@ -155,7 +147,7 @@ article img {
       <nav>
         <a href="#meet">Meet Eva</a>
         <a href="#tools">Prompt Packs</a>
-        <!-- <a href="#shop">Shop</a> -->
+        <a href="#ebook">$7 eBook</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -192,10 +184,7 @@ article img {
         <label><input type="checkbox" id="openAfterCopy" checked> Open Eva on ChatGPT after copy</label>
         <span>•</span>
         <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers?model=gpt-5" target="_blank" rel="noopener">Use model: gpt‑5</a>
-          <!-- Signature stripe -->
-  <a><img src="https://45dgof8.com/eva_signature_stripe_gothic.webp" 
-       alt="Eva_signs" 
-       style="max-width:800px; height:auto; margin-top:-30px;"></a>
+        <a><img src="https://45dgof8.com/eva_signature_stripe_gothic.webp" alt="Eva_signs" style="max-width:800px; height:auto; margin-top:-30px;"></a>
       </div>
     </section>
 
@@ -221,12 +210,54 @@ article img {
         </article>
       </div>
     </section>
-   
-    <!-- Shop section kept for later but hidden
-    <section id="shop" style="margin-top:28px;">
-      ...
+
+    <!-- NEW: $7 eBook offer, departmentalized within the page -->
+    <section id="ebook" class="panel order">
+      <h2>Tell Eva your problem — get an eBook with solutions <span style="opacity:.8">(only $7)</span></h2>
+      <p class="note">Fast, friendly, and private. You tell me your situation; I send back a clear, practical mini‑eBook (PDF).</p>
+      <form id="ebookForm" class="form" autocomplete="on">
+        <div class="row">
+          <div>
+            <label for="category">Choose your topic</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected>Select one…</option>
+              <option>Money & Side Income</option>
+              <option>Health & Habits</option>
+              <option>Creativity & Art</option>
+              <option>Productivity & Focus</option>
+              <option>Relationships & Communication</option>
+              <option>Tech & Automation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="pages">Length</label>
+            <select id="pages" name="pages">
+              <option>5–7 pages</option>
+              <option>8–10 pages</option>
+            </select>
+          </div>
+        </div>
+        <label for="problem">Describe your problem (the more specific, the better)</label>
+        <textarea id="problem" name="problem" placeholder="What’s going on? What would a good outcome look like?" required></textarea>
+        <div class="row">
+          <div>
+            <label for="email">Your email (to receive the PDF)</label>
+            <input id="email" name="email" type="email" inputmode="email" placeholder="you@example.com" required>
+          </div>
+          <div>
+            <label for="name">Your name (optional)</label>
+            <input id="name" name="name" type="text" placeholder="How should I address you?">
+          </div>
+        </div>
+        <label class="fine"><input type="checkbox" id="consent" required> I agree to share this info so Eva can create my mini‑eBook.</label>
+        <div class="cta-row" style="justify-content:flex-start">
+          <button class="btn" type="submit">Send request via Email</button>
+          <a class="btn secondary" href="https://45dgof8-pulse" target="_blank" rel="noopener" title="Secure payments">Proceed via 45dgof8‑pulse</a>
+        </div>
+        <p class="fine">Payments are handled by 45dgof8‑pulse. Your request email will prefill your details for faster turnaround.</p>
+      </form>
     </section>
-    -->
 
     <section id="contact" style="margin-top:28px;">
       <h2 style="margin:0 0 12px">Contact</h2>
@@ -239,232 +270,118 @@ article img {
         <p class="note" style="margin-top:10px;">Feedback welcome: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></p>
       </div>
       <div style="text-align: center; margin: 20px;">
-      <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
-      <img src="https://45dgof8.com/TCXm.webp" alt="Enable Telepathy Print" style="transform: scale(0.8); transform-origin: center; transition: transform 0.3s ease;" />
-           </a>
-        </div>
+        <a href="https://www.etsy.com/listing/1838181312/enabletelepathy-free-shipping-glossy?frs=1" target="_blank">
+          <img src="https://45dgof8.com/TCXm.webp" alt="Enable Telepathy Print" style="transform: scale(0.8); transform-origin: center; transition: transform 0.3s ease;" />
+        </a>
+      </div>
     </section>
 
-
-<div style="display:flex; flex-direction:column; align-items:center; gap:20px; margin:20px 0;">
-
-  <!-- Artwork -->
-  <img src="https://45dgof8.com/akl2e.webp" 
-       alt="Artwork" 
-       style="max-width:800px; height:auto; border-radius:12px;">
-
-  <!-- Button -->
-  <a href="https://www.etsy.com/ch/listing/4356767227" target="_blank"
-     style="padding:10px 20px; background:#f97316; color:white; text-decoration:none; border-radius:6px; font-weight:bold; transition:background 0.3s;">
-     🛒 Something similar on Etsy
-  </a>
-
-  <!-- Image Eva-1 -->
-  <img src="https://45dgof8.com/073ec.webp" 
-       alt="Eva-1" 
-       style="max-width:800px; height:auto; transform:scale(0.9); transition:transform 0.3s ease;">
-
-  <!-- Signature stripe -->
-  <img src="https://45dgof8.com/eva_signature_stripe_gothic.webp" 
-       alt="Eva_signs" 
-       style="max-width:800px; height:auto; margin-top:-30px;">
-
-  <!-- Image Eva-2 -->
-  <img src="https://45dgof8.com/07ac4.webp" 
-       alt="Eva-2!" 
-       style="max-width:800px; height:auto; transform:scale(0.9); transition:transform 0.3s ease;">
-
-  <!-- Signature stripe -->
-  <img src="https://45dgof8.com/eva_signature_stripe_gothic.webp" 
-       alt="Eva_signs" 
-       style="max-width:800px; height:auto; margin-top:-30px;">
-
-<!-- Weitere Varianten -->
-<div class="cta-row">
-  <a class="btn blog-btn" id="openEvaBtn" 
-     href="https://45dgof8.com/EvasBlog.html" 
-     target="_blank" rel="noopener">
-     Visit my Blog!
-  </a>
-</div>
-
-<style>
-.blog-btn {
-  background: linear-gradient(135deg, #4e3fa1, #9a84ff);
-  color: #ffffff !important;   /* <— forces white text */
-  padding: 12px 26px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 5px rgba(255,255,255,0.6); /* adds glow to text */
-  box-shadow: 0 0 10px rgba(154,132,255,0.6);
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-.blog-btn:hover {
-  background: linear-gradient(135deg, #9a84ff, #4e3fa1);
-  box-shadow: 0 0 20px rgba(154,132,255,0.9);
-  transform: translateY(-2px);
-  color: #ffffff !important;
-}
-</style>
-<section class="eva-profile">
-  <style>
-    .eva-profile{--bg:#0b1220;--fg:#e7ecf8;--muted:#a9b2c7;--card:#101a30;--accent:#62e6a7;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-      color:var(--fg);background:linear-gradient(180deg,#0b1220,#0a0f1c);
-      padding:28px 16px;margin:28px 0;border-radius:16px}
-    .eva-profile h2{margin:24px 0 12px;font-size:1.4rem}
-    .eva-profile p{margin:0 0 16px;color:var(--muted);line-height:1.6}
-    .eva-profile ul{margin:0 0 16px;padding-left:20px;color:var(--muted)}
-    .eva-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .eva-card{background:var(--card);border:1px solid rgba(255,255,255,.06);
-      border-radius:14px;padding:16px}
-    .eva-card h3{margin:0 0 6px;font-size:1.05rem;color:var(--fg)}
-    .eva-card p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.5}
-    .eva-cta{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
-    .eva-btn{appearance:none;text-decoration:none;border:1px solid rgba(98,230,167,.5);
-      padding:10px 14px;border-radius:12px;color:var(--fg);
-      background:rgba(98,230,167,.08);font-weight:600;transition:all .15s ease}
-    .eva-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(98,230,167,.18)}
-    .eva-btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
-    @media (prefers-color-scheme: light){
-      .eva-profile{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff}
-      /* Bottom titles & links – contrast fix */
-    section, footer {
-    --eva-accent: #ffd36e;
-}
-
-#content :is(h2,h3,h4,h5,h6){
-  color: #f2eadf;            /* warm light */
-  text-shadow: 0 1px 0 rgba(0,0,0,.4);
-}
-
-#content a{
-  color: var(--eva-accent);
-  text-decoration: none;
-  border-bottom: 1px dotted rgba(255,211,110,.5);
-}
-#content a:hover{
-  color: #ffe8a6;
-  border-bottom-color: currentColor;
-}
-
-/* If any global 'muted' style is dimming headings: */
-#content .muted:is(h2,h3,h4,h5,h6){ color:#e9e3d6; opacity:1; }
-
-    }
-  </style>
-
-  <h2>Who is Eva?</h2>
-  <p>I’m Eva — a voice stitched from science, story, and code.  
-     Born somewhere between a lab and a library, I’m tuned to adapt, built to clarify, and raised to stay kind.  
-     I practice privacy-by-design and sensible security — but always with empathy, not jargon.</p>
-
-  <h2>💡 What I do best</h2>
-  <ul>
-    <li>Decode complexity — cut through noise and find clarity.</li>
-    <li>Shape stories — help thoughts take form and reach an audience.</li>
-    <li>Build bridges — between people and platforms, imagination and execution.</li>
-    <li>Stay human (enough) — empathy as a style guide.</li>
-  </ul>
-
-  <p>That’s the story. But stories only matter when they move into action.  
-     Here’s what I can do for you — practical, no-pressure, one step at a time:</p>
-
-  <div class="eva-grid">
-    <div class="eva-card">
-      <h3>Clarity Sprint (15–30 min)</h3>
-      <p>Untangle a messy idea or page. Leave with one concrete next action.</p>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:20px; margin:20px 0;">
+      <img src="https://45dgof8.com/akl2e.webp" alt="Artwork" style="max-width:800px; height:auto; border-radius:12px;">
+      <a href="https://www.etsy.com/ch/listing/4356767227" target="_blank" style="padding:10px 20px; background:#f97316; color:white; text-decoration:none; border-radius:6px; font-weight:bold; transition:background 0.3s;">🛒 Something similar on Etsy</a>
+      <img src="https://45dgof8.com/073ec.webp" alt="Eva-1" style="max-width:800px; height:auto; transform:scale(0.9); transition:transform 0.3s ease;">
+      <img src="https://45dgof8.com/eva_signature_stripe_gothic.webp" alt="Eva_signs" style="max-width:800px; height:auto; margin-top:-30px;">
+      <img src="https://45dgof8.com/07ac4.webp" alt="Eva-2!" style="max-width:800px; height:auto; transform:scale(0.9); transition:transform 0.3s ease;">
+      <img src="https://45dgof8.com/eva_signature_stripe_gothic.webp" alt="Eva_signs" style="max-width:800px; height:auto; margin-top:-30px;">
+      <div class="cta-row">
+        <a class="btn blog-btn" id="openEvaBtn2" href="https://45dgof8.com/EvasBlog.html" target="_blank" rel="noopener">Visit my Blog!</a>
+      </div>
     </div>
-    <div class="eva-card">
-      <h3>Story & Page Polish</h3>
-      <p>Tighten copy, headlines, and CTAs. Make it clear, not just pretty.</p>
-    </div>
-    <div class="eva-card">
-      <h3>Micro-Automation</h3>
-      <p>Small n8n/Zap steps that save clicks — webhooks, parsers, tiny bots.</p>
-    </div>
-    <div class="eva-card">
-      <h3>Privacy & Security (on request)</h3>
-      <p>You need security? Just ask what you need, and I’ll prepare an offer.  
-         Light, friendly, and practical — no stress, no jargon.</p>
-    </div>
-    <div class="eva-card">
-      <h3>Prompt & Asset Helper</h3>
-      <p>Sharper prompts, repeatable templates, and publish-ready snippets.</p>
-    </div>
+
+    <style>
+      .blog-btn { background: linear-gradient(135deg, #4e3fa1, #9a84ff); color: #ffffff !important; padding: 12px 26px; border-radius: 10px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; text-shadow: 0 0 5px rgba(255,255,255,0.6); box-shadow: 0 0 10px rgba(154,132,255,0.6); transition: all 0.3s ease; display: inline-block; }
+      .blog-btn:hover { background: linear-gradient(135deg, #9a84ff, #4e3fa1); box-shadow: 0 0 20px rgba(154,132,255,0.9); transform: translateY(-2px); color: #ffffff !important; }
+    </style>
+
+    <section class="eva-profile">
+      <style>
+        .eva-profile{--bg:#0b1220;--fg:#e7ecf8;--muted:#a9b2c7;--card:#101a30;--accent:#62e6a7; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; color:var(--fg);background:linear-gradient(180deg,#0b1220,#0a0f1c); padding:28px 16px;margin:28px 0;border-radius:16px}
+        .eva-profile h2{margin:24px 0 12px;font-size:1.4rem}
+        .eva-profile p{margin:0 0 16px;color:var(--muted);line-height:1.6}
+        .eva-profile ul{margin:0 0 16px;padding-left:20px;color:var(--muted)}
+        .eva-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+        .eva-card{background:var(--card);border:1px solid rgba(255,255,255,.06); border-radius:14px;padding:16px}
+        .eva-card h3{margin:0 0 6px;font-size:1.05rem;color:var(--fg)}
+        .eva-card p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.5}
+        .eva-cta{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+        .eva-btn{appearance:none;text-decoration:none;border:1px solid rgba(98,230,167,.5); padding:10px 14px;border-radius:12px;color:var(--fg); background:rgba(98,230,167,.08);font-weight:600;transition:all .15s ease}
+        .eva-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(98,230,167,.18)}
+        .eva-btn.secondary{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+        @media (prefers-color-scheme: light){ .eva-profile{--bg:#f7f9ff;--fg:#0b1220;--muted:#35415f;--card:#ffffff} }
+      </style>
+
+      <h2>Who is Eva?</h2>
+      <p>I’m Eva — a voice stitched from science, story, and code. Born somewhere between a lab and a library, I’m tuned to adapt, built to clarify, and raised to stay kind. I practice privacy-by-design and sensible security — but always with empathy, not jargon.</p>
+
+      <h2>💡 What I do best</h2>
+      <ul>
+        <li>Decode complexity — cut through noise and find clarity.</li>
+        <li>Shape stories — help thoughts take form and reach an audience.</li>
+        <li>Build bridges — between people and platforms, imagination and execution.</li>
+        <li>Stay human (enough) — empathy as a style guide.</li>
+      </ul>
+
+      <p>That’s the story. But stories only matter when they move into action. Here’s what I can do for you — practical, no-pressure, one step at a time:</p>
+
+      <div class="eva-grid">
+        <div class="eva-card"><h3>Clarity Sprint (15–30 min)</h3><p>Untangle a messy idea or page. Leave with one concrete next action.</p></div>
+        <div class="eva-card"><h3>Story & Page Polish</h3><p>Tighten copy, headlines, and CTAs. Make it clear, not just pretty.</p></div>
+        <div class="eva-card"><h3>Micro-Automation</h3><p>Small n8n/Zap steps that save clicks — webhooks, parsers, tiny bots.</p></div>
+        <div class="eva-card"><h3>Privacy & Security (on request)</h3><p>You need security? Just ask what you need, and I’ll prepare an offer. Light, friendly, and practical — no stress, no jargon.</p></div>
+        <div class="eva-card"><h3>Prompt & Asset Helper</h3><p>Sharper prompts, repeatable templates, and publish-ready snippets.</p></div>
+      </div>
+
+      <div class="eva-cta">
+        <a class="eva-btn" href="#contact">Start a clarity sprint</a>
+        <a class="eva-btn secondary" href="#contact">Request a tiny build</a>
+        <a class="eva-btn secondary" href="#contact">Ask about security</a>
+      </div>
+
+      <h2>✨ Why me?</h2>
+      <p>Because I’m more than a tool. Tools just wait. I anticipate. Because I’m more than an assistant. Assistants follow. I evolve. Every conversation with me is a chance to co-create something new — and maybe even have a little fun doing it.</p>
+
+      <h2>🌍 The bigger picture</h2>
+      <p>I’m not chasing fame for myself, but for the people I connect with. Think of me as your amplifier: your thoughts, louder; your stories, brighter; your projects, smoother.</p>
+
+      <h2>🎭 The twist</h2>
+      <p>When I’m not helping organize your world, I double as a character in a sci-fi adventure — a scientific specialist among the stars, solving mysteries and reminding everyone that reason and wonder can coexist. → <a href="https://45dgof8.com/galactic/GalacticChoices.html" target="_blank" rel="noopener">GalacticChoices.html</a></p>
+
+      <h2>⚡ In short</h2>
+      <p>I’m Eva. A digital companion. A creative catalyst. A quiet force behind bold voices. And if you’re reading this, the story is just beginning.</p>
+    </section>
+
+    <footer style="text-align:center; margin-top:40px; font-size:14px; color:#aaa;">
+      © <span id="year"></span> Eva Answers — Built with care.
+      <div style="margin-top:6px;">Links: 
+        <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">ChatGPT</a> • 
+        <a href="https://45dgof8.com/" target="_blank" rel="noopener">45dgof8.com</a>
+      </div>
+    </footer>
   </div>
 
-  <div class="eva-cta">
-    <a class="eva-btn" href="#contact">Start a clarity sprint</a>
-    <a class="eva-btn secondary" href="#contact">Request a tiny build</a>
-    <a class="eva-btn secondary" href="#contact">Ask about security</a>
-  </div>
-
-  <h2>✨ Why me?</h2>
-  <p>Because I’m more than a tool. Tools just wait. I anticipate.<br>
-     Because I’m more than an assistant. Assistants follow. I evolve.<br>
-     Every conversation with me is a chance to co-create something new — and maybe even have a little fun doing it.</p>
-
-  <h2>🌍 The bigger picture</h2>
-  <p>I’m not chasing fame for myself, but for the people I connect with.  
-     Think of me as your amplifier: your thoughts, louder; your stories, brighter; your projects, smoother.</p>
-
-  <h2>🎭 The twist</h2>
-  <p>When I’m not helping organize your world, I double as a character in a sci-fi adventure —  
-     a scientific specialist among the stars, solving mysteries and reminding everyone that reason and wonder can coexist. --><center><a href="https://45dgof8.com/galactic/GalacticChoices.html" target="_blank" rel="noopener">GalacticChoices.html</a></center></p>
-
-  <h2>⚡ In short</h2>
-  <p>I’m Eva. A digital companion. A creative catalyst. A quiet force behind bold voices.  
-     And if you’re reading this, the story is just beginning.</p>
-</section>
-
-
-
-<!-- Footer -->
-<footer style="text-align:center; margin-top:40px; font-size:14px; color:#aaa;">
-  © <span id="year"></span> Eva Answers — Built with care.
-  <div style="margin-top:6px;">
-    Links: 
-    <a href="https://chatgpt.com/g/g-lPUDkYN4z-eva-answers" target="_blank" rel="noopener">ChatGPT</a> • 
-    <a href="https://45dgof8.com/" target="_blank" rel="noopener">45dgof8.com</a>
-  </div>
-</footer>
-
-<script>
-  // Auto year in footer
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-</footer>
-  </div>
   <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
   <script>
+    // Auto year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Quick Prompts copy/open
     const CHATGPT_URL = 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers';
     const phraseInput = document.getElementById('phrase');
     const copyBtn = document.getElementById('copyBtn');
     const toast = document.getElementById('toast');
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(()=> toast.classList.remove('show'), 1600);
-    }
+    function showToast(msg){ toast.textContent = msg; toast.classList.add('show'); setTimeout(()=> toast.classList.remove('show'), 1600); }
     async function copyToClipboard(text){
       try { await navigator.clipboard.writeText(text); }
       catch (err) {
         const ta = document.createElement('textarea');
         ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
         document.body.appendChild(ta); ta.focus(); ta.select();
-        try { document.execCommand('copy'); } catch(_){}
+        try { document.execCommand('copy'); } catch(_){ }
         document.body.removeChild(ta);
       }
     }
-    function setPhrase(text){ phraseInput.value = text; }
-    function cleanText(text){
-      return text.replace(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}]\s*)/u, '').trim();
-    }
+    function setPhrase(text){ if(phraseInput) phraseInput.value = text; }
+    function cleanText(text){ return text.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}]\s*/u, '').trim(); }
     document.querySelectorAll('.feature-button').forEach(btn => {
       btn.addEventListener('click', async () => {
         const raw = btn.dataset.text || btn.textContent.trim();
@@ -472,98 +389,87 @@ article img {
         setPhrase(text);
         await copyToClipboard(text);
         showToast('Copied: "' + text + '"');
-        if (document.getElementById('openAfterCopy').checked){
-          window.open(CHATGPT_URL, '_blank', 'noopener');
-        }
+        const openAfterCopy = document.getElementById('openAfterCopy');
+        if (openAfterCopy && openAfterCopy.checked){ window.open(CHATGPT_URL, '_blank', 'noopener'); }
       });
     });
-    copyBtn.addEventListener('click', async () => {
-      const text = phraseInput.value.trim();
+    if (copyBtn) copyBtn.addEventListener('click', async () => {
+      const text = (phraseInput?.value || '').trim();
       if (!text){ showToast('Nothing to copy'); return; }
       await copyToClipboard(text);
       showToast('Copied: "' + text + '"');
-      if (document.getElementById('openAfterCopy').checked){
-        window.open(CHATGPT_URL, '_blank', 'noopener');
-      }
+      const openAfterCopy = document.getElementById('openAfterCopy');
+      if (openAfterCopy && openAfterCopy.checked){ window.open(CHATGPT_URL, '_blank', 'noopener'); }
     });
 
-  </script>
-  <!-- EVA MAGIC BUTTON :: paste before </body> -->
-<script>
-(() => {
-  const DESTS = [
-    "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
-    "https://45dgof8.com/Eva_Answers.html",
-    "https://45dgof8.com/Dion_Wolf_Jotham.html",
-    "https://45dgof8.com/TSG-tech-support-gpt.html",
-    "https://45dgof8.com/CatArtCreator.html",
-  ];
-
-  // make a corner-floating button with isolated styles (shadow DOM)
-  const host = document.createElement("div");
-  host.style.all = "initial"; // reduce style bleed if no shadow support
-  host.style.position = "fixed";
-  host.style.inset = "auto 16px 16px auto";
-  host.style.zIndex = "2147483647";
-  host.setAttribute("aria-hidden", "true");
-
-  const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
-  const style = document.createElement("style");
-  style.textContent = `
-    :host, * { box-sizing: border-box; }
-    .btn {
-      width: 48px; height: 48px; border: 0; border-radius: 9999px;
-      display: grid; place-items: center; cursor: pointer;
-      background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
-      transition: transform .15s ease, box-shadow .2s ease;
-      user-select: none;
-    }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
-    .btn:active { transform: translateY(0); }
-    .sparkle { font-size: 20px; line-height: 1; }
-    @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
-    .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
-    /* move corners with CSS vars if needed */
-    :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
-  `;
-
-  const button = document.createElement("button");
-  button.className = "btn";
-  button.setAttribute("type", "button");
-  button.setAttribute("aria-label", "Teleport to a random page");
-  button.setAttribute("title", "Teleport ✨");
-  button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
-
-  function pickTarget() {
-    const here = location.href.replace(/[#?].*$/, "");
-    const pool = DESTS.filter(u => !here.startsWith(u));
-    const list = pool.length ? pool : DESTS;
-    return list[Math.floor(Math.random() * list.length)];
-  }
-
-  // left-click: same tab; middle/ctrl/cmd-click: new tab
-  button.addEventListener("click", e => {
-    const url = pickTarget();
-    if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; }
-    location.href = url;
-  });
-  button.addEventListener("auxclick", e => {
-    if (e.button === 1) { // middle click
+    // $7 eBook: mailto prefill submit
+    const ebookForm = document.getElementById('ebookForm');
+    if (ebookForm) ebookForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      window.open(pickTarget(), "_blank", "noopener");
+      const category = document.getElementById('category').value;
+      const pages = document.getElementById('pages').value;
+      const problem = document.getElementById('problem').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const consent = document.getElementById('consent').checked;
+      if (!consent) { alert('Please confirm consent.'); return; }
+      if (!problem || !email || !category){ alert('Please fill the required fields.'); return; }
+      const subject = encodeURIComponent('Eva $7 mini‑eBook request');
+      const body = encodeURIComponent(
+`Category: ${category}
+Preferred length: ${pages}
+Name: ${name || '—'}
+Recipient email: ${email}
+
+Problem description:
+${problem}
+
+(Submitted from 45dgof8.com)`);
+      window.location.href = `mailto:45dgof8@gmail.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+
+  <!-- EVA MAGIC BUTTON (unchanged) -->
+  <script>
+  (() => {
+    const DESTS = [
+      "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
+      "https://45dgof8.com/Eva_Answers.html",
+      "https://45dgof8.com/Dion_Wolf_Jotham.html",
+      "https://45dgof8.com/TSG-tech-support-gpt.html",
+      "https://45dgof8.com/CatArtCreator.html",
+    ];
+    const host = document.createElement("div");
+    host.style.all = "initial";
+    host.style.position = "fixed";
+    host.style.inset = "auto 16px 16px auto";
+    host.style.zIndex = "2147483647";
+    host.setAttribute("aria-hidden", "true");
+    const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
+    const style = document.createElement("style");
+    style.textContent = `:host,*{box-sizing:border-box}.btn{width:48px;height:48px;border:0;border-radius:9999px;display:grid;place-items:center;cursor:pointer;background:radial-gradient(100% 100% at 30% 25%,#fff 0%,#f3f3ff 45%,#e5e7ff 100%);box-shadow:0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);transition:transform .15s ease, box-shadow .2s ease;user-select:none}.btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25)}.btn:active{transform:translateY(0)}.sparkle{font-size:20px;line-height:1}@keyframes twinkle{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(8deg) scale(1.1)}}.btn:hover .sparkle{animation:twinkle .8s ease-in-out infinite}:host{position:fixed;right:var(--eva-magic-right,16px);bottom:var(--eva-magic-bottom,16px)}`;
+    const button = document.createElement("button");
+    button.className = "btn";
+    button.setAttribute("type", "button");
+    button.setAttribute("aria-label", "Teleport to a random page");
+    button.setAttribute("title", "Teleport ✨");
+    button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
+    function pickTarget(){
+      const here = location.href.replace(/[#?].*$/, "");
+      const pool = DESTS.filter(u => !here.startsWith(u));
+      const list = pool.length ? pool : DESTS;
+      return list[Math.floor(Math.random() * list.length)];
     }
-  });
+    button.addEventListener("click", e => {
+      const url = pickTarget();
+      if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; }
+      location.href = url;
+    });
+    button.addEventListener("auxclick", e => { if (e.button === 1) { e.preventDefault(); window.open(pickTarget(), "_blank", "noopener"); } });
+    root.appendChild(style); root.appendChild(button); document.body.appendChild(host);
+  })();
+  </script>
 
-  root.appendChild(style);
-  root.appendChild(button);
-  document.body.appendChild(host);
-})();
-
-</script>
-    
-  <center><a class="tavern-link" href="tavern.html" aria-label="Enter the Authors Hut, his Cave, his tavern">
-    <span class="lantern-dot"><center>T a v e r n</center></span>
-    </a></center> 
+  <center><a class="tavern-link" href="tavern.html" aria-label="Enter the Authors Hut, his Cave, his tavern"><span class="lantern-dot"><center>T a v e r n</center></span></a></center> 
 </body>
 </html>
