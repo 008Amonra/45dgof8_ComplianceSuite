@@ -2,170 +2,172 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>45dgof8-pulse — Dark Glass</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1226" />
+  <meta name="description" content="45dgof8-pulse — a neutral coordinator for intent, trust, and payment flow. Privacy by design: no custody, metadata only." />
+  <title>45dgof8-pulse — Mobile First</title>
+
+  <!-- Favicon + Open Graph -->
+  <link rel="icon" type="image/webp" href="pulse256.webp" />
+  <meta property="og:title" content="45dgof8-pulse — Central Signal" />
+  <meta property="og:description" content="The neutral coordinator for intent, trust, and payment flow. Privacy by design — no custody, metadata only." />
+  <meta property="og:image" content="https://45dgof8.com/pulse256.webp" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://45dgof8.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg0:#050814;
-      --bg1:#0b1226;
-      --fg:#e2e8f0;
-      --muted:#94a3b8;
-      --accent-a:#00ffe7;
-      --accent-b:#ff00c8;
-      --accent-c:#00b4ff;
-      --glass-bg:rgba(17, 25, 40, 0.55);
-      --glass-br:18px;
-      --ring:rgba(0,255,231,0.45);
+      --bg0:#050814; --bg1:#0b1226; --fg:#e2e8f0; --muted:#9aa7bd;
+      --a:#00ffe7; --b:#ff00c8; --c:#00b4ff; --ring:rgba(0,255,231,.45);
+      --glass:rgba(17,25,40,.55); --r:16px; --blur:12px;
+      --fs-h: clamp(1.6rem, 6vw, 2.3rem);
+      --fs-p: clamp(1rem, 3.8vw, 1.075rem);
+      --fs-micro: clamp(.85rem, 3.2vw, .95rem);
+      --pad: clamp(18px, 4.5vw, 28px);
+      --btn-pad-y: clamp(12px, 3.8vw, 14px);
+      --btn-pad-x: clamp(16px, 5.5vw, 18px);
+      --logo: clamp(80px, 22vw, 112px);
     }
 
-    /* Page base */
     html,body{height:100%}
     body{
-      margin:0;
-      font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--fg);
-      background: radial-gradient(1200px 800px at 20% 20%, #0d1730 0%, transparent 60%),
-                  radial-gradient(900px 700px at 80% 30%, #1a0f2a 0%, transparent 60%),
-                  linear-gradient(180deg, var(--bg1), var(--bg0) 60%);
+      margin:0; font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
+      background:
+        radial-gradient(900px 600px at 20% 20%, #0d1730 0%, transparent 60%),
+        radial-gradient(700px 540px at 80% 30%, #1a0f2a 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg0) 60%);
       display:flex; align-items:center; justify-content:center;
-      overflow-x:hidden; padding:24px;
+      padding: env(safe-area-inset-top) var(--pad) env(safe-area-inset-bottom);
     }
 
-    /* Ambient “signal” dots */
-    .ambient{
-      position:fixed; inset:0; pointer-events:none; overflow:hidden;
-    }
-    .glow{
-      position:absolute; border-radius:50%; filter:blur(60px); opacity:.25;
-      animation: drift 18s ease-in-out infinite;
-    }
-    .glow.a{ width:320px;height:320px;background:var(--accent-a); top:8%; left:10%; }
-    .glow.b{ width:260px;height:260px;background:var(--accent-b); bottom:12%; right:12%; animation-duration:22s;}
-    .glow.c{ width:200px;height:200px;background:var(--accent-c); top:50%; right:30%; animation-duration:26s;}
-    @keyframes drift{
-      0%,100%{ transform:translate3d(0,0,0) }
-      50%{ transform:translate3d(20px,-20px,0) }
-    }
+    .ambient{position:fixed; inset:0; pointer-events:none; overflow:hidden}
+    .glow{position:absolute; border-radius:50%; filter:blur(60px); opacity:.22; animation:drift 18s ease-in-out infinite}
+    .glow.a{ width:260px;height:260px;background:var(--a); top:8%; left:6%}
+    .glow.b{ width:220px;height:220px;background:var(--b); bottom:10%; right:10%; animation-duration:22s}
+    .glow.c{ width:180px;height:180px;background:var(--c); top:46%; right:26%; animation-duration:26s}
+    @keyframes drift{0%,100%{transform:translate3d(0,0,0)} 50%{transform:translate3d(14px,-14px,0)}}
 
-    /* Glass card */
+    .wrap{ width:100%; max-width:760px }
+    .topbar{ display:flex; justify-content:flex-end; align-items:center; gap:10px; margin-bottom:10px }
+    .lp-label{ font-size:.9rem; color:#8fa0ba }
+    .lp-toggle{ position:relative; width:48px; height:28px }
+    .lp-toggle input{ position:absolute; inset:0; opacity:0 }
+    .lp-track{ position:absolute; inset:0; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:999px; transition:background .2s ease }
+    .lp-thumb{ position:absolute; top:2px; left:2px; width:24px; height:24px; border-radius:50%; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.4); transition: transform .2s ease }
+    .lp-toggle input:checked + .lp-track{ background:linear-gradient(90deg, var(--a), var(--b)) }
+    .lp-toggle input:checked + .lp-track .lp-thumb{ transform: translateX(20px) }
+
     .card{
-      width:min(880px, 92vw);
-      padding:32px 28px;
-      border-radius: var(--glass-br);
-      background: var(--glass-bg);
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        0 10px 35px rgba(0, 0, 0, .45),
-        inset 0 1px 0 rgba(255,255,255,.04);
-      backdrop-filter: blur(16px) saturate(120%);
-      -webkit-backdrop-filter: blur(16px) saturate(120%);
+      width:100%; padding: calc(var(--pad) + 8px) var(--pad);
+      border-radius: var(--r); background: var(--glass);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: 0 8px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(var(--blur)) saturate(120%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
       text-align:center;
     }
 
-    .logo{
-      width:112px; height:112px; margin:-72px auto 12px;
-      border-radius:22px;
-      display:block; object-fit:contain; background:rgba(255,255,255,0.02);
-      box-shadow: 0 0 0 6px rgba(255,255,255,0.02), 0 0 24px var(--ring);
-      animation: float 4.5s ease-in-out infinite;
-    }
-    @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .logo{ width:var(--logo); height:var(--logo); margin: calc(-.6 * var(--logo)) auto 8px; border-radius: 20px; display:block; object-fit:contain; background:rgba(255,255,255,.02); box-shadow: 0 0 0 6px rgba(255,255,255,.02), 0 0 18px var(--ring); animation: float 4.5s ease-in-out infinite }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 
-    h1{
-      margin:.25rem 0 0.5rem; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing:-.02em;
-      background:linear-gradient(90deg, var(--accent-a), var(--accent-b), var(--accent-c));
-      background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      animation: gradientShift 7s ease-in-out infinite alternate;
-    }
-    @keyframes gradientShift{ from{background-position:0%} to{background-position:100%} }
+    h1{ margin:.25rem 0 .4rem; font-size: var(--fs-h); letter-spacing:-.02em; background:linear-gradient(90deg, var(--a), var(--b), var(--c)); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation: gradient 6.5s ease-in-out infinite alternate }
+    @keyframes gradient{from{background-position:0%}to{background-position:100%}}
 
-    .subtitle{
-      color:var(--muted); font-size:1.05rem; line-height:1.7; margin:0 auto 18px; max-width:64ch;
-    }
+    .subtitle{ margin: 0 auto 12px; max-width: 60ch; font-size: var(--fs-p); line-height:1.6; color: var(--muted) }
 
-    .pulse-dot{
-      width:22px; height:22px; border-radius:50%; margin:18px auto 8px;
-      background:var(--accent-a);
-      box-shadow:0 0 22px rgba(0,255,231,.6), 0 0 44px rgba(0,255,231,.25) inset;
-      animation:pulse 1.6s ease-in-out infinite;
-    }
-    @keyframes pulse{ 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.7);opacity:.2}}
+    .pulse-dot{ width:20px;height:20px;border-radius:50%;margin:14px auto 6px; background:var(--a); box-shadow:0 0 18px rgba(0,255,231,.55), 0 0 34px rgba(0,255,231,.22) inset; animation:pulse 1.6s ease-in-out infinite }
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.22}}
 
-    .cta{
-      display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;
-    }
-    .btn{
-      appearance:none; border:none; cursor:pointer; font-weight:600;
-      padding:12px 18px; border-radius:12px; font-size:1rem;
-      transition: transform .18s ease, box-shadow .18s ease, opacity .2s ease;
-    }
-    .btn.primary{
-      color:#000;
-      background:linear-gradient(90deg, var(--accent-a), var(--accent-b));
-      box-shadow:0 6px 24px rgba(0,255,231,.25);
-    }
-    .btn.ghost{
-      color:var(--fg); background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .btn:hover{ transform:translateY(-2px); opacity:.95 }
+    .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+    .btn{ appearance:none;border:none;cursor:pointer;font-weight:600;border-radius:12px; padding: var(--btn-pad-y) var(--btn-pad-x); font-size: clamp(1rem, 3.8vw, 1.05rem); min-width: 48px; min-height: 44px; transition: transform .16s ease, box-shadow .18s ease, opacity .18s ease }
+    .btn.primary{ color:#000; background:linear-gradient(90deg, var(--a), var(--b)); box-shadow:0 6px 22px rgba(0,255,231,.22) }
+    .btn.ghost{ color:var(--fg); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10) }
     .btn:active{ transform:translateY(0) scale(.98) }
+    .btn:hover{ opacity:.95 }
 
-    .micro{
-      margin-top:12px; font-size:.9rem; color:#9aa7bd;
-    }
-    footer{
-      margin-top:18px; font-size:.8rem; color:#7a869a;
-    }
+    .micro{ margin-top:10px; font-size: var(--fs-micro); color:#8fa0ba }
+    footer{ margin-top:12px; font-size:.8rem; color:#7a869a }
     a{ color:#9ae6ff; text-decoration:none }
     a:hover{ text-decoration:underline }
 
-    /* tiny screens */
-    @media (max-width:380px){
-      .card{ padding:26px 18px }
-      .logo{ width:96px;height:96px; margin:-60px auto 10px }
-    }
+    @media (prefers-reduced-motion: reduce){ *{ animation: none !important; transition: none !important } }
+    @media (max-width: 360px){ :root{ --blur: 8px } .ambient{ display:none } .subtitle{ max-width: 52ch } }
+
+    body.low-power .ambient{ display:none }
+    body.low-power .card{ backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(17,25,40,.75) }
+    body.low-power *{ animation:none !important; transition:none !important; box-shadow:none }
+    body.low-power .btn.primary{ background:#a6eee9; color:#000 }
   </style>
 </head>
 <body>
 
-  <!-- Ambient field -->
   <div class="ambient" aria-hidden="true">
-    <div class="glow a"></div>
-    <div class="glow b"></div>
-    <div class="glow c"></div>
+    <div class="glow a"></div><div class="glow b"></div><div class="glow c"></div>
   </div>
 
-  <!-- Glass card -->
-  <main class="card" role="main" aria-label="45dgof8-pulse glass interface">
-    <img src="pulse256.webp" alt="45dgof8-pulse logo" class="logo" loading="lazy" decoding="async">
-
-    <h1>45dgof8-pulse</h1>
-    <p class="subtitle">
-      The neutral coordinator for intent, trust, and payment flow.
-      A dark-glass control layer with privacy by design — no custody, metadata only.
-    </p>
-
-    <div class="pulse-dot" aria-label="Live signal indicator"></div>
-
-    <div class="cta">
-      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">
-        <button class="btn primary">Enter via 45dgof8-pulse</button>
-      </a>
-      <a href="/disclaimer.html">
-        <button class="btn ghost">Read Disclaimer</button>
-      </a>
+  <div class="wrap">
+    <div class="topbar" role="region" aria-label="Display options">
+      <span class="lp-label">Low Power</span>
+      <label class="lp-toggle" aria-label="Toggle Low Power Mode">
+        <input id="lp" type="checkbox" />
+        <span class="lp-track"><span class="lp-thumb"></span></span>
+      </label>
     </div>
 
-    <p class="micro">
-      Secure link. Ephemeral session. <strong>No stored payment data.</strong>
-    </p>
+    <main class="card" role="main" aria-label="45dgof8-pulse mobile interface">
+      <img src="pulse256.webp" alt="45dgof8-pulse logo" class="logo" loading="lazy" decoding="async">
 
-    <footer>
-      © 2025 45dgof8 — Made by one. Used by many. · <a href="mailto:45dgof8@gmail.com">Contact</a>
-    </footer>
-  </main>
+      <h1>45dgof8-pulse</h1>
+      <p class="subtitle">
+        Neutral coordinator for intent, trust, and payment flow.
+        Privacy by design — no custody, metadata only.
+      </p>
 
+      <div class="pulse-dot" aria-label="Live signal indicator"></div>
+
+      <div class="cta">
+        <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">
+          <button class="btn primary">Enter via 45dgof8-pulse</button>
+        </a>
+        <a href="/disclaimer.html">
+          <button class="btn ghost">Disclaimer</button>
+        </a>
+      </div>
+
+      <p class="micro">
+        Secure link. Ephemeral session. <strong>No stored payment data.</strong>
+      </p>
+
+      <footer>
+        © 2025 45dgof8 — Made by one. Used by many. · <a href="mailto:45dgof8@gmail.com">Contact</a>
+      </footer>
+    </main>
+  </div>
+
+  <noscript>
+    <div style="position:fixed;bottom:8px;left:0;right:0;text-align:center;font:14px/1.4 Inter,system-ui,sans-serif;color:#9aa7bd;">
+      Low Power toggle requires JavaScript. Page still works without it.
+    </div>
+  </noscript>
+
+  <script>
+    (function(){
+      const key = '45dgof8-lp';
+      const body = document.body;
+      const checkbox = document.getElementById('lp');
+      try{
+        const saved = localStorage.getItem(key);
+        if(saved === '1'){ body.classList.add('low-power'); checkbox.checked = true; }
+      }catch(e){}
+      checkbox.addEventListener('change', ()=>{
+        const on = checkbox.checked;
+        body.classList.toggle('low-power', on);
+        try{ localStorage.setItem(key, on ? '1' : '0'); }catch(e){}
+      });
+    })();
+  </script>
 </body>
 </html>
