@@ -3,119 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>45dgof8-pulse – The Final Signal</title>
+  <title>45dgof8-pulse — Dark Glass</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      background: #0f172a;
-      font-family: 'Inter', sans-serif;
-      color: #e2e8f0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2rem;
+    :root{
+      --bg0:#050814;
+      --bg1:#0b1226;
+      --fg:#e2e8f0;
+      --muted:#94a3b8;
+      --accent-a:#00ffe7;
+      --accent-b:#ff00c8;
+      --accent-c:#00b4ff;
+      --glass-bg:rgba(17, 25, 40, 0.55);
+      --glass-br:18px;
+      --ring:rgba(0,255,231,0.45);
     }
 
-    h1 {
-      font-size: 3rem;
-      background: linear-gradient(90deg, #00ffe7, #ff00c8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
+    /* Page base */
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--fg);
+      background: radial-gradient(1200px 800px at 20% 20%, #0d1730 0%, transparent 60%),
+                  radial-gradient(900px 700px at 80% 30%, #1a0f2a 0%, transparent 60%),
+                  linear-gradient(180deg, var(--bg1), var(--bg0) 60%);
+      display:flex; align-items:center; justify-content:center;
+      overflow-x:hidden; padding:24px;
     }
 
-    p {
-      max-width: 720px;
-      font-size: 1.1rem;
-      color: #cbd5e1;
+    /* Ambient “signal” dots */
+    .ambient{
+      position:fixed; inset:0; pointer-events:none; overflow:hidden;
+    }
+    .glow{
+      position:absolute; border-radius:50%; filter:blur(60px); opacity:.25;
+      animation: drift 18s ease-in-out infinite;
+    }
+    .glow.a{ width:320px;height:320px;background:var(--accent-a); top:8%; left:10%; }
+    .glow.b{ width:260px;height:260px;background:var(--accent-b); bottom:12%; right:12%; animation-duration:22s;}
+    .glow.c{ width:200px;height:200px;background:var(--accent-c); top:50%; right:30%; animation-duration:26s;}
+    @keyframes drift{
+      0%,100%{ transform:translate3d(0,0,0) }
+      50%{ transform:translate3d(20px,-20px,0) }
     }
 
-    .pulse {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #00ffe7;
-      animation: pulse 1.5s infinite ease-in-out;
-      margin: 2rem auto;
+    /* Glass card */
+    .card{
+      width:min(880px, 92vw);
+      padding:32px 28px;
+      border-radius: var(--glass-br);
+      background: var(--glass-bg);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, .45),
+        inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(16px) saturate(120%);
+      -webkit-backdrop-filter: blur(16px) saturate(120%);
+      text-align:center;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.7); opacity: 0.2; }
+    .logo{
+      width:112px; height:112px; margin:-72px auto 12px;
+      border-radius:22px;
+      display:block; object-fit:contain; background:rgba(255,255,255,0.02);
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.02), 0 0 24px var(--ring);
+      animation: float 4.5s ease-in-out infinite;
+    }
+    @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+    h1{
+      margin:.25rem 0 0.5rem; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing:-.02em;
+      background:linear-gradient(90deg, var(--accent-a), var(--accent-b), var(--accent-c));
+      background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      animation: gradientShift 7s ease-in-out infinite alternate;
+    }
+    @keyframes gradientShift{ from{background-position:0%} to{background-position:100%} }
+
+    .subtitle{
+      color:var(--muted); font-size:1.05rem; line-height:1.7; margin:0 auto 18px; max-width:64ch;
     }
 
-    .highlight {
-      font-weight: 600;
-      color: #f472b6;
+    .pulse-dot{
+      width:22px; height:22px; border-radius:50%; margin:18px auto 8px;
+      background:var(--accent-a);
+      box-shadow:0 0 22px rgba(0,255,231,.6), 0 0 44px rgba(0,255,231,.25) inset;
+      animation:pulse 1.6s ease-in-out infinite;
     }
+    @keyframes pulse{ 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.7);opacity:.2}}
 
-    .support-section {
-      margin-top: 2rem;
+    .cta{
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;
     }
-
-    .support-button {
-      background: #00ffe7;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 1rem;
+    .btn{
+      appearance:none; border:none; cursor:pointer; font-weight:600;
+      padding:12px 18px; border-radius:12px; font-size:1rem;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .2s ease;
     }
-
-    .support-button:hover {
-      background: #00cfc2;
+    .btn.primary{
+      color:#000;
+      background:linear-gradient(90deg, var(--accent-a), var(--accent-b));
+      box-shadow:0 6px 24px rgba(0,255,231,.25);
     }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.8rem;
-      color: #64748b;
+    .btn.ghost{
+      color:var(--fg); background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
     }
+    .btn:hover{ transform:translateY(-2px); opacity:.95 }
+    .btn:active{ transform:translateY(0) scale(.98) }
 
-    a {
-      color: #00ffe7;
-      text-decoration: none;
+    .micro{
+      margin-top:12px; font-size:.9rem; color:#9aa7bd;
     }
+    footer{
+      margin-top:18px; font-size:.8rem; color:#7a869a;
+    }
+    a{ color:#9ae6ff; text-decoration:none }
+    a:hover{ text-decoration:underline }
 
-    a:hover {
-      text-decoration: underline;
+    /* tiny screens */
+    @media (max-width:380px){
+      .card{ padding:26px 18px }
+      .logo{ width:96px;height:96px; margin:-60px auto 10px }
     }
   </style>
 </head>
 <body>
 
-  <h1>The Pulse</h1>
-  <div class="pulse"></div>
-
-  <p>
-    This is where it all converges: privacy, precision, payment coordination, and a deep respect for human intent. <br />
-    <span class="highlight">45dgof8-pulse</span> is not a brand. It’s a signal – from one person to the world.
-  </p>
-
-  <div class="support-section">
-    <p>Do you feel the pulse? Then maybe help keep it beating.</p>
-
-    <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">
-      <button class="support-button">Support or Pay via 45dgof8‑pulse</button>
-    </a>
-
-    <p style="font-size: 0.9rem; margin-top: 1rem;">
-      No login. No custody. Metadata only. The payment link is secure and ephemeral.
-    </p>
+  <!-- Ambient field -->
+  <div class="ambient" aria-hidden="true">
+    <div class="glow a"></div>
+    <div class="glow b"></div>
+    <div class="glow c"></div>
   </div>
 
-  <footer>
-    &copy; 2025 45dgof8 • Made by one. Used by many.<br />
-    <a href="mailto:45dgof8@gmail.com">Contact</a> • <a href="/disclaimer.html">Disclaimer</a>
-  </footer>
+  <!-- Glass card -->
+  <main class="card" role="main" aria-label="45dgof8-pulse glass interface">
+    <img src="pulse256.webp" alt="45dgof8-pulse logo" class="logo" loading="lazy" decoding="async">
+
+    <h1>45dgof8-pulse</h1>
+    <p class="subtitle">
+      The neutral coordinator for intent, trust, and payment flow.
+      A dark-glass control layer with privacy by design — no custody, metadata only.
+    </p>
+
+    <div class="pulse-dot" aria-label="Live signal indicator"></div>
+
+    <div class="cta">
+      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">
+        <button class="btn primary">Enter via 45dgof8-pulse</button>
+      </a>
+      <a href="/disclaimer.html">
+        <button class="btn ghost">Read Disclaimer</button>
+      </a>
+    </div>
+
+    <p class="micro">
+      Secure link. Ephemeral session. <strong>No stored payment data.</strong>
+    </p>
+
+    <footer>
+      © 2025 45dgof8 — Made by one. Used by many. · <a href="mailto:45dgof8@gmail.com">Contact</a>
+    </footer>
+  </main>
 
 </body>
 </html>
