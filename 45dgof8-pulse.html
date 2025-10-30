@@ -4,26 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b1226" />
-  <meta name="description" content="45dgof8-pulse — a neutral coordinator for intent, trust, and payment flow. Privacy by design: no custody, metadata only." />
+  <meta name="description" content="45dgof8-pulse — a neutral coordinator for intent, trust, and payment flow. Privacy by design — no custody, metadata only." />
   <title>45dgof8-pulse — Mobile First</title>
 
-  <!-- Favicon + Open Graph -->
-  <link rel="icon" type="image/webp" href="pulse256.webp" />
+  <!-- Favicon: inline SVG (no external files needed) -->
+  <link rel="icon" type="image/svg+xml"
+    href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect rx="42" width="256" height="256" fill="%231c202a"/><path d="M40 168h44l22-48 24 64 14-32h28" fill="none" stroke="%23e9f3ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><text x="128" y="100" font-family="Inter,Arial" font-size="56" font-weight="700" text-anchor="middle" fill="%23e9f3ff">Pulse</text></svg>' />
+
+  <!-- Canonical + Open Graph (minimal, no image) -->
+  <link rel="canonical" href="https://45dgof8.com/45dgof8-pulse.html" />
   <meta property="og:title" content="45dgof8-pulse — Central Signal" />
   <meta property="og:description" content="The neutral coordinator for intent, trust, and payment flow. Privacy by design — no custody, metadata only." />
-  <meta property="og:image" content="https://45dgof8.com/pulse256.webp" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://45dgof8.com/" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:url" content="https://45dgof8.com/45dgof8-pulse.html" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg0:#050814; --bg1:#0b1226; --fg:#e2e8f0; --muted:#9aa7bd;
       --a:#00ffe7; --b:#ff00c8; --c:#00b4ff; --ring:rgba(0,255,231,.45);
       --glass:rgba(17,25,40,.55); --r:16px; --blur:12px;
-      --fs-h: clamp(1.6rem, 6vw, 2.3rem);
+      --fs-h: clamp(1.8rem, 6vw, 2.4rem);
       --fs-p: clamp(1rem, 3.8vw, 1.075rem);
       --fs-micro: clamp(.85rem, 3.2vw, .95rem);
       --pad: clamp(18px, 4.5vw, 28px);
@@ -31,7 +34,6 @@
       --btn-pad-x: clamp(16px, 5.5vw, 18px);
       --logo: clamp(80px, 22vw, 112px);
     }
-
     html,body{height:100%}
     body{
       margin:0; font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
@@ -42,7 +44,6 @@
       display:flex; align-items:center; justify-content:center;
       padding: env(safe-area-inset-top) var(--pad) env(safe-area-inset-bottom);
     }
-
     .ambient{position:fixed; inset:0; pointer-events:none; overflow:hidden}
     .glow{position:absolute; border-radius:50%; filter:blur(60px); opacity:.22; animation:drift 18s ease-in-out infinite}
     .glow.a{ width:260px;height:260px;background:var(--a); top:8%; left:6%}
@@ -70,19 +71,32 @@
       text-align:center;
     }
 
-    .logo{ width:var(--logo); height:var(--logo); margin: calc(-.6 * var(--logo)) auto 8px; border-radius: 20px; display:block; object-fit:contain; background:rgba(255,255,255,.02); box-shadow: 0 0 0 6px rgba(255,255,255,.02), 0 0 18px var(--ring); animation: float 4.5s ease-in-out infinite }
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+    .logo{
+      width:var(--logo); height:var(--logo);
+      margin: calc(-.6 * var(--logo)) auto 8px;
+      border-radius:20px; display:block; background:transparent;
+    }
 
-    h1{ margin:.25rem 0 .4rem; font-size: var(--fs-h); letter-spacing:-.02em; background:linear-gradient(90deg, var(--a), var(--b), var(--c)); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation: gradient 6.5s ease-in-out infinite alternate }
+    h1{
+      margin:.25rem 0 .4rem; font-size: var(--fs-h); letter-spacing:-.02em;
+      background:linear-gradient(90deg, var(--a), var(--b), var(--c));
+      background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      animation: gradient 6.5s ease-in-out infinite alternate;
+    }
     @keyframes gradient{from{background-position:0%}to{background-position:100%}}
 
     .subtitle{ margin: 0 auto 12px; max-width: 60ch; font-size: var(--fs-p); line-height:1.6; color: var(--muted) }
-
     .pulse-dot{ width:20px;height:20px;border-radius:50%;margin:14px auto 6px; background:var(--a); box-shadow:0 0 18px rgba(0,255,231,.55), 0 0 34px rgba(0,255,231,.22) inset; animation:pulse 1.6s ease-in-out infinite }
     @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.22}}
 
     .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-    .btn{ appearance:none;border:none;cursor:pointer;font-weight:600;border-radius:12px; padding: var(--btn-pad-y) var(--btn-pad-x); font-size: clamp(1rem, 3.8vw, 1.05rem); min-width: 48px; min-height: 44px; transition: transform .16s ease, box-shadow .18s ease, opacity .18s ease }
+    .btn{
+      appearance:none;border:none;cursor:pointer;font-weight:600;border-radius:12px;
+      padding: var(--btn-pad-y) var(--btn-pad-x);
+      font-size: clamp(1rem, 3.8vw, 1.05rem);
+      min-width: 48px; min-height: 44px;
+      transition: transform .16s ease, box-shadow .18s ease, opacity .18s ease;
+    }
     .btn.primary{ color:#000; background:linear-gradient(90deg, var(--a), var(--b)); box-shadow:0 6px 22px rgba(0,255,231,.22) }
     .btn.ghost{ color:var(--fg); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10) }
     .btn:active{ transform:translateY(0) scale(.98) }
@@ -90,8 +104,7 @@
 
     .micro{ margin-top:10px; font-size: var(--fs-micro); color:#8fa0ba }
     footer{ margin-top:12px; font-size:.8rem; color:#7a869a }
-    a{ color:#9ae6ff; text-decoration:none }
-    a:hover{ text-decoration:underline }
+    a{ color:#9ae6ff; text-decoration:none } a:hover{ text-decoration:underline }
 
     @media (prefers-reduced-motion: reduce){ *{ animation: none !important; transition: none !important } }
     @media (max-width: 360px){ :root{ --blur: 8px } .ambient{ display:none } .subtitle{ max-width: 52ch } }
@@ -117,12 +130,17 @@
       </label>
     </div>
 
-    <main class="card" role="main" aria-label="45dgof8-pulse mobile interface">
-      <img src="pulse256.webp" alt="45dgof8-pulse logo" class="logo" loading="lazy" decoding="async">
+    <main class="card" role="main" aria-label="45dgof8-pulse interface">
+      <!-- Inline logo (same as favicon), no external files -->
+      <svg class="logo" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-label="45dgof8-pulse logo">
+        <rect rx="42" width="256" height="256" fill="#1c202a"/>
+        <path d="M40 168h44l22-48 24 64 14-32h28" fill="none" stroke="#e9f3ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="128" y="100" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700" text-anchor="middle" fill="#e9f3ff">Pulse</text>
+      </svg>
 
       <h1>45dgof8-pulse</h1>
       <p class="subtitle">
-        Neutral coordinator for intent, trust, and payment flow.
+        The neutral coordinator for intent, trust, and payment flow.
         Privacy by design — no custody, metadata only.
       </p>
 
@@ -133,7 +151,7 @@
           <button class="btn primary">Enter via 45dgof8-pulse</button>
         </a>
         <a href="/disclaimer.html">
-          <button class="btn ghost">Disclaimer</button>
+          <button class="btn ghost">Read Disclaimer</button>
         </a>
       </div>
 
