@@ -2,17 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>TSG – Tech Support GPT (Modern)</title>
+  <title>TSG – Tech Support GPT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Expert, step-by-step tech support for Linux, Windows, macOS, and hardware issues." />
+  <meta name="robots" content="index,follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
   <link rel="canonical" href="https://45dgof8.com/TSG-tech-support-gpt.html" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Social -->
   <meta property="og:title" content="TSG – Tech Support GPT" />
   <meta property="og:description" content="Professional, approachable tech help for your personal computing needs." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://45dgof8.com/TSG-tech-support-gpt.html" />
   <meta property="og:image" content="https://45dgof8.com/TSG-pic.webp" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Performance: Preload hero image -->
+  <link rel="preload" as="image" href="https://45dgof8.com/TSG-TechSupport-GPT.webp" type="image/webp" imagesizes="(max-width: 880px) 100vw, 50vw" imagesrcset="https://45dgof8.com/TSG-TechSupport-GPT.webp 1200w">
 
   <style>
     /* ====== CSS VARIABLES (THEME) ====== */
@@ -63,15 +77,12 @@
     .skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
     .skip:focus { position:static; width:auto; height:auto; padding:.5rem 1rem; background:var(--card); border-radius:8px; margin:1rem }
 
-    .wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 24px }
 
-    header.site {
+    header[role="banner"].site {
       position: sticky; top: 0; z-index: 50;
       background: linear-gradient(180deg, rgba(0,0,0,.35), transparent);
+      -webkit-backdrop-filter: saturate(140%) blur(6px);
       backdrop-filter: saturate(140%) blur(6px);
     }
     .bar {
@@ -83,10 +94,7 @@
       box-shadow: var(--shadow);
     }
 
-    .brand {
-      display:flex; align-items:center; gap:.75rem;
-      font-weight: 800; letter-spacing:.2px;
-    }
+    .brand { display:flex; align-items:center; gap:.75rem; font-weight: 800; letter-spacing:.2px }
     .brand .logo {
       width: 36px; height: 36px; border-radius: 10px;
       background: conic-gradient(from 210deg at 50% 50%, #5af0b3, #ffd54a, #7ab7ff, #5af0b3);
@@ -102,11 +110,9 @@
     .controls { display:flex; align-items:center; gap:12px; flex-wrap: wrap }
     select, button, .btn {
       font: inherit;
-      padding: 10px 12px;
-      border-radius: 10px;
+      padding: 10px 12px; border-radius: 10px;
       border: 1px solid rgba(255,255,255,.14);
-      background: var(--card);
-      color: var(--text);
+      background: var(--card); color: var(--text);
       box-shadow: var(--shadow);
     }
     select:focus, button:focus, .btn:focus { outline: 2px solid var(--ring); outline-offset: 2px }
@@ -114,13 +120,8 @@
     .theme-toggle { cursor: pointer }
     .theme-toggle span { display:inline-block; width:1.25rem; text-align:center }
 
-    .hero {
-      display:grid; gap: 18px; grid-template-columns: 1fr;
-      margin-top: 18px;
-    }
-    @media (min-width: 880px) {
-      .hero { grid-template-columns: 1.05fr .95fr; align-items: center }
-    }
+    .hero { display:grid; gap: 18px; grid-template-columns: 1fr; margin-top: 18px }
+    @media (min-width: 880px) { .hero { grid-template-columns: 1.05fr .95fr; align-items: center } }
 
     .hero-card {
       padding: clamp(16px, 3vw, 28px);
@@ -130,39 +131,24 @@
       box-shadow: var(--shadow);
     }
 
-    .hero h1 {
-      margin: 0 0 6px;
-      font-size: clamp(28px, 4.5vw, 42px);
-      font-weight: 900;
-      letter-spacing: .2px;
-    }
+    .hero h1 { margin: 0 0 6px; font-size: clamp(28px, 4.5vw, 42px); font-weight: 900; letter-spacing: .2px }
     .subtitle { color: var(--muted); margin: 0 0 8px }
 
     .hero-img {
       width: 100%; max-height: 360px; object-fit: contain; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: #0b0e15;
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.08); background: #0b0e15; box-shadow: var(--shadow);
     }
 
     /* tips console */
     .console {
-      position: relative;
-      margin-top: 14px;
-      padding: 16px 48px 16px 16px;
-      background: #06110a;
-      color: #72f1b8;
-      border-radius: 12px;
+      position: relative; margin-top: 14px; padding: 16px 48px 16px 16px;
+      background: #06110a; color: #72f1b8; border-radius: 12px;
       border: 1px solid rgba(90,240,179,.35);
       box-shadow: 0 0 0 3px rgba(90,240,179,.06) inset, var(--shadow);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       min-height: 60px;
     }
-    .console::before {
-      content: 'TSG ▸';
-      color: #38d392;
-      margin-right: 8px;
-    }
+    .console::before { content: 'TSG ▸'; color: #38d392; margin-right: 8px }
     .console .copy {
       position:absolute; top:8px; right:8px;
       padding: 6px 10px; background:#0b1a12; border:1px solid rgba(90,240,179,.35);
@@ -171,52 +157,63 @@
     .console .copy:hover { filter: brightness(1.05) }
 
     /* sections */
-    .grid {
-      display:grid; gap: 18px; margin-top: 28px;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 760px) {
-      .grid.two { grid-template-columns: 1fr 1fr }
-      .grid.three { grid-template-columns: 1fr 1fr 1fr }
-    }
+    .grid { display:grid; gap: 18px; margin-top: 28px; grid-template-columns: 1fr }
+    @media (min-width: 760px) { .grid.two { grid-template-columns: 1fr 1fr } .grid.three { grid-template-columns: 1fr 1fr 1fr } }
 
-    .card {
-      padding: 18px;
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+    .card { padding: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow) }
     h2 { margin: 0 0 10px; font-size: clamp(20px, 2.6vw, 26px) }
     ul { margin: 0; padding-left: 1.2rem }
     li + li { margin-top: 6px }
 
-    footer {
-      margin: 36px 0 24px; text-align:center; color: var(--muted);
-    }
+    footer[role="contentinfo"] { margin: 36px 0 24px; text-align:center; color: var(--muted) }
 
     /* animations */
-    @keyframes float {
-      from { transform: translateY(0) } 50% { transform: translateY(-4px) } to { transform: translateY(0) }
-    }
+    @keyframes float { from { transform: translateY(0) } 50% { transform: translateY(-4px) } to { transform: translateY(0) } }
     .logo { animation: float 6s ease-in-out infinite }
 
     /* small helper pills */
-    .pill {
-      display:inline-block; padding: 4px 10px; border-radius: 999px;
-      background: rgba(122, 183, 255, .12); color: #cfe2ff; border: 1px solid rgba(122, 183, 255, .22);
-      font-size: 12px; letter-spacing: .3px;
-    }
+    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(122, 183, 255, .12); color: #cfe2ff; border: 1px solid rgba(122, 183, 255, .22); font-size: 12px; letter-spacing: .3px }
 
     /* responsive helpers */
     .hide-mobile { display:none }
     @media (min-width: 540px) { .hide-mobile { display:inline } }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) { .logo { animation: none } }
+
+    /* Consent banner */
+    .consent {
+      position: fixed; inset: auto 0 0 0; z-index: 60;
+      display:none; padding: 12px 16px; background: var(--bg-soft); color: var(--text);
+      border-top: 1px solid rgba(255,255,255,.08); box-shadow: 0 -10px 30px rgba(0,0,0,.25);
+    }
+    .consent.show { display:block }
+    .consent .inner { max-width: 1120px; margin: 0 auto; display:flex; gap:12px; align-items:center; justify-content: space-between; flex-wrap: wrap }
+    .consent p { margin: 0; color: var(--muted) }
+    .consent .actions { display:flex; gap:8px }
+  </style>
+  <!-- Floating Chat Button styles + EVA offset -->
+  <style>
+    :root { --eva-magic-bottom: 88px; }
+    #tsg-chat-fab {
+      position: fixed; right: 16px; bottom: 16px; z-index: 2147483646;
+      width: 56px; height: 56px; border: 0; border-radius: 9999px; cursor: pointer;
+      display: grid; place-items: center; user-select: none;
+      background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
+      box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
+      transition: transform .15s ease, box-shadow .2s ease;
+    }
+    #tsg-chat-fab:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25) }
+    #tsg-chat-fab:active { transform: translateY(0) }
+    #tsg-chat-fab .badge { position:absolute; top:-6px; right:-6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 9999px; background: var(--brand-2); color: #00301e; font-weight: 700; font-size: 12px; display:grid; place-items:center; border:1px solid rgba(0,0,0,.1) }
+    #tsg-chat-fab .icon { font-size: 22px; }
+    @media (prefers-reduced-motion: reduce) { #tsg-chat-fab { transition: none } }
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
 
-  <header class="site">
+  <header class="site" role="banner">
     <div class="wrap bar" role="navigation" aria-label="Top bar">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
@@ -241,14 +238,14 @@
     </div>
   </header>
 
-  <main id="main" class="wrap">
-    <section class="hero">
+  <main id="main" class="wrap" role="main">
+    <section class="hero" aria-labelledby="h-hero">
       <div class="hero-card">
-        <h1>Make tech troubles… less troubling.</h1>
+        <h1 id="h-hero">Make tech troubles… less troubling.</h1>
         <p class="subtitle">I help on Linux, Windows, and macOS with clear, security-minded guidance — at your pace.</p>
 
         <div class="console" aria-live="polite">
-          <button class="copy" type="button" id="copyBtn" title="Copy tip to clipboard">📋 Copy</button>
+          <button class="copy" type="button" id="copyBtn" title="Copy tip to clipboard" aria-label="Copy current tip to clipboard">📋 Copy</button>
           <span id="tipLine">TSG is loading your wisdom...</span>
         </div>
 
@@ -257,12 +254,12 @@
         </noscript>
       </div>
 
-      <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT hero" loading="lazy">
+      <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT hero" loading="lazy" decoding="async" width="1200" height="600">
     </section>
 
-    <section class="grid two">
+    <section class="grid two" aria-labelledby="h-what">
       <div class="card">
-        <h2>⚙️ What I Do</h2>
+        <h2 id="h-what">⚙️ What I Do</h2>
         <ul>
           <li>Step-by-step PC troubleshooting</li>
           <li>Customization & performance optimization</li>
@@ -282,11 +279,11 @@
       </div>
     </section>
 
-    <section class="grid two">
+    <section class="grid two" aria-labelledby="h-resources">
       <div class="card">
-        <h2>🌐 Recommended Resources</h2>
+        <h2 id="h-resources">🌐 Recommended Resources</h2>
         <ul>
-          <li><a href="https://superuser.com" target="_blank" rel="noopener">SuperUser</a></li>
+          <li><a href="https://superuser.com" target="_blank" rel="noopener" referrerpolicy="no-referrer-when-downgrade">SuperUser</a></li>
           <li><a href="https://stackoverflow.com" target="_blank" rel="noopener">Stack Overflow</a></li>
           <li><a href="https://forums.tomshardware.com" target="_blank" rel="noopener">Tom’s Hardware</a></li>
           <li><a href="https://wiki.archlinux.org" target="_blank" rel="noopener">Arch Wiki</a></li>
@@ -307,9 +304,9 @@
       </div>
     </section>
 
-    <section class="grid two">
+    <section class="grid two" aria-labelledby="h-coverage">
       <div class="card">
-        <h2>📚 Broader Support Coverage</h2>
+        <h2 id="h-coverage">📚 Broader Support Coverage</h2>
         <ul>
           <li>OS Help: Linux, Windows, macOS</li>
           <li>Hardware: troubleshooting, upgrades, peripherals</li>
@@ -322,15 +319,24 @@
         <h2>📩 Contact & Support</h2>
         <p>Questions or feedback? Email: <strong><a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></strong></p>
         <p>Support the project: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
-        <p>Payments & invoices: <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a></p>
-        <p class="muted" style="color:var(--muted); margin-top:10px">Tip: add this file as <code>TSG-modern.html</code> and keep the old one as a backup.</p>
       </div>
     </section>
 
-    <footer>
-      © 2025 TSG – Tech Support GPT • <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a>
+    <footer role="contentinfo">
+      © <span id="year">2025</span> TSG – Tech Support GPT • <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a>
     </footer>
   </main>
+
+  <!-- Consent banner (optional, privacy-friendly) -->
+  <div id="consent" class="consent" role="region" aria-label="Privacy choices">
+    <div class="inner">
+      <p>We use privacy-friendly analytics to improve the site. No cookies for ads, ever. You’re in control.</p>
+      <div class="actions">
+        <button id="consent-accept" class="btn" type="button" aria-label="Accept analytics">Allow</button>
+        <button id="consent-decline" class="btn" type="button" aria-label="Decline analytics">Decline</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     // ========= THEME (dark/light) =========
@@ -342,8 +348,7 @@
         document.getElementById("themeIcon")?.replaceChildren(document.createTextNode("☀️"));
       }
     })();
-    const themeBtn = document.getElementById("themeBtn");
-    themeBtn?.addEventListener("click", () => {
+    document.getElementById("themeBtn")?.addEventListener("click", () => {
       const root = document.documentElement;
       const isLight = root.classList.toggle("light");
       localStorage.setItem("tsg-theme", isLight ? "light" : "dark");
@@ -358,8 +363,7 @@
       macos: 'https://45dgof8.com/tsg-feed-macos.json'
     };
     let tips = ["TSG is loading your wisdom..."];
-    let idx = 0;
-    let rotator;
+    let idx = 0; let rotator; const ROTATE_MS = 10000;
 
     const tipEl = document.getElementById("tipLine");
     const osEl  = document.getElementById("os");
@@ -374,21 +378,12 @@
       } catch(e) {
         tips = ["⚠️ Unable to load TSG tips. Please check connection."];
       }
-      idx = 0;
-      renderTip();
-      rotator = setInterval(nextTip, 10000);
+      idx = 0; renderTip(); rotator = setInterval(nextTip, ROTATE_MS);
     }
 
     function renderTip() {
-      if (!tipEl) return;
-      // simple type-in effect
-      const text = tips[idx];
-      tipEl.textContent = "";
-      let i = 0;
-      const step = () => {
-        tipEl.textContent += text.charAt(i++);
-        if (i <= text.length) requestAnimationFrame(step);
-      };
+      if (!tipEl) return; const text = tips[idx]; tipEl.textContent = "";
+      let i = 0; const step = () => { tipEl.textContent += text.charAt(i++); if (i <= text.length) requestAnimationFrame(step); };
       requestAnimationFrame(step);
     }
     function nextTip() { idx = (idx + 1) % tips.length; renderTip(); }
@@ -398,25 +393,64 @@
     copyEl?.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(tips[idx]);
-        copyEl.textContent = "✅ Copied";
-        setTimeout(() => copyEl.textContent = "📋 Copy", 1000);
-      } catch {
-        alert("Copy failed");
-      }
+        copyEl.textContent = "✅ Copied"; setTimeout(() => copyEl.textContent = "📋 Copy", 1000);
+      } catch { alert("Copy failed"); }
     });
 
     // init
     loadTips(osEl ? osEl.value : "linux");
-    // keyboard: cycle tips
     document.addEventListener("keydown", (e) => {
       if (e.altKey && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
-        e.preventDefault();
-        e.key === "ArrowRight" ? nextTip() : prevTip();
+        e.preventDefault(); e.key === "ArrowRight" ? nextTip() : prevTip();
       }
     });
+
+    // ========= YEAR =========
+    const y = document.getElementById('year'); if (y) y.textContent = String(new Date().getFullYear());
+
+    // ========= CONSENT + (placeholder) ANALYTICS =========
+    (function consent(){
+      const key = 'tsg-consent';
+      const el = document.getElementById('consent');
+      if (!el) return;
+      const state = localStorage.getItem(key);
+      if (state === 'allow' || state === 'decline') return; // already chosen
+      el.classList.add('show');
+      const accept = document.getElementById('consent-accept');
+      const decline = document.getElementById('consent-decline');
+      accept?.addEventListener('click', () => { localStorage.setItem(key, 'allow'); el.classList.remove('show'); enableAnalytics(); });
+      decline?.addEventListener('click', () => { localStorage.setItem(key, 'decline'); el.classList.remove('show'); });
+
+      // If previously allowed, enable immediately
+      if (state === 'allow') enableAnalytics();
+
+      function enableAnalytics(){
+        // Example: Plausible (self-host or plausible.io) – loads only after consent
+        // const s = document.createElement('script');
+        // s.defer = true; s.setAttribute('data-domain', '45dgof8.com');
+        // s.src = 'https://plausible.io/js/script.js';
+        // document.head.appendChild(s);
+      }
+    })();
   </script>
 
-  <!-- Optional: your “EVA MAGIC BUTTON” preserved -->
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TSG – Tech Support GPT",
+    "url": "https://45dgof8.com/TSG-tech-support-gpt.html",
+    "description": "Expert, approachable tech help for Linux, Windows, and macOS users.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "45dgof8",
+      "url": "https://45dgof8.com"
+    }
+  }
+  </script>
+
+  <!-- Optional: EVA MAGIC BUTTON (kept) -->
   <script>
   (() => {
     const DESTS = [
@@ -427,22 +461,12 @@
       "https://45dgof8.com/CatArtCreator.html",
     ];
     const host = document.createElement("div");
-    host.style.position = "fixed";
-    host.style.inset = "auto 16px 16px auto";
-    host.style.zIndex = "2147483647";
-    host.setAttribute("aria-hidden", "true");
+    host.style.position = "fixed"; host.style.inset = "auto 16px 16px auto"; host.style.zIndex = "2147483647"; host.setAttribute("aria-hidden", "true");
     const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
     const style = document.createElement("style");
     style.textContent = `
       :host, * { box-sizing: border-box; }
-      .btn {
-        width: 48px; height: 48px; border: 0; border-radius: 9999px;
-        display: grid; place-items: center; cursor: pointer;
-        background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
-        box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
-        transition: transform .15s ease, box-shadow .2s ease;
-        user-select: none;
-      }
+      .btn { width: 48px; height: 48px; border: 0; border-radius: 9999px; display: grid; place-items: center; cursor: pointer; background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%); box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15); transition: transform .15s ease, box-shadow .2s ease; user-select: none; }
       .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
       .btn:active { transform: translateY(0); }
       .sparkle { font-size: 20px; line-height: 1; }
@@ -451,30 +475,44 @@
       :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
     `;
     const button = document.createElement("button");
-    button.className = "btn";
-    button.type = "button";
-    button.setAttribute("aria-label", "Teleport to a random page");
-    button.title = "Teleport ✨";
-    button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
+    button.className = "btn"; button.type = "button"; button.setAttribute("aria-label", "Teleport to a random page"); button.title = "Teleport ✨"; button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
     function pick() {
       const here = location.href.replace(/[#?].*$/, "");
       const pool = DESTS.filter(u => !here.startsWith(u));
       const list = pool.length ? pool : DESTS;
       return list[Math.floor(Math.random() * list.length)];
     }
-    button.addEventListener("click", e => {
-      const url = pick();
-      if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; }
-      location.href = url;
-    });
-    button.addEventListener("auxclick", e => {
-      if (e.button === 1) {
-        e.preventDefault();
-        window.open(pick(), "_blank", "noopener");
-      }
-    });
+    button.addEventListener("click", e => { const url = pick(); if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; } location.href = url; });
+    button.addEventListener("auxclick", e => { if (e.button === 1) { e.preventDefault(); window.open(pick(), "_blank", "noopener"); } });
     root.appendChild(style); root.appendChild(button); document.body.appendChild(host);
   })();
+  </script>
+  <!-- Floating Chat Button -->
+  <button id="tsg-chat-fab" type="button" aria-label="Open TSG chat in a new tab" title="Chat with TSG – Tech Support GPT">
+    <span class="icon" aria-hidden="true">💬</span>
+    <span class="badge" aria-hidden="true">Live</span>
+  </button>
+
+  <script>
+    (function chatFAB(){
+      const CHAT_URL = 'https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e';
+      const fab = document.getElementById('tsg-chat-fab');
+      if (!fab) return;
+      function openChat(newTab){
+        if (newTab) { window.open(CHAT_URL, '_blank', 'noopener'); }
+        else { window.location.href = CHAT_URL; }
+      }
+      fab.addEventListener('click', (e) => {
+        // Default: open in a new tab
+        openChat(true);
+      });
+      fab.addEventListener('auxclick', (e) => {
+        if (e.button === 1) { e.preventDefault(); openChat(true); }
+      });
+      fab.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(true); }
+      });
+    })();
   </script>
 </body>
 </html>
