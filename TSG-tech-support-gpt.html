@@ -1,369 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TSG – Tech Support GPT</title>
-  <meta name="description" content="Get expert, step-by-step tech support for Linux, Windows, macOS, and hardware issues." />
-  <meta name="keywords" content="tech support, Linux help, Windows troubleshooting, macOS tips, computer repair, secure computing, TSG, 45dgof8, tech gpt" />
-  <meta name="author" content="45dgof8" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="TSG – Tech Support GPT" />
-  <meta property="og:description" content="Professional, approachable tech help for your personal computing needs." />
-  <meta property="og:url" content="https://45dgof8.com/TSG-tech-support-gpt.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://45dgof8.com/TSG-pic.webp" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TSG – Tech Support GPT" />
-  <meta name="twitter:description" content="Expert, approachable tech support for computing issues — Linux, Windows, macOS and more." />
-  <meta name="twitter:image" content="https://45dgof8.com/TSG-pic.webp" />
-  <meta name="twitter:site" content="@45dgof8" />
-
+  <meta charset="utf-8" />
+  <title>TSG – Tech Support GPT (Modern)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Expert, step-by-step tech support for Linux, Windows, macOS, and hardware issues." />
   <link rel="canonical" href="https://45dgof8.com/TSG-tech-support-gpt.html" />
 
+  <!-- Social -->
+  <meta property="og:title" content="TSG – Tech Support GPT" />
+  <meta property="og:description" content="Professional, approachable tech help for your personal computing needs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://45dgof8.com/TSG-pic.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
+    /* ====== CSS VARIABLES (THEME) ====== */
+    :root {
+      --bg: #0d0f14;
+      --bg-soft: #121622;
+      --card: #0f1320;
+      --text: #e6e9f0;
+      --muted: #b7c0d9;
+      --brand: #ffd54a;
+      --brand-2: #5af0b3;
+      --link: #7ab7ff;
+      --ring: rgba(122, 183, 255, 0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    :root.light {
+      --bg: #f7f8fc;
+      --bg-soft: #ffffff;
+      --card: #ffffff;
+      --text: #1b2430;
+      --muted: #516079;
+      --brand: #996c00;
+      --brand-2: #0a7f55;
+      --link: #1453c5;
+      --ring: rgba(20, 83, 197, 0.25);
+      --shadow: 0 10px 30px rgba(17,24,39,.08);
+      --radius: 16px;
+    }
+
+    /* ====== BASE ====== */
+    * { box-sizing: border-box }
+    html, body { height: 100% }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding-top: 60px;
-      background: #f4f4f4;
-      color: #333;
+      font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(90,240,179,.10), transparent 60%),
+        radial-gradient(1000px 700px at 100% 0%, rgba(255,213,74,.10), transparent 55%),
+        var(--bg);
+      line-height: 1.55;
     }
-    header {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 1em;
-      text-align: center;
+    a { color: var(--link); text-decoration: none }
+    a:hover { text-decoration: underline }
+
+    /* ====== LAYOUT ====== */
+    .skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+    .skip:focus { position:static; width:auto; height:auto; padding:.5rem 1rem; background:var(--card); border-radius:8px; margin:1rem }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
     }
-    img.hero {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      display: block;
-      margin: 1em auto;
-      object-fit: contain;
+
+    header.site {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(180deg, rgba(0,0,0,.35), transparent);
+      backdrop-filter: saturate(140%) blur(6px);
     }
-    main {
-      padding: 2em;
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .bar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 12px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: color-mix(in oklab, var(--bg-soft) 75%, transparent);
+      box-shadow: var(--shadow);
     }
-    h1, h2 {
-      color: #222;
+
+    .brand {
+      display:flex; align-items:center; gap:.75rem;
+      font-weight: 800; letter-spacing:.2px;
     }
-    ul {
-      padding-left: 1.5em;
+    .brand .logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: conic-gradient(from 210deg at 50% 50%, #5af0b3, #ffd54a, #7ab7ff, #5af0b3);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset, 0 6px 16px rgba(0,0,0,.35);
     }
-    footer {
-      text-align: center;
-      padding: 1em;
-      background-color: #1a1a1a;
-      color: white;
-      margin-top: 2em;
+    .brand .title {
+      font-size: clamp(18px, 2.2vw, 22px);
+      background: linear-gradient(180deg, var(--brand), #fff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 1px 10px rgba(255,213,74,.15);
     }
-    a {
-      color: #0066cc;
+
+    .controls { display:flex; align-items:center; gap:12px; flex-wrap: wrap }
+    select, button, .btn {
+      font: inherit;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: var(--card);
+      color: var(--text);
+      box-shadow: var(--shadow);
     }
-    .chat-link {
-      display: block;
-      text-align: center;
-      margin: 2em 0;
-      font-size: 1.2em;
+    select:focus, button:focus, .btn:focus { outline: 2px solid var(--ring); outline-offset: 2px }
+
+    .theme-toggle { cursor: pointer }
+    .theme-toggle span { display:inline-block; width:1.25rem; text-align:center }
+
+    .hero {
+      display:grid; gap: 18px; grid-template-columns: 1fr;
+      margin-top: 18px;
     }
-    .ai-box {
-      background: #1e1e1e;
-      color: #00ff88;
-      font-family: monospace;
-      padding: 1em;
-      margin: 2em auto;
-      max-width: 800px;
-      text-align: center;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    @media (min-width: 880px) {
+      .hero { grid-template-columns: 1.05fr .95fr; align-items: center }
+    }
+
+    .hero-card {
+      padding: clamp(16px, 3vw, 28px);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .subtitle { color: var(--muted); margin: 0 0 8px }
+
+    .hero-img {
+      width: 100%; max-height: 360px; object-fit: contain; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: #0b0e15;
+      box-shadow: var(--shadow);
+    }
+
+    /* tips console */
+    .console {
       position: relative;
+      margin-top: 14px;
+      padding: 16px 48px 16px 16px;
+      background: #06110a;
+      color: #72f1b8;
+      border-radius: 12px;
+      border: 1px solid rgba(90,240,179,.35);
+      box-shadow: 0 0 0 3px rgba(90,240,179,.06) inset, var(--shadow);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      min-height: 60px;
     }
-    #os-select-bar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      text-align: center;
-      z-index: 9999;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 8px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    .console::before {
+      content: 'TSG ▸';
+      color: #38d392;
+      margin-right: 8px;
     }
-    #os-select-bar label {
-      font-weight: bold;
-      font-size: 1rem;
-      margin-right: 0.5em;
+    .console .copy {
+      position:absolute; top:8px; right:8px;
+      padding: 6px 10px; background:#0b1a12; border:1px solid rgba(90,240,179,.35);
+      border-radius:8px; color:#bffbe3; cursor:pointer;
     }
-    #os-select-bar select {
-      font-size: 1rem;
-      padding: 4px 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+    .console .copy:hover { filter: brightness(1.05) }
+
+    /* sections */
+    .grid {
+      display:grid; gap: 18px; margin-top: 28px;
+      grid-template-columns: 1fr;
     }
-    .visually-hidden-focusable {
-      position: absolute;
-      left: -9999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
+    @media (min-width: 760px) {
+      .grid.two { grid-template-columns: 1fr 1fr }
+      .grid.three { grid-template-columns: 1fr 1fr 1fr }
     }
-    .visually-hidden-focusable:focus {
-      position: static;
-      width: auto;
-      height: auto;
-      margin: 1em;
+
+    .card {
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
-    .container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2em 25%;
-  box-sizing: border-box;
-}
+    h2 { margin: 0 0 10px; font-size: clamp(20px, 2.6vw, 26px) }
+    ul { margin: 0; padding-left: 1.2rem }
+    li + li { margin-top: 6px }
+
+    footer {
+      margin: 36px 0 24px; text-align:center; color: var(--muted);
+    }
+
+    /* animations */
+    @keyframes float {
+      from { transform: translateY(0) } 50% { transform: translateY(-4px) } to { transform: translateY(0) }
+    }
+    .logo { animation: float 6s ease-in-out infinite }
+
+    /* small helper pills */
+    .pill {
+      display:inline-block; padding: 4px 10px; border-radius: 999px;
+      background: rgba(122, 183, 255, .12); color: #cfe2ff; border: 1px solid rgba(122, 183, 255, .22);
+      font-size: 12px; letter-spacing: .3px;
+    }
+
+    /* responsive helpers */
+    .hide-mobile { display:none }
+    @media (min-width: 540px) { .hide-mobile { display:inline } }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
-  <div id="os-select-bar">
-    <label for="os-select">Choose your OS:</label>
-    <select id="os-select" onchange="loadTSGTips(this.value)">
-      <option value="linux">Linux</option>
-      <option value="windows">Windows</option>
-      <option value="macos">macOS</option>
-    </select>
-  </div>
-  <header>
-    <h1 style="color:#FFD700; text-shadow: 1px 1px 2px #000;">👑 TSG – Tech Support GPT</h1>
-    <p>Your Expert for PC Troubleshooting, Optimization & Legacy Support</p>
-  </header>
-  <img src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT" class="hero" loading="lazy" />
+  <a class="skip" href="#main">Skip to main content</a>
 
- <div class="ai-box" style="position: relative;">
-  <div id="tsg-tips">Loading tips...</div>
-  <button 
-    onclick="copyTip()" 
-    title="Copy to clipboard"
-    style="position: absolute; top: 10px; right: 10px; background-color: #444; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
-    📋 Copy
-  </button>
-</div>
+  <header class="site">
+    <div class="wrap bar" role="navigation" aria-label="Top bar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="title">👑 TSG – Tech Support GPT</div>
+          <div class="pill hide-mobile">Clean • Responsive • Accessible</div>
+        </div>
+      </div>
 
-  <div class="container">
-    <div class="chat-link">
-      <a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank">
-        Chat with our Tech Support GPT
-      </a>
+      <div class="controls">
+        <label for="os" class="hide-mobile">Choose OS:</label>
+        <select id="os" aria-label="Choose your OS">
+          <option value="linux">Linux</option>
+          <option value="windows">Windows</option>
+          <option value="macos">macOS</option>
+        </select>
+
+        <button id="themeBtn" class="theme-toggle" type="button" title="Toggle theme">
+          <span id="themeIcon" aria-hidden="true">🌙</span> <span class="hide-mobile">Theme</span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <h2>⚙️ What I Do</h2>
-    <p>I’m TSG – your AI-powered tech support assistant. I help users on Linux, Windows, and macOS with:</p>
-    <ul>
-      <li>Step-by-step PC troubleshooting</li>
-      <li>Customization and performance optimization</li>
-      <li>Networking, driver, and kernel configuration</li>
-      <li>Hardware diagnostics and upgrades</li>
-      <li>Retro computing and vintage hardware support</li>
-    </ul>
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Make tech troubles… less troubling.</h1>
+        <p class="subtitle">I help on Linux, Windows, and macOS with clear, security-minded guidance — at your pace.</p>
 
-    <h2>🧠 How I Work</h2>
-    <ul>
-      <li>Clear, jargon-free explanations for all skill levels</li>
-      <li>Security-focused guidance</li>
-      <li>Supportive and educational approach</li>
-    </ul>
+        <div class="console" aria-live="polite">
+          <button class="copy" type="button" id="copyBtn" title="Copy tip to clipboard">📋 Copy</button>
+          <span id="tipLine">TSG is loading your wisdom...</span>
+        </div>
 
-    <h2>🌐 Recommended Resources</h2>
-    <ul>
-      <li><a href="https://superuser.com" target="_blank">SuperUser</a></li>
-      <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
-      <li><a href="https://forums.tomshardware.com" target="_blank">Tom's Hardware Forums</a></li>
-      <li><a href="https://www.techsupportforum.com" target="_blank">TechSupport Forum</a></li>
-      <li><a href="https://wiki.archlinux.org/" target="_blank">Arch Wiki</a></li>
-      <li><a href="https://askubuntu.com/" target="_blank">AskUbuntu</a></li>
-      <li><a href="https://www.reddit.com/r/linuxquestions/" target="_blank">Reddit r/linuxquestions</a></li>
-      <li><a href="https://lkml.org/" target="_blank">Linux Kernel Mailing List</a></li>
-      <li><a href="https://wiki.debian.org/" target="_blank">Debian Wiki</a></li>
-      <li><a href="https://docs.fedoraproject.org/" target="_blank">Fedora Docs</a></li>
-      <li><a href="https://forum.manjaro.org/" target="_blank">Manjaro Forum</a></li>
-      <li><a href="https://discussions.apple.com" target="_blank">Apple Discussions</a></li>
-      <li><a href="https://forums.macrumors.com" target="_blank">MacRumors Forums</a></li>
-      <li><a href="https://www.ifixit.com/Device/Mac" target="_blank">iFixit Mac Repair Guides</a></li>
-      <li><a href="https://learn.microsoft.com" target="_blank">Microsoft Learn</a></li>
-      <li><a href="https://www.tenforums.com" target="_blank">TenForums</a></li>
-      <li><a href="https://www.windowscentral.com" target="_blank">Windows Central</a></li>
-      <li><a href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank">Sysinternals Suite</a></li>
-      <li><a href="https://www.lemon64.com/forum/" target="_blank">Lemon64 – C64 Support</a></li>
-      <li><a href="https://www.vogons.org/" target="_blank">VOGONS – Vintage PC Gaming</a></li>
-      <li><a href="http://amigaworld.net" target="_blank">AmigaWorld</a></li>
-      <li><a href="http://vcfed.org/forum/" target="_blank">Vintage Computer Federation</a></li>
-    </ul>
+        <noscript>
+          <p class="card" style="margin-top:12px;">⚠️ JavaScript is disabled, so dynamic tips are offline. Enable JS to see rotating OS-specific tips.</p>
+        </noscript>
+      </div>
 
-    <h2>🔐 Security Best Practices</h2>
-    <ul>
-      <li>Keep systems up to date</li>
-      <li>Use firewalls and sandboxing tools (AppArmor, SELinux)</li>
-      <li>Disable unused services</li>
-      <li>Follow strong password practices</li>
-    </ul>
+      <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT hero" loading="lazy">
+    </section>
 
-    <h2>📚 Broader Support Coverage</h2>
-    <ul>
-      <li>OS Help: Linux, Windows, macOS</li>
-      <li>Hardware: troubleshooting, upgrades, peripherals</li>
-      <li>Retro Systems: C64, Amiga, MS-DOS – including software and interfacing</li>
-      <li>User Guidance: tailored to your comfort level</li>
-    </ul>
+    <section class="grid two">
+      <div class="card">
+        <h2>⚙️ What I Do</h2>
+        <ul>
+          <li>Step-by-step PC troubleshooting</li>
+          <li>Customization & performance optimization</li>
+          <li>Networking, drivers, and kernel tuning</li>
+          <li>Hardware diagnostics & upgrades</li>
+          <li>Retro computing & vintage hardware support</li>
+        </ul>
+      </div>
 
-    <h2>📩 Contact & Support</h2>
-    <p>Questions or feedback? Email us: <strong>45dgof8 [at] gmail [dot] com</a></strong></p>
-    <p>Support the project: <a href="https://paypal.me/45dgof8" target="_blank">paypal.me/45dgof8</a></p>
-    <p>Payments & invoices: <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank">45dgof8-pulse</a></p>
+      <div class="card">
+        <h2>🧠 How I Work</h2>
+        <ul>
+          <li>Clear, jargon-free explanations for all skill levels</li>
+          <li>Security-first guidance and best practices</li>
+          <li>Supportive, educational approach</li>
+        </ul>
+      </div>
+    </section>
 
-    <h2><a href="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" target="_blank">⚛️ Try Me Out</a></h2>
-    <p>Sample questions to ask TSG:</p>
-    <ul>
-      <li>"Why won’t my Wi-Fi connect on Ubuntu?"</li>
-      <li>"How do I speed up my Windows 10 boot time?"</li>
-      <li>"What are safe overclocking practices?"</li>
-      <li>"How do I load games on a Commodore 64?"</li>
-    </ul>
-  </div>
+    <section class="grid two">
+      <div class="card">
+        <h2>🌐 Recommended Resources</h2>
+        <ul>
+          <li><a href="https://superuser.com" target="_blank" rel="noopener">SuperUser</a></li>
+          <li><a href="https://stackoverflow.com" target="_blank" rel="noopener">Stack Overflow</a></li>
+          <li><a href="https://forums.tomshardware.com" target="_blank" rel="noopener">Tom’s Hardware</a></li>
+          <li><a href="https://wiki.archlinux.org" target="_blank" rel="noopener">Arch Wiki</a></li>
+          <li><a href="https://askubuntu.com/" target="_blank" rel="noopener">AskUbuntu</a></li>
+          <li><a href="https://discussions.apple.com" target="_blank" rel="noopener">Apple Discussions</a></li>
+          <li><a href="https://learn.microsoft.com" target="_blank" rel="noopener">Microsoft Learn</a></li>
+        </ul>
+      </div>
 
-  <footer>
-    <p>&copy; 2025 TSG – Tech Support GPT | <a href="https://45dgof8.com" target="_blank">45dgof8.com</a></p>
-  </footer>
+      <div class="card">
+        <h2>🔐 Security Best Practices</h2>
+        <ul>
+          <li>Keep systems up to date</li>
+          <li>Use firewalls & sandboxing (AppArmor/SELinux)</li>
+          <li>Disable unused services</li>
+          <li>Strong, unique passwords (and a password manager)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <h2>📚 Broader Support Coverage</h2>
+        <ul>
+          <li>OS Help: Linux, Windows, macOS</li>
+          <li>Hardware: troubleshooting, upgrades, peripherals</li>
+          <li>Retro Systems: C64, Amiga, MS-DOS</li>
+          <li>User guidance: tailored to your comfort level</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>📩 Contact & Support</h2>
+        <p>Questions or feedback? Email: <strong><a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></strong></p>
+        <p>Support the project: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
+        <p>Payments & invoices: <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a></p>
+        <p class="muted" style="color:var(--muted); margin-top:10px">Tip: add this file as <code>TSG-modern.html</code> and keep the old one as a backup.</p>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 TSG – Tech Support GPT • <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a>
+    </footer>
+  </main>
 
   <script>
-    let tips = ["TSG is loading your wisdom..."];
-    let index = 0;
-
-    async function loadTSGTips(os = 'linux') {
-      const feedMap = {
-        linux: 'https://45dgof8.com/tsg-feed.json',
-        windows: 'https://45dgof8.com/tsg-feed-windows.json',
-        macos: 'https://45dgof8.com/tsg-feed-macos.json'
-      };
-
-      try {
-        const res = await fetch(feedMap[os]);
-        const data = await res.json();
-        tips = data.tips || ["TSG is loading your wisdom..."];
-        index = 0;
-        updateTip();
-        clearInterval(window.tipInterval);
-        window.tipInterval = setInterval(showNextTip, 10000);
-      } catch (e) {
-        document.getElementById('tsg-tips').innerHTML = "⚠️ Unable to load TSG tips. Please check connection.";
+    // ========= THEME (dark/light) =========
+    (function initTheme(){
+      const saved = localStorage.getItem("tsg-theme");
+      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      if (saved === "light" || (!saved && prefersLight)) {
+        document.documentElement.classList.add("light");
+        document.getElementById("themeIcon")?.replaceChildren(document.createTextNode("☀️"));
       }
-    }
-
-    function updateTip() {
-      document.getElementById('tsg-tips').innerHTML = tips[index];
-    }
-
-    function showNextTip() {
-      index = (index + 1) % tips.length;
-      updateTip();
-    }
-
-    function showPreviousTip() {
-      index = (index - 1 + tips.length) % tips.length;
-      updateTip();
-    }
-
-    window.addEventListener('DOMContentLoaded', () => loadTSGTips());
-  </script>
-  <script>
-  function copyTip() {
-    const tipText = document.getElementById("tsg-tips").innerText;
-    navigator.clipboard.writeText(tipText).then(() => {
-      alert("Tip copied to clipboard!");
-    }).catch(err => {
-      console.error("Copy failed: ", err);
+    })();
+    const themeBtn = document.getElementById("themeBtn");
+    themeBtn?.addEventListener("click", () => {
+      const root = document.documentElement;
+      const isLight = root.classList.toggle("light");
+      localStorage.setItem("tsg-theme", isLight ? "light" : "dark");
+      const icon = document.getElementById("themeIcon");
+      if (icon) icon.textContent = isLight ? "☀️" : "🌙";
     });
-  }
-</script>
-<!-- EVA MAGIC BUTTON :: paste before </body> -->
-<script>
-(() => {
-  const DESTS = [
-    "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
-    "https://45dgof8.com/Eva_Answers.html",
-    "https://45dgof8.com/Dion_Wolf_Jotham.html",
-    "https://45dgof8.com/TSG-tech-support-gpt.html",
-    "https://45dgof8.com/CatArtCreator.html",
-  ];
 
-  // make a corner-floating button with isolated styles (shadow DOM)
-  const host = document.createElement("div");
-  host.style.all = "initial"; // reduce style bleed if no shadow support
-  host.style.position = "fixed";
-  host.style.inset = "auto 16px 16px auto";
-  host.style.zIndex = "2147483647";
-  host.setAttribute("aria-hidden", "true");
+    // ========= TIPS LOADER =========
+    const feeds = {
+      linux: 'https://45dgof8.com/tsg-feed.json',
+      windows: 'https://45dgof8.com/tsg-feed-windows.json',
+      macos: 'https://45dgof8.com/tsg-feed-macos.json'
+    };
+    let tips = ["TSG is loading your wisdom..."];
+    let idx = 0;
+    let rotator;
 
-  const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
-  const style = document.createElement("style");
-  style.textContent = `
-    :host, * { box-sizing: border-box; }
-    .btn {
-      width: 48px; height: 48px; border: 0; border-radius: 9999px;
-      display: grid; place-items: center; cursor: pointer;
-      background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
-      transition: transform .15s ease, box-shadow .2s ease;
-      user-select: none;
+    const tipEl = document.getElementById("tipLine");
+    const osEl  = document.getElementById("os");
+    const copyEl = document.getElementById("copyBtn");
+
+    async function loadTips(os) {
+      clearInterval(rotator);
+      try {
+        const res = await fetch(feeds[os], { cache: "no-store" });
+        const data = await res.json();
+        tips = Array.isArray(data.tips) && data.tips.length ? data.tips : ["(No tips yet — check back soon!)"];
+      } catch(e) {
+        tips = ["⚠️ Unable to load TSG tips. Please check connection."];
+      }
+      idx = 0;
+      renderTip();
+      rotator = setInterval(nextTip, 10000);
     }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
-    .btn:active { transform: translateY(0); }
-    .sparkle { font-size: 20px; line-height: 1; }
-    @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
-    .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
-    /* move corners with CSS vars if needed */
-    :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
-  `;
 
-  const button = document.createElement("button");
-  button.className = "btn";
-  button.setAttribute("type", "button");
-  button.setAttribute("aria-label", "Teleport to a random page");
-  button.setAttribute("title", "Teleport ✨");
-  button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
-
-  function pickTarget() {
-    const here = location.href.replace(/[#?].*$/, "");
-    const pool = DESTS.filter(u => !here.startsWith(u));
-    const list = pool.length ? pool : DESTS;
-    return list[Math.floor(Math.random() * list.length)];
-  }
-
-  // left-click: same tab; middle/ctrl/cmd-click: new tab
-  button.addEventListener("click", e => {
-    const url = pickTarget();
-    if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; }
-    location.href = url;
-  });
-  button.addEventListener("auxclick", e => {
-    if (e.button === 1) { // middle click
-      e.preventDefault();
-      window.open(pickTarget(), "_blank", "noopener");
+    function renderTip() {
+      if (!tipEl) return;
+      // simple type-in effect
+      const text = tips[idx];
+      tipEl.textContent = "";
+      let i = 0;
+      const step = () => {
+        tipEl.textContent += text.charAt(i++);
+        if (i <= text.length) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     }
-  });
+    function nextTip() { idx = (idx + 1) % tips.length; renderTip(); }
+    function prevTip() { idx = (idx - 1 + tips.length) % tips.length; renderTip(); }
 
-  root.appendChild(style);
-  root.appendChild(button);
-  document.body.appendChild(host);
-})();
-</script>
+    osEl?.addEventListener("change", e => loadTips(e.target.value));
+    copyEl?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(tips[idx]);
+        copyEl.textContent = "✅ Copied";
+        setTimeout(() => copyEl.textContent = "📋 Copy", 1000);
+      } catch {
+        alert("Copy failed");
+      }
+    });
+
+    // init
+    loadTips(osEl ? osEl.value : "linux");
+    // keyboard: cycle tips
+    document.addEventListener("keydown", (e) => {
+      if (e.altKey && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
+        e.preventDefault();
+        e.key === "ArrowRight" ? nextTip() : prevTip();
+      }
+    });
+  </script>
+
+  <!-- Optional: your “EVA MAGIC BUTTON” preserved -->
+  <script>
+  (() => {
+    const DESTS = [
+      "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
+      "https://45dgof8.com/Eva_Answers.html",
+      "https://45dgof8.com/Dion_Wolf_Jotham.html",
+      "https://45dgof8.com/TSG-tech-support-gpt.html",
+      "https://45dgof8.com/CatArtCreator.html",
+    ];
+    const host = document.createElement("div");
+    host.style.position = "fixed";
+    host.style.inset = "auto 16px 16px auto";
+    host.style.zIndex = "2147483647";
+    host.setAttribute("aria-hidden", "true");
+    const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
+    const style = document.createElement("style");
+    style.textContent = `
+      :host, * { box-sizing: border-box; }
+      .btn {
+        width: 48px; height: 48px; border: 0; border-radius: 9999px;
+        display: grid; place-items: center; cursor: pointer;
+        background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
+        box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
+        transition: transform .15s ease, box-shadow .2s ease;
+        user-select: none;
+      }
+      .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
+      .btn:active { transform: translateY(0); }
+      .sparkle { font-size: 20px; line-height: 1; }
+      @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
+      .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
+      :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
+    `;
+    const button = document.createElement("button");
+    button.className = "btn";
+    button.type = "button";
+    button.setAttribute("aria-label", "Teleport to a random page");
+    button.title = "Teleport ✨";
+    button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
+    function pick() {
+      const here = location.href.replace(/[#?].*$/, "");
+      const pool = DESTS.filter(u => !here.startsWith(u));
+      const list = pool.length ? pool : DESTS;
+      return list[Math.floor(Math.random() * list.length)];
+    }
+    button.addEventListener("click", e => {
+      const url = pick();
+      if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; }
+      location.href = url;
+    });
+    button.addEventListener("auxclick", e => {
+      if (e.button === 1) {
+        e.preventDefault();
+        window.open(pick(), "_blank", "noopener");
+      }
+    });
+    root.appendChild(style); root.appendChild(button); document.body.appendChild(host);
+  })();
+  </script>
 </body>
 </html>
