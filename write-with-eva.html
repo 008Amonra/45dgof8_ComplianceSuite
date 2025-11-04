@@ -11,6 +11,11 @@
     .card{background:#242426;border-radius:16px;padding:1.75rem;box-shadow:0 10px 24px rgba(0,0,0,.3)}
     input,textarea,button{width:100%;margin-top:10px;background:#2c2c2e;color:#fff;border:1px solid #3c3c3e;border-radius:10px;padding:.8rem}
     button{background:#ff9f43;color:#1c1c1e;font-weight:700;cursor:pointer}
+    .row{display:grid;gap:12px}
+    .status{margin-top:12px;font-size:.95rem}
+    .status.ok{color:#8ef0a0}
+    .status.err{color:#ff7676}
+    .hidden{display:none}
   </style>
 </head>
 <body>
@@ -19,17 +24,111 @@
     <h1>Eva Writes For You</h1>
     <div class="card">
       <p>Need a poetic bio, a newsletter intro, or a dreamy about-page? Eva ghostwrites with your vibe—then you approve.</p>
-      <form>
-        <label>Your Name</label>
-        <input type="text" placeholder="Name / Brand">
-        <label>What do you need?</label>
-        <textarea rows="4" placeholder="Bio, About page, Email, Product description..."></textarea>
-        <label>Tone / References</label>
-        <textarea rows="3" placeholder="Warm, cosmic, minimalist… links welcome"></textarea>
-        <button type="submit">Request a Draft</button>
+
+      <!-- 1) Choose ONE wiring option below and set ACTION_URL accordingly -->
+      <!-- Zapier Catch Hook (recommended): https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX/ -->
+      <!-- Formspree endpoint: https://formspree.io/f/YOUR_FORM_ID -->
+      <!-- Netlify Function/Edge or Vercel Serverless endpoint: /api/submit -->
+
+      <form id="evaForm" class="row" novalidate>
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" placeholder="Name / Brand" required>
+
+        <label for="need">What do you need?</label>
+        <textarea id="need" name="need" rows="4" placeholder="Bio, About page, Email, Product description..." required></textarea>
+
+        <label for="tone">Tone / References</label>
+        <textarea id="tone" name="tone" rows="3" placeholder="Warm, cosmic, minimalist… links welcome"></textarea>
+
+        <!-- Honeypot spam trap -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+
+        <button id="submitBtn" type="submit">Request a Draft</button>
+        <div id="status" class="status hidden" role="status" aria-live="polite"></div>
       </form>
-      <p style="margin-top:1rem">Prefer direct email? <a href="mailto:45dgof8@gmail.com?subject=Write%20with%20Eva">45dgof8@gmail.com</a></p>
+
+      <p style="margin-top:1rem">Prefer direct email?
+        <a href="/cdn-cgi/l/email-protection#764243121119104e36111b171f1a5815191b490503141c1315024b21041f0213534446011f021e534446330017">
+          <span class="__cf_email__" data-cfemail="0d3938696a626b354d6a606c6461236e6260">[email protected]</span>
+        </a>
+      </p>
     </div>
   </div>
+
+  <script>
+    // ===== CONFIG =====
+    // Pick ONE: Zapier, Formspree, custom API. Paste its URL below.
+    const ACTION_URL = "https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX/"; // ← replace
+
+    // Optional: redirect after success
+    const REDIRECT_URL = ""; // e.g., "/thanks.html"; leave blank to stay
+
+    // ===== HELPERS =====
+    const form = document.getElementById('evaForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusEl = document.getElementById('status');
+
+    function setStatus(msg, ok=true){
+      statusEl.textContent = msg;
+      statusEl.classList.remove('hidden','ok','err');
+      statusEl.classList.add(ok? 'ok':'err');
+    }
+
+    function clearStatus(){
+      statusEl.textContent = "";
+      statusEl.classList.add('hidden');
+      statusEl.classList.remove('ok','err');
+    }
+
+    function serializeForm(fd){
+      const obj = {};
+      for (const [k, v] of fd.entries()) obj[k] = v;
+      // Add meta for convenience
+      obj._source = 'eva-writes-form';
+      obj._timestamp = new Date().toISOString();
+      return obj;
+    }
+
+    // ===== SUBMIT =====
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearStatus();
+
+      // Honeypot check
+      if (form.website && form.website.value) { return; }
+
+      if (!form.checkValidity()){
+        setStatus('Please complete required fields.', false);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      const data = serializeForm(new FormData(form));
+
+      try {
+        const res = await fetch(ACTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) throw new Error('Network response was not ok');
+
+        setStatus('Got it! I\'ll send a draft to your email shortly.');
+        form.reset();
+        if (REDIRECT_URL) window.location.href = REDIRECT_URL;
+      } catch (err) {
+        console.error(err);
+        setStatus('Hmm, that didn\'t go through. Please try again or use the email link.', false);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Request a Draft';
+      }
+    });
+  </script>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
