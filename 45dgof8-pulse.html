@@ -293,6 +293,29 @@
         try { localStorage.setItem(key, on ? '1' : '0'); } catch(e){}
       });
     })();
+   <div style="text-align:center; margin-top:120px;">
+  <a id="flyer-dl" href="45dgof8-pulse_Flyer_EN.zip" download
+     style="display:inline-block; padding:10px 18px; background:#1E3A8A;
+            color:#fff; text-decoration:none; border-radius:8px; font-family:sans-serif;">
+    📄 Download the 45dgof8-pulse Flyer (EN)
+  </a>
+</div>
+
+<script>
+  const COUNTER_URL = 'https://script.google.com/macros/s/PASTE_YOUR_DEPLOYMENT_ID/exec';
+  const link = document.getElementById('flyer-dl');
+  link.addEventListener('click', () => {
+    const payload = { file: '45dgof8-pulse_Flyer_EN.zip', ua: navigator.userAgent };
+    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+    // Non-blocking, works even as the download starts:
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(COUNTER_URL, blob);
+    } else {
+      // Fallback
+      fetch(COUNTER_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    }
+  });
+ 
 </script> 
 </body>
 </html>
