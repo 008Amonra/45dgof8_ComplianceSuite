@@ -559,6 +559,21 @@ function renderTip() {
    }
 
     @media (prefers-reduced-motion: reduce) { .teleport:hover .sparkle { animation: none } }
+    .chat-bubble {
+  position: absolute;
+  right: 64px;
+  top: 6px;
+  background: var(--card, #fff);
+  color: var(--text, #000);
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  white-space: nowrap;
+  animation: nudge-pop .6s ease-out, nudge-pulse 1.6s ease-in-out infinite 1s;
+  z-index: 1;
+}
   `;
   const wrap = document.createElement('div');
   wrap.className = 'dock';
@@ -675,19 +690,27 @@ function renderTip() {
     transform: translateY(-50%);
   }
 
-  <!-- Floating Ad Block (Reusable Component) -->
-<div id="floatingAd" class="floating-ad">
+  @keyframes nudge-pop { from{ transform: scale(.9); opacity:0 } to{ transform: scale(1); opacity:1 } }
+  @keyframes nudge-pulse { 0%,100%{ transform: translateX(0) } 50%{ transform: translateX(-3px) } }
+`;
+  root.appendChild(styles);
+  root.appendChild(wrap);
+  document.body.appendChild(host);
+  })();
+  </script>
+    <!-- Floating Ad Block (Reusable Component) -->
+  <div id="floatingAd" class="floating-ad">
   <strong>Ad space<br>300×250</strong>
   <div class="floating-ad-inner">
-    <img src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png" alt="Ad Banner" style="width:100%; height:auto; border-radius:8px;" />
+  <img src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png" alt="Ad Banner" style="width:100%; height:auto; border-radius:8px;" />
   </div>
   <small>
     📫 Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br/>
     💡 <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>
   </small>
-</div>
+  </div>
 
-<style>
+  <style>
   .floating-ad {
     position: fixed;
     top: 100px;
@@ -713,23 +736,13 @@ function renderTip() {
   @media (max-width: 900px) {
     .floating-ad { display: none; }
   }
-</style>
+  </style>
 
-<script>
+  <script>
   window.addEventListener('scroll', () => {
     const ad = document.getElementById('floatingAd');
     ad.style.opacity = window.scrollY > 250 ? '1' : '0';
   });
-</script>
-
-  
-  @keyframes nudge-pop { from{ transform: scale(.9); opacity:0 } to{ transform: scale(1); opacity:1 } }
-  @keyframes nudge-pulse { 0%,100%{ transform: translateX(0) } 50%{ transform: translateX(-3px) } }
-`;
-  root.appendChild(styles);
-  root.appendChild(wrap);
-  document.body.appendChild(host);
-})();
-</script>
-</body>
-</html>
+  </script>
+  </body>
+  </html>
