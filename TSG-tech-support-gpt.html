@@ -191,6 +191,31 @@
     .consent .inner { max-width: 1120px; margin: 0 auto; display:flex; gap:12px; align-items:center; justify-content: space-between; flex-wrap: wrap }
     .consent p { margin: 0; color: var(--muted) }
     .consent .actions { display:flex; gap:8px }
+    styles.textContent += `
+  /* --- visibility enhancement --- */
+  .gem {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(90,240,179,.6)) drop-shadow(0 0 12px rgba(255,213,74,.35));
+  }
+  .gem:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(90,240,179,.9)) drop-shadow(0 0 18px rgba(255,213,74,.6));
+  }
+  .badge {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  }
+  .teleport {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 4px rgba(255,213,74,.35));
+  }
+  .teleport:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255,213,74,.55));
+  }
+`;
   </style></head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
