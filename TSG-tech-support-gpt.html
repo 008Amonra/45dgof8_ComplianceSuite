@@ -542,6 +542,21 @@ function renderTip() {
     .gem::before { content:""; position:absolute; inset:0; border-radius:16px; box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15); }
     .gem .glyph { position:relative; font-size:20px; }
     .badge { position:absolute; top:-6px; right:-6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 9999px; display:grid; place-items:center; font-weight:700; font-size:12px; border:1px solid rgba(0,0,0,.1) }
+    .chat-bubble {
+     position: absolute;
+     right: 64px;
+     top: 6px;
+     background: var(--card, #fff);
+     color: var(--text, #000);
+     padding: 6px 10px;
+     border-radius: 12px;
+     font-size: 13px;
+     font-weight: 600;
+     box-shadow: 0 4px 12px rgba(0,0,0,.25);
+     white-space: nowrap;
+     animation: nudge-pop .6s ease-out, nudge-pulse 1.6s ease-in-out infinite 1s;
+     z-index: 1;
+   }
 
     @media (prefers-reduced-motion: reduce) { .teleport:hover .sparkle { animation: none } }
   `;
@@ -571,6 +586,13 @@ function renderTip() {
   badge.className = 'badge';
   badge.setAttribute('aria-hidden','true');
   badge.textContent = 'Ask 💬';           /* shorter CTA */
+
+  const bubble = document.createElement('span');
+  bubble.className = 'chat-bubble';
+  bubble.setAttribute('aria-hidden', 'true');
+  bubble.textContent = 'Need help? 💬';
+  gemBtn.appendChild(bubble);
+  
   badge.style.background = brand2;
   badge.style.color = '#002016';
   gemBtn.title = 'Tell me your problem here';
