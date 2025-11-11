@@ -398,7 +398,7 @@ function renderTip() {
   let i = 0;
   const step = () => {
     if (i < units.length) {
-      tipEl.textContent += units[i++];
+      tipEl.textContent += units[i++].replace(/[<>]/g, '');
       requestAnimationFrame(step);
     }
   };
