@@ -506,200 +506,166 @@ function renderTip() {
     root.appendChild(style); root.appendChild(button); document.body.appendChild(host);
   })();
   </script>  <!-- Teleport Dock (gem chat + teleport) -->
-  <script id="teleport-dock" data-chat-url="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" data-destinations='["https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html","https://45dgof8.com/Eva_Answers.html","https://45dgof8.com/Dion_Wolf_Jotham.html","https://45dgof8.com/TSG-tech-support-gpt.html","https://45dgof8.com/CatArtCreator.html"]'>
-    // === Start-here nudge (shows once) ===
-const NUDGE_KEY = 'tsg-nudge-dismissed';
-if (!localStorage.getItem(NUDGE_KEY)) {
-  const nudge = document.createElement('button');
-  nudge.type = 'button';
-  nudge.className = 'nudge';
-  nudge.setAttribute('aria-label','Start here – open chat');
-  nudge.textContent = 'Start here';
-  nudge.addEventListener('click', () => {
-    localStorage.setItem(NUDGE_KEY, '1');
-    // Click the gem programmatically; users can also click manually
-    gemBtn.click();
-    nudge.remove();
+<script id="teleport-dock" data-chat-url="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" data-destinations='["https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html","https://45dgof8.com/Eva_Answers.html","https://45dgof8.com/Dion_Wolf_Jotham.html","https://45dgof8.com/TSG-tech-support-gpt.html","https://45dgof8.com/CatArtCreator.html"]'>
+(function(){
+  const S = document.currentScript.dataset;
+  const CHAT_URL = S.chatUrl || 'https://chatgpt.com/';
+  let DESTS = [];
+  try { DESTS = JSON.parse(S.destinations || '[]'); } catch {}
+
+  // host + shadow root
+  const host = document.createElement('div');
+  host.style.position = 'fixed';
+  host.style.right = '16px';
+  host.style.bottom = '16px';
+  host.style.zIndex = '2147483646';
+  host.setAttribute('aria-hidden','true');
+
+  const root = host.attachShadow ? host.attachShadow({mode:'open'}) : host;
+
+  // base styles
+  const styles = document.createElement('style');
+  styles.textContent = `
+    :host, * { box-sizing: border-box; }
+    .dock { display:flex; gap:10px; align-items:center; position:relative }
+    .btn { width: 48px; height: 48px; border: 0; border-radius: 9999px; display: grid; place-items: center; cursor: pointer; user-select: none; transition: transform .15s ease, box-shadow .2s ease; }
+    .btn:focus { outline: 2px solid rgba(122,183,255,.6); outline-offset: 2px }
+    .btn:hover { transform: translateY(-1px) }
+    .teleport { background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%); box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15) }
+    .teleport:hover { box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25) }
+    .sparkle { font-size: 20px; line-height: 1 }
+    @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
+    .teleport:hover .sparkle { animation: twinkle .8s ease-in-out infinite }
+
+    /* Gem button (brand-aware) */
+    .gem { position:relative; width:56px; height:56px; border-radius:16px; }
+    .gem::before { content:""; position:absolute; inset:0; border-radius:16px; box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15); }
+    .gem .glyph { position:relative; font-size:20px; }
+    .badge { position:absolute; top:-6px; right:-6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 9999px; display:grid; place-items:center; font-weight:700; font-size:12px; border:1px solid rgba(0,0,0,.1) }
+
+    @media (prefers-reduced-motion: reduce) { .teleport:hover .sparkle { animation: none } }
+  `;
+  const wrap = document.createElement('div');
+  wrap.className = 'dock';
+
+  // brand colors from page
+  const css = getComputedStyle(document.documentElement);
+  const brand = (css.getPropertyValue('--brand') || '#ffd54a').trim();
+  const brand2 = (css.getPropertyValue('--brand-2') || '#5af0b3').trim();
+  const textCol = (css.getPropertyValue('--text') || '#1b2430').trim();
+
+  // GEM button
+  const gemBtn = document.createElement('button');
+  gemBtn.className = 'btn gem';
+  gemBtn.type = 'button';
+  gemBtn.setAttribute('aria-label','Open TSG chat in a new tab');
+  gemBtn.style.background = `conic-gradient(from 200deg at 50% 50%, ${brand}, ${brand2}, ${brand})`;
+  gemBtn.style.boxShadow = '0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15)';
+
+  const glyph = document.createElement('span');
+  glyph.className = 'glyph';
+  glyph.setAttribute('aria-hidden','true');
+  glyph.textContent = '💎';
+
+  const badge = document.createElement('span');
+  badge.className = 'badge';
+  badge.setAttribute('aria-hidden','true');
+  badge.textContent = 'Ask 💬';           /* shorter CTA */
+  badge.style.background = brand2;
+  badge.style.color = '#002016';
+  gemBtn.title = 'Tell me your problem here';
+
+  gemBtn.appendChild(glyph);
+  gemBtn.appendChild(badge);
+
+  gemBtn.addEventListener('click', () => window.open(CHAT_URL, '_blank', 'noopener'));
+  gemBtn.addEventListener('auxclick', (e) => { if (e.button === 1) { e.preventDefault(); window.open(CHAT_URL, '_blank', 'noopener'); } });
+  gemBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.open(CHAT_URL, '_blank', 'noopener'); } });
+
+  // Teleport button
+  const tpBtn = document.createElement('button');
+  tpBtn.className = 'btn teleport';
+  tpBtn.type = 'button';
+  tpBtn.setAttribute('aria-label','Teleport to a partner page');
+  tpBtn.title = 'Teleport ✨';
+  tpBtn.innerHTML = '<span class="sparkle" aria-hidden="true">✨</span>';
+  function pick(){
+    const here = location.href.replace(/[?#].*$/, '');
+    const pool = DESTS.filter(u => !here.startsWith(u));
+    const list = pool.length ? pool : DESTS;
+    return list[Math.floor(Math.random()*list.length)] || '#';
+  }
+  tpBtn.addEventListener('click', (e) => {
+    const url = pick();
+    if (e.ctrlKey || e.metaKey) { window.open(url, '_blank', 'noopener'); return; }
+    location.href = url;
   });
-  wrap.appendChild(nudge);
-}
+  tpBtn.addEventListener('auxclick', (e) => { if (e.button === 1) { e.preventDefault(); window.open(pick(), '_blank', 'noopener'); } });
 
-styles.textContent += `
-  .nudge{
-    position: absolute;
-    right: 64px;            /* sits left of the gem */
-    bottom: 48px;
-    padding: 6px 10px;
-    border: 0;
-    border-radius: 9999px;
-    background: var(--brand-2, #5af0b3);
-    color: #002016;
-    font-weight: 800;
-    font-size: 13px;
-    box-shadow: 0 6px 18px rgba(0,0,0,.28);
-    cursor: pointer;
-    white-space: nowrap;
-    animation: nudge-pop .6s ease-out, nudge-pulse 1.6s ease-in-out infinite 1s;
-  }
-  .nudge:focus { outline: 2px solid rgba(122,183,255,.8); outline-offset: 2px }
-  .nudge::after{
-    content:'';
-    position:absolute;
-    right:-8px;
-    top:50%;
-    width:0;height:0;
-    border-left:8px solid var(--brand-2, #5af0b3);
-    border-top:6px solid transparent;
-    border-bottom:6px solid transparent;
-    transform: translateY(-50%);
-  }
-  @keyframes nudge-pop { from{ transform: scale(.9); opacity:0 } to{ transform: scale(1); opacity:1 } }
-  @keyframes nudge-pulse { 0%,100%{ transform: translateX(0) } 50%{ transform: translateX(-3px) } }
-`;
-  (function(){
-    const S = document.currentScript.dataset;
-    const CHAT_URL = S.chatUrl || 'https://chatgpt.com/';
-    let DESTS = [];
-    try { DESTS = JSON.parse(S.destinations || '[]'); } catch {}
+  // mount buttons
+  wrap.appendChild(gemBtn);
+  wrap.appendChild(tpBtn);
 
-    const host = document.createElement('div');
-    host.style.position = 'fixed';
-    host.style.right = '16px';
-    host.style.bottom = '16px';
-    host.style.zIndex = '2147483646';
-    host.setAttribute('aria-hidden','true');
-
-    const root = host.attachShadow ? host.attachShadow({mode:'open'}) : host;
-
-    const styles = document.createElement('style');
-    styles.textContent = `
-      :host, * { box-sizing: border-box; }
-      .dock { display:flex; gap:10px; align-items:center }
-      .btn { width: 48px; height: 48px; border: 0; border-radius: 9999px; display: grid; place-items: center; cursor: pointer; user-select: none; transition: transform .15s ease, box-shadow .2s ease; }
-      .btn:focus { outline: 2px solid rgba(122,183,255,.6); outline-offset: 2px }
-      .btn:hover { transform: translateY(-1px) }
-      /* Teleport (kept unified) */
-      .teleport { background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%); box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15) }
-      .teleport:hover { box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25) }
-      .sparkle { font-size: 20px; line-height: 1 }
-      @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
-      .teleport:hover .sparkle { animation: twinkle .8s ease-in-out infinite }
-
-      /* Gem button — uses page CSS variables when available */
-      .gem { position:relative; width:56px; height:56px; border-radius:16px; }
-      .gem::before { content:""; position:absolute; inset:0; border-radius:16px; box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15); }
-      .gem .glyph { position:relative; font-size:20px; }
-      .badge { position:absolute; top:-6px; right:-6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 9999px; display:grid; place-items:center; font-weight:700; font-size:12px; border:1px solid rgba(0,0,0,.1) }
-      badge.textContent = 'Ask 💬';  // shorter CTA, tooltip carries the long text
-      gemBtn.title = 'Tell me your problem here';  // helpful hover text
-      @media (prefers-reduced-motion: reduce) { .teleport:hover .sparkle { animation: none } }
-    `;
-
-    const wrap = document.createElement('div');
-    wrap.className = 'dock';
-
-    // Build gem button using current page CSS variables
-    const css = getComputedStyle(document.documentElement);
-    const brand = (css.getPropertyValue('--brand') || '#ffd54a').trim();
-    const brand2 = (css.getPropertyValue('--brand-2') || '#5af0b3').trim();
-    const textCol = (css.getPropertyValue('--text') || '#1b2430').trim();
-    const gemBtn = document.createElement('button');
-    gemBtn.className = 'btn gem';
-    gemBtn.setAttribute('type','button');
-    gemBtn.setAttribute('aria-label','Open TSG chat in a new tab');
-    gemBtn.title = 'Chat with TSG – Tech Support GPT';
-    gemBtn.style.background = `conic-gradient(from 200deg at 50% 50%, ${brand}, ${brand2}, ${brand})`;
-    gemBtn.style.boxShadow = '0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15)';
-
-    const glyph = document.createElement('span');
-    glyph.className = 'glyph';
-    glyph.setAttribute('aria-hidden','true');
-    glyph.textContent = '💎';
-
-    const badge = document.createElement('span');
-    badge.className = 'badge';
-    badge.setAttribute('aria-hidden','true');
-    badge.textContent = 'Chat';
-    badge.style.background = brand2;
-    badge.style.color = '#002016';
-
-    gemBtn.appendChild(glyph); gemBtn.appendChild(badge);
-    gemBtn.addEventListener('click', (e) => {
-      window.open(CHAT_URL, '_blank', 'noopener');
+  // --- Start-here nudge (AFTER gemBtn & wrap exist) ---
+  const NUDGE_KEY = 'tsg-nudge-dismissed';
+  if (!localStorage.getItem(NUDGE_KEY)) {
+    const nudge = document.createElement('button');
+    nudge.type = 'button';
+    nudge.className = 'nudge';
+    nudge.setAttribute('aria-label','Start here – open chat');
+    nudge.textContent = 'Start here';
+    nudge.addEventListener('click', () => {
+      localStorage.setItem(NUDGE_KEY, '1');
+      gemBtn.click();
+      nudge.remove();
     });
-    gemBtn.addEventListener('auxclick', (e) => { if (e.button === 1) { e.preventDefault(); window.open(CHAT_URL, '_blank', 'noopener'); } });
-    gemBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.open(CHAT_URL, '_blank', 'noopener'); } });
+    wrap.appendChild(nudge);
+  }
 
-    // Teleport button (same design as before)
-    const tpBtn = document.createElement('button');
-    tpBtn.className = 'btn teleport';
-    tpBtn.setAttribute('type','button');
-    tpBtn.setAttribute('aria-label','Teleport to a partner page');
-    tpBtn.title = 'Teleport ✨';
-    tpBtn.innerHTML = '<span class="sparkle" aria-hidden="true">✨</span>';
+  // Enhancement styles (visibility/glow + nudge)
+    .gem { transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(90,240,179,.6)) drop-shadow(0 0 12px rgba(255,213,74,.35)); }
+    .gem:hover { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(90,240,179,.9)) drop-shadow(0 0 18px rgba(255,213,74,.6)); }
+    .badge { font-size: 13px; font-weight: 800; letter-spacing: .2px; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+    .teleport { transform: scale(1.05); filter: drop-shadow(0 0 4px rgba(255,213,74,.35)); }
+    .teleport:hover { transform: scale(1.15); filter: drop-shadow(0 0 8px rgba(255,213,74,.55)); }
 
-    function pick(){
-      const here = location.href.replace(/[?#].*$/, '');
-      const pool = DESTS.filter(u => !here.startsWith(u));
-      const list = pool.length ? pool : DESTS;
-      return list[Math.floor(Math.random()*list.length)] || '#';
+    .nudge{
+      position: absolute;
+      right: 64px;
+      bottom: 48px;
+      padding: 6px 10px;
+      border: 0;
+      border-radius: 9999px;
+      background: ${brand2};
+      color: #002016;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.28);
+      cursor: pointer;
+      white-space: nowrap;
+      animation: nudge-pop .6s ease-out, nudge-pulse 1.6s ease-in-out infinite 1s;
     }
-    tpBtn.addEventListener('click', (e) => {
-      const url = pick();
-      if (e.ctrlKey || e.metaKey) { window.open(url, '_blank', 'noopener'); return; }
-      location.href = url;
-    });
-    tpBtn.addEventListener('auxclick', (e) => { if (e.button === 1) { e.preventDefault(); window.open(pick(), '_blank', 'noopener'); } });
+    .nudge:focus { outline: 2px solid rgba(122,183,255,.8); outline-offset: 2px }
+    .nudge::after{
+      content:'';
+      position:absolute;
+      right:-8px;
+      top:50%;
+      width:0;height:0;
+      border-left:8px solid ${brand2};
+      border-top:6px solid transparent;
+      border-bottom:6px solid transparent;
+      transform: translateY(-50%);
+    }
+    @keyframes nudge-pop { from{ transform: scale(.9); opacity:0 } to{ transform: scale(1); opacity:1 } }
+    @keyframes nudge-pulse { 0%,100%{ transform: translateX(0) } 50%{ transform: translateX(-3px) } }
+  `;
 
-    wrap.appendChild(gemBtn); wrap.appendChild(tpBtn);
-    root.appendChild(styles); root.appendChild(wrap); document.body.appendChild(host);
-  })();
-  </script>
-  <!-- Floating Ad Block (Reusable Component) -->
-<div id="floatingAd" class="floating-ad">
-  <strong>Ad space<br>300×250</strong>
-  <div class="floating-ad-inner">
-    <img src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png" alt="Ad Banner" style="width:100%; height:auto; border-radius:8px;" />
-  </div>
-  <small>
-    📫 Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br/>
-    💡 <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>
-  </small>
-</div>
-
-<style>
-  .floating-ad {
-    position: fixed;
-    top: 100px;
-    left: calc(100vw - 320px);
-    width: 300px;
-    background: #0f172a;
-    color: #94a3b8;
-    border: 1px dashed #64748b;
-    border-radius: 12px;
-    padding: 12px;
-    text-align: center;
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-  .floating-ad-inner {
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  @media (max-width: 900px) {
-    .floating-ad { display: none; }
-  }
-</style>
-
-<script>
-  window.addEventListener('scroll', () => {
-    const ad = document.getElementById('floatingAd');
-    ad.style.opacity = window.scrollY > 250 ? '1' : '0';
-  });
+  // mount to page
+  root.appendChild(styles);
+  root.appendChild(wrap);
+  document.body.appendChild(host);
+})();
 </script>
 </body>
 </html>
