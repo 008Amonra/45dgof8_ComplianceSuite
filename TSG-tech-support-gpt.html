@@ -507,6 +507,55 @@ function renderTip() {
   })();
   </script>  <!-- Teleport Dock (gem chat + teleport) -->
   <script id="teleport-dock" data-chat-url="https://chatgpt.com/g/g-QHveZ3pME-tsg-tech-support-gpt" data-destinations='["https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html","https://45dgof8.com/Eva_Answers.html","https://45dgof8.com/Dion_Wolf_Jotham.html","https://45dgof8.com/TSG-tech-support-gpt.html","https://45dgof8.com/CatArtCreator.html"]'>
+    // === Start-here nudge (shows once) ===
+const NUDGE_KEY = 'tsg-nudge-dismissed';
+if (!localStorage.getItem(NUDGE_KEY)) {
+  const nudge = document.createElement('button');
+  nudge.type = 'button';
+  nudge.className = 'nudge';
+  nudge.setAttribute('aria-label','Start here – open chat');
+  nudge.textContent = 'Start here';
+  nudge.addEventListener('click', () => {
+    localStorage.setItem(NUDGE_KEY, '1');
+    // Click the gem programmatically; users can also click manually
+    gemBtn.click();
+    nudge.remove();
+  });
+  wrap.appendChild(nudge);
+}
+
+styles.textContent += `
+  .nudge{
+    position: absolute;
+    right: 64px;            /* sits left of the gem */
+    bottom: 48px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 9999px;
+    background: var(--brand-2, #5af0b3);
+    color: #002016;
+    font-weight: 800;
+    font-size: 13px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.28);
+    cursor: pointer;
+    white-space: nowrap;
+    animation: nudge-pop .6s ease-out, nudge-pulse 1.6s ease-in-out infinite 1s;
+  }
+  .nudge:focus { outline: 2px solid rgba(122,183,255,.8); outline-offset: 2px }
+  .nudge::after{
+    content:'';
+    position:absolute;
+    right:-8px;
+    top:50%;
+    width:0;height:0;
+    border-left:8px solid var(--brand-2, #5af0b3);
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+    transform: translateY(-50%);
+  }
+  @keyframes nudge-pop { from{ transform: scale(.9); opacity:0 } to{ transform: scale(1); opacity:1 } }
+  @keyframes nudge-pulse { 0%,100%{ transform: translateX(0) } 50%{ transform: translateX(-3px) } }
+`;
   (function(){
     const S = document.currentScript.dataset;
     const CHAT_URL = S.chatUrl || 'https://chatgpt.com/';
@@ -541,6 +590,8 @@ function renderTip() {
       .gem::before { content:""; position:absolute; inset:0; border-radius:16px; box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15); }
       .gem .glyph { position:relative; font-size:20px; }
       .badge { position:absolute; top:-6px; right:-6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 9999px; display:grid; place-items:center; font-weight:700; font-size:12px; border:1px solid rgba(0,0,0,.1) }
+      badge.textContent = 'Ask 💬';  // shorter CTA, tooltip carries the long text
+      gemBtn.title = 'Tell me your problem here';  // helpful hover text
       @media (prefers-reduced-motion: reduce) { .teleport:hover .sparkle { animation: none } }
     `;
 
