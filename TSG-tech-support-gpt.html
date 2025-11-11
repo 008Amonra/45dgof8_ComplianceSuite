@@ -363,11 +363,23 @@
       idx = 0; renderTip(); rotator = setInterval(nextTip, ROTATE_MS);
     }
 
-    function renderTip() {
-      if (!tipEl) return; const text = tips[idx]; tipEl.textContent = "";
-      let i = 0; const step = () => { tipEl.textContent += text.charAt(i++); if (i <= text.length) requestAnimationFrame(step); };
+const seg = ("Segmenter" in Intl) ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
+function splitGraphemes(str) { return seg ? [...seg.segment(str)].map(s => s.segment) : Array.from(str); }
+
+function renderTip() {
+  if (!tipEl) return;
+  const units = splitGraphemes(tips[idx]);
+  tipEl.textContent = "";
+  let i = 0;
+  const step = () => {
+    if (i < units.length) {
+      tipEl.textContent += units[i++];
       requestAnimationFrame(step);
     }
+  };
+  requestAnimationFrame(step);
+}
+
     function nextTip() { idx = (idx + 1) % tips.length; renderTip(); }
     function prevTip() { idx = (idx - 1 + tips.length) % tips.length; renderTip(); }
 
@@ -613,6 +625,5 @@
     ad.style.opacity = window.scrollY > 250 ? '1' : '0';
   });
 </script>
-
 </body>
 </html>
