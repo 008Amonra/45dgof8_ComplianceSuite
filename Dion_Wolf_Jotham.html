@@ -347,7 +347,33 @@
 
     <div class="retreat">
       <h3>🌍 Virtual Retreat for Creative Hustlers</h3>
-      <img class="retreat-img" src="https://source.unsplash.com/800x400/?beach,vacation" alt="Virtual Retreat Image" />
+<div class="retreat" style="text-align:center; margin-top:20px;">
+  <img 
+    class="retreat-img" 
+    src="vretreat.webp" 
+    alt="Virtual Retreat for Creative Hustlers — Every good idea starts with a break. Rest is research. – Dion" 
+    style="width:100%; max-width:800px; border-radius:16px; box-shadow:0 4px 10px rgba(0,0,0,0.2); cursor:pointer;"
+    onclick="showSpark()"
+  />
+  <p id="spark-result" style="margin-top:15px; font-size:1.2em; font-style:italic; color:#333;"></p>
+</div>
+
+<script>
+  const sparks = [
+    "Redesign one product thumbnail today — make it tell a story, not just show an item.",
+    "Pick your most-liked post. Now ask: what emotion made people click 'like'?",
+    "List 3 words that describe your shop vibe — turn one into your next slogan.",
+    "Imagine your product as a limited edition — what would make it feel rare?",
+    "Post something imperfect today. People connect with progress, not polish.",
+    "Take 5 minutes to do nothing. Inspiration hides in silence."
+  ];
+
+  function showSpark() {
+    const spark = sparks[Math.floor(Math.random() * sparks.length)];
+    document.getElementById('spark-result').innerText = "✨ " + spark;
+  }
+</script>
+
       <p><em>“Every good idea starts with a break. Rest is research.”</em> – Dion</p>
       <p>Take a deep breath. Imagine your dream shop, your best-sellers flying off the shelves... and click below for your <strong>Daily Spark</strong> ✨</p>
       <button id="sparkBtn">Give me a Spark!</button>
