@@ -624,13 +624,19 @@
   document.body.appendChild(host);
 })();
   </script>  
-  <!-- Floating Ad Block (Reusable Component) -->
+<!-- Floating Ad Block (Reusable Component) -->
 <div id="floatingAd" class="floating-ad">
-  <strong>Ad space<br>300×250</strong>
+  <strong>🛒 Featured Shop<br>45dgof8 on Etsy</strong>
   <div class="floating-ad-inner">
-  <img src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png" alt="Ad Banner" style="width:100%; height:auto; border-radius:8px;" />
-</div>
-  
+    <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" rel="noopener" style="display:block; width:100%;">
+      <img 
+        src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png" 
+        alt="Visit 45dgof8 Etsy Shop" 
+        style="width:100%; height:auto; border-radius:8px; transition:transform 0.25s ease;"
+      />
+    </a>
+  </div>
+
   <small>
     📫 Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br/>
     💡 <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>
@@ -639,32 +645,29 @@
 
 <style>
   /* Floating Ad – shared block styling */
-.floating-ad {
-  position: fixed;
-  top: 100px;
-  left: calc(100vw - 320px); /* shift further right */
-  width: 300px;
-  background: #0f172a;
-  color: var(--muted, #94a3b8);
-  border: 1px dashed var(--border, #64748b);
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  z-index: 999;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4); /* added depth */
-}
+  .floating-ad {
+    position: fixed;
+    top: 100px;
+    left: calc(100vw - 320px);
+    width: 300px;
+    background: #0f172a;
+    color: var(--muted, #94a3b8);
+    border: 1px dashed var(--border, #64748b);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
 
-  .floating-ad-inner {
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .floating-ad-inner img:hover {
+    transform: scale(1.05);
   }
 
   @media (max-width: 900px) {
-    .floating-ad { display: none; } /* Hide on small screens */
+    .floating-ad { display: none; }
   }
 </style>
 
