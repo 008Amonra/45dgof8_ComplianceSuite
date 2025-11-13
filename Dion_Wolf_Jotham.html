@@ -29,167 +29,211 @@
 
   <!-- Optional favicon (place your icon at /favicon.ico or update path) -->
   <!-- <link rel="icon" href="/favicon.ico" /> -->
+<style>
+  :root{
+    --bg1:#1e293b; /* slate-800 */
+    --bg2:#334155; /* slate-700 */
+    --panel:#1e293b;
+    --text:#f8fafc; /* slate-50 */
+    --muted:#94a3b8; /* slate-400 */
+    --link:#93c5fd; /* sky-300 */
+    --accent:#38bdf8; /* sky-400 */
+    --border:#64748b; /* slate-500 */
+  }
 
-  <style>
-    :root{
-      --bg1:#1e293b; /* slate-800 */
-      --bg2:#334155; /* slate-700 */
-      --panel:#1e293b;
-      --text:#f8fafc; /* slate-50 */
-      --muted:#94a3b8; /* slate-400 */
-      --link:#93c5fd; /* sky-300 */
-      --accent:#38bdf8; /* sky-400 */
-      --border:#64748b; /* slate-500 */
-    }
+  /* ====================== */
+  /* 👻 GHOST AD COMPONENT  */
+  /* ====================== */
 
-    html,body{height:100%}
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background: linear-gradient(145deg, var(--bg1), var(--bg2));
-      color: var(--text);
-    }
+  .ghost-ad {
+    position: fixed;
+    top: 100px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #e2e8f0;
+    padding: 12px 16px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    font-size: 1rem;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+  }
+  .ghost-left { left: 20px; }
+  .ghost-right { right: 20px; }
 
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: var(--panel);
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
+  .ghost-ad.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-    h1, h2, h3, p, .quiz, .retreat, .llama-mask { margin-bottom: 1em; }
-    ul { padding-left: 1.2em; }
+  .close-btn {
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 8px;
+    float: right;
+    font-size: 1.2em;
+    color: #f87171;
+  }
 
-    /* Image presentation (keeps them from getting too big) */
-    .mid-img, .retreat-img, .relaxed-img {
-      display:block;
-      margin: 32px auto;
-      width: 100%;
-      max-width: 800px;
-      height: auto;
-      border-radius:12px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.4);
-    }
+  .ghost-left .close-btn { float: right; }
+  .ghost-right .close-btn {
+    float: left;
+    margin-left: 8px;
+    margin-right: 0;
+  }
 
-    select, button {
-      margin: 0.3em 0;
-      padding: 0.6em 0.9em;
-      border-radius: 10px;
-      background: #0f172a;
-      color: #f1f5f9;
-      border: 1px solid var(--border);
-      cursor: pointer;
-    }
-    button:hover { background:#475569; }
+  /* ====================== */
+  /* YOUR ORIGINAL CSS BELOW */
+  /* ====================== */
 
-    .footer { margin-top: 2em; font-size: 0.9em; color: var(--muted); }
-    a { color: var(--link); text-decoration: none; }
-    a:hover{ color:#fff; text-decoration: underline; }
-    .result, .llama-output { margin-top:1em; font-weight:600; color: var(--accent); }
+  html,body{height:100%}
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: linear-gradient(145deg, var(--bg1), var(--bg2));
+    color: var(--text);
+  }
 
-    /* Ad layout next to the llama tool on wide screens */
-    .ad-wrap{display:grid;grid-template-columns:1fr;gap:16px}
-    .ad-box{background:#0f172a;border:1px dashed var(--border);border-radius:12px;padding:12px;text-align:center;color:var(--muted)}
-    .ad-box small{display:block;margin-top:6px;opacity:.9}
-    @media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: var(--panel);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
 
-    /* Fullscreen Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 99999;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
-    }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-      transition: transform 0.3s ease;
-    }
-    .lightbox.show { display: flex; animation: fadeIn 0.2s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  h1, h2, h3, p, .quiz, .retreat, .llama-mask { margin-bottom: 1em; }
+  ul { padding-left: 1.2em; }
 
-    /* Hero Banner */
-.hero-banner-img {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
+  /* Image presentation (keeps them from getting too big) */
+  .mid-img, .retreat-img, .relaxed-img {
+    display:block;
+    margin: 32px auto;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  }
 
-.hero-banner-img img {
-  width: 100%;
-  height: auto;
-  border-radius: 0 0 28px 28px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  select, button {
+    margin: 0.3em 0;
+    padding: 0.6em 0.9em;
+    border-radius: 10px;
+    background: #0f172a;
+    color: #f1f5f9;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+  button:hover { background:#475569; }
 
-  /* Cinematic fade/slide-in */
-  opacity: 0;
-  transform: translateY(40px) scale(1.05);
-  animation: bannerEnter 1.6s ease-out forwards;
-}
+  .footer { margin-top: 2em; font-size: 0.9em; color: var(--muted); }
+  a { color: var(--link); text-decoration: none; }
+  a:hover{ color:#fff; text-decoration: underline; }
+  .result, .llama-output { margin-top:1em; font-weight:600; color: var(--accent); }
 
-@keyframes bannerEnter {
-  0% {
+  /* Ad layout next to the llama tool on wide screens */
+  .ad-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+  .ad-box{background:#0f172a;border:1px dashed var(--border);border-radius:12px;padding:12px;text-align:center;color:var(--muted)}
+  .ad-box small{display:block;margin-top:6px;opacity:.9}
+  @media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
+
+  /* Fullscreen Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+  }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+  }
+  .lightbox.show { display: flex; animation: fadeIn 0.2s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Hero Banner */
+  .hero-banner-img {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-banner-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 28px 28px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+
     opacity: 0;
     transform: translateY(40px) scale(1.05);
-    filter: blur(12px);
+    animation: bannerEnter 1.6s ease-out forwards;
   }
-  60% {
-    opacity: 1;
-    transform: translateY(-8px) scale(1.02);
-    filter: blur(3px);
+
+  @keyframes bannerEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(1.05);
+      filter: blur(12px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-8px) scale(1.02);
+      filter: blur(3px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+
+  /* Overlay "DION" neon glow */
+  .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-}
 
-/* Overlay "DION" neon glow */
-.banner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.banner-text h1 {
-  font-size: 4rem;
-  font-weight: 900;
-  color: #ffd700;
-  text-shadow: 
-    0 0 10px #ffd700,
-    0 0 20px #ffae00,
-    0 0 40px #ff8c00,
-    0 0 80px #ff6a00;
-  animation: neonPulse 3s infinite ease-in-out;
-}
-
-@keyframes neonPulse {
-  0%, 100% {
+  .banner-text h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #ffd700;
     text-shadow: 
-      0 0 5px #ffd700,
-      0 0 15px #ffae00,
-      0 0 30px #ff8c00;
-    opacity: 0.9;
+      0 0 10px #ffd700,
+      0 0 20px #ffae00,
+      0 0 40px #ff8c00,
+      0 0 80px #ff6a00;
+    animation: neonPulse 3s infinite ease-in-out;
   }
-  50% {
-    text-shadow: 
-      0 0 20px #ffd700,
-      0 0 40px #ffae00,
-      0 0 80px #ff8c00,
-      0 0 120px #ff6a00;
-    opacity: 1;
+
+  @keyframes neonPulse {
+    0%, 100% {
+      text-shadow: 
+        0 0 5px #ffd700,
+        0 0 15px #ffae00,
+        0 0 30px #ff8c00;
+      opacity: 0.9;
+    }
+    50% {
+      text-shadow: 
+        0 0 20px #ffd700,
+        0 0 40px #ffae00,
+        0 0 80px #ff8c00,
+        0 0 120px #ff6a00;
+      opacity: 1;
+    }
   }
-}
-  </style>
+</style>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -666,6 +710,46 @@
       ad.style.opacity = '0';
     }
   });
+
+  // 👻 Ghost Ad Logic
+  let dismissCounts = { ghostAdLeft: 0, ghostAdRight: 0 };
+
+  function showGhostAds() {
+    setTimeout(() => {
+      ['ghostAdLeft', 'ghostAdRight'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !el.classList.contains('hidden')) {
+          el.classList.add('show');
+          setTimeout(() => el.classList.remove('show'), 3000);
+        }
+      });
+    }, 1500);
+  }
+
+  function dismissGhostAd(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('show');
+    el.classList.add('hidden');
+    dismissCounts[id] = (dismissCounts[id] || 0) + 1;
+    const delay = (dismissCounts[id] + 1) * 60 * 1000;
+    setTimeout(() => {
+      el.classList.remove('hidden');
+      showGhostAds();
+    }, delay);
+  }
+
+  window.addEventListener('DOMContentLoaded', showGhostAds);
 </script>
+
+    <!-- 👻 GHOST ADS: Left & Right -->
+<div id="ghostAdLeft" class="ghost-ad ghost-left">
+  <span class="close-btn" onclick="dismissGhostAd('ghostAdLeft')">×</span>
+  👻 Your AD here
+</div>
+<div id="ghostAdRight" class="ghost-ad ghost-right">
+  <span class="close-btn" onclick="dismissGhostAd('ghostAdRight')">×</span>
+  👻 Your AD here
+</div>
 </body>
 </html>
