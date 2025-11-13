@@ -752,5 +752,40 @@
   <span class="close-btn" onclick="dismissGhostAd('ghostAdRight')">×</span>
   👻 Your AD here
 </div>
+   <section id="rss-section" style="padding:1rem;font-family:sans-serif">
+  <h2>Latest in AI Design</h2>
+  <div id="rss-feed"></div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/rss-parser/dist/rss-parser.min.js"></script>
+<script>
+(async () => {
+  const parser = new RSSParser();
+  const urls = [
+    "https://artisse.ai/feed",
+    "https://topmarketingai.com/feed",
+    "https://wired.com/feed/tag/artificial-intelligence/latest.rss"
+  ];
+  const feedEl = document.getElementById("rss-feed");
+
+  for (let url of urls) {
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxy);
+    const text = await res.text();
+    const json = JSON.parse(text);
+    const feed = await parser.parseString(json.contents);
+    feed.items.slice(0, 3).forEach(item => {
+      const div = document.createElement("div");
+      div.style = "background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.1);padding:1rem;margin:1rem 0;border-radius:12px;";
+      div.innerHTML = `
+        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+        <p>${item.contentSnippet?.slice(0, 140) || ''}...</p>
+        <small>${new Date(item.pubDate).toLocaleDateString()}</small>
+      `;
+      feedEl.appendChild(div);
+    });
+  }
+})();
+</script>
 </body>
 </html>
