@@ -45,20 +45,21 @@
   /* 👻 GHOST AD COMPONENT  */
   /* ====================== */
 
-  .ghost-ad {
-    position: fixed;
-    top: 100px;
-    background: rgba(255, 255, 255, 0.07);
-    color: #e2e8f0;
-    padding: 12px 16px;
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-    font-size: 1rem;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.8s ease;
-  }
+.ghost-ad {
+  position: fixed;
+  top: 30vh; /* 👈 Move the ghost to the shoulder */
+  background: rgba(255, 255, 255, 0.07);
+  color: #e2e8f0;
+  padding: 12px 16px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
   .ghost-left { left: 20px; }
   .ghost-right { right: 20px; }
 
