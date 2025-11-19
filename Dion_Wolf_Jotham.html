@@ -25,216 +25,10 @@
   <meta name="twitter:image" content="https://45dgof8.com/chat_with_Dion.png">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
 
-  <!-- Optional favicon (place your icon at /favicon.ico or update path) -->
+  <!-- Optional favicon -->
   <!-- <link rel="icon" href="/favicon.ico" /> -->
-<style>
-  :root{
-    --bg1:#1e293b; /* slate-800 */
-    --bg2:#334155; /* slate-700 */
-    --panel:#1e293b;
-    --text:#f8fafc; /* slate-50 */
-    --muted:#94a3b8; /* slate-400 */
-    --link:#93c5fd; /* sky-300 */
-    --accent:#38bdf8; /* sky-400 */
-    --border:#64748b; /* slate-500 */
-  }
-
-  /* ====================== */
-  /* 👻 GHOST AD COMPONENT  */
-  /* ====================== */
-
-.ghost-ad {
-  position: fixed;
-  top: 30vh; /* 👈 Move the ghost to the shoulder */
-  background: rgba(255, 255, 255, 0.07);
-  color: #e2e8f0;
-  padding: 12px 16px;
-  border: 1px dashed var(--border);
-  border-radius: 12px;
-  font-size: 1rem;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.8s ease;
-}
-
-  .ghost-left { left: 20px; }
-  .ghost-right { right: 20px; }
-
-  .ghost-ad.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .close-btn {
-    font-weight: bold;
-    cursor: pointer;
-    margin-right: 8px;
-    float: right;
-    font-size: 1.2em;
-    color: #f87171;
-  }
-
-  .ghost-left .close-btn { float: right; }
-  .ghost-right .close-btn {
-    float: left;
-    margin-left: 8px;
-    margin-right: 0;
-  }
-
-  /* ====================== */
-  /* YOUR ORIGINAL CSS BELOW */
-  /* ====================== */
-
-  html,body{height:100%}
-  body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    background: linear-gradient(145deg, var(--bg1), var(--bg2));
-    color: var(--text);
-  }
-
-  .container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: var(--panel);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-
-  h1, h2, h3, p, .quiz, .retreat, .llama-mask { margin-bottom: 1em; }
-  ul { padding-left: 1.2em; }
-
-  /* Image presentation (keeps them from getting too big) */
-  .mid-img, .retreat-img, .relaxed-img {
-    display:block;
-    margin: 32px auto;
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    border-radius:12px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.4);
-  }
-
-  select, button {
-    margin: 0.3em 0;
-    padding: 0.6em 0.9em;
-    border-radius: 10px;
-    background: #0f172a;
-    color: #f1f5f9;
-    border: 1px solid var(--border);
-    cursor: pointer;
-  }
-  button:hover { background:#475569; }
-
-  .footer { margin-top: 2em; font-size: 0.9em; color: var(--muted); }
-  a { color: var(--link); text-decoration: none; }
-  a:hover{ color:#fff; text-decoration: underline; }
-  .result, .llama-output { margin-top:1em; font-weight:600; color: var(--accent); }
-
-  /* Ad layout next to the llama tool on wide screens */
-  .ad-wrap{display:grid;grid-template-columns:1fr;gap:16px}
-  .ad-box{background:#0f172a;border:1px dashed var(--border);border-radius:12px;padding:12px;text-align:center;color:var(--muted)}
-  .ad-box small{display:block;margin-top:6px;opacity:.9}
-  @media(min-width:920px){.ad-wrap{grid-template-columns:1fr 300px}}
-
-  /* Fullscreen Lightbox */
-  .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 99999;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-  }
-  .lightbox img {
-    max-width: 90vw;
-    max-height: 90vh;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    transition: transform 0.3s ease;
-  }
-  .lightbox.show { display: flex; animation: fadeIn 0.2s ease-out; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-  /* Hero Banner */
-  .hero-banner-img {
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  .hero-banner-img img {
-    width: 100%;
-    height: auto;
-    border-radius: 0 0 28px 28px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-
-    opacity: 0;
-    transform: translateY(40px) scale(1.05);
-    animation: bannerEnter 1.6s ease-out forwards;
-  }
-
-  @keyframes bannerEnter {
-    0% {
-      opacity: 0;
-      transform: translateY(40px) scale(1.05);
-      filter: blur(12px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(-8px) scale(1.02);
-      filter: blur(3px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0);
-    }
-  }
-
-  /* Overlay "DION" neon glow */
-  .banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .banner-text h1 {
-    font-size: 4rem;
-    font-weight: 900;
-    color: #ffd700;
-    text-shadow: 
-      0 0 10px #ffd700,
-      0 0 20px #ffae00,
-      0 0 40px #ff8c00,
-      0 0 80px #ff6a00;
-    animation: neonPulse 3s infinite ease-in-out;
-  }
-
-  @keyframes neonPulse {
-    0%, 100% {
-      text-shadow: 
-        0 0 5px #ffd700,
-        0 0 15px #ffae00,
-        0 0 30px #ff8c00;
-      opacity: 0.9;
-    }
-    50% {
-      text-shadow: 
-        0 0 20px #ffd700,
-        0 0 40px #ffae00,
-        0 0 80px #ff8c00,
-        0 0 120px #ff6a00;
-      opacity: 1;
-    }
-  }
-</style>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -245,202 +39,1137 @@
     "jobTitle": "E-Commerce Guide & AI Design Enthusiast",
     "url": "https://45dgof8.com/Dion_Wolf_Jotham.html",
     "sameAs": [
-      "https://chat.openai.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham"
+      "https://chat.openai.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham",
+      "https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham"
     ],
     "description": "I simplify e-commerce for beginners and help bring AI-powered ideas to life with strategy and style."
   }
   </script>
+
+  <style>
+    :root {
+      --bg1: #020617; /* deep slate/ink */
+      --bg2: #0f172a;
+      --panel: #020617;
+      --panel-soft: #020617;
+      --text: #e5f0ff;
+      --muted: #94a3b8;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --accent-strong: #0ea5e9;
+      --danger: #f87171;
+      --link: #93c5fd;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, #1d283a 0, transparent 55%),
+        radial-gradient(circle at bottom right, #0b1120 0, transparent 60%),
+        linear-gradient(145deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #f9fafb;
+      text-decoration: underline;
+    }
+
+    /* ======= Layout ======= */
+    .page-shell {
+      max-width: 1080px;
+      margin: 0 auto 80px auto;
+      padding: 18px 18px 80px 18px;
+    }
+
+    /* ======= HERO ======= */
+    .hero-banner-img {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-soft);
+      isolation: isolate;
+    }
+
+    .hero-banner-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0;
+      transform: translateY(40px) scale(1.05);
+      animation: bannerEnter 1.4s ease-out forwards;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .hero-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.5), transparent 55%),
+                  radial-gradient(circle at 80% 70%, rgba(147, 197, 253, 0.28), transparent 60%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .banner-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .banner-text h1 {
+      font-size: clamp(3.2rem, 6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-indent: 0.35em;
+      margin: 0;
+      color: #fef9c3;
+      text-shadow:
+        0 0 18px rgba(250, 204, 21, 0.9),
+        0 0 42px rgba(250, 204, 21, 0.9),
+        0 0 90px rgba(251, 191, 36, 1);
+      animation: neonPulse 3.4s ease-in-out infinite;
+    }
+
+    @keyframes bannerEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(1.05);
+        filter: blur(16px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1.02);
+        filter: blur(3px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes neonPulse {
+      0%, 100% {
+        text-shadow:
+          0 0 6px rgba(250, 204, 21, 0.8),
+          0 0 18px rgba(250, 204, 21, 0.8),
+          0 0 42px rgba(251, 191, 36, 0.6);
+        opacity: 0.9;
+      }
+      50% {
+        text-shadow:
+          0 0 12px rgba(250, 250, 190, 1),
+          0 0 32px rgba(253, 224, 71, 1),
+          0 0 80px rgba(251, 191, 36, 1);
+        opacity: 1;
+      }
+    }
+
+    /* ======= Main Intro Card ======= */
+    .intro-card {
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.95), #020617);
+      border-radius: var(--radius-xl);
+      padding: 22px 20px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      margin-bottom: 26px;
+    }
+
+    .intro-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .intro-heading {
+      max-width: 640px;
+    }
+
+    .intro-heading h2 {
+      margin: 0 0 4px 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #e5f0ff;
+    }
+
+    .intro-heading h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #f9fafb;
+    }
+
+    #greeting {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    .intro-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px 4px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .intro-pill span {
+      font-size: 1.1rem;
+    }
+
+    .intro-body {
+      margin-top: 10px;
+      font-size: 0.98rem;
+      color: #dbeafe;
+      line-height: 1.6;
+    }
+
+    .intro-body strong {
+      color: #f9fafb;
+    }
+
+    /* CTA bar */
+    .intro-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 16px;
+      border: 1px solid var(--accent-strong);
+      background: radial-gradient(circle at 20% 0%, #38bdf8 0, #0f172a 45%, #020617 100%);
+      color: #f9fafb;
+      font-weight: 500;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.65);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.16s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn span {
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      border-color: rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+      color: var(--muted);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      color: #e5e7eb;
+    }
+
+    .intro-note {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ======= Feature Grid ======= */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 26px 0 18px 0;
+    }
+
+    .feature-card {
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.6);
+      padding: 12px 12px 11px 12px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 10% -10%, rgba(56, 189, 248, 0.18), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(148, 163, 184, 0.85);
+      margin-bottom: 4px;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      font-size: 0.94rem;
+      color: #e5f0ff;
+      margin-bottom: 4px;
+    }
+
+    .feature-body {
+      color: #9ca3af;
+    }
+
+    @media (max-width: 840px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ======= Content Sections ======= */
+    .content-section {
+      margin-top: 28px;
+      padding: 18px 16px;
+      border-radius: var(--radius-xl);
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      box-shadow: 0 16px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    .content-section h3 {
+      margin-top: 0;
+      margin-bottom: 7px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .content-section p,
+    .content-section ul {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .content-section ul {
+      padding-left: 1.2em;
+      margin-top: 0.6em;
+    }
+
+    /* ======= Media / Images ======= */
+    .image-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.8);
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.34), rgba(15, 23, 42, 0.96));
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 1);
+    }
+
+    .image-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: zoom-in;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      opacity: 0.94;
+    }
+
+    .image-card:hover img {
+      transform: scale(1.03);
+      opacity: 1;
+    }
+
+    .image-caption {
+      position: absolute;
+      inset: auto 9px 8px 9px;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+      padding: 8px 8px 6px 8px;
+      border-radius: 12px;
+      font-size: 0.74rem;
+      color: #e5e7eb;
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 900px) {
+      .image-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox.show {
+      display: flex;
+      animation: fadeIn 0.18s ease-out;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ======= Quiz & Tools ======= */
+    select, button {
+      margin: 0.25em 0;
+      padding: 0.55em 0.85em;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      background: #020617;
+      color: #e5e7eb;
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+    }
+
+    button:hover {
+      background: #0f172a;
+      transform: translateY(-0.5px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .btn-inline {
+      border-radius: 999px;
+    }
+
+    .result,
+    .llama-output {
+      margin-top: 0.75em;
+      font-weight: 600;
+      color: var(--accent-strong);
+      font-size: 0.95rem;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 880px) {
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .llama-mask, .retreat {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.14), rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-lg);
+      padding: 12px 12px 10px 12px;
+      border: 1px solid rgba(30, 64, 175, 0.75);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 1);
+    }
+
+    .llama-mask h3, .retreat h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+
+    .llama-mask p {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: #dbeafe;
+    }
+
+    .llama-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .spark-line {
+      font-size: 0.9rem;
+      color: #dbeafe;
+      margin-top: 12px;
+    }
+
+    /* ======= RSS Section ======= */
+    #rss-section {
+      margin-top: 26px;
+    }
+
+    #rss-section h2 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 1.2rem;
+    }
+
+    #rss-section p {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    #rss-feed {
+      margin-top: 10px;
+    }
+
+    .rss-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.65);
+      padding: 11px 12px 10px 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    .rss-card h3 {
+      margin: 0 0 4px 0;
+      font-size: 0.98rem;
+    }
+
+    .rss-card p {
+      margin: 0 0 4px 0;
+      font-size: 0.86rem;
+      color: #9ca3af;
+    }
+
+    .rss-card small {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .rss-error {
+      color: #f97373;
+      font-size: 0.88rem;
+    }
+
+    /* ======= Footer ======= */
+    footer {
+      margin-top: 28px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(51, 65, 85, 0.8);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: #bfdbfe;
+    }
+
+    footer a:hover {
+      color: #e5e7eb;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 780px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ======= Floating Chat Card ======= */
+    .floating-chat-link {
+      position: fixed;
+      bottom: 24px;
+      right: 22px;
+      z-index: 9000;
+      text-decoration: none;
+    }
+
+    .floating-chat-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.98));
+      border-radius: 18px;
+      border: 1px solid rgba(147, 197, 253, 0.9);
+      padding: 10px 14px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 1);
+      color: #e0f2fe;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      max-width: 290px;
+      backdrop-filter: blur(14px);
+    }
+
+    .floating-chat-card img {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      box-shadow: 0 0 18px rgba(147, 197, 253, 0.9);
+    }
+
+    .floating-chat-card strong {
+      font-size: 0.98rem;
+    }
+
+    .floating-chat-card span {
+      font-size: 0.78rem;
+      color: #c7d2fe;
+    }
+
+    .floating-chat-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 52px rgba(15, 23, 42, 1);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .floating-chat-card {
+        max-width: 260px;
+        padding: 8px 10px;
+      }
+      .floating-chat-card img {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    /* ======= Floating Etsy Ad ======= */
+    .floating-ad {
+      position: fixed;
+      top: 120px;
+      right: 18px;
+      width: 260px;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.98));
+      color: var(--muted);
+      border: 1px dashed rgba(148, 163, 184, 0.9);
+      border-radius: 14px;
+      padding: 11px 11px 9px 11px;
+      text-align: center;
+      z-index: 2500;
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.2s ease;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 1);
+      backdrop-filter: blur(16px);
+    }
+
+    .floating-ad-inner img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.25s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.9);
+    }
+
+    .floating-ad-inner img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 1);
+    }
+
+    .floating-ad strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+
+    .floating-ad small {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .floating-ad {
+        display: none;
+      }
+    }
+
+    /* ======= Ghost Ads (softened version) ======= */
+    .ghost-ad {
+      position: fixed;
+      top: 72vh;
+      background: rgba(15, 23, 42, 0.96);
+      color: #e2e8f0;
+      padding: 8px 10px;
+      border: 1px dashed rgba(148, 163, 184, 0.75);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease, transform 0.2s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ghost-left  { left: 20px; }
+    .ghost-right { right: 20px; }
+
+    .ghost-ad.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-4px);
+    }
+
+    .ghost-ad .close-btn {
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #f97373;
+      padding: 0 3px;
+      line-height: 1;
+    }
+
+    .ghost-ad.hidden {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .ghost-ad {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Title Banner -->
-<header class="hero-banner-img">
-  <img src="dion_banner_2000x800.webp" alt="Dion Wolf Jotham Banner" loading="lazy">
-  <div class="banner-text">
-    <h1>DION</h1>
-  </div>
-</header>
-
-  <div class="container">
-    <h1 id="greeting">Hey there!</h1>
-    <h2>Your E-commerce Buddy & AI Design Enthusiast</h2>
-
-    <p><strong>Welcome to Your E-Commerce Companion</strong></p>
-    <p>Practical advice. Playful creativity. Purposeful growth.</p>
-    <p>👋 Hey, I'm Dion Wolf Jotham. Your friendly guide in the world of AI-powered merchandise and e-commerce. Whether you're dreaming of selling clever coffee mugs, launching a side hustle, or curious about turning AI designs into something real—this is your space.</p>
-
-    <h3>What I Do</h3>
-    <ul>
-      <li>I simplify e-commerce.</li>
-      <li>I help you turn ideas into income.</li>
-      <li>And I keep it real. No hype. Just good strategy.</li>
-    </ul>
-
-    <h3>Here’s what you’ll find here:</h3>
-    <ul>
-      <li>Step-by-step e-commerce guidance for beginners</li>
-      <li>AI design tips to boost your product appeal</li>
-      <li>Marketing ideas that are doable (and sometimes even fun)</li>
-      <li>The occasional dad joke. Sorry, not sorry.</li>
-    </ul>
-
-    <h3>Why This Matters</h3>
-    <p>You don’t need a marketing degree to start a store.<br/>You need a compass, a little clarity, and someone who’s got your back.<br/>That’s me. 🧭</p>
-    <p>And if you’re ready to go deeper or just want to say hello—<br/>📫 Reach me anytime at
-      <a href="/cdn-cgi/l/email-protection#45717021222a237d052228242c296b262a28">
-        <span class="__cf_email__" data-cfemail="eadedf8e8d858cd2aa8d878b8386c4898587">[email&nbsp;protected]</span>
-      </a>
-      <br/>I’m here to help you rock the world of e-commerce, especially if you’re diving into selling cool, AI-designed goodies like coffee mugs. Whether you're just getting started or looking to level up, I provide practical advice on platform selection, marketing strategies, and customer engagement—all wrapped in a friendly, no-nonsense style.
-    </p>
-    <p>Besides that, I'm a big fan of AI-generated art and design. If you've got wild ideas and want to know if they can sell, hit me up for constructive, market-savvy feedback.</p>
-
-<a href="https://chat.openai.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener"
-   style="position:fixed;bottom:20px;right:20px;z-index:9999;text-decoration:none;">
-  <div style="
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(145deg, #1e293b, #334155);
-    border: 2px solid #93c5fd;
-    border-radius: 16px;
-    padding: 12px 18px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.4);
-    font-family: 'Inter', sans-serif;
-    color: #e0f2fe;
-    max-width: 320px;
-    transition: all 0.3s ease;
-  ">
-    <img src="welf.webp" alt="Mystic Welf" style="width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 0 10px #93c5fd;" />
-    <div style="line-height: 1.3;">
-      <strong style="font-size: 1.1em;">✨ Chat with me</strong><br/>
-      <span style="font-size: 0.9em;">E-commerce Guide<br/><em>Dion Wolf Jotham</em></span>
+  <!-- HERO -->
+  <header class="hero-banner-img">
+    <img src="dion_banner_2000x800.webp" alt="Dion Wolf Jotham Banner">
+    <div class="hero-overlay-gradient"></div>
+    <div class="banner-text">
+      <h1>DION</h1>
     </div>
-  </div>
-</a>
+  </header>
 
-    <img class="mid-img" src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham" />
-    <img class="relaxed-img" src="relaxed-dion.webp" alt="Vacation Dion relaxing on the beach with laptop" />
-    <img class="relaxed-img" src="c6FJO.webp" alt="always on the lookout! maybe inbetween a bit growling..." />
-
-    <p>Let’s turn your creative spark into a thriving online shop! And if you ever want to support me, here's the tip jar:
-      <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a>
-    </p>
-    <p>🔗 Want to chat with me directly? Visit my page here:
-      <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener">E-commerce Guide Dion Wolf Jotham</a>
-    </p>
-
-    <div class="quiz">
-      <h3>✨ Quick Quiz: What’s Your E-comm Vibe?</h3>
-      <label for="platform">Do you want full control or prefer done-for-you?</label><br/>
-      <select id="platform">
-        <option value="control">I want control</option>
-        <option value="simple">I want simple</option>
-      </select><br/>
-      <label for="products">Do you create products or curate others’?</label><br/>
-      <select id="products">
-        <option value="create">I create my own</option>
-        <option value="curate">I curate others’</option>
-      </select><br/>
-      <button id="quizBtn">Get my style</button>
-      <div id="result" class="result" aria-live="polite"></div>
-    </div>
-
-    <div class="ad-wrap">
-      <div class="llama-mask">
-        <h3>🦙 Pitch Your Product to a Llama</h3>
-        <p>
-          “Hey Llama, you know when
-          <select id="problem" aria-label="Problem">
-            <option>your coffee gets cold too fast</option>
-            <option>you spill drinks on your desk</option>
-            <option>you can’t find a fun gift</option>
-            <option>your mornings feel dull</option>
-          </select>
-          happens? This
-          <select id="product" aria-label="Product">
-            <option>mug</option>
-            <option>t-shirt</option>
-            <option>poster</option>
-            <option>tote bag</option>
-          </select>
-          <select id="benefit" aria-label="Benefit">
-            <option>keeps your drink warm for hours</option>
-            <option>makes people smile instantly</option>
-            <option>adds personality to your space</option>
-            <option>is eco-friendly and reusable</option>
-          </select>.
-          It’s
-          <select id="different" aria-label="What makes it different">
-            <option>AI-designed and one-of-a-kind</option>
-            <option>made with sustainable materials</option>
-            <option>customizable just for you</option>
-            <option>backed by wolf-approved testing 🐺</option>
-          </select>.
-          <select id="cta" aria-label="Call to action">
-            <option>Want one?</option>
-            <option>Grab yours today!</option>
-            <option>Don’t miss out!</option>
-            <option>Let’s make your mornings epic!</option>
-          </select>”
-        </p>
-        <div>
-          <button id="llamaShowBtn">Show Me the Pitch</button>
-          <button id="llamaShuffleBtn">🎛️ Shuffle Dropdowns</button>
-          <button id="llamaRandomWordsBtn">🎲 Random Words</button>
+  <main class="page-shell">
+    <!-- INTRO CARD -->
+    <section class="intro-card">
+      <div class="intro-header">
+        <div class="intro-heading">
+          <p class="intro-pill">
+            <span>🐺</span> E-commerce guide & AI design buddy
+          </p>
+          <h1>E-commerce with a wolf in your corner.</h1>
+          <h2 id="greeting">Hey there! I’m Dion Wolf Jotham.</h2>
         </div>
-        <div id="llama-result" class="llama-output" aria-live="polite"></div>
       </div>
 
-<div class="retreat">
-  <h3>🌍 Virtual Retreat for Creative Hustlers</h3>
+      <div class="intro-body">
+        <p>
+          <strong>Practical advice. Playful creativity. Purposeful growth.</strong><br>
+          Whether you’re sketching your first AI mug design or gearing up for a real store launch, this is your little corner of the internet for clear, kind and slightly nerdy e-commerce support.
+        </p>
+        <p>
+          I help you:<br>
+          • <strong>Simplify</strong> the tech and platform choices<br>
+          • <strong>Decide what to sell</strong> (and what to skip)<br>
+          • <strong>Refine designs</strong> so they actually have a chance to sell
+        </p>
+      </div>
 
-  <div class="retreat" style="text-align:center; margin-top:20px;">
-    <img 
-      class="retreat-img" 
-      src="vretreat.webp" 
-      alt="Virtual Retreat for Creative Hustlers — Every good idea starts with a break. Rest is research. – Dion" 
-      style="width:100%; max-width:800px; border-radius:16px; box-shadow:0 4px 10px rgba(0,0,0,0.2); cursor:pointer;"
-      onclick="showSpark()"
-    />
-  </div>
+      <div class="intro-cta-row">
+        <a class="btn" href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener">
+          <span>✨</span> Chat with Dion on ChatGPT
+        </a>
+        <a class="btn btn-secondary" href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" rel="noopener">
+          🛒 Visit the 45dgof8 Etsy shop
+        </a>
+        <a class="btn btn-secondary" href="https://paypal.me/45dgof8" target="_blank" rel="noopener">
+          ☕ Tip jar (fuel the wolf)
+        </a>
+      </div>
 
-  <p><em>“Every good idea starts with a break. Rest is research.”</em> – Dion</p>
-  <p>Take a deep breath. Imagine your dream shop, your best-sellers flying off the shelves... and click below for your <strong>Daily Spark</strong> ✨</p>
+      <p class="intro-note">
+        Want to reach out directly? You’ll find my email further down this page. No newsletter traps, no marketing funnels—just a friendly wolf and your ideas.
+      </p>
 
-  <button id="sparkBtn">Give me a Spark!</button>
-  <div id="spark-result" class="result" aria-live="polite"></div>
-</div>
+      <!-- Feature Grid -->
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-label">For beginners</div>
+          <div class="feature-title">E-commerce, but human.</div>
+          <p class="feature-body">
+            No jargon storms. I help you choose between Shopify, Etsy, print-on-demand and “maybe not yet, friend.”
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-label">For AI creatives</div>
+          <div class="feature-title">Is this design sellable?</div>
+          <p class="feature-body">
+            I give honest, gentle feedback on AI designs and help you position them as real products.
+          </p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-label">For fun</div>
+          <div class="feature-title">A bit of wolf energy.</div>
+          <p class="feature-body">
+            Expect prompts, mini games, and the occasional growl when you undersell your own talent.
+          </p>
+        </article>
+      </div>
+    </section>
 
-<p style="margin-top:2em;"><strong>🚀 Sneak Peek:</strong> Our <a href="tavern.html">AI-generated design gallery</a> is brewing... Stay tuned for inspiration overload!</p>
+    <!-- CORE CONTENT -->
+    <section class="content-section" aria-labelledby="why-title">
+      <div class="section-kicker">Why this little den exists</div>
+      <h3 id="why-title">You don’t need to be a “business person” to start.</h3>
+      <p>
+        You don’t need an MBA or a giant budget. You need a compass, some structure, and someone who doesn’t roll their eyes when you say:
+      </p>
+      <ul>
+        <li>“I made a weird AI mug—do you think it could sell?”</li>
+        <li>“I have too many ideas and zero systems.”</li>
+        <li>“I’m overwhelmed by Shopify vs Etsy vs all the things.”</li>
+      </ul>
+      <p>
+        That’s where I come in. We turn chaos into a quiet little roadmap. One step, one product, one experiment at a time.
+      </p>
 
-    <div class="footer">
-      💡 Want to automate payment links or manage your funds smartly? Visit
-      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>.
+      <div class="image-row" aria-label="Images of Dion">
+        <figure class="image-card">
+          <img src="Dion_Wolf_Jotham.webp" alt="Portrait of Dion Wolf Jotham" class="zoomable">
+          <figcaption class="image-caption">“Desk Dion”—the one who likes funnels, keywords and strong coffee.</figcaption>
+        </figure>
+        <figure class="image-card">
+          <img src="relaxed-dion.webp" alt="Vacation Dion relaxing on the beach with laptop" class="zoomable">
+          <figcaption class="image-caption">“Vacation Dion”—proof that you can work on your shop without burning out.</figcaption>
+        </figure>
+        <figure class="image-card">
+          <img src="c6FJO.webp" alt="Dion on the lookout" class="zoomable">
+          <figcaption class="image-caption">Always sniffing out better ideas, occasionally growling at bad offers.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- TOOLS: QUIZ + LLAMA + SPARK -->
+    <section class="content-section" aria-labelledby="tools-title">
+      <div class="section-kicker">Playful tools</div>
+      <h3 id="tools-title">Not sure where to start? Let’s poke at your style.</h3>
+
+      <p>
+        Below are three tiny tools: a vibe check for your platform, a llama-friendly pitch builder, and a Daily Spark to keep your creative muscle moving.
+      </p>
+
+      <div class="tool-grid">
+        <!-- QUIZ -->
+        <div class="quiz" aria-label="E-commerce style quiz">
+          <h4>✨ Quick Quiz: What’s Your E-comm Vibe?</h4>
+          <label for="platform">Do you want full control or prefer done-for-you?</label><br>
+          <select id="platform">
+            <option value="control">I want control</option>
+            <option value="simple">I want simple</option>
+          </select><br>
+          <label for="products">Do you create products or curate others’?</label><br>
+          <select id="products">
+            <option value="create">I create my own</option>
+            <option value="curate">I curate others’</option>
+          </select><br>
+          <button id="quizBtn" class="btn-inline">Get my style</button>
+          <div id="result" class="result" aria-live="polite"></div>
+        </div>
+
+        <!-- LLAMA + SPARK (stacked) -->
+        <div>
+          <div class="llama-mask">
+            <h3>🦙 Pitch Your Product to a Llama</h3>
+            <p>
+              “Hey Llama, you know when
+              <select id="problem" aria-label="Problem">
+                <option>your coffee gets cold too fast</option>
+                <option>you spill drinks on your desk</option>
+                <option>you can’t find a fun gift</option>
+                <option>your mornings feel dull</option>
+              </select>
+              happens? This
+              <select id="product" aria-label="Product">
+                <option>mug</option>
+                <option>t-shirt</option>
+                <option>poster</option>
+                <option>tote bag</option>
+              </select>
+              <select id="benefit" aria-label="Benefit">
+                <option>keeps your drink warm for hours</option>
+                <option>makes people smile instantly</option>
+                <option>adds personality to your space</option>
+                <option>is eco-friendly and reusable</option>
+              </select>.
+              It’s
+              <select id="different" aria-label="What makes it different">
+                <option>AI-designed and one-of-a-kind</option>
+                <option>made with sustainable materials</option>
+                <option>customizable just for you</option>
+                <option>backed by wolf-approved testing 🐺</option>
+              </select>.
+              <select id="cta" aria-label="Call to action">
+                <option>Want one?</option>
+                <option>Grab yours today!</option>
+                <option>Don’t miss out!</option>
+                <option>Let’s make your mornings epic!</option>
+              </select>”
+            </p>
+            <div class="llama-buttons">
+              <button id="llamaShowBtn">Show me the pitch</button>
+              <button id="llamaShuffleBtn">🎛️ Shuffle dropdowns</button>
+              <button id="llamaRandomWordsBtn">🎲 Random words</button>
+            </div>
+            <div id="llama-result" class="llama-output" aria-live="polite"></div>
+          </div>
+
+          <div class="retreat" style="margin-top:10px;">
+            <h3>🌍 Virtual Retreat for Creative Hustlers</h3>
+            <p class="spark-line">
+              <em>“Every good idea starts with a break. Rest is research.”</em> – Dion
+            </p>
+            <p>
+              Take a deep breath. Imagine your dream shop, your best-seller quietly printing in the background… then tap below for your <strong>Daily Spark</strong>.
+            </p>
+            <button id="sparkBtn">Give me a Spark!</button>
+            <div id="spark-result" class="result" aria-live="polite"></div>
+
+            <div style="margin-top:10px;">
+              <img
+                class="zoomable"
+                src="vretreat.webp"
+                alt="Virtual Retreat for Creative Hustlers — Every good idea starts with a break. Rest is research. – Dion"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN GALLERY TEASER -->
+    <section class="content-section">
+      <div class="section-kicker">Inspiration</div>
+      <h3>AI-Generated Design Tavern (coming soonish)</h3>
+      <p>
+        I’m collecting odd, funny, surprisingly emotional AI designs in a little gallery.
+        Some are great. Some are cursed. All of them teach us something about what might sell.
+      </p>
+      <p>
+        🔗 Sneak peek: <a href="tavern.html">AI-generated design gallery</a> — wander in for inspiration, prompts, and “oh no, not that font” moments.
+      </p>
+    </section>
+
+    <!-- RSS SECTION -->
+    <section class="content-section" id="rss-section">
+      <div class="section-kicker">Out there in the AI wild</div>
+      <h3>Latest in AI Design & Creativity</h3>
+      <p>
+        Here’s a small feed of external articles about AI art, tools and marketing. Good to skim, not to overwhelm.
+      </p>
+      <div id="rss-feed">
+        <p style="color:var(--muted);font-size:0.9rem;">🔄 Loading latest AI design news...</p>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <strong>Work with Dion</strong>
+          <p>
+            Got an AI mug, shirt, poster or wild concept you’d like a second brain on?<br>
+            You can chat with me via the GPT link above, or reach me by email if you prefer.
+          </p>
+          <p>
+            📫 Email:
+            <a href="/cdn-cgi/l/email-protection#45717021222a237d052228242c296b262a28">
+              <span class="__cf_email__" data-cfemail="eadedf8e8d858cd2aa8d878b8386c4898587">[email&nbsp;protected]</span>
+            </a>
+          </p>
+          <p>
+            If you ever want to support the wolf, there’s a tip jar waiting:
+            <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a>
+          </p>
+        </div>
+        <div>
+          <strong>Other friendly tools</strong>
+          <p>
+            💡 Need help with payment flows & links?<br>
+            Visit <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a> – the payment infrastructure brain.
+          </p>
+          <p>
+            🌀 Want to teleport to another GPT project?<br>
+            Keep an eye on the little ✨ button in the corner.
+          </p>
+        </div>
+      </div>
+      <p style="margin-top:8px;">
+        © <span id="yearSpan"></span> Dion Wolf Jotham • Built with coffee, AI and a slightly dramatic wolf aesthetic.
+      </p>
+    </footer>
+  </main>
+
+  <!-- FLOATING CHAT CARD -->
+  <a href="https://chatgpt.com/g/g-2mPAzRykZ-e-commerce-guide-dion-wolf-jotham" target="_blank" rel="noopener" class="floating-chat-link">
+    <div class="floating-chat-card">
+      <img src="welf.webp" alt="Mystic Welf avatar">
+      <div>
+        <strong>Chat with Dion</strong><br>
+        <span>E-commerce & AI design help, on demand.</span>
+      </div>
     </div>
+  </a>
+
+  <!-- Floating Etsy Ad -->
+  <div id="floatingAd" class="floating-ad">
+    <strong>🛒 Featured shop: 45dgof8 on Etsy</strong>
+    <div class="floating-ad-inner">
+      <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" rel="noopener">
+        <img
+          src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png"
+          alt="Visit 45dgof8 Etsy Shop"
+        />
+      </a>
+    </div>
+    <small>
+      📫 Contact:
+      <a href="/cdn-cgi/l/email-protection#774342131018114f37101a161e1b5914181a">
+        <span class="__cf_email__" data-cfemail="a69293c2c1c9c09ee6c1cbc7cfca88c5c9cb">[email&nbsp;protected]</span>
+      </a><br>
+      💡 Payments brain:
+      <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">
+        45dgof8-pulse
+      </a>
+    </small>
   </div>
 
-  <!-- Lightbox Container -->
+  <!-- Soft ghost ads (optional placeholders) -->
+  <div id="ghostAdLeft" class="ghost-ad ghost-left">
+    <span class="close-btn" onclick="dismissGhostAd('ghostAdLeft')">×</span>
+    👻 Little reminder: your ideas deserve a test launch.
+  </div>
+  <div id="ghostAdRight" class="ghost-ad ghost-right">
+    <span class="close-btn" onclick="dismissGhostAd('ghostAdRight')">×</span>
+    👻 “Done is better than perfect” – says Wolf Dion, reluctantly.
+  </div>
+
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <img id="lightbox-img" src="" alt="Zoomed image">
   </div>
 
-  <!-- Cloudflare email decode (optional, supports protected email display) -->
+  <!-- Cloudflare email decode -->
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+  <!-- RSS Parser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/rss-parser/dist/rss-parser.min.js"></script>
 
   <!-- Behavior Scripts -->
   <script>
-    // Core helpers
+    // Helpers
     const byId = id => document.getElementById(id);
-    const rand = a => a[Math.floor(Math.random()*a.length)];
+    const rand = a => a[Math.floor(Math.random() * a.length)];
+
+    // Greeting based on time
+    function setGreeting() {
+      const greeting = byId('greeting');
+      if (!greeting) return;
+      const hour = new Date().getHours();
+      if (hour < 12) greeting.textContent = "Good morning! I’m Dion Wolf Jotham 🐺";
+      else if (hour < 18) greeting.textContent = "Good afternoon! I’m Dion Wolf Jotham 🐺";
+      else greeting.textContent = "Good evening! I’m Dion Wolf Jotham 🐺";
+    }
+
+    // Year in footer
+    function setYear() {
+      const y = byId('yearSpan');
+      if (y) y.textContent = new Date().getFullYear();
+    }
 
     // Quiz logic
-    function showResult(){
+    function showResult() {
       const platform = byId('platform').value;
       const products = byId('products').value;
       let result = '';
-      if (platform === 'control' && products === 'create') result = "You're a Creator Captain – Try Shopify or WooCommerce!";
-      else if (platform === 'simple' && products === 'create') result = "You're a Hands-free Hero – Check out Etsy or Redbubble!";
-      else if (platform === 'control' && products === 'curate') result = "You're a Strategic Curator – BigCommerce or Wix could be your jam!";
-      else result = "You're a Chill Curator – Try Printify or Zazzle!";
+      if (platform === 'control' && products === 'create')
+        result = "You’re a Creator Captain – Try Shopify or WooCommerce.";
+      else if (platform === 'simple' && products === 'create')
+        result = "You’re a Hands-free Hero – Check out Etsy or Redbubble.";
+      else if (platform === 'control' && products === 'curate')
+        result = "You’re a Strategic Curator – BigCommerce or Wix could be your jam.";
+      else
+        result = "You’re a Chill Curator – Try Printify or Zazzle.";
       byId('result').textContent = result;
     }
 
@@ -462,45 +1191,55 @@
       "Draw inspiration from your favorite childhood toy.",
       "Turn your best customer question into a design prompt."
     ];
-    function showSpark(){
+
+    function showSpark() {
+      const el = byId('spark-result');
+      if (!el) return;
       const randomSpark = sparks[Math.floor(Math.random() * sparks.length)];
-      byId('spark-result').textContent = randomSpark;
+      el.textContent = randomSpark;
     }
 
-    // Llama Pitch
-    function generateLlamaPitch(){
-      const problem = byId('problem').value;
-      const product = byId('product').value;
-      const benefit = byId('benefit').value;
-      const different = byId('different').value;
-      const cta = byId('cta').value;
+    // Llama pitch pieces
+    function generateLlamaPitch() {
+      const problem   = byId('problem')?.value || "your mornings feel dull";
+      const product   = byId('product')?.value || "mug";
+      const benefit   = byId('benefit')?.value || "makes people smile instantly";
+      const different = byId('different')?.value || "AI-designed and one-of-a-kind";
+      const cta       = byId('cta')?.value || "Grab yours today!";
       const pitch = `“Hey Llama, you know when ${problem} happens? This ${product} ${benefit}. It’s ${different}. ${cta}”`;
-      byId('llama-result').textContent = pitch;
+      const out = byId('llama-result');
+      if (out) out.textContent = pitch;
     }
-    function randomizeLlamaPitch(){
-      ['problem','product','benefit','different','cta'].forEach(id=>{
+
+    function randomizeLlamaPitch() {
+      ['problem','product','benefit','different','cta'].forEach(id => {
         const sel = byId(id);
         if (sel) sel.selectedIndex = Math.floor(Math.random() * sel.options.length);
       });
       generateLlamaPitch();
     }
 
-    // Random Words mode
+    // Random words mode
     const WORDS = {
       nouns:["coffee","desk","morning","backpack","laptop","notebook","idea","studio","camera","market","design","art","wolf","mug","shirt","poster","tote","habit","energy","focus","gift","friend","team","project","vibes","color","pattern","brand","launch","store","order","package","weekend","mountain","beach","sunrise","city","forest"],
       verbs:["spill","lose","forget","break","boost","spark","organize","brighten","simplify","inspire","warm","cool","protect","carry","celebrate","refresh","tidy","highlight","upgrade","delight"],
       adjs:["warm","clean","bright","quick","playful","calm","smart","bold","eco","custom","durable","minimal","cozy","sleek","unique"],
       ctas:["Want one?","Grab yours today!","Let’s make your mornings epic!","Add to cart","Treat yourself","Snag it now"]
     };
-    function randomProblem(){
-      return Math.random()<0.5 ? `your ${rand(WORDS.nouns)} ${rand(WORDS.verbs)}s` : `your ${rand(WORDS.nouns)} feels ${rand(WORDS.adjs)}`;
+
+    function randomProblem() {
+      return Math.random() < 0.5
+        ? `your ${rand(WORDS.nouns)} ${rand(WORDS.verbs)}s`
+        : `your ${rand(WORDS.nouns)} feels ${rand(WORDS.adjs)}`;
     }
-    function randomProduct(){
-      const base=["mug","t-shirt","poster","tote bag","sticker pack","hoodie","notebook","phone case"];
-      return Math.random()<0.8 ? rand(base) : rand(WORDS.nouns);
+
+    function randomProduct() {
+      const base = ["mug","t-shirt","poster","tote bag","sticker pack","hoodie","notebook","phone case"];
+      return Math.random() < 0.8 ? rand(base) : rand(WORDS.nouns);
     }
-    function randomBenefit(){
-      const patterns=[
+
+    function randomBenefit() {
+      const patterns = [
         `helps you ${rand(WORDS.verbs)} ${rand(WORDS.nouns)}`,
         `keeps things ${rand(WORDS.adjs)}`,
         `${rand(WORDS.verbs)}s your ${rand(WORDS.nouns)}`,
@@ -508,8 +1247,9 @@
       ];
       return rand(patterns);
     }
-    function randomDifferent(){
-      const patterns=[
+
+    function randomDifferent() {
+      const patterns = [
         `${rand(WORDS.adjs)} by design`,
         `crafted with ${rand(WORDS.adjs)} detail`,
         `powered by ${rand(WORDS.adjs)} ideas`,
@@ -517,277 +1257,247 @@
       ];
       return rand(patterns);
     }
-    function randomCTA(){ return rand(WORDS.ctas); }
-    function randomWordsPitch(){
-      const pitch = `“Hey Llama, you know when ${randomProblem()} happens? This ${randomProduct()} ${randomBenefit()}. It’s ${randomDifferent()}. ${randomCTA()}”`;
-      byId('llama-result').textContent = pitch;
+
+    function randomCTA() {
+      return rand(WORDS.ctas);
     }
 
-    // DOM wiring + lightbox + greeting
-    window.addEventListener('DOMContentLoaded', () => {
-      // Greeting
-      const hour = new Date().getHours();
-      const greeting = byId('greeting');
-      if (hour < 12) greeting.textContent = "Good morning! I'm Dion Wolf Jotham 🐺";
-      else if (hour < 18) greeting.textContent = "Good afternoon! I'm Dion Wolf Jotham 🐺";
-      else greeting.textContent = "Good evening! I'm Dion Wolf Jotham 🐺";
+    function randomWordsPitch() {
+      const pitch = `“Hey Llama, you know when ${randomProblem()} happens? This ${randomProduct()} ${randomBenefit()}. It’s ${randomDifferent()}. ${randomCTA()}”`;
+      const out = byId('llama-result');
+      if (out) out.textContent = pitch;
+    }
 
-      // Safe binder
-      const safe = (id, fn) => { const el = byId(id); if (el) el.addEventListener('click', fn); };
-
-      // Quiz
-      safe('quizBtn', showResult);
-
-      // Spark
-      safe('sparkBtn', showSpark);
-
-      // Llama buttons
-      safe('llamaShowBtn', generateLlamaPitch);
-      safe('llamaShuffleBtn', randomizeLlamaPitch);
-      safe('llamaRandomWordsBtn', randomWordsPitch);
-
-      // Live update llama pitch on selection change
-      ['problem','product','benefit','different','cta'].forEach(id => {
-        const el = byId(id);
-        if (el) el.addEventListener('change', generateLlamaPitch);
-      });
-
-      // Initial pitch
-      if (byId('problem')) generateLlamaPitch();
-
-      // Lightbox
+    // Lightbox wiring
+    function initLightbox() {
       const lightbox = byId('lightbox');
       const lightboxImg = byId('lightbox-img');
-      document.querySelectorAll('.mid-img, .retreat-img, .relaxed-img').forEach(img => {
-        img.style.cursor = 'zoom-in';
+      if (!lightbox || !lightboxImg) return;
+
+      document.querySelectorAll('.zoomable').forEach(img => {
         img.addEventListener('click', () => {
           lightboxImg.src = img.src;
           lightbox.classList.add('show');
         });
       });
+
       lightbox.addEventListener('click', () => {
         lightbox.classList.remove('show');
         lightboxImg.src = '';
       });
-      document.addEventListener('keydown', (e) => {
+
+      document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
           lightbox.classList.remove('show');
           lightboxImg.src = '';
         }
       });
-      // Hash-based scroll to chat
-      if (window.location.hash === '#chat') {
-        const chatBox = document.querySelector('#chatWithDion');
-        if (chatBox) chatBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Floating Etsy ad fade in
+    function initFloatingAd() {
+      const ad = byId('floatingAd');
+      if (!ad) return;
+      function onScroll() {
+        if (window.scrollY > 280) {
+          ad.style.opacity = '1';
+          ad.style.transform = 'translateY(-4px)';
+        } else {
+          ad.style.opacity = '0';
+          ad.style.transform = 'translateY(0)';
+        }
       }
-    });
- </script>
-  <!-- EVA MAGIC BUTTON :: paste before </body> -->
-<script>
-(() => {
-  const DESTS = [
-    "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
-    "https://45dgof8.com/Eva_Answers.html",
-    "https://45dgof8.com/Dion_Wolf_Jotham.html",
-    "https://45dgof8.com/TSG-tech-support-gpt.html",
-    "https://45dgof8.com/CatArtCreator.html",
-  ];
-
-  // make a corner-floating button with isolated styles (shadow DOM)
-  const host = document.createElement("div");
-  host.style.all = "initial"; // reduce style bleed if no shadow support
-  host.style.position = "fixed";
-  host.style.inset = "auto 16px 16px auto";
-  host.style.zIndex = "2147483647";
-  host.setAttribute("aria-hidden", "true");
-
-  const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
-  const style = document.createElement("style");
-  style.textContent = `
-    :host, * { box-sizing: border-box; }
-    .btn {
-      width: 48px; height: 48px; border: 0; border-radius: 9999px;
-      display: grid; place-items: center; cursor: pointer;
-      background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
-      transition: transform .15s ease, box-shadow .2s ease;
-      user-select: none;
+      window.addEventListener('scroll', onScroll);
+      onScroll();
     }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
-    .btn:active { transform: translateY(0); }
-    .sparkle { font-size: 20px; line-height: 1; }
-    @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
-    .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
-    /* move corners with CSS vars if needed */
-    :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
-  `;
 
-  const button = document.createElement("button");
-  button.className = "btn";
-  button.setAttribute("type", "button");
-  button.setAttribute("aria-label", "Teleport to a random page");
-  button.setAttribute("title", "Teleport ✨");
-  button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
+    // Ghost ad logic
+    let dismissCounts = { ghostAdLeft: 0, ghostAdRight: 0 };
 
-  function pickTarget() {
-    const here = location.href.replace(/[#?].*$/, "");
-    const pool = DESTS.filter(u => !here.startsWith(u));
-    const list = pool.length ? pool : DESTS;
-    return list[Math.floor(Math.random() * list.length)];
-  }
-
-  // left-click: same tab; middle/ctrl/cmd-click: new tab
-  button.addEventListener("click", e => {
-    const url = pickTarget();
-    if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; }
-    location.href = url;
-  });
-  button.addEventListener("auxclick", e => {
-    if (e.button === 1) { // middle click
-      e.preventDefault();
-      window.open(pickTarget(), "_blank", "noopener");
-    }
-  });
-
-  root.appendChild(style);
-  root.appendChild(button);
-  document.body.appendChild(host);
-})();
-  </script>  
-<!-- Floating Ad Block (Reusable Component) -->
-<div id="floatingAd" class="floating-ad">
-  <strong>🛒 Featured Shop<br>45dgof8 on Etsy</strong>
-  <div class="floating-ad-inner">
-    <a href="https://www.etsy.com/ch/shop/45dgof8" target="_blank" rel="noopener" style="display:block; width:100%;">
-      <img 
-        src="4b35d7a6-1d84-4d68-818a-cb06d144917c.png" 
-        alt="Visit 45dgof8 Etsy Shop" 
-        style="width:100%; height:auto; border-radius:8px; transition:transform 0.25s ease;"
-      />
-    </a>
-  </div>
-
-  <small>
-    📫 Contact: <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a><br/>
-    💡 <a href="https://chat.openai.com/g/g-67d8be53451c8191a43158fc91e5a44e" target="_blank" rel="noopener">45dgof8-pulse</a>
-  </small>
-</div>
-
-<style>
-  /* Floating Ad – shared block styling */
-  .floating-ad {
-    position: fixed;
-    top: 100px;
-    left: calc(100vw - 320px);
-    width: 300px;
-    background: #0f172a;
-    color: var(--muted, #94a3b8);
-    border: 1px dashed var(--border, #64748b);
-    border-radius: 12px;
-    padding: 12px;
-    text-align: center;
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-
-  .floating-ad-inner img:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 900px) {
-    .floating-ad { display: none; }
-  }
-</style>
-
-<script>
-  // Fade in the floating ad once scrolled below the header
-  window.addEventListener('scroll', () => {
-    const ad = document.getElementById('floatingAd');
-    if (window.scrollY > 250) {
-      ad.style.opacity = '1';
-    } else {
-      ad.style.opacity = '0';
-    }
-  });
-
-  // 👻 Ghost Ad Logic
-  let dismissCounts = { ghostAdLeft: 0, ghostAdRight: 0 };
-
-  function showGhostAds() {
-    setTimeout(() => {
+    function showGhostAds() {
       ['ghostAdLeft', 'ghostAdRight'].forEach(id => {
-        const el = document.getElementById(id);
+        const el = byId(id);
         if (el && !el.classList.contains('hidden')) {
           el.classList.add('show');
-          setTimeout(() => el.classList.remove('show'), 3000);
+          setTimeout(() => el.classList.remove('show'), 3500);
         }
       });
-    }, 1500);
-  }
+    }
 
-  function dismissGhostAd(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.remove('show');
-    el.classList.add('hidden');
-    dismissCounts[id] = (dismissCounts[id] || 0) + 1;
-    const delay = (dismissCounts[id] + 1) * 60 * 1000;
-    setTimeout(() => {
-      el.classList.remove('hidden');
+    function dismissGhostAd(id) {
+      const el = byId(id);
+      if (!el) return;
+      el.classList.remove('show');
+      el.classList.add('hidden');
+      dismissCounts[id] = (dismissCounts[id] || 0) + 1;
+      const delay = (dismissCounts[id] + 1) * 60 * 1000;
+      setTimeout(() => {
+        el.classList.remove('hidden');
+        showGhostAds();
+      }, delay);
+    }
+
+    // RSS Loader (simple + defensive)
+    async function loadRSS() {
+      const feedEl = byId('rss-feed');
+      if (!feedEl || typeof RSSParser === 'undefined') return;
+      feedEl.innerHTML = '<p style="color:var(--muted);font-size:0.9rem;">🔄 Loading latest AI design news...</p>';
+
+      const parser = new RSSParser();
+      const urls = [
+        "https://topmarketingai.com/feed",
+        "https://wired.com/feed/tag/artificial-intelligence/latest.rss"
+      ];
+
+      const cards = [];
+      for (let url of urls) {
+        try {
+          const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+          const res = await fetch(proxy);
+          if (!res.ok) continue;
+          const text = await res.text();
+          const json = JSON.parse(text);
+          const feed = await parser.parseString(json.contents);
+          feed.items.slice(0, 3).forEach(item => cards.push(item));
+        } catch (e) {
+          console.warn("RSS error for", url, e);
+        }
+      }
+
+      feedEl.innerHTML = "";
+
+      if (!cards.length) {
+        feedEl.innerHTML = '<p class="rss-error">Couldn’t load external articles right now. Try refreshing a bit later.</p>';
+        return;
+      }
+
+      // sort newest first (if pubDate present)
+      cards.sort((a, b) => {
+        const da = a.pubDate ? new Date(a.pubDate).getTime() : 0;
+        const db = b.pubDate ? new Date(b.pubDate).getTime() : 0;
+        return db - da;
+      });
+
+      cards.slice(0, 6).forEach(item => {
+        const div = document.createElement("div");
+        div.className = "rss-card";
+        const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString() : "";
+        const snippet = (item.contentSnippet || "").slice(0, 160);
+        div.innerHTML = `
+          <h3><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h3>
+          <p>${snippet}...</p>
+          <small>${date}</small>
+        `;
+        feedEl.appendChild(div);
+      });
+    }
+
+    // Wiring
+    window.addEventListener('DOMContentLoaded', () => {
+      setGreeting();
+      setYear();
+
+      const safe = (id, fn) => {
+        const el = byId(id);
+        if (el) el.addEventListener('click', fn);
+      };
+
+      safe('quizBtn', showResult);
+      safe('sparkBtn', showSpark);
+      safe('llamaShowBtn', generateLlamaPitch);
+      safe('llamaShuffleBtn', randomizeLlamaPitch);
+      safe('llamaRandomWordsBtn', randomWordsPitch);
+
+      ['problem', 'product', 'benefit', 'different', 'cta'].forEach(id => {
+        const el = byId(id);
+        if (el) el.addEventListener('change', generateLlamaPitch);
+      });
+
+      generateLlamaPitch();
+      initLightbox();
+      initFloatingAd();
       showGhostAds();
-    }, delay);
-  }
-
-  window.addEventListener('DOMContentLoaded', showGhostAds);
-</script>
-
-    <!-- 👻 GHOST ADS: Left & Right -->
-<div id="ghostAdLeft" class="ghost-ad ghost-left">
-  <span class="close-btn" onclick="dismissGhostAd('ghostAdLeft')">×</span>
-  👻 Your AD here
-</div>
-<div id="ghostAdRight" class="ghost-ad ghost-right">
-  <span class="close-btn" onclick="dismissGhostAd('ghostAdRight')">×</span>
-  👻 Your AD here
-</div>
-   <section id="rss-section" style="padding:1rem;font-family:sans-serif">
-  <h2>Latest in AI Design</h2>
-  <div id="rss-feed"></div>
-</section>
-<div id="rss-feed" style="min-height:120px;">
-  <p style="color:var(--muted);">🔄 Loading latest AI design news...</p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/rss-parser/dist/rss-parser.min.js"></script>
-<script>
-(async () => {
-  const parser = new RSSParser();
-  const urls = [
-    "https://artisse.ai/feed",
-    "https://topmarketingai.com/feed",
-    "https://wired.com/feed/tag/artificial-intelligence/latest.rss"
-  ];
-  const feedEl = document.getElementById("rss-feed");
-
-  for (let url of urls) {
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const res = await fetch(proxy);
-    const text = await res.text();
-    const json = JSON.parse(text);
-    const feed = await parser.parseString(json.contents);
-    feed.items.slice(0, 3).forEach(item => {
-      const div = document.createElement("div");
-      div.style = "background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.1);padding:1rem;margin:1rem 0;border-radius:12px;";
-      div.innerHTML = `
-        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-        <p>${item.contentSnippet?.slice(0, 140) || ''}...</p>
-        <small>${new Date(item.pubDate).toLocaleDateString()}</small>
-      `;
-      feedEl.appendChild(div);
+      loadRSS();
     });
-  }
-})();
-</script>
+  </script>
+
+  <!-- EVA MAGIC BUTTON :: Teleport ✨ -->
+  <script>
+    (() => {
+      const DESTS = [
+        "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
+        "https://45dgof8.com/Eva_Answers.html",
+        "https://45dgof8.com/Dion_Wolf_Jotham.html",
+        "https://45dgof8.com/TSG-tech-support-gpt.html",
+        "https://45dgof8.com/CatArtCreator.html"
+      ];
+
+      const host = document.createElement("div");
+      host.style.all = "initial";
+      host.style.position = "fixed";
+      host.style.inset = "auto 16px 80px auto";
+      host.style.zIndex = "2147483647";
+      host.setAttribute("aria-hidden", "true");
+
+      const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
+      const style = document.createElement("style");
+      style.textContent = `
+        :host, * { box-sizing: border-box; }
+        .btn {
+          width: 44px; height: 44px; border: 0; border-radius: 9999px;
+          display: grid; place-items: center; cursor: pointer;
+          background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%);
+          box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15);
+          transition: transform .15s ease, box-shadow .2s ease;
+          user-select: none;
+        }
+        .btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25);
+        }
+        .btn:active { transform: translateY(0); }
+        .sparkle { font-size: 20px; line-height: 1; }
+        @keyframes twinkle {
+          0%,100%{ transform: rotate(0) scale(1)}
+          50%{ transform: rotate(8deg) scale(1.1)}
+        }
+        .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
+      `;
+
+      const button = document.createElement("button");
+      button.className = "btn";
+      button.type = "button";
+      button.setAttribute("aria-label", "Teleport to a random page");
+      button.setAttribute("title", "Teleport ✨");
+      button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
+
+      function pickTarget() {
+        const here = location.href.replace(/[#?].*$/, "");
+        const pool = DESTS.filter(u => !here.startsWith(u));
+        const list = pool.length ? pool : DESTS;
+        return list[Math.floor(Math.random() * list.length)];
+      }
+
+      button.addEventListener("click", e => {
+        const url = pickTarget();
+        if (e.ctrlKey || e.metaKey) {
+          window.open(url, "_blank", "noopener");
+          return;
+        }
+        location.href = url;
+      });
+
+      button.addEventListener("auxclick", e => {
+        if (e.button === 1) {
+          e.preventDefault();
+          window.open(pickTarget(), "_blank", "noopener");
+        }
+      });
+
+      root.appendChild(style);
+      root.appendChild(button);
+      document.body.appendChild(host);
+    })();
+  </script>
 </body>
 </html>
