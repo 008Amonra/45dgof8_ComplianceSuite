@@ -1,0 +1,316 @@
+/* =========================================================
+   TSG Prompt Forge – Clean Optimized CSS v3.0
+   ========================================================= */
+
+/* ----- Global Reset ----- */
+:root {
+  --card: rgba(10,14,28,0.55);
+  --text: #e6e9f0;
+  --muted: #b7c0d9;
+  --radius: 16px;
+  --ring: rgba(122,183,255,.45);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  background: #050812;
+  color: var(--text);
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+.tsg-header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.tsg-header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  letter-spacing: 0.03em;
+}
+
+.tsg-sub {
+  margin-top: 6px;
+  opacity: 0.7;
+  font-size: 1rem;
+}
+
+/* =========================================================
+   Prompt Forge Main Card
+   ========================================================= */
+.prompt-forge {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 1080px;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 0 0, rgba(90,240,179,.10), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(122,183,255,.12), transparent 55%),
+    var(--card);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+}
+
+/* Grid Layout */
+.pf-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .pf-grid {
+    grid-template-columns: 1.05fr 1.25fr;
+  }
+}
+
+/* Column */
+.pf-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Controls Divider */
+@media (min-width: 860px) {
+  .pf-controls {
+    border-right: 1px solid rgba(255,255,255,.12);
+    padding-right: 12px;
+  }
+}
+
+/* =========================================================
+   Row Elements
+   ========================================================= */
+.pf-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.pf-row label {
+  white-space: nowrap;
+}
+
+/* Dropdowns */
+select {
+  width: 100%;
+  font: inherit;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.35);
+  color: var(--text);
+}
+
+select:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+/* Mini Buttons */
+.pf-mini {
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.4);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.pf-mini:hover {
+  filter: brightness(1.08);
+}
+
+/* Action Buttons Row */
+.pf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Block Headings */
+.pf-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pf-block-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  min-height: 72px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: #050812;
+  color: #dde7ff;
+  padding: 8px 10px;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+/* Copy Button */
+.pf-copy {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(122,183,255,.4);
+  background: rgba(4,8,20,.95);
+  color: #dde7ff;
+  cursor: pointer;
+}
+
+.pf-copy:hover {
+  filter: brightness(1.1);
+}
+
+/* Hint */
+.pf-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* =========================================================
+   NightCafe Button
+   ========================================================= */
+.pf-nc-btn {
+  display: block;
+  margin: 12px auto;
+  padding: 4px 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #001013;
+  background: linear-gradient(135deg, #5af0b3, #7ab7ff);
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: transform 0.25s ease-out, filter 0.25s ease-out;
+}
+
+.pf-nc-btn:hover {
+  filter: brightness(1.08);
+  transform: scale(2);
+}
+
+/* =========================================================
+   Toast Popup
+   ========================================================= */
+.pf-toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0b1a12;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(90,240,179,.45);
+  box-shadow: 0 4px 16px rgba(0,0,0,.45);
+  color: #bffbe3;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease, transform .35s ease;
+  z-index: 99999;
+}
+
+.pf-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+/* =========================================================
+   Showcase Preview
+   ========================================================= */
+.pf-showcase {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.pf-showcase img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.45);
+  opacity: 0.95;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.pf-showcase img:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* =========================================================
+   Medallion Branding
+   ========================================================= */
+.tsg-medallion-wrap {
+  margin-top: 50px;
+  padding: 30px 0;
+  text-align: center;
+  opacity: 0.95;
+}
+
+.tsg-medallion {
+  max-width: 240px;
+  width: 40%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(0,0,0,0.35);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.tsg-medallion:hover {
+  transform: scale(1.05) rotate(3deg);
+  opacity: 1;
+}
+
+/* =========================================================
+   Mobile Tweaks
+   ========================================================= */
+@media (max-width: 640px) {
+
+  .pf-row {
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+  }
+
+  .pf-row label {
+    grid-column: 1 / -1;
+    margin-bottom: 2px;
+  }
+.prompt-forge.happy-mode {
+  box-shadow: 0 0 24px rgba(255, 220, 120, 0.45);
+  border-color: rgba(255, 230, 150, 0.7);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+#pf-happy-switch:checked + span::after {
+  content: " 😊 Happy Mode";
+  color: #ffe58a;
+  font-weight: 600;
+  margin-left: 6px;
+}
