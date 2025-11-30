@@ -1,0 +1,308 @@
+<!-- TSG Viral Showcase – Drop-in Section -->
+<section class="tsg-wrapper">
+  <!-- 🟣 TSG Viral Showcase Box -->
+  <div class="tsg-card">
+    <h2 class="tsg-title">TSG Viral Showcase</h2>
+    <p class="tsg-subtitle">
+      Upload your demo videos, test hooks & create viral-ready audio in minutes.
+    </p>
+
+    <!-- 🟢 Upload-Bereich für Demo-Videos -->
+    <div class="tsg-upload">
+      <label for="tsg-video-upload" class="tsg-upload-label">
+        <span class="tsg-upload-title">Upload Demo Videos</span>
+        <span class="tsg-upload-hint">
+          Drag &amp; drop files here or click to select
+        </span>
+        <span class="tsg-upload-types">
+          Supported: MP4, MOV, WEBM (max. 500 MB)
+        </span>
+      </label>
+      <input
+        type="file"
+        id="tsg-video-upload"
+        class="tsg-upload-input"
+        accept="video/*"
+        multiple
+      />
+      <ul class="tsg-upload-list" id="tsg-upload-list"></ul>
+    </div>
+
+    <!-- 🟡 Eleganter Button -->
+    <button class="tsg-button-primary">
+      Create Viral Audio Now
+    </button>
+  </div>
+
+  <!-- 🟣 Support Beyond Box -->
+  <div class="tsg-card tsg-support">
+    <h3 class="tsg-support-title">Support Beyond</h3>
+    <p class="tsg-support-intro">
+      Not just tools – a support department in your browser.
+      Follow these YouTube-ready steps and ship content that actually performs.
+    </p>
+
+    <!-- „Department“-Style Steps -->
+    <div class="tsg-support-grid">
+      <!-- Strategy Department -->
+      <div class="tsg-support-block">
+        <h4>Strategy – Before You Hit Record</h4>
+        <ol>
+          <li>Define 1 clear goal (views, clicks, subscribers, sales).</li>
+          <li>Write a <strong>10-second hook</strong> that says the benefit first.</li>
+          <li>Decide on video type: tutorial, reaction, story, review, case study.</li>
+          <li>Outline 3–5 key points – no more.</li>
+          <li>Check competing videos &amp; note their titles &amp; thumbnails.</li>
+        </ol>
+      </div>
+
+      <!-- Production Department -->
+      <div class="tsg-support-block">
+        <h4>Production – Recording Your Video</h4>
+        <ol>
+          <li>Use your phone horizontally, near a window or soft light.</li>
+          <li>Record the hook 3× – pick the most energetic take.</li>
+          <li>Keep cuts fast: remove “ähm”, long pauses &amp; dead time.</li>
+          <li>Add subtitles – most viewers watch without sound.</li>
+          <li>Plug your viral audio snippet at the moment of highest tension.</li>
+        </ol>
+      </div>
+
+      <!-- YouTube Upload Department -->
+      <div class="tsg-support-block">
+        <h4>YouTube Upload – Step by Step</h4>
+        <ol>
+          <li>Go to <strong>YouTube Studio &gt; Create &gt; Upload video</strong>.</li>
+          <li>Add a <strong>title with a promise + keyword</strong>
+            <br />z.B. “How I Turned 1 Video Into 10 Viral Clips (Full Workflow)”</li>
+          <li>Write a description:
+            <ul>
+              <li>1–2 sentences hook</li>
+              <li>Bullets with value points</li>
+              <li>Links (Landingpage, Socials, etc.)</li>
+            </ul>
+          </li>
+          <li>Add 3–5 targeted tags (your topic, niche, tool).</li>
+          <li>Upload a clear thumbnail:
+            face + emotion + 2–4 bold words, no clutter.</li>
+        </ol>
+      </div>
+
+      <!-- Optimization Department -->
+      <div class="tsg-support-block">
+        <h4>Optimization – After Publishing</h4>
+        <ol>
+          <li>Add chapters (timestamps) after the first 24h.</li>
+          <li>Reply to early comments within the first hour.</li>
+          <li>Check retention: where do people drop off?</li>
+          <li>Test new hooks on shorts using the same video.</li>
+          <li>Duplicate what worked once – series > one-hit-wonder.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔵 Footer-Credit-Zeile -->
+  <footer class="tsg-footer">
+    TSG – Viral Producer Helper · Support &amp; audio tools for creators who want
+    more than just views.
+  </footer>
+</section>
+
+<!-- Minimal Styling (you can move this into your CSS file) -->
+<style>
+  .tsg-wrapper {
+    max-width: 1100px;
+    margin: 2rem auto 3rem;
+    padding: 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #111827;
+  }
+
+  .tsg-card {
+    background: #0f172a;
+    color: #e5e7eb;
+    border-radius: 1.25rem;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+  }
+
+  .tsg-title {
+    font-size: 1.8rem;
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.03em;
+  }
+
+  .tsg-subtitle {
+    margin: 0 0 1.5rem;
+    color: #9ca3af;
+    font-size: 0.98rem;
+  }
+
+  .tsg-upload {
+    margin-bottom: 1.5rem;
+  }
+
+  .tsg-upload-label {
+    display: block;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px dashed rgba(148, 163, 184, 0.8);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.2), transparent 55%);
+  }
+
+  .tsg-upload-label:hover {
+    border-color: #60a5fa;
+    background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 60%);
+    transform: translateY(-1px);
+  }
+
+  .tsg-upload-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .tsg-upload-hint {
+    display: block;
+    font-size: 0.9rem;
+    color: #d1d5db;
+  }
+
+  .tsg-upload-types {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+  }
+
+  .tsg-upload-input {
+    display: none;
+  }
+
+  .tsg-upload-list {
+    list-style: none;
+    margin: 0.8rem 0 0;
+    padding: 0;
+    font-size: 0.85rem;
+    color: #e5e7eb;
+  }
+
+  .tsg-upload-list li {
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.7);
+  }
+
+  .tsg-button-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+    color: #f9fafb;
+    box-shadow: 0 12px 30px rgba(248, 113, 113, 0.45);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .tsg-button-primary:hover {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 18px 40px rgba(248, 113, 113, 0.7);
+    filter: brightness(1.05);
+  }
+
+  .tsg-button-primary:active {
+    transform: translateY(0) scale(0.99);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.8);
+  }
+
+  .tsg-support {
+    background: #020617;
+  }
+
+  .tsg-support-title {
+    margin: 0 0 0.4rem;
+    font-size: 1.4rem;
+  }
+
+  .tsg-support-intro {
+    margin: 0 0 1.2rem;
+    font-size: 0.95rem;
+    color: #9ca3af;
+  }
+
+  .tsg-support-grid {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  @media (min-width: 800px) {
+    .tsg-support-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .tsg-support-block {
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 0.9rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(51, 65, 85, 0.9);
+  }
+
+  .tsg-support-block h4 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    color: #e5e7eb;
+  }
+
+  .tsg-support-block ol {
+    margin: 0.2rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+    color: #d1d5db;
+  }
+
+  .tsg-support-block ul {
+    margin: 0.1rem 0 0.2rem;
+    padding-left: 1.1rem;
+  }
+
+  .tsg-footer {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #6b7280;
+  }
+</style>
+
+<!-- Kleine JS-Verbesserung: Dateinamen anzeigen -->
+<script>
+  (function () {
+    const input = document.getElementById("tsg-video-upload");
+    const list = document.getElementById("tsg-upload-list");
+    if (!input || !list) return;
+
+    input.addEventListener("change", function () {
+      list.innerHTML = "";
+      if (!this.files || !this.files.length) return;
+
+      Array.from(this.files).forEach(function (file) {
+        const li = document.createElement("li");
+        li.textContent = file.name + " (" + Math.round(file.size / 1024 / 1024 * 10) / 10 + " MB)";
+        list.appendChild(li);
+      });
+    });
+  })();
+</script>
