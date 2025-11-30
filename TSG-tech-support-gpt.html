@@ -2,26 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>TSG – Tech Support GPT</title>
+  <title>TSG V3.01 – AI System Support Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="TSG Tech Support GPT – an AI-powered technical support assistant offering fast, clear and instant help for software, system and web-related issues.">
+  <meta name="description" content="TSG – an AI-powered system support hub for Linux, Windows, and macOS with clear, skill-level-aware guidance, smart tips, and local favorites.">
   <meta name="robots" content="index,follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="dark light">
   <link rel="canonical" href="https://45dgof8.com/TSG-tech-support-gpt.html" />
+
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "TSG Tech Support GPT",
-  "url": "https://45dgof8.com/TSG-tech-support-gpt.html",
-  "description": "An AI-powered technical support assistant providing fast, step-by-step help for system and software issues.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "All"
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TSG – Tech Support GPT",
+    "url": "https://45dgof8.com/TSG-tech-support-gpt.html",
+    "description": "An AI-powered technical support assistant providing step-by-step help across Linux, Windows, and macOS.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All"
+  }
+  </script>
 
   <!-- Icons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -29,8 +30,8 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Social -->
-  <meta property="og:title" content="TSG – Tech Support GPT" />
-  <meta property="og:description" content="Professional, approachable tech help for your personal computing needs." />
+  <meta property="og:title" content="TSG V3.01 – AI System Support Hub" />
+  <meta property="og:description" content="Tech support for Linux, Windows, and macOS – with skill levels, categories, favorites, and rotating tips." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://45dgof8.com/TSG-tech-support-gpt.html" />
   <meta property="og:image" content="https://45dgof8.com/TSG-pic.webp" />
@@ -40,11 +41,12 @@
   <link rel="preload" as="image" href="https://45dgof8.com/TSG-TechSupport-GPT.webp" type="image/webp" imagesizes="(max-width: 880px) 100vw, 50vw" imagesrcset="https://45dgof8.com/TSG-TechSupport-GPT.webp 1200w">
 
   <style>
-    /* ====== CSS VARIABLES (THEME) ====== */
+    /* ====== THEME VARIABLES ====== */
     :root {
       --bg: #0d0f14;
       --bg-soft: #121622;
       --card: #0f1320;
+      --card-soft: #15192b;
       --text: #e6e9f0;
       --muted: #b7c0d9;
       --brand: #ffd54a;
@@ -58,24 +60,27 @@
       --bg: #f7f8fc;
       --bg-soft: #ffffff;
       --card: #ffffff;
+      --card-soft: #f4f5fd;
       --text: #1b2430;
       --muted: #516079;
       --brand: #996c00;
       --brand-2: #0a7f55;
       --link: #1453c5;
-      --ring: rgba(20, 83, 197, 0.25);
+      --ring: rgba(20,83,197,0.25);
       --shadow: 0 10px 30px rgba(17,24,39,.08);
       --radius: 16px;
     }
-    :root{
-      /* move the EVA magic button up a bit so it doesn't cover the chat gem */
+    :root {
       --eva-magic-right: 16px;
-      --eva-magic-bottom: 88px; /* was 16px */
+      --eva-magic-bottom: 88px; /* keep space above dock */
     }
 
     /* ====== BASE ====== */
-    * { box-sizing: border-box }
-    html, body { height: 100% }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -85,438 +90,1504 @@
         radial-gradient(1000px 700px at 100% 0%, rgba(255,213,74,.10), transparent 55%),
         var(--bg);
       line-height: 1.55;
+      overflow-x: hidden;
     }
-    a { color: var(--link); text-decoration: none }
-    a:hover { text-decoration: underline }
+    img {
+      max-width: 100%;
+      height: auto;
+      display:block;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* ====== LAYOUT ====== */
-    .skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
-    .skip:focus { position:static; width:auto; height:auto; padding:.5rem 1rem; background:var(--card); border-radius:8px; margin:1rem }
+    .skip {
+      position:absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+    .skip:focus {
+      position:static;
+      width:auto;
+      height:auto;
+      padding:.5rem 1rem;
+      background:var(--card);
+      border-radius:8px;
+      margin:1rem;
+    }
 
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 24px }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
 
-    header[role="banner"].site {
-      position: sticky; top: 0; z-index: 50;
+    /* ====== HEADER / NAV ====== */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 50;
       background: linear-gradient(180deg, rgba(0,0,0,.35), transparent);
       -webkit-backdrop-filter: saturate(140%) blur(6px);
       backdrop-filter: saturate(140%) blur(6px);
     }
     .bar {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; padding: 12px 24px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap:16px;
+      padding: 12px 24px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,.06);
       background: color-mix(in oklab, var(--bg-soft) 75%, transparent);
       box-shadow: var(--shadow);
     }
-
-    .brand { display:flex; align-items:center; gap:.75rem; font-weight: 800; letter-spacing:.2px }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
     .brand .logo {
-      width: 36px; height: 36px; border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       background: conic-gradient(from 210deg at 50% 50%, #5af0b3, #ffd54a, #7ab7ff, #5af0b3);
       box-shadow: 0 0 0 3px rgba(255,255,255,.06) inset, 0 6px 16px rgba(0,0,0,.35);
+      animation: float 6s ease-in-out infinite;
     }
     .brand .title {
       font-size: clamp(18px, 2.2vw, 22px);
-      background: linear-gradient(180deg, var(--brand), #fff);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      background: linear-gradient(180deg, var(--brand), #ffffff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
       text-shadow: 0 1px 10px rgba(255,213,74,.15);
     }
-
-    .controls { display:flex; align-items:center; gap:12px; flex-wrap: wrap }
+    .pill {
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(122,183,255,.12);
+      color:#cfe2ff;
+      border:1px solid rgba(122,183,255,.22);
+      font-size:12px;
+      letter-spacing:.3px;
+    }
+    .controls {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
     select, button, .btn {
       font: inherit;
-      padding: 10px 12px; border-radius: 10px;
+      padding: 8px 12px;
+      border-radius: 10px;
       border: 1px solid rgba(255,255,255,.14);
-      background: var(--card); color: var(--text);
+      background: var(--card);
+      color: var(--text);
       box-shadow: var(--shadow);
     }
-    select:focus, button:focus, .btn:focus { outline: 2px solid var(--ring); outline-offset: 2px }
+    select:focus, button:focus, .btn:focus {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+    .theme-toggle { cursor:pointer; }
+    .theme-toggle span { display:inline-block; width:1.25rem; text-align:center; }
 
-    .theme-toggle { cursor: pointer }
-    .theme-toggle span { display:inline-block; width:1.25rem; text-align:center }
+    .skill-toggle {
+      display:flex;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--bg-soft) 80%, transparent);
+      border:1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+    }
+    .skill-toggle button {
+      border:0;
+      box-shadow:none;
+      border-radius:0;
+      padding: 6px 10px;
+      font-size: 13px;
+      background:transparent;
+      color: var(--muted);
+      flex:1;
+      min-width:64px;
+    }
+    .skill-toggle button.active {
+      background: radial-gradient(circle at 0 0, rgba(255,213,74,.6), rgba(90,240,179,.5));
+      color:#020810;
+      font-weight:700;
+    }
 
-    .hero { display:grid; gap: 18px; grid-template-columns: 1fr; margin-top: 18px }
-    @media (min-width: 880px) { .hero { grid-template-columns: 1.05fr .95fr; align-items: center } }
+    .hide-mobile { display:none; }
+    @media (min-width:540px) {
+      .hide-mobile { display:inline; }
+    }
 
+    /* ====== HERO ====== */
+    .hero {
+      display:grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+      margin-top: 18px;
+      align-items:start;
+    }
+    @media (min-width:880px) {
+      .hero {
+        grid-template-columns: 1.05fr .95fr;
+        align-items:center;
+      }
+    }
     .hero-card {
       padding: clamp(16px, 3vw, 28px);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
       border: 1px solid rgba(255,255,255,.08);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      margin:0 0 8px;
+      font-size: clamp(30px, 4.8vw, 44px);
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .subtitle {
+      color:var(--muted);
+      margin:0 0 8px;
+    }
+    .hero-meta {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .hero-meta span {
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:3px 8px;
+      border-radius:999px;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
     }
 
-    .hero h1 { margin: 0 0 6px; font-size: clamp(28px, 4.5vw, 42px); font-weight: 900; letter-spacing: .2px }
-    .subtitle { color: var(--muted); margin: 0 0 8px }
-
+    .hero-img-wrap {
+      position: relative;
+    }
     .hero-img {
-      width: 100%; max-height: 360px; object-fit: contain; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.08); background: #0b0e15; box-shadow: var(--shadow);
+      width:100%;
+      max-height:380px;
+      object-fit:contain;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0b0e15;
+      box-shadow:var(--shadow);
+      justify-self:center;
     }
-
-    /* tips console */
-    .console {
-      position: relative; margin-top: 14px; padding: 16px 48px 16px 16px;
-      background: #06110a; color: #72f1b8; border-radius: 12px;
-      border: 1px solid rgba(90,240,179,.35);
-      box-shadow: 0 0 0 3px rgba(90,240,179,.06) inset, var(--shadow);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      min-height: 60px;
-    }
-    .console::before { content: 'TSG ▸'; color: #38d392; margin-right: 8px }
-    .console .copy {
-      position:absolute; top:8px; right:8px;
-      padding: 6px 10px; background:#0b1a12; border:1px solid rgba(90,240,179,.35);
-      border-radius:8px; color:#bffbe3; cursor:pointer;
-    }
-    .console .copy:hover { filter: brightness(1.05) }
-
-    /* sections */
-    .grid { display:grid; gap: 18px; margin-top: 28px; grid-template-columns: 1fr }
-    @media (min-width: 760px) { .grid.two { grid-template-columns: 1fr 1fr } .grid.three { grid-template-columns: 1fr 1fr 1fr } }
-
-    .card { padding: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow) }
-    h2 { margin: 0 0 10px; font-size: clamp(20px, 2.6vw, 26px) }
-    ul { margin: 0; padding-left: 1.2rem }
-    li + li { margin-top: 6px }
-
-    footer[role="contentinfo"] { margin: 36px 0 24px; text-align:center; color: var(--muted) }
-
-    /* animations */
-    @keyframes float { from { transform: translateY(0) } 50% { transform: translateY(-4px) } to { transform: translateY(0) } }
-    .logo { animation: float 6s ease-in-out infinite }
-
-    /* small helper pills */
-    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(122, 183, 255, .12); color: #cfe2ff; border: 1px solid rgba(122, 183, 255, .22); font-size: 12px; letter-spacing: .3px }
-
-    /* responsive helpers */
-    .hide-mobile { display:none }
-    @media (min-width: 540px) { .hide-mobile { display:inline } }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) { .logo { animation: none } }
-
-    /* Consent banner */
-    .consent {
-      position: fixed; inset: auto 0 0 0; z-index: 60;
-      display:none; padding: 12px 16px; background: var(--bg-soft); color: var(--text);
-      border-top: 1px solid rgba(255,255,255,.08); box-shadow: 0 -10px 30px rgba(0,0,0,.25);
-    }
-    .consent.show { display:block }
-    .consent .inner { max-width: 1120px; margin: 0 auto; display:flex; gap:12px; align-items:center; justify-content: space-between; flex-wrap: wrap }
-    .consent p { margin: 0; color: var(--muted) }
-    .consent .actions { display:flex; gap:8px }
-
-  .gem:hover {
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 8px rgba(90,240,179,.9)) drop-shadow(0 0 18px rgba(255,213,74,.6));
-  }
-  .badge {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: .2px;
-    box-shadow: 0 2px 6px rgba(0,0,0,.3);
-  }
-  .teleport {
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 4px rgba(255,213,74,.35));
-  }
-  .teleport:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px rgba(255,213,74,.55));
-  }
-`;
-  </style></head>
-<body>
-  <a class="skip" href="#main">Skip to main content</a>
-
-  <header class="site" role="banner">
-    <div class="wrap bar" role="navigation" aria-label="Top bar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <div class="title">👑 TSG – Tech Support GPT</div>
-          <div class="pill hide-mobile">Clean • Responsive • Accessible</div>
-        </div>
-      </div>
-
-      <div class="controls">
-        <label for="os" class="hide-mobile">Choose OS:</label>
-        <select id="os" aria-label="Choose your OS">
-          <option value="linux">Linux</option>
-          <option value="windows">Windows</option>
-          <option value="macos">macOS</option>
-        </select>
-
-        <button id="themeBtn" class="theme-toggle" type="button" title="Toggle theme">
-          <span id="themeIcon" aria-hidden="true">🌙</span> <span class="hide-mobile">Theme</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main id="main" class="wrap" role="main">
-    <section class="hero" aria-labelledby="h-hero">
-      <div class="hero-card">
-        <h1 id="h-hero">Make tech troubles… less troubling.</h1>
-        <p class="subtitle">I help on Linux, Windows, and macOS with clear, security-minded guidance — at your pace.</p>
-
-        <div class="console" aria-live="polite">
-          <button class="copy" type="button" id="copyBtn" title="Copy tip to clipboard" aria-label="Copy current tip to clipboard">📋 Copy</button>
-          <span id="tipLine">TSG is loading your wisdom...</span>
-        </div>
-
-        <noscript>
-          <p class="card" style="margin-top:12px;">⚠️ JavaScript is disabled, so dynamic tips are offline. Enable JS to see rotating OS-specific tips.</p>
-        </noscript>
-      </div>
-
-      <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT hero" loading="lazy" decoding="async" width="1200" height="600">
-    </section>
-
-    <section class="grid two" aria-labelledby="h-what">
-      <div class="card">
-        <h2 id="h-what">⚙️ What I Do</h2>
-        <ul>
-          <li>Step-by-step PC troubleshooting</li>
-          <li>Customization & performance optimization</li>
-          <li>Networking, drivers, and kernel tuning</li>
-          <li>Hardware diagnostics & upgrades</li>
-          <li>Retro computing & vintage hardware support</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>🧠 How I Work</h2>
-        <ul>
-          <li>Clear, jargon-free explanations for all skill levels</li>
-          <li>Security-first guidance and best practices</li>
-          <li>Supportive, educational approach</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="grid two" aria-labelledby="h-resources">
-      <div class="card">
-        <h2 id="h-resources">🌐 Recommended Resources</h2>
-        <ul>
-          <li><a href="https://superuser.com" target="_blank" rel="noopener" referrerpolicy="no-referrer-when-downgrade">SuperUser</a></li>
-          <li><a href="https://stackoverflow.com" target="_blank" rel="noopener">Stack Overflow</a></li>
-          <li><a href="https://forums.tomshardware.com" target="_blank" rel="noopener">Tom’s Hardware</a></li>
-          <li><a href="https://wiki.archlinux.org" target="_blank" rel="noopener">Arch Wiki</a></li>
-          <li><a href="https://askubuntu.com/" target="_blank" rel="noopener">AskUbuntu</a></li>
-          <li><a href="https://discussions.apple.com" target="_blank" rel="noopener">Apple Discussions</a></li>
-          <li><a href="https://learn.microsoft.com" target="_blank" rel="noopener">Microsoft Learn</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>🔐 Security Best Practices</h2>
-        <ul>
-          <li>Keep systems up to date</li>
-          <li>Use firewalls & sandboxing (AppArmor/SELinux)</li>
-          <li>Disable unused services</li>
-          <li>Strong, unique passwords (and a password manager)</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="grid two" aria-labelledby="h-coverage">
-      <div class="card">
-        <h2 id="h-coverage">📚 Broader Support Coverage</h2>
-        <ul>
-          <li>OS Help: Linux, Windows, macOS</li>
-          <li>Hardware: troubleshooting, upgrades, peripherals</li>
-          <li>Retro Systems: C64, Amiga, MS-DOS</li>
-          <li>User guidance: tailored to your comfort level</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>📩 Contact & Support</h2>
-        <p>Questions or feedback? Email: <strong><a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></strong></p>
-        <p>Support the project: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
-      </div>
-    </section>
-
-    <footer role="contentinfo">
-      © <span id="year">2025</span> TSG – Tech Support GPT • <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a>
-    </footer>
-  </main>
-
-  <!-- Consent banner (optional, privacy-friendly) -->
-  <div id="consent" class="consent" role="region" aria-label="Privacy choices">
-    <div class="inner">
-      <p>We use privacy-friendly analytics to improve the site. No cookies for ads, ever. You’re in control.</p>
-      <div class="actions">
-        <button id="consent-accept" class="btn" type="button" aria-label="Accept analytics">Allow</button>
-        <button id="consent-decline" class="btn" type="button" aria-label="Decline analytics">Decline</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ========= THEME (dark/light) =========
-    (function initTheme(){
-      const saved = localStorage.getItem("tsg-theme");
-      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-      if (saved === "light" || (!saved && prefersLight)) {
-        document.documentElement.classList.add("light");
-        document.getElementById("themeIcon")?.replaceChildren(document.createTextNode("☀️"));
-      }
-    })();
-    document.getElementById("themeBtn")?.addEventListener("click", () => {
-      const root = document.documentElement;
-      const isLight = root.classList.toggle("light");
-      localStorage.setItem("tsg-theme", isLight ? "light" : "dark");
-      const icon = document.getElementById("themeIcon");
-      if (icon) icon.textContent = isLight ? "☀️" : "🌙";
-    });
-
-    // ========= TIPS LOADER =========
-    const feeds = {
-      linux: 'https://45dgof8.com/tsg-feed.json',
-      windows: 'https://45dgof8.com/tsg-feed-windows.json',
-      macos: 'https://45dgof8.com/tsg-feed-macos.json'
-    };
-    let tips = ["TSG is loading your wisdom..."];
-    let idx = 0; let rotator; const ROTATE_MS = 10000;
-
-    const tipEl = document.getElementById("tipLine");
-    const osEl  = document.getElementById("os");
-    const copyEl = document.getElementById("copyBtn");
-
-    async function loadTips(os) {
-      clearInterval(rotator);
-      try {
-        const res = await fetch(feeds[os], { cache: "no-store" });
-        const data = await res.json();
-        tips = Array.isArray(data.tips) && data.tips.length ? data.tips : ["(No tips yet — check back soon!)"];
-      } catch(e) {
-        tips = ["⚠️ Unable to load TSG tips. Please check connection."];
-      }
-      idx = 0; renderTip(); rotator = setInterval(nextTip, ROTATE_MS);
-    }
-
-const seg = ("Segmenter" in Intl) ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
-function splitGraphemes(str) { return seg ? [...seg.segment(str)].map(s => s.segment) : Array.from(str); }
-
-function renderTip() {
-  if (!tipEl) return;
-  const units = splitGraphemes(tips[idx]);
-  tipEl.textContent = "";
-  let i = 0;
-  const step = () => {
-    if (i < units.length) {
-      tipEl.textContent += units[i++].replace(/[<>]/g, '');
-      requestAnimationFrame(step);
-    }
-  };
-  requestAnimationFrame(step);
+    /* Hero must allow absolutely positioned elements */
+.hero {
+  position: relative;
 }
 
-    function nextTip() { idx = (idx + 1) % tips.length; renderTip(); }
-    function prevTip() { idx = (idx - 1 + tips.length) % tips.length; renderTip(); }
+/* Vertical ad column */
+.ad-column {
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    osEl?.addEventListener("change", e => loadTips(e.target.value));
-    copyEl?.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(tips[idx]);
-        copyEl.textContent = "✅ Copied"; setTimeout(() => copyEl.textContent = "📋 Copy", 1000);
-      } catch { alert("Copy failed"); }
-    });
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 
-    // init
-    loadTips(osEl ? osEl.value : "linux");
-    document.addEventListener("keydown", (e) => {
-      if (e.altKey && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
-        e.preventDefault(); e.key === "ArrowRight" ? nextTip() : prevTip();
+  width: 240px;  /* iframe width + padding */
+  z-index: 20;   /* above image but below nav */
+}
+
+/* Individual ad box */
+.ad-slot {
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #fff;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Typography */
+.ad-slot strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.ad-slot small {
+  display: block;
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+}
+
+/* Hide ads on mobile */
+@media (max-width: 900px) {
+  .ad-column {
+    display: none;
+  }
+}
+
+    /* Small “Your ad here” card (desktop only) */
+    .ad-slot {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(5, 12, 24, 0.92);
+      border: 1px dashed rgba(255,213,74,.7);
+      box-shadow: 0 6px 18px rgba(0,0,0,.45);
+      max-width: 220px;
+      font-size: 12px;
+      color: #fff7d6;
+      text-align: left;
+    }
+    .ad-slot strong {
+      display:block;
+      font-size:13px;
+      margin-bottom:4px;
+    }
+    .ad-slot small {
+      display:block;
+      opacity:.9;
+      margin-bottom:6px;
+    }
+    .ad-slot iframe {
+      width: 100%;
+      border-radius: 10px;
+      border: 0;
+      overflow: hidden;
+    }
+    @media (max-width:880px) {
+      .ad-slot {
+        display:none;
       }
-    });
+    }
 
-    // ========= YEAR =========
-    const y = document.getElementById('year'); if (y) y.textContent = String(new Date().getFullYear());
+    /* ====== TIP PANEL ====== */
+    .tip-panel {
+      margin-top: 20px;
+      padding: 18px 18px 16px 16px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 0 0, rgba(90,240,179,.22), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,213,74,.18), transparent 55%),
+        #050f0a;
+      border: 1px solid rgba(90,240,179,.45);
+      box-shadow: 0 4px 16px rgba(0,0,0,.45);
+      font-size: 17px;
+      line-height: 1.7;
+      position: relative;
+      overflow:hidden;
+    }
+    .tip-panel.fade {
+      animation: tipFade 0.32s ease-out;
+    }
+    @keyframes tipFade {
+      from { opacity:0; transform: translateY(4px); }
+      to { opacity:1; transform: translateY(0); }
+    }
 
-    // ========= CONSENT + (placeholder) ANALYTICS =========
-    (function consent(){
-      const key = 'tsg-consent';
-      const el = document.getElementById('consent');
-      if (!el) return;
-      const state = localStorage.getItem(key);
-      if (state === 'allow' || state === 'decline') return; // already chosen
-      el.classList.add('show');
-      const accept = document.getElementById('consent-accept');
-      const decline = document.getElementById('consent-decline');
-      accept?.addEventListener('click', () => { localStorage.setItem(key, 'allow'); el.classList.remove('show'); enableAnalytics(); });
-      decline?.addEventListener('click', () => { localStorage.setItem(key, 'decline'); el.classList.remove('show'); });
+    .tip-header-row {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
 
-      // If previously allowed, enable immediately
-      if (state === 'allow') enableAnalytics();
+    .tip-header-main {
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
 
-      function enableAnalytics(){
-        // Example: Plausible (self-host or plausible.io) – loads only after consent
-        // const s = document.createElement('script');
-        // s.defer = true; s.setAttribute('data-domain', '45dgof8.com');
-        // s.src = 'https://plausible.io/js/script.js';
-        // document.head.appendChild(s);
+    .tip-header {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      color:#8ef9c8;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .tip-meta-small {
+      font-size:11px;
+      color:rgba(191,251,227,.8);
+    }
+    .daily-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius:999px;
+      background:rgba(255,213,74,.18);
+      border:1px solid rgba(255,213,74,.65);
+      color:#fff8dd;
+      display:none;
+    }
+
+    .tip-controls {
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      align-items:center;
+    }
+    .tip-select {
+      border-radius:999px;
+      font-size:12px;
+      padding:4px 8px;
+      border:1px solid rgba(255,255,255,.26);
+      background:rgba(3,12,10,.8);
+      color:#e7fff4;
+    }
+    .tip-select:focus {
+      outline: 2px solid rgba(122,183,255,.5);
+      outline-offset:1px;
+    }
+
+    .tip-search {
+      border-radius:999px;
+      font-size:12px;
+      padding:4px 10px;
+      border:1px solid rgba(255,255,255,.26);
+      background:rgba(3,12,10,.8);
+      color:#e7fff4;
+      min-width:140px;
+    }
+    .tip-search::placeholder {
+      color:rgba(231,255,244,.7);
+    }
+
+    .tip-text {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      font-size: 18px;
+      color:#e7fff4;
+      padding-right: 110px;
+      min-height:32px;
+    }
+    .tip-text code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+      background: rgba(0,0,0,.45);
+      padding: 2px 4px;
+      border-radius: 4px;
+      border: 1px solid rgba(90,240,179,.35);
+    }
+
+    .tip-meta-row {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-top:10px;
+      font-size: 12px;
+      color: rgba(191,251,227,.9);
+      flex-wrap:wrap;
+    }
+    .tip-meta-row button.nav {
+      border-radius:999px;
+      padding:4px 8px;
+      font-size:12px;
+      background:rgba(0,0,0,.5);
+      border:1px solid rgba(90,240,179,.3);
+      cursor:pointer;
+    }
+
+    .copy-cmd {
+      position:absolute;
+      top: 12px;
+      right: 12px;
+      padding: 6px 12px;
+      background:#0b1a12;
+      border:1px solid rgba(90,240,179,.55);
+      border-radius:8px;
+      font-size: 13px;
+      cursor:pointer;
+      color:#bffbe3;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      white-space:nowrap;
+    }
+    .copy-cmd:hover { filter:brightness(1.08); }
+
+    .fav-btn {
+      border-radius:999px;
+      padding:3px 8px;
+      font-size:12px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.2);
+      color:#fbe6ff;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+    }
+    .fav-btn.active {
+      background:rgba(255,213,74,.2);
+      border-color:rgba(255,213,74,.8);
+      color:#fff9d7;
+    }
+
+    /* ====== FAVORITES LIST ====== */
+    .favorites {
+      margin-top: 12px;
+      font-size:13px;
+    }
+    .favorites h3 {
+      margin:0 0 4px;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:rgba(191,251,227,.9);
+    }
+    .favorites-list {
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      max-height:120px;
+      overflow-y:auto;
+    }
+    .favorite-item {
+      padding:4px 6px;
+      border-radius:6px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.1);
+      cursor:pointer;
+    }
+    .favorite-item small {
+      display:block;
+      color:rgba(191,251,227,.8);
+      font-size:11px;
+    }
+
+    /* ====== SECTION / GRID ====== */
+    .section {
+      margin-top: 32px;
+    }
+    .section-header {
+      margin-bottom: 10px;
+    }
+    .section-header h2 {
+      margin:0 0 4px;
+      font-size: clamp(22px, 2.8vw, 28px);
+    }
+    .section-header p {
+      margin:0;
+      color:var(--muted);
+      max-width: 640px;
+    }
+
+    .grid {
+      display:grid;
+      gap:18px;
+      grid-template-columns:1fr;
+      margin-top:24px;
+    }
+    @media (min-width:760px) {
+      .grid.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    .card {
+      padding:18px;
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .card h3 {
+      margin:0 0 8px;
+      font-size:18px;
+    }
+    ul {
+      margin:0;
+      padding-left:1.2rem;
+    }
+    li + li { margin-top:6px; }
+
+    .timeline {
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+    .timeline-item {
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:14px;
+    }
+    .timeline-step {
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.4);
+      display:grid;
+      place-items:center;
+      font-size:12px;
+      margin-top:2px;
+    }
+
+    /* ====== FOOTER (medallion watermark) ====== */
+    footer.tsg-footer {
+      margin: 40px 0 24px;
+      padding: 18px 0 20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      position:relative;
+      overflow:hidden;
+    }
+    footer.tsg-footer::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      margin:auto;
+      width:140px;
+      height:140px;
+      background-image: url('TSG-medallion.webp');
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:center;
+      opacity:0.08;
+      pointer-events:none;
+    }
+    footer.tsg-footer .footer-inner {
+      position:relative;
+      z-index:1;
+    }
+    footer.tsg-footer .footer-brand {
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    footer.tsg-footer .footer-creator {
+      margin:0;
+    }
+    footer.tsg-footer .footer-copy {
+      margin:4px 0 0;
+      font-size:12px;
+      opacity:.8;
+    }
+
+    /* ====== CONSENT ====== */
+    .consent {
+      position:fixed;
+      inset:auto 0 0 0;
+      z-index:60;
+      display:none;
+      padding:12px 16px;
+      background:var(--bg-soft);
+      color:var(--text);
+      border-top:1px solid rgba(255,255,255,.08);
+      box-shadow:0 -10px 30px rgba(0,0,0,.25);
+    }
+    .consent.show { display:block; }
+    .consent .inner {
+      max-width:1120px;
+      margin:0 auto;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .consent p {
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .consent .actions {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    /* ====== GEM + TELEPORT ====== */
+    .gem:hover {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 8px rgba(90,240,179,.9))
+              drop-shadow(0 0 18px rgba(255,213,74,.6));
+    }
+    .badge {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    }
+    .teleport {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 4px rgba(255,213,74,.35));
+    }
+    .teleport:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 8px rgba(255,213,74,.55));
+    }
+
+    /* ====== ANIM & RESPONSIVE ====== */
+    @keyframes float {
+      from { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+      to { transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo { animation:none; }
+      .tip-panel.fade { animation:none; }
+    }
+
+    @media (max-width:480px) {
+      .wrap {
+        padding:16px;
+        max-width:100%;
       }
-    })();
-  </script>
+      .bar {
+        padding:10px 14px;
+      }
+      .hero-card,
+      .card {
+        padding:16px;
+      }
+      .tip-text {
+        padding-right:0;
+      }
+      .copy-cmd {
+        position:static;
+        margin-top:10px;
+        align-self:flex-start;
+      }
+      .tip-panel {
+        padding-bottom:14px;
+      }
+      /* optional medallion inline usage if ever needed */
+      .tsg-medallion-wrap {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .tsg-medallion {
+        width: 240px;
+        height: auto;
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
 
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "TSG – Tech Support GPT",
-    "url": "https://45dgof8.com/TSG-tech-support-gpt.html",
-    "description": "Expert, approachable tech help for Linux, Windows, and macOS users.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "45dgof8",
-      "url": "https://45dgof8.com"
+<header class="site" role="banner">
+  <div class="wrap bar" role="navigation" aria-label="Top bar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="title">👑 TSG V3.01 – AI System Support Hub</div>
+        <div class="pill hide-mobile">Linux • Windows • macOS • Local tips &amp; tools</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="os" class="hide-mobile">OS:</label>
+      <select id="os" aria-label="Choose your OS">
+        <option value="linux">Linux</option>
+        <option value="windows">Windows</option>
+        <option value="macos">macOS</option>
+      </select>
+
+      <div class="skill-toggle" aria-label="Choose your comfort level">
+        <button type="button" data-skill="beginner" class="active">New</button>
+        <button type="button" data-skill="intermediate">Comfortable</button>
+        <button type="button" data-skill="power">Power</button>
+      </div>
+
+      <button id="themeBtn" class="theme-toggle" type="button" title="Toggle theme">
+        <span id="themeIcon" aria-hidden="true">🌙</span>
+        <span class="hide-mobile">Theme</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap" role="main">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="hero-card">
+      <h1 id="h-hero">Make tech troubles… less troubling.</h1>
+      <p class="subtitle">
+        TSG V3.01 guides you through Linux, Windows, and macOS issues with clear, skill-aware steps, plus OS-specific tips, categories, and command helpers.
+      </p>
+
+      <div class="hero-meta">
+        <span>🖥️ OS-aware guidance</span>
+        <span>🛡️ Security-first suggestions</span>
+        <span>⭐ Favorites saved locally</span>
+        <span>⚙️ Prompt Forge moved to its own lab</span>
+      </div>
+
+      <!-- Prompt Forge CTA (instead of full builder) -->
+      <div style="margin-top:14px;">
+        <a class="btn" href="tsg_prompt_forge_subpage.html">
+          🔨 Open Prompt Forge (image prompt lab)
+        </a>
+      </div>
+
+      <!-- TIP PANEL -->
+      <div class="tip-panel" aria-live="polite" id="tipPanel">
+        <div class="tip-header-row">
+          <div class="tip-header-main">
+            <div class="tip-header">
+              <span>TSG ▸ Live Tip</span>
+              <span class="daily-badge" id="dailyBadge">⭐ Daily super tip</span>
+            </div>
+            <div class="tip-meta-small" id="tipMetaLabel">
+              Linux • Beginner • Rotating every 30s
+            </div>
+          </div>
+
+          <div class="tip-controls">
+            <input id="tipSearch" class="tip-search" type="search" placeholder="Filter tips…" aria-label="Search tips">
+            <select id="tipCategory" class="tip-select" aria-label="Tip category">
+              <option value="All">All topics</option>
+            </select>
+            <select id="tipLength" class="tip-select" aria-label="Tip length">
+              <option value="all">All lengths</option>
+              <option value="short">Short tips</option>
+              <option value="long">Detailed tips</option>
+            </select>
+            <button type="button" class="fav-btn" id="favBtn">
+              <span>☆</span><span>Favorite</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="tip-text" id="tipText">
+          TSG is loading your wisdom…
+        </div>
+
+        <button class="copy-cmd" type="button" id="copyCmdBtn" title="Copy command only">
+          <span>📋</span><span>Copy command</span>
+        </button>
+
+        <div class="tip-meta-row">
+          <span id="tipIndexLabel">Tip 1 / 1</span>
+          <div>
+            <button class="nav" type="button" id="prevTipBtn" title="Previous tip">⟵ Prev</button>
+            <button class="nav" type="button" id="nextTipBtn" title="Next tip">Next ⟶</button>
+          </div>
+        </div>
+
+        <div class="favorites" id="favoritesBlock" aria-label="Favorite tips">
+          <h3>Your saved tips</h3>
+          <div class="favorites-list" id="favoritesList"></div>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="card" style="margin-top:12px;">
+          ⚠️ JavaScript is disabled, so dynamic tips and favorites are offline.
+          Enable JS for rotating OS-specific tips and command copy helpers.
+        </p>
+      </noscript>
+<!-- Right-side ads (desktop only) -->
+<div class="ad-column">
+  <!-- Ad #1 -->
+  <aside class="ad-slot" aria-label="TSG Etsy spotlight">
+    <strong>Support TSG on Etsy</strong>
+    <small>Possibly responsible for global coffee breaks ☕ – one of our favorite designs.</small>
+    <iframe
+      src="https://www.etsy.com/listing/4307545786/possibly-responsible-for-global-coffee?ref=tsg_embed"
+      width="220"
+      height="360"
+      loading="lazy">
+    </iframe>
+  </aside>
+
+  <!-- Ad #2 -->
+  <aside class="ad-slot" aria-label="TSG Etsy spotlight 2">
+    <strong>Another TSG Favorite</strong>
+    <small>More geeky goodness — support TSG 💛</small>
+    <iframe
+      src="https://www.etsy.com/listing/4307545786/possibly-responsible-for-global-coffee?ref=tsg_embed_alt"
+      width="220"
+      height="360"
+      loading="lazy">
+    </iframe>
+  </aside>
+</div>
+
+      <!-- Etsy ad overlay (desktop only) -->
+      <aside class="ad-slot" aria-label="TSG Etsy spotlight">
+        <strong>Support TSG on Etsy</strong>
+        <small>Possibly responsible for global coffee breaks ☕ – one of our favorite designs.</small>
+        <iframe
+          src="https://www.etsy.com/listing/4307545786/possibly-responsible-for-global-coffee?ref=tsg_embed"
+          width="220"
+          height="360"
+          loading="lazy">
+        </iframe>
+      </aside>
+    </div>
+
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT hero illustration" loading="lazy" decoding="async" width="1200" height="600">
+    </div>
+  </section>
+
+  <!-- WHAT'S NEW IN 3.01 -->
+  <section class="section" aria-labelledby="h-whatsnew">
+    <div class="section-header">
+      <h2 id="h-whatsnew">What’s new in TSG V3.01</h2>
+      <p>Same spirit, cleaner layout. TSG 3.01 focuses on stability, clarity, and giving Prompt Forge its own dedicated lab.</p>
+    </div>
+    <div class="grid two">
+      <div class="card">
+        <h3>✨ Clean hybrid layout</h3>
+        <ul>
+          <li>Kept the signature TSG gradients, glow, gem, and teleport dock.</li>
+          <li>Removed heavy in-page extras to keep things focused.</li>
+          <li>Improved structure so it’s easier to maintain and extend.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🧪 Prompt Forge moves out</h3>
+        <ul>
+          <li>Prompt Forge now lives on its own subpage.</li>
+          <li>This page stays focused on system support and live tips.</li>
+          <li>The hero button takes you straight to the image prompt builder.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS / FLOW -->
+  <section class="section" aria-labelledby="h-how">
+    <div class="section-header">
+      <h2 id="h-how">How TSG wants to help</h2>
+      <p>From “I’m stuck” to “it works again” in as few decisions as possible, with explanations at your pace.</p>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3>🧭 1. Choose your OS & comfort level</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-step">1</div>
+            <div>Pick <strong>Linux / Windows / macOS</strong> so tips and commands match your system.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-step">2</div>
+            <div>Select <strong>New, Comfortable, or Power</strong> so the level of detail matches what you enjoy.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-step">3</div>
+            <div>Use the rotating tip panel for quick wins while we keep adding deeper guides and flows.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🤝 2. Mix human judgment with AI guidance</h3>
+        <p style="margin-top:0;">
+          TSG follows a hybrid model:
+        </p>
+        <ul>
+          <li><strong>You</strong> choose what runs on your system.</li>
+          <li><strong>TSG</strong> suggests commands and explanations you can review first.</li>
+          <li>Nothing runs without your explicit decision.</li>
+          <li>Whenever possible, steps are explained, with hints on where to learn more.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES & SECURITY -->
+  <section class="section" aria-labelledby="h-resources">
+    <div class="section-header">
+      <h2 id="h-resources">Trusted resources & best practices</h2>
+      <p>TSG doesn’t replace the great communities out there—it helps you use them better.</p>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3>🌐 Helpful communities & docs</h3>
+        <ul>
+          <li><a href="https://superuser.com" target="_blank" rel="noopener" referrerpolicy="no-referrer-when-downgrade">SuperUser</a> – power user Q&amp;A</li>
+          <li><a href="https://stackoverflow.com" target="_blank" rel="noopener">Stack Overflow</a> – developer questions</li>
+          <li><a href="https://forums.tomshardware.com" target="_blank" rel="noopener">Tom’s Hardware</a> – hardware troubleshooting</li>
+          <li><a href="https://wiki.archlinux.org" target="_blank" rel="noopener">Arch Wiki</a> – deep Linux knowledge</li>
+          <li><a href="https://askubuntu.com/" target="_blank" rel="noopener">AskUbuntu</a> – Ubuntu-focused Q&amp;A</li>
+          <li><a href="https://discussions.apple.com" target="_blank" rel="noopener">Apple Discussions</a> – macOS &amp; hardware</li>
+          <li><a href="https://learn.microsoft.com" target="_blank" rel="noopener">Microsoft Learn</a> – Windows official docs</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🔐 Security principles TSG follows</h3>
+        <ul>
+          <li>Prefer <strong>read-only diagnostics</strong> first, repairs second.</li>
+          <li>Encourage <strong>backups</strong> before big changes.</li>
+          <li>Minimize commands that require admin/root unless clearly needed.</li>
+          <li>Explain what a command does—especially if it touches the network or kernel.</li>
+          <li>Favor official package managers and reputable sources.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPT FORGE SECTION -->
+  <section class="section" aria-label="Prompt Forge">
+    <div class="grid two">
+      <div class="card">
+        <h3>🎨 Image prompt lab</h3>
+        <p>
+          Prompt Forge helps you build prompts for NightCafe, SDXL, Stable Diffusion, and more with guided
+          choices for style, subject, scene, mood, lighting, and detail.
+        </p>
+        <p>
+          You can still roll random combinations, tweak them, and copy prompts into your favorite model.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>➡️ Open Prompt Forge</h3>
+        <p>
+          Local path (dev / desktop use):
+        </p>
+        <p>
+          <code>tsg_prompt_forge_subpage.html</code>
+        </p>
+        <p>
+          <a class="btn" href="tsg_prompt_forge_subpage.html">
+            🔨 Launch Prompt Forge subpage
+          </a>
+        </p>
+        <p style="font-size:12px; color:var(--muted);">
+          On your live site, you can swap this link to whatever URL you deploy the Prompt Forge page under.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" aria-labelledby="h-contact">
+    <div class="section-header">
+      <h2 id="h-contact">Contact &amp; feedback</h2>
+      <p>
+        Ideas for better flows? A favorite trick you use on your own machines?
+        TSG improves when you share what works.
+      </p>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3>📩 Get in touch</h3>
+        <p>Questions or feedback? Email: <strong><a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></strong></p>
+        <p>Home base: <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a></p>
+        <p>If you’d like to support development: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
+      </div>
+
+      <div class="card">
+        <h3>📣 What you can tell TSG</h3>
+        <ul>
+          <li>What’s the most annoying support task you still do manually?</li>
+          <li>Which OS do you want more tips or flows for?</li>
+          <li>What kind of explanations feel best to you (short, long, visual)?</li>
+          <li>Any favorite commands we should add to the feeds?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE DIALOGUE (printout) -->
+  <section class="section" aria-labelledby="h-dialogue">
+    <div style="text-align:center; margin: 10px 0 40px;">
+      <h2 id="h-dialogue">Example Dialogue with TSG</h2>
+      <img src="TSG_dialogue.webp" alt="Example dialogue with TSG" style="display:block; margin: 0 auto;">
+      <p style="color:#ccc; font-size:0.9em; margin-top:10px;">
+        A real example of TSG in action — your personal tech support GPT.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="tsg-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">TSG – Tech Support GPT</div>
+    <p class="footer-creator">Hand-crafted by 45dgof8 • Powered by AI, driven by your curiosity.</p>
+    <p class="footer-copy">&copy; <span id="year"></span> 45dgof8. No ad trackers, no nonsense.</p>
+  </div>
+</footer>
+
+<!-- Consent banner -->
+<div id="consent" class="consent" role="region" aria-label="Privacy choices">
+  <div class="inner">
+    <p>We use privacy-friendly analytics to understand how TSG is used. No ad trackers, ever. You’re in control.</p>
+    <div class="actions">
+      <button id="consent-accept" class="btn" type="button" aria-label="Accept analytics">Allow</button>
+      <button id="consent-decline" class="btn" type="button" aria-label="Decline analytics">Decline</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ========= THEME =========
+  (function initTheme(){
+    const saved = localStorage.getItem("tsg-theme");
+    const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+    if (saved === "light" || (!saved && prefersLight)) {
+      document.documentElement.classList.add("light");
+      const icon = document.getElementById("themeIcon");
+      if (icon) icon.textContent = "☀️";
+    }
+  })();
+
+  document.getElementById("themeBtn")?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const isLight = root.classList.toggle("light");
+    localStorage.setItem("tsg-theme", isLight ? "light" : "dark");
+    const icon = document.getElementById("themeIcon");
+    if (icon) icon.textContent = isLight ? "☀️" : "🌙";
+  });
+
+  // ========= TIP SYSTEM WITH CATEGORIES, FAVORITES, SUPER TIP =========
+  const feeds = {
+    linux: 'https://45dgof8.com/tsg-feed.json',
+    windows: 'https://45dgof8.com/tsg-feed-windows.json',
+    macos: 'https://45dgof8.com/tsg-feed-macos.json'
+  };
+
+  const tipPanelEl = document.getElementById("tipPanel");
+  const tipTextEl = document.getElementById("tipText");
+  const tipMetaLabel = document.getElementById("tipMetaLabel");
+  const tipIndexLabel = document.getElementById("tipIndexLabel");
+  const copyCmdBtn = document.getElementById("copyCmdBtn");
+  const prevTipBtn = document.getElementById("prevTipBtn");
+  const nextTipBtn = document.getElementById("nextTipBtn");
+  const osEl   = document.getElementById("os");
+  const categorySelect = document.getElementById("tipCategory");
+  const lengthSelect = document.getElementById("tipLength");
+  const tipSearch = document.getElementById("tipSearch");
+  const favBtn = document.getElementById("favBtn");
+  const favoritesList = document.getElementById("favoritesList");
+  const favoritesBlock = document.getElementById("favoritesBlock");
+  const dailyBadge = document.getElementById("dailyBadge");
+
+  let tipObjects = []; // {text, category}
+  let idx = 0;
+  let rotator;
+  const ROTATE_MS = 30000; // 30 seconds
+  const LENGTH_SHORT = 160;
+  let currentSkill = "beginner";
+  let currentCategory = "All";
+  let lengthMode = "all";
+  let searchQuery = "";
+  let dailyTipText = "";
+  const FAVORITES_KEY = "tsg-favorites";
+
+  function getFilteredTips() {
+    return tipObjects.filter(t => {
+      if (currentCategory !== "All" && t.category !== currentCategory) return false;
+      if (lengthMode === "short" && t.text.length > LENGTH_SHORT) return false;
+      if (lengthMode === "long" && t.text.length <= LENGTH_SHORT) return false;
+      if (searchQuery && !t.text.toLowerCase().includes(searchQuery)) return false;
+      return true;
+    });
+  }
+
+  function updateMetaLabel() {
+    const osLabel = osEl?.options[osEl.selectedIndex]?.text || "Linux";
+    let skillLabel = "Beginner";
+    if (currentSkill === "intermediate") skillLabel = "Comfortable";
+    else if (currentSkill === "power") skillLabel = "Power user";
+    tipMetaLabel.textContent = osLabel + " • " + skillLabel + " • Rotating every 30s";
+  }
+
+  function extractCommand(tip) {
+    const matches = tip.match(/`([^`]+)`/g);
+    if (!matches) return "";
+    return matches.map(m => m.replace(/`/g, "")).join("\n");
+  }
+
+  function markFavoriteButton(isFav) {
+    if (!favBtn) return;
+    if (isFav) {
+      favBtn.classList.add("active");
+      favBtn.firstElementChild.textContent = "★";
+      favBtn.lastElementChild.textContent = "Saved";
+    } else {
+      favBtn.classList.remove("active");
+      favBtn.firstElementChild.textContent = "☆";
+      favBtn.lastElementChild.textContent = "Favorite";
     }
   }
-  </script>
 
-  <!-- Optional: EVA MAGIC BUTTON (kept) -->
-  <script>
-  (() => {
-    const DESTS = [
-      "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
-      "https://45dgof8.com/Eva_Answers.html",
-      "https://45dgof8.com/Dion_Wolf_Jotham.html",
-      "https://45dgof8.com/TSG-tech-support-gpt.html",
-      "https://45dgof8.com/CatArtCreator.html",
-    ];
-    const host = document.createElement("div");
-    host.style.position = "fixed"; host.style.inset = "auto 16px 16px auto"; host.style.zIndex = "2147483647"; host.setAttribute("aria-hidden", "true");
-    const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
-    const style = document.createElement("style");
-    style.textContent = `
-      :host, * { box-sizing: border-box; }
-      .btn { width: 48px; height: 48px; border: 0; border-radius: 9999px; display: grid; place-items: center; cursor: pointer; background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%); box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15); transition: transform .15s ease, box-shadow .2s ease; user-select: none; }
-      .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
-      .btn:active { transform: translateY(0); }
-      .sparkle { font-size: 20px; line-height: 1; }
-      @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
-      .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
-      :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
-    `;
-    const button = document.createElement("button");
-    button.className = "btn"; button.type = "button"; button.setAttribute("aria-label", "Teleport to a random page"); button.title = "Teleport ✨"; button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
-    function pick() {
-      const here = location.href.replace(/[#?].*$/, "");
-      const pool = DESTS.filter(u => !here.startsWith(u));
-      const list = pool.length ? pool : DESTS;
-      return list[Math.floor(Math.random() * list.length)];
+  function loadFavorites() {
+    try {
+      const raw = localStorage.getItem(FAVORITES_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
     }
-    button.addEventListener("click", e => { const url = pick(); if (e.ctrlKey || e.metaKey) { window.open(url, "_blank", "noopener"); return; } location.href = url; });
-    button.addEventListener("auxclick", e => { if (e.button === 1) { e.preventDefault(); window.open(pick(), "_blank", "noopener"); } });
-    root.appendChild(style); root.appendChild(button); document.body.appendChild(host);
+  }
+
+  function saveFavorites(list) {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(list.slice(0, 40)));
+  }
+
+  function renderFavorites() {
+    const favs = loadFavorites();
+    favoritesList.innerHTML = "";
+    if (!favs.length) {
+      favoritesBlock.style.display = "none";
+      return;
+    }
+    favoritesBlock.style.display = "block";
+    favs.slice(0,10).forEach((f) => {
+      const el = document.createElement("div");
+      el.className = "favorite-item";
+      el.innerHTML = `<small>${f.os} • ${f.category || "General"}</small>${f.text}`;
+      el.addEventListener("click", () => {
+        const index = tipObjects.findIndex(t => t.text === f.text);
+        if (index !== -1) {
+          idx = index;
+          renderTip(true);
+        }
+      });
+      favoritesList.appendChild(el);
+    });
+  }
+
+  function renderTip(animate) {
+    const list = getFilteredTips();
+    if (!list.length) {
+      tipTextEl.textContent = "No tips match this combination yet. Try a different category, length, or search.";
+      tipTextEl.dataset.cmd = "";
+      tipIndexLabel.textContent = "Tip 0 / 0";
+      dailyBadge.style.display = "none";
+      markFavoriteButton(false);
+      return;
+    }
+    if (idx >= list.length) idx = 0;
+    if (idx < 0) idx = list.length - 1;
+    const tipObj = list[idx];
+    const safeTip = tipObj.text;
+
+    if (animate && tipPanelEl) {
+      tipPanelEl.classList.remove("fade");
+      void tipPanelEl.offsetWidth;
+      tipPanelEl.classList.add("fade");
+    }
+
+    tipTextEl.innerHTML = safeTip.replace(/`([^`]+)`/g, "<code>$1</code>");
+    const cmd = extractCommand(safeTip);
+    tipTextEl.dataset.cmd = cmd;
+    tipIndexLabel.textContent = "Tip " + (idx + 1) + " / " + list.length;
+
+    // Daily super tip highlight
+    if (safeTip === dailyTipText) {
+      dailyBadge.style.display = "inline-flex";
+    } else {
+      dailyBadge.style.display = "none";
+    }
+
+    // Favorite state
+    const favs = loadFavorites();
+    const isFav = favs.some(f => f.text === safeTip && f.os === (osEl?.value || "linux"));
+    markFavoriteButton(isFav);
+  }
+
+  async function loadTips(os) {
+    clearInterval(rotator);
+    tipObjects = [];
+    try {
+      const res = await fetch(feeds[os], { cache: "no-store" });
+      const data = await res.json();
+
+      if (data && data.categories && typeof data.categories === "object") {
+        Object.keys(data.categories).forEach(cat => {
+          const arr = data.categories[cat];
+          if (Array.isArray(arr)) {
+            arr.forEach(text => {
+              if (typeof text === "string" && text.trim()) {
+                tipObjects.push({ text: text.trim(), category: cat });
+              }
+            });
+          }
+        });
+      } else if (Array.isArray(data.tips)) {
+        data.tips.forEach(text => {
+          if (typeof text === "string" && text.trim()) {
+            tipObjects.push({ text: text.trim(), category: "General" });
+          }
+        });
+      } else {
+        tipObjects.push({ text: "(No tips yet — check back soon!)", category: "General" });
+      }
+    } catch(e) {
+      tipObjects = [{ text: "⚠️ Unable to load TSG tips. Please check connection.", category: "General" }];
+    }
+
+    // Build category list
+    const cats = Array.from(new Set(tipObjects.map(t => t.category))).sort();
+    categorySelect.innerHTML = "";
+    const allOpt = document.createElement("option");
+    allOpt.value = "All";
+    allOpt.textContent = "All topics";
+    categorySelect.appendChild(allOpt);
+    cats.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+      categorySelect.appendChild(opt);
+    });
+    currentCategory = "All";
+    categorySelect.value = "All";
+
+    // Daily super tip: pick deterministic based on date
+    if (tipObjects.length) {
+      const today = new Date();
+      const daySeed = today.getFullYear() * 372 + (today.getMonth()+1) * 31 + today.getDate();
+      const idxDaily = daySeed % tipObjects.length;
+      dailyTipText = tipObjects[idxDaily].text;
+    } else {
+      dailyTipText = "";
+    }
+
+    idx = 0;
+    renderTip(true);
+    rotator = setInterval(() => {
+      idx++;
+      renderTip(true);
+    }, ROTATE_MS);
+  }
+
+  function detectOSFromUA() {
+    const ua = navigator.userAgent || navigator.vendor || "";
+    if (/windows/i.test(ua)) return "windows";
+    if (/macintosh|mac os x/i.test(ua)) return "macos";
+    if (/linux/i.test(ua)) return "linux";
+    return "linux";
+  }
+
+  osEl?.addEventListener("change", (e) => {
+    const os = e.target.value || "linux";
+    updateMetaLabel();
+    loadTips(os);
+  });
+
+  categorySelect?.addEventListener("change", (e) => {
+    currentCategory = e.target.value || "All";
+    idx = 0;
+    renderTip(true);
+  });
+
+  lengthSelect?.addEventListener("change", (e) => {
+    lengthMode = e.target.value || "all";
+    idx = 0;
+    renderTip(true);
+  });
+
+  tipSearch?.addEventListener("input", (e) => {
+    searchQuery = (e.target.value || "").trim().toLowerCase();
+    idx = 0;
+    renderTip(true);
+  });
+
+  copyCmdBtn?.addEventListener("click", async () => {
+    const cmd = tipTextEl?.dataset.cmd || "";
+    if (!cmd.trim()) {
+      alert("No command detected in this tip.");
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(cmd);
+      copyCmdBtn.textContent = "✅ Copied";
+      setTimeout(() => { copyCmdBtn.innerHTML = "<span>📋</span><span>Copy command</span>"; }, 1200);
+    } catch {
+      alert("Copy failed");
+    }
+  });
+
+  prevTipBtn?.addEventListener("click", () => {
+    idx--;
+    renderTip(true);
+  });
+
+  nextTipBtn?.addEventListener("click", () => {
+    idx++;
+    renderTip(true);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.altKey && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
+      e.preventDefault();
+      if (e.key === "ArrowRight") idx++;
+      else idx--;
+      renderTip(true);
+    }
+  });
+
+  // Favorites
+  favBtn?.addEventListener("click", () => {
+    const list = getFilteredTips();
+    if (!list.length) return;
+    const tipObj = list[idx];
+    const os = osEl?.value || "linux";
+    const favs = loadFavorites();
+    const existingIndex = favs.findIndex(f => f.text === tipObj.text && f.os === os);
+
+    if (existingIndex !== -1) {
+      favs.splice(existingIndex, 1);
+      saveFavorites(favs);
+      markFavoriteButton(false);
+    } else {
+      favs.unshift({ text: tipObj.text, os, category: tipObj.category });
+      saveFavorites(favs);
+      markFavoriteButton(true);
+    }
+    renderFavorites();
+  });
+
+  // Initialize OS, tips, meta
+  if (osEl) {
+    const detected = detectOSFromUA();
+    if (feeds[detected]) {
+      osEl.value = detected;
+    }
+    loadTips(osEl.value || "linux");
+  }
+  updateMetaLabel();
+  renderFavorites();
+
+  // ========= SKILL TOGGLE =========
+  const skillButtons = document.querySelectorAll(".skill-toggle button");
+  skillButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      skillButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentSkill = btn.getAttribute("data-skill") || "beginner";
+      updateMetaLabel();
+    });
+  });
+
+  // ========= YEAR =========
+  const y = document.getElementById("year");
+  if (y) y.textContent = String(new Date().getFullYear());
+
+  // ========= CONSENT + ANALYTICS PLACEHOLDER =========
+  (function consent(){
+    const key = 'tsg-consent';
+    const el = document.getElementById('consent');
+    if (!el) return;
+    const state = localStorage.getItem(key);
+    if (state === 'allow' || state === 'decline') return;
+    el.classList.add('show');
+    const accept = document.getElementById('consent-accept');
+    const decline = document.getElementById('consent-decline');
+    accept?.addEventListener('click', () => {
+      localStorage.setItem(key, 'allow');
+      el.classList.remove('show');
+      enableAnalytics();
+    });
+    decline?.addEventListener('click', () => {
+      localStorage.setItem(key, 'decline');
+      el.classList.remove('show');
+    });
+
+    if (state === 'allow') enableAnalytics();
+
+    function enableAnalytics() {
+      // Place analytics loader here if desired (e.g. Plausible)
+      // const s = document.createElement('script');
+      // s.defer = true; s.setAttribute('data-domain', '45dgof8.com');
+      // s.src = 'https://plausible.io/js/script.js';
+      // document.head.appendChild(s);
+    }
   })();
-  </script>  <!-- Teleport Dock (gem chat + teleport) -->
+</script>
+
+<!-- EVA MAGIC BUTTON -->
+<script>
+(() => {
+  const DESTS = [
+    "https://45dgof8.com/45dgof8-GDPR_Nibbler_Compliance_GPT.html",
+    "https://45dgof8.com/Eva_Answers.html",
+    "https://45dgof8.com/Dion_Wolf_Jotham.html",
+    "https://45dgof8.com/TSG-tech-support-gpt.html",
+    "https://45dgof8.com/CatArtCreator.html"
+  ];
+  const host = document.createElement("div");
+  host.style.position = "fixed";
+  host.style.inset = "auto 16px 16px auto";
+  host.style.zIndex = "2147483647";
+  host.setAttribute("aria-hidden", "true");
+  const root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
+  const style = document.createElement("style");
+  style.textContent = `
+    :host, * { box-sizing: border-box; }
+    .btn { width: 48px; height: 48px; border: 0; border-radius: 9999px; display: grid; place-items: center; cursor: pointer; background: radial-gradient(100% 100% at 30% 25%, #fff 0%, #f3f3ff 45%, #e5e7ff 100%); box-shadow: 0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(60,60,120,.15); transition: transform .15s ease, box-shadow .2s ease; user-select: none; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.22), inset 0 0 0 1px rgba(80,80,160,.25); }
+    .btn:active { transform: translateY(0); }
+    .sparkle { font-size: 20px; line-height: 1; }
+    @keyframes twinkle { 0%,100%{ transform: rotate(0) scale(1)} 50%{ transform: rotate(8deg) scale(1.1)} }
+    .btn:hover .sparkle { animation: twinkle .8s ease-in-out infinite; }
+    :host { position: fixed; right: var(--eva-magic-right, 16px); bottom: var(--eva-magic-bottom, 16px); }
+  `;
+  const button = document.createElement("button");
+  button.className = "btn";
+  button.type = "button";
+  button.setAttribute("aria-label", "Teleport to a random page");
+  button.title = "Teleport ✨";
+  button.innerHTML = `<span class="sparkle" aria-hidden="true">✨</span>`;
+  function pick() {
+    const here = location.href.replace(/[#?].*$/, "");
+    const pool = DESTS.filter(u => !here.startsWith(u));
+    const list = pool.length ? pool : DESTS;
+    return list[Math.floor(Math.random() * list.length)];
+  }
+  button.addEventListener("click", e => {
+    const url = pick();
+    if (e.ctrlKey || e.metaKey) {
+      window.open(url, "_blank", "noopener");
+      return;
+    }
+    location.href = url;
+  });
+  button.addEventListener("auxclick", e => {
+    if (e.button === 1) {
+      e.preventDefault();
+      window.open(pick(), "_blank", "noopener");
+    }
+  });
+  root.appendChild(style);
+  root.appendChild(button);
+  document.body.appendChild(host);
+})();
+</script>
+
+<!-- Teleport Dock: gem chat + teleport -->
 <script id="teleport-dock">
 (() => {
   const CHAT_URL = 'https://chat.openai.com/g/g-QHveZ3pME-tsg-tech-support-gpt';
@@ -546,11 +1617,18 @@ function renderTip() {
     .gem { position:relative; width:56px; height:56px; border-radius:16px; background: conic-gradient(from 200deg at 50% 50%, #ffd54a, #5af0b3, #ffd54a); box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.15); }
     .gem .glyph { font-size:20px; }
     .badge {
-      position:absolute; top:-6px; right:-6px;
-      background: #5af0b3; color: #002016;
-      padding: 0 6px; height: 22px;
-      border-radius: 9999px; font-weight:700; font-size:12px;
-      display:grid; place-items:center;
+      position:absolute;
+      top:-6px;
+      right:-6px;
+      background: #5af0b3;
+      color: #002016;
+      padding: 0 6px;
+      height: 22px;
+      border-radius: 9999px;
+      font-weight:700;
+      font-size:12px;
+      display:grid;
+      place-items:center;
     }
 
     .chat-bubble {
@@ -568,7 +1646,10 @@ function renderTip() {
       animation: fadeIn .4s ease-out;
     }
 
-    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
   `;
 
   const wrap = document.createElement('div');
@@ -616,7 +1697,6 @@ function renderTip() {
   root.appendChild(wrap);
   document.body.appendChild(host);
 })();
-
-  </script>
-  </body>
-  </html>
+</script>
+</body>
+</html>
