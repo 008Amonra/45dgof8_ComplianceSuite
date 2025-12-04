@@ -8,6 +8,14 @@
   /* =========================================================
      DATA MODEL – prompt building blocks
      ========================================================= */
+  <script src="spark13.js"></script>
+<script>
+  // When PF is ready:
+  if (typeof PF !== "undefined" && typeof Spark13 !== "undefined") {
+    PF.spark = Spark13;
+  }
+</script>
+  
   const PF = {
     styles: [
       { id: "cinematic",  label: "Cinematic concept art",  text: "cinematic concept art, dramatic lighting, highly detailed" },
