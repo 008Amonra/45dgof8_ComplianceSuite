@@ -309,7 +309,7 @@
           <span>Image prompt</span>
           <button type="button" class="pf-copy" data-pf-copy="prompt">📋 Copy</button>
         </div>
-        <textarea id="pf-prompt" rows="8" readonly></textarea>
+        <textarea id="pf-prompt" rows="8"></textarea>
       </div>
 
       <div class="pf-block">
