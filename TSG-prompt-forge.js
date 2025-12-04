@@ -9,6 +9,8 @@
      DATA MODEL – prompt building blocks
      ========================================================= */
 
+  const PF = {
+
     styles: [
       { id: "cinematic",  label: "Cinematic concept art",  text: "cinematic concept art, dramatic lighting, highly detailed" },
       { id: "ultra_real", label: "Ultrareal photography",  text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
@@ -20,7 +22,6 @@
 
     /* ===== SUBJECTS – balanced + abstract ===== */
     subjects: [
-      // HUMAN — TECH / CYBERPUNK — GENDER BALANCED
       { id: "tech_mage_f",    label: "Tech mage (female)",           text: "a female tech mage with flowing circuitry patterns glowing along her arms" },
       { id: "tech_mage_m",    label: "Tech mage (male)",             text: "a male tech mage with glowing circuitry woven across his robes" },
       { id: "tech_mage_nb",   label: "Tech mage (non-binary)",       text: "a non-binary tech mage radiating soft bioluminescent energy from their hands" },
