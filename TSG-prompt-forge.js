@@ -291,7 +291,16 @@
         <button type="button" id="pf-rand-all" class="pf-mini">🎲 Randomize all</button>
         <button type="button" id="pf-generate" class="pf-mini">⚡ Regenerate prompt</button>
       </div>
-    `;
+
+      <div class="pf-row">
+        <label for="pf-usertext"><strong>Optional: Add your own text</strong></label>
+        <input 
+      type="text" 
+      id="pf-usertext" 
+      placeholder="Add 1–2 extra sentences for your image or delete this here"
+      style="width:100%;padding:6px;border-radius:6px;border:1px solid #888;">
+     </div>
+     `;
 
     output.innerHTML = `
       <div class="pf-block">
