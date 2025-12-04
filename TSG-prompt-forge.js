@@ -1,5 +1,6 @@
-// TSG Prompt Forge – JS engine v4.0
+// TSG Prompt Forge – JS engine v4.0 PRO
 // Combined: legacy NightCafe helper + v3.1 engine + Happy Mode + glow
+// Optimized version with optional user text support
 
 (() => {
   "use strict";
@@ -77,7 +78,7 @@
       { id: "scan",           label: "System scan",             text: "triggering a system-scan visualized as expanding light rings" }
     ],
 
-    // moods: merged + your original 'hopeful'
+    // moods: merged + original 'hopeful'
     moods: [
       { id: "calm",        label: "Calm & wise",           text: "mood is calm, wise, reassuring, focused on helping" },
       { id: "mysterious",  label: "Mysterious",            text: "atmosphere is mysterious and powerful, but benevolent" },
@@ -197,7 +198,7 @@
 
     if (moodSelect) {
       if (happyOn) {
-        // lock to \"Happy\" mood
+        // lock to "Happy" mood
         moodSelect.value = "just_happy";
         moodSelect.disabled = true;
       } else {
@@ -293,14 +294,14 @@
       </div>
 
       <div class="pf-row">
-        <label for="pf-usertext"><strong>Optional: Add your own text</strong></label>
-        <input 
-      type="text" 
-      id="pf-usertext" 
-      placeholder="Add 1–2 extra sentences for your image or delete this here"
-      style="width:100%;padding:6px;border-radius:6px;border:1px solid #888;">
-     </div>
-     `;
+        <label for="pf-usertext"><strong>Optional: add your own text</strong></label>
+        <input
+          type="text"
+          id="pf-usertext"
+          placeholder=""
+          style="width:100%;padding:6px;border-radius:6px;border:1px solid #888;">
+      </div>
+    `;
 
     output.innerHTML = `
       <div class="pf-block">
@@ -341,7 +342,7 @@
 
     const showcase = $("pf-showcase");
     if (showcase) {
-      // You can replace this with your own example image
+      // Example image (text label removed)
       showcase.innerHTML = `<img src="images/neon-mage.png" alt="">`;
     }
 
@@ -363,9 +364,15 @@
       getText("pf-palette",    PF.palettes),
       getText("pf-expression", PF.expressions),
       getText("pf-mood",       PF.moods)
-      const userText = $("pf-usertext")?.value?.trim();
-      if (userText) parts.push(userText);
     ].filter(Boolean);
+
+    // Optional user text – appended at the end of the prompt
+    const userTextEl = $("pf-usertext");
+    const userText = userTextEl ? userTextEl.value.trim() : "";
+    if (userText) {
+      parts.push(userText);
+    }
+
     const promptBox = $("pf-prompt");
     if (promptBox) {
       promptBox.value =
@@ -467,6 +474,12 @@
     qsa("select[id^='pf-']").forEach(sel => {
       sel.addEventListener("change", buildPrompt);
     });
+
+    // Rebuild on user text input
+    const userTextEl = $("pf-usertext");
+    if (userTextEl) {
+      userTextEl.addEventListener("input", buildPrompt);
+    }
 
     // Copy buttons – combined behavior: button label + toast
     qsa(".pf-copy").forEach(btn => {
