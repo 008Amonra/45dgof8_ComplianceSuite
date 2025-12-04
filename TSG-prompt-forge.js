@@ -363,8 +363,9 @@
       getText("pf-palette",    PF.palettes),
       getText("pf-expression", PF.expressions),
       getText("pf-mood",       PF.moods)
+      const userText = $("pf-usertext")?.value?.trim();
+      if (userText) parts.push(userText);
     ].filter(Boolean);
-
     const promptBox = $("pf-prompt");
     if (promptBox) {
       promptBox.value =
