@@ -333,7 +333,7 @@
     const showcase = $("pf-showcase");
     if (showcase) {
       // You can replace this with your own example image
-      showcase.innerHTML = `<img src="images/neon-mage.png" alt="Example output from Prompt Forge">`;
+      showcase.innerHTML = `<img src="images/neon-mage.png" alt="">`;
     }
 
     ensureToast();
