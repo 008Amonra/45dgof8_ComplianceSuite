@@ -188,6 +188,67 @@
   }
 
   /* =========================================================
+     LANGUAGE FILTERS – non-destructive (#tag) style
+     ========================================================= */
+
+  function pfEscapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function pfTagMatches(str, regex) {
+    return str ? str.replace(regex, m => (m.startsWith("#") ? m : "#" + m)) : str;
+  }
+
+  const PF_FILTER_TERMS = {
+    neutral: ["male", "female", "non-binary", "androgynous", "binary"],
+    slang:   ["cool", "chill", "vibes", "epic", "badass", "awesome"],
+    glow:    ["glow", "glowing", "neon", "luminescent", "bioluminescent", "radiant", "shimmering"]
+  };
+
+  function applyNeutralFilter(str) {
+    const sw = $("pf-filter-neutral");
+    if (!sw?.checked || !str) return str;
+    PF_FILTER_TERMS.neutral.forEach(term => {
+      const re = new RegExp("\\b" + pfEscapeRegex(term) + "\\b", "gi");
+      str = pfTagMatches(str, re);
+    });
+    return str;
+  }
+
+  function applySlangFilter(str) {
+    const sw = $("pf-filter-slang");
+    if (!sw?.checked || !str) return str;
+    PF_FILTER_TERMS.slang.forEach(term => {
+      const re = new RegExp("\\b" + pfEscapeRegex(term) + "\\b", "gi");
+      str = pfTagMatches(str, re);
+    });
+    return str;
+  }
+
+  function applyGlowFilter(str) {
+    const sw = $("pf-filter-glow");
+    if (!sw?.checked || !str) return str;
+    PF_FILTER_TERMS.glow.forEach(term => {
+      const re = new RegExp("\\b" + pfEscapeRegex(term) + "\\b", "gi");
+      str = pfTagMatches(str, re);
+    });
+    return str;
+  }
+
+  function applyCustomFilter(str) {
+    const sw  = $("pf-custom-switch");
+    const box = $("pf-custom-filter");
+    if (!sw?.checked || !box || !str) return str;
+
+    const lines = box.value.split("\n").map(l => l.trim()).filter(Boolean);
+    lines.forEach(line => {
+      const re = new RegExp(pfEscapeRegex(line), "gi");
+      str = pfTagMatches(str, re);
+    });
+    return str;
+  }
+
+  /* =========================================================
      HAPPY MODE
      ========================================================= */
   function applyHappyMode() {
@@ -223,10 +284,28 @@
     if (!controls || !output) return;
 
     controls.innerHTML = `
-      <div class="pf-row">
+      <div class="pf-row" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <label for="pf-happy-switch"><strong>Happy Mode</strong></label>
         <input type="checkbox" id="pf-happy-switch" style="width:18px;height:18px;cursor:pointer;">
-        <span></span>
+
+        <label style="display:flex;align-items:center;gap:4px;">
+          <input type="checkbox" id="pf-filter-neutral" style="cursor:pointer;"> Neutral
+        </label>
+        <label style="display:flex;align-items:center;gap:4px;">
+          <input type="checkbox" id="pf-filter-slang" style="cursor:pointer;"> Slang
+        </label>
+        <label style="display:flex;align-items:center;gap:4px;">
+          <input type="checkbox" id="pf-filter-glow" style="cursor:pointer;"> Glow
+        </label>
+        <label style="display:flex;align-items:center;gap:4px;">
+          <input type="checkbox" id="pf-custom-switch" style="cursor:pointer;"> Custom
+        </label>
+      </div>
+
+      <div id="pf-custom-wrapper" style="display:none;margin-bottom:8px;">
+        <textarea id="pf-custom-filter" rows="3"
+          placeholder="One word or phrase per line to tag as #word"
+          style="width:100%;padding:6px;border:1px solid #888;border-radius:6px;"></textarea>
       </div>
 
       <div class="pf-row">
@@ -292,10 +371,10 @@
       <div class="pf-row">
         <label for="pf-usertext"><strong>Optional: add your own text</strong></label>
         <input
-        type="text"
-        id="pf-usertext"
-        placeholder=""
-        style="width:100%;padding:6px;border-radius:6px;border:1px solid #888;">
+          type="text"
+          id="pf-usertext"
+          placeholder=""
+          style="width:100%;padding:6px;border-radius:6px;border:1px solid #888;">
       </div>
 
       <div class="pf-actions">
@@ -354,7 +433,7 @@
      BUILD PROMPT & RANDOMIZERS
      ========================================================= */
   function buildPrompt() {
-    const parts = [
+    const coreParts = [
       getText("pf-subject",    PF.subjects),
       getText("pf-scene",      PF.scenes),
       getText("pf-outfit",     PF.outfits),
@@ -367,18 +446,27 @@
       getText("pf-mood",       PF.moods)
     ].filter(Boolean);
 
-    // Optional user text – appended at the end of the prompt
-    const userTextEl = $("pf-usertext");
-    const userText = userTextEl ? userTextEl.value.trim() : "";
-    if (userText) {
-      parts.push(userText);
+    let corePrompt = coreParts.join(", ");
+    if (corePrompt) {
+      corePrompt += ", high resolution, ultra detailed, crisp edges, coherent composition";
     }
+
+    // Apply filters ONLY to generated PF text (never user text)
+    corePrompt = applyNeutralFilter(corePrompt);
+    corePrompt = applySlangFilter(corePrompt);
+    corePrompt = applyGlowFilter(corePrompt);
+    corePrompt = applyCustomFilter(corePrompt);
+
+    const userTextEl = $("pf-usertext");
+    const userText   = userTextEl ? userTextEl.value.trim() : "";
+
+    const finalPrompt = userText
+      ? (corePrompt ? corePrompt + ", " + userText : userText)
+      : corePrompt;
 
     const promptBox = $("pf-prompt");
     if (promptBox) {
-      promptBox.value =
-        parts.join(", ") +
-        ", high resolution, ultra detailed, crisp edges, coherent composition";
+      promptBox.value = finalPrompt;
     }
 
     const negBox = $("pf-negative");
@@ -427,6 +515,25 @@
     const happySwitch = $("pf-happy-switch");
     if (happySwitch) {
       happySwitch.addEventListener("change", applyHappyMode);
+    }
+
+    // Language filter toggles
+    ["pf-filter-neutral", "pf-filter-slang", "pf-filter-glow", "pf-custom-switch"].forEach(id => {
+      const el = $(id);
+      if (!el) return;
+
+      el.addEventListener("change", () => {
+        if (id === "pf-custom-switch") {
+          const wrapper = $("pf-custom-wrapper");
+          if (wrapper) wrapper.style.display = el.checked ? "block" : "none";
+        }
+        buildPrompt();
+      });
+    });
+
+    const customBox = $("pf-custom-filter");
+    if (customBox) {
+      customBox.addEventListener("input", buildPrompt);
     }
 
     // Individual randomizers
