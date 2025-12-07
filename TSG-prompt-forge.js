@@ -17,12 +17,6 @@
       { id: "cyberpunk",        label: "Neon cyberpunk",             text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
       { id: "anime",            label: "Arcane / anime style",       text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
       { id: "minimal",          label: "Minimal clean sci-fi",       text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
-      { id: "retro",            label: "Retro synthwave",            text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" }
-      { id: "cinematic",        label: "Cinematic concept art",      text: "cinematic concept art, dramatic lighting, highly detailed" },
-      { id: "ultra_real",       label: "Ultrareal photography",      text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
-      { id: "cyberpunk",        label: "Neon cyberpunk",             text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
-      { id: "anime",            label: "Arcane / anime style",       text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
-      { id: "minimal",          label: "Minimal clean sci-fi",       text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
       { id: "retro",            label: "Retro synthwave",            text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
       { id: "dreamscape",       label: "Dreamscape surrealism",      text: "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
       { id: "hyper_modern",     label: "Hyper-modern chrome",        text: "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
@@ -31,7 +25,7 @@
       { id: "watercolor",       label: "Soft watercolor painting",   text: "light watercolor brush strokes, soft bleeding colors, delicate atmospheric texture" },
       { id: "vector_clean",     label: "Clean vector illustration",  text: "crisp vector artwork, clean shapes, bold colors, sharp minimalist composition" },
       { id: "baroque",          label: "Baroque classicism",         text: "ornate baroque composition, golden accents, dramatic chiaroscuro lighting" },  
-      { id: "gothic_horror",    label: "Gothic horror",              text: "ominous gothic setting, eerie shadows, haunting architecture, dramatic ambience" },
+      { id: "gothic_dark",    label: "Gothic dark",              text: "ominous gothic setting, eerie shadows, haunting architecture, dramatic ambience" },
       { id: "steampunk",        label: "Steampunk industrial",       text: "brass machinery, Victorian engineering, smoky industrial textures" },
       { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical creatures, enchanted atmosphere, lush painterly fantasy landscapes" },
       { id: "noir_modern",      label: "Neo-noir cityscape",         text: "moody noir lighting, rain-soaked streets, deep contrast, cinematic mystery" },
@@ -211,7 +205,7 @@
 
   function fillSelect(id, list) {
     const el = $(id);
-    if (!el || !list) return;
+    if (!el || !list || !list.length) return;
     el.innerHTML = "";
     list.forEach(item => {
       const opt = document.createElement("option");
@@ -698,7 +692,7 @@
         };
 
         const url = destinations[target] || destinations.nightcafe;
-        window.open(url, "_blank", "noopener");
+        window.open(url, "_blank", "noopener,noreferrer");
         showToast("Prompt copied and destination opened.");
       });
     }
