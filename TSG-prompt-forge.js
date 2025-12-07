@@ -9,30 +9,28 @@
   const PF = {
 
     styles: [
-      { id: "cinematic",        label: "Cinematic concept art",      text: "cinematic concept art, dramatic lighting, highly detailed" },
-      { id: "ultra_real",       label: "Ultrareal photography",      text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
-      { id: "cyberpunk",        label: "Neon cyberpunk",             text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
-      { id: "anime",            label: "Arcane / anime style",       text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
-      { id: "minimal",          label: "Minimal clean sci-fi",       text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
-      { id: "retro",            label: "Retro synthwave",            text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
-      { id: "dreamscape",       label: "Dreamscape surrealism",      text: "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
-      { id: "hyper_modern",     label: "Hyper-modern chrome",        text: "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
-      { id: "vintage_film",     label: "Vintage film aesthetic",     text: "grainy vintage film look, warm tones, cinematic 70s photography style" },
-      { id: "dark_fantasy",     label: "Dark fantasy art",           text: "dark fantasy environment, arcane sigils, moody atmosphere, high-detail painterly style" },
-      { id: "watercolor",       label: "Soft watercolor painting",   text: "light watercolor brush strokes, soft bleeding colors, delicate atmospheric texture" },
-      { id: "vector_clean",     label: "Clean vector illustration",  text: "crisp vector artwork, clean shapes, bold colors, sharp minimalist composition" },
-      { id: "baroque",          label: "Baroque classicism",         text: "ornate baroque composition, golden accents, dramatic chiaroscuro lighting" },  
-      { id: "gothic_dark",      label: "Gothic dark",                text: "ominous gothic setting, eerie shadows, haunting architecture, dramatic ambience" },
-      { id: "steampunk",        label: "Steampunk industrial",       text: "brass machinery, Victorian engineering, smoky industrial textures" },
-      { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical creatures, enchanted atmosphere, lush painterly fantasy landscapes" },
-      { id: "noir_modern",      label: "Neo-noir cityscape",         text: "moody noir lighting, rain-soaked streets, deep contrast, cinematic mystery" },
-      { id: "pixel_art",        label: "Pixel art adventure",        text: "8-bit pixel art style, retro colors, nostalgic adventure vibe" },
-      { id: "magical_realism",  label: "Magical realism tableau",    text: "soft surrealism blended with realism, floating elements, dreamlike calm" },
-      { id: "post_apoc",        label: "Post-apocalyptic diorama",   text: "desolate landscapes, broken structures, dramatic dystopian tones" },
-      { id: "underwater",       label: "Underwater fantasy",         text: "bioluminescent underwater realm, glowing creatures, soft drifting light" },
-      { id: "fashion_vintage",  label: "Vintage fashion portfolio",  text: "classic mid-century fashion photography, elegant poses, retro styling" },
-      { id: "holoconcept",      label: "Holographic concept art",    text: "translucent holographic effects, volumetric light, futuristic color blending" },
-      { id: "mythic_ink",       label: "Mythic ink illustration",    text: "bold ink linework, mythological motifs, high-contrast handcrafted style" }
+  { id: "cinematic",        label: "Cinematic concept art",      text: "cinematic concept art, dramatic lighting, highly detailed" },
+  { id: "ultra_real",       label: "Ultrareal photography",      text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
+  { id: "cyberpunk",        label: "Neon cyberpunk",             text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
+  { id: "anime",            label: "Arcane / anime style",       text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
+  { id: "minimal",          label: "Minimal clean sci-fi",       text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
+  { id: "retro",            label: "Retro synthwave",            text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
+
+  { id: "dreamscape",       label: "Dreamscape surrealism",      text: "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
+  { id: "hyper_modern",     label: "Hyper-modern chrome",        text: "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
+  { id: "vintage_film",     label: "Vintage film aesthetic",     text: "warm nostalgic film look, soft tones, cinematic texture" },
+  { id: "watercolor",       label: "Soft watercolor painting",   text: "light watercolor brush strokes, soft colors, delicate atmospheric texture" },
+  { id: "vector_clean",     label: "Clean vector illustration",  text: "crisp vector artwork, clean shapes, bold colors, minimalist composition" },
+
+  { id: "steampunk",        label: "Steampunk industrial",       text: "brass machinery, Victorian engineering, retro-futuristic design" },
+  { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical yet gentle fantastical atmosphere, rich painterly detail" },
+  { id: "pixel_art",        label: "Pixel art adventure",        text: "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
+  { id: "magical_realism",  label: "Magical realism tableau",    text: "soft surreal imagery blended with realism, dreamlike calm" },
+
+  { id: "underwater",       label: "Underwater fantasy",         text: "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
+  { id: "fashion_vintage",  label: "Vintage fashion portfolio",  text: "classic mid-century fashion photography, elegant styling" },
+  { id: "holoconcept",      label: "Holographic concept art",    text: "translucent holographic effects, volumetric light, futuristic color blending" },
+  { id: "mythic_ink",       label: "Mythic ink illustration",    text: "handcrafted ink style, elegant linework, mythical motifs" }
     ],
 
     /* ===== SUBJECTS – triplicate: male / female / android ===== */
