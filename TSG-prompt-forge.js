@@ -1,6 +1,9 @@
 // TSG Prompt Forge – JS engine v4.2 ANDROID EDITION
 // Combined: legacy NightCafe helper + v3.1 engine + Happy Mode + glow
-// Optimized version with optional user text support + neutral-only filter #### (() => {  ####  "use strict";
+// Optimized version with optional user text support + neutral-only filter #### 
+
+(() => {
+  "use strict";
 
   /* =========================================================
      DATA MODEL – prompt building blocks
