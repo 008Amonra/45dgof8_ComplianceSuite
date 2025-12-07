@@ -25,7 +25,7 @@
       { id: "watercolor",       label: "Soft watercolor painting",   text: "light watercolor brush strokes, soft bleeding colors, delicate atmospheric texture" },
       { id: "vector_clean",     label: "Clean vector illustration",  text: "crisp vector artwork, clean shapes, bold colors, sharp minimalist composition" },
       { id: "baroque",          label: "Baroque classicism",         text: "ornate baroque composition, golden accents, dramatic chiaroscuro lighting" },  
-      { id: "gothic_dark",    label: "Gothic dark",              text: "ominous gothic setting, eerie shadows, haunting architecture, dramatic ambience" },
+      { id: "gothic_dark",      label: "Gothic dark",                text: "ominous gothic setting, eerie shadows, haunting architecture, dramatic ambience" },
       { id: "steampunk",        label: "Steampunk industrial",       text: "brass machinery, Victorian engineering, smoky industrial textures" },
       { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical creatures, enchanted atmosphere, lush painterly fantasy landscapes" },
       { id: "noir_modern",      label: "Neo-noir cityscape",         text: "moody noir lighting, rain-soaked streets, deep contrast, cinematic mystery" },
