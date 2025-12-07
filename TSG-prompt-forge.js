@@ -1,6 +1,6 @@
-// TSG Prompt Forge – JS engine v4.0 PRO
+// TSG Prompt Forge – JS engine v4.2 ANDROID EDITION
 // Combined: legacy NightCafe helper + v3.1 engine + Happy Mode + glow
-// Optimized version with optional user text support
+// Optimized version with optional user text support + neutral-only filter
 
 (() => {
   "use strict";
@@ -14,61 +14,98 @@
     styles: [
       { id: "cinematic",  label: "Cinematic concept art",  text: "cinematic concept art, dramatic lighting, highly detailed" },
       { id: "ultra_real", label: "Ultrareal photography",  text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
-      { id: "cyberpunk",  label: "Neon cyberpunk",        text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
-      { id: "anime",      label: "Arcane / anime style",  text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
-      { id: "minimal",    label: "Minimal clean sci-fi",  text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
-      { id: "retro",      label: "Retro synthwave",       text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" }
+      { id: "cyberpunk",  label: "Neon cyberpunk",         text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
+      { id: "anime",      label: "Arcane / anime style",   text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
+      { id: "minimal",    label: "Minimal clean sci-fi",   text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
+      { id: "retro",      label: "Retro synthwave",        text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" }
     ],
 
-    /* ===== SUBJECTS – balanced + abstract ===== */
+    /* ===== SUBJECTS – triplicate: male / female / android ===== */
     subjects: [
-      { id: "tech_mage_f",    label: "Tech mage (female)",           text: "a female tech mage with flowing circuitry patterns glowing along her arms" },
-      { id: "tech_mage_m",    label: "Tech mage (male)",             text: "a male tech mage with glowing circuitry woven across his robes" },
-      { id: "tech_mage_nb",   label: "Tech mage (non-binary)",       text: "a non-binary tech mage radiating soft bioluminescent energy from their hands" },
+      // TECH MAGE
+      { id: "tech_mage_f",       label: "Tech mage (female)",   text: "a female tech mage with flowing circuitry patterns glowing along her arms" },
+      { id: "tech_mage_m",       label: "Tech mage (male)",     text: "a male tech mage with glowing circuitry woven across his robes" },
+      { id: "tech_mage_android", label: "Tech mage (android)",  text: "an android tech mage with etched circuitry channels glowing beneath synthetic plating" },
 
-      { id: "sysadmin_f",     label: "Cyber sysadmin (female)",      text: "a skilled female sysadmin working through floating holographic terminals" },
-      { id: "sysadmin_nb",    label: "Cyber sysadmin (non-binary)",  text: "a non-binary sysadmin calmly navigating immersive concentric system displays" },
+      // CYBER SYSADMIN
+      { id: "sysadmin_f",        label: "Cyber sysadmin (female)",   text: "a skilled female sysadmin working through floating holographic terminals" },
+      { id: "sysadmin_m",        label: "Cyber sysadmin (male)",     text: "a focused male sysadmin calmly orchestrating layered interfaces" },
+      { id: "sysadmin_android",  label: "Cyber sysadmin (android)",  text: "an android sysadmin managing vast data streams through integrated displays" },
 
-      { id: "hacker_f",       label: "Hacker (female)",              text: "a focused female hacker surrounded by neon reflections and cascading code" },
-      { id: "hacker_m",       label: "Hacker (male)",                text: "a male hacker illuminated by screens and electric glow" },
-      { id: "hacker_nb",      label: "Hacker (non-binary)",          text: "a non-binary hacker with minimal cyberpunk aesthetics and soft neon tones" },
+      // HACKER
+      { id: "hacker_f",          label: "Hacker (female)",      text: "a focused female hacker surrounded by neon reflections and cascading code" },
+      { id: "hacker_m",          label: "Hacker (male)",        text: "a male hacker illuminated by screens and electric glow" },
+      { id: "hacker_android",    label: "Hacker (android)",     text: "an android hacker interfacing directly with data streams through glowing ports" },
 
-      { id: "guardian_ai_f",  label: "AI guardian avatar (female)",        text: "a female guardian AI avatar with warm holographic light weaving around her form" },
-      { id: "guardian_ai_m",  label: "AI guardian avatar (male)",          text: "a male guardian AI avatar with calm teal luminescence and geometric features" },
-      { id: "guardian_ai_nb", label: "AI guardian avatar (androgynous)",   text: "an androgynous guardian AI projection shimmering with smooth gradients" },
+      // GUARDIAN AI AVATAR
+      { id: "guardian_ai_f",     label: "AI guardian (female)",   text: "a female guardian AI avatar with warm holographic light weaving around her form" },
+      { id: "guardian_ai_m",     label: "AI guardian (male)",     text: "a male guardian AI avatar with calm teal luminescence and geometric features" },
+      { id: "guardian_ai_android", label: "AI guardian (android)", text: "an android guardian avatar with smooth reflective panels and soft inner glow" },
 
-      { id: "engineer_f",     label: "Systems engineer (female)",    text: "a female systems engineer interacting with transparent floating interfaces" },
-      { id: "engineer_m",     label: "Systems engineer (male)",      text: "a male systems engineer surrounded by interactive data displays" },
-      { id: "engineer_nb",    label: "Systems engineer (non-binary)",text: "a non-binary engineer designing digital constructs suspended in air" },
+      // SYSTEMS ENGINEER
+      { id: "engineer_f",        label: "Systems engineer (female)",   text: "a female systems engineer interacting with transparent floating interfaces" },
+      { id: "engineer_m",        label: "Systems engineer (male)",     text: "a male systems engineer surrounded by interactive data displays" },
+      { id: "engineer_android",  label: "Systems engineer (android)",  text: "an android engineer orchestrating digital constructs suspended in mid-air" },
 
-      { id: "digital_monk_f", label: "Digital monk (female)",        text: "a serene female monk meditating among swirling lines of code" },
-      { id: "digital_monk_m", label: "Digital monk (male)",          text: "a tranquil male digital monk surrounded by soft luminous rings" },
-      { id: "digital_monk_nb",label: "Digital monk (agender)",       text: "an agender monk hovering in concentric holographic glyphs" },
+      // DIGITAL MONK
+      { id: "digital_monk_f",    label: "Digital monk (female)",   text: "a serene female monk meditating among swirling lines of code" },
+      { id: "digital_monk_m",    label: "Digital monk (male)",     text: "a tranquil male digital monk surrounded by soft luminous rings" },
+      { id: "digital_monk_android", label: "Digital monk (android)", text: "an android monk hovering in concentric holographic glyphs" },
 
-      // NON-HUMAN / ABSTRACT / ARTISTIC
-      { id: "ai_core",        label: "Sentient AI core",             text: "a sentient AI core shaping a humanoid silhouette out of fractal light" },
-      { id: "robotic_sage",   label: "Robotic sage",                 text: "a wise robotic sage with ancient digital inscriptions glowing faintly" },
-      { id: "cyber_familiar", label: "Cyber familiar",               text: "a floating cyber-familiar creature composed of shifting geometric polygons" },
-      { id: "hologram_person",label: "Holographic person",           text: "a soft holographic figure shimmering with neon gradients and gentle flicker" },
-      { id: "data_spirit",    label: "Spirit of the network",        text: "a graceful spirit made of flowing binary code and swirling data particles" },
-      { id: "ghost_machine",  label: "Ghost in the machine",         text: "an ethereal entity made of fragmented UI shards and translucent code" },
+      // DIGITAL MUSE
+      { id: "digital_muse_f",    label: "Digital muse (female)",   text: "a female digital muse surrounded by soft pastel lights and floating symbols" },
+      { id: "digital_muse_m",    label: "Digital muse (male)",     text: "a male digital muse radiating warm light and flowing abstract motifs" },
+      { id: "digital_muse_android", label: "Digital muse (android)", text: "an android digital muse formed from shifting light ribbons and subtle glow" },
 
-      // SOFT / ART AESTHETICS
-      { id: "soft_tech_muse",   label: "Digital muse (feminine)",    text: "a feminine digital muse surrounded by soft pastel lights and floating symbols" },
-      { id: "androgynous_muse", label: "Digital muse (androgynous)", text: "an androgynous muse formed from shifting light ribbons and subtle glow" },
-      { id: "artistic_scribe",  label: "Techno-scribe",              text: "a futuristic artistic scribe sketching glowing diagrams mid-air" },
+      // TECHNO-SCRIBE
+      { id: "techno_scribe_f",   label: "Techno-scribe (female)",   text: "a futuristic female scribe sketching glowing diagrams in mid-air" },
+      { id: "techno_scribe_m",   label: "Techno-scribe (male)",     text: "a futuristic male scribe projecting luminous schematics before him" },
+      { id: "techno_scribe_android", label: "Techno-scribe (android)", text: "an android techno-scribe inscribing radiant glyphs into floating panels" },
 
-      // COSMIC / FANTASY-TECH
-      { id: "starweaver",     label: "Star-weaver",                  text: "a cosmic figure weaving threads of starlight into digital constellations" },
-      { id: "chrono_mage",    label: "Chrono-mage",                  text: "a time-bending techno-mage shaping chronal data streams" }
+      // NON-HUMAN / ABSTRACT (ANDROID / MACHINE FORMS)
+      { id: "ai_core_android",      label: "Sentient AI core",         text: "a sentient AI core shaping a humanoid silhouette out of fractal light" },
+      { id: "robotic_sage_android", label: "Robotic sage",             text: "a wise robotic sage with ancient digital inscriptions glowing faintly" },
+      { id: "cyber_familiar_android", label: "Cyber familiar",         text: "a floating cyber-familiar creature composed of shifting geometric polygons" },
+      { id: "hologram_person_android", label: "Holographic person",    text: "a soft holographic figure shimmering with neon gradients and gentle flicker" },
+      { id: "data_spirit_android",  label: "Spirit of the network",    text: "a graceful spirit made of flowing binary code and swirling data particles" },
+      { id: "ghost_machine_android", label: "Ghost in the machine",    text: "an ethereal entity made of fragmented UI shards and translucent code" },
+      { id: "starweaver_android",   label: "Star-weaver",              text: "a cosmic figure weaving threads of starlight into digital constellations" },
+      { id: "chrono_mage_android",  label: "Chrono-mage",              text: "a time-bending techno-mage shaping chronal data streams" }
     ],
 
+    /* ===== SCENES – original + extended set ===== */
     scenes: [
-      { id: "street",      label: "Rainy neon street",  text: "standing in a rain-soaked neon street, reflections on wet pavement" },
-      { id: "server_room", label: "Deep server room",   text: "inside a glowing server room with towering racks and LED lights" },
-      { id: "lab",         label: "Clean sci-fi lab",   text: "inside a clean futuristic lab with floating displays" },
-      { id: "temple",      label: "Holographic temple", text: "inside a holographic techno-temple of floating terminals and light" },
-      { id: "void",        label: "Dark data void",     text: "in a dark void filled with flowing data streams and glyphs" }
+      // Original core scenes
+      { id: "street",                label: "Rainy neon street",        text: "standing in a rain-soaked neon street, reflections on wet pavement" },
+      { id: "server_room",           label: "Deep server room",         text: "inside a glowing server room with towering racks and LED lights" },
+      { id: "lab",                   label: "Clean sci-fi lab",         text: "inside a clean futuristic lab with floating displays" },
+      { id: "temple",                label: "Holographic temple",       text: "inside a holographic techno-temple of floating terminals and light" },
+      { id: "void",                  label: "Dark data void",           text: "in a dark void filled with flowing data streams and glyphs" },
+
+      // New cinematic / style-driven scenes
+      { id: "cinematic_scene",       label: "Cinematic concept scene",  text: "in a dramatic cinematic environment with expressive lighting and detailed structures" },
+      { id: "ultrareal_scene",       label: "Ultrareal environment",    text: "in a sharp ultra-realistic environment with physically correct lighting and detailed surfaces" },
+      { id: "cyberpunk_scene",       label: "Neon cyberpunk alley",     text: "in a neon cyberpunk alley with glowing signs, atmospheric rain, and reflective puddles" },
+      { id: "anime_arcane_scene",    label: "Arcane anime world",       text: "inside a stylized arcane anime-like world with expressive lighting and magical ambience" },
+      { id: "minimal_scifi_scene",   label: "Minimal clean sci-fi",     text: "inside a minimal sci-fi environment with soft gradients and uncluttered futuristic design" },
+      { id: "retro_synth_scene",     label: "Retro synthwave grid",     text: "standing on a retro synthwave neon grid surrounded by magenta and cyan glow" },
+
+      { id: "fantasy_realism_scene", label: "Fantasy realism",          text: "inside a dreamlike fantasy world with mythical elements and rich colors" },
+      { id: "gothic_horror_scene",   label: "Gothic horror",            text: "in a dark gothic environment with ominous architecture and eerie lighting" },
+      { id: "steampunk_industrial_scene", label: "Steampunk industrial", text: "in a gritty steampunk industrial setting with Victorian machinery and smoky atmosphere" },
+      { id: "future_tech_scene",     label: "Future tech city",         text: "inside a sleek futuristic city with advanced technology and glowing neon structures" },
+
+      { id: "fantasy_landscape_scene", label: "Fantasy landscape",      text: "in a lush fantasy landscape with ethereal lighting and mystical creatures" },
+      { id: "horror_photomontage_scene", label: "Horror photomontage",  text: "inside a sinister horror scene with unnerving shadows and high-contrast details" },
+      { id: "steampunk_fantasy_scene", label: "Steampunk fantasy",      text: "in a whimsical steampunk fantasy world of brass, iron, and Victorian technology" },
+      { id: "pixel_adventure_scene", label: "Pixel art adventure",      text: "inside an 8-bit pixel art world with retro landscapes and blocky characters" },
+
+      { id: "magical_realism_scene", label: "Magical realism tableau",  text: "in a surreal magical realism tableau with dreamlike imagery and fantastical elements" },
+      { id: "postapocalyptic_scene", label: "Post-apocalyptic diorama", text: "in a desolate post-apocalyptic setting with crumbling buildings and dystopian atmosphere" },
+      { id: "baroque_scene",         label: "Baroque architecture",     text: "inside ornate Baroque architecture with intricate details and opulent colors" },
+      { id: "neonoir_city_scene",    label: "Neo-noir cityscape",       text: "in a dark neo-noir city with dimly lit streets and mysterious atmosphere" },
+      { id: "underwater_scene",      label: "Underwater fantasy",       text: "in an ethereal underwater realm with bioluminescent creatures and surreal lighting" },
+      { id: "vintage_fashion_scene", label: "Vintage fashion set",      text: "inside a classic vintage fashion photography set with elegant retro attire" }
     ],
 
     powers: [
@@ -188,50 +225,45 @@
   }
 
   /* =========================================================
-     LANGUAGE FILTERS – non-destructive (#tag) style
+     LANGUAGE FILTERS – REMOVE NEUTRAL TERMS ONLY
      ========================================================= */
 
   function pfEscapeRegex(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
-  function pfTagMatches(str, regex) {
-    return str ? str.replace(regex, m => (m.startsWith("#") ? m : "#" + m)) : str;
-  }
-
   const PF_FILTER_TERMS = {
-    neutral: ["male", "female", "non-binary", "androgynous", "binary"],
-    slang:   ["cool", "chill", "vibes", "epic", "badass", "awesome"],
-    glow:    ["glow", "glowing", "neon", "luminescent", "bioluminescent", "radiant", "shimmering"]
+    // Only gender / binary / androgynous descriptors
+    neutral: [
+      "male",
+      "female",
+      "non-binary",
+      "binary",
+      "androgynous"
+    ],
+    slang: [], // no slang removal
+    glow:  []  // no glow removal
   };
 
   function applyNeutralFilter(str) {
     const sw = $("pf-filter-neutral");
     if (!sw?.checked || !str) return str;
+
     PF_FILTER_TERMS.neutral.forEach(term => {
       const re = new RegExp("\\b" + pfEscapeRegex(term) + "\\b", "gi");
-      str = pfTagMatches(str, re);
+      str = str.replace(re, "").replace(/\s+/g, " ").trim();
     });
+
     return str;
   }
 
   function applySlangFilter(str) {
-    const sw = $("pf-filter-slang");
-    if (!sw?.checked || !str) return str;
-    PF_FILTER_TERMS.slang.forEach(term => {
-      const re = new RegExp("\\b" + pfEscapeRegex(term) + "\\b", "gi");
-      str = pfTagMatches(str, re);
-    });
+    // No-op: we no longer remove slang like "cool", "badass"
     return str;
   }
 
   function applyGlowFilter(str) {
-    const sw = $("pf-filter-glow");
-    if (!sw?.checked || !str) return str;
-    PF_FILTER_TERMS.glow.forEach(term => {
-      const re = new RegExp("\\b" + pfEscapeRegex(term) + "\\b", "gi");
-      str = pfTagMatches(str, re);
-    });
+    // No-op: we keep glow terms intact
     return str;
   }
 
@@ -241,10 +273,12 @@
     if (!sw?.checked || !box || !str) return str;
 
     const lines = box.value.split("\n").map(l => l.trim()).filter(Boolean);
+
     lines.forEach(line => {
-      const re = new RegExp(pfEscapeRegex(line), "gi");
-      str = pfTagMatches(str, re);
+      const re = new RegExp("\\b" + pfEscapeRegex(line) + "\\b", "gi");
+      str = str.replace(re, "").replace(/\s+/g, " ").trim();
     });
+
     return str;
   }
 
@@ -289,22 +323,22 @@
         <input type="checkbox" id="pf-happy-switch" style="width:18px;height:18px;cursor:pointer;">
 
         <label style="display:flex;align-items:center;gap:4px;">
-          <input type="checkbox" id="pf-filter-neutral" style="cursor:pointer;"> Neutral
+          <input type="checkbox" id="pf-filter-neutral" style="cursor:pointer;"> Neutral filter
         </label>
         <label style="display:flex;align-items:center;gap:4px;">
-          <input type="checkbox" id="pf-filter-slang" style="cursor:pointer;"> Slang
+          <input type="checkbox" id="pf-filter-slang" style="cursor:pointer;" disabled> Slang (n/a)
         </label>
         <label style="display:flex;align-items:center;gap:4px;">
-          <input type="checkbox" id="pf-filter-glow" style="cursor:pointer;"> Glow
+          <input type="checkbox" id="pf-filter-glow" style="cursor:pointer;" disabled> Glow (n/a)
         </label>
         <label style="display:flex;align-items:center;gap:4px;">
-          <input type="checkbox" id="pf-custom-switch" style="cursor:pointer;"> Custom
+          <input type="checkbox" id="pf-custom-switch" style="cursor:pointer;"> Custom filter
         </label>
       </div>
 
       <div id="pf-custom-wrapper" style="display:none;margin-bottom:8px;">
         <textarea id="pf-custom-filter" rows="3"
-          placeholder="One word or phrase per line to tag as #word"
+          placeholder="One word or phrase per line to remove"
           style="width:100%;padding:6px;border:1px solid #888;border-radius:6px;"></textarea>
       </div>
 
@@ -422,7 +456,6 @@
 
     const showcase = $("pf-showcase");
     if (showcase) {
-      // Example image (text label removed)
       showcase.innerHTML = `<img src="images/neon-mage.png" alt="">`;
     }
 
@@ -453,8 +486,8 @@
 
     // Apply filters ONLY to generated PF text (never user text)
     corePrompt = applyNeutralFilter(corePrompt);
-    corePrompt = applySlangFilter(corePrompt);
-    corePrompt = applyGlowFilter(corePrompt);
+    corePrompt = applySlangFilter(corePrompt); // no-op currently
+    corePrompt = applyGlowFilter(corePrompt);  // no-op currently
     corePrompt = applyCustomFilter(corePrompt);
 
     const userTextEl = $("pf-usertext");
