@@ -129,7 +129,7 @@
       { id: "code_streams",    label: "Floating code streams",   text: "streams of floating code wrapping around them like ribbons" },
       { id: "portal",          label: "Opening a portal",        text: "opening a circular digital portal made of light" },
       { id: "repair",          label: "Repairing data",          text: "repairing fractured code shards and aligning them" },
-      { id: "scan",            label: "System scan",             text: "triggering a system-scan visualized as expanding light rings" }
+      { id: "scan",            label: "System scan",             text: "triggering a system-scan visualized as expanding light rings" },
       { id: "data_weave",      label: "Weaving Data Threads",    text: "weaving luminous strands of data into stable constructs" },
       { id: "firewall_guard",  label: "Firewall Guardian",       text: "summoning a hex-grid firewall shield that blocks hostile code" },
       { id: "pulse_nodes",     label: "Pulse Node Activation",   text: "activating floating pulse nodes that emit synchronized waves" },
@@ -144,7 +144,7 @@
       { id: "signal_cast",     label: "Signal Cast",             text: "sending a focused transmission beam capable of altering systems" },
       { id: "virus_purge",     label: "Virus Purge",             text: "burning corrupt glitch clusters with cleansing data-light" },
       { id: "bridge_link",     label: "Network Bridge",          text: "creating a glowing link between distant network nodes" },
-      { id: "quantum_shift",   label: "Quantum Shift",           text: "phasing through digital space in a wave of pixel distortion" }
+      { id: "quantum_shift",   label: "Quantum Shift",           text: "phasing through digital space in a wave of pixel distortion" },
       { id: "context_bloom",   label: "Context Bloom",           text: "expanding awareness as glowing fractal patterns to interpret any input" },
       { id: "intent_trace",    label: "Intent Trace",            text: "reading subtle data-waves to reveal the user's true intent with clarity" },
       { id: "knowledge_phase", label: "Knowledge Phase Shift",   text: "phasing into a higher information plane to retrieve needed insight" },
