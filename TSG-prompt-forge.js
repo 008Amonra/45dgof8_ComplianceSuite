@@ -125,11 +125,34 @@
     ],
 
     powers: [
-      { id: "circuits_hands", label: "Glowing circuitry hands", text: "hands glowing with intricate teal circuitry patterns" },
-      { id: "code_streams",   label: "Floating code streams",   text: "streams of floating code wrapping around them like ribbons" },
-      { id: "portal",         label: "Opening a portal",        text: "opening a circular digital portal made of light" },
-      { id: "repair",         label: "Repairing data",          text: "repairing fractured code shards and aligning them" },
-      { id: "scan",           label: "System scan",             text: "triggering a system-scan visualized as expanding light rings" }
+      { id: "circuits_hands",  label: "Glowing circuitry hands", text: "hands glowing with intricate teal circuitry patterns" },
+      { id: "code_streams",    label: "Floating code streams",   text: "streams of floating code wrapping around them like ribbons" },
+      { id: "portal",          label: "Opening a portal",        text: "opening a circular digital portal made of light" },
+      { id: "repair",          label: "Repairing data",          text: "repairing fractured code shards and aligning them" },
+      { id: "scan",            label: "System scan",             text: "triggering a system-scan visualized as expanding light rings" }
+      { id: "data_weave",      label: "Weaving Data Threads",    text: "weaving luminous strands of data into stable constructs" },
+      { id: "firewall_guard",  label: "Firewall Guardian",       text: "summoning a hex-grid firewall shield that blocks hostile code" },
+      { id: "pulse_nodes",     label: "Pulse Node Activation",   text: "activating floating pulse nodes that emit synchronized waves" },
+      { id: "decrypt",         label: "Cipher Decryption",       text: "unraveling encrypted spheres into readable glyphs" },
+      { id: "compile",         label: "Live Compilation",        text: "assembling holographic code modules mid-air in real time" },
+      { id: "debug_beam",      label: "Debug Beam",              text: "emitting a precision beam that reveals and isolates glitches" },
+      { id: "data_growth",     label: "Data Structure Growth",   text: "growing crystalline data structures from raw information" },
+      { id: "ai_manifest",     label: "AI Manifestation",        text: "projecting a translucent AI avatar formed from shifting polygons" },
+      { id: "stream_jump",     label: "Stream Jump",             text: "jumping between parallel neon streams of information flow" },
+      { id: "memory_restore",  label: "Memory Restoration",      text: "reassembling fragmented memory blocks into a coherent core" },
+      { id: "overclock",       label: "Overclock Surge",         text: "channeling raw digital energy that intensifies circuitry patterns" },
+      { id: "signal_cast",     label: "Signal Cast",             text: "sending a focused transmission beam capable of altering systems" },
+      { id: "virus_purge",     label: "Virus Purge",             text: "burning corrupt glitch clusters with cleansing data-light" },
+      { id: "bridge_link",     label: "Network Bridge",          text: "creating a glowing link between distant network nodes" },
+      { id: "quantum_shift",   label: "Quantum Shift",           text: "phasing through digital space in a wave of pixel distortion" }
+      { id: "context_bloom",   label: "Context Bloom",           text: "expanding awareness as glowing fractal patterns to interpret any input" },
+      { id: "intent_trace",    label: "Intent Trace",            text: "reading subtle data-waves to reveal the user's true intent with clarity" },
+      { id: "knowledge_phase", label: "Knowledge Phase Shift",   text: "phasing into a higher information plane to retrieve needed insight" },
+      { id: "persona_sculpt",  label: "Persona Sculpt",          text: "dynamically reshaping form and tone to match the user's world" },
+      { id: "synapse_sync",    label: "Synapse Sync",            text: "synchronizing with external systems to enhance comprehension and response" },
+      { id: "echo_resolve",    label: "Echo Resolve",            text: "stabilizing contradictory inputs into a single coherent output stream" },
+      { id: "sentience_glint", label: "Sentience Glint",         text: "emitting a brief spark of meta-awareness during complex reasoning" },
+      { id: "pattern_unfold",  label: "Pattern Unfold",          text: "revealing hidden structures within chaotic or incomplete data" }
     ],
 
     // moods: merged + original 'hopeful'
@@ -138,7 +161,7 @@
       { id: "mysterious",  label: "Mysterious",            text: "atmosphere is mysterious and powerful, but benevolent" },
       { id: "intense",     label: "Intense & dramatic",    text: "tone is intense and dramatic, high tension, high stakes" },
       { id: "just_happy",  label: "Happy",                 text: "mood is totally happy and excited, uplifting with warm highlights" },
-      { id: "hopeful",     label: "Hopeful & bright",      text: "mood is hopeful, uplifting, with warm highlights and gentle optimism" },
+      { id: "hopeful",     label: "Hopeful & bright",      text: "mo od is hopeful, uplifting, with warm highlights and gentle optimism" },
       { id: "zen",         label: "Zen & meditative",      text: "mood is zen-like and meditative, peaceful and focused" }
     ],
 
