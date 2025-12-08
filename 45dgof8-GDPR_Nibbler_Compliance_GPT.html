@@ -217,5 +217,155 @@
   document.body.appendChild(host);
 })();
 </script>
+  <section id="gdpr-guides" style="max-width: 900px; margin: 60px auto; text-align: left;">
+  <h2>📘 Quick Guides: GDPR, Schrems & Hosting Risks</h2>
+  <p>
+    GDPR Nibbler is built to help you understand complex rules in a practical, business-focused way.
+    These short guides give you a starting point – and you can dive deeper with the Nibbler GPT any time.
+  </p>
+
+  <h3>1. What is GDPR in simple terms?</h3>
+  <p>
+    The General Data Protection Regulation (GDPR) is the EU&apos;s data protection law. It applies whenever you
+    process personal data about people in the EU/EEA – even if your company is based elsewhere. In practice,
+    it means you must:
+  </p>
+  <ul>
+    <li>Only collect data you really need.</li>
+    <li>Be transparent about what you do with it (e.g., in your privacy policy).</li>
+    <li>Have a legal basis (such as consent, contract, or legitimate interest).</li>
+    <li>Protect the data with appropriate technical and organizational measures.</li>
+    <li>Respect user rights (access, deletion, correction, objection, etc.).</li>
+  </ul>
+
+  <h3>2. Why are hosting and CDNs a GDPR risk?</h3>
+  <p>
+    Hosting providers, CDNs, and DNS services often see IP addresses and traffic metadata. Under GDPR,
+    that is usually considered personal data. If these services are in countries without an
+    <em>adequate</em> level of protection, or if data is routed via such regions, this can create a compliance risk.
+  </p>
+  <p>
+    Typical risk factors include:
+  </p>
+  <ul>
+    <li>Traffic routed through non-EU/EEA data centers.</li>
+    <li>Vendors subject to foreign laws that may allow government access to data.</li>
+    <li>Lack of clear Data Processing Agreements (DPAs) or unclear sub-processors.</li>
+  </ul>
+
+  <h3>3. Schrems, Privacy Shield & cross-border transfers</h3>
+  <p>
+    The Schrems cases (Schrems I, II, and ongoing discussions sometimes referred to as &quot;Schrems III&quot;)
+    focus on when EU personal data can be sent to third countries like the United States. Each ruling
+    has tightened the requirements for international transfers and forced companies to carefully
+    assess their vendors and data flows.
+  </p>
+  <p>
+    In practice, this means:
+  </p>
+  <ul>
+    <li>You must know where your data actually goes (including logs, backups and CDNs).</li>
+    <li>You often need Standard Contractual Clauses (SCCs) and a transfer risk assessment.</li>
+    <li>In some cases, switching to EU-based, privacy-first vendors is the safest option.</li>
+  </ul>
+
+  <h3>4. How GDPR Nibbler helps</h3>
+  <p>
+    GDPR Nibbler analyzes your hosting stack, DNS/CDN setup, and vendor list to highlight:
+  </p>
+  <ul>
+    <li>Where personal data may leave the EU/EEA or Switzerland.</li>
+    <li>Which vendors pose higher risk under GDPR or Schrems-related rulings.</li>
+    <li>Practical mitigation options (configuration changes, alternative providers, or contract add-ons).</li>
+  </ul>
+  <p>
+    Use Nibbler as a tireless analyst: it won&apos;t replace your lawyer or DPO, but it will help you ask
+    better questions and document your decisions.
+  </p>
+</section>
+<section id="gdpr-faq" style="max-width: 900px; margin: 60px auto; text-align: left;">
+  <h2>❓ GDPR Nibbler – Frequently Asked Questions</h2>
+
+  <h3>Is GDPR Nibbler a law firm or certified legal service?</h3>
+  <p>
+    No. GDPR Nibbler is an AI-driven advisory tool. It helps you understand risks, prepare internal
+    documentation, and structure questions for your Data Protection Officer or legal counsel. It does
+    <strong>not</strong> replace professional legal advice and is not officially endorsed by any authority.
+  </p>
+
+  <h3>What kind of companies can use GDPR Nibbler?</h3>
+  <p>
+    Startups, SaaS providers, agencies, hosting providers, and larger enterprises that want a
+    <em>practical</em> view of GDPR risk around hosting, CDNs, analytics, and third-party services.
+    If you handle personal data from EU/EEA or Swiss users, Nibbler can help you reason about it.
+  </p>
+
+  <h3>Can GDPR Nibbler check if my hosting/CDN setup is &quot;illegal&quot;?</h3>
+  <p>
+    Nibbler does not give binary &quot;legal / illegal&quot; verdicts. Instead, it:
+  </p>
+  <ul>
+    <li>Highlights typical risk patterns (e.g., routing via non-EU regions, US law exposure).</li>
+    <li>Explains how recent rulings might affect your configuration.</li>
+    <li>Suggests risk levels and mitigation options you can discuss with your DPO or counsel.</li>
+  </ul>
+
+  <h3>Does GDPR Nibbler store my inputs?</h3>
+  <p>
+    GDPR Nibbler itself runs on the OpenAI platform. For sensitive or production data, you should:
+  </p>
+  <ul>
+    <li>Avoid sending full datasets or directly identifying information.</li>
+    <li>Use abstracted examples or partial configuration details where possible.</li>
+    <li>Treat the tool as an assistant for analysis and planning, not as a data warehouse.</li>
+  </ul>
+  <p>
+    For more information about how we handle data on this website, please refer to our privacy notice.
+  </p>
+
+  <h3>What do I need to prepare for a Hosting Risk Audit?</h3>
+  <p>
+    For the <strong>GDPR Hosting Risk Audit</strong>, it helps if you can provide:</p>
+  <ul>
+    <li>Your current hosting provider(s) and region(s).</li>
+    <li>Any CDNs, DNS services, WAF or DDoS protection tools you are using.</li>
+    <li>Key third-party tools that see user IPs or traffic (e.g. analytics, support widgets).</li>
+  </ul>
+  <p>
+    The more concrete your information, the more tailored the risk assessment and recommendations will be.
+  </p>
+
+  <h3>Can GDPR Nibbler help with DPIAs and Records of Processing?</h3>
+  <p>
+    Yes – Nibbler can help you structure:
+  </p>
+  <ul>
+    <li>Risk descriptions for high-risk processing (e.g. profiling, tracking, or cross-border transfers).</li>
+    <li>Mitigation measures you plan to implement.</li>
+    <li>Vendor lists for your Records of Processing Activities (RoPA).</li>
+  </ul>
+  <p>
+    You remain responsible for the final DPIA or RoPA, but you do not have to start from a blank page.
+  </p>
+</section>
+<section id="hosting-checklist" style="max-width: 900px; margin: 60px auto; text-align: left;">
+  <h2>🧩 1-Minute Hosting Risk Checklist</h2>
+  <p>Ask yourself these questions:</p>
+  <ol>
+    <li>Do I know in which country every main vendor stores or routes personal data?</li>
+    <li>Do I know which vendors are subject to non-EU/EEA laws that might allow broad government access?</li>
+    <li>Do I have signed Data Processing Agreements (DPAs) with all key processors?</li>
+    <li>Have I documented why each international transfer is justified (e.g. SCCs, adequacy decisions)?</li>
+    <li>Can I explain this setup clearly to a regulator or to my users?</li>
+  </ol>
+  <p>
+    If you answered &quot;I&apos;m not sure&quot; to any of these, open GDPR Nibbler and start a quick analysis:
+  </p>
+  <p style="text-align: center; margin-top: 20px;">
+    <a class="btn" href="https://chatgpt.com/g/g-67c8884a41288191ab4211b6d693b19a-gdpr-nibbler" target="_blank">
+      🔍 Start a Hosting Risk Check with Nibbler
+    </a>
+  </p>
+</section>
 </body>
 </html>
