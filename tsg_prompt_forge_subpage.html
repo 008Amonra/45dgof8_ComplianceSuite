@@ -8,43 +8,12 @@
   <!-- External stylesheet -->
   <link rel="stylesheet" href="TSG-prompt-forge.css">
 
-  <!-- Extra Vibe + Filter CSS -->
+  <!-- Extra Vibe CSS -->
   <style>
     /* Dark base to match the app */
     body {
       background: #050810;
       color: #e5e7eb;
-    }
-
-    /* Filter selector styling */
-    .filter-bar {
-      margin-top: 10px;
-    }
-
-    .filter-option {
-      margin: 4px;
-      padding: 6px 12px;
-      font-size: 14px;
-      border-radius: 999px;
-      border: 1px solid #323744;
-      cursor: pointer;
-      display: inline-block;
-      background: #151922;
-      color: #e5e7eb;
-      user-select: none;
-      white-space: nowrap;
-    }
-
-    .filter-option.active {
-      background: #2563eb;
-      border-color: #3b82f6;
-      color: #f9fafb;
-      font-weight: 600;
-    }
-
-    .filter-option.disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
     }
 
     /* Progress bar container */
@@ -104,20 +73,12 @@
   </div>
 
   <!-- ========================================================= -->
-  <!-- ============= UNIFIED FILTER BAR + VIBE SYSTEM ========== -->
+  <!-- ===================== VIBE STATUS AREA ================== -->
   <!-- ========================================================= -->
 
   <div style="text-align:center; margin-top:20px;">
 
-    <!-- Unified filter bar -->
-    <div class="filter-bar">
-      <span class="filter-option active" id="filter-happy">😊 Happy Mode</span>
-      <span class="filter-option" id="filter-neutral">😐 Neutral filter</span>
-      <span class="filter-option disabled" id="filter-slang">🎤 Slang (n/a)</span>
-      <span class="filter-option disabled" id="filter-glow">✨ Glow (n/a)</span>
-    </div>
-
-    <!-- Status text -->
+    <!-- Status text (reflects mode from main UI) -->
     <p id="modeInfo" style="font-size:13px; color:#9ca3af; margin-top:8px;">
       HappyMode is active.
     </p>
@@ -182,7 +143,7 @@
   </div>
 
   <!-- ========================================================= -->
-  <!-- ================= UNIFIED FILTER VIBE JS ================= -->
+  <!-- ===================== VIBE ENGINE JS ==================== -->
   <!-- ========================================================= -->
 
   <script>
@@ -199,12 +160,6 @@
     const EARLY = document.getElementById("earlyReturn");
     const SOUND = document.getElementById("happySound");
 
-    // Filter buttons
-    const F_HAPPY   = document.getElementById("filter-happy");
-    const F_NEUTRAL = document.getElementById("filter-neutral");
-    const F_SLANG   = document.getElementById("filter-slang");
-    const F_GLOW    = document.getElementById("filter-glow");
-
     const HAPPY_QUOTES = [
       "Happiness is a choice you make today! 🌞",
       "Smile — it's your superpower 😄",
@@ -213,34 +168,22 @@
       "Joy is contagious — spread some! 💛"
     ];
 
-    /* ============== FILTER UI HANDLING ============== */
-
-    function setActiveFilter(activeEl) {
-      [F_HAPPY, F_NEUTRAL, F_SLANG, F_GLOW].forEach(el => {
-        el.classList.remove("active");
-      });
-      if (activeEl) activeEl.classList.add("active");
-    }
-
-    F_HAPPY.addEventListener("click", () => {
-      if (mode === "happy") return;
-      activateHappyMode(true);
-    });
-
-    F_NEUTRAL.addEventListener("click", () => {
-      if (mode === "neutral") return;
-      activateNeutralMode();
-    });
-
-    // Slang / Glow currently n/a: no listeners (they are visually disabled)
+    // Public API: call this from TSG-prompt-forge.js
+    // tsgSetMode('happy')  or  tsgSetMode('neutral')
+    window.tsgSetMode = function(newMode) {
+      if (newMode === "happy") {
+        activateHappyMode(true);
+      } else if (newMode === "neutral") {
+        activateNeutralMode();
+      }
+    };
 
     /* ============== NEUTRAL / STANDARD MODE ============== */
 
     function activateNeutralMode() {
+      if (mode === "neutral") return;
       mode = "neutral";
-      setActiveFilter(F_NEUTRAL);
 
-      // Clear previous timers if any
       clearTimeout(revertTimer);
       clearInterval(countdownTimer);
 
@@ -269,7 +212,6 @@
     function activateHappyMode(fromUserClick) {
       const wasNeutral = (mode === "neutral");
       mode = "happy";
-      setActiveFilter(F_HAPPY);
 
       clearTimeout(revertTimer);
       clearInterval(countdownTimer);
