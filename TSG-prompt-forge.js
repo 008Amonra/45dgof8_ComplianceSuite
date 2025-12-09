@@ -586,7 +586,12 @@
     // Happy Mode switch
     const happySwitch = $("pf-happy-switch");
     if (happySwitch) {
-      happySwitch.addEventListener("change", applyHappyMode);
+      happySwitch.addEventListener("change", () => {
+  applyHappyMode();
+  if (happySwitch.checked) {
+    tsgSetMode("happy");
+  }
+});
     }
 
     // Language filter toggles
@@ -607,6 +612,20 @@
     if (customBox) {
       customBox.addEventListener("input", buildPrompt);
     }
+    const neutralSwitch = $("pf-filter-neutral");
+if (neutralSwitch) {
+  neutralSwitch.addEventListener("change", () => {
+    if (neutralSwitch.checked) {
+      tsgSetMode("neutral");
+      $("pf-happy-switch").checked = false;
+    } else {
+      tsgSetMode("happy");
+      $("pf-happy-switch").checked = true;
+    }
+    buildPrompt();
+  });
+}
+
 
     // Individual randomizers
     qsa(".pf-mini[data-pf-rand]").forEach(btn => {
