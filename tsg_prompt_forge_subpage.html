@@ -38,6 +38,24 @@
     .pulse {
       animation: pulse 1s infinite;
     }
+
+    /* Filter selector styling */
+    .filter-option {
+      margin: 5px;
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      display: inline-block;
+      background: #f5f5f5;
+    }
+
+    .filter-option.active {
+      background: #ffd33d;
+      border-color: #e0b800;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -64,6 +82,19 @@
   <div class="tsg-medallion-wrap">
     <img src="TSG-medallion.png" alt="TSG Medallion" class="tsg-medallion">
   </div>
+
+
+  <!-- ========================================================= -->
+  <!-- ================= FILTER SELECTOR (NEW) ================= -->
+  <!-- ========================================================= -->
+
+  <div style="text-align:center; margin-top:30px;">
+    <span class="filter-option active" id="filter-happy">😊 Happy Mode</span>
+    <span class="filter-option" id="filter-neutral">😐 Neutral Filter</span>
+    <span class="filter-option" id="filter-slang">🎤 Slang (n/a)</span>
+    <span class="filter-option" id="filter-glow">✨ Glow (n/a)</span>
+  </div>
+
 
 
   <!-- ========================================================= -->
@@ -150,7 +181,7 @@
 
 
   <!-- ========================================================= -->
-  <!-- ======================= VIBE JS ========================== -->
+  <!-- ================= FILTER & VIBE JS ====================== -->
   <!-- ========================================================= -->
 
   <script>
@@ -169,6 +200,12 @@
     const EARLY = document.getElementById("earlyReturn");
     const SOUND = document.getElementById("happySound");
 
+    // Filter buttons
+    const F_HAPPY = document.getElementById("filter-happy");
+    const F_NEUTRAL = document.getElementById("filter-neutral");
+    const F_SLANG = document.getElementById("filter-slang");
+    const F_GLOW = document.getElementById("filter-glow");
+
     const HAPPY_QUOTES = [
       "Happiness is a choice you make today! 🌞",
       "Smile — it's your superpower 😄",
@@ -176,6 +213,24 @@
       "You glow differently when you're happy ✨",
       "Joy is contagious — spread some! 💛"
     ];
+
+    /* ================= FILTER LOGIC (NEW) ================= */
+
+    function activateFilter(button) {
+      document.querySelectorAll('.filter-option').forEach(el => el.classList.remove("active"));
+      button.classList.add("active");
+    }
+
+    F_HAPPY.onclick = () => activateFilter(F_HAPPY);
+    F_NEUTRAL.onclick = () => {
+      activateFilter(F_NEUTRAL);
+      switchToStandard(); // instantly force Standard Mode
+    };
+
+    // Slang / Glow marked N/A but selectable
+    F_SLANG.onclick = () => activateFilter(F_SLANG);
+    F_GLOW.onclick = () => activateFilter(F_GLOW);
+
 
 
     /* ================= LONG PRESS TRIGGER ================= */
@@ -193,6 +248,8 @@
     /* ================= SWITCH TO STANDARD MODE ================= */
 
     function switchToStandard() {
+      if (mode === "standard") return;
+
       mode = "standard";
 
       BTN.innerText = "StandardMode Active";
@@ -276,9 +333,9 @@
   </script>
 
 
+
   <!-- ================= EXTERNAL JS ENGINE ================= -->
   <script src="TSG-prompt-forge.js"></script>
 
 </body>
 </html>
-
