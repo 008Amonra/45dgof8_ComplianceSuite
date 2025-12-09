@@ -279,8 +279,6 @@ outfits: [
   { id: "outfit_labcoat_modern",    label: "Modern tech coat",       text: "a modern high-tech coat with functional pockets and glowing trim" }
 ],
 
-
-    ],
 lighting: [
   { id: "light_soft_cinema",  label: "Soft cinematic",        text: "soft cinematic lighting, gentle contrast, subtle rim light" },
   { id: "light_soft_glow",    label: "Soft glow",             text: "soft glowing light, smooth gradients, warm highlights" },
