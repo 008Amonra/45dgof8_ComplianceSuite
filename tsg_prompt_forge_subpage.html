@@ -8,53 +8,73 @@
   <!-- External stylesheet -->
   <link rel="stylesheet" href="TSG-prompt-forge.css">
 
-  <!-- Extra Vibe CSS -->
+  <!-- Extra Vibe + Filter CSS -->
   <style>
+    /* Dark base to match the app */
+    body {
+      background: #050810;
+      color: #e5e7eb;
+    }
+
+    /* Filter selector styling */
+    .filter-bar {
+      margin-top: 10px;
+    }
+
+    .filter-option {
+      margin: 4px;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 999px;
+      border: 1px solid #323744;
+      cursor: pointer;
+      display: inline-block;
+      background: #151922;
+      color: #e5e7eb;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .filter-option.active {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #f9fafb;
+      font-weight: 600;
+    }
+
+    .filter-option.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
     /* Progress bar container */
     #progressContainer {
-      width: 200px;
+      width: 220px;
       height: 8px;
-      background: #ddd;
+      background: #111827;
       border-radius: 4px;
       margin: 10px auto;
       overflow: hidden;
       display: none;
+      border: 1px solid #1f2933;
     }
 
     /* Progress bar */
     #progressBar {
       height: 8px;
       width: 100%;
-      background: linear-gradient(90deg, #ffda47, #ffa600);
+      background: linear-gradient(90deg, #38bdf8, #6366f1);
       transition: width 1s linear;
     }
 
     /* Pulse animation */
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.07); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
+      0%   { transform: scale(1);    opacity: 1;   }
+      50%  { transform: scale(1.04); opacity: 0.8; }
+      100% { transform: scale(1);    opacity: 1;   }
     }
     .pulse {
       animation: pulse 1s infinite;
-    }
-
-    /* Filter selector styling */
-    .filter-option {
-      margin: 5px;
-      padding: 6px 10px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      display: inline-block;
-      background: #f5f5f5;
-    }
-
-    .filter-option.active {
-      background: #ffd33d;
-      border-color: #e0b800;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -85,45 +105,30 @@
 
 
   <!-- ========================================================= -->
-  <!-- ================= FILTER SELECTOR (NEW) ================= -->
-  <!-- ========================================================= -->
-
-  <div style="text-align:center; margin-top:30px;">
-    <span class="filter-option active" id="filter-happy">😊 Happy Mode</span>
-    <span class="filter-option" id="filter-neutral">😐 Neutral Filter</span>
-    <span class="filter-option" id="filter-slang">🎤 Slang (n/a)</span>
-    <span class="filter-option" id="filter-glow">✨ Glow (n/a)</span>
-  </div>
-
-
-
-  <!-- ========================================================= -->
-  <!-- ==================== VIBE MODE SYSTEM =================== -->
+  <!-- ============= UNIFIED FILTER BAR + VIBE SYSTEM ========== -->
   <!-- ========================================================= -->
 
   <div style="text-align:center; margin-top:20px;">
 
-    <!-- MODE BUTTON -->
-    <button id="modeToggle" style="
-        padding: 12px 20px;
-        background-color: #ffd33d;
-        color: #333;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-        font-weight: bold;">
-      😊 HappyMode (hold to switch)
-    </button>
+    <!-- Unified filter bar -->
+    <div class="filter-bar">
+      <span class="filter-option active" id="filter-happy">😊 Happy Mode</span>
+      <span class="filter-option" id="filter-neutral">😐 Neutral filter</span>
+      <span class="filter-option disabled" id="filter-slang">🎤 Slang (n/a)</span>
+      <span class="filter-option disabled" id="filter-glow">✨ Glow (n/a)</span>
+    </div>
 
-    <p id="modeInfo" style="font-size:13px; color:#777;">
-      Hold for 2 seconds to switch to StandardMode
+    <!-- Status text -->
+    <p id="modeInfo" style="font-size:13px; color:#9ca3af; margin-top:8px;">
+      HappyMode is active.
     </p>
 
+    <!-- Countdown -->
     <p id="countdown" class="pulse" style="
         font-size:14px;
-        font-weight:bold;
-        color:#555;">
+        font-weight:600;
+        color:#e5e7eb;
+        margin-top:4px;">
     </p>
 
     <!-- Progress Bar -->
@@ -132,18 +137,18 @@
     </div>
 
     <!-- Happy Quotes -->
-    <p id="happyQuote" style="font-size:13px; color:#888; font-style:italic;"></p>
+    <p id="happyQuote" style="font-size:13px; color:#9ca3af; font-style:italic; margin-top:6px;"></p>
 
     <!-- Early Return Button -->
     <button id="earlyReturn" style="
         display:none;
         margin-top:10px;
-        padding:5px 10px;
+        padding:6px 12px;
         font-size:12px;
-        border-radius:5px;
+        border-radius:999px;
         border:none;
         cursor:pointer;
-        background:#66c46c;
+        background:#22c55e;
         color:white;">
       Return to HappyMode now 💚
     </button>
@@ -167,13 +172,13 @@
         background-color: #0070ba;
         color: white;
         border: none;
-        border-radius: 6px;
+        border-radius: 8px;
         font-size: 16px;
         cursor: pointer;">
         💙 Leave a Tip
       </button>
     </a>
-    <p style="font-size:14px; color:#555;">
+    <p style="font-size:14px; color:#9ca3af; margin-top:8px;">
       Image generation is free until January — tips or reactions are appreciated!
     </p>
   </div>
@@ -181,30 +186,28 @@
 
 
   <!-- ========================================================= -->
-  <!-- ================= FILTER & VIBE JS ====================== -->
+  <!-- ================= UNIFIED FILTER VIBE JS ================= -->
   <!-- ========================================================= -->
 
   <script>
-    let pressTimer;
     let revertTimer;
     let countdownTimer;
     let secondsLeft;
     let mode = "happy";
 
-    const BTN = document.getElementById("modeToggle");
-    const INFO = document.getElementById("modeInfo");
+    const INFO  = document.getElementById("modeInfo");
     const COUNT = document.getElementById("countdown");
     const PROG_WRAP = document.getElementById("progressContainer");
-    const PROG_BAR = document.getElementById("progressBar");
+    const PROG_BAR  = document.getElementById("progressBar");
     const QUOTE = document.getElementById("happyQuote");
     const EARLY = document.getElementById("earlyReturn");
     const SOUND = document.getElementById("happySound");
 
     // Filter buttons
-    const F_HAPPY = document.getElementById("filter-happy");
+    const F_HAPPY   = document.getElementById("filter-happy");
     const F_NEUTRAL = document.getElementById("filter-neutral");
-    const F_SLANG = document.getElementById("filter-slang");
-    const F_GLOW = document.getElementById("filter-glow");
+    const F_SLANG   = document.getElementById("filter-slang");
+    const F_GLOW    = document.getElementById("filter-glow");
 
     const HAPPY_QUOTES = [
       "Happiness is a choice you make today! 🌞",
@@ -214,71 +217,86 @@
       "Joy is contagious — spread some! 💛"
     ];
 
-    /* ================= FILTER LOGIC (NEW) ================= */
+    /* ============== FILTER UI HANDLING ============== */
 
-    function activateFilter(button) {
-      document.querySelectorAll('.filter-option').forEach(el => el.classList.remove("active"));
-      button.classList.add("active");
+    function setActiveFilter(activeEl) {
+      [F_HAPPY, F_NEUTRAL, F_SLANG, F_GLOW].forEach(el => {
+        el.classList.remove("active");
+      });
+      if (activeEl) activeEl.classList.add("active");
     }
 
-    F_HAPPY.onclick = () => activateFilter(F_HAPPY);
-    F_NEUTRAL.onclick = () => {
-      activateFilter(F_NEUTRAL);
-      switchToStandard(); // instantly force Standard Mode
-    };
-
-    // Slang / Glow marked N/A but selectable
-    F_SLANG.onclick = () => activateFilter(F_SLANG);
-    F_GLOW.onclick = () => activateFilter(F_GLOW);
-
-
-
-    /* ================= LONG PRESS TRIGGER ================= */
-
-    BTN.addEventListener("mousedown", () => {
-      if (mode === "happy") {
-        pressTimer = setTimeout(() => switchToStandard(), 2000);
-      }
+    F_HAPPY.addEventListener("click", () => {
+      if (mode === "happy") return;
+      activateHappyMode(true);
     });
 
-    BTN.addEventListener("mouseup", () => clearTimeout(pressTimer));
-    BTN.addEventListener("mouseleave", () => clearTimeout(pressTimer));
+    F_NEUTRAL.addEventListener("click", () => {
+      if (mode === "neutral") return;
+      activateNeutralMode();
+    });
+
+    // Slang / Glow currently n/a: no listeners (they are visually disabled)
 
 
-    /* ================= SWITCH TO STANDARD MODE ================= */
+    /* ============== NEUTRAL / STANDARD MODE ============== */
 
-    function switchToStandard() {
-      if (mode === "standard") return;
+    function activateNeutralMode() {
+      mode = "neutral";
+      setActiveFilter(F_NEUTRAL);
 
-      mode = "standard";
+      // Clear previous timers if any
+      clearTimeout(revertTimer);
+      clearInterval(countdownTimer);
 
-      BTN.innerText = "StandardMode Active";
-      BTN.style.backgroundColor = "#666";
-      BTN.style.color = "#fff";
-      BTN.disabled = true;
-      BTN.style.cursor = "default";
-
-      INFO.innerText = "StandardMode active for 3 minutes...";
-      PROG_WRAP.style.display = "block";
-      EARLY.style.display = "inline-block";
-
-      secondsLeft = 180;
+      secondsLeft = 180; // 3 minutes
       updateCountdown(secondsLeft);
       updateProgress(secondsLeft);
+
+      INFO.innerText = "Neutral filter active for 3 minutes…";
+      PROG_WRAP.style.display = "block";
+      EARLY.style.display = "inline-block";
 
       countdownTimer = setInterval(() => {
         secondsLeft--;
         updateCountdown(secondsLeft);
         updateProgress(secondsLeft);
-
-        if (secondsLeft <= 0) clearInterval(countdownTimer);
+        if (secondsLeft <= 0) {
+          clearInterval(countdownTimer);
+        }
       }, 1000);
 
-      revertTimer = setTimeout(() => switchBackToHappy(), 180000);
+      revertTimer = setTimeout(() => activateHappyMode(false), 180000);
     }
 
 
-    /* ================= COUNTDOWN DISPLAY ================= */
+    /* ============== HAPPY MODE ============== */
+
+    function activateHappyMode(fromUserClick) {
+      const wasNeutral = (mode === "neutral");
+      mode = "happy";
+      setActiveFilter(F_HAPPY);
+
+      clearTimeout(revertTimer);
+      clearInterval(countdownTimer);
+
+      INFO.innerText = "HappyMode is active.";
+      COUNT.innerText = "";
+      QUOTE.innerText = "";
+      PROG_WRAP.style.display = "none";
+      EARLY.style.display = "none";
+
+      if (wasNeutral || fromUserClick) {
+        try { SOUND.play(); } catch (e) { /* ignore autoplay restrictions */ }
+      }
+    }
+
+    EARLY.addEventListener("click", () => {
+      activateHappyMode(true);
+    });
+
+
+    /* ============== COUNTDOWN + PROGRESS ============== */
 
     function updateCountdown(secs) {
       const m = Math.floor(secs / 60);
@@ -293,45 +311,11 @@
       }
     }
 
-
-    /* ================= PROGRESS BAR ================= */
-
     function updateProgress(secs) {
-      PROG_BAR.style.width = (secs / 180 * 100) + "%";
-    }
-
-
-    /* ================= EARLY RETURN ================= */
-
-    EARLY.addEventListener("click", () => {
-      clearTimeout(revertTimer);
-      switchBackToHappy();
-    });
-
-
-    /* ================= BACK TO HAPPY ================= */
-
-    function switchBackToHappy() {
-      mode = "happy";
-
-      BTN.innerText = "😊 HappyMode (hold to switch)";
-      BTN.style.backgroundColor = "#ffd33d";
-      BTN.style.color = "#333";
-      BTN.disabled = false;
-      BTN.style.cursor = "pointer";
-
-      INFO.innerText = "HappyMode reactivated!";
-      COUNT.innerText = "";
-      QUOTE.innerText = "";
-      PROG_WRAP.style.display = "none";
-      EARLY.style.display = "none";
-
-      clearInterval(countdownTimer);
-
-      SOUND.play();
+      const pct = (secs / 180) * 100;
+      PROG_BAR.style.width = pct + "%";
     }
   </script>
-
 
 
   <!-- ================= EXTERNAL JS ENGINE ================= -->
