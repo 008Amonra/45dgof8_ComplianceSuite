@@ -7,7 +7,40 @@
   
   <!-- External stylesheet -->
   <link rel="stylesheet" href="TSG-prompt-forge.css">
+
+  <!-- Extra Vibe CSS -->
+  <style>
+    /* Progress bar container */
+    #progressContainer {
+      width: 200px;
+      height: 8px;
+      background: #ddd;
+      border-radius: 4px;
+      margin: 10px auto;
+      overflow: hidden;
+      display: none;
+    }
+
+    /* Progress bar */
+    #progressBar {
+      height: 8px;
+      width: 100%;
+      background: linear-gradient(90deg, #ffda47, #ffa600);
+      transition: width 1s linear;
+    }
+
+    /* Pulse animation */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.07); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pulse {
+      animation: pulse 1s infinite;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- ================= HEADER ================= -->
@@ -19,13 +52,8 @@
   <!-- ================= MAIN GRID WRAPPER ================= -->
   <main class="prompt-forge">
     <div class="pf-grid">
-
-      <!-- Controls Column -->
       <div class="pf-column pf-controls" id="pf-controls"></div>
-
-      <!-- Output Column -->
       <div class="pf-column pf-output" id="pf-output"></div>
-
     </div>
   </main>
 
@@ -36,28 +64,221 @@
   <div class="tsg-medallion-wrap">
     <img src="TSG-medallion.png" alt="TSG Medallion" class="tsg-medallion">
   </div>
-  <!-- ================= Paypal Button ================= -->
-  
-<div style="text-align:center;">
-  <a href="https://paypal.me/45dgof8" target="_blank">
-    <button style="
-      padding: 12px 20px;
-      background-color: #0070ba;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;">
-      💙 Leave a Tip
+
+
+  <!-- ========================================================= -->
+  <!-- ==================== VIBE MODE SYSTEM =================== -->
+  <!-- ========================================================= -->
+
+  <div style="text-align:center; margin-top:20px;">
+
+    <!-- MODE BUTTON -->
+    <button id="modeToggle" style="
+        padding: 12px 20px;
+        background-color: #ffd33d;
+        color: #333;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;">
+      😊 HappyMode (hold to switch)
     </button>
-  </a>
-  <p style="font-size:14px; color:#555;">
-    Image generation is free until January — tips or reactions are appreciated!
-  </p>
-</div>
+
+    <p id="modeInfo" style="font-size:13px; color:#777;">
+      Hold for 2 seconds to switch to StandardMode
+    </p>
+
+    <p id="countdown" class="pulse" style="
+        font-size:14px;
+        font-weight:bold;
+        color:#555;">
+    </p>
+
+    <!-- Progress Bar -->
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+
+    <!-- Happy Quotes -->
+    <p id="happyQuote" style="font-size:13px; color:#888; font-style:italic;"></p>
+
+    <!-- Early Return Button -->
+    <button id="earlyReturn" style="
+        display:none;
+        margin-top:10px;
+        padding:5px 10px;
+        font-size:12px;
+        border-radius:5px;
+        border:none;
+        cursor:pointer;
+        background:#66c46c;
+        color:white;">
+      Return to HappyMode now 💚
+    </button>
+
+    <!-- Sound Effect -->
+    <audio id="happySound"
+           src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"
+           preload="auto"></audio>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- ====================== PAYPAL AREA ====================== -->
+  <!-- ========================================================= -->
+
+  <div style="text-align:center; margin-top:30px;">
+    <a href="https://paypal.me/45dgof8" target="_blank">
+      <button style="
+        padding: 12px 20px;
+        background-color: #0070ba;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;">
+        💙 Leave a Tip
+      </button>
+    </a>
+    <p style="font-size:14px; color:#555;">
+      Image generation is free until January — tips or reactions are appreciated!
+    </p>
+  </div>
+
+
+
+  <!-- ========================================================= -->
+  <!-- ======================= VIBE JS ========================== -->
+  <!-- ========================================================= -->
+
+  <script>
+    let pressTimer;
+    let revertTimer;
+    let countdownTimer;
+    let secondsLeft;
+    let mode = "happy";
+
+    const BTN = document.getElementById("modeToggle");
+    const INFO = document.getElementById("modeInfo");
+    const COUNT = document.getElementById("countdown");
+    const PROG_WRAP = document.getElementById("progressContainer");
+    const PROG_BAR = document.getElementById("progressBar");
+    const QUOTE = document.getElementById("happyQuote");
+    const EARLY = document.getElementById("earlyReturn");
+    const SOUND = document.getElementById("happySound");
+
+    const HAPPY_QUOTES = [
+      "Happiness is a choice you make today! 🌞",
+      "Smile — it's your superpower 😄",
+      "A happy thought is a tiny celebration! 🎉",
+      "You glow differently when you're happy ✨",
+      "Joy is contagious — spread some! 💛"
+    ];
+
+
+    /* ================= LONG PRESS TRIGGER ================= */
+
+    BTN.addEventListener("mousedown", () => {
+      if (mode === "happy") {
+        pressTimer = setTimeout(() => switchToStandard(), 2000);
+      }
+    });
+
+    BTN.addEventListener("mouseup", () => clearTimeout(pressTimer));
+    BTN.addEventListener("mouseleave", () => clearTimeout(pressTimer));
+
+
+    /* ================= SWITCH TO STANDARD MODE ================= */
+
+    function switchToStandard() {
+      mode = "standard";
+
+      BTN.innerText = "StandardMode Active";
+      BTN.style.backgroundColor = "#666";
+      BTN.style.color = "#fff";
+      BTN.disabled = true;
+      BTN.style.cursor = "default";
+
+      INFO.innerText = "StandardMode active for 3 minutes...";
+      PROG_WRAP.style.display = "block";
+      EARLY.style.display = "inline-block";
+
+      secondsLeft = 180;
+      updateCountdown(secondsLeft);
+      updateProgress(secondsLeft);
+
+      countdownTimer = setInterval(() => {
+        secondsLeft--;
+        updateCountdown(secondsLeft);
+        updateProgress(secondsLeft);
+
+        if (secondsLeft <= 0) clearInterval(countdownTimer);
+      }, 1000);
+
+      revertTimer = setTimeout(() => switchBackToHappy(), 180000);
+    }
+
+
+    /* ================= COUNTDOWN DISPLAY ================= */
+
+    function updateCountdown(secs) {
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+
+      COUNT.innerText =
+        `⏳ ${m}:${s.toString().padStart(2, "0")} — remember to stay happy! 😊`;
+
+      if (secs % 15 === 0) {
+        QUOTE.innerText =
+          HAPPY_QUOTES[Math.floor(Math.random() * HAPPY_QUOTES.length)];
+      }
+    }
+
+
+    /* ================= PROGRESS BAR ================= */
+
+    function updateProgress(secs) {
+      PROG_BAR.style.width = (secs / 180 * 100) + "%";
+    }
+
+
+    /* ================= EARLY RETURN ================= */
+
+    EARLY.addEventListener("click", () => {
+      clearTimeout(revertTimer);
+      switchBackToHappy();
+    });
+
+
+    /* ================= BACK TO HAPPY ================= */
+
+    function switchBackToHappy() {
+      mode = "happy";
+
+      BTN.innerText = "😊 HappyMode (hold to switch)";
+      BTN.style.backgroundColor = "#ffd33d";
+      BTN.style.color = "#333";
+      BTN.disabled = false;
+      BTN.style.cursor = "pointer";
+
+      INFO.innerText = "HappyMode reactivated!";
+      COUNT.innerText = "";
+      QUOTE.innerText = "";
+      PROG_WRAP.style.display = "none";
+      EARLY.style.display = "none";
+
+      clearInterval(countdownTimer);
+
+      SOUND.play();
+    }
+  </script>
+
 
   <!-- ================= EXTERNAL JS ENGINE ================= -->
   <script src="TSG-prompt-forge.js"></script>
 
 </body>
 </html>
+
