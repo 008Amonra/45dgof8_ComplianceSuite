@@ -99,8 +99,19 @@
 
     body, html { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; background: linear-gradient(to bottom right, #2d2a4e, #5e548e); color: white; }
     .split-screen { display: flex; height: 100vh; width: 100vw; }
-    .image-section { width: 50%; background-size: cover; background-position: center; }
-    .content-section { width: 50%; padding: 20px; overflow-y: auto; }
+.image-section {
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  background-color: #0b1020; /* fallback while image loads */
+}
+
+.content-section {
+  width: 50%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
     .graphic-eight { position: absolute; top: 159px; left: 50%; transform: translateX(-50%); font-size: 72px; font-weight: bold; color: #ffffffaa; cursor: pointer; z-index: 10; }
     iframe#creativeFrame { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; border: none; display: none; z-index: 999; }
     .footer-container { display: flex; justify-content: space-between; padding: 10px; background: #1c1b29; font-size: 0.9em; }
