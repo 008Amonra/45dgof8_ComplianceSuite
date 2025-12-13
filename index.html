@@ -165,19 +165,55 @@
     <a href="/privacy" target="_blank" rel="noopener" style="color: #00bcd4;">privacy policy</a>.
   </p>
 </footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const images = [
-      '/00CH.webp', '/Eva.webp', '/nn20.webp', '/HHyzT.webp', '/Lirien.webp', '/aUJG.webp', '/ghNB.webp', '/eva_2025.webp',
-    ];
-    const randomIndex = Math.floor(Math.random() * images.length);
-    document.getElementById("randomImage").style.backgroundImage = `url('${images[randomIndex]}')`;
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-    document.getElementById("infinity8").addEventListener("click", function () {
-      const frame = document.getElementById("creativeFrame");
-      frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
-    });
+  /* ---------- SAFE IMAGE LOADER ---------- */
+  const images = [
+    '/00CH.webp',
+    '/Eva.webp',
+    '/nn20.webp',
+    '/HHyzT.webp',
+    '/Lirien.webp',
+    '/aUJG.webp',
+    '/ghNB.webp',
+    '/eva_2025.webp'
+  ];
+
+  const target = document.getElementById("randomImage");
+
+  function loadImageWithFallback(tries = 0) {
+    const imgSrc = images[Math.floor(Math.random() * images.length)];
+    const img = new Image();
+
+    img.onload = () => {
+      target.style.backgroundImage = `url('${imgSrc}')`;
+    };
+
+    img.onerror = () => {
+      if (tries < 3) {
+        loadImageWithFallback(tries + 1);
+      } else {
+        // guaranteed fallback
+        target.style.backgroundImage = "url('/Eva.webp')";
+      }
+    };
+
+    img.src = imgSrc;
+  }
+
+  loadImageWithFallback();
+  /* --------------------------------------- */
+
+  document.getElementById("infinity8").addEventListener("click", function () {
+    const frame = document.getElementById("creativeFrame");
+    frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+  });
+
+});
+</script>
 
     // DATA
     const gpts = [
