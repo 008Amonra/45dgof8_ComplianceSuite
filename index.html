@@ -43,7 +43,7 @@
     ]
   }
   </script>
-  <style>
+   <style>
   #forgeLogo {
   position: fixed;
   top: 50%;
@@ -99,19 +99,8 @@
 
     body, html { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; background: linear-gradient(to bottom right, #2d2a4e, #5e548e); color: white; }
     .split-screen { display: flex; height: 100vh; width: 100vw; }
-.image-section {
-  width: 50%;
-  background-size: cover;
-  background-position: center;
-  background-color: #0b1020; /* fallback while image loads */
-}
-
-.content-section {
-  width: 50%;
-  padding: 20px;
-  overflow-y: auto;
-}
-
+    .image-section { width: 50%; background-size: cover; background-position: center; }
+    .content-section { width: 50%; padding: 20px; overflow-y: auto; }
     .graphic-eight { position: absolute; top: 159px; left: 50%; transform: translateX(-50%); font-size: 72px; font-weight: bold; color: #ffffffaa; cursor: pointer; z-index: 10; }
     iframe#creativeFrame { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; border: none; display: none; z-index: 999; }
     .footer-container { display: flex; justify-content: space-between; padding: 10px; background: #1c1b29; font-size: 0.9em; }
@@ -176,51 +165,19 @@
     <a href="/privacy" target="_blank" rel="noopener" style="color: #00bcd4;">privacy policy</a>.
   </p>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = [
+      '/00CH.webp', '/Eva.webp', '/nn20.webp', '/HHyzT.webp', '/Lirien.webp', '/aUJG.webp', '/ghNB.webp', '/eva_2025.webp',
+    ];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    document.getElementById("randomImage").style.backgroundImage = `url('${images[randomIndex]}')`;
 
-  /* ---------- SAFE IMAGE LOADER ---------- */
-  const images = [
-    '/00CH.webp',
-    '/Eva.webp',
-    '/nn20.webp',
-    '/HHyzT.webp',
-    '/Lirien.webp',
-    '/aUJG.webp',
-    '/ghNB.webp',
-    '/eva_2025.webp'
-  ];
-
-  const target = document.getElementById("randomImage");
-
-  function loadImageWithFallback(tries = 0) {
-    const imgSrc = images[Math.floor(Math.random() * images.length)];
-    const img = new Image();
-
-    img.onload = () => {
-      target.style.backgroundImage = `url('${imgSrc}')`;
-    };
-
-    img.onerror = () => {
-      if (tries < 3) {
-        loadImageWithFallback(tries + 1);
-      } else {
-        // guaranteed fallback
-        target.style.backgroundImage = "url('/Eva.webp')";
-      }
-    };
-
-    img.src = imgSrc;
-  }
-
-  loadImageWithFallback();
-  /* --------------------------------------- */
-
-  document.getElementById("infinity8").addEventListener("click", function () {
-    const frame = document.getElementById("creativeFrame");
-    frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+    document.getElementById("infinity8").addEventListener("click", function () {
+      const frame = document.getElementById("creativeFrame");
+      frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+    });
 
     // DATA
     const gpts = [
@@ -279,7 +236,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function switchToCreative() { showLoadingAndSwitch('creative_parts.html'); }
 </script>
 <div id="forgeDot" aria-label="Open Prompt Forge"></div>
-
+<script>
+  // existing DOMContentLoaded logic
+  document.addEventListener("DOMContentLoaded", function () {
+    // images, table, infinity8, etc.
+  });
+</script>
 <img
   id="forgeLogo"
   src="/splash.webp"
