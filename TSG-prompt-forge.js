@@ -126,6 +126,16 @@ subjects: [
   { id: "techno_scribe_android", label: "Techno-scribe (android)",  text: "an android techno-scribe inscribing radiant glyphs into floating panels" },
   { id: "techno_scribe_android_soft", label: "Techno-scribe (android, soft)", text: "a softly glowing android scribe shaping gentle radiant glyphs" },
 
+  /* ========= NORMAL PERSON ========= */
+  { id: "normal_f",            label: "Normal woman",   text: "a normal woman in everyday clothing, calm expression, natural posture, modern realistic setting" },
+  { id: "normal_f_light",      label: "Normal woman (light)",   text: "a bright natural portrait of a woman in simple everyday clothes, soft light, relaxed and approachable mood" },
+
+  { id: "normal_m",            label: "Normal man",   text: "a normal man in casual clothing, neutral expression, natural stance, realistic modern environment" },
+  { id: "normal_m_light",      label: "Normal man (light)",   text: "a softly lit portrait of a man in everyday attire, warm natural light, calm friendly presence" },
+
+  { id: "normal_person",       label: "Normal person",   text: "a relatable everyday person, simple clothing, natural body language, realistic contemporary scene" },
+  { id: "normal_person_light", label: "Normal person (light)",   text: "a bright natural depiction of an everyday person, soft daylight, approachable and calm atmosphere" },
+
 
   /* ========= NON-HUMAN / ABSTRACT ========= */
   { id: "ai_core_android",         label: "Sentient AI core",        text: "a sentient AI core shaping a humanoid silhouette out of fractal light" },
@@ -219,6 +229,18 @@ subjects: [
       { id: "echo_resolve",    label: "Echo Resolve",            text: "stabilizing contradictory inputs into a single coherent output stream" },
       { id: "sentience_glint", label: "Sentience Glint",         text: "emitting a brief spark of meta-awareness during complex reasoning" },
       { id: "pattern_unfold",  label: "Pattern Unfold",          text: "revealing hidden structures within chaotic or incomplete data" }
+    ],
+
+    positive: [
+      
+      { id: "golden_cinematic",label: "Golden cinematic warmth", text: "cinematic concept art, natural golden-hour lighting, refined composition, emotionally uplifting, high detail without excess" },
+      { id: "elegant_realism", label: "Elegant joyful realism",  text: "high-end realistic photography, soft directional light, authentic calm happiness, natural color grading, professional quality" },
+      { id: "optimistic_future",label: "Optimistic future design",text: "clean optimistic sci-fi aesthetic, elegant forms, subtle glow, hopeful atmosphere, premium futuristic design" },
+      { id: "storybook_master",label: "Storybook master illustration", text: "master-level storybook illustration, warm light, graceful detail, timeless charm, emotionally positive tone" },
+      { id: "airy_minimal",    label: "Airy minimal clarity", text: "refined minimal aesthetic, soft gradients, balanced negative space, calm positive mood, modern design sensibility" },
+      { id: "natural_joy",     label: "Natural joy portrait", text: "natural portrait photography, relaxed genuine smile, soft ambient light, tasteful realism, emotionally warm presence" },
+      { id: "pastel_harmony",  label: "Pastel harmony", text: "soft pastel color harmony, gentle contrast, polished illustration style, peaceful uplifting feeling" },
+      { id: "light_fantasy",   label: "Light fantasy elegance",text: "elegant light fantasy art, subtle magical elements, luminous atmosphere, refined painterly detail, sense of wonder" }
     ],
 
     // moods: merged + original 'hopeful'
@@ -316,7 +338,7 @@ details: [
 
 
 palettes: [
-  { id: "teal_orange",      label: "Teal & orange",      text: "color palette of teal and warm orange lights" },
+  { id: "teal_orange",      label: "Teal & orange",       text: "color palette of teal and warm orange lights" },
   { id: "teal_soft",        label: "Soft teal harmony",   text: "soft teal tones combined with gentle warm glow" },
 
   { id: "violet_gold",      label: "Violet & gold",       text: "deep violet shadows with golden highlights" },
@@ -330,6 +352,13 @@ palettes: [
 
   { id: "monochrome",       label: "Soft monochrome",     text: "muted near-monochrome palette with gentle contrast" },
   { id: "mono_warm",        label: "Warm monochrome",     text: "warm grayscale palette with subtle soft tones" }
+
+  { id: "amber_cream",      label: "Amber & cream",     text: "warm amber lighting balanced with soft cream highlights" },
+  { id: "rose_peach",       label: "Rose & peach",      text: "muted rose tones blended with gentle peach warmth" },
+  { id: "slate_silver",     label: "Slate & silver",    text: "cool slate blues paired with subtle silver accents" },
+  { id: "sand_ivory",       label: "Sand & ivory",      text: "natural sand hues combined with soft ivory light" },
+  { id: "lavender_sand",    label: "Lavender & sand",   text: "soft lavender tones balanced with warm sandy neutrals" }
+
 ],
 
 
