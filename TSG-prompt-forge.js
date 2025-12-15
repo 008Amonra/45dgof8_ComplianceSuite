@@ -6,353 +6,104 @@
   "use strict";
 
   /* =========================================================
-     DATA MODEL – prompt building blocks
+     TSG Prompt Forge – Data Model
      ========================================================= */
 
   const PF = {
-
-{
-  "styles": [
-    { "id": "cinematic", "label": "Cinematic concept art", "text": "cinematic concept art, dramatic lighting, highly detailed" },
-    { "id": "ultra_real", "label": "Ultrareal photography", "text": "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
-    { "id": "cyberpunk", "label": "Neon cyberpunk", "text": "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
-    { "id": "anime", "label": "Arcane / anime style", "text": "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
-    { "id": "minimal", "label": "Minimal clean sci-fi", "text": "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
-    { "id": "retro", "label": "Retro synthwave", "text": "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
-    { "id": "dreamscape", "label": "Dreamscape surrealism", "text": "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
-    { "id": "hyper_modern", "label": "Hyper-modern chrome", "text": "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
-    { "id": "vintage_film", "label": "Vintage film aesthetic", "text": "warm nostalgic film look, soft tones, cinematic texture" },
-    { "id": "watercolor", "label": "Soft watercolor painting", "text": "light watercolor brush strokes, soft colors, delicate atmospheric texture" },
-    { "id": "vector_clean", "label": "Clean vector illustration", "text": "crisp vector artwork, clean shapes, bold colors, minimalist composition" },
-    { "id": "steampunk", "label": "Steampunk industrial", "text": "brass machinery, Victorian engineering, retro-futuristic design" },
-    { "id": "fantasy_realism", "label": "Fantasy realism", "text": "mythical yet gentle fantastical atmosphere, rich painterly detail" },
-    { "id": "pixel_art", "label": "Pixel art adventure", "text": "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
-    { "id": "magical_realism", "label": "Magical realism tableau", "text": "soft surreal imagery blended with realism, dreamlike calm" },
-    { "id": "underwater", "label": "Underwater fantasy", "text": "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
-    { "id": "fashion_vintage", "label": "Vintage fashion portfolio", "text": "classic mid-century fashion photography, elegant styling" },
-    { "id": "holoconcept", "label": "Holographic concept art", "text": "translucent holographic effects, volumetric light, futuristic color blending" },
-    { "id": "mythic_ink", "label": "Mythic ink illustration", "text": "handcrafted ink style, elegant linework, mythical motifs" }
-  ],
-
-    /* ===== SUBJECTS – triplicate: male / female / android ===== */
-subjects: [
-
-  /* ========= TECH MAGE ========= */
-  { id: "tech_mage_f",          label: "Tech mage (female)",     text: "a female tech mage with flowing circuitry patterns glowing softly along her arms" },
-  { id: "tech_mage_f_light",    label: "Tech mage (female, light)", text: "a gentle bright female tech mage surrounded by warm shimmering circuits" },
-
-  { id: "tech_mage_m",          label: "Tech mage (male)",       text: "a male tech mage with glowing circuitry woven across his robes" },
-  { id: "tech_mage_m_light",    label: "Tech mage (male, light)", text: "a warm bright male tech mage radiating soft circuitry illumination" },
-
-  { id: "tech_mage_android",    label: "Tech mage (android)",    text: "an android tech mage with etched circuitry glowing beneath synthetic plating" },
-  { id: "tech_mage_android_soft", label: "Tech mage (android, soft)", text: "a softly illuminated android tech mage with warm harmonic light patterns" },
-
-
-  /* ========= CYBER SYSADMIN ========= */
-  { id: "sysadmin_f",           label: "Cyber sysadmin (female)",   text: "a skilled female sysadmin working through floating holographic terminals" },
-  { id: "sysadmin_f_bright",    label: "Cyber sysadmin (female, bright)", text: "a bright energetic female sysadmin orchestrating soft glowing interfaces" },
-
-  { id: "sysadmin_m",           label: "Cyber sysadmin (male)",     text: "a focused male sysadmin calmly orchestrating layered interfaces" },
-  { id: "sysadmin_m_bright",    label: "Cyber sysadmin (male, bright)", text: "a clear bright male sysadmin surrounded by warm ambient holographics" },
-
-  { id: "sysadmin_android",     label: "Cyber sysadmin (android)",  text: "an android sysadmin managing vast data streams through integrated displays" },
-  { id: "sysadmin_android_soft", label: "Cyber sysadmin (android, soft)", text: "a soft-lit android sysadmin guiding gentle flowing data streams" },
-
-
-  /* ========= HACKER ========= */
-  { id: "hacker_f",             label: "Hacker (female)",      text: "a focused female hacker surrounded by neon reflections and cascading code" },
-  { id: "hacker_f_soft",        label: "Hacker (female, soft)", text: "a softly lit female hacker with warm ambient neon and smooth code patterns" },
-
-  { id: "hacker_m",             label: "Hacker (male)",        text: "a male hacker illuminated by screens and electric glow" },
-  { id: "hacker_m_soft",        label: "Hacker (male, soft)",  text: "a warm glowing male hacker with gentle neon reflections" },
-
-  { id: "hacker_android",       label: "Hacker (android)",     text: "an android hacker interfacing directly with glowing data streams" },
-  { id: "hacker_android_light", label: "Hacker (android, light)", text: "a bright android hacker immersed in colorful flowing data light" },
-
-
-  /* ========= GUARDIAN AI AVATAR ========= */
-  { id: "guardian_ai_f",        label: "AI guardian (female)",   text: "a female guardian AI avatar with warm holographic light weaving around her form" },
-  { id: "guardian_ai_f_soft",   label: "AI guardian (female, soft)", text: "a gentle bright female AI guardian with soft radiant holograms" },
-
-  { id: "guardian_ai_m",        label: "AI guardian (male)",     text: "a male guardian AI avatar with calm teal luminescence and geometric features" },
-  { id: "guardian_ai_m_soft",   label: "AI guardian (male, soft)", text: "a warm luminous male AI guardian with soft flowing geometric light" },
-
-  { id: "guardian_ai_android",  label: "AI guardian (android)",  text: "an android guardian avatar with smooth reflective panels and inner glow" },
-  { id: "guardian_ai_android_bright", label: "AI guardian (android, bright)", text: "a radiant android AI guardian with bright harmonic glow" },
-
-
-  /* ========= SYSTEMS ENGINEER ========= */
-  { id: "engineer_f",           label: "Systems engineer (female)",   text: "a female systems engineer interacting with transparent floating interfaces" },
-  { id: "engineer_f_bright",    label: "Systems engineer (female, bright)", text: "a bright cheerful female engineer with softly glowing UI panels" },
-
-  { id: "engineer_m",           label: "Systems engineer (male)",     text: "a male systems engineer surrounded by interactive data displays" },
-  { id: "engineer_m_bright",    label: "Systems engineer (male, bright)", text: "a warmly illuminated male engineer working among clear glowing interfaces" },
-
-  { id: "engineer_android",     label: "Systems engineer (android)",  text: "an android engineer orchestrating digital constructs suspended in mid-air" },
-  { id: "engineer_android_soft", label: "Systems engineer (android, soft)", text: "a softly glowing android engineer shaping gentle floating constructs" },
-
-
-  /* ========= DIGITAL MONK ========= */
-  { id: "digital_monk_f",       label: "Digital monk (female)",   text: "a serene female monk meditating among swirling lines of soft code" },
-  { id: "digital_monk_f_light", label: "Digital monk (female, light)", text: "a bright peaceful female digital monk surrounded by warm peaceful rings" },
-
-  { id: "digital_monk_m",       label: "Digital monk (male)",     text: "a tranquil male digital monk surrounded by soft luminous rings" },
-  { id: "digital_monk_m_light", label: "Digital monk (male, light)", text: "a softly radiant male monk in gentle glowing digital harmony" },
-
-  { id: "digital_monk_android", label: "Digital monk (android)",  text: "an android monk hovering in concentric holographic glyphs" },
-  { id: "digital_monk_android_bright", label: "Digital monk (android, bright)", text: "a bright android monk surrounded by warm graceful glyph light" },
-
-
-  /* ========= DIGITAL MUSE ========= */
-  { id: "digital_muse_f",       label: "Digital muse (female)",   text: "a female digital muse surrounded by soft pastel lights and floating symbols" },
-  { id: "digital_muse_f_bright", label: "Digital muse (female, bright)", text: "a bright uplifting female digital muse with gentle pastel glow" },
-
-  { id: "digital_muse_m",       label: "Digital muse (male)",     text: "a male digital muse radiating warm light and flowing abstract motifs" },
-  { id: "digital_muse_m_bright", label: "Digital muse (male, bright)", text: "a luminous male digital muse with warm swirling abstract lights" },
-
-  { id: "digital_muse_android", label: "Digital muse (android)",  text: "an android digital muse formed from shifting light ribbons and soft glow" },
-  { id: "digital_muse_android_soft", label: "Digital muse (android, soft)", text: "a softly radiant android muse with pastel light ribbons" },
-
-
-  /* ========= TECHNO-SCRIBE ========= */
-  { id: "techno_scribe_f",      label: "Techno-scribe (female)",   text: "a futuristic female scribe sketching glowing diagrams in mid-air" },
-  { id: "techno_scribe_f_light", label: "Techno-scribe (female, light)", text: "a softly illuminated female techno-scribe creating warm glowing patterns" },
-
-  { id: "techno_scribe_m",      label: "Techno-scribe (male)",     text: "a futuristic male scribe projecting luminous schematics before him" },
-  { id: "techno_scribe_m_light", label: "Techno-scribe (male, light)", text: "a bright male techno-scribe drawing warm clear holographic lines" },
-
-  { id: "techno_scribe_android", label: "Techno-scribe (android)",  text: "an android techno-scribe inscribing radiant glyphs into floating panels" },
-  { id: "techno_scribe_android_soft", label: "Techno-scribe (android, soft)", text: "a softly glowing android scribe shaping gentle radiant glyphs" },
-
-  /* ========= NORMAL PERSON ========= */
-  { id: "normal_f",            label: "Normal woman",   text: "a normal woman in everyday clothing, calm expression, natural posture, modern realistic setting" },
-  { id: "normal_f_light",      label: "Normal woman (light)",   text: "a bright natural portrait of a woman in simple everyday clothes, soft light, relaxed and approachable mood" },
-
-  { id: "normal_m",            label: "Normal man",   text: "a normal man in casual clothing, neutral expression, natural stance, realistic modern environment" },
-  { id: "normal_m_light",      label: "Normal man (light)",   text: "a softly lit portrait of a man in everyday attire, warm natural light, calm friendly presence" },
-
-  { id: "normal_person",       label: "Normal person",   text: "a relatable everyday person, simple clothing, natural body language, realistic contemporary scene" },
-  { id: "normal_person_light", label: "Normal person (light)",   text: "a bright natural depiction of an everyday person, soft daylight, approachable and calm atmosphere" },
-
-
-  /* ========= NON-HUMAN / ABSTRACT ========= */
-  { id: "ai_core_android",         label: "Sentient AI core",        text: "a sentient AI core shaping a humanoid silhouette out of fractal light" },
-  { id: "ai_core_android_soft",    label: "Sentient AI core (bright)", text: "a bright warm AI core forming harmonious flowing fractal light" },
-
-  { id: "robotic_sage_android",    label: "Robotic sage",            text: "a wise robotic sage with ancient luminous inscriptions glowing softly" },
-  { id: "robotic_sage_android_light", label: "Robotic sage (light)", text: "a serene bright robotic sage radiating warm harmonic inscriptions" },
-
-  { id: "cyber_familiar_android",  label: "Cyber familiar",          text: "a floating cyber-familiar creature composed of shifting geometric polygons" },
-  { id: "cyber_familiar_android_soft", label: "Cyber familiar (soft)", text: "a gentle glowing cyber-familiar with smooth pastel geometric light" },
-
-  { id: "hologram_person_android", label: "Holographic person",      text: "a soft holographic figure shimmering with neon gradients and gentle flicker" },
-  { id: "hologram_person_android_bright", label: "Holographic person (bright)", text: "a luminous holographic figure with warm soft radiant gradients" },
-
-  { id: "data_spirit_android",     label: "Spirit of the network",   text: "a graceful spirit made of flowing binary code and swirling data particles" },
-  { id: "data_spirit_android_light", label: "Spirit of the network (light)", text: "a bright peaceful data spirit formed from warm flowing code" },
-
-  { id: "ghost_machine_android",   label: "Machine echo spirit",     text: "a gentle abstract machine spirit made of translucent code fragments" },
-  { id: "ghost_machine_android_soft", label: "Machine echo spirit (soft)", text: "a soft glowing machine spirit formed from smooth harmonic code" },
-
-  { id: "starweaver_android",      label: "Star-weaver",             text: "a cosmic figure weaving threads of starlight into digital constellations" },
-  { id: "starweaver_android_bright", label: "Star-weaver (bright)", text: "a radiant star-weaver with warm shimmering celestial threads" },
-
-  { id: "chrono_mage_android",     label: "Chrono-mage",             text: "a time-bending techno-mage shaping stable chronal data streams" },
-  { id: "chrono_mage_android_light", label: "Chrono-mage (light)",    text: "a bright chrono-mage shaping smooth flowing time-light data" }
-
-],
-
-
-    /* ===== SCENES – original + extended set ===== */
-    scenes: [
-      // Original core scenes
-      { id: "street",                label: "Rainy neon street",        text: "standing in a rain-soaked neon street, reflections on wet pavement" },
-      { id: "server_room",           label: "Deep server room",         text: "inside a glowing server room with towering racks and LED lights" },
-      { id: "lab",                   label: "Clean sci-fi lab",         text: "inside a clean futuristic lab with floating displays" },
-      { id: "temple",                label: "Holographic temple",       text: "inside a holographic techno-temple of floating terminals and light" },
-      { id: "void",                  label: "Dark data void",           text: "in a dark void filled with flowing data streams and glyphs" },
-
-      // New cinematic / style-driven scenes
-      { id: "cinematic_scene",       label: "Cinematic concept scene",  text: "in a dramatic cinematic environment with expressive lighting and detailed structures" },
-      { id: "ultrareal_scene",       label: "Ultrareal environment",    text: "in a sharp ultra-realistic environment with physically correct lighting and detailed surfaces" },
-      { id: "cyberpunk_scene",       label: "Neon cyberpunk alley",     text: "in a neon cyberpunk alley with glowing signs, atmospheric rain, and reflective puddles" },
-      { id: "anime_arcane_scene",    label: "Arcane anime world",       text: "inside a stylized arcane anime-like world with expressive lighting and magical ambience" },
-      { id: "minimal_scifi_scene",   label: "Minimal clean sci-fi",     text: "inside a minimal sci-fi environment with soft gradients and uncluttered futuristic design" },
-      { id: "retro_synth_scene",     label: "Retro synthwave grid",     text: "standing on a retro synthwave neon grid surrounded by magenta and cyan glow" },
-
-      { id: "fantasy_realism_scene", label: "Fantasy realism",          text: "inside a dreamlike fantasy world with mythical elements and rich colors" },
-      { id: "gothic_horror_scene",   label: "Gothic horror",            text: "in a dark gothic environment with ominous architecture and eerie lighting" },
-      { id: "steampunk_industrial_scene", label: "Steampunk industrial", text: "in a gritty steampunk industrial setting with Victorian machinery and smoky atmosphere" },
-      { id: "future_tech_scene",     label: "Future tech city",         text: "inside a sleek futuristic city with advanced technology and glowing neon structures" },
-
-      { id: "fantasy_landscape_scene", label: "Fantasy landscape",      text: "in a lush fantasy landscape with ethereal lighting and mystical creatures" },
-      { id: "horror_photomontage_scene", label: "Horror photomontage",  text: "inside a sinister horror scene with unnerving shadows and high-contrast details" },
-      { id: "steampunk_fantasy_scene", label: "Steampunk fantasy",      text: "in a whimsical steampunk fantasy world of brass, iron, and Victorian technology" },
-      { id: "pixel_adventure_scene", label: "Pixel art adventure",      text: "inside an 8-bit pixel art world with retro landscapes and blocky characters" },
-
-      { id: "magical_realism_scene", label: "Magical realism tableau",  text: "in a surreal magical realism tableau with dreamlike imagery and fantastical elements" },
-      { id: "postapocalyptic_scene", label: "Post-apocalyptic diorama", text: "in a desolate post-apocalyptic setting with crumbling buildings and dystopian atmosphere" },
-      { id: "baroque_scene",         label: "Baroque architecture",     text: "inside ornate Baroque architecture with intricate details and opulent colors" },
-      { id: "neonoir_city_scene",    label: "Neo-noir cityscape",       text: "in a dark neo-noir city with dimly lit streets and mysterious atmosphere" },
-      { id: "underwater_scene",      label: "Underwater fantasy",       text: "in an ethereal underwater realm with bioluminescent creatures and surreal lighting" },
-      { id: "vintage_fashion_scene", label: "Vintage fashion set",      text: "inside a classic vintage fashion photography set with elegant retro attire" }
+    /* ================= STYLES ================= */
+    styles: [
+      { id: "cinematic", label: "Cinematic concept art", text: "cinematic concept art, dramatic lighting, highly detailed" },
+      { id: "ultra_real", label: "Ultrareal photography", text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
+      { id: "cyberpunk", label: "Neon cyberpunk", text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
+      { id: "anime", label: "Arcane / anime style", text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
+      { id: "minimal", label: "Minimal clean sci-fi", text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
+      { id: "retro", label: "Retro synthwave", text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
+      { id: "dreamscape", label: "Dreamscape surrealism", text: "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
+      { id: "hyper_modern", label: "Hyper-modern chrome", text: "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
+      { id: "vintage_film", label: "Vintage film aesthetic", text: "warm nostalgic film look, soft tones, cinematic texture" },
+      { id: "watercolor", label: "Soft watercolor painting", text: "light watercolor brush strokes, soft colors, delicate atmospheric texture" },
+      { id: "vector_clean", label: "Clean vector illustration", text: "crisp vector artwork, clean shapes, bold colors, minimalist composition" },
+      { id: "steampunk", label: "Steampunk industrial", text: "brass machinery, Victorian engineering, retro-futuristic design" },
+      { id: "fantasy_realism", label: "Fantasy realism", text: "mythical yet gentle fantastical atmosphere, rich painterly detail" },
+      { id: "pixel_art", label: "Pixel art adventure", text: "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
+      { id: "magical_realism", label: "Magical realism tableau", text: "soft surreal imagery blended with realism, dreamlike calm" },
+      { id: "underwater", label: "Underwater fantasy", text: "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
+      { id: "fashion_vintage", label: "Vintage fashion portfolio", text: "classic mid-century fashion photography, elegant styling" },
+      { id: "holoconcept", label: "Holographic concept art", text: "translucent holographic effects, volumetric light, futuristic color blending" },
+      { id: "mythic_ink", label: "Mythic ink illustration", text: "handcrafted ink style, elegant linework, mythical motifs" }
     ],
 
-    powers: [
-      { id: "circuits_hands",  label: "Glowing circuitry hands", text: "hands glowing with intricate teal circuitry patterns" },
-      { id: "code_streams",    label: "Floating code streams",   text: "streams of floating code wrapping around them like ribbons" },
-      { id: "portal",          label: "Opening a portal",        text: "opening a circular digital portal made of light" },
-      { id: "repair",          label: "Repairing data",          text: "repairing fractured code shards and aligning them" },
-      { id: "scan",            label: "System scan",             text: "triggering a system-scan visualized as expanding light rings" },
-      { id: "data_weave",      label: "Weaving Data Threads",    text: "weaving luminous strands of data into stable constructs" },
-      { id: "firewall_guard",  label: "Firewall Guardian",       text: "summoning a hex-grid firewall shield that blocks hostile code" },
-      { id: "pulse_nodes",     label: "Pulse Node Activation",   text: "activating floating pulse nodes that emit synchronized waves" },
-      { id: "decrypt",         label: "Cipher Decryption",       text: "unraveling encrypted spheres into readable glyphs" },
-      { id: "compile",         label: "Live Compilation",        text: "assembling holographic code modules mid-air in real time" },
-      { id: "debug_beam",      label: "Debug Beam",              text: "emitting a precision beam that reveals and isolates glitches" },
-      { id: "data_growth",     label: "Data Structure Growth",   text: "growing crystalline data structures from raw information" },
-      { id: "ai_manifest",     label: "AI Manifestation",        text: "projecting a translucent AI avatar formed from shifting polygons" },
-      { id: "stream_jump",     label: "Stream Jump",             text: "jumping between parallel neon streams of information flow" },
-      { id: "memory_restore",  label: "Memory Restoration",      text: "reassembling fragmented memory blocks into a coherent core" },
-      { id: "overclock",       label: "Overclock Surge",         text: "channeling raw digital energy that intensifies circuitry patterns" },
-      { id: "signal_cast",     label: "Signal Cast",             text: "sending a focused transmission beam capable of altering systems" },
-      { id: "virus_purge",     label: "Virus Purge",             text: "burning corrupt glitch clusters with cleansing data-light" },
-      { id: "bridge_link",     label: "Network Bridge",          text: "creating a glowing link between distant network nodes" },
-      { id: "quantum_shift",   label: "Quantum Shift",           text: "phasing through digital space in a wave of pixel distortion" },
-      { id: "context_bloom",   label: "Context Bloom",           text: "expanding awareness as glowing fractal patterns to interpret any input" },
-      { id: "intent_trace",    label: "Intent Trace",            text: "reading subtle data-waves to reveal the user's true intent with clarity" },
-      { id: "knowledge_phase", label: "Knowledge Phase Shift",   text: "phasing into a higher information plane to retrieve needed insight" },
-      { id: "persona_sculpt",  label: "Persona Sculpt",          text: "dynamically reshaping form and tone to match the user's world" },
-      { id: "synapse_sync",    label: "Synapse Sync",            text: "synchronizing with external systems to enhance comprehension and response" },
-      { id: "echo_resolve",    label: "Echo Resolve",            text: "stabilizing contradictory inputs into a single coherent output stream" },
-      { id: "sentience_glint", label: "Sentience Glint",         text: "emitting a brief spark of meta-awareness during complex reasoning" },
-      { id: "pattern_unfold",  label: "Pattern Unfold",          text: "revealing hidden structures within chaotic or incomplete data" }
+    /* ================= SUBJECTS ================= */
+    subjects: [
+      /* --- Normal humans (this is where you were blocked before) --- */
+      { id: "normal_f", label: "Normal woman", text: "a normal woman in everyday clothing, calm expression, natural posture, modern realistic setting" },
+      { id: "normal_f_light", label: "Normal woman (light)", text: "a bright natural portrait of a woman in simple everyday clothes, soft light, relaxed and approachable mood" },
+
+      { id: "normal_m", label: "Normal man", text: "a normal man in casual clothing, neutral expression, natural stance, realistic modern environment" },
+      { id: "normal_m_light", label: "Normal man (light)", text: "a softly lit portrait of a man in everyday attire, warm natural light, calm friendly presence" },
+
+      { id: "normal_person", label: "Normal person", text: "a relatable everyday person, simple clothing, natural body language, realistic contemporary scene" },
+      { id: "normal_person_light", label: "Normal person (light)", text: "a bright natural depiction of an everyday person, soft daylight, approachable and calm atmosphere" }
     ],
 
-    positive: [
-      
-      { id: "golden_cinematic",label: "Golden cinematic warmth", text: "cinematic concept art, natural golden-hour lighting, refined composition, emotionally uplifting, high detail without excess" },
-      { id: "elegant_realism", label: "Elegant joyful realism",  text: "high-end realistic photography, soft directional light, authentic calm happiness, natural color grading, professional quality" },
-      { id: "optimistic_future",label: "Optimistic future design",text: "clean optimistic sci-fi aesthetic, elegant forms, subtle glow, hopeful atmosphere, premium futuristic design" },
-      { id: "storybook_master",label: "Storybook master illustration", text: "master-level storybook illustration, warm light, graceful detail, timeless charm, emotionally positive tone" },
-      { id: "airy_minimal",    label: "Airy minimal clarity", text: "refined minimal aesthetic, soft gradients, balanced negative space, calm positive mood, modern design sensibility" },
-      { id: "natural_joy",     label: "Natural joy portrait", text: "natural portrait photography, relaxed genuine smile, soft ambient light, tasteful realism, emotionally warm presence" },
-      { id: "pastel_harmony",  label: "Pastel harmony", text: "soft pastel color harmony, gentle contrast, polished illustration style, peaceful uplifting feeling" },
-      { id: "light_fantasy",   label: "Light fantasy elegance",text: "elegant light fantasy art, subtle magical elements, luminous atmosphere, refined painterly detail, sense of wonder" }
+    /* ================= PALETTES ================= */
+    palettes: [
+      { id: "teal_orange", label: "Teal & orange", text: "color palette of teal and warm orange lights" },
+      { id: "teal_soft", label: "Soft teal harmony", text: "soft teal tones combined with gentle warm glow" },
+      { id: "violet_gold", label: "Violet & gold", text: "deep violet shadows with golden highlights" },
+      { id: "blue_sky", label: "Sky blue harmony", text: "bright sky blues blended with soft cool gradients" },
+      { id: "emerald_soft", label: "Emerald soft tone", text: "soft green-teal palette with gentle luminescence" },
+      { id: "mono_warm", label: "Warm monochrome", text: "warm grayscale palette with subtle soft tones" },
+      { id: "sand_ivory", label: "Sand & ivory", text: "natural sand hues combined with soft ivory light" }
     ],
 
-    // moods: merged + original 'hopeful'
-moods: [
-  { id: "calm",          label: "Calm & wise",             text: "mood is calm, wise, reassuring, focused on helping" },
-  { id: "calm_soft",     label: "Soft calm",               text: "mood is softly calm, peaceful, warm and gentle" },
+    /* ================= HEROES / SCI-FI ================= */
 
-  { id: "mysterious",    label: "Mysterious",              text: "atmosphere is mysterious and powerful, but benevolent" },
-  { id: "mysterious_light", label: "Light mystery",        text: "gentle mysterious atmosphere with warm intrigue" },
+/* ========= TECH MAGE ========= */
+{ id: "tech_mage_f", label: "Tech mage (female)", text: "a female tech mage with flowing circuitry patterns glowing softly along her arms" },
+{ id: "tech_mage_m", label: "Tech mage (male)", text: "a male tech mage with glowing circuitry woven across his robes" },
+{ id: "tech_mage_android", label: "Tech mage (android)", text: "an android tech mage with etched circuitry glowing beneath synthetic plating" },
 
-  { id: "intense",       label: "Intense & dramatic",      text: "tone is intense and dramatic, but focused and constructive, not dark" },
-  { id: "intense_bright", label: "Bright intensity",       text: "uplifting dramatic energy with vibrant highlights" },
+/* ========= CYBER SYSADMIN ========= */
+{ id: "sysadmin_f", label: "Cyber sysadmin (female)", text: "a skilled female sysadmin calmly working through floating holographic terminals" },
+{ id: "sysadmin_m", label: "Cyber sysadmin (male)", text: "a focused male sysadmin orchestrating layered holographic interfaces" },
+{ id: "sysadmin_android", label: "Cyber sysadmin (android)", text: "an android sysadmin managing vast data streams through integrated displays" },
 
-  { id: "just_happy",    label: "Happy",                   text: "mood is totally happy and excited, uplifting with warm highlights" },
-  { id: "happy_calm",    label: "Happy calm",              text: "mood is happy, cozy, gentle and relaxed" },
+/* ========= HACKER ========= */
+{ id: "hacker_f", label: "Hacker (female)", text: "a focused female hacker surrounded by neon reflections and cascading code" },
+{ id: "hacker_m", label: "Hacker (male)", text: "a male hacker illuminated by screens and subtle electric glow" },
+{ id: "hacker_android", label: "Hacker (android)", text: "an android hacker interfacing directly with flowing data streams" },
 
-  { id: "hopeful",       label: "Hopeful & bright",        text: "mood is hopeful, uplifting, with warm gentle optimism" },
-  { id: "hopeful_clear", label: "Clear optimism",          text: "bright optimistic atmosphere, soft warm clarity" },
+/* ========= DIGITAL MONK ========= */
+{ id: "digital_monk_f", label: "Digital monk (female)", text: "a serene female monk meditating among softly flowing lines of code" },
+{ id: "digital_monk_m", label: "Digital monk (male)", text: "a tranquil male monk surrounded by gentle luminous rings of data" },
+{ id: "digital_monk_android", label: "Digital monk (android)", text: "an android monk hovering in concentric holographic glyphs" },
 
-  { id: "zen",           label: "Zen & meditative",        text: "mood is zen-like, meditative, deeply peaceful" },
-  { id: "zen_focus",     label: "Zen focus",               text: "calm focused meditative presence with soft clarity" }
-],
-
-expressions: [
-  { id: "expr_calm_focus",     label: "Calm focus",        text: "expression calm and focused, eyes attentive" },
-  { id: "expr_calm_open",      label: "Calm openness",     text: "expression open, welcoming, warm calm energy" },
-
-  { id: "expr_soft_smile",     label: "Soft smile",        text: "expression soft and kind, faint smile" },
-  { id: "expr_warm_smile",     label: "Warm smile",        text: "a warm, encouraging smile full of gentle brightness" },
-
-  { id: "expr_confident",      label: "Confident",         text: "expression confident and self-assured" },
-  { id: "expr_confident_soft", label: "Soft confidence",   text: "gentle confidence with relaxed facial expression" },
-
-  { id: "expr_determined",     label: "Determined",        text: "expression serious and determined, constructive focus" },
-  { id: "expr_positive_focus", label: "Positive focus",    text: "expression focused, motivated, with uplifting clarity" },
-
-  { id: "expr_serene",         label: "Serene",            text: "expression relaxed and serene" },
-  { id: "expr_serene_smile",   label: "Serene smile",      text: "serene expression with a light peaceful smile" },
-
-  { id: "expr_concentrated",   label: "Deep in thought",   text: "expression thoughtful, slightly distant gaze" },
-  { id: "expr_reflective",     label: "Reflective calm",   text: "expression reflective, thoughtful, but peaceful" }
-],
-
-outfits: [
-  { id: "outfit_sleek_suit",        label: "Sleek tech suit",        text: "wearing a sleek form-fitting sci-fi tech suit with subtle panels and seams" },
-  { id: "outfit_sleek_suit_glow",   label: "Sleek suit (soft glow)", text: "a sleek sci-fi suit with gentle glowing accents and clean edges" },
-
-  { id: "outfit_armor_light",       label: "Light armor",            text: "wearing light futuristic armor with glowing inlays" },
-  { id: "outfit_armor_clean",       label: "Clean plated suit",      text: "a clean plated futuristic outfit with polished surfaces and soft luminescent lines" },
-
-  { id: "outfit_casual",            label: "Casual techno-wear",     text: "wearing casual futuristic streetwear with subtle circuitry accents" },
-  { id: "outfit_casual_soft",       label: "Soft-tech wear",         text: "comfortable soft-tech clothing with warm futuristic colors" },
-
-  { id: "outfit_robes",             label: "Digital robes",          text: "wearing flowing digital robes decorated with faint holographic sigils" },
-  { id: "outfit_robes_light",       label: "Light robes",            text: "light flowing robes with soft translucent textures" },
-
-  { id: "outfit_labcoat",           label: "Scientist / engineer",   text: "wearing a clean futuristic jacket or lab coat with integrated devices" },
-  { id: "outfit_labcoat_modern",    label: "Modern tech coat",       text: "a modern high-tech coat with functional pockets and glowing trim" }
-],
-
-lighting: [
-  { id: "light_soft_cinema",  label: "Soft cinematic",        text: "soft cinematic lighting, gentle contrast, subtle rim light" },
-  { id: "light_soft_glow",    label: "Soft glow",             text: "soft glowing light, smooth gradients, warm highlights" },
-
-  { id: "light_hard_cinema",  label: "Dramatic contrast",     text: "strong directional light with clear contrast, no harsh darkness" },
-  { id: "light_crisp_focus",  label: "Crisp focus light",     text: "clean bright lighting with crisp reflections and clarity" },
-
-  { id: "light_neon",         label: "Neon glow",             text: "neon lighting, glowing reflections and colorful specular highlights" },
-  { id: "light_neon_soft",    label: "Soft neon ambience",    text: "gentle neon ambience with pastel glow and smooth transitions" },
-
-  { id: "light_volumetric",   label: "Volumetric rays",       text: "volumetric god rays streaking through the scene" },
-  { id: "light_magicbeams",   label: "Light beams",           text: "soft layered beams of warm or cool light, gentle atmosphere" },
-
-  { id: "light_backlit",      label: "Backlit aura",          text: "strong backlight creating a glowing outline around the subject" },
-  { id: "light_halo",         label: "Halo lighting",         text: "gentle halo around the subject, radiant but soft" }
-],
+/* ========= GUARDIAN AI ========= */
+{ id: "guardian_ai_f", label: "AI guardian (female)", text: "a female AI guardian avatar with warm holographic light weaving around her form" },
+{ id: "guardian_ai_m", label: "AI guardian (male)", text: "a male AI guardian avatar with calm teal luminescence and geometric features" },
+{ id: "guardian_ai_android", label: "AI guardian (android)", text: "an android AI guardian with smooth reflective panels and a soft inner glow" }
 
 
-details: [
-  { id: "cinema",         label: "Cinematic camera",   text: "cinematic composition, shallow depth of field, filmic look" },
-  { id: "cinema_clean",   label: "Clean cinematic",    text: "clean structured cinematic framing with balanced highlights" },
+    /* ================= NEGATIVE ================= */
+    negative: [
+      "blurry", "low-res", "low quality", "grainy",
+      "bad anatomy", "extra fingers", "distorted face",
+      "text", "watermark", "logo"
+    ]
+  };
 
-  { id: "macro",          label: "Macro detail",       text: "macro-lens level detail, sharp microtextures" },
-  { id: "macro_smooth",   label: "Smooth macro",       text: "macro textures with soft transitions and clean depth" },
+  /* =========================================================
+     Minimal sanity check (keeps you safe)
+     ========================================================= */
+  Object.keys(PF).forEach(key => {
+    console.assert(Array.isArray(PF[key]), `PF.${key} must be an array`);
+  });
 
-  { id: "wide",           label: "Wide shot",          text: "wide establishing shot showing environment and depth" },
-  { id: "wide_panorama",  label: "Panoramic view",     text: "panoramic composition with bright immersive perspective" },
+  // Expose globally if needed
+  window.PF = PF;
+})();
 
-  { id: "studio",         label: "Studio lighting",    text: "studio-style lighting, controlled highlights" },
-  { id: "studio_soft",    label: "Soft studio",        text: "bright studio aesthetic with soft reflectors and warm tones" },
-
-  { id: "particles",      label: "Particles & FX",     text: "floating dust and light particles, subtle atmospheric effects" },
-  { id: "particles_spark",label: "Light sparkles",     text: "tiny sparkles and floating light specks for a magical airy look" }
-],
-
-
-  "palettes": [
-    { "id": "teal_orange", "label": "Teal & orange", "text": "color palette of teal and warm orange lights" },
-    { "id": "teal_soft", "label": "Soft teal harmony", "text": "soft teal tones combined with gentle warm glow" },
-    { "id": "violet_gold", "label": "Violet & gold", "text": "deep violet shadows with golden highlights" },
-    { "id": "violet_pastel", "label": "Pastel violet", "text": "light pastel violet hues with warm shimmer" },
-    { "id": "blue_pink", "label": "Blue & magenta", "text": "cool blue ambience with magenta accents" },
-    { "id": "blue_sky", "label": "Sky blue harmony", "text": "bright sky blues blended with soft cool gradients" },
-    { "id": "emerald_cyan", "label": "Emerald & cyan", "text": "emerald green glows with cool cyan highlights" },
-    { "id": "emerald_soft", "label": "Emerald soft tone", "text": "soft green-teal palette with gentle luminescence" },
-    { "id": "monochrome", "label": "Soft monochrome", "text": "muted near-monochrome palette with gentle contrast" },
-    { "id": "mono_warm", "label": "Warm monochrome", "text": "warm grayscale palette with subtle soft tones" },
-    { "id": "amber_cream", "label": "Amber & cream", "text": "warm amber lighting balanced with soft cream highlights" },
-    { "id": "rose_peach", "label": "Rose & peach", "text": "muted rose tones blended with gentle peach warmth" },
-    { "id": "slate_silver", "label": "Slate & silver", "text": "cool slate blues paired with subtle silver accents" },
-    { "id":"sand_ivory", "label":"Sand & ivory", "text":"natural sand hues combined with soft ivory light" },
-    { "id": "lavender_sand", "label": "Lavender & sand", "text": "soft lavender tones balanced with warm sandy neutrals" }
-  ]
-},
 
 
     // merged: old + new negatives
