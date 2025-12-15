@@ -55,35 +55,35 @@
       { id: "emerald_soft", label: "Emerald soft tone", text: "soft green-teal palette with gentle luminescence" },
       { id: "mono_warm", label: "Warm monochrome", text: "warm grayscale palette with subtle soft tones" },
       { id: "sand_ivory", label: "Sand & ivory", text: "natural sand hues combined with soft ivory light" }
-    ],
+    
 
     /* ================= HEROES / SCI-FI ================= */
 
-/* ========= TECH MAGE ========= */
-{ id: "tech_mage_f", label: "Tech mage (female)", text: "a female tech mage with flowing circuitry patterns glowing softly along her arms" },
-{ id: "tech_mage_m", label: "Tech mage (male)", text: "a male tech mage with glowing circuitry woven across his robes" },
-{ id: "tech_mage_android", label: "Tech mage (android)", text: "an android tech mage with etched circuitry glowing beneath synthetic plating" },
+    /* ========= TECH MAGE ========= */
+    { id: "tech_mage_f", label: "Tech mage (female)", text: "a female tech mage with flowing circuitry patterns glowing softly along her arms" },
+    { id: "tech_mage_m", label: "Tech mage (male)", text: "a male tech mage with glowing circuitry woven across his robes" },
+    { id: "tech_mage_android", label: "Tech mage (android)", text: "an android tech mage with etched circuitry glowing beneath synthetic plating" },
 
-/* ========= CYBER SYSADMIN ========= */
-{ id: "sysadmin_f", label: "Cyber sysadmin (female)", text: "a skilled female sysadmin calmly working through floating holographic terminals" },
-{ id: "sysadmin_m", label: "Cyber sysadmin (male)", text: "a focused male sysadmin orchestrating layered holographic interfaces" },
-{ id: "sysadmin_android", label: "Cyber sysadmin (android)", text: "an android sysadmin managing vast data streams through integrated displays" },
+    /* ========= CYBER SYSADMIN ========= */
+    { id: "sysadmin_f", label: "Cyber sysadmin (female)", text: "a skilled female sysadmin calmly working through floating holographic terminals" },
+    { id: "sysadmin_m", label: "Cyber sysadmin (male)", text: "a focused male sysadmin orchestrating layered holographic interfaces" },
+    { id: "sysadmin_android", label: "Cyber sysadmin (android)", text: "an android sysadmin managing vast data streams through integrated displays" },
 
-/* ========= HACKER ========= */
-{ id: "hacker_f", label: "Hacker (female)", text: "a focused female hacker surrounded by neon reflections and cascading code" },
-{ id: "hacker_m", label: "Hacker (male)", text: "a male hacker illuminated by screens and subtle electric glow" },
-{ id: "hacker_android", label: "Hacker (android)", text: "an android hacker interfacing directly with flowing data streams" },
+    /* ========= HACKER ========= */
+    { id: "hacker_f", label: "Hacker (female)", text: "a focused female hacker surrounded by neon reflections and cascading code" },
+    { id: "hacker_m", label: "Hacker (male)", text: "a male hacker illuminated by screens and subtle electric glow" },
+    { id: "hacker_android", label: "Hacker (android)", text: "an android hacker interfacing directly with flowing data streams" },
 
-/* ========= DIGITAL MONK ========= */
-{ id: "digital_monk_f", label: "Digital monk (female)", text: "a serene female monk meditating among softly flowing lines of code" },
-{ id: "digital_monk_m", label: "Digital monk (male)", text: "a tranquil male monk surrounded by gentle luminous rings of data" },
-{ id: "digital_monk_android", label: "Digital monk (android)", text: "an android monk hovering in concentric holographic glyphs" },
+    /* ========= DIGITAL MONK ========= */
+    { id: "digital_monk_f", label: "Digital monk (female)", text: "a serene female monk meditating among softly flowing lines of code" },
+    { id: "digital_monk_m", label: "Digital monk (male)", text: "a tranquil male monk surrounded by gentle luminous rings of data" },
+    { id: "digital_monk_android", label: "Digital monk (android)", text: "an android monk hovering in concentric holographic glyphs" },
 
-/* ========= GUARDIAN AI ========= */
-{ id: "guardian_ai_f", label: "AI guardian (female)", text: "a female AI guardian avatar with warm holographic light weaving around her form" },
-{ id: "guardian_ai_m", label: "AI guardian (male)", text: "a male AI guardian avatar with calm teal luminescence and geometric features" },
-{ id: "guardian_ai_android", label: "AI guardian (android)", text: "an android AI guardian with smooth reflective panels and a soft inner glow" }
-
+    /* ========= GUARDIAN AI ========= */
+    { id: "guardian_ai_f", label: "AI guardian (female)", text: "a female AI guardian avatar with warm holographic light weaving around her form" },
+    { id: "guardian_ai_m", label: "AI guardian (male)", text: "a male AI guardian avatar with calm teal luminescence and geometric features" },
+    { id: "guardian_ai_android", label: "AI guardian (android)", text: "an android AI guardian with smooth reflective panels and a soft inner glow" }
+    ],
 
     /* ================= NEGATIVE ================= */
     negative: [
