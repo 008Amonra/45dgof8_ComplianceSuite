@@ -11,30 +11,28 @@
 
   const PF = {
 
-    styles: [
-  { id: "cinematic",        label: "Cinematic concept art",      text: "cinematic concept art, dramatic lighting, highly detailed" },
-  { id: "ultra_real",       label: "Ultrareal photography",      text: "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
-  { id: "cyberpunk",        label: "Neon cyberpunk",             text: "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
-  { id: "anime",            label: "Arcane / anime style",       text: "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
-  { id: "minimal",          label: "Minimal clean sci-fi",       text: "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
-  { id: "retro",            label: "Retro synthwave",            text: "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
-
-  { id: "dreamscape",       label: "Dreamscape surrealism",      text: "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
-  { id: "hyper_modern",     label: "Hyper-modern chrome",        text: "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
-  { id: "vintage_film",     label: "Vintage film aesthetic",     text: "warm nostalgic film look, soft tones, cinematic texture" },
-  { id: "watercolor",       label: "Soft watercolor painting",   text: "light watercolor brush strokes, soft colors, delicate atmospheric texture" },
-  { id: "vector_clean",     label: "Clean vector illustration",  text: "crisp vector artwork, clean shapes, bold colors, minimalist composition" },
-
-  { id: "steampunk",        label: "Steampunk industrial",       text: "brass machinery, Victorian engineering, retro-futuristic design" },
-  { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical yet gentle fantastical atmosphere, rich painterly detail" },
-  { id: "pixel_art",        label: "Pixel art adventure",        text: "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
-  { id: "magical_realism",  label: "Magical realism tableau",    text: "soft surreal imagery blended with realism, dreamlike calm" },
-
-  { id: "underwater",       label: "Underwater fantasy",         text: "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
-  { id: "fashion_vintage",  label: "Vintage fashion portfolio",  text: "classic mid-century fashion photography, elegant styling" },
-  { id: "holoconcept",      label: "Holographic concept art",    text: "translucent holographic effects, volumetric light, futuristic color blending" },
-  { id: "mythic_ink",       label: "Mythic ink illustration",    text: "handcrafted ink style, elegant linework, mythical motifs" }
-    ],
+{
+  "styles": [
+    { "id": "cinematic", "label": "Cinematic concept art", "text": "cinematic concept art, dramatic lighting, highly detailed" },
+    { "id": "ultra_real", "label": "Ultrareal photography", "text": "ultra-realistic photography, sharp focus, physically correct lighting, detailed skin texture" },
+    { "id": "cyberpunk", "label": "Neon cyberpunk", "text": "neon cyberpunk aesthetic, glowing signs, atmospheric rain, deep blues and oranges" },
+    { "id": "anime", "label": "Arcane / anime style", "text": "stylized digital painting, anime-inspired, expressive lighting, smooth shading" },
+    { "id": "minimal", "label": "Minimal clean sci-fi", "text": "clean minimal sci-fi, soft gradients, subtle lighting, uncluttered composition" },
+    { "id": "retro", "label": "Retro synthwave", "text": "80s synthwave, neon grid, magenta and cyan glow, retro-futuristic vibes" },
+    { "id": "dreamscape", "label": "Dreamscape surrealism", "text": "surreal dreamscape imagery, floating forms, soft ethereal haze, impossible geometry" },
+    { "id": "hyper_modern", "label": "Hyper-modern chrome", "text": "sleek hyper-modern chrome surfaces, reflective materials, precise photoreal sci-fi styling" },
+    { "id": "vintage_film", "label": "Vintage film aesthetic", "text": "warm nostalgic film look, soft tones, cinematic texture" },
+    { "id": "watercolor", "label": "Soft watercolor painting", "text": "light watercolor brush strokes, soft colors, delicate atmospheric texture" },
+    { "id": "vector_clean", "label": "Clean vector illustration", "text": "crisp vector artwork, clean shapes, bold colors, minimalist composition" },
+    { "id": "steampunk", "label": "Steampunk industrial", "text": "brass machinery, Victorian engineering, retro-futuristic design" },
+    { "id": "fantasy_realism", "label": "Fantasy realism", "text": "mythical yet gentle fantastical atmosphere, rich painterly detail" },
+    { "id": "pixel_art", "label": "Pixel art adventure", "text": "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
+    { "id": "magical_realism", "label": "Magical realism tableau", "text": "soft surreal imagery blended with realism, dreamlike calm" },
+    { "id": "underwater", "label": "Underwater fantasy", "text": "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
+    { "id": "fashion_vintage", "label": "Vintage fashion portfolio", "text": "classic mid-century fashion photography, elegant styling" },
+    { "id": "holoconcept", "label": "Holographic concept art", "text": "translucent holographic effects, volumetric light, futuristic color blending" },
+    { "id": "mythic_ink", "label": "Mythic ink illustration", "text": "handcrafted ink style, elegant linework, mythical motifs" }
+  ],
 
     /* ===== SUBJECTS – triplicate: male / female / android ===== */
 subjects: [
@@ -337,29 +335,24 @@ details: [
 ],
 
 
-palettes: [
-  { id: "teal_orange",      label: "Teal & orange",       text: "color palette of teal and warm orange lights" },
-  { id: "teal_soft",        label: "Soft teal harmony",   text: "soft teal tones combined with gentle warm glow" },
-
-  { id: "violet_gold",      label: "Violet & gold",       text: "deep violet shadows with golden highlights" },
-  { id: "violet_pastel",    label: "Pastel violet",       text: "light pastel violet hues with warm shimmer" },
-
-  { id: "blue_pink",        label: "Blue & magenta",      text: "cool blue ambience with magenta accents" },
-  { id: "blue_sky",         label: "Sky blue harmony",    text: "bright sky blues blended with soft cool gradients" },
-
-  { id: "emerald_cyan",     label: "Emerald & cyan",      text: "emerald green glows with cool cyan highlights" },
-  { id: "emerald_soft",     label: "Emerald soft tone",   text: "soft green-teal palette with gentle luminescence" },
-
-  { id: "monochrome",       label: "Soft monochrome",     text: "muted near-monochrome palette with gentle contrast" },
-  { id: "mono_warm",        label: "Warm monochrome",     text: "warm grayscale palette with subtle soft tones" }
-
-  { id: "amber_cream",      label: "Amber & cream",     text: "warm amber lighting balanced with soft cream highlights" },
-  { id: "rose_peach",       label: "Rose & peach",      text: "muted rose tones blended with gentle peach warmth" },
-  { id: "slate_silver",     label: "Slate & silver",    text: "cool slate blues paired with subtle silver accents" },
-  { id: "sand_ivory",       label: "Sand & ivory",      text: "natural sand hues combined with soft ivory light" },
-  { id: "lavender_sand",    label: "Lavender & sand",   text: "soft lavender tones balanced with warm sandy neutrals" }
-
-],
+  "palettes": [
+    { "id": "teal_orange", "label": "Teal & orange", "text": "color palette of teal and warm orange lights" },
+    { "id": "teal_soft", "label": "Soft teal harmony", "text": "soft teal tones combined with gentle warm glow" },
+    { "id": "violet_gold", "label": "Violet & gold", "text": "deep violet shadows with golden highlights" },
+    { "id": "violet_pastel", "label": "Pastel violet", "text": "light pastel violet hues with warm shimmer" },
+    { "id": "blue_pink", "label": "Blue & magenta", "text": "cool blue ambience with magenta accents" },
+    { "id": "blue_sky", "label": "Sky blue harmony", "text": "bright sky blues blended with soft cool gradients" },
+    { "id": "emerald_cyan", "label": "Emerald & cyan", "text": "emerald green glows with cool cyan highlights" },
+    { "id": "emerald_soft", "label": "Emerald soft tone", "text": "soft green-teal palette with gentle luminescence" },
+    { "id": "monochrome", "label": "Soft monochrome", "text": "muted near-monochrome palette with gentle contrast" },
+    { "id": "mono_warm", "label": "Warm monochrome", "text": "warm grayscale palette with subtle soft tones" },
+    { "id": "amber_cream", "label": "Amber & cream", "text": "warm amber lighting balanced with soft cream highlights" },
+    { "id": "rose_peach", "label": "Rose & peach", "text": "muted rose tones blended with gentle peach warmth" },
+    { "id": "slate_silver", "label": "Slate & silver", "text": "cool slate blues paired with subtle silver accents" },
+    { "id":"sand_ivory", "label":"Sand & ivory", "text":"natural sand hues combined with soft ivory light" },
+    { "id": "lavender_sand", "label": "Lavender & sand", "text": "soft lavender tones balanced with warm sandy neutrals" }
+  ]
+},
 
 
     // merged: old + new negatives
