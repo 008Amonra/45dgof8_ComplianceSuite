@@ -55,10 +55,11 @@
       { id: "emerald_soft", label: "Emerald soft tone", text: "soft green-teal palette with gentle luminescence" },
       { id: "mono_warm", label: "Warm monochrome", text: "warm grayscale palette with subtle soft tones" },
       { id: "sand_ivory", label: "Sand & ivory", text: "natural sand hues combined with soft ivory light" }
-    
+    ],
 
     /* ================= HEROES / SCI-FI ================= */
 
+    settings: [
     /* ========= TECH MAGE ========= */
     { id: "tech_mage_f", label: "Tech mage (female)", text: "a female tech mage with flowing circuitry patterns glowing softly along her arms" },
     { id: "tech_mage_m", label: "Tech mage (male)", text: "a male tech mage with glowing circuitry woven across his robes" },
