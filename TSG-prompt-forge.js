@@ -36,6 +36,12 @@ alert("TSG Prompt Forge JS loaded");
   { id: "fashion_vintage",  label: "Vintage fashion portfolio",  text: "classic mid-century fashion photography, elegant styling" },
   { id: "holoconcept",      label: "Holographic concept art",    text: "translucent holographic effects, volumetric light, futuristic color blending" },
   { id: "mythic_ink",       label: "Mythic ink illustration",    text: "handcrafted ink style, elegant linework, mythical motifs" }
+  
+  { id: "tartaria_etched",  label: "Tartarian architecture",     text: "ornate ancient architecture, monumental symmetry, finely etched stonework, lost-civilization aesthetic" },
+  { id: "tartaria_mythic",  label: "Mythic Tartaria",            text: "mythic interpretation of Tartaria, grand forgotten cities, harmonious geometry, quiet legendary tone" },
+  { id: "tartaria_ink",     label: "Tartarian ink chronicle",    text: "hand-drawn ink illustration, historical manuscript style, elegant linework, ancient cartographic motifs" },
+  { id: "tartaria_luminous",label: "Luminous Tartarian vision",  text: "subtle luminous architecture, monumental domes and spires, restrained glow, speculative historical atmosphere" }
+   
     ],
 
     /* ===== SUBJECTS – triplicate: male / female / android ===== */
