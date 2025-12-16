@@ -42,7 +42,7 @@ alert("TSG Prompt Forge JS loaded");
   { id: "tartaria_ink",     label: "Tartarian ink chronicle",    text: "hand-drawn ink illustration, historical manuscript style, elegant linework, ancient cartographic motifs" },
   { id: "tartaria_luminous",label: "Luminous Tartarian vision",  text: "subtle luminous architecture, monumental domes and spires, restrained glow, speculative historical atmosphere" }
    
-    ],
+  ],
 
     /* ===== SUBJECTS – triplicate: male / female / android ===== */
 subjects: [
@@ -170,7 +170,7 @@ subjects: [
   { id: "chrono_mage_android",     label: "Chrono-mage",             text: "a time-bending techno-mage shaping stable chronal data streams" },
   { id: "chrono_mage_android_light", label: "Chrono-mage (light)",    text: "a bright chrono-mage shaping smooth flowing time-light data" }
 
-],
+  ],
 
 
     /* ===== SCENES – original + extended set ===== */
