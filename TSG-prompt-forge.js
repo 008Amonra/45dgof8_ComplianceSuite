@@ -185,12 +185,12 @@ subjects: [
       { id: "retro_synth_scene",     label: "Retro synthwave grid",     text: "standing on a retro synthwave neon grid surrounded by magenta and cyan glow" },
 
       { id: "fantasy_realism_scene", label: "Fantasy realism",          text: "inside a dreamlike fantasy world with mythical elements and rich colors" },
-      { id: "gothic_horror_scene",   label: "Gothic horror",            text: "in a dark gothic environment with ominous architecture and eerie lighting" },
-      { id: "steampunk_industrial_scene", label: "Steampunk industrial", text: "in a gritty steampunk industrial setting with Victorian machinery and smoky atmosphere" },
+      { id: "gothic_dark fantasy",   label: "Gothic dark fantasy",      text: "in a dark gothic environment with ominous architecture and eerie lighting" },
+      { id: "steampunk_industrial_scene", label: "Steampunk industrial",text: "in a gritty steampunk industrial setting with Victorian machinery and smoky atmosphere" },
       { id: "future_tech_scene",     label: "Future tech city",         text: "inside a sleek futuristic city with advanced technology and glowing neon structures" },
 
       { id: "fantasy_landscape_scene", label: "Fantasy landscape",      text: "in a lush fantasy landscape with ethereal lighting and mystical creatures" },
-      { id: "horror_photomontage_scene", label: "Horror photomontage",  text: "inside a sinister horror scene with unnerving shadows and high-contrast details" },
+      { id: "dark_photomontage_scene", label: "Dark photomontage",  text: "inside a sinister Dark scene with unnerving shadows and high-contrast details" },
       { id: "steampunk_fantasy_scene", label: "Steampunk fantasy",      text: "in a whimsical steampunk fantasy world of brass, iron, and Victorian technology" },
       { id: "pixel_adventure_scene", label: "Pixel art adventure",      text: "inside an 8-bit pixel art world with retro landscapes and blocky characters" },
 
