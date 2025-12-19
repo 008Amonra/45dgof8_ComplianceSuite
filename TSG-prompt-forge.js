@@ -31,17 +31,13 @@ alert("TSG Prompt Forge JS loaded");
   { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical yet gentle fantastical atmosphere, rich painterly detail" },
   { id: "pixel_art",        label: "Pixel art adventure",        text: "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
   { id: "magical_realism",  label: "Magical realism tableau",    text: "soft surreal imagery blended with realism, dreamlike calm" },
-
   { id: "underwater",       label: "Underwater fantasy",         text: "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
   { id: "fashion_vintage",  label: "Vintage fashion portfolio",  text: "classic mid-century fashion photography, elegant styling" },
   { id: "holoconcept",      label: "Holographic concept art",    text: "translucent holographic effects, volumetric light, futuristic color blending" },
   { id: "mythic_ink",       label: "Mythic ink illustration",    text: "handcrafted ink style, elegant linework, mythical motifs" },
-
- 
-  { id: "tartaria_etched",  label: "Tartarian architecture",     text: "ornate ancient architecture, monumental symmetry, finely etched stonework, lost-civilization aesthetic" },
-  { id: "tartaria_mythic",  label: "Mythic Tartaria",            text: "mythic interpretation of Tartaria, grand forgotten cities, harmonious geometry, quiet legendary tone" },
-  { id: "tartaria_ink",     label: "Tartarian ink chronicle",    text: "hand-drawn ink illustration, historical manuscript style, elegant linework, ancient cartographic motifs" },
-  { id: "tartaria_luminous",label: "Luminous Tartarian vision",  text: "subtle luminous architecture, monumental domes and spires, restrained glow, speculative historical atmosphere" }
+  { id: "signal_walker",    label: "Signal walker",              text: "male figure moving through invisible signal currents, subtle light traces around him, attentive calm, modern mythic tone" },
+  { id: "threshold_keeper", label: "Keeper of thresholds",       text: "calm masculine presence standing between spaces, doors and light frames implied, patient watchfulness, soft suspended atmosphere" },
+  { id: "memory_tide",      label: "Memory tide bearer",         text: "male figure carrying slow-moving waves of memory and light, gentle forward motion, emotional depth without heaviness, luminous pastel flow" }
   ],
 
     /* ===== SUBJECTS – triplicate: male / female / android ===== */
