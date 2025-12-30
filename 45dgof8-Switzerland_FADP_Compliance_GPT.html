@@ -1,114 +1,288 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SwissGPT FADP Compliance</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwissGPT – Swiss Data Protection, Explained Simply</title>
+
   <style>
+    :root {
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --text: #2c2c2c;
+      --muted: #555;
+      --accent: #00897b;
+      --soft: #f0f6f5;
+      --shadow: rgba(0,0,0,0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1416;
+      --panel: #171d1f;
+      --text: #e6e6e6;
+      --muted: #aaa;
+      --accent: #4db6ac;
+      --soft: #1f2a2d;
+      --shadow: rgba(0,0,0,0.5);
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #f3f3f3, #e2e2e2);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
       margin: 0;
       padding: 2rem;
-      color: #333;
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
     }
+
     header {
-      text-align: center;
-      padding-bottom: 1rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      animation: fadeIn 0.8s ease-out both;
     }
-    header h1 {
-      font-size: 2.5rem;
-      color: #00695c;
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0;
+      color: var(--accent);
     }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    #controls {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    #controls button {
+      border: none;
+      background: var(--soft);
+      color: var(--text);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
     .panel {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--panel);
+      padding: 2.5rem;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px var(--shadow);
+      animation: slideUp 0.9s ease-out both;
     }
-    .panel h2 {
-      color: #004d40;
-      font-size: 1.6rem;
+
+    .value {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      font-weight: 500;
     }
-    .panel ul {
-      margin-top: 1rem;
-      padding-left: 1.2rem;
+
+    ul { padding-left: 1.2rem; }
+    li { margin-bottom: 0.6rem; }
+
+    .trust {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 2.5rem 0;
+      font-size: 0.95rem;
     }
-    .launch-button {
-      display: inline-block;
-      margin-top: 2rem;
-      background: #009688;
-      color: white;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .launch-button:hover {
-      background: #00796b;
-    }
-    .comic-example {
-      margin-top: 3rem;
-      text-align: left;
-    }
-    .comic-example h2 {
-      color: #004d40;
-    }
-    footer {
+
+    .trust div {
+      background: var(--soft);
+      padding: 1rem;
+      border-radius: 10px;
       text-align: center;
+    }
+
+    .visual {
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+
+    .visual img {
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 8px 22px var(--shadow);
+    }
+
+    .visual p {
+      margin-top: 0.8rem;
       font-size: 0.9rem;
-      margin-top: 4rem;
-      color: #678;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .example {
+      margin-top: 2rem;
+      padding: 1.2rem;
+      background: var(--soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .cta a {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 2.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: inline-block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px var(--shadow);
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 3rem auto 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>🇨🇭 SwissGPT – FADP Compliance</h1>
-    <p>Privacy-focused. Legally aligned. Swiss-built.</p>
-  </header>
 
-  <section class="panel">
-    <h2>Über diesen GPT</h2>
-    <p>Dieser GPT unterstützt Fachleute, Organisationen und Bürger:innen bei der Einhaltung des revidierten Schweizer Datenschutzgesetzes (FADP / DSG).</p>
-    <ul>
-      <li>Erklärt Vorschriften in einfachen Worten</li>
-      <li>Berät zum rechtssicheren Umgang mit Daten</li>
-      <li>Hilft beim Erstellen von Datenschutzrichtlinien</li>
-      <li>Gibt Antworten zu internationalen Datenübermittlungen</li>
-    </ul>
+<header>
+  <div>
+    <h1 data-lang="de">🇨🇭 SwissGPT – Datenschutz erklärt</h1>
+    <h1 data-lang="en" style="display:none">🇨🇭 SwissGPT – Data protection explained</h1>
+    <h1 data-lang="fr" style="display:none">🇨🇭 SwissGPT – Protection des données expliquée</h1>
+    <h1 data-lang="it" style="display:none">🇨🇭 SwissGPT – Protezione dei dati spiegata</h1>
+    <h1 data-lang="rm" style="display:none">🇨🇭 SwissGPT – Protecziun da datas explicada</h1>
 
-    <a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" class="launch-button" target="_blank">
-      🚀 Starte SwissGPT FADP
+    <div class="subtitle" data-lang="de">Klar. Verständlich. Rechtssicher.</div>
+    <div class="subtitle" data-lang="en" style="display:none">Clear. Understandable. Legally aligned.</div>
+    <div class="subtitle" data-lang="fr" style="display:none">Clair. Compréhensible. Conforme au droit.</div>
+    <div class="subtitle" data-lang="it" style="display:none">Chiaro. Comprensibile. Conforme alla legge.</div>
+    <div class="subtitle" data-lang="rm" style="display:none">Cler. Chapibel. Confurm a la lescha.</div>
+  </div>
+
+  <div id="controls">
+    <button onclick="setLang('de')">DE</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('fr')">FR</button>
+    <button onclick="setLang('it')">IT</button>
+    <button onclick="setLang('rm')">RM</button>
+    <button onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+  </div>
+</header>
+
+<section class="panel">
+
+  <div class="value" data-lang="de">Verstehen Sie das Schweizer Datenschutzrecht in Minuten – nicht in Juristenstunden.</div>
+  <div class="value" data-lang="en" style="display:none">Understand Swiss data protection law in minutes – not legal hours.</div>
+  <div class="value" data-lang="fr" style="display:none">Comprenez le droit suisse de la protection des données en quelques minutes.</div>
+  <div class="value" data-lang="it" style="display:none">Comprendi il diritto svizzero sulla protezione dei dati in pochi minuti.</div>
+  <div class="value" data-lang="rm" style="display:none">Chapir la protecziun da datas svizra en paucs minuts.</div>
+
+  <div class="trust">
+    <div>🇨🇭 Swiss jurisdiction</div>
+    <div>📜 DSG / FADP aligned</div>
+    <div>🔒 No data retention</div>
+    <div>🧠 Human-readable answers</div>
+  </div>
+
+  <div class="visual">
+    <img src="verified_by_design.webp" alt="Eva blocks unsafe data flows – FADP checkpoint">
+    <p>Eva blocks unsafe data flows — privacy checked before anything moves.</p>
+  </div>
+
+  <div class="example" data-lang="de">
+    <strong>Typische Frage:</strong><br>
+    Dürfen Schweizer Kundendaten in die USA übertragen werden – und unter welchen Bedingungen?
+  </div>
+  <div class="example" data-lang="en" style="display:none">
+    <strong>Typical question:</strong><br>
+    May Swiss customer data be transferred to the US — and under which conditions?
+  </div>
+  <div class="example" data-lang="fr" style="display:none">
+    <strong>Question typique :</strong><br>
+    Les données de clients suisses peuvent-elles être transférées aux États-Unis ?
+  </div>
+  <div class="example" data-lang="it" style="display:none">
+    <strong>Domanda tipica:</strong><br>
+    I dati dei clienti svizzeri possono essere trasferiti negli Stati Uniti?
+  </div>
+  <div class="example" data-lang="rm" style="display:none">
+    <strong>Dumonda tipica:</strong><br>
+    Pon datas da clients svizzers vegnir transferidas als Stadis Unids?
+  </div>
+
+  <div class="cta">
+    <a href="https://chatgpt.com/g/g-67d149c68c68819189a786dac0342c55-45dgof8-switzerland-fadp-compliance-gpt" target="_blank">
+      🚀 Launch SwissGPT
     </a>
+    <p>No signup. No tracking. Swiss built.</p>
+  </div>
 
-    <div class="comic-example">
-      <h2>📘 Fallbeispiel – Der Datenweitergeber</h2>
-      <p>
-        Ein Startup will Nutzerdaten von Schweizer Kunden an ein Partnerunternehmen in den USA übermitteln. Eva fragt:
-        <br><strong>"Liegt eine ausdrückliche Einwilligung vor? Oder ein Angemessenheitsbeschluss?"</strong>
-        <br>Ohne klare Rechtsgrundlage – keine Datenreise. FADP setzt Grenzen.
-      </p>
-      <div class="verified_by_design.webp" style="margin-top: 1rem; background: #eee; border: 1px dashed #bbb; color: #999; padding: 1rem; text-align:center;">
-        
-<div style="margin-top: 2rem; background: #f0f4f5; padding: 1.5rem; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.05); text-align: center;">
-  <img src="verified_by_design.webp" 
-       alt="Eva blockiert eine Datenverbindung mit einem Schild 'FADP Checkpoint'" 
-       style="max-width: 100%; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.15); margin-bottom: 0.5rem;" />
-  <p style="margin-top: 1rem; font-style: italic; color: #555;">
-    Eva blockiert eine Datenverbindung mit einem Schild: <strong>„FADP Checkpoint“</strong>
-  </p>
-</div>
+</section>
 
-      </div>
-    </div>
-  </section>
+<footer>
+  Built by 45dgof8 • Switzerland<br>
+  Independent • Privacy by design • No tracking
+</footer>
 
-  <footer>
-    Teil des 45dgof8 Universums • <a href="/index.html">Zurück zur Startseite</a>
-  </footer>
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.style.display = el.dataset.lang === lang ? '' : 'none';
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('lang', lang);
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang) setLang(savedLang);
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
+
 </body>
 </html>
