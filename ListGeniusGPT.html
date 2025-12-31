@@ -69,23 +69,31 @@
     .panel h2{margin:0 0 8px;font-size:18px;color:var(--text)}
     ul{margin:10px 0 0;padding-left:20px;color:var(--muted)}
     li{margin:8px 0}
+
+    /* Footer: centered, stacked */
     .footer{
       margin-top:18px;
-      padding-top:14px;
+      padding-top:18px;
       border-top:1px solid var(--line);
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:space-between;
+      flex-direction:column;
       align-items:center;
+      justify-content:center;
+      gap:14px;
       color:var(--muted);
       font-size:14px;
+      text-align:center;
     }
+    .footer a{color:inherit}
+    .footer a:hover{color:var(--text)}
+
+    /* Bottom buttons row (Contact / Examples) */
     .cta{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       align-items:center;
+      justify-content:center;
     }
     .btn{
       text-decoration:none;
@@ -99,14 +107,50 @@
       align-items:center;
     }
     .btn:hover{border-color: color-mix(in srgb, var(--accent) 45%, var(--line) 55%)}
+
     code,kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 0.95em;
       color: color-mix(in srgb, var(--text) 88%, var(--accent) 12%);
     }
+
+    /* Tip + links block */
+    .tip-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin-top:6px;
+    }
+    .tip-button{
+      padding: 12px 20px;
+      background-color: #0070ba;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Brand medallion */
+    .tsg-medallion-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-top:10px;
+    }
+    .tsg-medallion{
+      width:72px;
+      height:auto;
+      opacity:0.95;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+
     @media (max-width: 740px){
       .hero{grid-template-columns: 1fr; text-align:left}
       .grid{grid-template-columns: 1fr}
+      .badge{justify-content:center}
     }
   </style>
 </head>
@@ -179,9 +223,7 @@
 
         <div class="panel">
           <h2>Example prompt</h2>
-          <p style="margin:0;color:var(--muted)">
-            Try something like:
-          </p>
+          <p style="margin:0;color:var(--muted)">Try something like:</p>
           <p style="margin:10px 0 0;color:var(--text)">
             <code>Write a 10-item list article on: “Unexpected ways cities reuse old infrastructure.” Keep it factual and non-promotional.</code>
           </p>
@@ -192,43 +234,27 @@
       </div>
 
       <div class="footer">
-        <div>
-          <strong>Note:</strong> 
-  <!-- ========================================================= -->
-  <!-- ====================== PAYPAL AREA ====================== -->
-  <!-- ========================================================= -->
-
-  <div style="text-align:center; margin-top:30px;">
-    <a href="https://paypal.me/45dgof8" target="_blank">
-      <button style="
-        padding: 12px 20px;
-        background-color: #0070ba;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;">
-        💙 Leave a Tip
-      </button>
-    </a>
-    <p style="font-size:14px; color:#9ca3af; margin-top:8px;">
-
-    </p>
-        <p style="font-size:14px; color:#9ca3af; margin-top:8px;">
-<a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a>
-    </p>
-  </div>
-        </div>
-        <div class="cta">
-          <a class="btn" href="#contact" aria-label="Contact us">
-            <span aria-hidden="true">✉️</span><span>Contact</span>
+        <!-- Centered bottom elements -->
+        <div class="tip-wrap">
+          <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">
+            <button class="tip-button" type="button">💙 Leave a Tip</button>
           </a>
-          <a class="btn" href="#examples" aria-label="See examples">
-            <span aria-hidden="true">📄</span><span>Examples</span>
-          </a>
+
+          <div>
+            <a href="https://chatgpt.com/g/g-j1EuI5Coa" target="_blank" rel="noopener">Enter the GPT here</a>
+            &nbsp;•&nbsp;
+            <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a>
+            &nbsp;•&nbsp;
+            <a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a>
+          </div>
+
+          <!-- ================= BRAND MEDALLION ================= -->
+          <div class="tsg-medallion-wrap">
+            <img src="TSG-medallion.png" alt="TSG Medallion" class="tsg-medallion">
+          </div>
         </div>
-      </div>
     </section>
   </main>
 </body>
 </html>
+
