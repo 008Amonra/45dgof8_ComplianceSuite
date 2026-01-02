@@ -36,6 +36,7 @@
       color: white;
       padding: 2rem;
       text-align: center;
+      position: relative;
     }
     header h1 {
       margin: 0;
@@ -84,6 +85,7 @@
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .cta-buttons a {
       text-decoration: none;
@@ -93,38 +95,41 @@
       color: white;
       background: #247ba0;
     }
+
+    /* ADD: style for the centered "Open GPT" button */
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.85rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      color: white;
+      background: #247ba0;
+    }
+    .btn:hover { filter: brightness(1.05); }
+
     footer {
       text-align: center;
       font-size: 0.9rem;
       color: #777;
       padding: 2rem;
     }
+
+    /* Language visibility rules */
     [lang] { display: inline; }
-    html[lang="en"] [lang="fr"] {
-      display: none;
-    }
-    html[lang="fr"] [lang="en"] {
-      display: none;
-    }
+    html[lang="en"] [lang="fr"] { display: none; }
+    html[lang="fr"] [lang="en"] { display: none; }
   </style>
 </head>
 
 <body>
-  <div class="language-toggle">
-    <button onclick="setLanguage('en')">English</button>
-    <button onclick="setLanguage('fr')">Français</button>
-  </div>
-<script>
-  function setLanguage(lang) {
-    document.documentElement.setAttribute('lang', lang);
-  }
-</script>
-<body>
-  <div class="language-toggle">
-    <button onclick="setLanguage('en')">English</button>
-    <button onclick="setLanguage('fr')">Français</button>
-  </div>
+
   <header>
+    <div class="language-toggle">
+      <button type="button" onclick="setLanguage('en')">English</button>
+      <button type="button" onclick="setLanguage('fr')">Français</button>
+    </div>
+
     <h1>
       <span lang="en">Canadian Privacy Compliance. Simplified.</span>
       <span lang="fr">Conformité à la vie privée canadienne. Simplifiée.</span>
@@ -145,6 +150,7 @@
 
   <section>
     <h2><span lang="en">What We Do</span><span lang="fr">Ce que nous faisons</span></h2>
+
     <div class="features">
       <div class="feature">
         <h3>✅ <span lang="en">Consent Management</span><span lang="fr">Gestion du consentement</span></h3>
@@ -153,6 +159,7 @@
           <span lang="fr">Créez, suivez et validez le consentement des utilisateurs — implicite ou explicite — avec des outils prêts pour l'audit.</span>
         </p>
       </div>
+
       <div class="feature">
         <h3>📦 <span lang="en">Data Portability</span><span lang="fr">Portabilité des données</span></h3>
         <p>
@@ -160,6 +167,7 @@
           <span lang="fr">Exportez les données utilisateur dans des formats standardisés et conviviaux sur demande.</span>
         </p>
       </div>
+
       <div class="feature">
         <h3>🚨 <span lang="en">Breach Notification</span><span lang="fr">Notification de violation</span></h3>
         <p>
@@ -167,6 +175,7 @@
           <span lang="fr">Obtenez des conseils instantanés sur la gravité des violations, les délais de déclaration et la communication.</span>
         </p>
       </div>
+
       <div class="feature">
         <h3>🔒 <span lang="en">Privacy by Design</span><span lang="fr">Confidentialité intégrée</span></h3>
         <p>
@@ -174,6 +183,7 @@
           <span lang="fr">Intégrez des principes de conception axés sur la confidentialité dans vos développements et opérations.</span>
         </p>
       </div>
+
       <div class="feature">
         <h3>🌐 <span lang="en">Quebec Law 25 Tools</span><span lang="fr">Outils pour la Loi 25 du Québec</span></h3>
         <p>
@@ -183,12 +193,12 @@
       </div>
     </div>
 
-    <center>
-      <a class="btn" href="https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425-45dgof8-canada-pipeda-compliance-gpt" target="_blank">
+    <div style="text-align:center; margin: 18px 0 6px;">
+      <a class="btn" href="https://chatgpt.com/g/g-677a2b985e3c8191a73dff182cd1c425-45dgof8-canada-pipeda-compliance-gpt" target="_blank" rel="noopener">
         <span lang="en">Open Canada PIPEDA Compliance GPT</span>
         <span lang="fr">Ouvrir le GPT de conformité PIPEDA Canada</span>
       </a>
-    </center>
+    </div>
 
     <h2><span lang="en">Who We Help</span><span lang="fr">Qui nous aidons</span></h2>
     <p>
@@ -202,6 +212,7 @@
         <span lang="en">No legal team required. No guesswork. Just results.</span>
         <span lang="fr">Pas besoin d'équipe juridique. Pas d'approximations. Juste des résultats.</span>
       </p>
+
       <div class="cta-buttons">
         <a href="mailto:45dgof8@gmail.com">
           <span lang="en">Contact Us</span>
@@ -215,10 +226,12 @@
         <span lang="en">Welcome to 45dgof8 Canada PIPEDA Compliance GPT</span>
         <span lang="fr">Bienvenue sur 45dgof8 GPT de conformité à la LPRPDE</span>
       </h2>
+
       <p style="max-width: 720px; margin: 0 auto;">
         <span lang="en">Automates Canada’s data compliance with scalable tools for consent, breach, and privacy-by-design.</span>
         <span lang="fr">Automatise la conformité des données au Canada avec des outils adaptables pour le consentement, les violations et la confidentialité dès la conception.</span>
       </p>
+
       <p>
         <span lang="en">Translations on this site may be generated using automated services or AI tools. Accuracy is not guaranteed. <strong>Use of translated content is at your own risk.</strong></span>
         <span lang="fr">Les traductions sur ce site peuvent être générées à l'aide de services automatisés ou d'outils d'IA. L'exactitude n'est pas garantie. <strong>L'utilisation du contenu traduit se fait à vos risques.</strong> En cas de divergence, les versions anglaise et française prévalent.</span>
@@ -226,20 +239,22 @@
     </div>
   </section>
 
-<footer>
-  <img
-    src="TSG-medallion.png"
-    alt="TSG Medallion"
-    style="width:72px;height:auto;margin:12px auto 8px;opacity:.95;display:block;"
-  >
-  <div>&copy; 2025 45dgof8 – Canadian Privacy Compliance Platform</div>
-</footer>
+  <footer>
+    <img
+      src="TSG-medallion.png"
+      alt="TSG Medallion"
+      style="width:72px;height:auto;margin:12px auto 8px;opacity:.95;display:block;"
+    >
+    <div>&copy; 2025 45dgof8 – Canadian Privacy Compliance Platform</div>
+  </footer>
+
   <script>
     function setLanguage(lang) {
       document.documentElement.setAttribute('lang', lang);
     }
-    // Set default language
+    // default language:
     setLanguage('en');
   </script>
+
 </body>
 </html>
