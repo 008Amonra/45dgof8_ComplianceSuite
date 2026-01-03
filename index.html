@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="/00CH.webp">
+  <link rel="preload" as="image" href="/Eva.webp">
   <!-- NOTE: If you see unexpected URL behavior, consider removing the base tag below. -->
   <base href="https://45dgof8.com/">
 
@@ -99,7 +101,7 @@
 
     body, html { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; background: linear-gradient(to bottom right, #2d2a4e, #5e548e); color: white; }
     .split-screen { display: flex; height: 100vh; width: 100vw; }
-    .image-section { width: 50%; background-size: cover; background-position: center; }
+    .image-section {width: 50%; min-height: 100vh; background: url('/00CH.webp') center / cover no-repeat;}
     .content-section { width: 50%; padding: 20px; overflow-y: auto; }
     .graphic-eight { position: absolute; top: 159px; left: 50%; transform: translateX(-50%); font-size: 72px; font-weight: bold; color: #ffffffaa; cursor: pointer; z-index: 10; }
     iframe#creativeFrame { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; border: none; display: none; z-index: 999; }
@@ -172,7 +174,7 @@
       '/00CH.webp', '/Eva.webp', '/nn20.webp', '/HHyzT.webp', '/Lirien.webp', '/aUJG.webp', '/ghNB.webp', '/eva_2025.webp',
     ];
     const randomIndex = Math.floor(Math.random() * images.length);
-    document.getElementById("randomImage").style.backgroundImage = `url('${images[randomIndex]}')`;
+    const imgEl = document.getElementById("randomImage");if (imgEl) {imgEl.style.backgroundImage = `url('${images[randomIndex]}')`;}
 
     document.getElementById("infinity8").addEventListener("click", function () {
       const frame = document.getElementById("creativeFrame");
