@@ -31,7 +31,7 @@ alert("TSG Prompt Forge JS loaded");
   { id: "fantasy_realism",  label: "Fantasy realism",            text: "mythical yet gentle fantastical atmosphere, rich painterly detail" },
   { id: "pixel_art",        label: "Pixel art adventure",        text: "8-bit pixel art style, retro colors, nostalgic adventure feeling" },
   { id: "magical_realism",  label: "Magical realism tableau",    text: "soft surreal imagery blended with realism, dreamlike calm" },
-  { id: "underwater",       label: "Underwater fantasy",         text: "ethereal underwater environment, soft glowing creatures, peaceful ambience" },
+  { id: "on the Beach",     label: "Beachlife",                  text: "doing anything one does on the beach" },
   { id: "fashion_vintage",  label: "Vintage fashion portfolio",  text: "classic mid-century fashion photography, elegant styling" },
   { id: "holoconcept",      label: "Holographic concept art",    text: "translucent holographic effects, volumetric light, futuristic color blending" },
   { id: "mythic_ink",       label: "Mythic ink illustration",    text: "handcrafted ink style, elegant linework, mythical motifs" },
@@ -187,17 +187,21 @@ subjects: [
       { id: "retro_synth_scene",     label: "Retro synthwave grid",     text: "standing on a retro synthwave neon grid surrounded by magenta and cyan glow" },
 
       { id: "fantasy_realism_scene", label: "Fantasy realism",          text: "inside a dreamlike fantasy world with mythical elements and rich colors" },
-      { id: "gothic_dark fantasy",   label: "Gothic dark fantasy",      text: "in a dark gothic environment with ominous architecture and eerie lighting" },
+      { id: "gothic fantasy",        label: "Gothic fantasy",           text: "in a gothic environment with ominous architecture and eerie lighting" },
       { id: "steampunk_industrial_scene", label: "Steampunk industrial",text: "in a gritty steampunk industrial setting with Victorian machinery and smoky atmosphere" },
       { id: "future_tech_scene",     label: "Future tech city",         text: "inside a sleek futuristic city with advanced technology and glowing neon structures" },
 
       { id: "fantasy_landscape_scene", label: "Fantasy landscape",      text: "in a lush fantasy landscape with ethereal lighting and mystical creatures" },
-      { id: "dark_photomontage_scene", label: "Dark photomontage",  text: "inside a sinister Dark scene with unnerving shadows and high-contrast details" },
+
       { id: "steampunk_fantasy_scene", label: "Steampunk fantasy",      text: "in a whimsical steampunk fantasy world of brass, iron, and Victorian technology" },
       { id: "pixel_adventure_scene", label: "Pixel art adventure",      text: "inside an 8-bit pixel art world with retro landscapes and blocky characters" },
-
+    // New
+      { id: "open_sea",              label: "Open sea",                 text: "on a calm open sea under a wide luminous sky, gentle waves, peaceful horizon" },
+      { id: "floating_platform",     label: "Floating platform",        text: "on a quiet floating platform above water, soft reflections, tranquil atmosphere" },
+      { id: "sunlit_city",           label: "Sunlit future city",       text: "in a bright future city with open spaces, clean architecture, gentle activity" },
+      { id: "studio_light",          label: "Light studio",             text: "in a softly lit neutral environment with clean background and calm focus" },
       { id: "magical_realism_scene", label: "Magical realism tableau",  text: "in a surreal magical realism tableau with dreamlike imagery and fantastical elements" },
-      { id: "postapocalyptic_scene", label: "Post-apocalyptic diorama", text: "in a desolate post-apocalyptic setting with crumbling buildings and dystopian atmosphere" },
+      { id: "Techno_Party",          label: "People at a wild Party",   text: "SaturdayNight, Dancefloor, Lasershow, Heavy Bassdrums, hundreds of people dancing,let the bass kick!"},  
       { id: "baroque_scene",         label: "Baroque architecture",     text: "inside ornate Baroque architecture with intricate details and opulent colors" },
       { id: "neonoir_city_scene",    label: "Neo-noir cityscape",       text: "in a dark neo-noir city with dimly lit streets and mysterious atmosphere" },
       { id: "underwater_scene",      label: "Underwater fantasy",       text: "in an ethereal underwater realm with bioluminescent creatures and surreal lighting" },
