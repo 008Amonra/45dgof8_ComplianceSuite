@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>45dgof8 - LinguaNode™</title>
+  <meta name="description" content="LinguaNode™ detects language, translates accurately, and routes messages to the right system—beautifully and reliably." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Social -->
+  <meta property="og:title" content="45dgof8 - LinguaNode™" />
+  <meta property="og:description" content="Translate anything—responsibly. Detection, translation, routing, and cultural notes." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1220;
+      --ink:#EAF0FF;
+      --muted:#A9B6D3;
+      --line:rgba(234,240,255,.12);
+      --shadow: 0 12px 34px rgba(0,0,0,.45);
+      --shadow2: 0 10px 22px rgba(0,0,0,.35);
+      --r:22px;
+      --r2:16px;
+      --accent1:#6D5EF8;
+      --accent2:#12D6DF;
+      --accent3:#FF5DA7;
+      --glow: 0 0 0 1px rgba(255,255,255,.10), 0 24px 80px rgba(109,94,248,.18);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1000px 600px at 15% 10%, rgba(109,94,248,.23), transparent 60%),
+        radial-gradient(900px 700px at 85% 20%, rgba(18,214,223,.18), transparent 55%),
+        radial-gradient(900px 900px at 60% 95%, rgba(255,93,167,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, #070A12);
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(1120px, 92vw); margin:0 auto; }
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter:saturate(140%) blur(12px);
+      background: linear-gradient(180deg, rgba(7,10,18,.78), rgba(7,10,18,.40));
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; letter-spacing:.2px; }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background:
+        radial-gradient(14px 14px at 25% 30%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, rgba(109,94,248,.95), rgba(18,214,223,.88));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 16px 40px rgba(109,94,248,.22);
+      position:relative; overflow:hidden;
+    }
+    .logo:after{
+      content:""; position:absolute; inset:-60% -30%;
+      background: radial-gradient(circle at 60% 40%, rgba(255,93,167,.45), transparent 55%);
+      transform:rotate(20deg);
+    }
+    .brand .name{ display:flex; flex-direction:column; line-height:1.05; }
+    .brand .name b{ font-size:14px; font-weight:700; }
+    .brand .name span{ font-size:12px; color:var(--muted); }
+
+    nav{ display:flex; align-items:center; gap:18px; }
+    nav a{
+      font-size:13px; color:var(--muted);
+      padding:8px 10px; border-radius:10px;
+      transition: all .2s ease;
+    }
+    nav a:hover{ color:var(--ink); background:rgba(255,255,255,.06); }
+
+    .cta{ display:flex; gap:10px; align-items:center; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px; border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--ink);
+      font-size:13px; font-weight:650;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); }
+    .btn.primary{
+      border-color: rgba(109,94,248,.55);
+      background: linear-gradient(135deg, rgba(109,94,248,.92), rgba(18,214,223,.72));
+      box-shadow: var(--glow);
+    }
+    .btn.primary:hover{ transform: translateY(-2px); }
+    .btn .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:rgba(255,255,255,.85);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.16);
+    }
+
+    /* Hero */
+    header.hero{ padding:64px 0 36px; position:relative; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns:1fr; }
+      nav{ display:none; }
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      width:fit-content;
+    }
+    .kicker .pill{
+      padding:3px 8px;
+      border-radius:999px;
+      background:rgba(109,94,248,.22);
+      border:1px solid rgba(109,94,248,.35);
+      color:rgba(234,240,255,.95);
+      font-weight:650;
+      font-size:11px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height:1.03;
+      letter-spacing:-.03em;
+    }
+    .subtitle{
+      margin:0 0 18px;
+      font-size:16px;
+      color:var(--muted);
+      max-width: 58ch;
+    }
+    .subtitle b{ color:rgba(234,240,255,.92); font-weight:650; }
+    .hero-actions{
+      display:flex; flex-wrap:wrap;
+      gap:10px; align-items:center;
+      margin: 18px 0 16px;
+    }
+    .micro{
+      color:rgba(169,182,211,.9);
+      font-size:12px;
+      display:flex; gap:10px; align-items:flex-start;
+      margin-top: 12px;
+    }
+    .micro svg{ flex:0 0 auto; margin-top:2px; opacity:.9; }
+    .divider{
+      height:1px; background: var(--line);
+      margin: 18px 0 0;
+    }
+
+    .legend{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 920px){
+      .legend{ grid-template-columns:1fr; }
+    }
+    .legend .item{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding:10px 12px;
+      display:flex; gap:10px; align-items:flex-start;
+      box-shadow: var(--shadow2);
+    }
+    .icon{
+      width:28px; height:28px; border-radius:10px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+    }
+    .item b{ display:block; font-size:13px; }
+    .item span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+
+    /* Cards / demo */
+    .card{
+      border-radius: var(--r);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card .pad{ padding:18px; }
+    .card-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-bottom: 10px;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .chip .spark{
+      width:9px; height:9px; border-radius:99px;
+      background:linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(18,214,223,.12);
+    }
+    .demo{
+      border-radius: var(--r2);
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+    }
+    .demo .row{
+      display:flex; gap:12px; align-items:center;
+      padding:12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .demo .row:last-child{ border-bottom:none; }
+    .badge{
+      font-family:var(--mono);
+      font-size:11px;
+      color:rgba(234,240,255,.92);
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      white-space:nowrap;
+    }
+    .demo .text{
+      color:rgba(234,240,255,.88);
+      font-size:12px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      flex:1;
+    }
+    pre{
+      margin:0;
+      padding:14px;
+      font-family:var(--mono);
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      line-height:1.5;
+      overflow:auto;
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom: 14px;
+    }
+    h2{ margin:0; font-size:22px; letter-spacing:-.015em; }
+    .lead{ color:var(--muted); margin: 0; font-size:13px; max-width: 70ch; }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 920px){ .grid3{ grid-template-columns:1fr; } }
+    .feature{
+      padding:16px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .feature:before{
+      content:"";
+      position:absolute; inset:-60% -60%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(109,94,248,.16), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(18,214,223,.12), transparent 52%),
+        radial-gradient(circle at 55% 80%, rgba(255,93,167,.10), transparent 55%);
+      pointer-events:none;
+    }
+    .feature .fhead{
+      display:flex; align-items:center; gap:10px;
+      margin-bottom:8px;
+      position:relative;
+    }
+    .feature p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      position:relative;
+    }
+    .feature .tag{
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:rgba(234,240,255,.88);
+      font-family:var(--mono);
+    }
+
+    /* Artwork “picture” container */
+    .hero-art{ position:relative; min-height: 440px; }
+    .hero-art .card{ height:100%; }
+    .art-wrap{ position:absolute; inset:0; display:grid; place-items:center; padding: 10px; }
+    .art-caption{
+      position:absolute; left:16px; right:16px; bottom:14px;
+      display:flex; justify-content:space-between; gap:10px; align-items:flex-end;
+      color:rgba(234,240,255,.86);
+    }
+    .art-caption small{ color:var(--muted); display:block; margin-top:3px; }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 40px;
+      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .foot a{ color:rgba(234,240,255,.80); border-bottom:1px solid rgba(234,240,255,.22); }
+    .foot a:hover{ color:rgba(234,240,255,.95); }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap inner">
+      <a class="brand" href="#top" aria-label="LinguaNode home">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="name">
+          <b>45dgof8 · LinguaNode<span style="opacity:.9;">™</span></b>
+          <span>Multilingual processing · translation · routing</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <a href="#what">What it does</a>
+        <a href="#how">How it works</a>
+        <a href="#output">Output</a>
+        <a href="#integrate">Integrate</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#integrate">Documentation</a>
+        <a class="btn primary" href="#contact"><span class="dot"></span> Request access</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="pill">Translate anything</span>
+            <span>— responsibly, with real-world workflows.</span>
+          </div>
+
+          <h1>Language in. Meaning out.<br/>Everything else… handled.</h1>
+
+          <p class="subtitle">
+            <b>LinguaNode™</b> detects language + dialect, translates with high fidelity, and routes messages to the right systems.
+            It’s built for reality: translations can involve <b>review, terminology, and domain work</b>—so we surface what’s needed
+            to get it right.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact"><span class="dot"></span> Start a pilot</a>
+            <a class="btn" href="#how">See the workflow</a>
+            <a class="btn" href="#output">View JSON output</a>
+          </div>
+
+          <div class="micro">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2.5c5.2 0 9.5 4.3 9.5 9.5S17.2 21.5 12 21.5 2.5 17.2 2.5 12 6.8 2.5 12 2.5Z" stroke="rgba(234,240,255,.55)" stroke-width="1.5"/>
+              <path d="M12 7v6l4 2" stroke="rgba(234,240,255,.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <div><b>Quality first</b>, even if it takes a little work.</div>
+              <div style="margin-top:4px;">We flag ambiguity, suggest clarifications, and support human review when it matters.</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="legend" aria-label="Highlights">
+            <div class="item">
+              <div class="icon" aria-hidden="true">🌍</div>
+              <div><b>All languages</b><span>Detects language + dialect and keeps the original intact.</span></div>
+            </div>
+            <div class="item">
+              <div class="icon" aria-hidden="true">🧭</div>
+              <div><b>Smart routing</b><span>Sends each message to the right system, team, or GPT—automatically.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Demo + Picture -->
+        <div class="hero-art" aria-label="Artwork and live example">
+          <div class="card">
+            <div class="pad card-title">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <b style="font-size:14px;">Live pipeline preview</b>
+                <span style="font-size:12px; color:var(--muted);">Detection → Translation → Notes → Routing</span>
+              </div>
+              <div class="chip"><span class="spark"></span> running</div>
+            </div>
+
+            <div class="pad">
+              <div class="demo" role="region" aria-label="Demo messages">
+                <div class="row">
+                  <span class="badge">IN · 日本語</span>
+                  <div class="text">「この文章を英語にして、丁寧さはそのままでお願いします。」</div>
+                </div>
+                <div class="row">
+                  <span class="badge">IN · العربية</span>
+                  <div class="text">«أحتاج ترجمة دقيقة مع ملاحظة عن السياق الثقافي.»</div>
+                </div>
+                <div class="row">
+                  <span class="badge">IN · Deutsch</span>
+                  <div class="text">„Bitte übersetzen, aber Fachbegriffe konsistent halten.“</div>
+                </div>
+              </div>
+
+              <div style="height:12px"></div>
+
+              <div class="demo" role="region" aria-label="Output snippet">
+                <pre>{
+  "original_language": "Japanese",
+  "target_language": "English",
+  "translated_text": "Please translate this into English while keeping the same level of politeness.",
+  "notes": "Politeness preserved; add a domain glossary if this is for documentation.",
+  "route_to": "support-intake"
+}</pre>
+              </div>
+            </div>
+
+            <!-- Built-in picture (inline SVG artwork, no external files needed) -->
+            <div class="art-wrap" aria-hidden="true">
+              <svg width="100%" height="100%" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet" style="opacity:.55; filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));">
+                <defs>
+                  <radialGradient id="g1" cx="30%" cy="25%" r="70%">
+                    <stop offset="0%" stop-color="rgba(109,94,248,.55)"/>
+                    <stop offset="60%" stop-color="rgba(109,94,248,.12)"/>
+                    <stop offset="100%" stop-color="rgba(109,94,248,0)"/>
+                  </radialGradient>
+                  <radialGradient id="g2" cx="70%" cy="20%" r="75%">
+                    <stop offset="0%" stop-color="rgba(18,214,223,.45)"/>
+                    <stop offset="55%" stop-color="rgba(18,214,223,.12)"/>
+                    <stop offset="100%" stop-color="rgba(18,214,223,0)"/>
+                  </radialGradient>
+                  <radialGradient id="g3" cx="55%" cy="80%" r="80%">
+                    <stop offset="0%" stop-color="rgba(255,93,167,.35)"/>
+                    <stop offset="55%" stop-color="rgba(255,93,167,.10)"/>
+                    <stop offset="100%" stop-color="rgba(255,93,167,0)"/>
+                  </radialGradient>
+                  <linearGradient id="stroke" x1="0" x2="1">
+                    <stop offset="0%" stop-color="rgba(109,94,248,.85)"/>
+                    <stop offset="50%" stop-color="rgba(18,214,223,.85)"/>
+                    <stop offset="100%" stop-color="rgba(255,93,167,.75)"/>
+                  </linearGradient>
+                </defs>
+
+                <circle cx="190" cy="130" r="220" fill="url(#g1)"/>
+                <circle cx="470" cy="120" r="240" fill="url(#g2)"/>
+                <circle cx="360" cy="380" r="280" fill="url(#g3)"/>
+
+                <!-- Network lines -->
+                <g fill="none" stroke="url(#stroke)" stroke-width="2" opacity=".95">
+                  <path d="M110 270 C 200 180, 310 200, 360 130" />
+                  <path d="M110 270 C 220 330, 320 360, 470 300" />
+                  <path d="M360 130 C 420 200, 450 230, 470 300" />
+                  <path d="M220 190 C 260 240, 310 260, 360 240" />
+                  <path d="M360 240 C 410 255, 440 270, 470 300" />
+                  <path d="M220 190 C 185 230, 155 250, 110 270" />
+                </g>
+
+                <!-- Nodes -->
+                <g>
+                  <circle cx="110" cy="270" r="16" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)"/>
+                  <circle cx="220" cy="190" r="14" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)"/>
+                  <circle cx="360" cy="130" r="18" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)"/>
+                  <circle cx="360" cy="240" r="15" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)"/>
+                  <circle cx="470" cy="300" r="18" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)"/>
+
+                  <circle cx="110" cy="270" r="5" fill="rgba(234,240,255,.85)"/>
+                  <circle cx="220" cy="190" r="5" fill="rgba(234,240,255,.85)"/>
+                  <circle cx="360" cy="130" r="6" fill="rgba(234,240,255,.85)"/>
+                  <circle cx="360" cy="240" r="5" fill="rgba(234,240,255,.85)"/>
+                  <circle cx="470" cy="300" r="6" fill="rgba(234,240,255,.85)"/>
+                </g>
+
+                <!-- Labels -->
+                <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+                   font-size="12" fill="rgba(234,240,255,.88)">
+                  <text x="92" y="305">IN</text>
+                  <text x="202" y="222">ID</text>
+                  <text x="338" y="110">TR</text>
+                  <text x="340" y="275">NT</text>
+                  <text x="448" y="334">RT</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="art-caption">
+              <div>
+                <b style="font-size:12px;">A translation node, not just a translator</b>
+                <small>It can ask clarifying questions, apply glossaries, and route outcomes.</small>
+              </div>
+              <div class="chip" title="Workflow aware"><span class="spark"></span> human-ready</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="what">
+      <div class="section-head">
+        <div>
+          <h2>What LinguaNode™ does</h2>
+          <p class="lead">Translation is the visible part. The useful part is everything around it: detection, context, routing, and accountability.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">🗺️</div>
+            <div>
+              <b>Detect + normalize</b>
+              <div class="tag">language · dialect · script</div>
+            </div>
+          </div>
+          <p>Identifies language, dialect, and script. Keeps the original intact and produces reliable metadata for downstream systems.</p>
+        </div>
+
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">🧠</div>
+            <div>
+              <b>Translate with intent</b>
+              <div class="tag">tone · register · domain</div>
+            </div>
+          </div>
+          <p>Optimizes for meaning, tone, and audience—not word-for-word artifacts. Supports glossaries and domain consistency.</p>
+        </div>
+
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">📮</div>
+            <div>
+              <b>Route the outcome</b>
+              <div class="tag">automation · teams · GPTs</div>
+            </div>
+          </div>
+          <p>Routes translated messages to the right tool, inbox, or agent. Great for support, onboarding, compliance, and intake.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="section-head">
+        <div>
+          <h2>How it works (in the real world)</h2>
+          <p class="lead">“Translate anything” is the promise. “Get it right” is the work. We make that work visible and manageable.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">🔍</div>
+            <div>
+              <b>Confidence + questions</b>
+              <div class="tag">clarify when needed</div>
+            </div>
+          </div>
+          <p>If text is ambiguous, we’ll flag it and suggest a quick clarification. Better one question now than one mistake later.</p>
+        </div>
+
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">📚</div>
+            <div>
+              <b>Terminology control</b>
+              <div class="tag">glossary support</div>
+            </div>
+          </div>
+          <p>For product names, legal phrasing, or technical terms, a glossary keeps translations consistent across channels.</p>
+        </div>
+
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">🧑‍⚖️</div>
+            <div>
+              <b>Human-in-the-loop</b>
+              <div class="tag">review paths</div>
+            </div>
+          </div>
+          <p>For high-stakes content, route to a reviewer or team. Notes explain choices, edge cases, and recommended follow-ups.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="output">
+      <div class="section-head">
+        <div>
+          <h2>Output format</h2>
+          <p class="lead">Machine-friendly for automation, human-friendly for review.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="pad">
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-bottom:10px;">
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <b style="font-size:14px;">Canonical JSON</b>
+              <span style="font-size:12px; color:var(--muted);">Original + translation + notes + routing signal</span>
+            </div>
+            <span class="chip"><span class="spark"></span> stable schema</span>
+          </div>
+          <div class="demo">
+            <pre>{
+  "original_language": "Yucatec Maya",
+  "target_language": "Spanish",
+  "translated_text": "Aquí están tus derechos de privacidad...",
+  "notes": "Cultural adjustments were applied based on common usage in Yucatán region.",
+  "route_to": "policy-support"
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="integrate">
+      <div class="section-head">
+        <div>
+          <h2>Integrate on 45dgof8.com</h2>
+          <p class="lead">This page is a single file—drop it on your server and link it from your homepage. No build step required.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">⚡</div>
+            <div>
+              <b>Zero-dependency</b>
+              <div class="tag">static HTML</div>
+            </div>
+          </div>
+          <p>Works on any host (Nginx, Apache, S3, Pages). No external JS, fonts, or build tooling required.</p>
+        </div>
+
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">🔒</div>
+            <div>
+              <b>Privacy-friendly</b>
+              <div class="tag">no trackers here</div>
+            </div>
+          </div>
+          <p>This template ships without analytics. Add only what you want—and keep it clear to users.</p>
+        </div>
+
+        <div class="feature">
+          <div class="fhead">
+            <div class="icon" aria-hidden="true">🧩</div>
+            <div>
+              <b>Easy to extend</b>
+              <div class="tag">API-ready</div>
+            </div>
+          </div>
+          <p>Swap the email CTA for a real intake form and backend route whenever you’re ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card">
+        <div class="pad">
+          <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
+            <div style="max-width: 70ch;">
+              <h2 style="margin:0 0 6px;">Ready to translate anything (the right way)?</h2>
+              <p class="lead" style="margin:0;">
+                Run a pilot: pick 2–3 languages, one domain (support / legal / onboarding), and a glossary if you have it.
+                We’ll set up a workflow that matches your quality bar.
+              </p>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <a class="btn primary" href="mailto:hello@45dgof8.com?subject=LinguaNode%20Pilot%20Request"><span class="dot"></span> Email: hello@45dgof8.com</a>
+              <a class="btn" href="#top">Back to top</a>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:12px;">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <span class="chip">Suggested CTA: “Request access”</span>
+              <span class="chip">Alternative: “Start a pilot”</span>
+              <span class="chip">Alternative: “Talk to us”</span>
+            </div>
+            <span style="font-size:12px; color:var(--muted);">© <span id="y"></span> 45dgof8. LinguaNode™</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <div><b style="color:rgba(234,240,255,.92);">45dgof8 · LinguaNode™</b></div>
+          <div style="margin-top:3px;">Multilingual processing · translation · routing</div>
+        </div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#output">Schema</a>
+          <a href="#how">Workflow</a>
+          <a href="#integrate">Integrate</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
