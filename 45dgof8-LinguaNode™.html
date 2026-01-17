@@ -747,6 +747,51 @@
     </footer>
   </main>
 
+  <section id="interested">
+  <div class="card">
+    <div class="pad">
+      <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;">
+        <div style="max-width: 70ch;">
+          <h2 style="margin:0 0 6px;">Interested?</h2>
+          <p class="lead" style="margin:0;">
+            Leave your email. We’ll review it and get back to you within
+            <b>2 business days</b>.
+          </p>
+          <p style="margin:6px 0 0; font-size:12px; color:var(--muted);">
+            No spam. No automation loops. Just a real reply.
+          </p>
+        </div>
+
+        <form
+          action="mailto:45dgof8@gmail.com?subject=LinguaNode%20Access%20Request"
+          method="post"
+          enctype="text/plain"
+          style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="you@company.com"
+            required
+            style="
+              padding:12px 14px;
+              border-radius:14px;
+              border:1px solid var(--line);
+              background:rgba(255,255,255,.06);
+              color:var(--ink);
+              font-size:13px;
+              min-width:240px;
+            "
+          />
+          <button class="btn primary" type="submit">
+            <span class="dot"></span> Request access
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
