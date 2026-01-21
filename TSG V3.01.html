@@ -1664,7 +1664,8 @@
   document.body.appendChild(host);
 })();
 </script>
-<center><section id="contact">
+<center>
+<section id="contact">
   <h2>Contact</h2>
 
   <p>
@@ -1672,10 +1673,15 @@
     you can reach out here. Please describe your situation briefly.
   </p>
 
- <p>
-  45dgof8 [at] gmail [dot] com
-</p>
+  <p>
+    45dgof8 [at] gmail [dot] com
+  </p>
 
+  <form
+    action="mailto:45dgof8@gmail.com"
+    method="post"
+    enctype="text/plain"
+  >
     <label for="name">Name</label><br>
     <input type="text" id="name" name="name" required><br><br>
 
@@ -1686,9 +1692,9 @@
     <textarea id="message" name="message" rows="6" required></textarea><br><br>
 
     <button type="submit">Send</button>
-
   </form>
-</section></center>
+</section>
+</center>
 
 </body>
 </html>
