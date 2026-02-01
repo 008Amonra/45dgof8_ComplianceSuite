@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>TSG V3.01 – AI System Support Hub</title>
+  <title>TSG – AI System Support Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="TSG – an AI-powered system support hub for Linux, Windows, and macOS with clear, skill-level-aware guidance, smart tips, and local favorites.">
   <meta name="robots" content="index,follow" />
@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Social -->
-  <meta property="og:title" content="TSG V3.01 – AI System Support Hub" />
+  <meta property="og:title" content="TSG – AI System Support Hub" />
   <meta property="og:description" content="Tech support for Linux, Windows, and macOS – with skill levels, categories, favorites, and rotating tips." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://45dgof8.com/TSG-tech-support-gpt.html" />
@@ -293,6 +293,43 @@
       box-shadow:var(--shadow);
       justify-self:center;
     }
+    /* Hero must allow absolutely positioned elements */
+.hero {
+  position: relative;
+}
+
+/* Vertical ad column */
+
+
+/* Individual ad box */
+.ad-slot {
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #fff;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Typography */
+.ad-slot strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.ad-slot small {
+  display: block;
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+}
+
+/* Hide ads on mobile */
+@media (max-width: 900px) {
+ 
 
 
     /* ====== TIP PANEL ====== */
@@ -692,16 +729,80 @@
       .tip-panel {
         padding-bottom:14px;
       }
+      /* optional medallion inline usage if ever needed */
       .tsg-medallion-wrap {
-      text-align: center;
-      margin-top: 20px;
+        text-align: center;
+        margin-top: 20px;
       }
       .tsg-medallion {
-      width: 240px;
-      height: auto;
-      display: inline-block;
+        width: 240px;
+        height: auto;
+        display: inline-block;
       }
     }
+    /* ===== FLOATING ETSY PHOENIX AD ===== */
+.etsy-float {
+  position: fixed;
+  right: 20px;
+  bottom: 110px; /* stays above EVA / teleport */
+  width: 260px;
+  background: rgba(10,14,24,.92);
+  border-radius: 16px;
+  border: 1px solid rgba(255,213,74,.45);
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+  z-index: 1200;
+  color: #fff;
+  font-size: 14px;
+}
+
+.etsy-head {
+  cursor: move;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255,213,74,.25), transparent);
+  border-radius: 16px 16px 0 0;
+  font-weight: 700;
+}
+
+.etsy-actions button {
+  background: none;
+  border: none;
+  color: #ffd54a;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.etsy-body {
+  padding: 12px;
+}
+
+.etsy-body img {
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.etsy-body a {
+  display: block;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #ffd54a;
+  color: #1b1b1b;
+  font-weight: 800;
+}
+
+.etsy-float.minimized .etsy-body {
+  display: none;
+}
+
+@media (max-width: 880px) {
+  .etsy-float {
+    display: none;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -752,17 +853,7 @@
         <span>🖥️ OS-aware guidance</span>
         <span>🛡️ Security-first suggestions</span>
         <span>⭐ Favorites saved locally</span>
-        <span>⚙️ Prompt Forge moved to its own lab</span>
       </div>
-
-      <!-- Prompt Forge CTA (instead of full builder) -->
-      <div style="margin-top:14px;">
-        <a class="btn" href="tsg_prompt_forge_subpage.html">
-          🔨 Open Prompt Forge (image prompt lab)
-        </a>
-      </div>
-    
-      <img src="https://45dgof8.com/phoenix-circuit-mug.webp" alt="phoenix-circuit" style="max-width:200px;">
 
       <!-- TIP PANEL -->
       <div class="tip-panel" aria-live="polite" id="tipPanel">
@@ -814,90 +905,33 @@
           <div class="favorites-list" id="favoritesList"></div>
         </div>
       </div>
+
       <noscript>
         <p class="card" style="margin-top:12px;">
           ⚠️ JavaScript is disabled, so dynamic tips and favorites are offline.
           Enable JS for rotating OS-specific tips and command copy helpers.
         </p>
       </noscript>
-
-<div class="card merch-card">style="
-  margin-top:16px;
-  border:1px dashed rgba(255,213,74,.45);
-  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.15));
-">
-
-  <h3 style="margin-top:0;">☕ Creator merch</h3>
-
-  <img
-    src="https://45dgof8.com/phoenix-circuit-mug.webp"
-    alt="Phoenix Circuit ceramic mug"
-    style="
-      width:100%;
-      max-width:220px;
-      display:block;
-      margin:10px auto 12px auto;
-      border-radius:10px;
-      box-shadow:0 6px 18px rgba(0,0,0,.4);
-    "
-    loading="lazy"
-  >
-
-  <p style="font-size:13px; color:var(--muted); margin-bottom:10px; text-align:center;">
-    Focus fuel for long debugging sessions.
-  </p>
-
-  <a
-    href="https://www.etsy.com/listing/4396595790/black-glossy-ceramic-cup-phoenix-circuit"
-    target="_blank"
-    rel="noopener"
-    class="btn"
-    style="display:inline-flex; align-items:center; gap:8px; margin:0 auto;"
-  >
-    🔥 Phoenix Circuit Mug
-  </a>
-
-  <p style="font-size:12px; opacity:.7; margin-top:8px; text-align:center;">
-    Opens Etsy in a new tab
-  </p>
 </div>
 
-    </div>
+</div> <!-- closes .hero-card properly -->
 
-    <div class="hero-img-wrap">
-      <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" alt="TSG Tech Support GPT hero illustration" loading="lazy" decoding="async" width="1200" height="600">
-    </div>
-  </section>
+
+
+<div class="hero-img-wrap">
+  <img class="hero-img" src="https://45dgof8.com/TSG-TechSupport-GPT.webp" 
+       alt="TSG Tech Support GPT hero illustration" 
+       loading="lazy" decoding="async" width="1200" height="600">
+</div>
+
+</section> <!-- closes the hero section correctly -->
+
 
   <!-- WHAT'S NEW IN 3.01 -->
   <section class="section" aria-labelledby="h-whatsnew">
     <div class="section-header">
-      <h2 id="h-whatsnew">What’s new in TSG V3.01</h2>
-      <p>Same spirit, cleaner layout. TSG 3.01 focuses on stability, clarity, and giving Prompt Forge its own dedicated lab.</p>
-    </div>
-    <div class="grid two">
-      <div class="card">
-        <h3>✨ Clean hybrid layout</h3>
-        <ul>
-          <li>Kept the signature TSG gradients, glow, gem, and teleport dock.</li>
-          <li>Removed heavy in-page extras to keep things focused.</li>
-          <li>Improved structure so it’s easier to maintain and extend.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>🧪 Prompt Forge moves out</h3>
-        <ul>
-          <li>Prompt Forge now lives on its own subpage.</li>
-          <li>This page stays focused on system support and live tips.</li>
-          <li>The hero button takes you straight to the image prompt builder.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS / FLOW -->
-  <section class="section" aria-labelledby="h-how">
-    <div class="section-header">
+      <h2 id="h-whatsnew">What’s new in TSG - Tech Support GPT </h2>
+  
       <h2 id="h-how">How TSG wants to help</h2>
       <p>From “I’m stuck” to “it works again” in as few decisions as possible, with explanations at your pace.</p>
     </div>
@@ -970,6 +1004,8 @@
     </div>
   </section>
 
+  <!-- PROMPT FORGE SECTION -->
+  <section class="section" aria-label="Prompt Forge">
     <div class="grid two">
       <div class="card">
         <h3>🎨 Image prompt lab</h3>
@@ -996,7 +1032,7 @@
           </a>
         </p>
         <p style="font-size:12px; color:var(--muted);">
-          On your live site, you can swap this link to whatever URL you deploy the Prompt Forge page under.
+          I helped create this, i could help you too ?
         </p>
       </div>
     </div>
@@ -1015,23 +1051,9 @@
     <div class="grid two">
       <div class="card">
         <h3>📩 Get in touch</h3>
-        <p>Questions or feedback? Email: <strong><a href="mailto:45dgof8@gmail.com">45dgof8@gmail.com</a></strong></p>
+        <p>Questions or feedback? Email: <strong><a href="/cdn-cgi/l/email-protection#a79392c3c0c8c19fe7c0cac6cecb89c4c8ca"><span class="__cf_email__" data-cfemail="0d3938696a626b354d6a606c6461236e6260">[email&#160;protected]</span></a></strong></p>
         <p>Home base: <a href="https://45dgof8.com" target="_blank" rel="noopener">45dgof8.com</a></p>
-        <p>If you’d like to support development:</p>
-<a href="https://paypal.me/45dgof8"
-   target="_blank"
-   rel="noopener"
-   style="
-     display:inline-block;
-     padding:10px 16px;
-     background:#0070ba;
-     color:white;
-     text-decoration:none;
-     border-radius:6px;
-     font-weight:600;
-   ">
-  💙 Support via PayPal
-</a>
+        <p>If you’d like to support development: <a href="https://paypal.me/45dgof8" target="_blank" rel="noopener">paypal.me/45dgof8</a></p>
       </div>
 
       <div class="card">
@@ -1056,36 +1078,6 @@
       </p>
     </div>
   </section>
-  <div style="
-  margin:40px auto 20px auto;
-  max-width:420px;
-  text-align:center;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-">
-
-  <p style="font-size:0.95em; line-height:1.4; opacity:0.85;">
-    <strong>Support this project</strong><br>
-    TSG is free to use.<br>
-    If it helped you, you can optionally support its development.
-  </p>
-
-  <a href="https://45dgof8-pulse.com/pay/TSG-voluntary"
-     target="_blank"
-     rel="noopener"
-     aria-label="Support TSG via PayPal"
-     style="
-       display:inline-block;
-       margin-top:10px;
-       padding:12px 24px;
-       background:#ffc439;
-       color:#111;
-       font-weight:600;
-       border-radius:8px;
-       text-decoration:none;
-     ">
-    💙 Support via PayPal
-  </a>
-</div>
 </main>
 
 <!-- Footer -->
@@ -1108,7 +1100,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ========= THEME =========
   (function initTheme(){
     const saved = localStorage.getItem("tsg-theme");
@@ -1223,7 +1215,7 @@
       return;
     }
     favoritesBlock.style.display = "block";
-    favs.slice(0,10).forEach((f, i) => {
+    favs.slice(0,10).forEach((f) => {
       const el = document.createElement("div");
       el.className = "favorite-item";
       el.innerHTML = `<small>${f.os} • ${f.category || "General"}</small>${f.text}`;
@@ -1546,6 +1538,76 @@
 })();
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const box = document.getElementById("etsyFloat");
+  const drag = document.getElementById("etsyDrag");
+  const closeBtn = document.getElementById("etsyClose");
+  const minBtn = document.getElementById("etsyMin");
+
+  if (!box || !drag) return;
+
+  const KEY_HIDE = "etsy-hide";
+  const KEY_MIN  = "etsy-min";
+  const KEY_POS  = "etsy-pos";
+
+  if (localStorage.getItem(KEY_HIDE) === "1") {
+    box.style.display = "none";
+    return;
+  }
+
+  if (localStorage.getItem(KEY_MIN) === "1") {
+    box.classList.add("minimized");
+  }
+
+  closeBtn?.addEventListener("click", () => {
+    box.style.display = "none";
+    localStorage.setItem(KEY_HIDE, "1");
+  });
+  minBtn?.addEventListener("click", () => {
+  box.classList.toggle("minimized");
+  localStorage.setItem(
+    KEY_MIN,
+    box.classList.contains("minimized") ? "1" : "0"
+  );
+});
+
+const pos = localStorage.getItem(KEY_POS);
+if (pos) {
+  try {
+    const { x, y } = JSON.parse(pos);
+    box.style.left = x + "px";
+    box.style.top = y + "px";
+    box.style.right = "auto";
+  } catch {}
+}
+
+let dragging = false, ox = 0, oy = 0;
+
+drag.addEventListener("mousedown", e => {
+  dragging = true;
+  ox = e.clientX - box.offsetLeft;
+  oy = e.clientY - box.offsetTop;
+  box.style.right = "auto";
+});
+
+document.addEventListener("mousemove", e => {
+  if (!dragging) return;
+  box.style.left = e.clientX - ox + "px";
+  box.style.top  = e.clientY - oy + "px";
+});
+
+document.addEventListener("mouseup", () => {
+  if (!dragging) return;
+  dragging = false;
+  localStorage.setItem(
+    KEY_POS,
+    JSON.stringify({ x: box.offsetLeft, y: box.offsetTop })
+  );
+});
+
+</script>
+
 <!-- Teleport Dock: gem chat + teleport -->
 <script id="teleport-dock">
 (() => {
@@ -1657,37 +1719,24 @@
   document.body.appendChild(host);
 })();
 </script>
-<center>
-<section id="contact">
-  <h2>Contact</h2>
-
-  <p>
-    If you’re dealing with a technical problem and need calm, one-on-one support,
-    you can reach out here. Please describe your situation briefly.
-  </p>
-
-  <p>
-    45dgof8 [at] gmail [dot] com
-  </p>
-
-  <form
-    action="mailto:45dgof8@gmail.com"
-    method="post"
-    enctype="text/plain"
-  >
-    <label for="name">Name</label><br>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="email">Email</label><br>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="message">What’s going on?</label><br>
-    <textarea id="message" name="message" rows="6" required></textarea><br><br>
-
-    <button type="submit">Send</button>
-  </form>
-</section>
-</center>
+<!-- ===== FLOATING PHOENIX CIRCUIT MUG ===== -->
+<aside class="etsy-float" id="etsyFloat" aria-label="Phoenix Circuit Mug">
+  <div class="etsy-head" id="etsyDrag">
+    <span>Phoenix Circuit Mug</span>
+    <div class="etsy-actions">
+      <button id="etsyMin" title="Minimize">➖</button>
+      <button id="etsyClose" title="Close">✕</button>
+    </div>
+  </div>
+  <div class="etsy-body">
+    <img src="https://45dgof8.com/phoenix-circuit-mug.webp"
+         alt="Phoenix Circuit Mug">
+    <a href="https://www.etsy.com/listing/4396595790/black-glossy-ceramic-cup-phoenix-circuit"
+       target="_blank" rel="noopener">
+      View on Etsy →
+    </a>
+  </div>
+</aside>
 
 </body>
 </html>
