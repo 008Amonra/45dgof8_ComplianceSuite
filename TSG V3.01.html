@@ -123,6 +123,25 @@
       margin: 0 auto;
       padding: 24px;
     }
+    
+/* ====== UTILITY CLASSES (reusable helpers) ====== */
+
+    .center {
+  text-align: center;
+}
+
+.centered-media {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.muted-note {
+  color: var(--muted);
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
 
     /* ====== HEADER / NAV ====== */
     header.site {
@@ -329,8 +348,15 @@
 
 /* Hide ads on mobile */
 @media (max-width: 900px) {
- 
-
+  /* ad hiding rules */
+}
+    
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
     /* ====== TIP PANEL ====== */
     .tip-panel {
@@ -846,7 +872,9 @@
     <div class="hero-card">
       <h1 id="h-hero">Make tech troubles… less troubling.</h1>
       <p class="subtitle">
-        TSG V3.01 guides you through Linux, Windows, and macOS issues with clear, skill-aware steps, plus OS-specific tips, categories, and command helpers.
+        TSG V3.01 guides you through Linux, Windows, and macOS issues with clear, skill-aware steps, plus OS-specific tips, categories, and command helpers. <p class="subtitle" style="font-size:14px;">
+  🔒 Nothing runs automatically. You review every command before using it.
+</p>
       </p>
 
       <div class="hero-meta">
@@ -867,6 +895,10 @@
               Linux • Beginner • Rotating every 30s
             </div>
           </div>
+          <p style="font-size:12px; color:rgba(191,251,227,.75); margin-top:8px;">
+  Tips are suggestions — always review commands before running them.
+</p>
+
 
           <div class="tip-controls">
             <input id="tipSearch" class="tip-search" type="search" placeholder="Filter tips…" aria-label="Search tips">
@@ -924,6 +956,19 @@
        loading="lazy" decoding="async" width="1200" height="600">
 </div>
 
+    .hero {
+  align-items: center;
+}
+
+.hero-img-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+  .hero-img {
+  max-width: 520px;
+}
+   
 </section> <!-- closes the hero section correctly -->
 
 
@@ -1069,15 +1114,21 @@
   </section>
 
   <!-- EXAMPLE DIALOGUE (printout) -->
-  <section class="section" aria-labelledby="h-dialogue">
-    <div style="text-align:center; margin: 10px 0 40px;">
-      <h2 id="h-dialogue">Example Dialogue with TSG</h2>
-      <img src="TSG_dialogue.webp" alt="Example dialogue with TSG" style="display:block; margin: 0 auto;">
-      <p style="color:#ccc; font-size:0.9em; margin-top:10px;">
-        A real example of TSG in action — your personal tech support GPT.
-      </p>
-    </div>
-  </section>
+<section class="section" aria-labelledby="h-dialogue">
+  <div class="center">
+    <h2 id="h-dialogue">Example Dialogue with TSG</h2>
+
+    <img src="TSG_dialogue.webp"
+         alt="Example dialogue with TSG"
+         width="900"
+         height="520"
+         class="centered-media">
+
+    <p class="muted-note">
+      A real example of TSG in action — your personal tech support GPT.
+    </p>
+  </div>
+</section>
 </main>
 
 <!-- Footer -->
