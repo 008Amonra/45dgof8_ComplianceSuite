@@ -1781,6 +1781,26 @@ document.addEventListener("DOMContentLoaded", () => {
     </a>
   </div>
 </aside>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const box = document.getElementById("etsyFloat");
+  const btnMin = document.getElementById("etsyMin");
+  const btnClose = document.getElementById("etsyClose");
 
+  if (!box || !btnMin || !btnClose) return;
+
+  btnMin.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    box.classList.toggle("minimized");
+  });
+
+  btnClose.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    box.remove(); // or: box.style.display = "none";
+  });
+});
+</script>
 </body>
 </html>
