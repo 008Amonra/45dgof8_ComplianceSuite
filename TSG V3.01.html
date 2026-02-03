@@ -1786,37 +1786,7 @@ document.addEventListener("mouseup", () => {
     }
   `;
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const box = document.getElementById("etsyFloat");
-  const drag = document.getElementById("etsyDrag");
-  const closeBtn = document.getElementById("etsyClose");
-  const minBtn = document.getElementById("etsyMin");
 
-  if (!box || !drag) return;
-
-  const KEY_HIDE = "etsy-hide";
-  const KEY_MIN  = "etsy-min";
-  const KEY_POS  = "etsy-pos";
-
-  if (localStorage.getItem(KEY_HIDE) === "1") {
-    box.style.display = "none";
-    return;
-  }
-
-  if (localStorage.getItem(KEY_MIN) === "1") {
-    box.classList.add("minimized");
-  }
-
-  closeBtn?.addEventListener("click", () => {
-    box.style.display = "none";
-    localStorage.setItem(KEY_HIDE, "1");
-  });
-  minBtn?.addEventListener("click", () => {
-  box.classList.toggle("minimized");
-  localStorage.setItem(
-    KEY_MIN,
-    box.classList.contains("minimized") ? "1" : "0"
-  );
   });
   
   const wrap = document.createElement('div');
