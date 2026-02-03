@@ -1694,19 +1694,6 @@
   root.appendChild(button);
   document.body.appendChild(host);
 })();
-</script>
-
-
-<script>
-
-if (pos) {
-  try {
-    const { x, y } = JSON.parse(pos);
-    box.style.left = x + "px";
-    box.style.top = y + "px";
-    box.style.right = "auto";
-  } catch {}
-}
 
 let dragging = false, ox = 0, oy = 0;
 
@@ -1878,32 +1865,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(host);
 })();
 </script>
-<!-- ===== FLOATING PHOENIX CIRCUIT MUG ===== -->
-<button class="etsy-reopen" id="etsyReopen" type="button" aria-label="Reopen shop card">
-  🛍️ Reopen
-</button>
 
-<aside class="etsy-float" id="etsyFloat" aria-label="Phoenix Circuit Mug">
-  <div class="etsy-head" id="etsyDrag">
-    <span>Phoenix Circuit Mug</span>
-    <div class="etsy-actions">
-      <button id="etsyMin" type="button" title="Minimize" aria-label="Minimize">➖</button>
-      <button id="etsyClose" type="button" title="Close" aria-label="Close">✕</button>
-    </div>
-  </div>
-
-  <div class="etsy-body">
-    <img src="https://45dgof8.com/phoenix-circuit-mug.webp" alt="Phoenix Circuit Mug">
-    <a href="https://www.etsy.com/listing/4396595790/black-glossy-ceramic-cup-phoenix-circuit"
-       target="_blank" rel="noopener">
-      View on Etsy →
-    </a>
-
-    <button class="etsy-contact" id="etsyContact" type="button">
-      📩 Contact
-    </button>
-  </div>
-</aside>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const box = document.getElementById("etsyFloat");
