@@ -46,6 +46,32 @@
   }
   </script>
    <style>
+     /* Top-right YouTube icon */
+.yt-link{
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.18);
+  z-index: 1000;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+}
+.yt-link:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+.yt-link svg{
+  width: 22px;
+  height: 22px;
+  fill: #ff4d4d;
+}
+
   #forgeLogo {
   position: fixed;
   top: 50%;
@@ -117,6 +143,17 @@
   </style>
 </head>
 <body>
+
+  <a class="yt-link"
+   href="https://youtu.be/uUgMvCjO9es"
+   target="_blank"
+   rel="noopener"
+   aria-label="Watch our YouTube video"
+   title="Watch on YouTube">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.8-1.7-.8-2.1-.9C17.7 2.5 12 2.5 12 2.5h0s-5.7 0-8.6.4c-.4.1-1.3.1-2.1.9C.7 4.5.5 6.2.5 6.2S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.7.8 2.4c.8.8 1.9.8 2.4.9 1.7.2 7.3.4 8.3.4 0 0 5.7 0 8.6-.4.4-.1 1.3-.1 2.1-.9.6-.7.8-2.4.8-2.4s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.6 14.8V7.8l6.2 3.5-6.2 3.5z"></path>
+  </svg>
+</a>
 
 <div class="split-screen">
   <div class="image-section" id="randomImage"></div>
