@@ -139,86 +139,6 @@
     td a { color: #ffe082; text-decoration: none; }
     td a:hover { text-decoration: underline; }
     .homepage-button { padding: 6px 10px; background: #3949ab; border-radius: 6px; }
-
-     #forgeDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #7cf;
-  position: relative;
-  cursor: pointer;
-
-  /* idle pulse */
-  box-shadow: 0 0 8px rgba(120, 220, 255, 0.7);
-  animation: forgePulse 1.8s ease-in-out infinite;
-}
-
-/* idle pulse animation */
-@keyframes forgePulse {
-  0%, 100% { transform: scale(1);    box-shadow: 0 0 8px rgba(120,220,255,.55); }
-  50%      { transform: scale(1.08); box-shadow: 0 0 14px rgba(120,220,255,.85); }
-}
-
-/* ===== "electric bzzzt" state ===== */
-#forgeDot.bzzzt {
-  animation: forgePulse 1.8s ease-in-out infinite, forgeJitter 220ms linear 2;
-}
-
-/* fast jitter (runs twice = “bzzzt bzzzt”) */
-@keyframes forgeJitter {
-  0%   { transform: translate(0,0) scale(1.08); }
-  10%  { transform: translate(-1px, 1px) scale(1.1); }
-  20%  { transform: translate( 1px,-1px) scale(1.12); }
-  30%  { transform: translate(-2px, 0px) scale(1.1); }
-  40%  { transform: translate( 2px, 1px) scale(1.12); }
-  50%  { transform: translate(-1px,-2px) scale(1.1); }
-  60%  { transform: translate( 1px, 2px) scale(1.12); }
-  70%  { transform: translate(-2px,-1px) scale(1.1); }
-  80%  { transform: translate( 2px, 0px) scale(1.12); }
-  90%  { transform: translate(-1px, 1px) scale(1.1); }
-  100% { transform: translate(0,0) scale(1.08); }
-}
-
-/* Bright surge glow while buzzing */
-#forgeDot.bzzzt::before {
-  content: "";
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(120,255,255,.55), rgba(120,255,255,0) 60%);
-  filter: blur(2px);
-  animation: forgeSurge 220ms ease-out 2;
-  pointer-events: none;
-}
-
-@keyframes forgeSurge {
-  0%   { opacity: .2; transform: scale(.9); }
-  40%  { opacity: 1;  transform: scale(1.1); }
-  100% { opacity: 0;  transform: scale(1.25); }
-}
-
-/* little “spark arcs” */
-#forgeDot.bzzzt::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 26px;
-  height: 26px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 2px dashed rgba(200, 255, 255, .8);
-  filter: drop-shadow(0 0 6px rgba(140,255,255,.9));
-  animation: forgeArcs 220ms linear 2;
-  pointer-events: none;
-}
-
-@keyframes forgeArcs {
-  0%   { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(.9); }
-  20%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(-50%, -50%) rotate(120deg) scale(1.05); }
-}
-
     
   </style>
 </head>
@@ -409,65 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 900);
   });
 });
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const dot = document.getElementById("forgeDot");
-  if (!dot) return;
-
-  /* ===== AUDIO ARMING (optional) ===== */
-  let audioCtx = null;
-  function armAudio() {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (audioCtx.state === "suspended") audioCtx.resume();
-  }
-
-  function zapSound() {
-    if (!audioCtx || audioCtx.state !== "running") return;
-
-    const now = audioCtx.currentTime;
-    const bufferSize = audioCtx.sampleRate * 0.08;
-    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-    const data = buffer.getChannelData(0);
-
-    for (let i = 0; i < data.length; i++) {
-      data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
-    }
-
-    const src = audioCtx.createBufferSource();
-    src.buffer = buffer;
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = "bandpass";
-    filter.frequency.value = 1800;
-
-    const gain = audioCtx.createGain();
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.15, now + 0.01);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
-
-    src.connect(filter).connect(gain).connect(audioCtx.destination);
-    src.start(now);
-    src.stop(now + 0.09);
-  }
-
-  function doBzzzt() {
-    dot.classList.add("bzzzt");
-    zapSound();
-    setTimeout(zapSound, 230);
-    setTimeout(() => dot.classList.remove("bzzzt"), 600);
-  }
-
-  // Start periodic bzzzt
-  setInterval(doBzzzt, 23000);
-
-  // Arm audio on interaction
-  dot.addEventListener("pointerdown", () => {
-    armAudio();
-    doBzzzt();
-  });
 
 </script>
+
 </body>
 </html>
