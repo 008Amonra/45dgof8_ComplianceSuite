@@ -23,6 +23,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -105,6 +106,18 @@
       align-items: center;
     }
 
+    .hero-image {
+      text-align: center;
+      padding-top: 24px;
+    }
+
+    .hero-image img {
+      max-width: min(100%, 720px);
+      height: auto;
+      display: inline-block;
+      border-radius: 22px;
+    }
+
     .eyebrow {
       display: inline-block;
       padding: 8px 12px;
@@ -182,37 +195,6 @@
       background: radial-gradient(circle, rgba(124,156,255,0.35), transparent 60%);
       pointer-events: none;
     }
-
-    .terminal {
-      border-radius: 18px;
-      background: rgba(9, 13, 28, 0.9);
-      border: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-
-    .terminal-top {
-      display: flex;
-      gap: 8px;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-    }
-
-    .terminal-body {
-      padding: 16px;
-      font-size: 14px;
-      color: #d7def8;
-    }
-
-    .line { margin: 0 0 10px; }
-    .prompt { color: var(--accent-2); }
-    .answer { color: var(--muted); }
 
     .stats {
       display: grid;
@@ -322,17 +304,6 @@
       background: rgba(255,155,155,0.08);
     }
 
-    .testimonial {
-      font-size: 18px;
-      color: var(--text);
-    }
-
-    .quote-by {
-      color: var(--muted);
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
     .cta-panel {
       padding: 28px;
       border-radius: 28px;
@@ -359,6 +330,7 @@
       flex-wrap: wrap;
       border-top: 1px solid rgba(255,255,255,0.08);
       padding-top: 20px;
+      align-items: center;
     }
 
     @media (max-width: 980px) {
@@ -374,53 +346,6 @@
 
       .nav-links { display: none; }
     }
-    .quote {
-  margin-top: 16px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(9, 13, 28, 0.55);
-}
-
-.quote p {
-  margin: 0;
-  font-size: 18px;
-  color: var(--text);
-}
-
-.quote .byline {
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.cta-list {
-  margin-top: 18px;
-  display: grid;
-  gap: 12px;
-}
-
-.cta-item {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.cta-item .label {
-  color: var(--text);
-  font-weight: 800;
-}
-
-.cta-item .desc {
-  color: var(--muted);
-  margin-top: 2px;
-  font-size: 14px;
-}
-    
   </style>
 </head>
 <body>
@@ -440,22 +365,10 @@
     </div>
   </header>
 
-  <header><center>
-    <img src="9GaGq.webp" alt="crypto-market-mentor">
-  </center></header>
+  <div class="hero-image">
+    <img src="9GaGq.webp" alt="Crypto Market Mentor">
+  </div>
 
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-  <a class="btn btn-primary"
-     href="https://chatgpt.com/g/g-cxKIdjjdq-crypto-market-mentor"
-     target="_blank" rel="noopener noreferrer">
-    Open Crypto Market Mentor
-  </a>
-
-  <a class="btn btn-secondary"
-     href="/support.html">
-    Support / Pro
-  </a>
-</div>
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
@@ -470,6 +383,7 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://chatgpt.com/g/g-cxKIdjjdq-crypto-market-mentor" target="_blank" rel="noopener noreferrer">Chat with Crypto Market Mentor</a>
             <a class="btn btn-secondary" href="#features">See what you'll learn</a>
+            <a class="btn btn-secondary" href="/support.html">Support / Pro</a>
           </div>
         </div>
 
@@ -547,7 +461,8 @@
         <div class="section-head">
           <h2>Why people use Crypto Market Mentor</h2>
           <p>
-            It should feel sharp, trustworthy, and calm — more like a smart trading desk than a casino. Visitors should immediately understand that this is a place to learn how to think, manage risk, and ask smarter trading questions.
+            Crypto Market Mentor is built to feel sharp, trustworthy, and calm — more like a smart trading desk than a casino.
+            It helps visitors learn how to think, manage risk, and ask better trading questions.
           </p>
         </div>
         <div class="grid-3">
@@ -603,38 +518,32 @@
       <div class="container split">
         <div class="card">
           <div class="section-head">
-<div class="card">
-  <div class="section-head">
-    <h2>What you can expect</h2>
-    <p>
-      Crypto Market Mentor is designed to feel calm, thoughtful, and practical. 
-      Instead of hype or prediction games, the focus is on helping you understand 
-      how markets behave and how traders think about risk, structure, and strategy.
-    </p>
-    <p>
-      The goal is not to tell you what to trade. It is to help you ask better 
-      questions, think through trade ideas more clearly, and approach the market 
-      with discipline and perspective.
-    </p>
-  </div>
-</div>
+            <h2>What you can expect</h2>
+            <p>
+              Crypto Market Mentor is designed to feel calm, thoughtful, and practical.
+              Instead of hype or prediction games, the focus is on helping you understand
+              how markets behave and how traders think about risk, structure, and strategy.
+            </p>
+            <p>
+              The goal is not to tell you what to trade. It is to help you ask better
+              questions, think through trade ideas more clearly, and approach the market
+              with discipline and perspective.
+            </p>
+          </div>
+        </div>
 
-<div class="card">
-  <div class="section-head">
-    <h2>What to do next</h2>
-    <p>
-      The easiest way to start is simply to open the mentor and ask a question. 
-      You might ask about market structure, how a trading strategy works, or how 
-      to think about risk before entering a trade.
-    </p>
-    <p>
-      Crypto Market Mentor is meant to be explored through conversation — one 
-      question at a time.
-    </p>
-          <div class="checklist">
-            <div class="check"><div>→</div><div><b>Primary CTA</b><br><span>“Chat with Crypto Market Mentor”</span></div></div>
-            <div class="check"><div>→</div><div><b>Secondary CTA</b><br><span>“See what you'll learn”</span></div></div>
-            <div class="check"><div>→</div><div><b>Trust cue</b><br><span>Clear educational framing, with no promises and no pressure.</span></div></div>
+        <div class="card">
+          <div class="section-head">
+            <h2>What to do next</h2>
+            <p>
+              The easiest way to start is simply to open the mentor and ask a question.
+              You might ask about market structure, how a trading strategy works, or how
+              to think about risk before entering a trade.
+            </p>
+            <p>
+              Crypto Market Mentor is meant to be explored through conversation — one
+              question at a time.
+            </p>
           </div>
         </div>
       </div>
@@ -650,64 +559,14 @@
               or how to think through a setup before placing a trade.
             </p>
           </div>
-          <a class="btn btn-primary" href="https://chatgpt.com/g/g-cxKIdjjdq-crypto-market-mentor" target="_blank" rel="noopener noreferrer">Open Crypto Market Mentor</a>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="https://chatgpt.com/g/g-cxKIdjjdq-crypto-market-mentor" target="_blank" rel="noopener noreferrer">Open Crypto Market Mentor</a>
+            <a class="btn btn-secondary" href="/support.html">Support / Pro</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
-
-            <section class="section" id="about">
-  <div class="container split">
-
-    <div class="card">
-      <div class="section-head">
-        <h2>The experience people should expect</h2>
-        <p>
-          Professional, modern, slightly futuristic, and grounded. Think premium fintech meets a thoughtful mentor — with room for real back-and-forth conversation.
-        </p>
-      </div>
-
-      <div class="quote">
-        <p>“Build confidence through structure, not excitement. The goal is not to make people feel invincible — it’s to help them trade with better judgment.”</p>
-        <div class="byline">A calm, trustworthy voice that encourages better questions.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-head">
-        <h2>What visitors should do next</h2>
-        <p>
-          Open the mentor, ask a question, and start learning through conversation.
-        </p>
-      </div>
-
-      <div class="cta-list">
-        <div class="cta-item">
-          <div>→</div>
-          <div>
-            <div class="label">Primary action</div>
-            <div class="desc">Chat with Crypto Market Mentor</div>
-          </div>
-        </div>
-
-        <div class="cta-item">
-          <div>→</div>
-          <div>
-            <div class="label">Secondary action</div>
-            <div class="desc">See what you'll learn</div>
-          </div>
-        </div>
-
-        <div class="cta-item">
-          <div>→</div>
-          <div>
-            <div class="label">Trust cue</div>
-            <div class="desc">Clear educational framing, with no promises and no pressure.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
 
   <footer class="footer">
     <div class="container footer-row">
