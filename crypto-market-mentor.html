@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crypto Market Mentor | Learn Crypto Trading with Confidence</title>
-  <meta name="description" content="Learn crypto trading with clarity, discipline, and real risk awareness. Chat with Crypto Market Mentor to explore strategies, market structure, and event-driven trading ideas." />
+  <meta
+    name="description"
+    content="Learn crypto trading with clarity, discipline, and real risk awareness. Chat with Crypto Market Mentor to explore strategies, market structure, and event-driven trading ideas."
+  />
   <style>
     :root {
       --bg: #0b1020;
@@ -43,7 +46,7 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(11,16,32,0.6);
+      background: rgba(11,16,32,0.62);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -96,26 +99,27 @@
     }
 
     .hero {
-      padding: 82px 0 54px;
+      padding: 56px 0 40px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 30px;
       align-items: center;
     }
 
     .hero-image {
-      text-align: center;
-      padding-top: 24px;
+      margin: 0 0 20px;
     }
 
     .hero-image img {
-      max-width: min(100%, 720px);
+      max-width: 100%;
       height: auto;
-      display: inline-block;
+      display: block;
       border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
     }
 
     .eyebrow {
@@ -304,6 +308,46 @@
       background: rgba(255,155,155,0.08);
     }
 
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #08111f;
+      margin-bottom: 14px;
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
     .cta-panel {
       padding: 28px;
       border-radius: 28px;
@@ -336,7 +380,8 @@
     @media (max-width: 980px) {
       .hero-grid,
       .grid-3,
-      .split {
+      .split,
+      .steps {
         grid-template-columns: 1fr;
       }
 
@@ -358,16 +403,12 @@
       <nav class="nav-links">
         <a href="#features">Features</a>
         <a href="#learn">Learn</a>
-        <a href="#risk">Risk</a>
-        <a href="#about">About</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <a class="nav-cta" href="#cta">Start Learning</a>
     </div>
   </header>
-
-  <div class="hero-image">
-    <img src="9GaGq.webp" alt="Crypto Market Mentor">
-  </div>
 
   <main id="top">
     <section class="hero">
@@ -383,72 +424,79 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://chatgpt.com/g/g-cxKIdjjdq-crypto-market-mentor" target="_blank" rel="noopener noreferrer">Chat with Crypto Market Mentor</a>
             <a class="btn btn-secondary" href="#features">See what you'll learn</a>
-         </div>
+          </div>
         </div>
 
-        <div class="hero-card">
-          <svg viewBox="0 0 520 360" width="100%" height="100%" aria-label="Abstract market graphic" role="img" style="display:block; border-radius:18px; background: linear-gradient(180deg, rgba(9,13,28,0.96), rgba(15,23,49,0.96)); border: 1px solid rgba(255,255,255,0.08);">
-            <defs>
-              <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#7c9cff" />
-                <stop offset="100%" stop-color="#64e1c6" />
-              </linearGradient>
-              <linearGradient id="areaFill" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="rgba(124,156,255,0.32)" />
-                <stop offset="100%" stop-color="rgba(100,225,198,0.02)" />
-              </linearGradient>
-              <filter id="softGlow">
-                <feGaussianBlur stdDeviation="6" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            <rect x="0" y="0" width="520" height="360" fill="transparent"/>
-            <g opacity="0.12" stroke="#dbe4ff">
-              <line x1="40" y1="50" x2="40" y2="310"/>
-              <line x1="120" y1="50" x2="120" y2="310"/>
-              <line x1="200" y1="50" x2="200" y2="310"/>
-              <line x1="280" y1="50" x2="280" y2="310"/>
-              <line x1="360" y1="50" x2="360" y2="310"/>
-              <line x1="440" y1="50" x2="440" y2="310"/>
-              <line x1="40" y1="90" x2="480" y2="90"/>
-              <line x1="40" y1="150" x2="480" y2="150"/>
-              <line x1="40" y1="210" x2="480" y2="210"/>
-              <line x1="40" y1="270" x2="480" y2="270"/>
-            </g>
-            <path d="M40 278 C78 258, 94 220, 130 228 C168 236, 180 184, 220 178 C252 172, 280 198, 314 160 C346 124, 378 136, 408 102 C430 78, 452 92, 480 66 L480 310 L40 310 Z" fill="url(#areaFill)" opacity="0.9"/>
-            <path d="M40 278 C78 258, 94 220, 130 228 C168 236, 180 184, 220 178 C252 172, 280 198, 314 160 C346 124, 378 136, 408 102 C430 78, 452 92, 480 66" fill="none" stroke="url(#lineGlow)" stroke-width="5" stroke-linecap="round" filter="url(#softGlow)"/>
-            <g fill="#64e1c6">
-              <circle cx="130" cy="228" r="5"/>
-              <circle cx="220" cy="178" r="5"/>
-              <circle cx="314" cy="160" r="5"/>
-              <circle cx="408" cy="102" r="5"/>
-              <circle cx="480" cy="66" r="6"/>
-            </g>
-            <g>
-              <rect x="58" y="42" rx="12" ry="12" width="118" height="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.09)"/>
-              <text x="76" y="64" fill="#eef2ff" font-size="14" font-family="Inter, Arial, sans-serif">Market structure</text>
-            </g>
-            <g>
-              <rect x="316" y="236" rx="14" ry="14" width="150" height="54" fill="rgba(11,16,32,0.82)" stroke="rgba(255,255,255,0.1)"/>
-              <text x="334" y="258" fill="#aab4d6" font-size="12" font-family="Inter, Arial, sans-serif">Risk-first approach</text>
-              <text x="334" y="278" fill="#eef2ff" font-size="18" font-weight="700" font-family="Inter, Arial, sans-serif">Plan the trade first</text>
-            </g>
-          </svg>
-          <div class="stats">
-            <div class="stat">
-              <strong>24/7</strong>
-              <span>Ask trading questions anytime</span>
-            </div>
-            <div class="stat">
-              <strong>0</strong>
-              <span>Signal-selling nonsense</span>
-            </div>
-            <div class="stat">
-              <strong>100%</strong>
-              <span>Education-first guidance</span>
+        <div>
+          <div class="hero-image">
+            <img src="9GaGq.webp" alt="Crypto Market Mentor" />
+          </div>
+
+          <div class="hero-card">
+            <svg viewBox="0 0 520 360" width="100%" height="100%" aria-label="Abstract market graphic" role="img" style="display:block; border-radius:18px; background: linear-gradient(180deg, rgba(9,13,28,0.96), rgba(15,23,49,0.96)); border: 1px solid rgba(255,255,255,0.08);">
+              <defs>
+                <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#7c9cff" />
+                  <stop offset="100%" stop-color="#64e1c6" />
+                </linearGradient>
+                <linearGradient id="areaFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(124,156,255,0.32)" />
+                  <stop offset="100%" stop-color="rgba(100,225,198,0.02)" />
+                </linearGradient>
+                <filter id="softGlow">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="520" height="360" fill="transparent"/>
+              <g opacity="0.12" stroke="#dbe4ff">
+                <line x1="40" y1="50" x2="40" y2="310"/>
+                <line x1="120" y1="50" x2="120" y2="310"/>
+                <line x1="200" y1="50" x2="200" y2="310"/>
+                <line x1="280" y1="50" x2="280" y2="310"/>
+                <line x1="360" y1="50" x2="360" y2="310"/>
+                <line x1="440" y1="50" x2="440" y2="310"/>
+                <line x1="40" y1="90" x2="480" y2="90"/>
+                <line x1="40" y1="150" x2="480" y2="150"/>
+                <line x1="40" y1="210" x2="480" y2="210"/>
+                <line x1="40" y1="270" x2="480" y2="270"/>
+              </g>
+              <path d="M40 278 C78 258, 94 220, 130 228 C168 236, 180 184, 220 178 C252 172, 280 198, 314 160 C346 124, 378 136, 408 102 C430 78, 452 92, 480 66 L480 310 L40 310 Z" fill="url(#areaFill)" opacity="0.9"/>
+              <path d="M40 278 C78 258, 94 220, 130 228 C168 236, 180 184, 220 178 C252 172, 280 198, 314 160 C346 124, 378 136, 408 102 C430 78, 452 92, 480 66" fill="none" stroke="url(#lineGlow)" stroke-width="5" stroke-linecap="round" filter="url(#softGlow)"/>
+              <g fill="#64e1c6">
+                <circle cx="130" cy="228" r="5"/>
+                <circle cx="220" cy="178" r="5"/>
+                <circle cx="314" cy="160" r="5"/>
+                <circle cx="408" cy="102" r="5"/>
+                <circle cx="480" cy="66" r="6"/>
+              </g>
+              <g>
+                <rect x="58" y="42" rx="12" ry="12" width="118" height="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.09)"/>
+                <text x="76" y="64" fill="#eef2ff" font-size="14" font-family="Inter, Arial, sans-serif">Market structure</text>
+              </g>
+              <g>
+                <rect x="316" y="236" rx="14" ry="14" width="150" height="54" fill="rgba(11,16,32,0.82)" stroke="rgba(255,255,255,0.1)"/>
+                <text x="334" y="258" fill="#aab4d6" font-size="12" font-family="Inter, Arial, sans-serif">Risk-first approach</text>
+                <text x="334" y="278" fill="#eef2ff" font-size="18" font-weight="700" font-family="Inter, Arial, sans-serif">Plan the trade first</text>
+              </g>
+            </svg>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>24/7</strong>
+                <span>Ask trading questions anytime</span>
+              </div>
+              <div class="stat">
+                <strong>0</strong>
+                <span>Signal-selling nonsense</span>
+              </div>
+              <div class="stat">
+                <strong>100%</strong>
+                <span>Education-first guidance</span>
+              </div>
             </div>
           </div>
         </div>
@@ -513,6 +561,35 @@
       </div>
     </section>
 
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>
+            The page should make the next step feel easy. Visitors should instantly understand what to do,
+            what they can ask, and why this is different from noisy crypto content.
+          </p>
+        </div>
+        <div class="steps">
+          <div class="card">
+            <div class="step-number">1</div>
+            <h3>Open the mentor</h3>
+            <p>Click through and start with one question about trading, risk, market structure, or an event contract idea.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">2</div>
+            <h3>Explore your setup</h3>
+            <p>Use the conversation to test assumptions, compare strategies, and think through scenarios before risking capital.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">3</div>
+            <h3>Build better judgment</h3>
+            <p>Come back with new questions and use the mentor as a practical training partner instead of chasing hype.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="about">
       <div class="container split">
         <div class="card">
@@ -540,9 +617,36 @@
               to think about risk before entering a trade.
             </p>
             <p>
-              Crypto Market Mentor is meant to be explored through conversation — one
-              question at a time.
+              This works best as a simple, focused landing page: no dead links, no extra pages,
+              and no distractions — just a clear path into the conversation.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>FAQ</h2>
+          <p>These answers reduce hesitation and make the page feel more complete and trustworthy.</p>
+        </div>
+        <div class="faq">
+          <div class="faq-item">
+            <h3>Is this financial advice?</h3>
+            <p>No. Crypto Market Mentor is for education, idea exploration, and risk-aware learning only.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Who is this for?</h3>
+            <p>People who already know the crypto space exists, but want a more structured way to learn trading logic and decision-making.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What can I ask?</h3>
+            <p>You can ask about strategy frameworks, trade planning, market structure, macro news, risk management, and event-style market logic.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Why not just follow signals?</h3>
+            <p>Because borrowed conviction breaks fast. Learning process and risk control gives you a much better foundation than blind copying.</p>
           </div>
         </div>
       </div>
@@ -560,7 +664,7 @@
           </div>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <a class="btn btn-primary" href="https://chatgpt.com/g/g-cxKIdjjdq-crypto-market-mentor" target="_blank" rel="noopener noreferrer">Open Crypto Market Mentor</a>
-            <a class="btn btn-secondary" href="/support.html">Support / Pro</a>
+            <a class="btn btn-secondary" href="#faq">Read FAQ</a>
           </div>
         </div>
       </div>
