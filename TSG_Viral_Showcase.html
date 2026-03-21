@@ -34,7 +34,7 @@
     </button>
   </div>
 
-  <script>
+<script>
   (function () {
     const input = document.getElementById("tsg-video-upload");
     const list = document.getElementById("tsg-upload-list");
@@ -44,28 +44,39 @@
 
     let selectedFiles = [];
 
-    input.addEventListener("change", function () {
+    function renderFileList() {
       list.innerHTML = "";
-      selectedFiles = Array.from(this.files || []);
 
-      if (!selectedFiles.length) return;
+      if (!selectedFiles.length) {
+        const li = document.createElement("li");
+        li.textContent = "No files selected yet.";
+        list.appendChild(li);
+        return;
+      }
 
       selectedFiles.forEach(function (file) {
         const li = document.createElement("li");
-        li.textContent =
-          file.name + " (" + Math.round(file.size / 1024 / 1024 * 10) / 10 + " MB)";
+        const sizeMb = Math.round((file.size / 1024 / 1024) * 10) / 10;
+        li.textContent = `${file.name} (${sizeMb} MB)`;
         list.appendChild(li);
       });
+    }
+
+    input.addEventListener("change", function () {
+      selectedFiles = Array.from(this.files || []);
+      renderFileList();
     });
 
     button.addEventListener("click", async function () {
       if (!selectedFiles.length) {
-        alert("Please upload at least one video first.");
+        alert("Please select at least one video first.");
         return;
       }
 
       const formData = new FormData();
-      selectedFiles.forEach(file => formData.append("videos", file));
+      selectedFiles.forEach((file) => {
+        formData.append("videos", file);
+      });
 
       try {
         button.disabled = true;
@@ -76,23 +87,24 @@
           body: formData
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-          throw new Error("Upload failed");
+          throw new Error(data.error || "Upload failed.");
         }
 
-        const result = await response.json();
-        console.log("Server response:", result);
-
-        alert("Upload finished successfully.");
-        button.textContent = "Create Viral Audio Now";
-      } catch (error) {
-        console.error(error);
-        alert("Something went wrong during upload.");
-        button.textContent = "Create Viral Audio Now";
+        alert("Upload successful.\n\nSaved files:\n" + data.files.map(f => f.originalName).join("\n"));
+        console.log("Upload result:", data);
+      } catch (err) {
+        console.error(err);
+        alert("Error: " + err.message);
       } finally {
         button.disabled = false;
+        button.textContent = "Create Viral Audio Now";
       }
     });
+
+    renderFileList();
   })();
 </script>
   
