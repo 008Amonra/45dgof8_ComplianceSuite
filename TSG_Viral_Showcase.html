@@ -34,6 +34,68 @@
     </button>
   </div>
 
+  <script>
+  (function () {
+    const input = document.getElementById("tsg-video-upload");
+    const list = document.getElementById("tsg-upload-list");
+    const button = document.querySelector(".tsg-button-primary");
+
+    if (!input || !list || !button) return;
+
+    let selectedFiles = [];
+
+    input.addEventListener("change", function () {
+      list.innerHTML = "";
+      selectedFiles = Array.from(this.files || []);
+
+      if (!selectedFiles.length) return;
+
+      selectedFiles.forEach(function (file) {
+        const li = document.createElement("li");
+        li.textContent =
+          file.name + " (" + Math.round(file.size / 1024 / 1024 * 10) / 10 + " MB)";
+        list.appendChild(li);
+      });
+    });
+
+    button.addEventListener("click", async function () {
+      if (!selectedFiles.length) {
+        alert("Please upload at least one video first.");
+        return;
+      }
+
+      const formData = new FormData();
+      selectedFiles.forEach(file => formData.append("videos", file));
+
+      try {
+        button.disabled = true;
+        button.textContent = "Uploading...";
+
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error("Upload failed");
+        }
+
+        const result = await response.json();
+        console.log("Server response:", result);
+
+        alert("Upload finished successfully.");
+        button.textContent = "Create Viral Audio Now";
+      } catch (error) {
+        console.error(error);
+        alert("Something went wrong during upload.");
+        button.textContent = "Create Viral Audio Now";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  })();
+</script>
+  
   <!-- 🟣 Support Beyond Box -->
   <div class="tsg-card tsg-support">
     <h3 class="tsg-support-title">Support Beyond</h3>
