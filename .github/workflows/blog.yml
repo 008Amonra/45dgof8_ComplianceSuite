@@ -16,6 +16,9 @@ on:
         description: Base64-encoded HTML content
         required: true
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # ✅ allow pushing
 permissions:
   contents: write
