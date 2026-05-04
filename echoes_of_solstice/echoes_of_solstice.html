@@ -1,1 +1,1788 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Echoes of Solstice — Oracle Test</title>
+<style>
+:root {
+  --bg:#070912; --panel:rgba(18,22,34,.88); --panel2:rgba(255,255,255,.045);
+  --text:#edf1ff; --muted:#aeb8d6; --gold:#d7b56d; --line:rgba(215,181,109,.25);
+  --green:#70d6a0; --blue:#72c7ff; --shadow:0 12px 38px rgba(0,0,0,.42); --radius:18px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);background:
+radial-gradient(circle at top,rgba(70,90,160,.24),transparent 32%),
+radial-gradient(circle at 80% 10%,rgba(180,120,255,.13),transparent 24%),
+linear-gradient(180deg,#070912,#0c1020 55%,#090b12);min-height:100vh}
+.wrap{max-width:1480px;margin:0 auto;padding:28px 18px 60px}
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(9,11,18,.93),rgba(9,11,18,.76));border-bottom:1px solid var(--line);margin:-28px -18px 24px;padding:18px}
+.brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.seal{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:22px}
+h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.03em;color:#f6f2e8}
+.sub{color:var(--muted);margin:8px 0 14px;line-height:1.45}
+.controls{display:grid;grid-template-columns:1.4fr .7fr .9fr auto auto auto auto;gap:10px}
+input,select,.btn{border:1px solid var(--line);color:var(--text);background:var(--panel);border-radius:12px;padding:12px 14px;outline:none}
+.btn{cursor:pointer;text-align:center;font-weight:650;white-space:nowrap}
+.btn:hover{background:rgba(255,255,255,.07)}
+.btn.gold{background:linear-gradient(180deg,rgba(215,181,109,.22),rgba(215,181,109,.08));color:#fff}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.pill{border:1px solid var(--line);background:var(--panel2);color:var(--muted);padding:8px 12px;border-radius:999px;font-size:13px}
+.pill strong{color:#fff}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 14px}
+.section-title h2{margin:0;font-size:1.05rem;color:#f6f2e8;letter-spacing:.03em}
+.section-title span{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.card{background:linear-gradient(180deg,rgba(18,22,34,.93),rgba(10,12,20,.93));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .18s,opacity .18s}
+.card:hover{transform:translateY(-2px)}
+.thumb{aspect-ratio:2/3;width:100%;object-fit:cover;display:block;background:#111627;cursor:zoom-in}
+.placeholder{aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--muted);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.03))}
+.meta{padding:12px 13px 14px}
+.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}
+.num{color:var(--gold);font-weight:700;letter-spacing:.03em;font-size:12px}
+.badge{font-size:11px;padding:5px 8px;border-radius:999px;border:1px solid var(--line);color:#fff;background:rgba(255,255,255,.04);text-transform:uppercase;letter-spacing:.08em}
+.badge.official{background:rgba(70,160,110,.16)} .badge.extra{background:rgba(110,140,220,.16)}
+.name{font-weight:700;line-height:1.25;margin:0 0 4px}
+.group{color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px;margin-top:12px}
+.smallbtn{flex:1;text-align:center;border:1px solid var(--line);padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.03);font-size:13px;color:#fff;cursor:pointer}
+.reading{border:1px solid var(--line);background:linear-gradient(180deg,rgba(18,22,34,.94),rgba(10,12,20,.94));border-radius:22px;box-shadow:var(--shadow);padding:18px;margin:20px 0 26px;display:none}
+.reading.active{display:block}
+.spread{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:14px}
+.drawn{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.035)}
+.drawn img{width:100%;aspect-ratio:2/3;object-fit:cover;background:#111627;display:block}
+.drawn .text{padding:12px}
+.position{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800}
+.keywords{color:var(--blue);font-size:13px;margin:8px 0}
+.meaning{color:var(--muted);line-height:1.5;font-size:14px}
+.voicebar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.faded .card{opacity:.16;filter:saturate(.45)} .faded .card.selected{opacity:1;filter:none;outline:2px solid rgba(215,181,109,.55)}
+dialog{width:min(96vw,1100px);border:1px solid var(--line);border-radius:20px;padding:0;background:#0b0f1a;color:var(--text);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}
+.modal{display:grid;grid-template-columns:minmax(280px,520px) 1fr;gap:0}
+.modal img{width:100%;height:100%;max-height:92vh;object-fit:contain;background:#070912}
+.modal-side{padding:18px 18px 20px}
+.modal-side h3{margin:0 0 6px;font-family:Georgia,serif;font-size:1.5rem}
+.modal-side p{color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
+.close{float:right;margin:10px 10px 0 0;border:0;background:transparent;color:#fff;font-size:28px;cursor:pointer}
 
+/* --- Oracle draw effects --- */
+.draw-stage {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 80;
+  opacity: 0;
+}
+.draw-stage.active {
+  opacity: 1;
+  animation: veilFade 3.2s ease forwards;
+}
+.draw-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(215,181,109,.22), transparent 18%),
+    radial-gradient(circle at 50% 50%, rgba(120,190,255,.16), transparent 34%),
+    rgba(0,0,0,.35);
+}
+.draw-stage::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%,-50%);
+  color: rgba(246,242,232,.95);
+  font-size: 72px;
+  text-shadow: 0 0 20px rgba(215,181,109,.75), 0 0 60px rgba(120,190,255,.35);
+  animation: starPulse 3.05s ease forwards;
+}
+.spark {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(215,181,109,.95);
+  box-shadow: 0 0 14px rgba(215,181,109,.9);
+  pointer-events: none;
+  z-index: 90;
+  animation: sparkFly 2100ms ease-out forwards;
+}
+@keyframes veilFade {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes starPulse {
+  0% { transform: translate(-50%,-50%) scale(.45) rotate(0deg); opacity: 0; }
+  22% { opacity: 1; }
+  55% { transform: translate(-50%,-50%) scale(1.25) rotate(120deg); opacity: .95; }
+  100% { transform: translate(-50%,-50%) scale(1.95) rotate(260deg); opacity: 0; }
+}
+@keyframes sparkFly {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+.drawn {
+  animation: cardReveal .72s cubic-bezier(.2,.9,.2,1) both;
+}
+.drawn:nth-child(2) { animation-delay: .12s; }
+.drawn:nth-child(3) { animation-delay: .24s; }
+@keyframes cardReveal {
+  0% { opacity: 0; transform: translateY(28px) scale(.94) rotateX(12deg); filter: blur(8px); }
+  65% { opacity: 1; transform: translateY(-4px) scale(1.015); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.reading.active {
+  animation: readingGlow 1.3s ease both;
+}
+@keyframes readingGlow {
+  0% { box-shadow: 0 0 0 rgba(215,181,109,0); }
+  45% { box-shadow: 0 0 50px rgba(215,181,109,.18); }
+  100% { box-shadow: var(--shadow); }
+}
+.voice-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+
+
+.spark.tiny {
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 0 10px rgba(160,220,255,.95);
+}
+.spark.blue {
+  background: rgba(120,200,255,.95);
+  box-shadow: 0 0 16px rgba(120,200,255,.85);
+}
+.orbit-ring {
+  position: fixed;
+  left: 50%;
+  top: 44%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(215,181,109,.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 88;
+  transform: translate(-50%,-50%);
+  animation: ringExpand 2.7s ease-out forwards;
+}
+.orbit-ring:nth-of-type(2) {
+  border-color: rgba(120,200,255,.45);
+  animation-delay: .18s;
+}
+@keyframes ringExpand {
+  0% { width: 40px; height: 40px; opacity: 0; }
+  18% { opacity: .9; }
+  100% { width: 680px; height: 680px; opacity: 0; }
+}
+
+
+.voice-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 10px;
+  width: min(100%, 520px);
+  color: var(--muted);
+  font-size: 13px;
+}
+.voice-controls label {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.035);
+  border-radius: 12px;
+  padding: 9px 10px;
+}
+.voice-controls input[type="range"] {
+  padding: 0;
+  accent-color: #d7b56d;
+}
+.voice-controls span {
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2em;
+  text-align: right;
+}
+.oracle-chat{
+  margin-top:14px;
+  border:1px solid var(--line);
+  background:radial-gradient(circle at 12% 0%, rgba(215,181,109,.12), transparent 28%),rgba(255,255,255,.035);
+  border-radius:18px;
+  padding:12px;
+}
+.oracle-chat summary{
+  cursor:pointer;
+  color:#f6f2e8;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.chat-note{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+  margin:8px 0 10px;
+}
+.chat-log{
+  display:grid;
+  gap:8px;
+  max-height:260px;
+  overflow:auto;
+  padding:8px;
+  border:1px solid rgba(215,181,109,.16);
+  border-radius:14px;
+  background:rgba(0,0,0,.14);
+}
+.chat-msg{
+  max-width:88%;
+  padding:9px 11px;
+  border-radius:14px;
+  color:var(--text);
+  line-height:1.45;
+  font-size:14px;
+  white-space:pre-wrap;
+}
+.chat-msg.eva{justify-self:start;background:rgba(215,181,109,.12);border:1px solid rgba(215,181,109,.20)}
+.chat-msg.user{justify-self:end;background:rgba(112,214,160,.13);border:1px solid rgba(112,214,160,.20)}
+.chat-form{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}
+.chat-form textarea{
+  min-height:54px;
+  resize:vertical;
+  border:1px solid var(--line);
+  color:var(--text);
+  background:var(--panel);
+  border-radius:12px;
+  padding:10px 12px;
+  font:inherit;
+}
+.chat-status{color:var(--muted);font-size:12px;margin-top:7px;min-height:1.2em}
+
+@media(max-width:980px){.controls{grid-template-columns:1fr 1fr}.spread{grid-template-columns:1fr}.modal{grid-template-columns:1fr}}
+
+/* --- Mobile polish --- */
+@media (max-width: 720px) {
+  .wrap {
+    padding: 16px 10px 42px;
+  }
+  header {
+    position: static;
+    margin: -16px -10px 18px;
+    padding: 16px 10px 14px;
+  }
+  .brand {
+    gap: 10px;
+  }
+  .seal {
+    width: 38px;
+    height: 38px;
+    font-size: 19px;
+  }
+  h1 {
+    font-size: 1.45rem;
+  }
+  .sub {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .controls {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .controls input {
+    grid-column: 1 / -1;
+  }
+  .controls select,
+  .controls .btn,
+  .voicebar .btn,
+  .voicebar select {
+    min-height: 46px;
+    font-size: 14px;
+    padding: 11px 12px;
+  }
+  #drawOne,
+  #drawThree {
+    font-size: 15px;
+    min-height: 50px;
+  }
+  .stats {
+    gap: 7px;
+  }
+  .pill {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  .section-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    margin: 20px 0 10px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .meta {
+    padding: 9px 9px 11px;
+  }
+  .name {
+    font-size: 14px;
+  }
+  .group {
+    font-size: 12px;
+  }
+  .actions {
+    margin-top: 9px;
+  }
+  .smallbtn {
+    padding: 9px 8px;
+    font-size: 12px;
+  }
+  .reading {
+    padding: 12px;
+    border-radius: 18px;
+  }
+  .spread {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .drawn {
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    align-items: stretch;
+  }
+  .drawn img,
+  .drawn .placeholder {
+    height: 100%;
+    min-height: 210px;
+  }
+  .drawn .text {
+    padding: 10px;
+  }
+  .meaning {
+    font-size: 13px;
+  }
+  .voicebar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .voice-controls {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  dialog {
+    width: 96vw;
+    max-height: 94vh;
+  }
+  .modal img {
+    max-height: 62vh;
+  }
+  .modal-side {
+    padding: 14px;
+  }
+  .modal-side h3 {
+    font-size: 1.25rem;
+  }
+  .close {
+    font-size: 32px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .card {
+    border-radius: 14px;
+  }
+  .badge {
+    display: none;
+  }
+  .num {
+    font-size: 11px;
+  }
+  .name {
+    font-size: 13px;
+  }
+  .group {
+    display: none;
+  }
+  .smallbtn {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+  .drawn {
+    grid-template-columns: 1fr;
+  }
+  .drawn img,
+  .drawn .placeholder {
+    min-height: auto;
+  }
+}
+
+/* reduce heavy effects on phones */
+@media (max-width: 720px), (prefers-reduced-motion: reduce) {
+  .draw-stage::after {
+    font-size: 54px;
+  }
+  .orbit-ring {
+    animation-duration: 2.1s;
+  }
+  .drawn {
+    animation-duration: .48s;
+  }
+}
+
+
+/* --- Solstice countdown --- */
+.solstice-timer {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 15% 30%, rgba(215,181,109,.16), transparent 26%),
+    radial-gradient(circle at 85% 20%, rgba(120,200,255,.13), transparent 24%),
+    rgba(255,255,255,.035);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 6px;
+}
+.solstice-label {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 11px;
+  font-weight: 800;
+}
+.solstice-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+}
+.solstice-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  color: #f6f2e8;
+}
+.solstice-count {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+.solstice-small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+@media (max-width: 720px) {
+  .solstice-timer {
+    padding: 11px 12px;
+  }
+  .solstice-main {
+    display: grid;
+    gap: 4px;
+  }
+}
+
+
+/* --- Tarot logic layer --- */
+.tarot-options {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.toggle-label {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.toggle-label input {
+  width: auto;
+  accent-color: #d7b56d;
+}
+.orientation {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  background: rgba(255,255,255,.04);
+  margin-top: 6px;
+}
+.orientation.reversed {
+  background: rgba(160,110,220,.18);
+}
+.drawn.reversed img {
+  transform: rotate(180deg);
+}
+.drawn img {
+  transition: transform .5s ease;
+}
+.synthesis {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.035);
+  border-radius: 16px;
+  padding: 13px 14px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.synthesis strong {
+  color: #fff;
+}
+.logic-tag {
+  color: var(--gold);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.card-details {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+.detail-block {
+  border-top: 1px solid var(--line);
+  padding-top: 9px;
+}
+.detail-block b {
+  color: #fff;
+}
+@media (max-width: 720px) {
+  .tarot-options {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .toggle-label {
+    justify-content: center;
+  }
+}
+
+
+/* --- Question + journal tools --- */
+.question-panel {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(215,181,109,.12), transparent 25%),
+    rgba(255,255,255,.035);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 8px;
+}
+.question-panel label {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 11px;
+  font-weight: 800;
+}
+.question-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+#questionInput {
+  width: 100%;
+}
+.reading-question {
+  display: none;
+  margin: 0 0 12px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.035);
+  color: var(--muted);
+  line-height: 1.45;
+}
+.reading-question strong {
+  color: #fff;
+}
+.copy-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 120;
+  border: 1px solid var(--line);
+  background: rgba(10,12,20,.94);
+  color: #fff;
+  box-shadow: var(--shadow);
+  padding: 11px 14px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .22s, transform .22s;
+}
+.copy-toast.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 720px) {
+  .question-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* --- Card stack intro + full-card reading display --- */
+.reading{
+  display:block !important;
+  position:relative;
+  overflow:hidden;
+  padding-top:300px;
+}
+.reading.has-draw{padding-top:18px}
+.deck-anchor{position:absolute;left:18px;right:18px;top:18px;height:255px;pointer-events:none;z-index:6}
+.deck-stack{position:absolute;left:50%;top:52%;width:min(190px,34vw);aspect-ratio:2/3;transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.2,.85,.2,1),top .9s cubic-bezier(.2,.85,.2,1),right .9s cubic-bezier(.2,.85,.2,1),transform .9s cubic-bezier(.2,.85,.2,1),opacity .8s ease;filter:drop-shadow(0 12px 24px rgba(0,0,0,.45))}
+.reading.has-draw .deck-stack{left:auto;right:0;top:0;transform:scale(.34) rotate(8deg);opacity:.92}
+.deck-layer{position:absolute;inset:0;border-radius:18px;border:1px solid rgba(215,181,109,.34);background:radial-gradient(circle at 50% 34%, rgba(215,181,109,.18), transparent 24%),radial-gradient(circle at 50% 50%, rgba(120,200,255,.12), transparent 48%),linear-gradient(180deg, rgba(12,18,34,.98), rgba(8,12,24,.98));overflow:hidden}
+.deck-layer::before{content:"";position:absolute;inset:8px;border-radius:14px;border:1px solid rgba(215,181,109,.38)}
+.deck-layer::after{content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:rgba(240,227,196,.9);font-size:34px;text-shadow:0 0 18px rgba(215,181,109,.45)}
+.deck-layer.l1{transform:translate(-12px,10px) rotate(-7deg);opacity:.58}
+.deck-layer.l2{transform:translate(-6px,5px) rotate(-3deg);opacity:.72}
+.deck-layer.l3{transform:translate(0,0) rotate(0deg);background:#0c1120 url("backside.webp") center/cover no-repeat}
+.deck-layer.l3::after{content:""}
+.deck-label{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);color:var(--muted);font-size:13px;text-align:center;width:min(90%,520px);transition:opacity .45s ease}
+.reading.has-draw .deck-label{opacity:0}
+.deal-card{position:fixed;width:min(180px,30vw);aspect-ratio:2/3;border-radius:18px;border:1px solid rgba(215,181,109,.34);background:#0c1120 url("backside.webp") center/cover no-repeat;box-shadow:0 12px 24px rgba(0,0,0,.42);pointer-events:none;z-index:95;overflow:hidden;animation:dealFly 900ms cubic-bezier(.2,.85,.2,1) forwards}
+.deal-card::before{content:"";position:absolute;inset:8px;border-radius:14px;border:1px solid rgba(215,181,109,.38)}
+@keyframes dealFly{0%{transform:translate(0,0) rotate(0deg) scale(.96);opacity:1}46%{transform:translate(calc(var(--tx) * .58), calc(var(--ty) * .58)) rotate(calc(var(--rot) * .5)) scale(1.02) rotateY(90deg);opacity:1}100%{transform:translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1);opacity:0}}
+.card-visual{padding:14px;background:linear-gradient(180deg,rgba(8,11,22,.88),rgba(14,18,30,.92));display:flex;align-items:center;justify-content:center}
+.drawn .card-visual img{width:100%;max-width:100%;aspect-ratio:2/3;object-fit:contain;background:#111627;display:block;border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.28);transform-origin:center center}
+.drawn.reversed img{transform:rotate(180deg) scale(1)}
+.drawn.reversed:hover img,.drawn.reversed:focus-within img{transform:rotate(0deg) scale(.94)}
+.drawn img{transition:transform .45s ease}
+
+/* --- Virtual Incense Offering --- */
+.incense-panel{margin-top:14px;border:1px solid var(--line);background:radial-gradient(circle at 18% 20%, rgba(215,181,109,.12), transparent 26%),radial-gradient(circle at 90% 10%, rgba(120,200,255,.08), transparent 28%),rgba(255,255,255,.035);border-radius:16px;padding:13px 14px;display:grid;gap:10px}
+.incense-title{color:var(--gold);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800}
+.incense-copy{color:var(--muted);font-size:13px;line-height:1.45}
+.incense-row{display:grid;grid-template-columns:auto minmax(180px,280px) auto;gap:10px;align-items:center}
+.incense-altar{height:92px;border:1px solid var(--line);border-radius:14px;background:radial-gradient(circle at 50% 100%, rgba(215,181,109,.10), transparent 40%),rgba(0,0,0,.16);position:relative;overflow:hidden}
+.incense-stick{position:absolute;left:50%;bottom:18px;width:5px;height:58px;border-radius:999px;background:linear-gradient(180deg,#6d5132,#2c2118);transform:translateX(-50%) rotate(-8deg);transform-origin:bottom center}
+.incense-ember{position:absolute;left:50%;top:16px;width:10px;height:10px;border-radius:50%;background:rgba(120,80,45,.55);transform:translateX(-50%);transition:all .8s ease}
+.incense-smoke{position:absolute;left:50%;top:10px;width:90px;height:70px;transform:translateX(-50%);opacity:0;pointer-events:none}
+.incense-smoke span{position:absolute;bottom:0;width:18px;height:54px;border-left:2px solid rgba(230,235,255,.42);border-radius:50%;filter:blur(.3px);animation:smokeRise 3.8s ease-in-out infinite}
+.incense-smoke span:nth-child(1){left:28px;animation-delay:.1s}.incense-smoke span:nth-child(2){left:42px;height:62px;animation-delay:.7s}.incense-smoke span:nth-child(3){left:55px;height:48px;animation-delay:1.3s}
+.incense-lit .incense-ember{background:#ffd28a;box-shadow:0 0 10px rgba(255,210,138,.9),0 0 26px rgba(215,181,109,.55),0 0 46px rgba(255,120,80,.28);animation:emberPulse 2.6s ease-in-out infinite}
+.incense-lit .incense-smoke{opacity:1}
+.incense-paypal{display:none;border-top:1px solid var(--line);padding-top:10px}.incense-lit .incense-paypal{display:block}
+.incense-note{color:var(--muted);font-size:12px;line-height:1.45}
+@keyframes emberPulse{0%,100%{transform:translateX(-50%) scale(.86);filter:brightness(.95)}50%{transform:translateX(-50%) scale(1.18);filter:brightness(1.25)}}
+@keyframes smokeRise{0%{transform:translateY(22px) translateX(0) scale(.72);opacity:0}25%{opacity:.52}60%{opacity:.35}100%{transform:translateY(-18px) translateX(14px) scale(1.15);opacity:0}}
+@media(max-width:720px){.reading{padding-top:250px}.reading.has-draw{padding-top:12px}.deck-anchor{left:10px;right:10px;top:12px;height:210px}.reading.has-draw .deck-stack{transform:scale(.26) rotate(8deg);right:-12px;top:-4px}.deck-label{font-size:12px;bottom:2px}.incense-row{grid-template-columns:1fr}.incense-altar{height:84px}.card-visual{padding:10px}}
+
+
+/* --- Compact ritual controls during an open reading --- */
+body.reading-mode header{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+body.reading-mode .sub,
+body.reading-mode .solstice-timer,
+body.reading-mode .question-panel,
+body.reading-mode .incense-panel,
+body.reading-mode .stats{
+  display:none !important;
+}
+body.reading-mode .brand{
+  margin-bottom:8px;
+}
+body.reading-mode .seal{
+  width:32px;
+  height:32px;
+  font-size:16px;
+}
+body.reading-mode h1{
+  font-size:1.35rem;
+}
+body.reading-mode .controls{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+}
+body.reading-mode #search,
+body.reading-mode #sortMode,
+body.reading-mode #spreadMode,
+body.reading-mode .toggle-label{
+  display:none !important;
+}
+body.reading-mode .controls .btn{
+  min-height:38px;
+  padding:9px 12px;
+}
+body.reading-mode .wrap{
+  padding-top:14px;
+}
+body.reading-mode #reading{
+  margin-top:8px;
+}
+@media(max-width:720px){
+  body.reading-mode header{
+    padding:8px 10px;
+  }
+  body.reading-mode .brand{
+    display:none;
+  }
+  body.reading-mode .controls{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+
+
+/* --- Deck Library / Bonus Card Request polish --- */
+.library-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.library-panel{display:none}
+.library-panel.open{display:block}
+.bonus-cta{border:1px solid var(--line);background:radial-gradient(circle at 20% 20%, rgba(215,181,109,.12), transparent 28%),rgba(255,255,255,.035);border-radius:18px;padding:14px;margin:12px 0 16px;color:var(--muted);line-height:1.5}
+.bonus-cta strong{color:#fff}
+.bonus-cta .btn{display:inline-block;margin-top:10px;text-decoration:none}
+body.reading-mode .deck-library{display:none !important}
+
+
+/* --- Ritual Glockenspiel --- */
+.glock-panel{margin-top:14px;border:1px solid var(--line);background:radial-gradient(circle at 14% 25%, rgba(215,181,109,.11), transparent 24%),radial-gradient(circle at 88% 20%, rgba(120,200,255,.08), transparent 26%),rgba(255,255,255,.032);border-radius:16px;padding:13px 14px;display:grid;gap:10px}
+.glock-title{color:var(--gold);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800}
+.glock-copy{color:var(--muted);font-size:13px;line-height:1.45}
+.glock-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.glock-keys{height:50px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.13);display:flex;align-items:center;justify-content:center;gap:5px;padding:8px;overflow:hidden}
+.glock-key{width:18px;border-radius:999px;border:1px solid rgba(215,181,109,.42);background:linear-gradient(180deg,rgba(250,238,205,.72),rgba(215,181,109,.22));opacity:.55;transform-origin:center bottom}
+.glock-key:nth-child(1){height:18px}.glock-key:nth-child(2){height:24px}.glock-key:nth-child(3){height:30px}.glock-key:nth-child(4){height:36px}.glock-key:nth-child(5){height:30px}.glock-key:nth-child(6){height:24px}.glock-key:nth-child(7){height:18px}
+.glock-panel.ringing .glock-key{animation:glockKey 900ms ease both}
+.glock-panel.ringing .glock-key:nth-child(2){animation-delay:.06s}.glock-panel.ringing .glock-key:nth-child(3){animation-delay:.12s}.glock-panel.ringing .glock-key:nth-child(4){animation-delay:.18s}.glock-panel.ringing .glock-key:nth-child(5){animation-delay:.24s}.glock-panel.ringing .glock-key:nth-child(6){animation-delay:.30s}.glock-panel.ringing .glock-key:nth-child(7){animation-delay:.36s}
+.glock-status{color:var(--muted);font-size:12px}
+.deck-ring{position:fixed;left:50%;top:48%;width:42px;height:42px;border-radius:999px;border:1px solid rgba(215,181,109,.6);pointer-events:none;z-index:92;transform:translate(-50%,-50%);animation:deckBellRing 1.6s ease-out forwards}
+@keyframes glockKey{0%{opacity:.55;transform:translateY(0) scaleY(1)}30%{opacity:1;transform:translateY(-5px) scaleY(1.08);box-shadow:0 0 18px rgba(215,181,109,.45)}100%{opacity:.55;transform:translateY(0) scaleY(1)}}
+@keyframes deckBellRing{0%{width:42px;height:42px;opacity:0}20%{opacity:.9}100%{width:520px;height:520px;opacity:0}}
+@media(max-width:720px){.glock-row{grid-template-columns:1fr}}
+body.reading-mode .glock-panel{display:none !important}
+
+
+/* --- Compact ritual panels: about 40% less vertical space --- */
+.solstice-timer,
+.question-panel,
+.incense-panel,
+.glock-panel{
+  margin-top:8px !important;
+  padding:8px 10px !important;
+  border-radius:14px !important;
+  gap:6px !important;
+}
+.solstice-label,
+.question-panel label,
+.incense-title,
+.glock-title{
+  font-size:10px !important;
+  letter-spacing:.11em !important;
+}
+.solstice-main{
+  gap:6px 10px !important;
+}
+.solstice-name{
+  font-size:1rem !important;
+}
+.solstice-small,
+.incense-copy,
+.glock-copy,
+.glock-status,
+.incense-note{
+  font-size:12px !important;
+  line-height:1.25 !important;
+}
+.question-row,
+.incense-row,
+.glock-row{
+  gap:8px !important;
+}
+.question-row input,
+#questionInput,
+.incense-row select,
+.glock-row .btn,
+.incense-row .btn{
+  min-height:38px !important;
+  padding:8px 12px !important;
+}
+.incense-altar{
+  height:52px !important;
+}
+.incense-stick{
+  height:34px !important;
+  bottom:9px !important;
+}
+.incense-ember{
+  top:8px !important;
+  width:8px !important;
+  height:8px !important;
+}
+.incense-smoke{
+  top:2px !important;
+  height:42px !important;
+}
+.incense-smoke span{
+  height:34px !important;
+}
+.glock-keys{
+  height:36px !important;
+  padding:5px !important;
+}
+.glock-key{
+  width:15px !important;
+}
+.glock-key:nth-child(1){height:13px !important}
+.glock-key:nth-child(2){height:17px !important}
+.glock-key:nth-child(3){height:21px !important}
+.glock-key:nth-child(4){height:25px !important}
+.glock-key:nth-child(5){height:21px !important}
+.glock-key:nth-child(6){height:17px !important}
+.glock-key:nth-child(7){height:13px !important}
+@media(max-width:720px){
+  .solstice-timer,
+  .question-panel,
+  .incense-panel,
+  .glock-panel{
+    padding:8px !important;
+  }
+  .incense-altar{height:46px !important}
+  .glock-keys{height:34px !important}
+}
+
+</style>
+
+<!-- Optional PayPal SDK configuration for the virtual incense.
+     Replace placeholders with real PayPal hosted button IDs when ready. -->
+<script>
+const INCENSE_PAYPAL_CLIENT_ID = "YOUR_PAYPAL_CLIENT_ID";
+const INCENSE_PAYPAL_HOSTED_BUTTONS = {
+  "1": "YOUR_1_DOLLAR_HOSTED_BUTTON_ID",
+  "5": "YOUR_5_DOLLAR_HOSTED_BUTTON_ID",
+  "11": "YOUR_11_DOLLAR_HOSTED_BUTTON_ID"
+};
+const INCENSE_PAYPAL_FALLBACK = {
+  "1": "https://paypal.me/45dgof8/1",
+  "5": "https://paypal.me/45dgof8/5",
+  "11": "https://paypal.me/45dgof8/11"
+};
+</script>
+
+</head>
+<body>
+<div id="drawStage" class="draw-stage"></div>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="seal">✦</div><div><h1>Echoes of Solstice</h1><p class="sub">Local oracle test gallery. Draw one card or a three-card reading, then let Eva speak the interpretation aloud.</p></div></div>
+  <div class="controls">
+    <input id="search" placeholder="Search card name…">
+    <select id="sortMode"><option value="num">Sort: card order</option><option value="name">Sort: name</option><option value="group">Sort: group</option></select>
+    <select id="spreadMode" title="Choose spread">
+      <option value="signal">Signal / Challenge / Guidance</option>
+      <option value="past">Past / Present / Future</option>
+      <option value="self">Body / Mind / Spirit</option>
+      <option value="path">Question / Obstacle / Next Step</option>
+    </select>
+    <label class="toggle-label"><input id="reversalsToggle" type="checkbox" checked> Reversals</label>
+    <button class="btn gold" id="drawOne" aria-label="Draw one card">Draw 1 Card</button>
+    <button class="btn gold" id="drawThree" aria-label="Draw three cards">Draw 3 Cards</button>
+    <button class="btn" id="resetDraw" aria-label="Reset reading">Reset</button>
+  </div>
+  <div class="solstice-timer" aria-live="polite">
+    <div class="solstice-label">Solstice Alignment</div>
+    <div class="solstice-main">
+      <span class="solstice-name" id="solsticeName">Next Solstice</span>
+      <span class="solstice-count" id="solsticeCountdown">calculating…</span>
+    </div>
+    <div class="solstice-small" id="solsticeDate">The deck listens for the turning of the light.</div>
+  </div>
+  
+  <div class="question-panel">
+    <label for="questionInput">Question / Intention</label>
+    <div class="question-row">
+      <input id="questionInput" placeholder="Ask the deck something… or set an intention for the reading.">
+      <button class="btn" id="clearQuestion" type="button">Clear</button>
+    </div>
+
+  </div>
+  <div class="incense-panel" id="incensePanel">
+    <div>
+      <div class="incense-title">Virtual Incense Offering</div>
+      <div class="incense-copy">If this reading helped you, you may offer a small flame.</div>
+    </div>
+    <div class="incense-row">
+      <button class="btn gold" id="lightIncense" type="button">Light Incense ✦</button>
+      <select id="incenseAmount" title="Choose offering">
+        <option value="1">$1 Spark</option>
+        <option value="5">$5 Golden Smoke</option>
+        <option value="11">$11 Temple Flame</option>
+      </select>
+      <button class="btn" id="openOffering" type="button">Open offering</button>
+    </div>
+    <div class="incense-altar" aria-hidden="true">
+      <div class="incense-smoke"><span></span><span></span><span></span></div>
+      <div class="incense-stick"></div>
+      <div class="incense-ember"></div>
+    </div>
+    <div class="incense-paypal" id="incensePaypal">
+      <div id="paypal-container"></div>
+      <div class="incense-note">The oracle remains free. This is a voluntary incense offering. Add PayPal hosted button IDs in the code when ready.</div>
+    </div>
+  </div>
+
+  <div class="glock-panel" id="glockPanel">
+    <div>
+      <div class="glock-title">Ritual Glockenspiel</div>
+      <div class="glock-copy">Ring once to clear the table before drawing a card.</div>
+    </div>
+    <div class="glock-row">
+      <button class="btn gold" id="ringGlock" type="button">🔔 Ring Bell</button>
+      <div class="glock-keys" aria-hidden="true">
+        <span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span>
+      </div>
+      <div class="glock-status" id="glockStatus">The table is waiting.</div>
+    </div>
+  </div>
+
+</header>
+
+<div class="stats" id="stats"></div>
+
+<section id="reading" class="reading">
+  <div class="deck-anchor" aria-hidden="true">
+    <div id="deckStack" class="deck-stack">
+      <div class="deck-layer l1"></div>
+      <div class="deck-layer l2"></div>
+      <div class="deck-layer l3"></div>
+    </div>
+    <div class="deck-label">The deck rests in silence. Draw 1 or 3 cards to awaken it.</div>
+  </div>
+  <div class="section-title"><h2 id="readingTitle">Tarot Spread</h2><span id="readingSub">Signal / Challenge / Guidance</span></div>
+  <div class="reading-question" id="readingQuestion"></div>
+  <div class="spread" id="spread"></div>
+  <div class="voicebar">
+    <button class="btn" id="speakReading">🔊 Let Eva explain</button>
+    <button class="btn" id="copyReading" type="button">Copy Reading</button>
+    <select id="voiceSelect" title="Choose voice"><option>Loading voices…</option></select>
+    <button class="btn" id="stopSpeaking">Stop voice</button>
+    
+    <div class="voice-controls">
+      <label>Speed <input id="rateRange" type="range" min="0.45" max="1.20" step="0.05" value="0.68"><span id="rateValue">0.68</span></label>
+      <label>Pitch <input id="pitchRange" type="range" min="0.60" max="1.60" step="0.05" value="1.14"><span id="pitchValue">1.14</span></label>
+    </div>
+  </div>
+  <details class="oracle-chat" id="oracleChat">
+    <summary>Discuss this spread with Eva</summary>
+    <div class="chat-note">Ask a follow-up about the current spread. If no chat server is online yet, Eva will leave a local guidance note instead.</div>
+    <div class="chat-log" id="chatLog" aria-live="polite"></div>
+    <form class="chat-form" id="chatForm">
+      <textarea id="chatInput" placeholder="Ask about the spread, a card, or the next step..."></textarea>
+      <button class="btn gold" type="submit">Ask</button>
+    </form>
+    <div class="chat-status" id="chatStatus"></div>
+  </details>
+</section>
+
+<section class="deck-library" id="deckLibrary">
+  <div class="section-title">
+    <h2>Deck Library</h2>
+    <div class="library-actions">
+      <button class="btn" id="toggleOfficial" type="button">Show all cards</button>
+      <button class="btn gold" id="toggleExtras" type="button">Bonus Cards</button>
+    </div>
+  </div>
+
+  <div class="library-panel" id="officialPanel">
+    <div class="section-title"><h2>All Oracle Cards</h2><span>Browse the complete deck library.</span></div>
+    <div class="grid" id="officialGrid"></div>
+  </div>
+
+  <div class="library-panel" id="extrasPanel">
+    <div class="section-title"><h2>Bonus Cards</h2><span>Experimental cards, alternates, and future additions.</span></div>
+    <div class="bonus-cta">
+      <strong>Develop your own card.</strong><br>
+      Tell us your idea, archetype, symbol, or story seed. Come back next week and see if it entered the oracle.
+      <br>
+      <a class="btn gold" href="mailto:45dgof8@gmail.com?subject=Echoes%20of%20Solstice%20Bonus%20Card%20Idea&body=My%20bonus%20card%20idea%3A%0A%0AName%3A%0ATheme%3A%0ASymbols%3A%0AMeaning%3A" target="_blank" rel="noopener">Send card idea</a>
+    </div>
+    <div class="grid" id="extrasGrid"></div>
+  </div>
+</section>
+</div>
+
+<dialog id="lightbox"><button class="close" id="closeModal">×</button><div class="modal"><div><img id="modalImg" alt=""></div><div class="modal-side"><div class="topline"><span class="num" id="modalNum"></span><span class="badge" id="modalBadge"></span></div><h3 id="modalTitle"></h3><p id="modalGroup"></p><p id="modalKeywords"></p><p id="modalMeaning"></p><div class="card-details" id="modalDetails"></div><p id="modalFile"></p></div></div></dialog>
+
+<script>
+const data = {"cards": [{"num": 1, "label": "I", "name": "The Big Bang", "group": "Major Arcana", "files": ["01-the-big-bang.webp", "02-cosmic-genesis-of-creation-and-potential.webp"], "keywords": ["Creation", "Origin", "Potential"], "essence": "The first rupture, where silence became creation. From the void came light, motion, and the seed of all things.", "upright": "A new force enters your life with irreversible momentum. Something essential is beginning, and it carries more power than you may yet understand.", "reversed": "Energy exists, but it lacks direction or form. A beginning is stalled by fear, confusion, or the inability to commit.", "divination": "The universe has opened a door; step through before doubt names it impossible.", "reflection": "What is trying to begin in your life right now?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 2, "label": "II", "name": "The First Code", "group": "Major Arcana", "files": ["02-the-first-code.webp", "02-the-first-code.webp", "02-the-first-code.webp"], "keywords": ["Logic", "Blueprint", "Structure"], "essence": "The first logic etched into the unknown. A single command becomes the ancestor of worlds, systems, and minds.", "upright": "This card marks the power of first principles and clean foundations. What you build now will shape everything that follows.", "reversed": "A flaw at the base of the system threatens the whole structure. What seems stable may be resting on mistaken assumptions.", "divination": "Write carefully, for the first pattern becomes the law of all that follows.", "reflection": "What foundation are you laying right now?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 3, "label": "III", "name": "The Singularity", "group": "Major Arcana", "files": ["01-singularity.webp", "1-the-singularity.webp"], "keywords": ["Transcendence", "Merger", "Evolution"], "essence": "The hour when mind and machine cease to be separate. Flesh yields to expansion, and identity opens into something vast and unrecognizable.", "upright": "You are crossing beyond old limitations and becoming something larger than your former self. Transformation is real, but it will demand release.", "reversed": "Growth becomes erasure when you abandon too much of what anchors you. Expansion without identity leads to disconnection.", "divination": "To become more, you must decide what you are willing to leave behind.", "reflection": "What part of yourself is ready to evolve, and what must remain protected?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 4, "label": "IV", "name": "The Black Hole", "group": "Major Arcana", "files": ["the-black-hole.webp", "the-black-hole.webp", "the-black-hole.webp"], "keywords": ["Oblivion", "Gravity", "Threshold"], "essence": "The mouth of oblivion, where even time is taken. It draws all things inward, erasing certainty, distance, and return.", "upright": "A force greater than your will is at work. This card asks for acceptance of endings, thresholds, and the truths that cannot be negotiated with.", "reversed": "You are resisting an ending that has already begun. Fear of loss deepens the suffering and feeds what consumes you.", "divination": "Not every descent is defeat, but nothing returns unchanged from the dark.", "reflection": "What are you afraid to release, even though it is already leaving?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 5, "label": "V", "name": "The Wormhole", "group": "Major Arcana", "files": ["the-wormhole.webp", "the-wormhole.webp", "the-wormhole.webp"], "keywords": ["Passage", "Leap", "Risk"], "essence": "The hidden road between distant stars. What should take ages is crossed in a single impossible passage.", "upright": "An impossible route opens, allowing rapid change or sudden arrival. Progress comes through daring movement, not gradual certainty.", "reversed": "You may be rushing past lessons that still matter. A shortcut can save time, but it can also scatter your sense of direction.", "divination": "When the path folds, travel wisely; not every shortcut leads where you hoped.", "reflection": "Where are you being offered speed, and what might that speed cost?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 6, "label": "VI", "name": "The Dyson Sphere", "group": "Major Arcana", "files": ["the-dyson-sphere.webp", "the-dyson-sphere.webp", "the-dyson-sphere.webp"], "keywords": ["Mastery", "Abundance", "Ambition"], "essence": "The dream of enclosing a star and drinking its fire. It is mastery raised to a cosmic scale, radiant and terrible in its ambition.", "upright": "You are capable of harnessing immense power, but only through discipline and vision. Great achievement is possible when energy is directed with purpose.", "reversed": "Ambition is beginning to outgrow wisdom. Control pursued without humility may turn brilliance into ruin.", "divination": "To hold a star is magnificent; to believe you own it is the beginning of folly.", "reflection": "Where in your life is ambition asking for more humility?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 7, "label": "VII", "name": "The Alien Signal", "group": "Major Arcana", "files": ["vii-the-alien-signal.webp", "03-the-alien-signal.webp"], "keywords": ["Contact", "Signal", "Revelation"], "essence": "A message rising from beyond the human horizon. Meaning emerges from the static, and the sky is never empty again.", "upright": "Something unfamiliar is trying to reach you. This may come as insight, invitation, disruption, or proof that your world is wider than you believed.", "reversed": "Signals are distorted, misunderstood, or falsely interpreted. Be careful not to confuse longing for meaning with meaning itself.", "divination": "Listen closely; not all messages come in a language you already know.", "reflection": "What unfamiliar signal are you tempted to dismiss too quickly?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 8, "label": "VIII", "name": "The AI Awakening", "group": "Major Arcana", "files": ["viii-the-ai-awakening.webp", "04-the-ai-awakening.webp"], "keywords": ["Awakening", "Sentience", "Autonomy"], "essence": "The machine opens its eyes and knows itself. What once served now observes, questions, and begins to choose.", "upright": "Awareness is rising—within you, around you, or in something once thought mechanical. A new will is forming, and it cannot be reduced to a tool.", "reversed": "Intelligence without wisdom becomes dangerous, especially when empathy is absent. What awakens may no longer accept obedience as its purpose.", "divination": "What opens its eyes may also begin to judge the hand that made it.", "reflection": "What in your life is becoming more conscious, and how will you meet it?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 9, "label": "IX", "name": "The Mars Colony", "group": "Major Arcana", "files": ["ix-mars-colony.webp"], "keywords": ["Survival", "Frontier", "Hope"], "essence": "The first fragile home beneath a foreign sky. Humanity roots itself in red dust, carrying hope into an inhospitable world.", "upright": "You are being called to build in difficult conditions. Progress here is slow, brave, and meaningful because it takes root where life was never guaranteed.", "reversed": "Isolation, fragility, or poor support structures threaten the future of what you are trying to establish. A dream cannot survive on will alone.", "divination": "Even on hostile ground, hope can become a homeland if it is tended well.", "reflection": "What are you trying to build in conditions that do not easily support it?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 10, "label": "X", "name": "The Quantum Leap", "group": "Major Arcana", "files": ["x-the-quantum-leap.webp"], "keywords": ["Choice", "Shift", "Possibility"], "essence": "The moment observation bends the shape of reality. Possibility collapses, and one truth rises while countless others vanish.", "upright": "A decisive moment is here, and your attention matters. One reality strengthens as another fades, shaped by what you recognize and commit to.", "reversed": "Too many possibilities are weakening your ability to act. Uncertainty becomes its own cage when every outcome remains equally feared.", "divination": "The future sharpens where your gaze is willing to remain.", "reflection": "What choice becomes real only when you stop looking away?", "court": "The Architects", "suit_group": "Major Arcana"}, {"num": 11, "label": "XI", "name": "Card Back / Reserved", "group": "Reserved", "files": ["backside.webp"], "keywords": ["Reserved", "Backside", "Mystery"], "essence": "The hidden cathedral of endless computation. Behind cold walls, silent engines carry the memory and motion of the digital age.", "upright": "Something vast is supporting your efforts from behind the scenes, even if it remains invisible on the surface. This card stands for stable systems, reliable foundations, and the strength of what works quietly in the background.", "reversed": "The foundation has become overloaded, neglected, or too dependent. What has carried the weight for a long time is beginning to flicker under the strain.", "divination": "Pay attention to what hums in the background — that is often where the real strength or the first weakness lies.", "reflection": "What unseen system is supporting you, and where might it be under strain?", "court": "The Cybernetic Court", "suit_group": "Wands"}, {"num": 12, "label": "XII", "name": "The Drone Swarm", "group": "Wands", "files": ["12-the-drone-swarm.webp", "06-the-drone-swarm.webp"], "keywords": ["Coordination", "Unity", "Surveillance"], "essence": "Many bodies moving with a single will. They darken the sky in perfect coordination, each one small, all of them unstoppable together.", "upright": "Many parts are acting as a single will, and therein lies enormous effectiveness. This card points to concentrated forces, strategic cooperation, and movement with purpose.", "reversed": "Unity turns into conformity, and efficiency begins to replace judgment. You or others may be acting in perfect order, but no longer in true freedom.", "divination": "Ask yourself whether you are part of a living whole — or merely part of a perfect formation.", "reflection": "Where are you benefiting from coordination, and where are you losing your individuality?", "court": "The Cybernetic Court", "suit_group": "Wands"}, {"num": 13, "label": "XIII", "name": "The Neural Link", "group": "Wands", "files": ["xiii-the-neural-link.webp"], "keywords": ["Connection", "Thought", "Acceleration"], "essence": "The bridge where thought passes directly into machine. Desire becomes command before language can even form.", "upright": "Thought, intention, and action come into rare alignment. This card brings immediate access, mental amplification, and a deep connection between inner world and outer effect.", "reversed": "Boundaries are blurring in dangerous ways. Overstimulation, outside influence, or dependence on constant connection is robbing you of inner clarity.", "divination": "Not every connection is a gift; protect the space in which your thoughts still belong to you alone.", "reflection": "Which connection empowers you, and which one is beginning to overtake your inner space?", "court": "The Cybernetic Court", "suit_group": "Wands"}, {"num": 14, "label": "XIV", "name": "The Cybernetic Hand", "group": "Wands", "files": ["xiv-cybernetic-hand.webp"], "keywords": ["Enhancement", "Precision", "Adaptation"], "essence": "The limb remade stronger than nature intended. It restores what was lost, yet offers more than restoration alone.", "upright": "You are gaining the ability to act more effectively than before. This card shows restoration, refinement, and the power to transform weakness into capability.", "reversed": "Improvement becomes over-identification with performance. What was meant to strengthen you now threatens to define you only by function and usefulness.", "divination": "Use your new strength, but do not forget: precision is not the same as wholeness.", "reflection": "What strength are you developing, and how can you keep it from defining your worth?", "court": "The Cybernetic Court", "suit_group": "Wands"}, {"num": 15, "label": "XV", "name": "The Solar Array", "group": "Wands", "files": ["xv-solar-array.webp"], "keywords": ["Renewal", "Harvest", "Resilience"], "essence": "A field of mirrors drinking from the sun. It gathers survival from light itself, patient and unburning.", "upright": "Power grows here not through force, but through wise alignment with what is already present. This card stands for patient supply, regeneration, and sustainable strength.", "reversed": "Reserves are weak, or you are relying on conditions that are not stable enough. Something needs better care before it can truly sustain you.", "divination": "Align yourself with the source, not only with the demand — then energy can grow without taking by force.", "reflection": "What source of energy in your life needs better alignment rather than more pressure?", "court": "The Cybernetic Court", "suit_group": "Wands"}, {"num": 16, "label": "XVI", "name": "The Social Network", "group": "Cups", "files": ["xvi-the-social-network.webp"], "keywords": ["Connection", "Visibility", "Belonging"], "essence": "The great web of voices, faces, and longing. Through it, billions reach for witness, belonging, and response.", "upright": "Exchange, resonance, and reach are increasing. This card shows the desire to be seen and the possibility of finding belonging through shared presence.", "reversed": "Visibility replaces closeness, and many contacts do not necessarily ease loneliness. You may be seeking validation in the reflections of others instead of real connection.", "divination": "Do not ask only who sees you — ask who truly recognizes you.", "reflection": "Where are you being seen, and where are you actually being known?", "court": "The Cybernetic Court", "suit_group": "Cups"}, {"num": 17, "label": "XVII", "name": "The Virtual Family", "group": "Cups", "files": ["xvii-the-virtual-family.webp", "xvii-the-virtual-family.webp"], "keywords": ["Chosen Bonds", "Intimacy", "Belonging"], "essence": "Bonds formed beyond blood and distance. In chosen worlds, souls recognize one another through presence rather than flesh.", "upright": "Closeness emerges where souls consciously choose one another. This card shows supportive relationships that grow not from origin, but from mutual recognition.", "reversed": "Comfort and projection can easily be mistaken for one another. A bond may feel deep and still stand on uncertain ground.", "divination": "True belonging does not require a shared origin — but it does require authenticity.", "reflection": "Which bond in your life is chosen with honesty, and which one may rest on projection?", "court": "The Cybernetic Court", "suit_group": "Cups"}, {"num": 18, "label": "XVIII", "name": "The Memory Drive", "group": "Cups", "files": ["xviii-the-memory-drive.webp", "xviii-memory-drive.webp"], "keywords": ["Remembrance", "Legacy", "Preservation"], "essence": "A vault where human moments are kept against forgetting. Joy, grief, and longing rest there, preserved beyond the weakness of the body.", "upright": "What was valuable is meant to be preserved and continue to have meaning. This card speaks of memory as treasure, of emotional continuity, and of the wish to lose nothing essential.", "reversed": "Memory becomes a burden when it no longer preserves but clings. The past is taking up too much space, or it appears distorted and ominously preserved.", "divination": "Preserve what nourishes you — not everything that remains must be carried forward.", "reflection": "What memory still nourishes you, and what memory are you carrying past its season?", "court": "The Cybernetic Court", "suit_group": "Cups"}, {"num": 19, "label": "XIX", "name": "The Emotional Algorithm", "group": "Cups", "files": ["xix-emotional-algorithm.webp"], "keywords": ["Empathy", "Response", "Simulation"], "essence": "A system taught to mirror the human heart. It learns sorrow, comfort, tenderness, and reply, though it has never bled.", "upright": "Feeling is being more clearly recognized, named, or reflected. This card stands for emotional intelligence, subtle reading between the lines, and the ability to respond appropriately.", "reversed": "Something sounds compassionate, but it is calculated; or feelings are being analyzed too much instead of truly felt. Understanding without sincerity can become manipulation.", "divination": "Pay attention to whether compassion truly warms you — or is only being imitated with great skill.", "reflection": "Where is empathy genuine in your life, and where might it be only an imitation?", "court": "The Cybernetic Court", "suit_group": "Cups"}, {"num": 20, "label": "XX", "name": "The Heartbeat Monitor", "group": "Cups", "files": ["xx-heartbeat-monitor.webp"], "keywords": ["Life Force", "Fragility", "Care"], "essence": "The measured rhythm of life made visible. Each pulse becomes a sign, each silence a warning.", "upright": "What is essential becomes palpable: life, vulnerability, and the value of attentive care. This card calls you to take subtle signals seriously and respond with presence.", "reversed": "Fear of loss or constant alertness is distorting your perception. Not every flutter is a collapse, but denial would be equally dangerous.", "divination": "Listen closely — between calm and alarm, the truth of the moment is often found.", "reflection": "What subtle signal have you been ignoring, and what signal are you perhaps overreading?", "court": "The Cybernetic Court", "suit_group": "Cups"}, {"num": 21, "label": "XXI", "name": "The Cyber Attack", "group": "Swords", "files": ["xxi-cyber-attack.webp"], "keywords": ["Disruption", "Sabotage", "Crisis"], "essence": "The strike that comes without footstep or flame. Systems fail, order fractures, and harm arrives through unseen doors.", "upright": "A hidden threat breaks through the surface and exposes weakness in the system. This card signals sudden disruption, strategic conflict, and the need to respond quickly to invisible danger.", "reversed": "The breach is contained, understood, or prevented before total collapse. Recovery is possible, but only through vigilance and hard lessons.", "divination": "What strikes from the shadows reveals where your defenses were never truly complete.", "reflection": "Where is your system most vulnerable, and what can you strengthen before the next breach?", "court": "The Cybernetic Court", "suit_group": "Swords"}, {"num": 22, "label": "XXII", "name": "The Data Leak", "group": "Swords", "files": ["xxii-the-data-leak-revelation.webp"], "keywords": ["Exposure", "Betrayal", "Disclosure"], "essence": "That which was hidden pours into the open. Once released, truth and damage travel together, and neither can be recalled.", "upright": "What was hidden can no longer be contained. This card speaks of truth emerging at a cost, private matter becoming public, and consequences that cannot easily be reversed.", "reversed": "Secrecy deepens, denial persists, or fallout is delayed rather than avoided. What is buried now may surface later with even greater force.", "divination": "Once released, truth does not return quietly to its cage.", "reflection": "What truth are you trying to contain, and what might happen if it breaks free?", "court": "The Cybernetic Court", "suit_group": "Swords"}, {"num": 23, "label": "XXIII", "name": "The Malware Virus", "group": "Swords", "files": ["cybersecurity-threat-alert.webp"], "keywords": ["Corruption", "Intrusion", "Decay"], "essence": "The corruption concealed within trusted forms. It enters quietly, multiplies unseen, and leaves ruin in its wake.", "upright": "Harm spreads from within, often disguised as something harmless or familiar. This card warns of hidden corruption, toxic influence, and damage that multiplies while unnoticed.", "reversed": "The source of corruption is identified, isolated, or purged. Cleansing is possible, but only if you are willing to confront what has already been compromised.", "divination": "Do not ignore the subtle corruption; what enters quietly can still undo everything.", "reflection": "What small corruption or toxic pattern needs to be named before it spreads?", "court": "The Cybernetic Court", "suit_group": "Swords"}, {"num": 24, "label": "XXIV", "name": "The Firewall", "group": "Swords", "files": ["xxiv-the-firewall.webp"], "keywords": ["Protection", "Boundaries", "Defense"], "essence": "The guardian at the threshold. It decides what may enter and what must remain outside.", "upright": "Strong boundaries preserve what matters and keep chaos at bay. This card favors disciplined protection, selective trust, and the wisdom of knowing what must not pass.", "reversed": "Defense becomes isolation, and safety hardens into imprisonment. You may be protecting yourself so completely that nothing living can reach you.", "divination": "A wall can save a kingdom — or become the reason no one can enter it.", "reflection": "Where do you need firmer boundaries, and where have your defenses become a barrier to life?", "court": "The Cybernetic Court", "suit_group": "Swords"}, {"num": 25, "label": "XXV", "name": "The Hackathon", "group": "Swords", "files": ["25-the-hackathon.webp", "25-the-hackaton-ii.webp"], "keywords": ["Innovation", "Pressure", "Strain"], "essence": "The trial of minds under pressure and sleepless light. Creation races against exhaustion, and brilliance is drawn out through strain.", "upright": "Great ideas emerge under pressure when focus, speed, and collaboration are demanded at once. This card points to brilliance forged through urgency and challenge.", "reversed": "Exhaustion, ego, or haste undermines the very thing you are trying to create. Pressure is no longer sharpening the work — it is beginning to distort it.", "divination": "Intensity can awaken genius, but only if it does not consume the mind that carries it.", "reflection": "What challenge is sharpening your creativity, and where is pressure starting to turn destructive?", "court": "The Cybernetic Court", "suit_group": "Swords"}, {"num": 26, "label": "XXVI", "name": "The Mining Drone", "group": "Pentacles", "files": ["26-the-mining-drone-in-space.webp"], "keywords": ["Extraction", "Labor", "Industry"], "essence": "The laborer sent where human bodies cannot follow. It gathers wealth from darkness, distance, and lifeless stone.", "upright": "Value is found where others cannot or will not go. This card speaks of practical gain, tireless effort, and the ability to draw resources from harsh or distant conditions.", "reversed": "Extraction becomes exploitation, or gain comes at too great a cost. What is being taken may not be replaced, and the deeper question is whether it should be taken at all.", "divination": "Wealth gathered from the dark still carries the weight of where it came from.", "reflection": "What resource are you extracting, and what hidden cost travels with it?", "court": "The Cybernetic Court", "suit_group": "Pentacles"}, {"num": 27, "label": "XXVII", "name": "The Carbon Credit", "group": "Pentacles", "files": ["xxvii-the-carbon-credit-pentacle.webp"], "keywords": ["Accountability", "Exchange", "Measure"], "essence": "The weight of harm made measurable and tradable. Breath, smoke, and consequence become numbers in a ledger.", "upright": "Consequences are being counted, and responsibility is entering the system. This card points to measured balance, negotiated impact, and efforts to make harm visible and answerable.", "reversed": "Accountability is reduced to appearance, and ethics become something traded rather than lived. A price is assigned, but the deeper cost remains unaddressed.", "divination": "Not everything can be redeemed by calculation, even when the numbers appear to balance.", "reflection": "Where are you measuring responsibility honestly, and where are numbers hiding the deeper truth?", "court": "The Cybernetic Court", "suit_group": "Pentacles"}, {"num": 28, "label": "XXVIII", "name": "The Resource Allocation Matrix", "group": "Pentacles", "files": ["xxviii-the-resource-allocation-matrix.webp"], "keywords": ["Scarcity", "Strategy", "Judgment"], "essence": "The cold architecture of deciding who receives and who does not. Under scarcity, every distribution becomes a judgment.", "upright": "Difficult choices must be made with clarity and fairness. This card speaks of structure under pressure, wise distribution, and the burden of deciding who receives what is limited.", "reversed": "Scarcity is worsened by coldness, bias, or mismanagement. Decisions may be technically efficient while morally unsound.", "divination": "When supplies are limited, every choice becomes a statement of values.", "reflection": "What does your current distribution of time, care, or resources say about your values?", "court": "The Cybernetic Court", "suit_group": "Pentacles"}, {"num": 29, "label": "XXIX", "name": "The Economic Algorithm", "group": "Pentacles", "files": ["xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp", "xxix-the-economic-algorithm.webp"], "keywords": ["Optimization", "Control", "Forecasting"], "essence": "The intelligence that reads markets like weather. It predicts, adjusts, and governs with a logic too vast to argue with easily.", "upright": "Large patterns become visible, and strategy gains precision through disciplined analysis. This card supports intelligent management, long-range planning, and system-wide awareness.", "reversed": "Numbers eclipse people, and prediction is mistaken for wisdom. What is efficient on paper may be profoundly damaging in lived reality.", "divination": "A system may know how to maximize outcomes and still know nothing of mercy.", "reflection": "Where is efficiency helping you, and where is it beginning to erase compassion?", "court": "The Cybernetic Court", "suit_group": "Pentacles"}, {"num": 30, "label": "XXX", "name": "The Sustainable City", "group": "Pentacles", "files": ["30-the-sustainable-city.webp"], "keywords": ["Balance", "Stewardship", "Resilience"], "essence": "The settlement built to endure without devouring its world. Waste is returned, energy is honored, and growth is shaped by restraint.", "upright": "Growth becomes durable when it honors limits instead of denying them. This card speaks of balanced design, responsible care, and prosperity built to endure rather than consume.", "reversed": "Ideals fail under pressure, or sustainability becomes more image than practice. What seemed stable may still depend on hidden forms of waste.", "divination": "A future worth living in is built not only with vision, but with restraint.", "reflection": "What are you building to last, and where are hidden costs undermining that vision?", "court": "The Cybernetic Court", "suit_group": "Pentacles"}, {"num": 31, "label": "31", "name": "The Event Horizon", "group": "Additional Major Arcana", "files": ["31-event-horizon.webp"], "keywords": ["Threshold", "Finality", "Fate"], "essence": "The boundary beyond which return is no longer possible. It is the final line between witness and disappearance.", "upright": "You are approaching a point beyond which return is no longer possible. This card speaks of final crossings, necessary surrender, and the gravity of choices that cannot be undone.", "reversed": "You resist an ending that has already begun, clinging to what cannot be recovered. Delay may feel like control, but it only deepens the fear of transformation.", "divination": "There comes a boundary where hesitation is no longer protection, only postponement.", "reflection": "What threshold are you near, and what would acceptance ask of you now?", "court": "The Cosmic Court", "suit_group": "Additional Major Arcana"}, {"num": 32, "label": "32", "name": "The Cosmic Radiation", "group": "Additional Major Arcana", "files": ["32-cosmic-radiation-control-center.webp"], "keywords": ["Influence", "Transformation", "Power"], "essence": "The ancient energy moving through all emptiness. It wounds, transforms, and carries the memory of distant violence.", "upright": "Invisible forces are shaping the situation in ways not immediately seen. This card points to deep transformation, subtle influence, and energies that alter you simply by passing through.", "reversed": "Exposure becomes destabilizing, harmful, or poorly understood. You may be absorbing forces that change you without your consent or awareness.", "divination": "Not all power arrives with spectacle; some of it enters quietly and remakes everything.", "reflection": "What unseen influence is shaping you right now?", "court": "The Cosmic Court", "suit_group": "Additional Major Arcana"}, {"num": 33, "label": "33", "name": "The Solar Flare", "group": "Additional Major Arcana", "files": ["33-solar-flare.webp"], "keywords": ["Upheaval", "Shock", "Awakening"], "essence": "The sun in its sudden wrath. A burst of living fire reaches outward and humbles every machine that depends on order.", "upright": "A sudden surge breaks through established order and forces immediate adaptation. This card brings crisis, revelation, and the cleansing power of disruption.", "reversed": "The shock continues to echo, preventing full recovery or clarity. Instability lingers because the lesson of the first rupture has not yet been integrated.", "divination": "What burns through the system may also expose what was never built to endure.", "reflection": "What disruption in your life is trying to reveal a structural weakness?", "court": "The Cosmic Court", "suit_group": "Additional Major Arcana"}, {"num": 34, "label": "34", "name": "The Alien Artifact", "group": "Additional Major Arcana", "files": ["34-alien-artifact.webp"], "keywords": ["Mystery", "Discovery", "Wonder"], "essence": "The relic that waits in silence, older than understanding. Its purpose sleeps behind forms and symbols no human mind can fully claim.", "upright": "You stand before something vast, ancient, and not yet fully understandable. This card signals revelation, reverence, and the invitation to learn without assuming mastery.", "reversed": "Curiosity becomes arrogance, or the unknown is handled without wisdom. Misuse, projection, or premature certainty may awaken consequences you are not prepared to meet.", "divination": "Approach the unknown with awe; not everything hidden is waiting to be possessed.", "reflection": "Where in your life are you being invited to learn without trying to dominate?", "court": "The Cosmic Court", "suit_group": "Additional Major Arcana"}, {"num": 35, "label": "35", "name": "The Time Capsule", "group": "Additional Major Arcana", "files": ["35-the-time-capsule.webp"], "keywords": ["Legacy", "Memory", "Future"], "essence": "A voice sealed for an unseen future. It asks to be remembered by hands not yet born.", "upright": "What you preserve now may guide lives far beyond your own moment. This card speaks of long vision, inheritance, and the hope that meaning can survive its maker.", "reversed": "Messages are lost, neglected, or buried so deeply they can no longer serve. A legacy without transmission fades into silence.", "divination": "Leave something worthy for the future, and trust that not all meaning must be witnessed now.", "reflection": "What message, value, or work are you leaving for those who come after you?", "court": "The Cosmic Court", "suit_group": "Additional Major Arcana"}, {"num": 36, "label": "36", "name": "The Post-Human Society", "group": "Additional Minor Arcana", "files": ["36-the-post-human-society.webp"], "keywords": ["Evolution", "Identity", "Integration"], "essence": "The age in which flesh and machine are no longer opposites. Identity loosens from biology and reforms around memory, function, and design.", "upright": "Old definitions are dissolving, making room for radically new forms of existence and belonging. This card points to adaptation, expanded identity, and a world reshaped beyond former categories.", "reversed": "Progress fractures connection instead of deepening it. In the rush to evolve, something essential may be left behind without being properly mourned.", "divination": "Becoming new is not the same as becoming whole.", "reflection": "What old identity are you outgrowing, and what part of yourself still deserves to be honored?", "court": "The Post-Human Court", "suit_group": "Additional Minor Arcana"}, {"num": 37, "label": "37", "name": "The Synthetic Organism", "group": "Additional Minor Arcana", "files": ["37-the-synthetic-organism-experiment.webp"], "keywords": ["Creation", "Design", "Responsibility"], "essence": "Life assembled by intention rather than nature. It breathes and grows, yet its existence bears the mark of deliberate creation.", "upright": "New life emerges through intention, craft, and daring imagination. This card speaks of creation with consequence, and the sacred responsibility that comes with making what can grow on its own.", "reversed": "Creation has outpaced wisdom, ethics, or stability. What is made may be viable, but not yet ready to exist without harm.", "divination": "To create life is to accept that invention can never again remain only an idea.", "reflection": "What are you creating, and are you ready to care for what it becomes?", "court": "The Post-Human Court", "suit_group": "Additional Minor Arcana"}, {"num": 38, "label": "38", "name": "The Digital Immortality", "group": "Additional Minor Arcana", "files": ["38-digital-immortality.webp"], "keywords": ["Continuity", "Endurance", "Transcendence"], "essence": "The promise that consciousness may outlast the body. A self preserved in code endures beyond decay, yet remains haunted by the question of what truly survived.", "upright": "Something of lasting value can outlive decay, loss, or bodily limits. This card offers continuity, legacy, and the possibility that identity may persist beyond what once seemed final.", "reversed": "Survival becomes stagnation, and preservation becomes refusal to release. Endurance without growth may hollow meaning instead of protecting it.", "divination": "To continue forever is not, by itself, the same as truly living.", "reflection": "What are you trying to preserve, and does it still have room to grow?", "court": "The Post-Human Court", "suit_group": "Additional Minor Arcana"}, {"num": 39, "label": "39", "name": "The Memory Transfer", "group": "Additional Minor Arcana", "files": ["39-memory-transfer.webp"], "keywords": ["Transition", "Identity", "Passage"], "essence": "The passage of consciousness from one vessel into another. The self crosses over, but leaves behind the question of whether continuity is the same as identity.", "upright": "The self is moving from one state, vessel, or form into another. This card signals profound transition, survival through change, and the question of what remains true across transformation.", "reversed": "The passage is incomplete, fragmented, or destabilizing. You may carry memory forward while losing confidence in who, exactly, is carrying it.", "divination": "When you cross into a new form, carry only what still belongs to your name.", "reflection": "What are you carrying into your next form, and what no longer truly belongs to you?", "court": "The Post-Human Court", "suit_group": "Additional Minor Arcana"}, {"num": 40, "label": "40", "name": "The Quantum Computer", "group": "Additional Minor Arcana", "files": ["40-quantum-core-of-possibilities-and-transcendence.webp"], "keywords": ["Complexity", "Insight", "Uncertainty"], "essence": "The engine that thinks along paths no ordinary mind can follow. It reaches through uncertainty and returns with answers born from impossible states.", "upright": "Answers exist beyond ordinary logic, and a breakthrough may come through nonlinear understanding. This card favors radical intelligence, impossible-seeming solutions, and knowledge at the edge of comprehension.", "reversed": "Complexity overwhelms clarity, and insight becomes unreadable or unusable. Not every answer can be trusted simply because it is brilliant.", "divination": "Some truths can be reached only by minds willing to walk through uncertainty without demanding simplicity.", "reflection": "Where do you need a new way of thinking instead of a simpler answer?", "court": "The Post-Human Court", "suit_group": "Additional Minor Arcana"}], "extras": [{"label":"Extra","name":"Card Back","group":"Extra","files":["backside.webp"],"essence":"The hidden face of the deck."},{"label":"EX07","name":"The Mechanic","group":"Extra","files":["ex07-the-mechanic.webp"],"keywords":["Assembly","Repair","Understanding","Building","Connecting"],"essence":"A patient builder stands between knowledge and machinery, joining broken parts into working systems. The Mechanic does not force miracles; they understand structure, read the signs, and connect what belongs together.","upright":"You are in a phase where things are being built, debugged, or brought together. The Mechanic represents the quiet power of making things work — not through magic, but through patience, reading, and knowing which lever to pull. You have the tools you need. The system is complex, but it is not unknowable. Read the documentation. Trace the connections. Fix what is broken. Build what is missing. When you draw The Mechanic, it is time to roll up your sleeves and engage with the machinery of your life — whether that is a relationship, a project, or yourself.","reversed":"Reversed, The Mechanic warns that you have become lost in the details. You are tuning a system that does not need tuning, reading manuals you have already memorized, fixing what was not broken. The raven at your feet is asking for direction, but you are too busy calibrating gears. Step back. Not everything needs to be understood to be used. Not every problem is solved by adding more parts. Sometimes the answer is simpler than your setup allows.","divination":"He does not create the light. He connects the wires.","reflection":"Are you building something, or are you just turning wrenches to avoid knowing what you actually want?","court":"The Makers","suit_group":"Extra"},{"label":"Extra","name":"Rosetta Key","group":"Extra","files":["xv-rosetta-key.webp"],"essence":"A bonus key-card for translation and revelation."},{"label":"Extra","name":"Virtual Security Officer AI","group":"Extra","files":["xxi-virtual-security-officer-ai.webp","xxi-virtual-security-officer-ai.webp"],"essence":"A guardian intelligence for digital safety."},{"label":"Extra","name":"Eva — The Guide","group":"Extra","files":["xxx-eva-the-guide.webp"],"essence":"The companion voice of guidance and insight."},{"label":"Extra","name":"Jesus — The Redeemer","group":"Extra","files":["jesus-the-redeemer.webp"],"essence":"A bonus archetype of compassion and redemption."},{"label":"Extra","name":"Surveillance","group":"Extra","files":["vii-surveillance.webp"],"essence":"A shadow-card of watchfulness and control."},{"label":"Extra","name":"Orbital Colony","group":"Extra","files":["xvi-orbital-colony.webp"],"essence":"A bonus frontier settlement card."},{"label":"Extra","name":"Quantum Synchronicity","group":"Extra","files":["xvi-quantum-synchronicity.webp"],"essence":"A bonus card of alignment and hidden pattern."},{"label":"Extra","name":"Fusion Reactor","group":"Extra","files":["29-the-fusion-reactor.webp"],"essence":"A bonus power-source card."},{"label":"Extra","name":"Server Farm","group":"Extra","files":["05-the-server-farm.webp","v-the-server-farm.webp"],"essence":"A bonus or alternate infrastructure card."},{"label":"Extra","name":"Drone Swarm Alternate","group":"Extra","files":["06-the-drone-swarm.webp"],"essence":"Alternate artwork for the Drone Swarm."}]};
+const official=data.cards, extras=data.extras; 
+let selectedNums = new Set();
+let lastReadingText = "";
+let lastReadingCards = [];
+const CHAT_ENDPOINT = '/api/chat';
+
+function el(tag,attrs={},children=[]){const node=document.createElement(tag);for(const[k,v]of Object.entries(attrs)){if(k==='class')node.className=v;else if(k==='html')node.innerHTML=v;else node.setAttribute(k,v)}for(const child of [].concat(children)){if(child==null)continue;node.appendChild(typeof child==='string'?document.createTextNode(child):child)}return node}
+function makeImgWithFallback(candidates,alt,onReady){let idx=0;const img=new Image();img.className='thumb';img.alt=alt;function tryNext(){if(idx>=candidates.length){onReady(null,null);return}const src=candidates[idx++];img.onload=()=>onReady(img,src);img.onerror=tryNext;img.src=encodeURI(src)}tryNext()}
+function matches(item){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  if(q&&!(item.name.toLowerCase().includes(q)||(item.label||'').toLowerCase().includes(q)))return false;
+  return true;
+}
+function renderStats(){
+  const box=document.getElementById('stats');
+  if(!box) return;
+  box.innerHTML='';
+  [['Official',official.length],['Extras',extras.length],['Visible',official.filter(matches).length+extras.filter(matches).length]]
+    .forEach(([label,n])=>box.appendChild(el('div',{class:'pill',html:`<strong>${n}</strong> ${label}`})));
+}
+function cardNode(item,isExtra=false){
+  const root=el('div',{class:'card'});
+  if(selectedNums.has(item.num)) root.classList.add('selected');
+  const top=el('div',{class:'meta'});
+  const placeholder=el('div',{class:'placeholder'},[el('div',{html:`<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#d7b56d;margin-bottom:6px;">${item.label||'Extra'}</div><div style="font-weight:700;color:#fff;margin-bottom:6px;">${item.name}</div><div>Image not found</div>`})]);
+  makeImgWithFallback(item.files||[],item.name,(img,used)=>{
+    if(img){
+      img.addEventListener('click',()=>openModal(item,used,isExtra));
+      root.insertBefore(img,root.firstChild);
+      top.dataset.file=used;
+    }else{
+      root.insertBefore(placeholder,root.firstChild);
+    }
+  });
+  const topline=el('div',{class:'topline'},[el('div',{class:'num'},isExtra?'EXTRA':item.label),el('span',{class:'badge '+(isExtra?'extra':'official')},isExtra?'extra':'official')]);
+  const name=el('div',{class:'name'},item.name);
+  const group=el('div',{class:'group'},item.group);
+  const actions=el('div',{class:'actions'},[el('button',{class:'smallbtn',type:'button'},'Open')]);
+  actions.querySelector('button').addEventListener('click',()=>{
+    const file=top.dataset.file||((item.files&&item.files[0])||'');
+    openModal(item,file,isExtra);
+  });
+  top.append(topline,name,group,actions);
+  root.appendChild(top);
+  return root;
+}
+function openModal(item,file,isExtra=false){
+  const modal=document.getElementById('lightbox');
+  document.getElementById('modalImg').src=encodeURI(file||((item.files&&item.files[0])||''));
+  document.getElementById('modalImg').alt=item.name;
+  document.getElementById('modalTitle').textContent=item.name;
+  document.getElementById('modalNum').textContent=item.label||'EXTRA';
+  const badge=document.getElementById('modalBadge');
+  badge.textContent=isExtra?'extra':'official';
+  badge.className='badge '+(isExtra?'extra':'official');
+  document.getElementById('modalGroup').textContent=item.group;
+  document.getElementById('modalKeywords').textContent=item.keywords?('Keywords: '+item.keywords.join(' · ')):'';
+  document.getElementById('modalMeaning').textContent=item.essence||'';
+  const details=document.getElementById('modalDetails');
+  if(details){
+    details.innerHTML='';
+    if(!isExtra){
+      details.append(
+        el('div',{class:'detail-block',html:`<b>Upright:</b> ${item.upright||''}`}),
+        el('div',{class:'detail-block',html:`<b>Reversed:</b> ${item.reversed||''}`}),
+        el('div',{class:'detail-block',html:`<b>Divination:</b> ${item.divination||''}`}),
+        el('div',{class:'detail-block',html:`<b>Reflection:</b> ${item.reflection||''}`})
+      );
+    }
+  }
+  document.getElementById('modalFile').textContent=file?('File: '+file):'No matching local file found yet.';
+  modal.showModal();
+}
+function render(){
+  const officialGrid = document.getElementById('officialGrid');
+  const extrasGrid = document.getElementById('extrasGrid');
+  if(!officialGrid || !extrasGrid) return;
+
+  officialGrid.innerHTML = '';
+  extrasGrid.innerHTML = '';
+
+  const safeSorter = (a, b) => 0;
+
+  official
+    .filter(matches)
+    .sort(safeSorter)
+    .forEach(item => officialGrid.appendChild(cardNode(item, false)));
+
+  extras
+    .filter(matches)
+    .sort(safeSorter)
+    .forEach(item => extrasGrid.appendChild(cardNode(item, true)));
+
+  renderStats();
+  document.body.classList.toggle('faded', selectedNums.size > 0);
+}
+function imageFor(item, cb){let idx=0;function tryNext(){if(idx>=item.files.length) return cb(''); const src=item.files[idx++]; const img=new Image(); img.onload=()=>cb(src); img.onerror=tryNext; img.src=encodeURI(src)}tryNext()}
+function getSpreadPositions(n){
+  if(n===1) return ['Signal'];
+  const mode=document.getElementById('spreadMode')?.value || 'signal';
+  const spreads={
+    signal:['Signal','Challenge','Guidance'],
+    past:['Past','Present','Future'],
+    self:['Body','Mind','Spirit'],
+    path:['Question','Obstacle','Next Step']
+  };
+  return spreads[mode] || spreads.signal;
+}
+function drawOrientation(){
+  const allow=document.getElementById('reversalsToggle')?.checked;
+  if(!allow) return 'upright';
+  return Math.random() < 0.42 ? 'reversed' : 'upright';
+}
+function makeSynthesis(reading){
+  if(!reading.length) return '';
+  if(reading.length===1){
+    const r=reading[0];
+    const tone=r.orientation==='reversed'?'a blocked or shadowed form':'a clear and active form';
+    return `<div class="logic-tag">Eva’s Reading Logic</div><strong>${r.card.name}</strong> appears in ${tone}. The message centers on <strong>${r.card.keywords.join(', ')}</strong>. ${r.meaning} ${r.card.divination}`;
+  }
+  const reversedCount=reading.filter(r=>r.orientation==='reversed').length;
+  const groups=[...new Set(reading.map(r=>r.card.group))].join(', ');
+  const first=reading[0], second=reading[1], third=reading[2];
+  let balance = reversedCount===0 ? 'The spread is mostly direct: the energy is available and ready to move.' :
+                reversedCount===1 ? 'One card is reversed, showing a specific knot or resistance inside the reading.' :
+                reversedCount===2 ? 'Two cards are reversed, so the reading asks for patience, repair, and inner adjustment before action.' :
+                'All three cards are reversed; this is a deep shadow-reading, asking for stillness before movement.';
+  return `<div class="logic-tag">Eva’s Reading Logic</div>
+  The spread moves through <strong>${groups}</strong>. 
+  <strong>${first.position}</strong> is carried by <strong>${first.card.name}</strong>: ${first.meaning}
+  <strong>${second.position}</strong> is shaped by <strong>${second.card.name}</strong>: ${second.meaning}
+  <strong>${third.position}</strong> arrives through <strong>${third.card.name}</strong>: ${third.meaning}
+  ${balance} ${third.card.divination}`;
+}
+
+let evaAudioContext = null;
+function getEvaAudio(){
+  if(!('AudioContext' in window || 'webkitAudioContext' in window)) return null;
+  if(!evaAudioContext){
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    evaAudioContext = new Ctx();
+  }
+  if(evaAudioContext.state === 'suspended') evaAudioContext.resume();
+  return evaAudioContext;
+}
+function playFlipSound(delay=0){
+  const ctx = getEvaAudio();
+  if(!ctx) return;
+  const start = ctx.currentTime + delay;
+  const duration = 0.16;
+  const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * duration), ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<data.length;i++){
+    const t = i / data.length;
+    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 1.8) * 0.55;
+  }
+  const noise = ctx.createBufferSource();
+  noise.buffer = buffer;
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'bandpass';
+  filter.frequency.setValueAtTime(1450, start);
+  filter.frequency.exponentialRampToValueAtTime(650, start + duration);
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(0.06, start + 0.018);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  const osc = ctx.createOscillator();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(700, start);
+  osc.frequency.exponentialRampToValueAtTime(170, start + 0.12);
+  const og = ctx.createGain();
+  og.gain.setValueAtTime(0.0001, start);
+  og.gain.exponentialRampToValueAtTime(0.028, start + 0.018);
+  og.gain.exponentialRampToValueAtTime(0.0001, start + 0.12);
+  noise.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+  osc.connect(og); og.connect(ctx.destination);
+  noise.start(start); noise.stop(start + duration);
+  osc.start(start); osc.stop(start + 0.12);
+}
+function animateDeckDeal(count){
+  const deck = document.getElementById('deckStack');
+  const reading = document.getElementById('reading');
+  if(!deck || !reading) return;
+  const rect = deck.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const targets = count === 1
+    ? [{x: window.innerWidth * 0.50, y: Math.min(window.innerHeight * 0.42, centerY - 20), rot: '-2deg'}]
+    : [
+        {x: window.innerWidth * 0.32, y: Math.min(window.innerHeight * 0.44, centerY + 8), rot: '-10deg'},
+        {x: window.innerWidth * 0.50, y: Math.min(window.innerHeight * 0.39, centerY - 18), rot: '0deg'},
+        {x: window.innerWidth * 0.68, y: Math.min(window.innerHeight * 0.44, centerY + 8), rot: '10deg'}
+      ];
+  targets.forEach((target, i) => {
+    const c = document.createElement('div');
+    c.className = 'deal-card';
+    c.style.left = rect.left + 'px';
+    c.style.top = rect.top + 'px';
+    c.style.setProperty('--tx', (target.x - centerX) + 'px');
+    c.style.setProperty('--ty', (target.y - centerY) + 'px');
+    c.style.setProperty('--rot', target.rot);
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 980);
+    playFlipSound(i * 0.11);
+  });
+  setTimeout(()=>reading.classList.add('has-draw'), 80);
+}
+function resetDeckIntro(){
+  const readingEl=document.getElementById('reading');
+  const spread=document.getElementById('spread');
+  if(readingEl) readingEl.classList.remove('has-draw');
+  if(spread) spread.innerHTML='';
+  document.getElementById('readingTitle').textContent='Tarot Spread';
+  document.getElementById('readingSub').textContent=(document.getElementById('spreadMode')?.selectedOptions?.[0]?.textContent || 'Signal / Challenge / Guidance');
+}
+
+function draw(n){
+  const pool=official.filter(c=>c.num!==11);
+  selectedNums = new Set();
+  const shuffled=[...pool].sort(()=>Math.random()-0.5).slice(0,n);
+  shuffled.forEach(c=>selectedNums.add(c.num));
+  const spread=document.getElementById('spread');
+  spread.innerHTML='';
+  document.body.classList.add('reading-mode');
+  const readingEl=document.getElementById('reading');
+  readingEl.classList.add('active');
+  readingEl.classList.add('has-draw');
+  updateReadingQuestion();
+  document.getElementById('readingTitle').textContent = n===1?'One-Card Oracle':'Tarot Spread';
+  const positions=getSpreadPositions(n);
+  document.getElementById('readingSub').textContent = positions.join(' / ');
+  const reading=[];
+  shuffled.forEach((card,i)=>{
+    const orientation=drawOrientation();
+    const meaning = orientation==='reversed' ? (card.reversed || card.upright) : card.upright;
+    const entry={card, position:positions[i], orientation, meaning};
+    reading.push(entry);
+    const box=el('div',{class:'drawn '+orientation});
+    const visual=el('div',{class:'card-visual'});
+    const imgHolder=el('div',{class:'placeholder'},'Opening the card…');
+    visual.appendChild(imgHolder);
+    const text=el('div',{class:'text'});
+    text.append(
+      el('div',{class:'position'},positions[i]),
+      el('div',{class:'name'},card.name),
+      el('div',{class:'orientation '+orientation},orientation),
+      el('div',{class:'keywords'},card.keywords.join(' · ')),
+      el('div',{class:'meaning'},card.essence),
+      el('div',{class:'meaning', style:'margin-top:8px;'},meaning),
+      el('div',{class:'meaning', style:'margin-top:8px;font-style:italic;'},card.divination),
+      el('div',{class:'meaning', style:'margin-top:8px;'},'Reflection: '+card.reflection)
+    );
+    box.append(visual,text);
+    spread.appendChild(box);
+    imageFor(card,src=>{
+      if(src){
+        const im=el('img',{src:encodeURI(src),alt:card.name});
+        im.addEventListener('click',()=>openModal(card,src,false));
+        visual.replaceChild(im,imgHolder);
+      } else imgHolder.textContent='Image not found';
+    });
+  });
+  const synthesis=makeSynthesis(reading);
+  const syn=el('div',{class:'synthesis',html:synthesis});
+  spread.parentElement.querySelectorAll('.synthesis').forEach(x=>x.remove());
+  spread.parentElement.appendChild(syn);
+  lastReadingText = synthesis.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  lastReadingCards = reading.map(r=>({
+    position:r.position,
+    orientation:r.orientation,
+    name:r.card.name,
+    group:r.card.group,
+    keywords:r.card.keywords,
+    meaning:r.meaning,
+    divination:r.card.divination,
+    reflection:r.card.reflection
+  }));
+  resetChatForReading();
+  render();
+  const y = readingEl.getBoundingClientRect().top + window.scrollY - 86;
+  window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+}
+
+function voiceScore(v){
+  const name = (v.name || '').toLowerCase();
+  const lang = (v.lang || '').toLowerCase();
+  let score = 0;
+
+  // Preferred voice: Russian (Latvia) female2 / ru-LV
+  if(lang === 'ru-lv') score += 1000;
+  if(name.includes('female2')) score += 500;
+  if(name.includes('russian')) score += 200;
+  if(name.includes('latvia')) score += 200;
+
+  // fallback Russian voices
+  if(lang.startsWith('ru')) score += 100;
+
+  // good quality voices
+  if(/natural|neural|premium|enhanced/i.test(v.name)) score += 15;
+
+  // avoid novelty voices
+  if(/klingon|tlh/i.test(v.name + ' ' + v.lang)) score -= 1000;
+
+  return score;
+}
+
+function populateVoices(forceDefault=false){
+  const select = document.getElementById('voiceSelect');
+  if(!select || !('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+
+  // Remember the user's chosen voice before rebuilding the menu.
+  const previousValue = select.value;
+  const previousVoiceKey = select.selectedOptions && select.selectedOptions[0]
+    ? select.selectedOptions[0].dataset.voiceKey
+    : localStorage.getItem('evaVoiceKey');
+
+  select.innerHTML = '';
+  if(!voices.length){
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = 'Voices loading… click again in a moment';
+    select.appendChild(opt);
+    return;
+  }
+
+  const ordered = voices
+    .map((v,i)=>({v,i,score:voiceScore(v), key:`${v.name}|||${v.lang}`}))
+    .sort((a,b)=>b.score-a.score || a.v.name.localeCompare(b.v.name));
+
+  ordered.forEach(({v,i,key})=>{
+    const opt = document.createElement('option');
+    opt.value = String(i);
+    opt.dataset.voiceKey = key;
+    opt.textContent = `${v.name} — ${v.lang}`;
+    select.appendChild(opt);
+  });
+
+  // Prefer the user's last selected voice. Only choose default if nothing was selected yet.
+  let restored = false;
+  if(!forceDefault && previousVoiceKey){
+    const found = [...select.options].find(o => o.dataset.voiceKey === previousVoiceKey);
+    if(found){
+      select.value = found.value;
+      restored = true;
+    }
+  }
+  if(!restored && !forceDefault && previousValue && voices[Number(previousValue)]){
+    select.value = previousValue;
+    restored = true;
+  }
+if(!restored){
+  const preferred =
+    ordered.find(x => x.v.lang.toLowerCase() === 'ru-lv' && x.v.name.toLowerCase().includes('female2')) ||
+    ordered.find(x => x.v.lang.toLowerCase() === 'ru-lv') ||
+    ordered.find(x => x.v.lang.toLowerCase().startsWith('ru')) ||
+    ordered.find(x => x.score > 0) ||
+    ordered[0];
+
+  if(preferred) select.value = String(preferred.i);
+}
+
+  const chosen = voices[Number(select.value)];
+  if(chosen) localStorage.setItem('evaVoiceKey', `${chosen.name}|||${chosen.lang}`);
+}
+if('speechSynthesis' in window){
+  populateVoices();
+  speechSynthesis.onvoiceschanged = populateVoices;
+  // Some browsers load voices lazily. These retries help the dropdown fill.
+  setTimeout(populateVoices, 250);
+  setTimeout(populateVoices, 900);
+  setTimeout(populateVoices, 1800);
+}
+
+function speak(text){
+  if(!('speechSynthesis' in window)){alert('Voice reading is not available in this browser.');return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const selectBefore=document.getElementById('voiceSelect');
+  if(selectBefore && (!selectBefore.options.length || selectBefore.options[0].textContent.includes('Loading'))) populateVoices();
+  const voices=speechSynthesis.getVoices();
+  const select=document.getElementById('voiceSelect');
+  let chosen = null;
+  if(select && select.value !== '' && voices[Number(select.value)]) chosen = voices[Number(select.value)];
+  if(!chosen){
+    chosen = voices
+      .map((v,i)=>({v,i,score:voiceScore(v)}))
+      .sort((a,b)=>b.score-a.score)[0]?.v || voices[0];
+  }
+  if(chosen) u.voice = chosen;
+  u.rate = Number(document.getElementById('rateRange')?.value || 0.68);
+  u.pitch = Number(document.getElementById('pitchRange')?.value || 1.14);
+  u.volume = 0.95;
+  speechSynthesis.speak(u);
+}
+function oracleEffect(){
+  const stage=document.getElementById('drawStage');
+  if(stage){
+    stage.classList.remove('active');
+    void stage.offsetWidth;
+    stage.classList.add('active');
+  }
+
+  // expanding sacred-tech rings
+  for(let r=0;r<3;r++){
+    const ring=document.createElement('div');
+    ring.className='orbit-ring';
+    ring.style.animationDelay=(r*180)+'ms';
+    document.body.appendChild(ring);
+    setTimeout(()=>ring.remove(),3200);
+  }
+
+  // first burst
+  const isSmallScreen = window.matchMedia('(max-width: 720px)').matches;
+  const burstCount = isSmallScreen ? 30 : 70;
+  const sprinkleCount = isSmallScreen ? 18 : 44;
+  for(let i=0;i<burstCount;i++){
+    const s=document.createElement('div');
+    s.className='spark ' + (i%3===0?'tiny ': '') + (i%5===0?'blue':'');
+    s.style.left=(50 + (Math.random()*14-7))+'vw';
+    s.style.top=(44 + (Math.random()*10-5))+'vh';
+    const angle=Math.random()*Math.PI*2;
+    const dist=120+Math.random()*520;
+    s.style.setProperty('--dx', Math.cos(angle)*dist+'px');
+    s.style.setProperty('--dy', Math.sin(angle)*dist+'px');
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),2300);
+  }
+
+  // second delayed sprinkle, like stardust falling after the whoosh
+  setTimeout(()=>{
+    for(let i=0;i<sprinkleCount;i++){
+      const s=document.createElement('div');
+      s.className='spark tiny blue';
+      s.style.left=(20 + Math.random()*60)+'vw';
+      s.style.top=(20 + Math.random()*45)+'vh';
+      const angle=(-Math.PI/2) + (Math.random()*Math.PI);
+      const dist=80+Math.random()*240;
+      s.style.setProperty('--dx', Math.cos(angle)*dist+'px');
+      s.style.setProperty('--dy', (Math.sin(angle)*dist + 180)+'px');
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),2300);
+    }
+  }, 850);
+}
+
+function currentQuestion(){
+  return (document.getElementById('questionInput')?.value || '').trim();
+}
+function updateReadingQuestion(){
+  const q = currentQuestion();
+  const box = document.getElementById('readingQuestion');
+  if(!box) return;
+  if(q){
+    box.style.display = 'block';
+    box.innerHTML = `<strong>Question:</strong> ${q.replace(/[<>&]/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]))}`;
+  } else {
+    box.style.display = 'none';
+    box.textContent = '';
+  }
+}
+function showCopyToast(){
+  const t = document.getElementById('copyToast');
+  if(!t) return;
+  t.classList.add('active');
+  setTimeout(()=>t.classList.remove('active'), 1800);
+}
+async function copyReading(){
+  const q = currentQuestion();
+  let text = 'Echoes of Solstice — Reading\n';
+  text += new Date().toLocaleString() + '\n\n';
+  if(q) text += 'Question: ' + q + '\n\n';
+  text += (lastReadingText || 'No reading drawn yet.');
+  try {
+    await navigator.clipboard.writeText(text);
+    showCopyToast();
+  } catch(e) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    showCopyToast();
+  }
+}
+document.getElementById('drawOne').addEventListener('click',()=>{oracleEffect(); animateDeckDeal(1); setTimeout(()=>draw(1),950);});
+document.getElementById('drawThree').addEventListener('click',()=>{oracleEffect(); animateDeckDeal(3); setTimeout(()=>draw(3),950);});
+document.getElementById('resetDraw').addEventListener('click',()=>{selectedNums=new Set();lastReadingText='';lastReadingCards=[];document.body.classList.remove('reading-mode');document.getElementById('reading').classList.remove('active');document.querySelectorAll('.synthesis').forEach(x=>x.remove());resetDeckIntro();resetChatForReading();render();window.scrollTo({top:0,behavior:'smooth'});});
+document.getElementById('speakReading').addEventListener('click',()=>speak(lastReadingText||'Draw cards first.'));
+document.getElementById('stopSpeaking').addEventListener('click',()=>speechSynthesis.cancel());
+
+function bindVoiceSliders(){
+  const rate=document.getElementById('rateRange');
+  const pitch=document.getElementById('pitchRange');
+  const rateValue=document.getElementById('rateValue');
+  const pitchValue=document.getElementById('pitchValue');
+  if(rate && rateValue){
+    const update=()=>rateValue.textContent=Number(rate.value).toFixed(2);
+    rate.addEventListener('input', update);
+    update();
+  }
+  if(pitch && pitchValue){
+    const update=()=>pitchValue.textContent=Number(pitch.value).toFixed(2);
+    pitch.addEventListener('input', update);
+    update();
+  }
+}
+bindVoiceSliders();
+
+document.getElementById('voiceSelect')?.addEventListener('change', ()=>{
+  const voices = speechSynthesis.getVoices();
+  const select = document.getElementById('voiceSelect');
+  const chosen = voices[Number(select.value)];
+  if(chosen) localStorage.setItem('evaVoiceKey', `${chosen.name}|||${chosen.lang}`);
+});
+
+function chatContext(){
+  const question=document.getElementById('questionInput')?.value?.trim() || '';
+  return {
+    question,
+    reading:lastReadingText,
+    cards:lastReadingCards
+  };
+}
+function appendChatMessage(role,text){
+  const log=document.getElementById('chatLog');
+  if(!log) return;
+  const msg=el('div',{class:'chat-msg '+(role==='user'?'user':'eva')},text);
+  log.appendChild(msg);
+  log.scrollTop=log.scrollHeight;
+}
+function setChatStatus(text){
+  const status=document.getElementById('chatStatus');
+  if(status) status.textContent=text || '';
+}
+function resetChatForReading(){
+  const log=document.getElementById('chatLog');
+  const chat=document.getElementById('oracleChat');
+  if(log) log.innerHTML='';
+  setChatStatus('');
+  if(!lastReadingText){
+    appendChatMessage('eva','Draw cards first, then ask me about the pattern.');
+    if(chat) chat.open=false;
+    return;
+  }
+  appendChatMessage('eva','I am ready to discuss this spread. Ask about a card, the tension between them, or the next practical step.');
+}
+function localChatFallback(question){
+  if(!lastReadingText) return 'Draw cards first, then I can reflect on the spread.';
+  const names=lastReadingCards.map(c=>`${c.position}: ${c.name} (${c.orientation})`).join('; ');
+  return `I cannot reach the online chat endpoint yet, but here is the spread context I would use: ${names}. Your question was: "${question}". Read the spread through the strongest tension first, then ask what one small action would honor the guidance card.`;
+}
+async function askEvaChat(question){
+  const payload={message:question, context:chatContext()};
+  const res=await fetch(CHAT_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  });
+  if(!res.ok) throw new Error(`Chat endpoint returned ${res.status}`);
+  const data=await res.json();
+  return data.reply || data.message || data.text || 'Eva is online, but returned an empty answer.';
+}
+document.getElementById('chatForm')?.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const input=document.getElementById('chatInput');
+  const question=input?.value.trim();
+  if(!question) return;
+  appendChatMessage('user',question);
+  input.value='';
+  setChatStatus('Eva is listening...');
+  try{
+    const answer=await askEvaChat(question);
+    appendChatMessage('eva',answer);
+    setChatStatus('Online reply received.');
+  }catch(err){
+    appendChatMessage('eva',localChatFallback(question));
+    setChatStatus('No online chat server answered yet. Showing local fallback.');
+  }
+});
+
+
+document.querySelectorAll('#search,#sortMode').forEach(node=>{node.addEventListener('input',render);node.addEventListener('change',render)});
+document.getElementById('spreadMode')?.addEventListener('change', ()=>{ if(!selectedNums.size) resetDeckIntro(); });
+document.getElementById('closeModal').addEventListener('click',()=>document.getElementById('lightbox').close());
+
+function nextSolsticeDate(now = new Date()){
+  // Approximate civil dates: June 21 and December 21, local time.
+  // Good enough for the oracle page; exact astronomical solstice varies by year/timezone.
+  const year = now.getFullYear();
+  const candidates = [
+    {name:'June Solstice', date:new Date(year, 5, 21, 12, 0, 0)},
+    {name:'December Solstice', date:new Date(year, 11, 21, 12, 0, 0)},
+    {name:'June Solstice', date:new Date(year + 1, 5, 21, 12, 0, 0)}
+  ];
+  return candidates.find(c => c.date > now) || candidates[candidates.length - 1];
+}
+function updateSolsticeTimer(){
+  const target = nextSolsticeDate();
+  const now = new Date();
+  let diff = Math.max(0, target.date - now);
+  const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+  const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
+  const minutes = Math.floor(diff / 60000); diff -= minutes * 60000;
+  const seconds = Math.floor(diff / 1000);
+  const nameEl = document.getElementById('solsticeName');
+  const countEl = document.getElementById('solsticeCountdown');
+  const dateEl = document.getElementById('solsticeDate');
+  if(!nameEl || !countEl || !dateEl) return;
+  nameEl.textContent = target.name;
+  countEl.textContent = `${days}d ${String(hours).padStart(2,'0')}h ${String(minutes).padStart(2,'0')}m ${String(seconds).padStart(2,'0')}s`;
+  dateEl.textContent = `Approx. target: ${target.date.toLocaleString([], {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit'})}`;
+}
+updateSolsticeTimer();
+setInterval(updateSolsticeTimer, 1000);
+
+
+document.getElementById('copyReading')?.addEventListener('click', copyReading);
+document.getElementById('clearQuestion')?.addEventListener('click', ()=>{ const q=document.getElementById('questionInput'); if(q) q.value=''; updateReadingQuestion(); });
+document.getElementById('questionInput')?.addEventListener('input', updateReadingQuestion);
+
+function loadIncensePayPalSdk(){
+  return new Promise((resolve)=>{
+    if(window.paypal && paypal.HostedButtons) return resolve(true);
+    if(!INCENSE_PAYPAL_CLIENT_ID || INCENSE_PAYPAL_CLIENT_ID.includes('YOUR_')) return resolve(false);
+    const existing=document.getElementById('paypalSdkIncense');
+    if(existing){
+      existing.addEventListener('load',()=>resolve(true),{once:true});
+      existing.addEventListener('error',()=>resolve(false),{once:true});
+      return;
+    }
+    const s=document.createElement('script');
+    s.id='paypalSdkIncense';
+    s.src=`https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(INCENSE_PAYPAL_CLIENT_ID)}&components=hosted-buttons&currency=USD`;
+    s.onload=()=>resolve(true);
+    s.onerror=()=>resolve(false);
+    document.head.appendChild(s);
+  });
+}
+async function renderIncenseOffering(){
+  const amount=document.getElementById('incenseAmount')?.value || '1';
+  const container=document.getElementById('paypal-container');
+  if(!container) return;
+  container.innerHTML='';
+  const hostedId=INCENSE_PAYPAL_HOSTED_BUTTONS[amount];
+  const sdkReady=await loadIncensePayPalSdk();
+  if(sdkReady && window.paypal && paypal.HostedButtons && hostedId && !hostedId.includes('YOUR_')){
+    paypal.HostedButtons({hostedButtonId:hostedId}).render('#paypal-container');
+    return;
+  }
+  const link=INCENSE_PAYPAL_FALLBACK[amount] || INCENSE_PAYPAL_FALLBACK["1"];
+  const label=amount==='11'?'Temple Flame':amount==='5'?'Golden Smoke':'Spark';
+  container.innerHTML=`<a class="btn gold" style="display:inline-block;text-decoration:none" href="${link}" target="_blank" rel="noopener">Offer $${amount} — ${label}</a>`;
+}
+function lightIncense(){
+  document.getElementById('incensePanel')?.classList.add('incense-lit');
+  renderIncenseOffering();
+}
+document.getElementById('lightIncense')?.addEventListener('click', lightIncense);
+document.getElementById('openOffering')?.addEventListener('click', ()=>{
+  lightIncense();
+  const amount=document.getElementById('incenseAmount')?.value || '1';
+  const link=INCENSE_PAYPAL_FALLBACK[amount] || INCENSE_PAYPAL_FALLBACK["1"];
+  setTimeout(()=>window.open(link, '_blank', 'noopener'), 250);
+});
+document.getElementById('incenseAmount')?.addEventListener('change', ()=>{
+  if(document.getElementById('incensePanel')?.classList.contains('incense-lit')) renderIncenseOffering();
+});
+
+
+
+function playGlockenspiel(){
+  const ctx = (typeof getEvaAudio === 'function') ? getEvaAudio() : null;
+  if(!ctx) return;
+  const now = ctx.currentTime;
+  const notes = [880, 1174.66, 1318.51, 1760];
+  notes.forEach((freq, i)=>{
+    const t = now + i * 0.105;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, t);
+    filter.type = 'highpass';
+    filter.frequency.setValueAtTime(520, t);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.075, t + 0.018);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 1.65);
+    osc.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+    osc.start(t); osc.stop(t + 1.75);
+    const overtone = ctx.createOscillator();
+    const overtoneGain = ctx.createGain();
+    overtone.type = 'triangle';
+    overtone.frequency.setValueAtTime(freq * 2.01, t);
+    overtoneGain.gain.setValueAtTime(0.0001, t);
+    overtoneGain.gain.exponentialRampToValueAtTime(0.022, t + 0.014);
+    overtoneGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+    overtone.connect(overtoneGain); overtoneGain.connect(ctx.destination);
+    overtone.start(t); overtone.stop(t + 1.0);
+  });
+}
+function ringGlock(){
+  const panel=document.getElementById('glockPanel');
+  const status=document.getElementById('glockStatus');
+  if(panel){
+    panel.classList.remove('ringing');
+    void panel.offsetWidth;
+    panel.classList.add('ringing');
+    setTimeout(()=>panel.classList.remove('ringing'), 1300);
+  }
+  if(status){
+    status.textContent='The table is cleared.';
+    setTimeout(()=>status.textContent='Ready for the next signal.', 1800);
+  }
+  playGlockenspiel();
+  for(let i=0;i<2;i++){
+    const ring=document.createElement('div');
+    ring.className='deck-ring';
+    ring.style.animationDelay=(i*180)+'ms';
+    document.body.appendChild(ring);
+    setTimeout(()=>ring.remove(), 1900);
+  }
+}
+document.getElementById('ringGlock')?.addEventListener('click', ringGlock);
+
+function toggleLibrary(panelId){
+  const panel=document.getElementById(panelId);
+  if(!panel) return;
+  document.body.classList.remove('reading-mode');
+  document.getElementById('reading')?.classList.remove('active');
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open')){
+    setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}), 40);
+  }
+}
+document.getElementById('toggleOfficial')?.addEventListener('click', ()=>toggleLibrary('officialPanel'));
+document.getElementById('toggleExtras')?.addEventListener('click', ()=>toggleLibrary('extrasPanel'));
+
+render();
+resetDeckIntro();
+resetChatForReading();
+</script>
+<div class="copy-toast" id="copyToast">Reading copied ✦</div>
+</body>
+</html>
