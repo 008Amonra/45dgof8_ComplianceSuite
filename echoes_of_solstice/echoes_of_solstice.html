@@ -490,7 +490,24 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}
   font-size: 13px;
   line-height: 1.4;
 }
+.ritual-topline {
+  display: grid;
+  grid-template-columns: minmax(280px, .86fr) minmax(360px, 1.14fr);
+  gap: 8px;
+  align-items: stretch;
+}
+.ritual-topline .solstice-timer,
+.ritual-topline .question-panel {
+  margin-top: 8px !important;
+  min-height: 100%;
+}
+.ritual-topline .question-panel {
+  align-content: center;
+}
 @media (max-width: 720px) {
+  .ritual-topline {
+    grid-template-columns: 1fr;
+  }
   .solstice-timer {
     padding: 11px 12px;
   }
@@ -952,22 +969,23 @@ const INCENSE_PAYPAL_FALLBACK = {
     <button class="btn gold" id="drawThree" aria-label="Draw three cards">Draw 3 Cards</button>
     <button class="btn" id="resetDraw" aria-label="Reset reading">Reset</button>
   </div>
-  <div class="solstice-timer" aria-live="polite">
-    <div class="solstice-label">Solstice Alignment</div>
-    <div class="solstice-main">
-      <span class="solstice-name" id="solsticeName">Next Solstice</span>
-      <span class="solstice-count" id="solsticeCountdown">calculating…</span>
-    </div>
-    <div class="solstice-small" id="solsticeDate">The deck listens for the turning of the light.</div>
-  </div>
-  
-  <div class="question-panel">
-    <label for="questionInput">Question / Intention</label>
-    <div class="question-row">
-      <input id="questionInput" placeholder="Ask the deck something… or set an intention for the reading.">
-      <button class="btn" id="clearQuestion" type="button">Clear</button>
+  <div class="ritual-topline">
+    <div class="solstice-timer" aria-live="polite">
+      <div class="solstice-label">Solstice Alignment</div>
+      <div class="solstice-main">
+        <span class="solstice-name" id="solsticeName">Next Solstice</span>
+        <span class="solstice-count" id="solsticeCountdown">calculating…</span>
+      </div>
+      <div class="solstice-small" id="solsticeDate">The deck listens for the turning of the light.</div>
     </div>
 
+    <div class="question-panel">
+      <label for="questionInput">Question / Intention</label>
+      <div class="question-row">
+        <input id="questionInput" placeholder="Ask the deck something… or set an intention for the reading.">
+        <button class="btn" id="clearQuestion" type="button">Clear</button>
+      </div>
+    </div>
   </div>
   <div class="incense-panel" id="incensePanel">
     <div>
@@ -1441,6 +1459,38 @@ function scheduleSynthPlink(){
   const timer = setTimeout(scheduleSynthPlink, 1600 + Math.random() * 3600);
   solsticeSynth.timers.push(timer);
 }
+function scheduleDistantTrumpet(){
+  if(!solsticeSynth.playing) return;
+  const ctx = getEvaAudio();
+  const now = ctx.currentTime;
+  const root = [196, 220, 261.63][Math.floor(Math.random() * 3)];
+  const notes = [root, root * 1.5, root * 2].slice(0, Math.random() < 0.55 ? 2 : 3);
+  notes.forEach((freq, i) => {
+    const start = now + i * 0.22;
+    const osc = ctx.createOscillator();
+    const overtone = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    const pan = ctx.createStereoPanner ? ctx.createStereoPanner() : ctx.createGain();
+    osc.type = 'sawtooth';
+    overtone.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, start);
+    overtone.frequency.setValueAtTime(freq * 2.01, start);
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(820 + Math.random() * 420, start);
+    filter.Q.value = 5.5;
+    if(pan.pan) pan.pan.value = Math.random() * 1.4 - 0.7;
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(0.018, start + 1.2);
+    gain.gain.setTargetAtTime(0.0001, start + 3.1, 1.4);
+    osc.connect(filter); overtone.connect(filter); filter.connect(gain); gain.connect(pan); pan.connect(solsticeSynth.reverb || solsticeSynth.delay);
+    osc.start(start); overtone.start(start);
+    osc.stop(start + 7); overtone.stop(start + 7);
+    solsticeSynth.nodes.push(osc, overtone, gain, filter, pan);
+  });
+  const timer = setTimeout(scheduleDistantTrumpet, 18000 + Math.random() * 26000);
+  solsticeSynth.timers.push(timer);
+}
 function startSolsticeSynth(){
   if(solsticeSynth.playing) return;
   const ctx = getEvaAudio();
@@ -1468,6 +1518,7 @@ function startSolsticeSynth(){
   setSynthVolume(synthVolumeValue());
   [65.41, 98, 130.81, 196].forEach((freq, i)=>createDroneVoice(ctx, freq, [-0.65, -0.22, 0.22, 0.62][i]));
   scheduleSynthPlink();
+  scheduleDistantTrumpet();
   const sweep = setInterval(()=>{
     if(!solsticeSynth.playing) return;
     filter.frequency.setTargetAtTime(760 + Math.random() * 980, ctx.currentTime, 2.8);
