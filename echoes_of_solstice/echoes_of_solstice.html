@@ -15,15 +15,20 @@ body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,R
 radial-gradient(circle at top,rgba(70,90,160,.24),transparent 32%),
 radial-gradient(circle at 80% 10%,rgba(180,120,255,.13),transparent 24%),
 linear-gradient(180deg,#070912,#0c1020 55%,#090b12);min-height:100vh}
+.starfield,.starfield::before,.starfield::after{position:fixed;inset:-20%;pointer-events:none;z-index:-1;background-repeat:repeat;will-change:transform}
+.starfield{background-image:radial-gradient(circle,rgba(255,255,255,.75) 0 1px,transparent 1.4px);background-size:96px 96px;opacity:.22;animation:starDrift 90s linear infinite}
+.starfield::before{content:"";background-image:radial-gradient(circle,rgba(215,181,109,.9) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(114,199,255,.75) 0 1px,transparent 1.4px);background-size:180px 180px,260px 260px;background-position:20px 50px,120px 80px;opacity:.20;animation:starDrift 140s linear infinite reverse}
+.starfield::after{content:"";background-image:radial-gradient(circle,rgba(255,255,255,.95) 0 .8px,transparent 1.3px);background-size:52px 52px;opacity:.12;animation:starDrift 55s linear infinite}
+@keyframes starDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(120px,80px,0)}}
 .wrap{max-width:1480px;margin:0 auto;padding:28px 18px 60px}
-header{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(9,11,18,.93),rgba(9,11,18,.76));border-bottom:1px solid var(--line);margin:-28px -18px 24px;padding:18px}
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(9,11,18,.93),rgba(9,11,18,.76));border-bottom:1px solid var(--line);margin:-28px -18px 24px;padding:12px 18px}
 .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.seal{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:22px}
-h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.03em;color:#f6f2e8}
-.sub{color:var(--muted);margin:8px 0 14px;line-height:1.45}
-.controls{display:grid;grid-template-columns:1.4fr .7fr .9fr auto auto auto auto;gap:10px}
-input,select,.btn{border:1px solid var(--line);color:var(--text);background:var(--panel);border-radius:12px;padding:12px 14px;outline:none}
-.btn{cursor:pointer;text-align:center;font-weight:650;white-space:nowrap}
+.seal{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:19px}
+h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.03em;color:#f6f2e8;font-size:1.55rem}
+.sub{color:var(--muted);margin:4px 0 10px;line-height:1.32;font-size:13px}
+.controls{display:grid;grid-template-columns:1.35fr .64fr .84fr auto auto auto auto auto;gap:8px;align-items:center}
+input,select,.btn{border:1px solid var(--line);color:var(--text);background:var(--panel);border-radius:11px;padding:9px 11px;outline:none;font-size:13px}
+.btn{cursor:pointer;text-align:center;font-weight:650;white-space:nowrap;min-height:38px}
 .btn:hover{background:rgba(255,255,255,.07)}
 .btn.gold{background:linear-gradient(180deg,rgba(215,181,109,.22),rgba(215,181,109,.08));color:#fff}
 .stats{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
@@ -701,6 +706,8 @@ dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}
 @keyframes smokeRise{0%{transform:translateY(22px) translateX(0) scale(.72);opacity:0}25%{opacity:.52}60%{opacity:.35}100%{transform:translateY(-18px) translateX(14px) scale(1.15);opacity:0}}
 @media(max-width:720px){.reading{padding-top:250px}.reading.has-draw{padding-top:12px}.deck-anchor{left:10px;right:10px;top:12px;height:210px}.reading.has-draw .deck-stack{transform:scale(.26) rotate(8deg);right:-12px;top:-4px}.deck-label{font-size:12px;bottom:2px}.incense-row{grid-template-columns:1fr}.incense-altar{height:84px}.card-visual{padding:10px}}
 
+@media(max-width:1180px){.controls{grid-template-columns:1fr 1fr 1fr 1fr}.controls input{grid-column:1 / -1}}
+
 
 /* --- Compact ritual controls during an open reading --- */
 body.reading-mode header{
@@ -755,7 +762,7 @@ body.reading-mode #reading{
   }
   body.reading-mode .controls{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr 1fr;
   }
 }
 
@@ -768,6 +775,16 @@ body.reading-mode #reading{
 .bonus-cta strong{color:#fff}
 .bonus-cta .btn{display:inline-block;margin-top:10px;text-decoration:none}
 body.reading-mode .deck-library{display:none !important}
+
+/* --- Daily card, sharing, and reading history --- */
+.history-panel{margin-top:14px;border:1px solid var(--line);background:radial-gradient(circle at 12% 0%, rgba(120,200,255,.10), transparent 28%),rgba(255,255,255,.032);border-radius:18px;padding:12px}
+.history-panel summary{cursor:pointer;color:#f6f2e8;font-weight:800;letter-spacing:.02em}
+.history-list{display:grid;gap:8px;margin-top:10px;max-height:280px;overflow:auto}
+.history-item{border:1px solid rgba(215,181,109,.16);background:rgba(0,0,0,.14);border-radius:14px;padding:10px;color:var(--muted);font-size:13px;line-height:1.45}
+.history-item strong{color:#fff}
+.history-item button{margin-top:8px}
+.history-empty{color:var(--muted);font-size:13px;margin-top:8px}
+.daily-sigil{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin:0 0 8px}
 
 
 /* --- Ritual Glockenspiel --- */
@@ -786,6 +803,25 @@ body.reading-mode .deck-library{display:none !important}
 @keyframes deckBellRing{0%{width:42px;height:42px;opacity:0}20%{opacity:.9}100%{width:520px;height:520px;opacity:0}}
 @media(max-width:720px){.glock-row{grid-template-columns:1fr}}
 body.reading-mode .glock-panel{display:none !important}
+
+
+/* --- Original cosmic synth ambience --- */
+.synth-panel{margin-top:8px;border:1px solid var(--line);background:radial-gradient(circle at 18% 20%, rgba(120,200,255,.12), transparent 28%),radial-gradient(circle at 82% 18%, rgba(215,181,109,.10), transparent 24%),rgba(255,255,255,.032);border-radius:14px;padding:8px 10px;display:grid;gap:7px}
+.synth-title{color:var(--gold);text-transform:uppercase;letter-spacing:.11em;font-size:10px;font-weight:800}
+.synth-copy{color:var(--muted);font-size:12px;line-height:1.25}
+.synth-row{display:grid;grid-template-columns:auto auto minmax(150px,240px) minmax(120px,180px) auto;gap:8px;align-items:center}
+.synth-orb{height:38px;border:1px solid var(--line);border-radius:999px;background:radial-gradient(circle at 50% 50%, rgba(120,200,255,.22), transparent 34%),rgba(0,0,0,.13);position:relative;overflow:hidden}
+.synth-orb::before,.synth-orb::after{content:"";position:absolute;left:50%;top:50%;border:1px solid rgba(120,200,255,.35);border-radius:50%;transform:translate(-50%,-50%);opacity:.35}
+.synth-orb::before{width:26px;height:26px}.synth-orb::after{width:62px;height:62px;border-color:rgba(215,181,109,.30)}
+.synth-panel.playing .synth-orb::before{animation:synthPulse 3.4s ease-in-out infinite}
+.synth-panel.playing .synth-orb::after{animation:synthPulse 5.8s ease-in-out infinite reverse}
+.synth-panel input[type="range"]{padding:0;accent-color:#72c7ff}
+.synth-value{color:#fff;font-variant-numeric:tabular-nums;font-size:12px;min-width:3.2em;text-align:right}
+.synth-link{color:var(--blue);font-size:12px;text-decoration:none;white-space:nowrap}
+.synth-link:hover{text-decoration:underline}
+@keyframes synthPulse{0%,100%{transform:translate(-50%,-50%) scale(.78);opacity:.20}50%{transform:translate(-50%,-50%) scale(1.18);opacity:.75}}
+@media(max-width:920px){.synth-row{grid-template-columns:1fr 1fr}.synth-orb{grid-column:1 / -1}.synth-link{justify-self:center}}
+body.reading-mode .synth-panel{display:none !important}
 
 
 /* --- Compact ritual panels: about 40% less vertical space --- */
@@ -896,6 +932,7 @@ const INCENSE_PAYPAL_FALLBACK = {
 
 </head>
 <body>
+<div class="starfield" aria-hidden="true"></div>
 <div id="drawStage" class="draw-stage"></div>
 <div class="wrap">
 <header>
@@ -910,6 +947,7 @@ const INCENSE_PAYPAL_FALLBACK = {
       <option value="path">Question / Obstacle / Next Step</option>
     </select>
     <label class="toggle-label"><input id="reversalsToggle" type="checkbox" checked> Reversals</label>
+    <button class="btn" id="drawDaily" aria-label="Draw today's oracle card">Daily Card</button>
     <button class="btn gold" id="drawOne" aria-label="Draw one card">Draw 1 Card</button>
     <button class="btn gold" id="drawThree" aria-label="Draw three cards">Draw 3 Cards</button>
     <button class="btn" id="resetDraw" aria-label="Reset reading">Reset</button>
@@ -943,7 +981,7 @@ const INCENSE_PAYPAL_FALLBACK = {
         <option value="5">$5 Golden Smoke</option>
         <option value="11">$11 Temple Flame</option>
       </select>
-      <button class="btn" id="openOffering" type="button">Open offering</button>
+      <button class="btn" id="openOffering" type="button">Place Offering</button>
     </div>
     <div class="incense-altar" aria-hidden="true">
       <div class="incense-smoke"><span></span><span></span><span></span></div>
@@ -952,7 +990,7 @@ const INCENSE_PAYPAL_FALLBACK = {
     </div>
     <div class="incense-paypal" id="incensePaypal">
       <div id="paypal-container"></div>
-      <div class="incense-note">The oracle remains free. This is a voluntary incense offering. Add PayPal hosted button IDs in the code when ready.</div>
+      <div class="incense-note">The oracle remains free. This is a voluntary incense offering.</div>
     </div>
   </div>
 
@@ -967,6 +1005,20 @@ const INCENSE_PAYPAL_FALLBACK = {
         <span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span><span class="glock-key"></span>
       </div>
       <div class="glock-status" id="glockStatus">The table is waiting.</div>
+    </div>
+  </div>
+
+  <div class="synth-panel" id="synthPanel">
+    <div>
+      <div class="synth-title">Solstice Synth Artist</div>
+      <div class="synth-copy">Original spherical pads and slow cosmic arpeggios for the table.</div>
+    </div>
+    <div class="synth-row">
+      <button class="btn gold" id="startSynth" type="button">Start Ambience</button>
+      <button class="btn" id="stopSynth" type="button">Stop</button>
+      <label>Volume <input id="synthVolume" type="range" min="0" max="0.40" step="0.01" value="0.13"></label>
+      <div class="synth-orb" aria-hidden="true"></div>
+      <a class="synth-link" href="solstice_synth_ambient.html" target="_blank" rel="noopener">Open standalone</a>
     </div>
   </div>
 
@@ -989,6 +1041,7 @@ const INCENSE_PAYPAL_FALLBACK = {
   <div class="voicebar">
     <button class="btn" id="speakReading">🔊 Let Eva explain</button>
     <button class="btn" id="copyReading" type="button">Copy Reading</button>
+    <button class="btn" id="shareReading" type="button">Share</button>
     <button class="btn gold" id="openEvaGpt" type="button">Discuss with Eva</button>
     <select id="voiceSelect" title="Choose voice"><option>Loading voices…</option></select>
     <button class="btn" id="stopSpeaking">Stop voice</button>
@@ -1007,6 +1060,10 @@ const INCENSE_PAYPAL_FALLBACK = {
       <button class="btn gold" type="submit">Ask</button>
     </form>
     <div class="chat-status" id="chatStatus"></div>
+  </details>
+  <details class="history-panel" id="historyPanel">
+    <summary>Recent Readings</summary>
+    <div class="history-list" id="historyList"></div>
   </details>
 </section>
 
@@ -1044,9 +1101,12 @@ const data = {"cards": [{"num": 1, "label": "I", "name": "The Big Bang", "group"
 const official=data.cards, extras=data.extras; 
 let selectedNums = new Set();
 let lastReadingText = "";
+let lastReadingSpokenText = "";
 let lastReadingCards = [];
+let lastReadingMeta = {};
 const CHAT_ENDPOINT = '/api/chat';
 const EVA_GPT_URL = 'https://chatgpt.com/g/g-lPUDkYN4z-eva-answers';
+const HISTORY_KEY = 'echoesSolsticeReadingHistory';
 
 function el(tag,attrs={},children=[]){const node=document.createElement(tag);for(const[k,v]of Object.entries(attrs)){if(k==='class')node.className=v;else if(k==='html')node.innerHTML=v;else node.setAttribute(k,v)}for(const child of [].concat(children)){if(child==null)continue;node.appendChild(typeof child==='string'?document.createTextNode(child):child)}return node}
 function makeImgWithFallback(candidates,alt,onReady){let idx=0;const img=new Image();img.className='thumb';img.alt=alt;function tryNext(){if(idx>=candidates.length){onReady(null,null);return}const src=candidates[idx++];img.onload=()=>onReady(img,src);img.onerror=tryNext;img.src=encodeURI(src)}tryNext()}
@@ -1123,7 +1183,12 @@ function render(){
   officialGrid.innerHTML = '';
   extrasGrid.innerHTML = '';
 
-  const safeSorter = (a, b) => 0;
+  const mode = document.getElementById('sortMode')?.value || 'num';
+  const safeSorter = (a, b) => {
+    if(mode === 'name') return (a.name || '').localeCompare(b.name || '');
+    if(mode === 'group') return (a.group || '').localeCompare(b.group || '') || ((a.num || 9999) - (b.num || 9999)) || (a.name || '').localeCompare(b.name || '');
+    return ((a.num || 9999) - (b.num || 9999)) || (a.name || '').localeCompare(b.name || '');
+  };
 
   official
     .filter(matches)
@@ -1177,6 +1242,98 @@ function makeSynthesis(reading){
   ${balance} ${third.card.divination}`;
 }
 
+function buildSpokenReading(reading, meta={}){
+  if(!reading.length) return 'Draw cards first.';
+  const q = currentQuestion();
+  const intro = meta.daily
+    ? `Today's oracle card is ${reading[0].card.name}.`
+    : reading.length === 1
+      ? `Eva opens a one card reading.`
+      : `Eva opens a ${reading.length} card spread: ${reading.map(r=>r.position).join(', ')}.`;
+  const questionLine = q ? `Your question is: ${q}.` : 'No question was entered, so this is a general signal reading.';
+  const cardLines = reading.map((r, i) => {
+    const position = reading.length === 1 ? 'the signal' : r.position;
+    const shadow = r.orientation === 'reversed' ? 'reversed, so the energy is blocked, delayed, or asking for inner repair' : 'upright, so the energy is active and available';
+    return `Card ${i + 1}, ${position}: ${r.card.name}, ${shadow}. Keywords: ${r.card.keywords.join(', ')}. ${r.meaning} Eva's guidance: ${r.card.divination} Reflection question: ${r.card.reflection}`;
+  });
+  const reversedCount = reading.filter(r => r.orientation === 'reversed').length;
+  const closing = reading.length === 1
+    ? 'The practical next step is to name one small action that honors this card today.'
+    : reversedCount > 1
+      ? 'Because several cards are reversed, move slowly. Repair the pattern before forcing the outcome.'
+      : 'The practical next step is to follow the final guidance card with one clear action.';
+  return [intro, questionLine, ...cardLines, closing].join(' ');
+}
+
+function buildPlainReading(){
+  const q = currentQuestion();
+  let text = 'Echoes of Solstice - Reading\n';
+  text += new Date().toLocaleString() + '\n\n';
+  if(lastReadingMeta.daily) text += 'Daily Card: ' + lastReadingMeta.dateKey + '\n';
+  if(q) text += 'Question: ' + q + '\n\n';
+  if(lastReadingCards.length){
+    lastReadingCards.forEach(card => {
+      text += `${card.position}: ${card.name} (${card.orientation})\n`;
+      text += `Keywords: ${card.keywords.join(', ')}\n`;
+      text += `${card.meaning}\n`;
+      text += `Guidance: ${card.divination}\n`;
+      text += `Reflection: ${card.reflection}\n\n`;
+    });
+  }
+  text += lastReadingSpokenText || lastReadingText || 'No reading drawn yet.';
+  return text.trim();
+}
+
+function saveReadingHistory(){
+  if(!lastReadingCards.length) return;
+  const item = {
+    id: Date.now(),
+    when: new Date().toLocaleString(),
+    question: currentQuestion(),
+    title: lastReadingMeta.daily ? 'Daily Card' : (lastReadingCards.length === 1 ? 'One-Card Oracle' : 'Tarot Spread'),
+    summary: lastReadingCards.map(c => `${c.position}: ${c.name} (${c.orientation})`).join(' | '),
+    text: buildPlainReading()
+  };
+  const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+  history.unshift(item);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 12)));
+  renderReadingHistory();
+}
+
+function renderReadingHistory(){
+  const list = document.getElementById('historyList');
+  if(!list) return;
+  const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+  list.innerHTML = '';
+  if(!history.length){
+    list.appendChild(el('div',{class:'history-empty'},'No readings saved yet. Draw a card and it will appear here.'));
+    return;
+  }
+  history.forEach(item => {
+    const node = el('div',{class:'history-item'});
+    node.append(
+      el('div',{html:`<strong>${item.title}</strong> - ${item.when}`}),
+      el('div',{},item.question ? `Question: ${item.question}` : 'General reading'),
+      el('div',{},item.summary),
+      el('button',{class:'smallbtn',type:'button'},'Copy this reading')
+    );
+    node.querySelector('button').addEventListener('click', async () => {
+      await copyText(item.text);
+      showCopyToast('Reading copied');
+    });
+    list.appendChild(node);
+  });
+}
+
+function dateKey(d=new Date()){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function hashString(text){
+  let hash = 2166136261;
+  for(let i=0;i<text.length;i++) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619);
+  return hash >>> 0;
+}
+
 let evaAudioContext = null;
 function getEvaAudio(){
   if(!('AudioContext' in window || 'webkitAudioContext' in window)) return null;
@@ -1221,6 +1378,116 @@ function playFlipSound(delay=0){
   noise.start(start); noise.stop(start + duration);
   osc.start(start); osc.stop(start + 0.12);
 }
+
+const solsticeSynth = {playing:false, nodes:[], timers:[], master:null, delay:null, reverb:null, filter:null};
+function makeImpulse(ctx, seconds=5.5, decay=4.2){
+  const length = Math.floor(ctx.sampleRate * seconds);
+  const impulse = ctx.createBuffer(2, length, ctx.sampleRate);
+  for(let ch=0; ch<2; ch++){
+    const data = impulse.getChannelData(ch);
+    for(let i=0; i<length; i++){
+      const t = i / length;
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, decay) * 0.42;
+    }
+  }
+  return impulse;
+}
+function synthVolumeValue(){
+  return Number(document.getElementById('synthVolume')?.value || localStorage.getItem('solsticeSynthVolume') || 0.13);
+}
+function setSynthVolume(value=synthVolumeValue()){
+  localStorage.setItem('solsticeSynthVolume', String(value));
+  if(solsticeSynth.master){
+    const ctx = getEvaAudio();
+    solsticeSynth.master.gain.setTargetAtTime(value, ctx.currentTime, 0.08);
+  }
+}
+function createDroneVoice(ctx, freq, panValue){
+  const osc = ctx.createOscillator();
+  const detune = ctx.createOscillator();
+  const detuneGain = ctx.createGain();
+  const gain = ctx.createGain();
+  const pan = ctx.createStereoPanner ? ctx.createStereoPanner() : ctx.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.value = freq;
+  detune.type = 'sine';
+  detune.frequency.value = 0.025 + Math.random() * 0.035;
+  detuneGain.gain.value = 3 + Math.random() * 5;
+  gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.07, ctx.currentTime + 4 + Math.random() * 2);
+  if(pan.pan) pan.pan.value = panValue;
+  detune.connect(detuneGain); detuneGain.connect(osc.detune);
+  osc.connect(gain); gain.connect(pan); pan.connect(solsticeSynth.filter);
+  osc.start(); detune.start();
+  solsticeSynth.nodes.push(osc, detune, detuneGain, gain, pan);
+}
+function scheduleSynthPlink(){
+  if(!solsticeSynth.playing) return;
+  const ctx = getEvaAudio();
+  const scale = [196, 220, 261.63, 293.66, 329.63, 392, 440, 523.25, 587.33, 659.25];
+  const freq = scale[Math.floor(Math.random() * scale.length)] * (Math.random() < 0.28 ? 2 : 1);
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  const pan = ctx.createStereoPanner ? ctx.createStereoPanner() : ctx.createGain();
+  osc.type = Math.random() < 0.55 ? 'sine' : 'triangle';
+  osc.frequency.setValueAtTime(freq, ctx.currentTime);
+  if(pan.pan) pan.pan.value = Math.random() * 1.6 - 0.8;
+  gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.045, ctx.currentTime + 0.04);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.8 + Math.random() * 2.2);
+  osc.connect(gain); gain.connect(pan); pan.connect(solsticeSynth.delay);
+  osc.start(); osc.stop(ctx.currentTime + 5.4);
+  solsticeSynth.nodes.push(osc, gain, pan);
+  const timer = setTimeout(scheduleSynthPlink, 1600 + Math.random() * 3600);
+  solsticeSynth.timers.push(timer);
+}
+function startSolsticeSynth(){
+  if(solsticeSynth.playing) return;
+  const ctx = getEvaAudio();
+  if(!ctx) return;
+  solsticeSynth.playing = true;
+  document.getElementById('synthPanel')?.classList.add('playing');
+  const master = ctx.createGain();
+  const filter = ctx.createBiquadFilter();
+  const delay = ctx.createDelay(8);
+  const delayGain = ctx.createGain();
+  const reverb = ctx.createConvolver();
+  const reverbGain = ctx.createGain();
+  filter.type = 'lowpass';
+  filter.frequency.value = 1150;
+  filter.Q.value = 0.55;
+  delay.delayTime.value = 0.58;
+  delayGain.gain.value = 0.34;
+  reverb.buffer = makeImpulse(ctx);
+  reverbGain.gain.value = 0.55;
+  master.gain.value = 0.0001;
+  filter.connect(delay); delay.connect(delayGain); delayGain.connect(delay);
+  filter.connect(reverb); delay.connect(reverb); reverb.connect(reverbGain);
+  filter.connect(master); reverbGain.connect(master); delay.connect(master); master.connect(ctx.destination);
+  Object.assign(solsticeSynth, {master, delay, reverb, filter});
+  setSynthVolume(synthVolumeValue());
+  [65.41, 98, 130.81, 196].forEach((freq, i)=>createDroneVoice(ctx, freq, [-0.65, -0.22, 0.22, 0.62][i]));
+  scheduleSynthPlink();
+  const sweep = setInterval(()=>{
+    if(!solsticeSynth.playing) return;
+    filter.frequency.setTargetAtTime(760 + Math.random() * 980, ctx.currentTime, 2.8);
+  }, 5200);
+  solsticeSynth.timers.push(sweep);
+}
+function stopSolsticeSynth(){
+  if(!solsticeSynth.playing) return;
+  const ctx = getEvaAudio();
+  solsticeSynth.playing = false;
+  document.getElementById('synthPanel')?.classList.remove('playing');
+  if(solsticeSynth.master) solsticeSynth.master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.24);
+  solsticeSynth.timers.forEach(t=>clearTimeout(t));
+  solsticeSynth.timers = [];
+  setTimeout(()=>{
+    solsticeSynth.nodes.forEach(node=>{try{node.stop?.()}catch(e){} try{node.disconnect?.()}catch(e){}});
+    ['master','delay','reverb','filter'].forEach(k=>{try{solsticeSynth[k]?.disconnect?.()}catch(e){} solsticeSynth[k]=null;});
+    solsticeSynth.nodes = [];
+  }, 700);
+}
 function animateDeckDeal(count){
   const deck = document.getElementById('deckStack');
   const reading = document.getElementById('reading');
@@ -1258,10 +1525,10 @@ function resetDeckIntro(){
   document.getElementById('readingSub').textContent=(document.getElementById('spreadMode')?.selectedOptions?.[0]?.textContent || 'Signal / Challenge / Guidance');
 }
 
-function draw(n){
+function draw(n, chosenCards=null, forcedOrientations=null, meta={}){
   const pool=official.filter(c=>c.num!==11);
   selectedNums = new Set();
-  const shuffled=[...pool].sort(()=>Math.random()-0.5).slice(0,n);
+  const shuffled=chosenCards || [...pool].sort(()=>Math.random()-0.5).slice(0,n);
   shuffled.forEach(c=>selectedNums.add(c.num));
   const spread=document.getElementById('spread');
   spread.innerHTML='';
@@ -1270,12 +1537,12 @@ function draw(n){
   readingEl.classList.add('active');
   readingEl.classList.add('has-draw');
   updateReadingQuestion();
-  document.getElementById('readingTitle').textContent = n===1?'One-Card Oracle':'Tarot Spread';
+  document.getElementById('readingTitle').textContent = meta.daily ? 'Daily Oracle' : (n===1?'One-Card Oracle':'Tarot Spread');
   const positions=getSpreadPositions(n);
   document.getElementById('readingSub').textContent = positions.join(' / ');
   const reading=[];
   shuffled.forEach((card,i)=>{
-    const orientation=drawOrientation();
+    const orientation=forcedOrientations?.[i] || drawOrientation();
     const meaning = orientation==='reversed' ? (card.reversed || card.upright) : card.upright;
     const entry={card, position:positions[i], orientation, meaning};
     reading.push(entry);
@@ -1305,10 +1572,13 @@ function draw(n){
     });
   });
   const synthesis=makeSynthesis(reading);
-  const syn=el('div',{class:'synthesis',html:synthesis});
+  const dailyMark = meta.daily ? `<div class="daily-sigil">Today&apos;s Signal - ${meta.dateKey}</div>` : '';
+  const syn=el('div',{class:'synthesis',html:dailyMark + synthesis});
   spread.parentElement.querySelectorAll('.synthesis').forEach(x=>x.remove());
   spread.parentElement.appendChild(syn);
   lastReadingText = synthesis.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  lastReadingSpokenText = buildSpokenReading(reading, meta);
+  lastReadingMeta = meta;
   lastReadingCards = reading.map(r=>({
     position:r.position,
     orientation:r.orientation,
@@ -1319,6 +1589,7 @@ function draw(n){
     divination:r.card.divination,
     reflection:r.card.reflection
   }));
+  saveReadingHistory();
   resetChatForReading();
   render();
   const y = readingEl.getBoundingClientRect().top + window.scrollY - 86;
@@ -1503,21 +1774,16 @@ function updateReadingQuestion(){
     box.textContent = '';
   }
 }
-function showCopyToast(){
+function showCopyToast(message='Reading copied'){
   const t = document.getElementById('copyToast');
   if(!t) return;
+  t.textContent = message + ' ✦';
   t.classList.add('active');
   setTimeout(()=>t.classList.remove('active'), 1800);
 }
-async function copyReading(){
-  const q = currentQuestion();
-  let text = 'Echoes of Solstice — Reading\n';
-  text += new Date().toLocaleString() + '\n\n';
-  if(q) text += 'Question: ' + q + '\n\n';
-  text += (lastReadingText || 'No reading drawn yet.');
+async function copyText(text){
   try {
     await navigator.clipboard.writeText(text);
-    showCopyToast();
   } catch(e) {
     const area = document.createElement('textarea');
     area.value = text;
@@ -1525,36 +1791,53 @@ async function copyReading(){
     area.select();
     document.execCommand('copy');
     area.remove();
-    showCopyToast();
   }
+}
+async function copyReading(){
+  await copyText(buildPlainReading());
+  showCopyToast('Reading copied');
+}
+async function shareReading(){
+  const text = buildPlainReading();
+  if(navigator.share){
+    try {
+      await navigator.share({title:'Echoes of Solstice Reading', text});
+      return;
+    } catch(e) {
+      if(e.name === 'AbortError') return;
+    }
+  }
+  await copyText(text);
+  showCopyToast('Share text copied');
 }
 function buildEvaPrompt(){
   const q = currentQuestion();
   let text = 'Please discuss this Echoes of Solstice card spread with me.\n\n';
   if(q) text += 'My question: ' + q + '\n\n';
-  text += (lastReadingText || 'No reading drawn yet.');
+  text += (lastReadingSpokenText || lastReadingText || 'No reading drawn yet.');
   return text;
 }
 async function openEvaGpt(){
   const text = buildEvaPrompt();
-  try {
-    await navigator.clipboard.writeText(text);
-    showCopyToast();
-  } catch(e) {
-    const area = document.createElement('textarea');
-    area.value = text;
-    document.body.appendChild(area);
-    area.select();
-    document.execCommand('copy');
-    area.remove();
-    showCopyToast();
-  }
+  await copyText(text);
+  showCopyToast('Eva prompt copied');
   window.open(EVA_GPT_URL, '_blank', 'noopener');
 }
+function drawDailyCard(){
+  const key = dateKey();
+  const pool = official.filter(c=>c.num!==11);
+  const seed = hashString(key + ' Echoes of Solstice');
+  const card = pool[seed % pool.length];
+  const orientation = (seed % 100) < 42 && document.getElementById('reversalsToggle')?.checked ? 'reversed' : 'upright';
+  oracleEffect();
+  animateDeckDeal(1);
+  setTimeout(()=>draw(1, [card], [orientation], {daily:true, dateKey:key}), 950);
+}
+document.getElementById('drawDaily').addEventListener('click',drawDailyCard);
 document.getElementById('drawOne').addEventListener('click',()=>{oracleEffect(); animateDeckDeal(1); setTimeout(()=>draw(1),950);});
 document.getElementById('drawThree').addEventListener('click',()=>{oracleEffect(); animateDeckDeal(3); setTimeout(()=>draw(3),950);});
-document.getElementById('resetDraw').addEventListener('click',()=>{selectedNums=new Set();lastReadingText='';lastReadingCards=[];document.body.classList.remove('reading-mode');document.getElementById('reading').classList.remove('active');document.querySelectorAll('.synthesis').forEach(x=>x.remove());resetDeckIntro();resetChatForReading();render();window.scrollTo({top:0,behavior:'smooth'});});
-document.getElementById('speakReading').addEventListener('click',()=>speak(lastReadingText||'Draw cards first.'));
+document.getElementById('resetDraw').addEventListener('click',()=>{selectedNums=new Set();lastReadingText='';lastReadingSpokenText='';lastReadingCards=[];lastReadingMeta={};document.body.classList.remove('reading-mode');document.getElementById('reading').classList.remove('active');document.querySelectorAll('.synthesis').forEach(x=>x.remove());resetDeckIntro();resetChatForReading();render();window.scrollTo({top:0,behavior:'smooth'});});
+document.getElementById('speakReading').addEventListener('click',()=>speak(lastReadingSpokenText||lastReadingText||'Draw cards first.'));
 document.getElementById('openEvaGpt')?.addEventListener('click',openEvaGpt);
 document.getElementById('stopSpeaking').addEventListener('click',()=>speechSynthesis.cancel());
 
@@ -1685,6 +1968,7 @@ setInterval(updateSolsticeTimer, 1000);
 
 
 document.getElementById('copyReading')?.addEventListener('click', copyReading);
+document.getElementById('shareReading')?.addEventListener('click', shareReading);
 document.getElementById('clearQuestion')?.addEventListener('click', ()=>{ const q=document.getElementById('questionInput'); if(q) q.value=''; updateReadingQuestion(); });
 document.getElementById('questionInput')?.addEventListener('input', updateReadingQuestion);
 
@@ -1792,6 +2076,17 @@ function ringGlock(){
 }
 document.getElementById('ringGlock')?.addEventListener('click', ringGlock);
 
+function bindSolsticeSynth(){
+  const volume = document.getElementById('synthVolume');
+  if(volume){
+    volume.value = localStorage.getItem('solsticeSynthVolume') || volume.value;
+    volume.addEventListener('input', () => setSynthVolume(Number(volume.value)));
+  }
+  document.getElementById('startSynth')?.addEventListener('click', startSolsticeSynth);
+  document.getElementById('stopSynth')?.addEventListener('click', stopSolsticeSynth);
+}
+bindSolsticeSynth();
+
 function toggleLibrary(panelId){
   const panel=document.getElementById(panelId);
   if(!panel) return;
@@ -1806,6 +2101,7 @@ document.getElementById('toggleOfficial')?.addEventListener('click', ()=>toggleL
 document.getElementById('toggleExtras')?.addEventListener('click', ()=>toggleLibrary('extrasPanel'));
 
 render();
+renderReadingHistory();
 resetDeckIntro();
 resetChatForReading();
 </script>
