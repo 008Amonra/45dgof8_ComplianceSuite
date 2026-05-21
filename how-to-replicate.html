@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Own AI Agent Ops Center</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;background:#0d0d14;color:#e0e0e8;line-height:1.7;padding:0;min-height:100vh}
+  .wrap{max-width:780px;margin:0 auto;padding:40px 24px 80px}
+
+  h1{font-size:2rem;font-weight:800;color:#00ff88;margin-bottom:4px;letter-spacing:-0.5px}
+  .sub{color:#888;font-size:1rem;margin-bottom:40px;border-bottom:1px solid #222;padding-bottom:20px}
+  h2{font-size:1.3rem;color:#00cc77;margin-top:48px;margin-bottom:16px;font-weight:700}
+  h3{font-size:1.05rem;color:#ddd;margin-top:28px;margin-bottom:10px;font-weight:600}
+  p,li{color:#b8b8c8;margin-bottom:12px}
+  a{color:#4488ff;text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  code,.code{background:#1a1a28;color:#c8a0ff;padding:2px 6px;border-radius:4px;font-size:0.9em;font-family:'JetBrains Mono','Fira Code',monospace}
+  pre{background:#0d0d18;border:1px solid #2a2a3a;border-radius:8px;padding:16px 20px;overflow-x:auto;margin:16px 0;font-size:0.88rem;line-height:1.5;position:relative}
+  pre .cmd{color:#ff8844}
+  pre .out{color:#888}
+  ul,ol{padding-left:24px}
+  li{margin-bottom:6px}
+  .card{background:#14141e;border:1px solid #2a2a3a;border-radius:10px;padding:20px;margin:16px 0}
+  .card strong{color:#ddd}
+  hr{border:none;border-top:1px solid #222;margin:48px 0}
+  .footer{text-align:center;padding:40px 0 20px;color:#555;font-size:0.85rem}
+  .footer a{color:#4488ff}
+  .tag{display:inline-block;background:#1a2a1a;color:#44cc66;font-size:0.75rem;padding:2px 8px;border-radius:4px;margin-right:4px;font-weight:600}
+  .tag.warn{background:#2a2a1a;color:#ccaa44}
+
+  /* ── OS Chooser ── */
+  .os-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+  .os-card{background:#14141e;border:2px solid #2a2a3a;border-radius:14px;padding:28px 16px;text-align:center;cursor:pointer;transition:all .2s}
+  .os-card:hover{border-color:#4488ff;transform:translateY(-2px);background:#1a1a2a}
+  .os-card .icon{font-size:2.8rem;display:block;margin-bottom:8px}
+  .os-card .name{font-size:1.1rem;font-weight:700;color:#ddd}
+  .os-card .desc{font-size:0.8rem;color:#888;margin-top:4px}
+  .os-card.selected{border-color:#00ff88;background:#0d1f14}
+  .os-card.selected .name{color:#00ff88}
+
+  /* ── OS Content (hidden by default) ── */
+  .os-content{display:none;animation:fadeIn .3s ease}
+  .os-content.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .back-btn{display:inline-flex;align-items:center;gap:6px;color:#888;font-size:0.9rem;cursor:pointer;border:none;background:none;padding:8px 0;margin-bottom:16px}
+  .back-btn:hover{color:#ddd}
+
+  /* ── Hide chooser when OS selected ── */
+  .show-chooser{display:block}
+  .hide-chooser{display:none}
+
+  .copy-btn{position:absolute;top:8px;right:8px;background:#2a2a3a;border:none;color:#888;padding:4px 10px;border-radius:4px;font-size:0.75rem;cursor:pointer}
+  .copy-btn:hover{background:#3a3a4a;color:#ddd}
+
+  @media(max-width:640px){
+    .os-grid{grid-template-columns:1fr;gap:12px}
+    .os-card{padding:20px 16px;flex-direction:row;display:flex;align-items:center;gap:16px;text-align:left}
+    .os-card .icon{font-size:2rem;margin-bottom:0}
+    h1{font-size:1.5rem}
+    .wrap{padding:24px 16px}
+    .dl-grid{flex-direction:column;align-items:stretch}
+    .dl-btn{justify-content:center}
+    pre{font-size:.78rem;padding:12px}
+    h2{font-size:1.1rem}
+    h3{font-size:.95rem}
+    td,th{font-size:.78rem;padding:6px 8px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+
+<h1>Build Your Own AI Agent Ops Center</h1>
+<div class="sub">A complete local AI infrastructure — n8n, cloud tunnel, command center, and content generators.<br>
+<span style="color:#555">Humbly offered by 45dgof8</span></div>
+
+<!-- Architecture -->
+<p style="margin-bottom:32px;font-size:1.05rem;color:#b0b0c0">
+  An <strong>AI Agent Operations Center</strong> that runs on your own machine — no subscriptions, no cloud dependencies, no GPU required.
+  Workflow automation, content generation, Telegram bots — all connected to an AI agent.
+</p>
+
+<!-- ═══════ WARNING ═══════ -->
+<div class="card" style="border-color:#663300;background:#141004;margin-bottom:32px">
+  <h2 style="color:#ff8844;margin-top:0">⚠️ Before you install</h2>
+  <p style="color:#ccaa88">
+    This script exposes your machine to the internet via Cloudflare tunnel.<br>
+    <strong>Secure your n8n account with a strong password immediately after install.</strong><br>
+    You are responsible for what your agents do. We built the shovel.
+  </p>
+  <p style="color:#886644;font-size:0.85rem;margin-bottom:0">
+    The script will ask to run a security check first — let it.
+  </p>
+
+<p style="color:#666;font-size:0.85rem;margin-top:16px">
+  AI model APIs (OpenAI, Anthropic) are third-party services with their own pricing.
+  We don't control them. The self-hosted infrastructure (n8n, tunnel, generators) is yours to keep.
+</p>
+</div>
+
+<!-- ═══════ DOWNLOAD SCRIPTS ═══════ -->
+<div class="dl-section">
+  <h2 style="margin-top:0">Download the Setup Script</h2>
+  <p style="color:#888;margin-bottom:8px">One script per OS. Download and run — it handles everything.</p>
+  <div class="dl-grid">
+    <a href="https://45dgof8.com/deploy-agent-ops.sh" class="dl-btn">
+      <span class="icon">🐧</span> deploy-agent-ops.sh
+      <span class="size">(15 KB)</span>
+    </a>
+    <a href="https://45dgof8.com/deploy-agent-ops-mac.sh" class="dl-btn">
+      <span class="icon">🍎</span> deploy-agent-ops-mac.sh
+      <span class="size">(9 KB)</span>
+    </a>
+    <a href="https://45dgof8.com/deploy-agent-ops.bat" class="dl-btn">
+      <span class="icon">🪟</span> deploy-agent-ops.bat
+      <span class="size">(6 KB)</span>
+    </a>
+  </div>
+  <p style="color:#555;font-size:0.85rem;margin-top:12px">
+    Or pick your OS below for step-by-step instructions.
+  </p>
+</div>
+
+<!-- ═══════ OS CHOOSER ═══════ -->
+<div id="chooser">
+  <h2 style="margin-top:0">Choose Your Operating System</h2>
+  <p style="color:#888;margin-bottom:8px">One script sets up everything. Pick your OS to begin.</p>
+  <div class="os-grid">
+    <div class="os-card" onclick="pickOS('linux')">
+      <span class="icon">🐧</span>
+      <span class="name">Linux</span>
+      <span class="desc">Ubuntu / Debian / Pop!_OS</span>
+    </div>
+    <div class="os-card" onclick="pickOS('mac')">
+      <span class="icon">🍎</span>
+      <span class="name">macOS</span>
+      <span class="desc">Intel & Apple Silicon</span>
+    </div>
+    <div class="os-card" onclick="pickOS('windows')">
+      <span class="icon">🪟</span>
+      <span class="name">Windows</span>
+      <span class="desc">10 / 11</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ LINUX CONTENT ═══════ -->
+<div class="os-content" id="os-linux">
+  <button class="back-btn" onclick="back()">← All Platforms</button>
+  <h2 style="margin-top:0">🐧 Linux Setup</h2>
+
+  <h3>Quick Start</h3>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">curl -fsSL https://45dgof8.com/deploy-agent-ops.sh -o deploy.sh
+chmod +x deploy.sh
+./deploy.sh you@example.com</span></pre>
+
+  <h3>Step-by-Step</h3>
+
+  <h4>1. Install Docker</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">curl -fsSL https://get.docker.com | bash
+sudo usermod -aG docker $USER</span>
+<span class="out"># Log out and back in for group to take effect</span></pre>
+
+  <h4>2. Start n8n</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">mkdir -p ~/agent-ops/n8n && cd ~/agent-ops/n8n
+curl -fsSL https://45dgof8.com/docker-compose.yml -o docker-compose.yml
+docker compose up -d</span>
+<span class="out"># Open http://localhost:5678</span></pre>
+
+  <h4>3. Create account</h4>
+  <p>Open <code>http://localhost:5678</code> → sign up with your email.</p>
+
+  <h4>4. Install cloudflared tunnel</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">curl -fsSL https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
+chmod +x cloudflared
+sudo mv cloudflared /usr/local/bin/
+nohup cloudflared tunnel --url http://localhost:5678 &</span>
+<span class="out"># Find your tunnel URL: grep -oP 'https://[^.]+\.trycloudflare\.com' ~/agent-ops/tunnel.log</span></pre>
+
+  <h4>5. Install Python + FFmpeg</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">pip3 install --user numpy
+sudo apt install ffmpeg</span></pre>
+
+  <h4>6. Start Command Center</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">mkdir -p ~/agent-ops/command-center
+python3 ~/agent-ops/command-center/server.py &
+<span class="out"># Open http://localhost:42042</span></span></pre>
+
+  <h4>7. Enable MCP (optional, for OpenCode)</h4>
+  <p>In n8n: <strong>Settings → MCP Server → Enable</strong>. Create an API key, add to <code>~/.opencode/opencode.json</code>.</p>
+</div>
+
+<!-- ═══════ macOS CONTENT ═══════ -->
+<div class="os-content" id="os-mac">
+  <button class="back-btn" onclick="back()">← All Platforms</button>
+  <h2 style="margin-top:0">🍎 macOS Setup</h2>
+
+  <h3>Quick Start</h3>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">curl -fsSL https://45dgof8.com/deploy-agent-ops-mac.sh -o deploy.sh
+chmod +x deploy.sh
+./deploy.sh you@example.com</span></pre>
+
+  <h3>Step-by-Step</h3>
+
+  <h4>1. Install Docker Desktop</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd"># Option A — Homebrew:
+brew install --cask docker
+
+# Option B — Download from:
+# https://www.docker.com/products/docker-desktop/</span>
+<span class="out"># Open Docker.app and wait for it to start</span></pre>
+
+  <h4>2. Start n8n</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">mkdir -p ~/agent-ops/n8n && cd ~/agent-ops/n8n
+curl -fsSL https://45dgof8.com/docker-compose.yml -o docker-compose.yml
+docker compose up -d</span>
+<span class="out"># Open http://localhost:5678</span></pre>
+
+  <h4>3. Create account</h4>
+  <p>Open <code>http://localhost:5678</code> → sign up with your email.</p>
+
+  <h4>4. Install cloudflared tunnel</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">brew install cloudflared
+nohup cloudflared tunnel --url http://localhost:5678 &</span>
+<span class="out"># Tunnel URL appears in output. Save it.</span></pre>
+
+  <h4>5. Install Python + FFmpeg</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">pip3 install numpy
+brew install ffmpeg</span></pre>
+
+  <h4>6. Start Command Center</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">mkdir -p ~/agent-ops/command-center
+python3 ~/agent-ops/command-center/server.py &
+<span class="out"># Open http://localhost:42042</span></span></pre>
+
+  <h4>7. Enable MCP (optional, for OpenCode)</h4>
+  <p>In n8n: <strong>Settings → MCP Server → Enable</strong>. Create an API key, add to <code>~/.opencode/opencode.json</code>.</p>
+</div>
+
+<!-- ═══════ WINDOWS CONTENT ═══════ -->
+<div class="os-content" id="os-windows">
+  <button class="back-btn" onclick="back()">← All Platforms</button>
+  <h2 style="margin-top:0">🪟 Windows Setup</h2>
+
+  <h3>Quick Start</h3>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">curl -fsSL -o deploy.bat https://45dgof8.com/deploy-agent-ops.bat
+deploy.bat</span>
+<span class="out"># Or just double-click deploy.bat in Explorer</span></pre>
+
+  <h3>Step-by-Step</h3>
+
+  <h4>1. Install Docker Desktop</h4>
+  <p>Download from <a href="https://www.docker.com/products/docker-desktop/">docker.com</a> — install, start, wait for the whale icon.</p>
+
+  <h4>2. Start n8n</h4>
+  <p>Open <strong>PowerShell</strong> and run:</p>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">mkdir %USERPROFILE%\agent-ops\n8n
+cd %USERPROFILE%\agent-ops\n8n
+curl -fsSL -o docker-compose.yml https://45dgof8.com/docker-compose.yml
+docker compose up -d</span>
+<span class="out"># Open http://localhost:5678</span></pre>
+
+  <h4>3. Create account</h4>
+  <p>Open <code>http://localhost:5678</code> in your browser → sign up.</p>
+
+  <h4>4. Install cloudflared tunnel</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">curl -fsSL -o cloudflared.exe https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe
+cloudflared.exe tunnel --url http://localhost:5678</span>
+<span class="out"># Tunnel URL appears in the window. Keep it open.</span></pre>
+
+  <h4>5. Install Python + FFmpeg</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">python -m pip install numpy</span>
+<span class="out"># FFmpeg: Download ffmpeg.exe from ffmpeg.org
+# Add the folder with ffmpeg.exe to your PATH</span></pre>
+
+  <h4>6. Start Command Center</h4>
+  <pre><button class="copy-btn" onclick="copy(this)">Copy</button><span class="cmd">mkdir %USERPROFILE%\agent-ops\command-center
+python %USERPROFILE%\agent-ops\command-center\server.py</span>
+<span class="out"># Open http://localhost:42042</span></pre>
+
+  <h4>7. Note on AI agents</h4>
+  <p>OpenCode does not run on Windows. Use the n8n web UI directly (<code>http://localhost:5678</code>) to build and run workflows. Everything works the same — just click instead of chat.</p>
+</div>
+
+<!-- ═══════ UNIVERSAL CONTENT (always visible) ═══════ -->
+<div style="margin-top:48px">
+
+<h2>Compatibility at a Glance</h2>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:0.88rem;">
+  <tr style="background:#1a1a28;">
+    <th style="text-align:left;padding:10px 12px;border:1px solid #2a2a3a;color:#888">Component</th>
+    <th style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#00ff88">🐧 Linux</th>
+    <th style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#888">🍎 macOS</th>
+    <th style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#4488ff">🪟 Windows</th>
+  </tr>
+  <tr><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">Auto-setup</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>.sh</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>.sh</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>.bat</code></td></tr>
+  <tr style="background:#0f0f18;"><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">Docker</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a">Docker Engine</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a">Docker Desktop</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a">Docker Desktop</td></tr>
+  <tr><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">n8n</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅ Compose</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅ Compose</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅ Compose</td></tr>
+  <tr style="background:#0f0f18;"><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">cloudflared</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>apt</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>brew</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a">download <code>.exe</code></td></tr>
+  <tr><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">FFmpeg</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>apt install</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>brew install</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a">download <code>.exe</code></td></tr>
+  <tr style="background:#0f0f18;"><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">Python + numpy</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>pip3</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>pip3</code></td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a"><code>python -m pip</code></td></tr>
+  <tr><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">OpenCode</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅ native</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅ native</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#aa6644">❌ (use n8n UI)</td></tr>
+  <tr style="background:#0f0f18;"><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">Command center</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅</td></tr>
+  <tr><td style="padding:10px 12px;border:1px solid #2a2a3a;font-weight:bold;color:#ddd">Music generators</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅</td>
+    <td style="text-align:center;padding:10px 12px;border:1px solid #2a2a3a;color:#44cc66">✅</td></tr>
+</table>
+</div>
+
+<h2>What Each Piece Does</h2>
+
+<h3>⚙️ n8n — The Workflow Engine</h3>
+<p>Connects to 400+ services (Telegram, email, OpenAI, Google). You build visual workflows — drag, drop, connect. Runs in Docker on all platforms.</p>
+
+<h3>🔌 MCP — The AI Bridge</h3>
+<p>Lets your AI agent (OpenCode) control n8n directly. Say "run the video workflow" and it executes. Linux/macOS only — use the n8n UI on Windows.</p>
+
+<h3>🌐 Cloudflare Tunnel — Web Access</h3>
+<p>Makes your local n8n accessible from anywhere via a <code>*.trycloudflare.com</code> URL. No port forwarding needed.</p>
+
+<h3>📊 Command Center — Dashboard</h3>
+<p>Zero-dependency Python dashboard showing service status. Auto-refreshes. Works on every OS.</p>
+
+<h3>🎵 Music Generators</h3>
+<p>Python scripts that synthesize 30s tracks from scratch — no samples, no GPU. numpy + FFmpeg required.</p>
+
+<h2>What You Can Build</h2>
+<div class="card">
+  <strong>🎬 Video Agency</strong> — Prompt → AI video → music → text → deliver to client<br><br>
+  <strong>📰 News Bot</strong> — Scrape RSS → summarize → email newsletter daily<br><br>
+  <strong>🎵 Music Studio</strong> — Custom tracks for videos, games, clients<br><br>
+  <strong>🤖 Telegram Assistant</strong> — Message a bot → runs workflows → replies<br><br>
+  <strong>💼 Micro-SaaS</strong> — Landing page → prompt → payment → n8n → delivery
+</div>
+
+</div>
+
+<hr>
+
+<div class="footer">
+  Built by <a href="https://45dgof8.com">45dgof8</a> — AI agent services for solo creators.<br>
+  <span style="color:#444">Humbly offered for you to replicate, improve, and make your own.</span><br><br>
+  <span style="color:#333;font-size:0.8rem">Last updated: May 20, 2026</span>
+</div>
+
+</div>
+
+<script>
+function pickOS(os) {
+  document.getElementById('chooser').style.display = 'none';
+  document.querySelectorAll('.os-content').forEach(el => el.classList.remove('active'));
+  document.getElementById('os-' + os).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function back() {
+  document.getElementById('chooser').style.display = 'block';
+  document.querySelectorAll('.os-content').forEach(el => el.classList.remove('active'));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function copy(btn) {
+  const pre = btn.parentElement;
+  const text = pre.textContent.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+</script>
+</body>
+</html>
+
+<style>
+  .dl-section{text-align:center;margin-bottom:40px}
+  .dl-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px}
+  .dl-btn{display:inline-flex;align-items:center;gap:8px;background:#0f0f1a;border:1px solid #2a2a3a;border-radius:10px;padding:14px 22px;font-size:0.95rem;font-weight:600;color:#ddd;text-decoration:none;transition:all .2s}
+  .dl-btn:hover{border-color:#00ff88;background:#0d1f14;color:#00ff88;text-decoration:none;transform:translateY(-1px)}
+  .dl-btn .icon{font-size:1.4rem}
+  .dl-btn .size{color:#666;font-weight:400;font-size:0.8rem}
+</style>

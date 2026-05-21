@@ -70,6 +70,15 @@
   .footer a{color:#4488ff}
 
   .disclaimer{font-size:0.8rem;color:#555;margin-top:24px;padding:12px;border:1px solid #2a2a2a;border-radius:8px}
+
+  @media(max-width:640px){
+    body{padding:1rem;font-size:15px}
+    h1{font-size:1.5rem}
+    h2{font-size:1.2rem}
+    video{max-height:300px}
+    .card{padding:16px}
+    #project-form input,#project-form textarea{font-size:16px}
+  }
 </style>
 </head>
 <body>
@@ -113,11 +122,18 @@
     <span class="service" style="color:#00ff88">📦 Bundle — video + track</span>
     <span class="price" style="color:#00ff88">SFr. 29</span>
   </div>
-  <div class="price-item" style="background:#1a1a2a;border:1px solid #4a3a6a;margin-top:4px;border-radius:8px">
-    <span class="service" style="color:#c0a0ff">🔧 Personal setup support</span>
+  <p class="note" style="margin-top:12px;color:#666;border-top:1px solid #2a2a3a;padding-top:12px">Adjust the amount below for your project. First revision free.</p>
+</div>
+
+<!-- Setup Support -->
+<div class="card" style="border-color:#4a3a6a;background:#0e0e1a">
+  <h2 style="margin-top:0">🔧 Don't want to do it yourself?</h2>
+  <div class="price-item" style="background:#1a1a2e;border:1px solid #5a4a7a;border-radius:8px">
+    <span class="service" style="color:#c0a0ff">Personal setup support — I'll help you get everything running</span>
     <span class="price" style="color:#c0a0ff">SFr. 49</span>
   </div>
-  <p class="note" style="margin-top:12px">Adjust the amount below for your project. First revision free.</p>
+  <p class="note" style="margin-top:12px;color:#aaa">This is a separate one-time service, not an add-on to the prices above. You get the full setup guide + email support to get your own agent ops center running.</p>
+</div>
 </div>
 
 <!-- Payment -->
