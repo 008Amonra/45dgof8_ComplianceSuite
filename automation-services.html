@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>45dgof8 Automation Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;background:#0d0d14;color:#e0e0e8;line-height:1.6;min-height:100vh}
+  .wrap{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+  .hat-title{text-align:center;margin-bottom:40px;border-bottom:1px solid #222;padding-bottom:24px}
+  .hat-crown{display:block;font-family:'Cinzel',serif;font-size:1.6rem;font-weight:900;letter-spacing:6px;text-transform:uppercase;background:linear-gradient(135deg,#00ff88,#00ccff,#00ff88);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s ease-in-out infinite;margin-bottom:-4px}
+  .hat-brim{display:block;font-family:'Cinzel',serif;font-size:2.6rem;font-weight:400;letter-spacing:12px;text-transform:uppercase;background:linear-gradient(135deg,#e0e0e8,#888,#e0e0e8);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease-in-out infinite 0.5s}
+  .hat-brim-accent{display:block;font-size:0.75rem;letter-spacing:8px;color:#555;margin-top:8px;font-weight:300}
+  @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  h2{font-size:1.3rem;color:#00cc77;margin-top:48px;margin-bottom:16px}
+  h3{font-size:1.05rem;color:#ddd;margin-top:24px;margin-bottom:10px}
+  p{color:#b8b8c8;margin-bottom:12px}
+  a{color:#4488ff;text-decoration:none}
+  .card{background:#14141e;border:1px solid #2a2a3a;border-radius:12px;padding:24px;margin:16px 0}
+  hr{border:none;border-top:1px solid #222;margin:40px 0}
+  .price-item{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#0f0f1a;border-radius:8px;margin-bottom:8px}
+  .price-item .service{font-weight:600;color:#ddd}
+  .price-item .price{color:#00ff88;font-weight:700;font-size:1.1rem}
+  .amount-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0}
+  .amount-row input{padding:12px 16px;font-size:1.1rem;background:#0f0f1a;border:1px solid #3a3a4a;border-radius:8px;color:#e0e0e8;width:160px;font-weight:700}
+  .amount-row input:focus{outline:none;border-color:#00ff88}
+  .pay-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+  @media(max-width:500px){.pay-btns{grid-template-columns:1fr}}
+  .btn{display:block;padding:16px 20px;border-radius:10px;font-size:1rem;font-weight:700;text-align:center;cursor:pointer;border:none;transition:all .15s}
+  .btn-paypal{background:#ffc439;color:#111}
+  .btn-paypal:hover{background:#ffd668;transform:translateY(-1px)}
+  .btn-pulse{background:#1a1a2e;color:#c0a0ff;border:1px solid #4a3a6a}
+  .btn-pulse:hover{background:#2a1a3e;border-color:#7a5aaa;transform:translateY(-1px)}
+  #paypal-container{margin-top:12px;min-height:40px}
+  .form-group{margin:16px 0}
+  .form-group label{display:block;color:#aaa;margin-bottom:6px;font-size:0.9rem}
+  .form-group input,.form-group textarea{width:100%;padding:12px 16px;background:#0f0f1a;border:1px solid #3a3a4a;border-radius:8px;color:#e0e0e8;font-size:1rem;font-family:inherit}
+  .form-group input:focus,.form-group textarea:focus{outline:none;border-color:#00ff88}
+  .form-group textarea{min-height:100px;resize:vertical}
+  .btn-submit{background:#00ff88;color:#0a0a0a;padding:14px 32px;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer}
+  .btn-submit:hover{background:#33ffaa;transform:translateY(-1px)}
+  .note{color:#666;font-size:0.85rem;margin-top:8px}
+  .status{font-size:0.9rem;margin-top:8px;padding:8px 12px;border-radius:6px;min-height:20px}
+  .status.ok{color:#44cc66}
+  .status.err{color:#ff6644}
+  .status.info{color:#888}
+  .footer{text-align:center;padding:40px 0 0;color:#555;font-size:0.85rem}
+  .footer a{color:#4488ff}
+  .disclaimer{font-size:0.8rem;color:#555;margin-top:24px;padding:12px;border:1px solid #2a2a2a;border-radius:8px}
+  @media(max-width:640px){
+    body{padding:1rem;font-size:15px}
+    h1{font-size:1.5rem}
+    h2{font-size:1.2rem}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hat-title">
+  <span class="hat-crown">45dgof8</span>
+  <span class="hat-brim">Automation</span>
+  <span class="hat-brim-accent">AI agent workflows & setup for solo creators</span>
+</div>
+
+<h2>What you get (SFr. / CHF)</h2>
+<div class="card">
+  <div class="price-item">
+    <span class="service">⚡ Automation workflow</span>
+    <span class="price">SFr. 25</span>
+  </div>
+  <div class="price-item">
+    <span class="service">🔄 Revision / tweak</span>
+    <span class="price">SFr. 5</span>
+  </div>
+  <p class="note" style="margin-top:12px;color:#666;border-top:1px solid #2a2a3a;padding-top:12px">Custom workflows: email agents, Telegram bots, data pipelines, content automation, and more.</p>
+</div>
+
+<div class="card" style="border-color:#4a3a6a;background:#0e0e1a">
+  <h2 style="margin-top:0">🔧 Don't want to do it yourself?</h2>
+  <div class="price-item" style="background:#1a1a2e;border:1px solid #5a4a7a;border-radius:8px">
+    <span class="service" style="color:#c0a0ff">Personal setup support — I'll help you get everything running</span>
+    <span class="price" style="color:#c0a0ff">SFr. 49</span>
+  </div>
+  <p class="note" style="margin-top:12px;color:#aaa">Separate one-time service. Full setup guide + email support to get your own agent ops center running.</p>
+</div>
+
+<h2>Pay</h2>
+<div class="card">
+  <label style="color:#aaa;font-size:0.9rem" for="amount">Amount (CHF)</label>
+  <div class="amount-row">
+    <input type="number" id="amount" min="1" step="0.5" value="25" />
+    <span style="color:#888;font-size:0.9rem">min. SFr. 5</span>
+  </div>
+  <div class="pay-btns">
+    <div><button class="btn btn-paypal" id="paypal-btn" onclick="showPayPal()">💳 Pay with PayPal</button></div>
+    <div><button class="btn btn-pulse" onclick="openPulse()">🤖 Pay with Pulse</button></div>
+  </div>
+  <div id="paypal-container" style="display:none"></div>
+  <div id="payment-status" class="status"></div>
+  <p class="note"><strong>PayPal:</strong> Instant checkout in CHF.<br><strong>Pulse:</strong> Opens the Pulse payment assistant in a new tab.</p>
+</div>
+
+<h2>Describe your project</h2>
+<div class="card">
+  <p style="color:#aaa;margin-bottom:16px">After payment, tell us what you need. We'll deliver within 24h.</p>
+  <div class="form-group">
+    <label for="email">Your email</label>
+    <input type="email" id="email" placeholder="you@example.com" />
+  </div>
+  <div class="form-group">
+    <label for="project">What do you need?</label>
+    <textarea id="project" placeholder="I need an automated email agent that monitors my inbox and sends daily summaries..."></textarea>
+  </div>
+  <button class="btn-submit" onclick="submitProject()">Send project brief</button>
+  <p class="note" style="margin-top:8px">We'll reply within 24h with a concept. No commitment until you approve.</p>
+</div>
+
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> 45dgof8 provides AI agent coordination services. Payments processed via PayPal or 45dgof8-pulse (coordination hub). 1% infrastructure fee applies to Pulse-coordinated payments. No sensitive data stored. Prices in CHF.
+</div>
+
+<hr />
+<div class="footer"><a href="https://45dgof8.com">45dgof8.com</a> — AI automation for solo creators.</div>
+
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&currency=CHF&components=buttons"></script>
+<script>
+let paypalRendered = false;
+function getAmount() {
+  const raw = parseFloat(document.getElementById('amount').value);
+  if (isNaN(raw) || raw < 1) { document.getElementById('payment-status').textContent = 'Min. SFr. 5'; document.getElementById('payment-status').className = 'status err'; return null; }
+  document.getElementById('payment-status').textContent = ''; document.getElementById('payment-status').className = 'status';
+  return raw.toFixed(2);
+}
+function showPayPal() {
+  const amount = getAmount(); if (!amount) return;
+  const container = document.getElementById('paypal-container');
+  const btn = document.getElementById('paypal-btn');
+  if (paypalRendered) { container.style.display = container.style.display === 'none' ? 'block' : 'none'; return; }
+  container.style.display = 'block'; btn.textContent = '💳 Processing...';
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      const val = getAmount(); if (!val) return Promise.reject('Invalid amount');
+      return actions.order.create({ purchase_units: [{ amount: { currency_code: 'CHF', value: val } }] });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        document.getElementById('payment-status').textContent = '✅ Paid! CHF ' + getAmount();
+        document.getElementById('payment-status').className = 'status ok';
+        btn.textContent = '💳 Paid ✓'; btn.style.background = '#44cc66'; btn.disabled = true;
+      });
+    },
+    onCancel: function() { document.getElementById('payment-status').textContent = '✕ Cancelled'; document.getElementById('payment-status').className = 'status err'; btn.textContent = '💳 Pay with PayPal'; },
+    onError: function() { document.getElementById('payment-status').textContent = '✕ Error. Try Pulse.'; document.getElementById('payment-status').className = 'status err'; btn.textContent = '💳 Pay with PayPal'; }
+  }).render('#paypal-container').then(() => { paypalRendered = true; btn.textContent = '💳 Pay with PayPal'; });
+}
+function openPulse() {
+  const amount = getAmount();
+  window.open('https://45dgof8.com/45dgof8-pulse.html' + (amount ? '?amount=' + amount + '&currency=CHF' : ''), '_blank');
+  document.getElementById('payment-status').textContent = 'Pulse opened in new tab'; document.getElementById('payment-status').className = 'status info';
+}
+function submitProject() {
+  const email = document.getElementById('email').value.trim();
+  const project = document.getElementById('project').value.trim();
+  if (!email) { alert('Please enter your email'); return; }
+  if (!project) { alert('Please describe your project'); return; }
+  window.location.href = 'mailto:45dgof8@gmail.com?subject=Automation%20Project&body=' + encodeURIComponent('Email: ' + email + '\n\nProject:\n' + project);
+  document.querySelector('.btn-submit').textContent = '✓ Sent!'; document.querySelector('.btn-submit').style.background = '#44cc66'; document.querySelector('.btn-submit').disabled = true;
+}
+</script>
+</body>
+</html>
