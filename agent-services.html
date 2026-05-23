@@ -134,7 +134,6 @@
   </div>
   <p class="note" style="margin-top:12px;color:#aaa">This is a separate one-time service, not an add-on to the prices above. You get the full setup guide + email support to get your own agent ops center running.</p>
 </div>
-</div>
 
 <!-- Payment -->
 <h2>Pay</h2>
@@ -189,6 +188,7 @@
 </div>
 
 </div>
+<!-- close .wrap -->
 
 <!-- PayPal JS SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAAmB7lcCMqajEX6ZQ6_EnZ0PtDeUv5VKZFrO06dRXN64vpMoAkt--npuAWXUVVznCgrUBfQdWizxX1UPY&currency=CHF&components=buttons"></script>
@@ -267,7 +267,6 @@ function openPulse() {
   const amount = getAmount();
   const pulseUrl = 'https://45dgof8.com/45dgof8-pulse.html';
   if (amount) {
-    // Open Pulse with amount context
     window.open(pulseUrl + '?amount=' + amount + '&currency=CHF', '_blank');
   } else {
     window.open(pulseUrl, '_blank');
