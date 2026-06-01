@@ -1,3 +1,5 @@
+> **⚠️ Archived** — This project is not actively maintained. The code and docs remain here for reference.
+
  45dgof8 Compliance Suite
 
 **Your global library of AI-powered privacy compliance GPTs.**
