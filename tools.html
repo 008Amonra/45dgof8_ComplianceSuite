@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools — 45dgof8 Tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08080e;color:#e0d8d0;font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
+.container{max-width:960px;margin:0 auto;padding:24px 20px 40px}
+
+header{text-align:center;padding:24px 0 32px}
+header .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#887a6a;margin-bottom:8px}
+header h1{font-size:34px;font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg,#c8a87c,#e8d5b0,#d4b88a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:#6a5d4a;font-size:14px;margin-top:4px}
+header .nav{display:flex;gap:16px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+header .nav a{color:#887a6a;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:0.3px;transition:.15s}
+header .nav a:hover{color:#c8a87c}
+
+.card{background:#111118;border:1px solid #1c1c2a;border-radius:14px;padding:24px;margin-bottom:20px}
+.card h2{font-size:13px;font-weight:700;color:#c8a87c;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.8px}
+
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:8px}
+.tool-card{background:#111118;border:1px solid #1c1c2a;border-radius:12px;padding:20px;text-decoration:none;color:#e0d8d0;transition:.25s;display:flex;flex-direction:column}
+.tool-card:hover{border-color:#c8a87c;transform:translateY(-2px);box-shadow:0 4px 24px rgba(200,168,124,0.1)}
+.tool-card .icon{font-size:28px;margin-bottom:10px}
+.tool-card .name{font-size:16px;font-weight:700;margin-bottom:4px}
+.tool-card .desc{font-size:12px;color:#6a5d4a;line-height:1.5}
+
+label{display:block;font-size:11px;color:#6a5d4a;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+input[type=file],input[type=number],select{width:100%;background:#0a0a12;border:1px solid #1c1c2a;border-radius:6px;color:#e0d8d0;padding:9px 12px;font-size:13px;margin-bottom:12px}
+input:focus,select:focus{outline:none;border-color:#c8a87c}
+input[type=file]::file-selector-button{background:#1c1c2a;border:none;border-radius:4px;color:#c8a87c;padding:5px 12px;font-weight:600;font-size:12px;cursor:pointer}
+
+.btn{background:linear-gradient(135deg,#c8a87c,#b8945a);color:#0a0a0f;border:none;padding:11px 28px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(200,168,124,0.25)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+.status{padding:12px 16px;border-radius:8px;font-size:13px;margin-top:14px;display:none}
+.status.ok{display:block;background:#0f1a0f;border:1px solid #1a2a1a;color:#8ab87a}
+.status.err{display:block;background:#1a0f0f;border:1px solid #2a1a1a;color:#b87a7a}
+.status a{color:#c8a87c}
+
+footer{text-align:center;padding:32px 0 16px;color:#3a3a4a;font-size:12px}
+footer a{color:#6a5d4a;text-decoration:none}
+footer a:hover{color:#c8a87c}
+
+@media(max-width:540px){.tool-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="badge">45dgof8</div>
+<h1>Tools</h1>
+<p>Free online tools by 45dgof8</p>
+<div class="nav">
+<a href="https://45dgof8.com">Home</a>
+<a href="/tools">All Tools</a>
+<a href="https://yt-producer.45dgof8.com">YT Producer</a>
+<a href="https://paypal.me/45dgof8" target="_blank">Donate</a>
+</div>
+</header>
+<div class="tool-grid">
+<a class="tool-card" href="/tools/pdf-merge">
+<div class="icon">&#128196;</div>
+<div class="name">PDF Merge</div>
+<div class="desc">Combine multiple PDFs into one document</div>
+</a>
+<a class="tool-card" href="/tools/pdf-compress">
+<div class="icon">&#128190;</div>
+<div class="name">PDF Compress</div>
+<div class="desc">Reduce PDF file size while keeping quality</div>
+</a>
+<a class="tool-card" href="/tools/image-compress">
+<div class="icon">&#127912;</div>
+<div class="name">Image Compress</div>
+<div class="desc">Compress JPEG/PNG images</div>
+</a>
+<a class="tool-card" href="/tools/text-diff">
+<div class="icon">&#128220;</div>
+<div class="name">Text Diff</div>
+<div class="desc">Compare two texts and highlight differences</div>
+</a>
+<a class="tool-card" href="/tools/qr-code">
+<div class="icon">&#128247;</div>
+<div class="name">QR Code</div>
+<div class="desc">Generate QR codes from text or URLs</div>
+</a>
+<a class="tool-card" href="/tools/json-formatter">
+<div class="icon">&#123;&#125;</div>
+<div class="name">JSON Formatter</div>
+<div class="desc">Format, validate, and pretty-print JSON</div>
+</a>
+<a class="tool-card" href="/tools/color-palette">
+<div class="icon">&#127912;</div>
+<div class="name">Color Palette</div>
+<div class="desc">Extract dominant colors from an image</div>
+</a>
+<a class="tool-card" href="/tools/video-to-gif">
+<div class="icon">&#127916;</div>
+<div class="name">Video to GIF</div>
+<div class="desc">Convert video clips to animated GIFs</div>
+</a>
+<a class="tool-card" href="/tools/scrape">
+<div class="icon">&#128269;</div>
+<div class="name">Web Scraper</div>
+<div class="desc">Extract structured data from any webpage using AI</div>
+</a>
+<a class="tool-card" href="https://yt-producer.45dgof8.com" style="border-color:#2a2218;background:linear-gradient(135deg,#111118,#151218)">
+<div class="icon">&#127916;</div>
+<div class="name" style="color:#c8a87c">YT Producer <span style="font-size:9px;background:#c8a87c;color:#0a0a0f;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle">NEW</span></div>
+<div class="desc">Turn a still image into an animated YouTube Short with AI voiceover</div>
+</a>
+</div>
+<footer>45dgof8 Tools &middot; <a href="https://45dgof8.com">45dgof8.com</a></footer>
+</div>
+</body>
+</html>
