@@ -492,137 +492,144 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- === LOOM SPLASH BADGE === -->
+<!-- === FLOATING BADGES: Loom + YT + Tools === -->
 <style>
-.loom-splash {
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.badge {
   position: fixed;
-  top: calc(50% - 120px);
   left: 50%;
   translate: -50% -50%;
   z-index: 1001;
-  width: 96px;
-  height: 96px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 0 14px rgba(0,255,200,0.2), 0 4px 12px rgba(0,0,0,0.4);
-  border: 2px solid rgba(0,255,200,0.25);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  animation: loomFloat 3s ease-in-out infinite;
+  animation: badgeFloat 3s ease-in-out infinite;
 }
-.loom-splash:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 28px rgba(0,255,200,0.45), 0 6px 20px rgba(0,0,0,0.5);
-  animation: none;
+.badge:hover {
+  transform: scale(1.12) !important;
+  animation: none !important;
 }
-.loom-splash img {
+.badge img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.loom-tooltip {
+/* Loom — agent services */
+.badge-loom {
+  top: calc(50% - 150px);
+  width: 66px; height: 66px;
+  box-shadow: 0 0 14px rgba(0,255,200,0.2), 0 4px 12px rgba(0,0,0,0.4);
+  border: 2px solid rgba(0,255,200,0.25);
+  background: radial-gradient(circle at 35% 30%, rgba(0,255,200,0.15), rgba(0,20,30,0.4));
+}
+.badge-loom:hover {
+  box-shadow: 0 0 28px rgba(0,255,200,0.45), 0 6px 20px rgba(0,0,0,0.5);
+}
+
+/* YT Producer — the star */
+.badge-yt {
+  top: calc(50% - 60px);
+  width: 80px; height: 80px;
+  box-shadow: 0 0 24px rgba(255,200,50,0.3), 0 4px 16px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255,200,50,0.3);
+  background: radial-gradient(circle at 35% 30%, rgba(255,200,50,0.2), rgba(40,20,0,0.5));
+  animation-delay: 0.3s;
+}
+.badge-yt:hover {
+  box-shadow: 0 0 44px rgba(255,200,50,0.55), 0 6px 24px rgba(0,0,0,0.6);
+}
+
+/* Tools — smaller satellite */
+.badge-tools {
+  top: calc(50% + 40px);
+  width: 44px; height: 44px;
+  box-shadow: 0 0 14px rgba(0,255,200,0.2), 0 4px 12px rgba(0,0,0,0.4);
+  border: 2px solid rgba(0,255,200,0.25);
+  background: radial-gradient(circle at 35% 30%, rgba(0,255,200,0.2), rgba(0,20,30,0.5));
+  animation-delay: 0.8s;
+}
+.badge-tools:hover {
+  box-shadow: 0 0 28px rgba(0,255,200,0.45), 0 6px 20px rgba(0,0,0,0.5);
+}
+
+.badge-tip {
   position: fixed;
-  top: calc(50% + 20px);
   left: 50%;
   translate: -50% 0;
   z-index: 1001;
   background: rgba(10,10,20,0.85);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(0,255,200,0.2);
   border-radius: 8px;
-  padding: 5px 12px;
+  padding: 4px 12px;
   font-family: Arial, sans-serif;
-  font-size: 13px;
-  color: #8fffd9;
+  font-size: 12px;
   pointer-events: none;
   white-space: nowrap;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
-.loom-splash:hover + .loom-tooltip {
+.badge:hover + .badge-tip {
   opacity: 1;
   transform: translateY(0);
 }
-
-.loom-vapors {
-  position: fixed;
-  top: calc(50% - 120px);
-  left: 50%;
-  translate: -50% -50%;
-  z-index: 1000;
-  pointer-events: none;
-}
-.loom-steam {
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
-  translate: -50% 0;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  font-weight: bold;
+.badge-tip-loom {
+  top: calc(50% - 111px);
   color: #8fffd9;
-  white-space: nowrap;
-  text-shadow: 0 0 12px rgba(0,255,200,0.5), 0 0 30px rgba(0,255,200,0.2);
-  filter: blur(2px);
-  opacity: 0;
-  animation: steamRise 4s ease-out infinite;
+  border: 1px solid rgba(0,255,200,0.2);
 }
-.loom-vapors .loom-steam:nth-child(1) { animation-delay: 0s; }
-.loom-vapors .loom-steam:nth-child(2) { animation-delay: 1.3s; }
-.loom-vapors .loom-steam:nth-child(3) { animation-delay: 2.6s; }
-
-@keyframes steamRise {
-  0% {
-    opacity: 0;
-    filter: blur(4px);
-    transform: translateY(0) translateX(0) scale(0.6);
-  }
-  15% {
-    opacity: 0.6;
-    filter: blur(2px);
-    transform: translateY(-10px) translateX(0) scale(0.8);
-  }
-  50% {
-    opacity: 0.4;
-    filter: blur(3px);
-    transform: translateY(-60px) translateX(8px) scale(1.1);
-  }
-  100% {
-    opacity: 0;
-    filter: blur(6px);
-    transform: translateY(-120px) translateX(20px) scale(1.5);
-  }
+.badge-tip-yt {
+  top: calc(50% - 14px);
+  color: #ffe08a;
+  border: 1px solid rgba(255,200,50,0.2);
 }
-
-@keyframes loomFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+.badge-tip-tools {
+  top: calc(50% + 68px);
+  color: #8fffd9;
+  border: 1px solid rgba(0,255,200,0.2);
 }
 </style>
 
+<!-- Loom Agent Services -->
 <a href="https://008amonra.github.io/loom/agent-services.html"
-   target="_blank"
-   rel="noopener"
-   class="loom-splash"
-   aria-label="Loom Agent Services — AI für Kreative"
-   title="Loom Agent Services">
-  <img src="https://008amonra.github.io/loom/loom-figure.webp"
-       alt="Loom"
-       loading="lazy">
+   target="_blank" rel="noopener"
+   class="badge badge-loom"
+   aria-label="AI Agent Services"
+   title="AI Agent Services">
+  <img src="https://008amonra.github.io/loom/loom-figure.webp" alt="Loom" loading="lazy">
 </a>
-<div class="loom-tooltip" aria-hidden="true">AI Agent Services →</div>
-<div class="loom-vapors" aria-hidden="true">
-  <div class="loom-steam">Digital-Dampf</div>
-  <div class="loom-steam">Digital-Dampf</div>
-  <div class="loom-steam">Digital-Dampf</div>
-</div>
-<!-- === END LOOM SPLASH BADGE === -->
+<div class="badge-tip badge-tip-loom" aria-hidden="true">AI Agent Services →</div>
+
+<!-- YT Producer — the star -->
+<a href="https://yt-producer.45dgof8.com"
+   target="_blank" rel="noopener"
+   class="badge badge-yt"
+   aria-label="YT Producer"
+   title="YT Producer">
+  <img src="yt-ball.png" alt="YT Producer">
+</a>
+<div class="badge-tip badge-tip-yt" aria-hidden="true">YT Producer &nearr;</div>
+
+<!-- Tools Hub — satellite -->
+<a href="https://tools.45dgof8.com"
+   target="_blank" rel="noopener"
+   class="badge badge-tools"
+   aria-label="Tools Hub"
+   title="Tools Hub">
+  <img src="tools-ball.png" alt="Tools">
+</a>
+<div class="badge-tip badge-tip-tools" aria-hidden="true">Tools Hub &nearr;</div>
+<!-- === END BADGES === -->
 
 </body>
 
