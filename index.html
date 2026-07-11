@@ -598,6 +598,24 @@ document.addEventListener("DOMContentLoaded", () => {
   color: #8fffd9;
   border: 1px solid rgba(0,255,200,0.2);
 }
+
+/* Blog — gold accent */
+.badge-blog {
+  top: calc(50% + 110px);
+  width: 50px; height: 50px;
+  box-shadow: 0 0 14px rgba(212,175,55,0.25), 0 4px 12px rgba(0,0,0,0.4);
+  border: 2px solid rgba(212,175,55,0.3);
+  background: radial-gradient(circle at 35% 30%, rgba(212,175,55,0.2), rgba(30,20,0,0.5));
+  animation-delay: 1.2s;
+}
+.badge-blog:hover {
+  box-shadow: 0 0 28px rgba(212,175,55,0.5), 0 6px 20px rgba(0,0,0,0.5);
+}
+.badge-tip-blog {
+  top: calc(50% + 154px);
+  color: #d4af37;
+  border: 1px solid rgba(212,175,55,0.2);
+}
 </style>
 
 <!-- Loom Agent Services -->
@@ -629,6 +647,16 @@ document.addEventListener("DOMContentLoaded", () => {
   <img src="tools-ball.png" alt="Tools">
 </a>
 <div class="badge-tip badge-tip-tools" aria-hidden="true">Tools Hub &nearr;</div>
+
+<!-- Blog — new badge -->
+<a href="https://008amonra.github.io/loom/blog/"
+   target="_blank" rel="noopener"
+   class="badge badge-blog"
+   aria-label="Blog"
+   title="Blog">
+  <img src="https://008amonra.github.io/loom/blog/images/blog-hero.png" alt="Blog">
+</a>
+<div class="badge-tip badge-tip-blog" aria-hidden="true">Blog &nearr;</div>
 <!-- === END BADGES === -->
 
 </body>
