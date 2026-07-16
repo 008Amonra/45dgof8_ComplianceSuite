@@ -286,6 +286,27 @@
     .tarot-link:active img{
       transform: scale(.97);
     }
+
+     /* Newspaper — gold star */
+.badge-newspaper {
+  top: calc(50% + 175px);
+  width: 48px; height: 48px;
+  box-shadow: 0 0 18px rgba(255,215,0,0.3), 0 4px 12px rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,215,0,0.35);
+  background: radial-gradient(circle at 35% 30%, rgba(255,215,0,0.25), rgba(40,30,0,0.5));
+  animation-delay: 1.5s;
+  font-size: 22px;
+  line-height: 1;
+  color: #ffd700;
+}
+.badge-newspaper:hover {
+  box-shadow: 0 0 32px rgba(255,215,0,0.55), 0 6px 20px rgba(0,0,0,0.5);
+}
+.badge-tip-newspaper {
+  top: calc(50% + 219px);
+  color: #ffd700;
+  border: 1px solid rgba(255,215,0,0.25);
+}
     
   </style>
 </head>
@@ -657,6 +678,16 @@ document.addEventListener("DOMContentLoaded", () => {
   <img src="https://008amonra.github.io/loom/blog/images/blog-hero.png" alt="Blog">
 </a>
 <div class="badge-tip badge-tip-blog" aria-hidden="true">Blog &nearr;</div>
+
+  <!-- Newspaper — star badge -->
+<a href="https://newspaper.45dgof8.com"
+   target="_blank" rel="noopener"
+   class="badge badge-newspaper"
+   aria-label="The Newspaper"
+   title="The Newspaper">
+  ★
+</a>
+<div class="badge-tip badge-tip-newspaper" aria-hidden="true">The Newspaper ↗</div>
 <!-- === END BADGES === -->
 
 </body>
