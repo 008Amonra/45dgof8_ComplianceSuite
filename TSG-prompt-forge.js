@@ -1,5 +1,3 @@
-alert("TSG Prompt Forge JS loaded");
-
 // TSG Prompt Forge – JS engine v4.2 ANDROID EDITION
 // Combined: legacy NightCafe helper + v3.1 engine + Happy Mode + glow
 // Optimized version with optional user text support + neutral-only filter #### 
@@ -370,6 +368,149 @@ palettes: [
 
 
     // merged: old + new negatives
+    negative: [
+      "blurry","low-res","low quality","grainy","washed out colors",
+      "bad anatomy","distorted anatomy","extra fingers","mangled hands","twisted limbs",
+      "text","watermark","logo",
+      "oversaturated","flat lighting","chaotic background",
+      "bad proportions","tiling","jpeg artifacts"
+    ]
+  };
+
+  /* =========================================================
+     CREATOR BATTERY – narrative prompt building blocks
+     ========================================================= */
+
+  const CF = {
+
+    surroundings: [
+      { id: "abandoned_server",     label: "Abandoned server room",       text: "inside a dark abandoned server room with blinking residual lights" },
+      { id: "bio_forest",           label: "Bioluminescent forest",       text: "in a glowing bioluminescent forest with floating spores and soft light" },
+      { id: "neon_rooftop",         label: "Neon rooftop at night",       text: "on a rain-soaked neon rooftop overlooking a vast city at night" },
+      { id: "floating_market",      label: "Floating market",             text: "above a floating market suspended in clouds, lanterns and voices below" },
+      { id: "cathedral_data",       label: "Cathedral of data",           text: "inside a crumbling cathedral made entirely of flowing data streams" },
+      { id: "underwater_temple",    label: "Underwater temple of light",  text: "in an underwater temple bathed in shafts of filtered sunlight" },
+      { id: "desert_machines",      label: "Desert of broken machines",   text: "walking through a vast desert littered with ancient broken machines" },
+      { id: "rooftop_garden",       label: "Rooftop garden future city",  text: "on a lush rooftop garden above a gleaming future city" },
+      { id: "library_forgotten",    label: "Library of forgotten code",   text: "in a quiet infinite library storing forgotten code and lost programs" },
+      { id: "volcanic_forge",       label: "Volcanic forge of computation", text: "inside a volcanic forge where raw computation is hammered into form" },
+      { id: "glass_bridge",         label: "Glass bridge between towers",  text: "standing on a transparent glass bridge between two colossal towers" },
+      { id: "clockwork_room",       label: "Clockwork workshop",          text: "in a warm clockwork workshop filled with ticking mechanisms and brass" },
+      { id: "starship_bridge",      label: "Starship bridge",             text: "on the bridge of an ancient starship drifting through nebula light" },
+      { id: "moonlit_ruins",        label: "Moonlit ancient ruins",       text: "among ancient ruins bathed in cold moonlight and drifting mist" },
+      { id: "neon Alley",           label: "Neon alley",                  text: "in a narrow neon-lit alley with steam rising from grates below" },
+      { id: "cloud_palace",         label: "Cloud palace",                text: "inside a palace made of clouds with pillars of condensed light" },
+      { id: "frozen_lake",          label: "Frozen lake at dawn",         text: "standing on a vast frozen lake at dawn, ice cracks glowing faintly" },
+      { id: "jungle_of_cables",     label: "Jungle of cables",            text: "in an overgrown jungle where vines are replaced by thick glowing cables" },
+      { id: "empty_stadium",        label: "Empty stadium",               text: "in a vast empty stadium with holographic advertisements still playing" },
+      { id: "attic_of_time",        label: "Attic of time",               text: "in a dusty attic where forgotten hours are stored in jars of light" }
+    ],
+
+    abilities: [
+      { id: "data_streams",         label: "Summoning data streams",      text: "summoning rivers of luminous data that flow around their body" },
+      { id: "light_shield",         label: "Bending light into shields",  text: "bending light into shimmering defensive shields" },
+      { id: "repair_code",          label: "Repairing broken code",       text: "repairing fractured code with precise gestures and focused intent" },
+      { id: "open_portal",          label: "Opening digital portals",     text: "opening circular digital portals made of layered light" },
+      { id: "command_swarms",       label: "Commanding swarms",           text: "commanding autonomous micro-drones in synchronized swarms" },
+      { id: "channel_electricity",  label: "Channeling raw electricity",  text: "channeling raw electrical energy through their fingertips" },
+      { id: "weave_memory",         label: "Weaving threads of memory",   text: "weaving luminous threads of memory into coherent visions" },
+      { id: "phase_shift",          label: "Phase-shifting through walls", text: "phase-shifting through solid walls like a ghost" },
+      { id: "machine_speech",       label: "Speaking in machine frequencies", text: "speaking in frequencies only machines can hear" },
+      { id: "grow_crystals",        label: "Growing data crystals",       text: "growing crystalline data structures from raw information" },
+      { id: "decode_symbols",       label: "Decoding ancient symbols",    text: "decoding ancient glowing symbols that appear in the air" },
+      { id: "summon_familiar",      label: "Summoning a digital familiar", text: "summoning a small floating digital familiar made of light" },
+      { id: "time_loop",            label: "Bending a time loop",         text: "bending a local time loop to replay a critical moment" },
+      { id: "gravity_shift",        label: "Shifting local gravity",      text: "shifting local gravity to float objects and people" },
+      { id: "echo_location",        label: "Echo-location through data",  text: "sensing the environment through data echo-location" },
+      { id: "shadow_step",          label: "Shadow stepping",             text: "stepping through shadows to teleport short distances" },
+      { id: " emotion_read",        label: "Reading emotional auras",     text: "reading the emotional aura of everyone nearby as colored light" },
+      { id: "code_singing",         label: "Code singing",                text: "singing raw code into existence through harmonic resonance" },
+      { id: "dream_projection",     label: "Projecting shared dreams",    text: "projecting a shared dream into the minds of others" },
+      { id: "fractal_vision",       label: "Fractal vision",              text: "seeing the fractal mathematics underlying all visible reality" }
+    ],
+
+    styles: [
+      { id: "oil_painting",         label: "Oil painting",               text: "rich oil painting with visible brushstrokes and warm depth" },
+      { id: "vaporwave",            label: "Vaporwave collage",          text: "vaporwave collage aesthetic, pastel gradients, retro digital" },
+      { id: "ink_wash",             label: "Ink wash",                   text: "delicate ink wash style, flowing gradients, East Asian influence" },
+      { id: "photoreal",            label: "Photorealistic",             text: "photorealistic rendering, sharp detail, natural lighting" },
+      { id: "art_nouveau",          label: "Art nouveau",                text: "art nouveau style, elegant flowing lines, organic ornament" },
+      { id: "pixel_art",            label: "Pixel art",                  text: "retro pixel art style, limited palette, nostalgic charm" },
+      { id: "concept_art",          label: "Concept art",                text: "professional concept art, clean rendering, strong silhouette" },
+      { id: "watercolor",           label: "Watercolor",                 text: "soft watercolor painting, transparent washes, gentle color bleeding" },
+      { id: "comic_book",           label: "Comic book",                 text: "bold comic book style, strong outlines, dynamic shading" },
+      { id: "charcoal",             label: "Charcoal sketch",            text: "expressive charcoal sketch, rich blacks, textured paper" },
+      { id: "3d_render",            label: "3D render",                  text: "clean 3D render, subsurface scattering, physically based materials" },
+      { id: "collage",              label: "Mixed media collage",        text: "mixed media collage, layered textures, torn paper edges" },
+      { id: "line_art",             label: "Clean line art",             text: "precise clean line art with minimal shading" },
+      { id: "impressionist",        label: "Impressionist",              text: "impressionist style, visible dabs of color, light as subject" },
+      { id: "surrealist",           label: "Surrealist",                 text: "surrealist dream logic, impossible objects, Dali-esque atmosphere" },
+      { id: "ukiyo_e",              label: "Ukiyo-e woodblock",          text: "Japanese ukiyo-e woodblock print style, flat color, elegant lines" },
+      { id: "low_poly",             label: "Low poly 3D",                text: "low-polygon 3D aesthetic, faceted surfaces, modern minimal" },
+      { id: "stained_glass",        label: "Stained glass",              text: "stained glass window style, bold color panels, lead outlines" },
+      { id: "matte_painting",       label: "Matte painting",             text: "cinematic matte painting, photorealistic environment, dramatic scale" },
+      { id: "sketch_and_watercolor", label: "Sketch + watercolor",       text: "pencil sketch combined with soft watercolor fills" }
+    ],
+
+    timelines: [
+      { id: "medieval",             label: "Medieval",                   text: "set in a medieval world of castles, swords, and candlelight" },
+      { id: "renaissance",          label: "Renaissance",                text: "set in the Renaissance era of art, science, and discovery" },
+      { id: "noir_1920s",           label: "1920s noir",                 text: "set in 1920s film noir atmosphere, smoke, jazz, and shadow" },
+      { id: "retro_1980s",          label: "1980s retro",                text: "set in the 1980s with synthesizers, arcades, and neon" },
+      { id: "cyberpunk_now",        label: "Cyberpunk now",              text: "set in a present-day cyberpunk underground of hackers and code" },
+      { id: "far_future",           label: "Far future",                 text: "set in the far future where humanity has merged with machines" },
+      { id: "ancient_myth",         label: "Ancient mythology",          text: "set in ancient mythological times of gods, heroes, and monsters" },
+      { id: "prehistoric",          label: "Prehistoric",                text: "set in a prehistoric world of raw nature and early consciousness" },
+      { id: "victorian",            label: "Victorian",                  text: "set in the Victorian era of industry, gaslight, and exploration" },
+      { id: "space_age",            label: "Space age",                  text: "set in the golden space age of rockets, optimism, and discovery" },
+      { id: "bronze_age",           label: "Bronze age",                 text: "set in the Bronze age of early civilizations and trade routes" },
+      { id: "roaring_20s",          label: "Roaring twenties",           text: "set in the roaring twenties of jazz, flappers, and excess" },
+      { id: "cold_war",             label: "Cold War era",               text: "set during the Cold War era of espionage, secrecy, and tension" },
+      { id: "digital_now",          label: "Digital now",                text: "set right now in the age of algorithms, screens, and data" },
+      { id: "post_apocalypse",      label: "Post-apocalypse",            text: "set after the collapse, rebuilding among ruins and silence" }
+    ],
+
+    goals: [
+      { id: "find_knowledge",       label: "Finding lost knowledge",     text: "searching for ancient knowledge hidden in forgotten systems" },
+      { id: "protect_portal",       label: "Protecting a portal",        text: "standing guard at a portal between worlds that must not open" },
+      { id: "decode_message",       label: "Decoding a message",         text: "decoding an encrypted message that holds the key to everything" },
+      { id: "build_something",      label: "Building something new",     text: "constructing a new device from salvaged parts and raw data" },
+      { id: "hunt_rogue_ai",        label: "Hunting a rogue AI",         text: "tracking down a rogue AI that has escaped into the network" },
+      { id: "guard_sacred",         label: "Guarding a sacred place",    text: "quietly guarding a sacred digital place from intruders" },
+      { id: "cross_worlds",         label: "Crossing into another world", text: "preparing to cross the threshold into another world" },
+      { id: "solve_mystery",        label: "Solving a mystery",          text: "investigating a deep mystery that spans multiple timelines" },
+      { id: "heal_system",          label: "Healing a broken system",    text: "repairing a massive broken system before it collapses entirely" },
+      { id: "deliver_message",      label: "Delivering a message",       text: "racing to deliver a critical message across hostile territory" },
+      { id: "rescue_soul",          label: "Rescuing a trapped soul",    text: "rescuing a consciousness trapped inside a failing machine" },
+      { id: "ignite_revolution",    label: "Igniting a revolution",      text: "sparking a quiet revolution against an oppressive system" },
+      { id: "find_home",            label: "Finding a way home",         text: "navigating back to a home that may no longer exist" },
+      { id: "unlock_archive",       label: "Unlocking a sealed archive",  text: "unlocking a vast sealed archive of forbidden knowledge" },
+      { id: "bridge_divide",        label: "Bridging a great divide",    text: "building a bridge between two factions that have forgotten peace" }
+    ],
+
+    descriptions: [
+      { id: "old_woman_silver",     label: "Old woman, silver hair",     text: "an old woman with flowing silver hair and knowing eyes" },
+      { id: "young_monk_white",     label: "Young monk, white robes",    text: "a young monk in pure white robes with a serene expression" },
+      { id: "chrome_android",       label: "Chrome android, cracked",    text: "a chrome android with a cracked visor leaking soft light" },
+      { id: "child_lantern",        label: "Child with a lantern",       text: "a small child holding a lantern that glows with warm data-light" },
+      { id: "masked_cloak",         label: "Masked figure in cloak",     text: "a tall masked figure wrapped in a dark flowing cloak" },
+      { id: "woman_circuit",        label: "Woman, circuit tattoos",     text: "a woman with glowing circuit tattoos winding across her skin" },
+      { id: "figure_of_light",      label: "Figure made of light",       text: "a tall figure composed entirely of shifting beams of light" },
+      { id: "old_man_staff",        label: "Old man with a staff",       text: "an old man leaning on a staff that pulses with data energy" },
+      { id: "twin_echoes",          label: "Twin mirror images",         text: "two mirror-image figures facing each other across a divide" },
+      { id: "child_robot",          label: "Child with a robot friend",  text: "a small child walking beside a gentle floating robot companion" },
+      { id: "warrior_glowing",      label: "Warrior with glowing armor", text: "a warrior in armor that glows with warm inner circuitry" },
+      { id: "woman_veil_stars",     label: "Woman with starlit veil",    text: "a woman wearing a translucent veil woven from tiny stars" },
+      { id: "figure_shadow",        label: "Shadow figure",              text: "a mysterious figure that exists only as a shadow with glowing eyes" },
+      { id: "elder_data",           label: "Elder of the data realm",    text: "an ancient elder whose skin is etched with flowing data streams" },
+      { id: "pilot_scarred",        label: "Scarred pilot",              text: "a scarred pilot with weathered flight gear and tired bright eyes" },
+      { id: "keeper_clockwork",     label: "Clockwork keeper",           text: "a half-human half-clockwork keeper with brass limbs and gentle gears" },
+      { id: "weaver_thread",        label: "Weaver of threads",          text: "a slender figure whose fingers trail luminous threads of fate" },
+      { id: "child_dreamer",        label: "Dreaming child",             text: "a sleeping child surrounded by a visible aura of shared dreams" },
+      { id: "sentinel_stone",       label: "Stone sentinel",             text: "an ancient stone sentinel slowly coming to life with inner light" },
+      { id: "wanderer_cloak",       label: "Wanderer with a map",        text: "a lone wanderer studying a glowing map that redraws itself" }
+    ],
+
     negative: [
       "blurry","low-res","low quality","grainy","washed out colors",
       "bad anatomy","distorted anatomy","extra fingers","mangled hands","twisted limbs",
@@ -902,6 +1043,761 @@ if (neutralSwitch) {
   }
 
   /* =========================================================
+     CREATOR BATTERY – UI, PROMPT, RANDOMIZE, EVENTS
+     ========================================================= */
+
+  function buildCFUI() {
+    const forge = qs(".prompt-forge");
+    if (!forge) return;
+
+    const section = document.createElement("section");
+    section.id = "creator-battery";
+    section.style.cssText = "margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.12);";
+    section.innerHTML = `
+      <h2 style="font-size:1.4rem;text-align:center;margin-bottom:0.3rem;letter-spacing:0.04em;">Creator Battery</h2>
+      <p style="text-align:center;font-size:0.8rem;color:var(--muted);margin-bottom:1.2rem;">Narrative Prompt Builder</p>
+
+      <div class="pf-grid">
+        <div class="pf-column cf-controls" id="cf-controls"></div>
+        <div class="pf-column cf-output" id="cf-output"></div>
+      </div>
+    `;
+    forge.appendChild(section);
+
+    const controls = $("cf-controls");
+    const output   = $("cf-output");
+    if (!controls || !output) return;
+
+    controls.innerHTML = `
+      <div class="pf-row">
+        <label for="cf-surroundings"><strong>1. Surroundings</strong></label>
+        <select id="cf-surroundings"></select>
+        <button type="button" class="pf-mini" data-cf-rand="surroundings">🎲</button>
+      </div>
+      <div class="pf-row">
+        <label for="cf-abilities"><strong>2. Abilities</strong></label>
+        <select id="cf-abilities"></select>
+        <button type="button" class="pf-mini" data-cf-rand="abilities">🎲</button>
+      </div>
+      <div class="pf-row">
+        <label for="cf-styles"><strong>3. Styles</strong></label>
+        <select id="cf-styles"></select>
+        <button type="button" class="pf-mini" data-cf-rand="styles">🎲</button>
+      </div>
+      <div class="pf-row">
+        <label for="cf-timelines"><strong>4. Timelines</strong></label>
+        <select id="cf-timelines"></select>
+        <button type="button" class="pf-mini" data-cf-rand="timelines">🎲</button>
+      </div>
+      <div class="pf-row">
+        <label for="cf-goals"><strong>5. Goals</strong></label>
+        <select id="cf-goals"></select>
+        <button type="button" class="pf-mini" data-cf-rand="goals">🎲</button>
+      </div>
+      <div class="pf-row">
+        <label for="cf-descriptions"><strong>6. Descriptions</strong></label>
+        <select id="cf-descriptions"></select>
+        <button type="button" class="pf-mini" data-cf-rand="descriptions">🎲</button>
+      </div>
+
+      <div class="pf-actions" style="margin-top:10px;">
+        <button type="button" id="cf-rand-all" class="pf-mini">🎲 Randomize all</button>
+        <button type="button" id="cf-generate" class="pf-mini">⚡ Regenerate prompt</button>
+      </div>
+    `;
+
+    output.innerHTML = `
+      <div class="pf-block">
+        <div class="pf-block-head">
+          <span>Narrative prompt</span>
+          <button type="button" class="pf-copy" data-cf-copy="prompt">📋 Copy</button>
+        </div>
+        <textarea id="cf-prompt" rows="8"></textarea>
+      </div>
+
+      <div class="pf-block">
+        <div class="pf-block-head">
+          <span>Negative prompt</span>
+          <button type="button" class="pf-copy" data-cf-copy="negative">📋 Copy</button>
+        </div>
+        <textarea id="cf-negative" rows="4" readonly></textarea>
+      </div>
+
+      <div class="pf-actions" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="cf-target" class="pf-mini" style="min-width:160px;">
+          <option value="nightcafe">NightCafe Studio</option>
+          <option value="midjourney">MidJourney</option>
+          <option value="sdwebui">Stable Diffusion WebUI</option>
+          <option value="leonardo">Leonardo AI</option>
+          <option value="bluewillow">BlueWillow</option>
+          <option value="runway">Runway ML</option>
+          <option value="playground">Playground AI</option>
+          <option value="dalle">OpenAI DALL·E</option>
+        </select>
+        <button type="button" id="cf-send" class="pf-nc-btn">Copy & open</button>
+      </div>
+
+      <p class="pf-hint">
+        Tip: Select your narrative elements and generate a prompt for any AI image generator.
+      </p>
+    `;
+  }
+
+  function buildCFPrompt() {
+    const coreParts = [
+      getText("cf-descriptions",  CF.descriptions),
+      getText("cf-surroundings", CF.surroundings),
+      getText("cf-abilities",    CF.abilities),
+      getText("cf-styles",       CF.styles),
+      getText("cf-timelines",    CF.timelines),
+      getText("cf-goals",        CF.goals)
+    ].filter(Boolean);
+
+    let corePrompt = coreParts.join(", ");
+    if (corePrompt) {
+      corePrompt += ", narrative scene, high resolution, detailed, coherent composition";
+    }
+
+    const promptBox = $("cf-prompt");
+    if (promptBox) promptBox.value = corePrompt;
+
+    const negBox = $("cf-negative");
+    if (negBox) negBox.value = CF.negative.join(", ");
+  }
+
+  function randomizeCFAll() {
+    const map = {
+      surroundings: CF.surroundings,
+      abilities:    CF.abilities,
+      styles:       CF.styles,
+      timelines:    CF.timelines,
+      goals:        CF.goals,
+      descriptions: CF.descriptions
+    };
+
+    Object.keys(map).forEach(type => {
+      const el   = $("cf-" + type);
+      const list = map[type];
+      if (!el || !list || !list.length) return;
+      el.value = rand(list).id;
+    });
+
+    buildCFPrompt();
+  }
+
+  function attachCFEvents() {
+    // Individual randomizers
+    qsa(".pf-mini[data-cf-rand]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const type = btn.getAttribute("data-cf-rand");
+        if (!type) return;
+
+        const map = {
+          surroundings: CF.surroundings,
+          abilities:    CF.abilities,
+          styles:       CF.styles,
+          timelines:    CF.timelines,
+          goals:        CF.goals,
+          descriptions: CF.descriptions
+        };
+
+        const el   = $("cf-" + type);
+        const list = map[type];
+        if (!el || !list || !list.length) return;
+        el.value = rand(list).id;
+        buildCFPrompt();
+      });
+    });
+
+    // Randomize all
+    const randAll = $("cf-rand-all");
+    if (randAll) randAll.addEventListener("click", randomizeCFAll);
+
+    // Generate
+    const genBtn = $("cf-generate");
+    if (genBtn) genBtn.addEventListener("click", buildCFPrompt);
+
+    // Auto rebuild on any select change
+    qsa("select[id^='cf-']").forEach(sel => {
+      sel.addEventListener("change", buildCFPrompt);
+    });
+
+    // Copy buttons
+    qsa(".pf-copy[data-cf-copy]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const target = btn.getAttribute("data-cf-copy");
+        const boxId  = target === "negative" ? "cf-negative" : "cf-prompt";
+        const el = $(boxId);
+        if (!el) return;
+        const text = el.value || "";
+        if (!text.trim()) return;
+
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = "✅ Copied";
+          showToast("Copied to clipboard.");
+          setTimeout(() => { btn.textContent = original; }, 1000);
+        } catch (err) {
+          console.error(err);
+          showToast("Copy failed — please copy manually.");
+        }
+      });
+    });
+
+    // SEND button
+    const sendBtn = $("cf-send");
+    if (sendBtn) {
+      sendBtn.addEventListener("click", async () => {
+        const promptBox = $("cf-prompt");
+        const prompt = promptBox ? promptBox.value.trim() : "";
+        if (!prompt) return;
+
+        try {
+          await navigator.clipboard.writeText(prompt);
+        } catch { /* ignore */ }
+
+        const targetSel = $("cf-target");
+        const target = targetSel ? targetSel.value : "nightcafe";
+
+        const destinations = {
+          nightcafe:  "https://creator.nightcafe.studio/",
+          midjourney: "https://www.midjourney.com/app/",
+          sdwebui:    "http://127.0.0.1:7860",
+          leonardo:   "https://app.leonardo.ai/",
+          bluewillow: "https://app.bluewillow.ai/",
+          runway:     "https://app.runwayml.com/",
+          playground: "https://playgroundai.com/",
+          dalle:      "https://chat.openai.com"
+        };
+
+        const url = destinations[target] || destinations.nightcafe;
+        window.open(url, "_blank", "noopener,noreferrer");
+        showToast("Prompt copied and destination opened.");
+      });
+    }
+  }
+
+  /* =========================================================
+     MOVIE STORYLINE GENERATOR – DATA MODEL
+     ========================================================= */
+
+  const MS = {
+    genres: [
+      { id: "action",       label: "Action / Thriller",    keywords: ["explosive","high-stakes","fast-paced","intense","dynamic"] },
+      { id: "sci_fi",       label: "Sci-Fi / Cyberpunk",   keywords: ["neon-lit","futuristic","holographic","chrome","dystopian"] },
+      { id: "fantasy",      label: "Fantasy / Epic",       keywords: ["mythical","ancient","magical","enchanted","legendary"] },
+      { id: "noir",         label: "Noir / Mystery",       keywords: ["shadowy","smoky","femme fatale","clandestine","moody"] },
+      { id: "horror",       label: "Horror / Suspense",    keywords: ["eerie","dread-filled","flickering","claustrophobic","unsettling"] },
+      { id: "romance",      label: "Romance / Drama",      keywords: ["intimate","warm","tender","emotional","bittersweet"] },
+      { id: "comedy",       label: "Comedy / Quirky",      keywords: ["whimsical","absurd","playful","exaggerated","lighthearted"] },
+      { id: "documentary",  label: "Documentary / Real",    keywords: ["authentic","raw","observational","natural light","grainy"] },
+      { id: "anime",        label: "Anime / Stylized",     keywords: ["expressive","dynamic poses","speed lines","vibrant","stylized"] },
+      { id: "western",      label: "Western / Frontier",   keywords: ["dusty","sun-baked","wide open","rugged","frontier town"] },
+      { id: "musical",      label: "Musical / Performance",keywords: ["theatrical","spotlight","rhythmic","dramatic staging","costumed"] },
+      { id: "dream",        label: "Dream / Surreal",      keywords: ["surreal","impossible","floating","melting","hallucinatory"] }
+    ],
+
+    cameras: [
+      { id: "static_wide",    label: "Static wide shot",          text: "wide establishing shot, camera locked" },
+      { id: "slow_push",      label: "Slow push-in",              text: "camera slowly pushes in toward subject" },
+      { id: "orbit",          label: "Orbit / Arc shot",          text: "camera orbits around subject in a slow arc" },
+      { id: "tracking",       label: "Tracking shot",             text: "camera tracks alongside subject in motion" },
+      { id: "dolly_zoom",     label: "Dolly zoom (Vertigo)",     text: "dolly zoom effect, background warps, subject stays" },
+      { id: "crane_up",       label: "Crane up / Reveal",        text: "camera cranes upward revealing the full scene" },
+      { id: "handheld",       label: "Handheld / Shaky",         text: "handheld camera, raw documentary feel, slight shake" },
+      { id: "fpv",            label: "FPV drone",                text: "first-person view drone swooping through the scene" },
+      { id: "whip_pan",       label: "Whip pan",                 text: "fast whip pan transition between focal points" },
+      { id: "static_close",   label: "Static close-up",          text: "tight close-up, camera locked, shallow depth of field" },
+      { id: "pull_back",      label: "Pull back / Reveal",       text: "camera pulls back revealing a larger world" },
+      { id: "aerial",         label: "Aerial / Top-down",        text: "aerial bird's-eye view looking straight down" },
+      { id: "steadicam",      label: "Steadicam follow",         text: "smooth steadicam follows subject through environment" },
+      { id: "dutch_angle",    label: "Dutch angle",              text: "tilted dutch angle creating unease and tension" }
+    ],
+
+    durations: [
+      { id: "3s",  label: "3 sec",  seconds: 3 },
+      { id: "5s",  label: "5 sec",  seconds: 5 },
+      { id: "7s",  label: "7 sec",  seconds: 7 },
+      { id: "10s", label: "10 sec", seconds: 10 },
+      { id: "15s", label: "15 sec", seconds: 15 }
+    ],
+
+    moods: [
+      "Tense anticipation","Euphoric release","Melancholic reflection","Dark foreboding",
+      "Serene calm before the storm","Frantic urgency","Whimsical wonder","Cold menace",
+      "Warm nostalgia","Chaotic energy","Quiet grief","Electric excitement",
+      "Suffocating dread","Gentle hope","Bitter triumph","Unsettling stillness"
+    ],
+
+    transitions: [
+      "Hard cut","Smash cut","Match cut","Dissolve","Fade to black",
+      "Whip pan transition","J-cut (audio leads)","L-cut (audio trails)",
+      "Flash cut","Invisible cut","Jump cut","Iris wipe"
+    ],
+
+    lighting: [
+      "Golden hour side-light","Cold neon rim light","Single overhead practical",
+      "Backlit silhouette","Dappled forest light","Harsh interrogation lamp",
+      "Soft diffused overcast","Firelight flicker","Moonlight through blinds",
+      "Strobe / flickering","Deep shadow with motivated fill","Volumetric god rays"
+    ],
+
+    storyTemplates: {
+      action: [
+        { arc: "The Drop", beats: ["Wide shot: protagonist lands in hostile territory","Close-up: eyes lock on objective","Tracking: sprint through chaos","Slow-mo: final strike","Wide pull-back: aftermath silence"] },
+        { arc: "The Chase", beats: ["Aerial: cityscape at night","FPV: subject weaves through traffic","Close-up: hand grabs wheel/ledge","Whip pan: pursuer closes in","Crane up: escape or cornered?"] }
+      ],
+      sci_fi: [
+        { arc: "First Contact", beats: ["Static wide: empty landscape, something appears","Push-in: subject notices anomaly","Orbit: object reveals itself","Close-up: hand reaches out","Pull back: the scale of what just happened"] },
+        { arc: "System Override", beats: ["Close-up: fingers on terminal","Wide: room lights shift","Tracking: moving through corridors","Dutch angle: something is wrong","Static wide: system comes alive"] }
+      ],
+      fantasy: [
+        { arc: "The Awakening", beats: ["Darkness, then a glow","Crane up: ancient ruins revealed","Slow push: subject approaches altar","Close-up: eyes open, power surges","Aerial: landscape transforms"] },
+        { arc: "The Alliance", beats: ["Wide: lone figure in wilderness","Tracking: journey through terrain","Handheld: tense meeting","Orbit: mutual respect forms","Crane up: two figures against the horizon"] }
+      ],
+      noir: [
+        { arc: "The Tip-Off", beats: ["Static close: cigarette glow in dark","Wide: rain-slicked street","Steadicam: following through alley","Close-up: envelope exchanged","Pull back: city watches"] },
+        { arc: "Double Cross", beats: ["Dutch angle: unease in office","Push-in: realization dawns","Handheld: confrontation","Static wide: the fallout","Fade: empty room, door ajar"] }
+      ],
+      horror: [
+        { arc: "Something's Wrong", beats: ["Static wide: ordinary room, wrong detail","Push-in: slowly closer to anomaly","Handheld: subject investigates","Close-up: the reveal","Hard cut to black. Silence."] },
+        { arc: "The Descent", beats: ["Aerial: safe world above","Crane down: into darkness","Tracking: moving deeper","Close-up: breath visible, terrified","Dutch angle: not alone"] }
+      ],
+      romance: [
+        { arc: "First Glance", beats: ["Wide: crowded room","Slow push: two people notice","Close-up: eyes meet","Orbit: world fades around them","Soft dissolve: moment lingers"] },
+        { arc: "The Goodbye", beats: ["Static wide: platform/station","Close-up: hands almost touching","Tracking: walking away","Pull back: one figure remains","Fade: empty space where they stood"] }
+      ],
+      comedy: [
+        { arc: "The Setup", beats: ["Wide: everything seems normal","Close-up: subtle wrong detail","Tracking: chain reaction begins","Handheld: escalating chaos","Static wide: aftermath, deadpan"] },
+        { arc: "Mistaken Identity", beats: ["Close-up: confident subject","Wide: enters wrong situation","Orbit: confusion around them","Handheld: trying to escape","Pull back: even bigger misunderstanding"] }
+      ],
+      documentary: [
+        { arc: "The Subject", beats: ["Static wide: environment established","Close-up: face, natural light","Handheld: following daily routine","Tracking: through their world","Static wide: context fully revealed"] },
+        { arc: "The Moment", beats: ["Aerial: landscape context","Steadicam: approaching subject","Close-up: hands at work","Handheld: something changes","Pull back: new understanding"] }
+      ],
+      anime: [
+        { arc: "Power Awakens", beats: ["Close-up: eye snaps open, iris glows","Wide: energy erupts outward","Tracking: subject launches into action","Dynamic poses: mid-air strike","Crane up: transformation complete"] },
+        { arc: "The Rival Appears", beats: ["Wide: battlefield established","Slow push: figure emerges from dust","Orbit: two forces circle","Close-up: determination in both eyes","Whip pan: first clash"] }
+      ],
+      western: [
+        { arc: "High Noon", beats: ["Aerial: dusty main street","Steadicam: figure walks to center","Close-up: hand hovers over holster","Dutch angle: tension peaks","Wide: smoke clears"] },
+        { arc: "The Ride", beats: ["Aerial: vast frontier","Tracking: horse and rider","Close-up: weathered face, determination","FPV: galloping through terrain","Crane up: destination on horizon"] }
+      ],
+      musical: [
+        { arc: "Opening Number", beats: ["Wide: stage/venue dark","Spotlight hits: subject illuminated","Tracking: choreographed movement","Close-up: expression, passion","Crane up: full spectacle revealed"] },
+        { arc: "The Ballad", beats: ["Close-up: tears, intimate moment","Slow push: emotional crescendo","Orbit: world narrows to subject","Static wide: audience/empty seats","Fade: single spotlight remains"] }
+      ],
+      dream: [
+        { arc: "The Shift", beats: ["Static wide: normal reality","Dutch angle: gravity bends","Orbit: impossible geometry","Close-up: subject realizes","Pull back: reality fully transformed"] },
+        { arc: "The Loop", beats: ["Wide: familiar scene","Match cut: same scene, different","Close-up: déjà vu expression","Handheld: growing unease","Dissolve: back where we started"] }
+      ]
+    }
+  };
+
+  /* =========================================================
+     MOVIE STORYLINE GENERATOR – UI
+     ========================================================= */
+
+  function buildMSUI() {
+    const forge = qs(".prompt-forge");
+    if (!forge) return;
+
+    const section = document.createElement("section");
+    section.id = "movie-storyline";
+    section.style.cssText = "margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.12);";
+    section.innerHTML = `
+      <h2 style="font-size:1.4rem;text-align:center;margin-bottom:0.3rem;letter-spacing:0.04em;">Movie Storyline Generator</h2>
+      <p style="text-align:center;font-size:0.8rem;color:var(--muted);margin-bottom:1.2rem;">Scene-by-scene image prompts — 3×5s quick mode or custom</p>
+
+      <div class="pf-grid">
+        <div class="pf-column ms-controls" id="ms-controls"></div>
+        <div class="pf-column ms-output" id="ms-output"></div>
+      </div>
+    `;
+    forge.appendChild(section);
+
+    const controls = $("ms-controls");
+    const output   = $("ms-output");
+    if (!controls || !output) return;
+
+    controls.innerHTML = `
+      <div class="pf-row">
+        <label for="ms-premise"><strong>Premise</strong></label>
+        <textarea id="ms-premise" rows="2" placeholder="e.g. A lone samurai walks through a neon-lit alley in the rain" style="width:100%;background:#0a0e17;color:#e5e7eb;border:1px solid #1f2937;border-radius:6px;padding:8px;font-size:0.85rem;resize:vertical;"></textarea>
+      </div>
+
+      <div class="pf-row">
+        <label for="ms-genre"><strong>Genre</strong></label>
+        <select id="ms-genre"></select>
+        <button type="button" class="pf-mini" data-ms-rand="genre">🎲</button>
+      </div>
+
+      <div class="pf-row">
+        <label for="ms-scenes"><strong>Scenes</strong></label>
+        <select id="ms-scenes">
+          <option value="3">3 scenes (15s)</option>
+          <option value="4">4 scenes (20s)</option>
+          <option value="5">5 scenes (25s)</option>
+        </select>
+      </div>
+
+      <div class="pf-row">
+        <label for="ms-duration"><strong>Scene duration</strong></label>
+        <select id="ms-duration"></select>
+      </div>
+
+      <div class="pf-actions" style="margin-top:10px;">
+        <button type="button" id="ms-quick3x5" class="pf-mini" style="background:#6366f1;color:#fff;">⚡ Quick 3×5s</button>
+        <button type="button" id="ms-rand-all" class="pf-mini">🎲 Randomize all</button>
+        <button type="button" id="ms-generate" class="pf-mini">🎬 Generate storyline</button>
+      </div>
+
+      <div class="pf-actions" style="margin-top:8px;">
+        <button type="button" id="ms-use-template" class="pf-mini" style="background:#1f2937;">📖 Use story template</button>
+      </div>
+    `;
+
+    output.innerHTML = `
+      <div id="ms-storyboard" class="ms-storyboard"></div>
+
+      <div class="pf-actions" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <button type="button" id="ms-copy-all" class="pf-mini">📋 Copy all scenes</button>
+        <button type="button" id="ms-copy-json" class="pf-mini">📋 Copy as JSON</button>
+        <button type="button" id="ms-send-runway" class="pf-nc-btn" style="background:#6366f1;">Open NightCafe</button>
+      </div>
+
+      <p class="pf-hint">
+        Tip: Type a premise, pick genre, hit Generate. Or use Quick 3×5s for instant results. Copy prompts into NightCafe.
+      </p>
+    `;
+  }
+
+  /* =========================================================
+     MOVIE STORYLINE GENERATOR – SCENE GENERATION
+     ========================================================= */
+
+  function generateScenes(count, genreId, durationSec, premise) {
+    const genre = MS.genres.find(g => g.id === genreId) || MS.genres[0];
+    const scenes = [];
+
+    for (let i = 0; i < count; i++) {
+      const camera    = rand(MS.cameras);
+      const mood      = rand(MS.moods);
+      const lighting  = rand(MS.lighting);
+      const transIn   = i === 0 ? "Opening" : rand(MS.transitions);
+      const keyword   = rand(genre.keywords);
+
+      // Build visual prompt
+      const promptParts = [
+        premise || "cinematic scene",
+        keyword,
+        camera.text,
+        `lighting: ${lighting.toLowerCase()}`,
+        mood.toLowerCase(),
+        "film grain, anamorphic lens, 2.39:1 aspect ratio",
+        "high detail, cinematic color grading"
+      ];
+
+      const scene = {
+        number: i + 1,
+        title: `Scene ${i + 1}`,
+        prompt: promptParts.join(", "),
+        basePrompt: promptParts.join(", "),
+        camera: camera.label,
+        mood: mood,
+        lighting: lighting,
+        duration: durationSec,
+        transition: transIn,
+        moodEmojis: getMoodEmoji(mood),
+        chainImage: null
+      };
+      scenes.push(scene);
+    }
+
+    return scenes;
+  }
+
+  function getMoodEmoji(mood) {
+    const map = {
+      "Tense anticipation": "😰",
+      "Euphoric release": "🥳",
+      "Melancholic reflection": "😔",
+      "Dark foreboding": "🌑",
+      "Serene calm before the storm": "😌",
+      "Frantic urgency": "🏃",
+      "Whimsical wonder": "✨",
+      "Cold menace": "🥶",
+      "Warm nostalgia": "🌅",
+      "Chaotic energy": "⚡",
+      "Quiet grief": "🖤",
+      "Electric excitement": "⚡",
+      "Suffocating dread": "😱",
+      "Gentle hope": "🌱",
+      "Bitter triumph": "😤",
+      "Unsettling stillness": "🫥"
+    };
+    return map[mood] || "🎬";
+  }
+
+  /* =========================================================
+     MOVIE STORYLINE GENERATOR – RENDER
+     ========================================================= */
+
+  function renderScenes(scenes) {
+    const board = $("ms-storyboard");
+    if (!board) return;
+
+    if (!scenes || !scenes.length) {
+      board.innerHTML = `<p style="color:var(--muted);text-align:center;font-size:0.85rem;">Click Generate to create your storyline.</p>`;
+      return;
+    }
+
+    let html = `<div style="display:flex;flex-direction:column;gap:12px;">`;
+
+    scenes.forEach((s, idx) => {
+      const isChained = !!s.chainImage;
+      const chainBadge = isChained
+        ? `<span style="background:#22c55e22;color:#22c55e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:6px;">🔗 chained</span>`
+        : (idx > 0 ? `<span style="background:#f59e0b22;color:#f59e0b;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:6px;">⏳ waiting for last frame</span>` : '');
+
+      html += `
+        <div class="ms-scene-card" data-scene-idx="${idx}" style="background:#0d1117;border:1px solid ${isChained ? '#22c55e44' : '#1f2937'};border-radius:8px;padding:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-weight:700;color:#6366f1;font-size:1rem;">${s.title} <span style="font-size:0.75rem;color:var(--muted);">${s.duration}s</span>${chainBadge}</span>
+            <span title="${s.mood}">${s.moodEmojis}</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;">
+            📷 ${s.camera} &nbsp;|&nbsp; 💡 ${s.lighting} &nbsp;|&nbsp; 🎭 ${s.mood} &nbsp;|&nbsp; ✂️ ${s.transition}
+          </div>
+          <textarea readonly rows="3" style="width:100%;background:#050810;color:#e5e7eb;border:1px solid #1f2937;border-radius:4px;padding:6px;font-size:0.78rem;font-family:monospace;resize:vertical;">${s.prompt}</textarea>
+          <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;">
+            <button type="button" class="pf-mini ms-copy-scene" data-prompt="${encodeURIComponent(s.prompt)}" style="font-size:0.7rem;">📋 Copy prompt</button>
+            ${idx > 0 ? `<button type="button" class="pf-mini ms-upload-frame" data-scene-idx="${idx}" style="font-size:0.7rem;background:#6366f1;color:#fff;">🖼️ Upload last frame</button>` : ''}
+            ${idx > 0 && isChained ? `<button type="button" class="pf-mini ms-clear-chain" data-scene-idx="${idx}" style="font-size:0.7rem;background:#ef4444;color:#fff;">✕ Clear frame</button>` : ''}
+          </div>
+          ${isChained ? `<div style="margin-top:6px;"><img src="${s.chainImage}" style="max-height:60px;border-radius:4px;border:1px solid #1f2937;" alt="Last frame reference"/></div>` : ''}
+          ${idx === 0 ? `<div style="margin-top:6px;font-size:0.7rem;color:var(--muted);font-style:italic;">Generate this scene in NightCafe → screenshot the last frame → upload to Scene 2</div>` : ''}
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+
+    // Summary
+    const totalDuration = scenes.reduce((a, s) => a + s.duration, 0);
+    const chainedCount = scenes.filter(s => s.chainImage).length;
+    html += `<p style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:10px;">Total: ${scenes.length} scenes × ${scenes[0].duration}s = ${totalDuration}s — ${chainedCount} chained</p>`;
+
+    board.innerHTML = html;
+
+    // Attach per-scene copy
+    qsa(".ms-copy-scene").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const prompt = decodeURIComponent(btn.getAttribute("data-prompt") || "");
+        try {
+          await navigator.clipboard.writeText(prompt);
+          btn.textContent = "✅ Copied";
+          showToast("Scene prompt copied.");
+          setTimeout(() => { btn.textContent = "📋 Copy prompt"; }, 1000);
+        } catch {
+          showToast("Copy failed.");
+        }
+      });
+    });
+
+    // Attach upload frame buttons
+    qsa(".ms-upload-frame").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-scene-idx"), 10);
+        triggerFrameUpload(idx);
+      });
+    });
+
+    // Attach clear chain buttons
+    qsa(".ms-clear-chain").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-scene-idx"), 10);
+        if (window._msScenes && window._msScenes[idx]) {
+          window._msScenes[idx].chainImage = null;
+          window._msScenes[idx].prompt = window._msScenes[idx].basePrompt || window._msScenes[idx].prompt;
+          renderScenes(window._msScenes);
+          showToast("Frame cleared.");
+        }
+      });
+    });
+  }
+
+  /* =========================================================
+     CONTINUITY CHAIN – frame upload + prompt inheritance
+     ========================================================= */
+
+  function triggerFrameUpload(sceneIdx) {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.style.display = "none";
+    document.body.appendChild(input);
+
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+
+        // Store on scene
+        if (window._msScenes && window._msScenes[sceneIdx]) {
+          const scene = window._msScenes[sceneIdx];
+          scene.chainImage = dataUrl;
+
+          // Store original prompt as base
+          if (!scene.basePrompt) scene.basePrompt = scene.prompt;
+
+          // Analyze image + generate continuation prompt
+          const continuationPrompt = buildContinuationPrompt(scene, sceneIdx);
+          scene.prompt = continuationPrompt;
+
+          renderScenes(window._msScenes);
+          showToast(`Scene ${sceneIdx + 1} chained — prompt updated from last frame.`);
+        }
+      };
+      reader.readAsDataURL(file);
+      document.body.removeChild(input);
+    });
+
+    input.click();
+  }
+
+  function buildContinuationPrompt(scene, idx) {
+    const scenes = window._msScenes || [];
+    const prevScene = idx > 0 ? scenes[idx - 1] : null;
+
+    // Extract visual DNA from the chain image context
+    const basePrompt = scene.basePrompt || scene.prompt;
+
+    // Build continuity-aware prompt
+    const continuityParts = [
+      "VISUAL CONTINUITY: match the previous frame's character appearance, color palette, lighting mood, and environment",
+      prevScene ? `continuing from: ${prevScene.mood.toLowerCase()} atmosphere` : "",
+      "same character design, same outfit, same environment",
+      "consistent art style, matching color grading",
+      basePrompt
+    ].filter(Boolean);
+
+    return continuityParts.join(", ");
+  }
+
+  /* =========================================================
+     MOVIE STORYLINE GENERATOR – EVENTS
+     ========================================================= */
+
+  function attachMSEvents() {
+    // Genre randomizer
+    qsa(".pf-mini[data-ms-rand]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const type = btn.getAttribute("data-ms-rand");
+        if (type === "genre") {
+          const el = $("ms-genre");
+          if (el) el.value = rand(MS.genres).id;
+        }
+      });
+    });
+
+    // Quick 3×5s
+    const quickBtn = $("ms-quick3x5");
+    if (quickBtn) quickBtn.addEventListener("click", () => {
+      const genre = $("ms-genre") ? $("ms-genre").value : "sci_fi";
+      const premise = $("ms-premise") ? $("ms-premise").value.trim() : "";
+      const scenes = generateScenes(3, genre, 5, premise);
+      renderScenes(scenes);
+      window._msScenes = scenes;
+      showToast("Quick 3×5s storyline generated!");
+    });
+
+    // Randomize all
+    const randAll = $("ms-rand-all");
+    if (randAll) randAll.addEventListener("click", () => {
+      const el = $("ms-genre");
+      if (el) el.value = rand(MS.genres).id;
+      const scenesEl = $("ms-scenes");
+      if (scenesEl) scenesEl.value = ["3","4","5"][Math.floor(Math.random()*3)];
+      const durEl = $("ms-duration");
+      if (durEl) durEl.value = rand(MS.durations).id;
+    });
+
+    // Generate
+    const genBtn = $("ms-generate");
+    if (genBtn) genBtn.addEventListener("click", () => {
+      const count   = parseInt(($("ms-scenes") || {}).value || "3", 10);
+      const genre   = $("ms-genre") ? $("ms-genre").value : "sci_fi";
+      const durId   = $("ms-duration") ? $("ms-duration").value : "5s";
+      const durObj  = MS.durations.find(d => d.id === durId) || MS.durations[1];
+      const premise = $("ms-premise") ? $("ms-premise").value.trim() : "";
+      const scenes  = generateScenes(count, genre, durObj.seconds, premise);
+      renderScenes(scenes);
+      window._msScenes = scenes;
+    });
+
+    // Use story template
+    const templateBtn = $("ms-use-template");
+    if (templateBtn) templateBtn.addEventListener("click", () => {
+      const genreId = $("ms-genre") ? $("ms-genre").value : "sci_fi";
+      const templates = MS.storyTemplates[genreId] || MS.storyTemplates.sci_fi;
+      const template = rand(templates);
+      const durId = $("ms-duration") ? $("ms-duration").value : "5s";
+      const durObj = MS.durations.find(d => d.id === durId) || MS.durations[1];
+
+      const scenes = template.beats.map((beat, i) => ({
+        number: i + 1,
+        title: `${template.arc} — Beat ${i + 1}`,
+        prompt: `${beat}. ${rand(MS.genres.find(g=>g.id===genreId).keywords)} style, ${rand(MS.cameras).text}, ${rand(MS.lighting).toLowerCase()} lighting, film grain, anamorphic lens, 2.39:1 aspect ratio, high detail`,
+        camera: rand(MS.cameras).label,
+        mood: rand(MS.moods),
+        lighting: rand(MS.lighting),
+        duration: durObj.seconds,
+        transition: i === 0 ? "Opening" : rand(MS.transitions),
+        moodEmojis: getMoodEmoji(rand(MS.moods))
+      }));
+
+      renderScenes(scenes);
+      window._msScenes = scenes;
+      showToast(`Template "${template.arc}" loaded with ${scenes.length} scenes!`);
+    });
+
+    // Copy all scenes
+    const copyAllBtn = $("ms-copy-all");
+    if (copyAllBtn) copyAllBtn.addEventListener("click", async () => {
+      const scenes = window._msScenes;
+      if (!scenes || !scenes.length) { showToast("Generate a storyline first."); return; }
+      const text = scenes.map(s => `=== ${s.title} (${s.duration}s) ===\n📷 ${s.camera} | 💡 ${s.lighting} | 🎭 ${s.mood} | ✂️ ${s.transition}\n\n${s.prompt}\n`).join("\n");
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("All scenes copied.");
+      } catch { showToast("Copy failed."); }
+    });
+
+    // Copy as JSON
+    const copyJsonBtn = $("ms-copy-json");
+    if (copyJsonBtn) copyJsonBtn.addEventListener("click", async () => {
+      const scenes = window._msScenes;
+      if (!scenes || !scenes.length) { showToast("Generate a storyline first."); return; }
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(scenes, null, 2));
+        showToast("JSON copied.");
+      } catch { showToast("Copy failed."); }
+    });
+
+    // Send to NightCafe
+    const runwayBtn = $("ms-send-runway");
+    if (runwayBtn) runwayBtn.addEventListener("click", () => {
+      window.open("https://creator.nightcafe.studio/", "_blank", "noopener,noreferrer");
+      showToast("NightCafe opened — paste your prompts.");
+    });
+  }
+
+  /* =========================================================
      INIT
      ========================================================= */
   function initPF() {
@@ -923,6 +1819,24 @@ if (neutralSwitch) {
     attachEvents();
     randomizeAll();
     applyHappyMode(); // ensure initial state
+
+    // Creator Battery
+    buildCFUI();
+    fillSelect("cf-surroundings", CF.surroundings);
+    fillSelect("cf-abilities",    CF.abilities);
+    fillSelect("cf-styles",       CF.styles);
+    fillSelect("cf-timelines",    CF.timelines);
+    fillSelect("cf-goals",        CF.goals);
+    fillSelect("cf-descriptions", CF.descriptions);
+    buildCFPrompt();
+    attachCFEvents();
+    randomizeCFAll();
+
+    // Movie Storyline Generator
+    buildMSUI();
+    fillSelect("ms-genre",    MS.genres);
+    fillSelect("ms-duration", MS.durations);
+    attachMSEvents();
   }
 
   if (document.readyState === "loading") {
