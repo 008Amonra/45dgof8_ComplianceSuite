@@ -12,7 +12,11 @@
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw-tsg.js').catch(() => {});
+    }
+  </script>
   <!-- Styles -->
   <link rel="stylesheet" href="TSG-prompt-forge.css">
 
