@@ -1057,6 +1057,10 @@ if (neutralSwitch) {
       <h2 style="font-size:1.4rem;text-align:center;margin-bottom:0.3rem;letter-spacing:0.04em;">Creator Battery</h2>
       <p style="text-align:center;font-size:0.8rem;color:var(--muted);margin-bottom:1.2rem;">Narrative Prompt Builder</p>
 
+      <div style="text-align:center;margin:0 auto 1.2rem;max-width:380px;padding:10px 16px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(255,255,255,.03);">
+        <p style="font-size:0.78rem;color:#9ca3af;margin:0 0 6px;">We edit with <a href="https://www.openshot.org/" target="_blank" rel="noopener" style="color:#38bdf8;text-decoration:none;border-bottom:1px dotted #38bdf8;">OpenShot</a> — free, open-source video editor.</p>
+      </div>
+
       <div class="pf-grid">
         <div class="pf-column cf-controls" id="cf-controls"></div>
         <div class="pf-column cf-output" id="cf-output"></div>
