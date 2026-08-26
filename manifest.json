@@ -2,7 +2,7 @@
   "name": "TSG Prompt Forge",
   "short_name": "Prompt Forge",
   "description": "A calm, modular AI prompt builder for creative workflows.",
-  "start_url": "/tsg_prompt_forge_subpage.html",
+  "start_url": "/TSG-prompt-forge.html",
   "display": "standalone",
   "background_color": "#050810",
   "theme_color": "#050810",
